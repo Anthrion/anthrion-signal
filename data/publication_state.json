@@ -1,10 +1,10 @@
 {
   "code": "6c5fb7a2ebea1674d5f6dae4135f115ebd87ae17f40116b5b3835d42b2b3515d",
-  "content": "d2783cd033a37bde47902e1ac35df3dc551a5a754a2fbbc6e501c65367d3cb5b",
+  "content": "0ed2b5c65ff555457f2af490dac2a292e12d30188f8d49bdd5a26f4a07dbe555",
   "health": [
     [
       "find_tender",
-      "partial"
+      "healthy"
     ],
     [
       "contracts_finder",
@@ -44,7 +44,7 @@
     ],
     [
       "spain",
-      "partial"
+      "failed"
     ],
     [
       "nyc_city_record",
