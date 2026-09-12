@@ -1,14 +1,21 @@
 {
   "contracts_finder": {
     "discovery_backfill": {
-      "checkpoint": {},
+      "checkpoint": {
+        "cursor_window": {
+          "cursor": "cHVibGlzaGVkRnJvbT0yMDI1LTEwLTIzVDA4OjIyOjM3WnxwdWJsaXNoZWRUbz0yMDI1LTEwLTI0VDA4OjIyOjM3WnxsaW1pdD0xMDB8bmV4dEN1cnNvcj03NDY5NTU=",
+          "from": "2025-10-23T08:22:37+00:00",
+          "to": "2025-10-24T08:22:37+00:00"
+        },
+        "watermark": "2025-10-23T09:22:37+00:00"
+      },
       "complete": false,
-      "cursor": "2025-10-16T09:22:37+00:00",
+      "cursor": "2025-10-23T09:22:37+00:00",
       "until": "2026-08-29T09:22:37+00:00",
       "version": "2026-09-11.1"
     },
-    "last_success": "2026-09-12T21:01:36+00:00",
-    "watermark": "2026-09-12T21:01:36+00:00"
+    "last_success": "2026-09-12T23:26:29+00:00",
+    "watermark": "2026-09-12T23:26:29+00:00"
   },
   "digital_outcomes": {
     "digital_details": {
@@ -301,25 +308,26 @@
         "signature": "b2aee5b3e6ce3664b8f4fa34d0c7af362ce424caff17606f774ef6426bc7b279"
       }
     },
-    "last_success": "2026-09-12T21:01:36+00:00",
+    "last_success": "2026-09-12T23:26:29+00:00",
     "next_detail": 0,
-    "watermark": "2026-09-12T21:01:36+00:00"
+    "watermark": "2026-09-12T23:26:29+00:00"
   },
   "find_tender": {
     "discovery_backfill": {
       "checkpoint": {
-        "retry_at": "2026-09-12T21:04:07.314396+00:00",
-        "watermark": "2025-09-13T17:48:39+00:00"
+        "retry_at": "2026-09-12T23:29:00.326634+00:00",
+        "watermark": "2025-09-14T00:18:39+00:00"
       },
-      "cursor": "2025-09-12T18:48:39+00:00",
+      "complete": false,
+      "cursor": "2025-09-13T18:48:39+00:00",
       "until": "2026-08-29T18:48:39+00:00",
       "version": "2026-09-11.1"
     },
-    "last_success": "2026-09-12T21:01:36+00:00",
-    "watermark": "2026-09-12T21:01:36+00:00"
+    "last_success": "2026-09-12T23:26:29+00:00",
+    "watermark": "2026-09-12T23:26:29+00:00"
   },
   "germany": {
-    "last_success": "2026-09-12T21:01:36+00:00",
+    "last_success": "2026-09-12T23:26:29+00:00",
     "pending_days": [],
     "scheduled_through": "2026-09-11",
     "tracked_ocids": [
@@ -581,11 +589,11 @@
   "govuk": {
     "discovery_backfill": {
       "checkpoint": {
-        "next_query": 37,
+        "next_query": 58,
         "queries": {
           "AI agent procurement": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "AI agents": {
@@ -595,7 +603,7 @@
           },
           "AI assistant tender": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "API management tender": {
@@ -625,7 +633,7 @@
           },
           "CRM support tender": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "CRM transformation": {
@@ -635,7 +643,7 @@
           },
           "LLM implementation procurement": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "Salesforce": {
@@ -660,7 +668,7 @@
           },
           "Salesforce managed services": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "Salesforce professional services": {
@@ -670,7 +678,7 @@
           },
           "application modernisation tender": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "artificial intelligence procurement": {
@@ -680,7 +688,7 @@
           },
           "automated triage tender": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "automation integration": {
@@ -690,7 +698,7 @@
           },
           "business intelligence procurement": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "case management": {
@@ -775,7 +783,7 @@
           },
           "document intelligence procurement": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "donor management tender": {
@@ -790,7 +798,7 @@
           },
           "embedded analytics tender": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "enterprise integration partner": {
@@ -800,7 +808,7 @@
           },
           "field service software tender": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "generative AI": {
@@ -810,22 +818,22 @@
           },
           "generative AI tender": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "grant management system procurement": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "intelligent automation procurement": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "knowledge assistant tender": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "legacy integration programme": {
@@ -845,7 +853,7 @@
           },
           "patient engagement platform": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "procurement pipeline technology": {
@@ -865,7 +873,7 @@
           },
           "replace spreadsheets workflow supplier": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "sales automation procurement": {
@@ -885,7 +893,7 @@
           },
           "student services platform tender": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "systems integration procurement": {
@@ -895,12 +903,12 @@
           },
           "workflow automation procurement": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "workforce scheduling platform": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-10-12T09:22:37+00:00"
           }
         },
@@ -919,9 +927,9 @@
         "through": "2026-09-10T22:19:02+00:00"
       },
       "AI agents": {
-        "from": "2026-09-08T10:57:03+00:00",
+        "from": "2026-09-09T22:19:02+00:00",
         "offset": 0,
-        "through": "2026-09-09T10:57:03+00:00"
+        "through": "2026-09-10T22:19:02+00:00"
       },
       "AI assistant tender": {
         "from": "2026-09-09T22:19:02+00:00",
@@ -1015,8 +1023,8 @@
       },
       "automation integration": {
         "from": "2026-09-08T10:57:03+00:00",
-        "offset": 0,
-        "through": "2026-09-09T10:57:03+00:00"
+        "offset": 100,
+        "to": "2026-09-10T22:19:02+00:00"
       },
       "business intelligence procurement": {
         "from": "2026-09-09T22:19:02+00:00",
@@ -1025,7 +1033,7 @@
       },
       "case management": {
         "from": "2026-06-10T10:57:03+00:00",
-        "offset": 2400,
+        "offset": 2500,
         "to": "2026-09-09T10:57:03+00:00"
       },
       "case management procurement": {
@@ -1040,7 +1048,7 @@
       },
       "citizen services": {
         "from": "2026-06-10T10:57:03+00:00",
-        "offset": 2400,
+        "offset": 2500,
         "to": "2026-09-09T10:57:03+00:00"
       },
       "collaboration workflow platform tender": {
@@ -1050,7 +1058,7 @@
       },
       "commercial pipeline digital": {
         "from": "2026-06-10T10:57:03+00:00",
-        "offset": 2400,
+        "offset": 2500,
         "to": "2026-09-09T10:57:03+00:00"
       },
       "complaints management tender": {
@@ -1060,7 +1068,7 @@
       },
       "contact centre": {
         "from": "2026-06-10T10:57:03+00:00",
-        "offset": 2400,
+        "offset": 2500,
         "to": "2026-09-09T10:57:03+00:00"
       },
       "contact centre implementation": {
@@ -1090,7 +1098,7 @@
       },
       "data platform": {
         "from": "2026-06-10T10:57:03+00:00",
-        "offset": 2400,
+        "offset": 2500,
         "to": "2026-09-09T10:57:03+00:00"
       },
       "data quality implementation": {
@@ -1100,7 +1108,7 @@
       },
       "digital transformation procurement": {
         "from": "2026-06-10T10:57:03+00:00",
-        "offset": 2400,
+        "offset": 2500,
         "to": "2026-09-09T10:57:03+00:00"
       },
       "document intelligence procurement": {
@@ -1135,7 +1143,7 @@
       },
       "generative AI": {
         "from": "2026-06-10T10:57:03+00:00",
-        "offset": 2400,
+        "offset": 2500,
         "to": "2026-09-09T10:57:03+00:00"
       },
       "generative AI tender": {
@@ -1180,7 +1188,7 @@
       },
       "procurement pipeline technology": {
         "from": "2026-06-10T10:57:03+00:00",
-        "offset": 2400,
+        "offset": 2500,
         "to": "2026-09-09T10:57:03+00:00"
       },
       "quote to cash implementation": {
@@ -8431,11 +8439,11 @@
         "signature": "09b8d00cfd1baed19e90925fed74d54286de35f3e657c8f1cbcfe32e6867c1b0"
       }
     },
-    "last_success": "2026-09-12T21:01:36+00:00",
-    "watermark": "2026-09-12T21:01:36+00:00"
+    "last_success": "2026-09-12T23:26:29+00:00",
+    "watermark": "2026-09-12T23:26:29+00:00"
   },
   "nyc_city_record": {
-    "last_success": "2026-09-12T21:01:36+00:00",
+    "last_success": "2026-09-12T23:26:29+00:00",
     "query_version": "nyc-procurement-v1",
     "watermark": "2026-09-12T16:23:45+00:00"
   },
@@ -8444,18 +8452,6 @@
       "checkpoint": {
         "monthly_cycle": {
           "pending": [
-            {
-              "month": "10-2025",
-              "type": 3
-            },
-            {
-              "month": "10-2025",
-              "type": 4
-            },
-            {
-              "month": "10-2025",
-              "type": 5
-            },
             {
               "month": "10-2025",
               "type": 6
@@ -8495,6 +8491,18 @@
             {
               "month": "10-2025",
               "type": 2
+            },
+            {
+              "month": "10-2025",
+              "type": 3
+            },
+            {
+              "month": "10-2025",
+              "type": 4
+            },
+            {
+              "month": "10-2025",
+              "type": 5
             }
           ],
           "through": "2025-10-01T09:22:36+00:00"
@@ -8510,18 +8518,6 @@
       "pending": [
         {
           "month": "08-2026",
-          "type": 3
-        },
-        {
-          "month": "08-2026",
-          "type": 4
-        },
-        {
-          "month": "08-2026",
-          "type": 5
-        },
-        {
-          "month": "08-2026",
           "type": 6
         },
         {
@@ -8611,6 +8607,18 @@
         {
           "month": "08-2026",
           "type": 2
+        },
+        {
+          "month": "08-2026",
+          "type": 3
+        },
+        {
+          "month": "08-2026",
+          "type": 4
+        },
+        {
+          "month": "08-2026",
+          "type": 5
         }
       ],
       "through": "2026-09-12T09:22:37+00:00"
@@ -24997,20 +25005,20 @@
     "discovery_backfill": {
       "checkpoint": {
         "query_version": "17f39a916251985f06623cfefe55453a709aeb10fdb2339cad86b7b5fd1b240c",
-        "watermark": "2025-10-15T09:22:37+00:00"
+        "watermark": "2025-10-21T09:22:37+00:00"
       },
       "complete": false,
-      "cursor": "2025-10-15T09:22:37+00:00",
+      "cursor": "2025-10-21T09:22:37+00:00",
       "until": "2026-08-29T09:22:37+00:00",
       "version": "2026-09-11.1"
     },
-    "last_success": "2026-09-12T21:01:36+00:00",
+    "last_success": "2026-09-12T23:26:29+00:00",
     "query_version": "17f39a916251985f06623cfefe55453a709aeb10fdb2339cad86b7b5fd1b240c",
-    "watermark": "2026-09-12T21:01:36+00:00"
+    "watermark": "2026-09-12T23:26:29+00:00"
   },
   "upcoming_agreements": {
-    "last_success": "2026-09-12T21:01:36+00:00",
-    "watermark": "2026-09-12T21:01:36+00:00"
+    "last_success": "2026-09-12T23:26:29+00:00",
+    "watermark": "2026-09-12T23:26:29+00:00"
   },
   "usaspending": {
     "last_success": "2026-09-09T23:17:56+00:00",
@@ -25021,18 +25029,6 @@
       "checkpoint": {
         "monthly_cycle": {
           "pending": [
-            {
-              "month": "10-2025",
-              "type": 4
-            },
-            {
-              "month": "10-2025",
-              "type": 5
-            },
-            {
-              "month": "10-2025",
-              "type": 6
-            },
             {
               "month": "10-2025",
               "type": 7
@@ -25068,6 +25064,18 @@
             {
               "month": "10-2025",
               "type": 3
+            },
+            {
+              "month": "10-2025",
+              "type": 4
+            },
+            {
+              "month": "10-2025",
+              "type": 5
+            },
+            {
+              "month": "10-2025",
+              "type": 6
             }
           ],
           "through": "2025-10-01T09:22:36+00:00"
@@ -25082,18 +25090,6 @@
       "pending": [
         {
           "month": "08-2026",
-          "type": 5
-        },
-        {
-          "month": "08-2026",
-          "type": 6
-        },
-        {
-          "month": "08-2026",
-          "type": 7
-        },
-        {
-          "month": "08-2026",
           "type": 14
         },
         {
@@ -25175,6 +25171,18 @@
         {
           "month": "08-2026",
           "type": 4
+        },
+        {
+          "month": "08-2026",
+          "type": 5
+        },
+        {
+          "month": "08-2026",
+          "type": 6
+        },
+        {
+          "month": "08-2026",
+          "type": 7
         }
       ],
       "through": "2026-09-11T13:29:55+00:00"
