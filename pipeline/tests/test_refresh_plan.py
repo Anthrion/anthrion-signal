@@ -128,3 +128,5 @@ def test_every_publication_requires_browser_checks_and_full_success_is_not_recor
     assert steps.index(by_name["Translate new and outstanding records"]) < steps.index(by_name["Validate pipeline and public dataset"])
     assert "--github-checkpoint" in by_name["Translate new and outstanding records"]["run"]
     assert workflow["concurrency"]["cancel-in-progress"] == "false"
+    assert workflow["concurrency"]["queue"] == "max"
+    assert workflow["concurrency"]["group"] == "anthrion-signal-production"
