@@ -1,8 +1,9 @@
 """High-recall candidate discovery. These signals are not technical fit scores."""
 import re
-import unicodedata
 
-from .utils import parse_date, unique
+from .capability_matching import capability_hits, evidence_excerpt, unrelated_supply
+from .utils import digest, parse_date, unique
+from .vocabulary import phrase_hits, search_text
 
 ACTIONABLE = {"OPEN", "EARLY_ENGAGEMENT", "FUTURE"}
 TERMINAL = {"AWARDED", "CLOSED", "EXPIRED", "CANCELLED", "WITHDRAWN"}
@@ -18,11 +19,6 @@ def is_award_intelligence(signal):
             or signal.lifecycle_state == "AWARDED"
             or (signal.signal_type == "RENEWAL_SIGNAL" and
                 (signal.related_signal_id or signal.status.casefold() == "inferred" or signal.renewal_basis)))
-
-
-def search_text(value):
-    value = unicodedata.normalize("NFKD", value or "").casefold()
-    return " " + re.sub(r"[^\w]+", " ", "".join(c for c in value if not unicodedata.combining(c))).strip() + " "
 
 
 def discovery_text(value):
@@ -95,7 +91,7 @@ def is_public_opportunity(signal, now):
     return not any(check.status == "CONFIRMED_BLOCKER" for check in checks)
 
 
-def hard_exclusions(signal, charter):
+def hard_exclusions(signal, charter, scope_evidence=False):
     policy = charter["discovery"]
     text = discovery_text(signal.title + " " + signal.description)
     title = discovery_text(signal.title)
@@ -112,13 +108,13 @@ def hard_exclusions(signal, charter):
     physical_title = any(contains(title, p) for p in policy.get("physical_scope_titles", []))
     digital_title = any(contains(title, p) for p in policy.get("digital_scope_titles", []))
     digital_lot = bool(re.search(r"\blot\s+\d+[^.!?\n]{0,180}\b(?:software|crm|digital platform|system integration)\b", signal.description, re.IGNORECASE))
-    if (not technical and any(contains(text, p) for p in policy["irrelevant_physical"])) or (physical_title and not digital_title and not digital_lot):
+    if not scope_evidence and ((not technical and any(contains(text, p) for p in policy["irrelevant_physical"])) or (physical_title and not digital_title and not digital_lot)):
         reasons.append("Physical goods or works without a stated technology-services scope.")
     non_technical_codes = tuple(policy.get("non_technical_cpv_prefixes", []))
     non_technical = (bool(signal.cpv_codes) and bool(non_technical_codes)
                      and all(code.startswith(non_technical_codes) for code in signal.cpv_codes))
     non_technical |= any(contains(text, p) for p in policy.get("non_technical_service_phrases", []))
-    software_scope = digital_title or digital_lot or any(contains(text, p) for p in policy.get("software_scope_terms", []))
+    software_scope = scope_evidence or digital_title or digital_lot or any(contains(text, p) for p in policy.get("software_scope_terms", []))
     if non_technical and not software_scope:
         reasons.append("Non-technology service delivery without a stated software, AI or systems scope.")
     if any(contains(text, p) for p in policy.get("company_excluding_eligibility", [])):
@@ -136,25 +132,31 @@ def hard_exclusions(signal, charter):
     return reasons
 
 
-def prefilter(signals, profile, terms, charter=None):
+def prefilter(signals, profile, terms, charter=None, translations=None):
     # Compatibility for external callers; production always supplies the expanded charter.
     caps = charter["capabilities"] if charter else [dict(c, needs=c["terms"]) for c in profile["capabilities"]]
-    technical_terms = charter["discovery"]["technical_context"] if charter else terms["supplementary"]
     for signal in signals:
         text = discovery_text(signal.title + " " + signal.description)
         title = discovery_text(signal.title)
-        technical = any(contains(text, p) for p in technical_terms)
-        families, hits, strengths, primary_families = [], [], [], []
-        relationship_database = (contains(text, "database")
-            and bool(re.search(r"\b(?:stakeholders?|constituents?|members?|donors?|volunteers?|customers?|clients?|coalitions?|tenants?|residents?)\b", text))
-            and bool(re.search(r"\b(?:manage|management|tracking|communication|engagement|contacts?)\b", text)))
+        documents = [("original", signal.title, signal.description)]
+        translated = (translations or {}).get(signal.id)
+        if translated and not isinstance(translated, dict):
+            translated = translated.model_dump()
+        if translated and translated.get("source_hash") == digest([signal.title, signal.description]):
+            documents.append(("english_translation", translated["title"], translated["description"]))
+        segments = [{"basis": basis, "field": field, "quote": part, "text": discovery_text(part)}
+                    for basis, heading, description in documents
+                    for field, value in (("title", heading), ("description", description))
+                    for part in re.split(r"(?<=[.!?;])\s+|\n+", value) if part.strip()]
+        families, hits, strengths, primary_families, evidence = [], [], [], [], []
+        software_cpv = any(code.startswith(("48", "72")) for code in signal.cpv_codes)
         for cap in caps:
-            explicit = [p for p in cap.get("explicit", []) if contains(text, p)]
-            needs = [p for p in cap.get("needs", []) + cap.get("aliases", []) if contains(text, p)]
-            contextual = [p for p in cap.get("contextual", []) if technical and contains(text, p)]
-            if cap["id"] == "relationships" and relationship_database:
-                needs.append("Relationship-management database")
+            matches = capability_hits(cap, segments, software_cpv)
+            explicit = [e["phrase"] for e in matches if e["strength"] == "explicit"]
+            needs = [e["phrase"] for e in matches if e["strength"] == "needs"]
+            contextual = [e["phrase"] for e in matches if e["strength"] == "contextual"]
             if explicit or needs or contextual:
+                evidence.extend(sorted(matches, key=lambda e: ({"explicit": 0, "needs": 1, "contextual": 2}[e["strength"]], e["basis"] != "original"))[:2])
                 if explicit or needs:
                     primary_families.append(cap["id"])
                 families.append(cap["id"])
@@ -164,18 +166,31 @@ def prefilter(signals, profile, terms, charter=None):
                     strength += 12
                 strengths.append(strength)
         cpv = any(code.startswith(tuple(terms["cpv_prefixes"])) for code in signal.cpv_codes)
+        digital_scope = unique(p for segment in segments for p in phrase_hits(segment["text"], (
+            "software development", "website development", "software engineering", "digital telephony",
+            "open banking", "application development", "information systems development", "software implementation")))
         score = min(100, max(strengths, default=0) + min(24, max(0, len(families) - 1) * 6) + (12 if cpv else 0))
+        # Unclassified digital delivery remains a reviewable candidate, not an invented capability.
+        if digital_scope:
+            score = max(score, 12)
         # Pipeline/consulting vocabulary alone identifies buying stage, not our scope.
         if families and set(families) <= {"pipeline", "staffing", "external_integration"} and not cpv:
             score = min(score, 10)
         signal.prefilter_score = score
-        signal.prefilter_matches = unique(hits + (["Relevant CPV classification"] if cpv else []))[:40]
+        signal.prefilter_matches = unique(hits + [f"Published digital scope: {p}" for p in digital_scope]
+                                          + (["Relevant CPV classification"] if cpv else []))[:40]
         signal.discovery_families = families
         signal.delivery_priority = ("platform" if PLATFORM_FAMILIES.intersection(primary_families)
                                     else "ai" if AI_FAMILIES.intersection(primary_families) or "ai" in families else "other")
         signal.matched_capabilities = families
         signal.discovery_version = charter["version"] if charter else None
-        signal.exclusion_reasons = hard_exclusions(signal, charter) if charter else []
+        meaningful = set(primary_families) - {"staffing", "managed", "transformation"}
+        signal.exclusion_reasons = hard_exclusions(signal, charter, bool(meaningful)) if charter else []
+        for _, heading, description in documents:
+            reason = unrelated_supply(discovery_text(heading), discovery_text(description), evidence, signal.cpv_codes)
+            if reason:
+                signal.exclusion_reasons = unique([*signal.exclusion_reasons, reason])
+        signal.capability_evidence = [{**e, "quote": evidence_excerpt(e["quote"], e["phrase"])} for e in evidence]
         if signal.exclusion_reasons:
             signal.prefilter_score = 0
         buyer = text + search_text(signal.buyer_name)

@@ -185,6 +185,27 @@ def test_unchanged_200_response_does_not_restart_archive_window():
     assert calls.count(ARCHIVE) == 1
 
 
+def test_changed_vocabulary_replays_unchanged_head_and_preserves_archive_window():
+    calls = []
+    def handler(request):
+        calls.append(request)
+        content = page(entry(), ARCHIVE) if str(request.url) == FEED_URL else page(entry("124"))
+        return httpx.Response(200, content=content, headers={"ETag": '"same"'})
+    http = Http(transport=httpx.MockTransport(handler), sleeper=lambda _: None)
+    first = collect_spain_notices(SOURCE, {}, FROZEN, http, {"max_pages": 2}, {})
+    assert first.complete
+    terms = {"discovery_phrases": ["OmniStudio", "gestión de subvenciones"]}
+    replay = collect_spain_notices(SOURCE, first.state, FROZEN, http, {"max_pages": 1, "lookback_days": 14}, terms)
+    assert "if-none-match" not in calls[-1].headers
+    assert len(replay.state["pending"]) == 1
+    assert replay.state["pending"][0]["after"] == (FROZEN - timedelta(days=14)).isoformat()
+    assert replay.state["head_updated"] == first.state["head_updated"]
+    assert first.state["pending"] == []
+    following = collect_spain_notices(SOURCE, replay.state, FROZEN, http, {"max_pages": 1, "lookback_days": 14}, terms)
+    assert calls[-1].headers["if-none-match"] == '"same"'
+    assert len(following.state["pending"]) == 1
+
+
 def test_new_head_is_collected_while_old_backlog_is_preserved():
     calls = []
     def handler(request):

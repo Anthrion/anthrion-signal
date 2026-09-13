@@ -5,7 +5,7 @@ from datetime import timedelta
 import httpx
 import pytest
 
-from anthrion_signal.collectors import Http, RawRecord, collect_ted
+from anthrion_signal.collectors import Http, RawRecord, collect_ted, collect_ted_discovery, ted_keyword_groups
 from anthrion_signal.discovery import is_public_opportunity, lifecycle
 from anthrion_signal.dedupe import reconcile
 from anthrion_signal.normalise import normalise_ted
@@ -18,6 +18,65 @@ def source(config):
 def notice(**changes):
     return {"publication-number": "635159-2025", "title-proc": "CRM software renewal competition",
             "form-type": "competition", "notice-type": "cn-standard", "buyer-country": ["DEU"], **changes}
+
+
+def test_keyword_lane_is_additive_bounded_and_resumes_exact_query(config, now):
+    bodies = []
+    def handler(request):
+        body = json.loads(request.content)
+        bodies.append(body)
+        return httpx.Response(200, json={"notices": [notice()], "iterationNextToken": "next-" + str(len(bodies))})
+    http = Http(transport=httpx.MockTransport(handler), sleeper=lambda _: None)
+    terms = {**config["search_terms"], "discovery_phrases": ["Salesforce Public Sector", "OmniStudio", "τεχνητή νοημοσύνη"]}
+    settings = {**config["runtime"], "max_pages": 5}
+    initial = {}
+    first = collect_ted_discovery(source(config), initial, now, http, settings, terms)
+    assert initial == {} and first.pages == 5
+    assert "classification-cpv IN" in bodies[0]["query"]
+    assert "classification-cpv" not in bodies[-1]["query"]
+    assert 'FT ~ "Salesforce Public Sector"' in bodies[-1]["query"]
+    assert 'buyer-country IN' in bodies[-1]["query"]
+    old_keyword = bodies[-1]
+    frozen_state = copy.deepcopy(first.state)
+    second = collect_ted_discovery(source(config), first.state, now + timedelta(hours=1), http, settings, terms)
+    assert first.state == frozen_state and second.pages <= 5
+    assert bodies[-1]["query"] == old_keyword["query"]
+    assert bodies[-1]["iterationNextToken"] == "next-5"
+
+
+def test_changed_keyword_query_does_not_reuse_old_continuation_or_reset_cpv(config, now):
+    bodies = []
+    def handler(request):
+        bodies.append(json.loads(request.content))
+        return httpx.Response(200, json={"notices": [notice()], "iterationNextToken": str(len(bodies))})
+    http = Http(transport=httpx.MockTransport(handler), sleeper=lambda _: None)
+    settings = {**config["runtime"], "max_pages": 5}
+    first = collect_ted_discovery(source(config), {}, now, http, settings,
+                                  {**config["search_terms"], "discovery_phrases": ["CRM"]})
+    second = collect_ted_discovery(source(config), first.state, now, http, settings,
+                                   {**config["search_terms"], "discovery_phrases": ["OmniStudio"]})
+    assert "iterationNextToken" in bodies[5]
+    assert "iterationNextToken" not in bodies[-1]
+    assert first.state["query_version"] == second.state["query_version"]
+    assert len(second.state["ted_keywords"]["lanes"]) == 1
+
+
+def test_keyword_requests_are_small_and_do_not_contain_generic_context(config):
+    groups = ted_keyword_groups(config["search_terms"])
+    assert all(len(group.encode("utf-8")) < 6000 for group in groups)
+    assert not any(term in group for group in groups for term in ('FT ~ "public sector"', 'FT ~ AI OR', 'FT ~ Teams OR'))
+
+
+def test_changed_query_preserves_an_unfinished_window_older_than_lookback(config, now):
+    bodies = []
+    http = Http(transport=httpx.MockTransport(lambda request: (
+        bodies.append(json.loads(request.content)) or httpx.Response(200, json={"notices": []}))), sleeper=lambda _: None)
+    old = now - timedelta(days=40)
+    state = {"query_version": "old-vocabulary", "ted_pending": {"from": old.isoformat(),
+        "until": (old + timedelta(days=1)).isoformat(), "through": now.isoformat(), "token": "stale"}}
+    collect_ted(source(config), state, now, http, {**config["runtime"], "max_pages": 1}, config["search_terms"])
+    assert old.strftime("%Y%m%d") in bodies[0]["query"]
+    assert "iterationNextToken" not in bodies[0]
 
 
 def test_budget_persists_token_and_exact_window_across_runs(config, now):

@@ -552,7 +552,7 @@ test('CSV export retains source facts and comparison is removed', async ({ page 
   await expect(page.locator('.signal-row .hide-control').first()).toBeVisible()
 })
 
-test('every refiner and sort keeps platform opportunities before standalone AI', async ({
+test('every refiner keeps default priority and explicit values sort across groups', async ({
   page,
 }) => {
   test.setTimeout(120000)
@@ -608,10 +608,20 @@ test('every refiner and sort keeps platform opportunities before standalone AI',
     await ready(page)
     await expect(page.locator('.feed-heading .count-badge')).toHaveText('6')
     await expect(page.locator('.row-title')).toHaveText(order(false))
-    for (const label of ['Recently updated', 'Closing soon', 'Highest value', 'Lowest value']) {
+    for (const label of ['Recently updated', 'Closing soon']) {
       await page.getByRole('button', { name: /^Sort opportunities:/ }).click()
       await page.getByRole('menuitemradio', { name: label, exact: true }).click()
-      await expect(page.locator('.row-title')).toHaveText(order(label !== 'Lowest value'))
+      await expect(page.locator('.row-title')).toHaveText(order(true))
+    }
+    for (const [label, ages] of [
+      ['Highest value', [1, 0]],
+      ['Lowest value', [0, 1]],
+    ] as const) {
+      await page.getByRole('button', { name: /^Sort opportunities:/ }).click()
+      await page.getByRole('menuitemradio', { name: label, exact: true }).click()
+      await expect(page.locator('.row-title')).toHaveText(
+        ages.flatMap((older) => groups.map((group) => title(group, older))),
+      )
     }
     await page.getByRole('button', { name: /^Sort opportunities:/ }).click()
     await page.getByRole('menuitemradio', { name: 'Most recent', exact: true }).click()
@@ -800,7 +810,7 @@ test('exactly five refiners remain available across markets and empty states', a
 
 test('universal value labels, both sort directions and adjacent range controls', async ({
   page,
-}) => {
+}, info) => {
   await page.goto('./?view=all&market=US')
   await ready(page)
   await page.getByRole('button', { name: 'Sort opportunities: Most recent' }).click()
@@ -812,6 +822,13 @@ test('universal value labels, both sort directions and adjacent range controls',
   await expect(
     page.getByLabel('Currency', { exact: true }).locator('option[value="JPY"]'),
   ).toHaveCount(1)
+  await expect(
+    page.getByLabel('Currency', { exact: true }).locator('option[value="JPY"]'),
+  ).toHaveText('Japanese Yen')
+  const cpv = await page.getByLabel('CPV code', { exact: true }).boundingBox()
+  const currency = await page.getByLabel('Currency', { exact: true }).boundingBox()
+  expect(Math.abs(cpv!.y - currency!.y)).toBeLessThan(2)
+  expect(cpv!.x + cpv!.width).toBeLessThan(currency!.x)
   await page.getByLabel('Currency', { exact: true }).selectOption('USD')
   await page.getByLabel('Minimum value', { exact: true }).fill('100000')
   await page.getByLabel('Maximum value', { exact: true }).fill('900000')
@@ -819,6 +836,7 @@ test('universal value labels, both sort directions and adjacent range controls',
   const maximum = await page.getByLabel('Maximum value', { exact: true }).boundingBox()
   expect(Math.abs(minimum!.y - maximum!.y)).toBeLessThan(2)
   expect(minimum!.x + minimum!.width).toBeLessThan(maximum!.x)
+  await page.screenshot({ path: `../artifacts/currency-filters-${info.project.name}.png` })
   await page.getByRole('button', { name: /^Show \d+ signals$/ }).click()
   await ready(page)
   expect(page.url()).toContain('currency=USD')
@@ -828,6 +846,55 @@ test('universal value labels, both sort directions and adjacent range controls',
   await expect(page.getByRole('button', { name: 'Sort opportunities: Lowest value' })).toBeVisible()
   expect(page.url()).toContain('minValue=100000')
   expect(page.url()).toContain('maxValue=900000')
+})
+
+test('capability sort uses the visible taxonomy and keeps untagged records last', async ({
+  page,
+}) => {
+  const data = await isolatedDataset(page)
+  const base = data.signals[0]
+  data.signals = [
+    {
+      ...base,
+      id: 'cap-crm',
+      title: 'Customer platform',
+      matched_capabilities: ['crm'],
+      delivery_priority: 'platform',
+    },
+    {
+      ...base,
+      id: 'cap-none',
+      title: 'Unclassified software',
+      matched_capabilities: [],
+      delivery_priority: 'other',
+    },
+    {
+      ...base,
+      id: 'cap-ai',
+      title: 'AI assistant',
+      matched_capabilities: ['ai'],
+      delivery_priority: 'ai',
+    },
+  ]
+  await page.route('**/data/current.json', (route) => route.fulfill({ json: data }))
+  await page.goto('./?view=all')
+  await ready(page)
+  await page.getByRole('button', { name: /^Sort opportunities:/ }).click()
+  await page.getByRole('menuitemradio', { name: 'Capability A-Z', exact: true }).click()
+  await expect(page.locator('.row-title')).toHaveText([
+    'AI assistant',
+    'Customer platform',
+    'Unclassified software',
+  ])
+  await page.reload()
+  await expect(
+    page.getByRole('button', { name: 'Sort opportunities: Capability A-Z' }),
+  ).toBeVisible()
+  await expect(page.locator('.row-title')).toHaveText([
+    'AI assistant',
+    'Customer platform',
+    'Unclassified software',
+  ])
 })
 
 test('failed refresh and malformed storage retain a usable workspace', async ({ page }) => {

@@ -1,0 +1,142 @@
+"""Evidence-local tagging; source classifications remain a separate recall route."""
+import re
+
+from .vocabulary import phrase_hits, search_text
+
+SOFTWARE = ("software", "platform", "application", "system", "systems", "implementation", "development",
+            "automation", "digital", "workflow", "api", "crm", "saas", "logiciel", "sistema", "sistemi",
+            "applicazioni", "applicazione", "applikationen", "anwendungen", "virtualisierbar", "softwarewartung",
+            "plataforma", "piattaforma", "softwareentwicklung", "systeme", "jarjestelma", "jarjestelman",
+            "ohjelmisto", "logismiko", "λογισμικο", "συστημα", "συστηματος", "συστηματων", "πλατφορμα",
+            "ψηφιακων", "ψηφιακος", "tietojarjestelma", "tietojarjestelman", "kerfi", "kerfis")
+INTEGRATION = ("integration", "integrate", "integrated", "integrating", "interface", "interfaces", "connect",
+               "connecting", "interoperability", "systemintegration", "schnittstelle", "schnittstellen",
+               "integrazione", "interoperabilita", "integracion", "interoperabilidad", "διασυνδεση",
+               "διασυνδεσης", "διαλειτουργικοτητα", "integraatio", "integrasjon")
+NEGATED_BEFORE = re.compile(r"\b(?:no|without|excluding|exclude|excludes|not include|not including|does not require|"
+                            r"not required|sans|ohne|kein|keine|keinen|sin|senza|χωρις|δεν περιλαμβανει)\s+(?:\w+\s+){0,4}$")
+NEGATED_AFTER = re.compile(r"^\s*(?:\w+\s+){0,3}(?:is |are |will be )?(?:not included|not required|excluded|out of scope|"
+                           r"δεν περιλαμβανεται|δεν περιλαμβανονται)")
+AMBIGUOUS_NEEDS = {"account management", "client management", "contact management", "application processing",
+                   "licensing applications", "casework", "case working", "case handling", "case processing",
+                   "case management", "claims management", "patient engagement", "customer journeys",
+                   "volunteer management", "donor management", "beneficiary management", "grant management",
+                   "student lifecycle", "learner engagement", "contact centre", "contact center", "call centre",
+                   "call center", "digital transformation", "service transformation", "business transformation",
+                   "data quality", "data governance", "master data", "data cleansing", "data visualisation",
+                   "data visualization", "business intelligence", "schnittstellenmanagement", "stakeholdermanagement",
+                   "kundenmanagement", "kundhantering", "asiakashallinta", "gestion de donantes", "gestione dei donatori"}
+SOFTWARE_CPV = ("48", "72")
+CONTEXT_GUARDS = {
+    "salesforce": ("salesforce", "force com", "visualforce", "omnistudio"),
+    "external_integration": INTEGRATION,
+    "analytics": ("analytics", "business intelligence", "dashboard platform", "crm", "reporting system",
+                  "develop", "implement", "build", "development", "implementation"),
+    "field_service": ("field service", "workforce", "scheduling software", "work order system", "crm"),
+    "sales_revenue": ("crm", "commerce", "sales", "revenue", "subscription", "quotation", "quote"),
+    "data": ("customer", "client", "master data", "data quality", "data governance", "data integration"),
+    "knowledge": ("knowledge management", "knowledge base", "document intelligence", "artificial intelligence",
+                  "ai", "llm", "retrieval", "semantic", "chatbot"),
+    "contact_centre": ("customer", "citizen", "patient", "patients", "omnichannel", "contact centre", "contact center", "crm",
+                       "helpdesk software", "helpdesk platform", "service desk platform"),
+}
+
+
+def affirmed(text, phrase):
+    """Ignore only explicit local exclusions, not a whole document containing 'not'."""
+    pattern = re.compile(r"(?<!\w)" + re.escape(phrase) + r"(?!\w)")
+    for hit in pattern.finditer(text):
+        before, after = text[max(0, hit.start() - 85):hit.start()], text[hit.end():hit.end() + 85]
+        if not NEGATED_BEFORE.search(before) and not NEGATED_AFTER.search(after):
+            return True
+    return False
+
+
+def has_software(text):
+    return bool(phrase_hits(text, SOFTWARE)) or bool(re.search(
+        r"\b\w+(?:system|systeme|systemen|systemet|systemer|systema|jarjestelma|jarjestelman|plattform|plattformen)\b", text))
+
+
+def evidence_excerpt(quote, phrase):
+    tokens = list(re.finditer(r"\w+", quote))
+    words = [search_text(token.group()).strip() for token in tokens]
+    target = phrase.split()
+    for i in range(len(words) - len(target) + 1):
+        if words[i:i + len(target)] == target:
+            return quote[max(0, tokens[i].start() - 100):tokens[i + len(target) - 1].end() + 100]
+    return quote
+
+
+def capability_hits(cap, segments, software_cpv=False):
+    if cap["id"] == "pipeline":
+        return []
+    evidence = []
+    for segment in segments:
+        text = segment["text"]
+        technical = has_software(text)
+        if cap["id"] in {"ai", "genai"} and phrase_hits(text, (
+                "computer system for running", "computing system for training", "laptop for processing",
+                "υπολογιστικο συστημα", "φορητος υπολογιστης")):
+            continue
+        for level, phrases in (("explicit", cap.get("explicit", [])),
+                               ("needs", cap.get("needs", []) + cap.get("aliases", [])),
+                               ("contextual", cap.get("contextual", []))):
+            for phrase in phrase_hits(text, phrases):
+                if not affirmed(text, phrase):
+                    continue
+                # A foreign-language alias may describe a human service. Software CPV
+                # supports a functional phrase, but never proves a tag by itself.
+                if level == "needs" and phrase in AMBIGUOUS_NEEDS and not (technical or software_cpv):
+                    continue
+                if level == "contextual":
+                    if not technical or not phrase_hits(text, CONTEXT_GUARDS.get(cap["id"], SOFTWARE)):
+                        continue
+                    if cap["id"] in ("ai", "genai") and phrase in ("ai", "mcp", "rag"):
+                        if not re.search(r"\b" + phrase.upper() + r"\b", segment["quote"]):
+                            continue
+                evidence.append({"capability": cap["id"], "phrase": phrase, "strength": level,
+                                 "basis": segment["basis"], "field": segment["field"], "quote": segment["quote"]})
+        if cap["id"] == "relationships" and re.search(
+                r"\b(?:stakeholder|constituent|member|donor|volunteer|customer|client|coalition|tenant|resident)s?\b"
+                r".{0,120}\bdatabase\b|\bdatabase\b.{0,120}"
+                r"\b(?:stakeholder|constituent|member|donor|volunteer|customer|client|coalition|tenant|resident)s?\b", text):
+            if phrase_hits(text, ("management", "manage", "tracking", "communication", "engagement", "contacts")):
+                if not phrase_hits(text, ("permanent resident", "citizenship eligibility", "eligible applicants")):
+                    evidence.append({"capability": cap["id"], "phrase": "relationship-management database",
+                                     "strength": "needs", "basis": segment["basis"], "field": segment["field"],
+                                     "quote": segment["quote"]})
+    return evidence
+
+
+def unrelated_supply(title, text, evidence, cpv_codes=()):
+    """Only positively identified supplies; no inference from absent tags alone."""
+    hardware = phrase_hits(title, ("servers", "server hardware", "serverbeschaffung", "backup appliance",
+        "storage system", "storage systems", "storage hardware", "it infrastructure", "network equipment",
+        "computer equipment", "computer hardware", "laboratory equipment", "electronic equipment", "supply of equipment",
+        "chiller replacement", "chillier replacement", "προμηθεια εξοπλισμου", "special vehicles",
+        "antivirus software", "supply of firewall", "network switches", "laptop computers", "desktop computers",
+        "πληροφοριακων υποδομων", "διακομιστων", "δικτυακου εξοπλισμου", "ηλεκτρονικου εξοπλισμου"))
+    licences = phrase_hits(title, ("microsoft licences", "microsoft licenses", "microsoft software licences",
+        "microsoft software licenses", "software assurance microsoft", "siem licences", "siem licenses",
+        "microsoft lizenzen", "αδειων microsoft", "αδειων λογισμικου microsoft"))
+    generic_supply = {"it infrastructure", "supply of equipment", "προμηθεια εξοπλισμου", "πληροφοριακων υποδομων"}
+    if hardware and set(hardware) <= generic_supply:
+        physical_codes = any(code.startswith(("30", "32", "34", "35", "38", "39", "4882")) for code in cpv_codes)
+        physical_details = phrase_hits(text, ("servers", "laptops", "computers", "network switch", "storage hardware",
+                                              "διακομιστες", "φορητοι υπολογιστες"))
+        if not physical_codes and not physical_details:
+            hardware = []
+    # A CRM platform purchase, an AI implementation or an independently described
+    # application lot remains addressable even when hardware/licences are included.
+    addressable = any(e["strength"] != "contextual" and (
+        e["capability"] in {"salesforce", "crm", "service", "relationships", "portals", "workflow", "sales_revenue",
+                             "marketing", "integration", "industry", "field_service"}
+        or (e["capability"] in {"ai", "genai", "automation", "knowledge"} and phrase_hits(search_text(e["quote"]),
+            ("implementation", "implement", "development", "develop", "chatbot", "ai assistant", "ai agent",
+             "virtual assistant", "υλοποιηση", "αναπτυξη", "integrazione", "desarrollo", "entwicklung")))
+        ) for e in evidence)
+    if hardware and phrase_hits(title, ("support", "services", "service", "consulting", "υπηρεσιες", "dienstleistungen")):
+        hardware = []
+    if (hardware or licences) and not addressable:
+        return "Hardware, infrastructure or licence supply without a stated CRM, business-application or AI delivery scope."
+    return None

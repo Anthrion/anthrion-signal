@@ -238,6 +238,7 @@ class Signal(StrictModel):
     prefilter_score: float = 0
     prefilter_matches: list[str] = Field(default_factory=list)
     matched_capabilities: list[str] = Field(default_factory=list)
+    capability_evidence: list[dict[str, str]] = Field(default_factory=list)
     fit_score: float | None = Field(default=None, ge=0, le=100)
     confidence_score: float = Field(default=0, ge=0, le=100)
     known_weight: float = 0

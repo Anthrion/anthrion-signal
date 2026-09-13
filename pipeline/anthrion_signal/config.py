@@ -15,6 +15,9 @@ def load_config(root: Path):
     identifiers = [c["id"] for c in capabilities]
     if len(set(identifiers)) != len(identifiers):
         raise ValueError("Capability identifiers must be unique")
+    result["search_terms"]["discovery_english_phrases"] = list(dict.fromkeys(
+        p for c in capabilities if c["id"] not in ("pipeline", "staffing")
+        for p in c.get("explicit", []) + c.get("needs", [])))
     for language, families in result["discovery_languages"].items():
         if set(families) - set(identifiers):
             raise ValueError(f"Unknown capability in {language} discovery pack")
@@ -22,6 +25,9 @@ def load_config(root: Path):
             capability.setdefault("aliases", []).extend(families.get(capability["id"], []))
     result["search_terms"]["govuk_queries"] = list(dict.fromkeys(
         result["search_terms"]["govuk_queries"] + [q for c in capabilities for q in c.get("queries", [])]))
+    result["search_terms"]["discovery_phrases"] = list(dict.fromkeys(
+        p for c in capabilities if c["id"] not in ("pipeline", "staffing")
+        for p in c.get("explicit", []) + c.get("needs", []) + c.get("aliases", [])))
     result["runtime"] = {
         "model": "",
         "max_ai_calls": 0,

@@ -130,3 +130,25 @@ def test_grants_partial_detail_retains_checkpoint(config, now):
     http = Http(transport=httpx.MockTransport(handler), sleeper=lambda _: None)
     result = collect_grants(source(config, 'grants'), {}, now, http, config['runtime'], {})
     assert not result.complete and 'watermark' not in result.state
+
+
+def test_grants_queries_add_all_specific_english_phrases_within_request_budget(config, now):
+    from anthrion_signal.collectors import keyword_groups
+    import json
+
+    queries = []
+    def handler(req):
+        queries.append(json.loads(req.content)["keyword"])
+        return httpx.Response(200, json={"errorcode": 0, "data": {"hitCount": 0, "oppHits": []}})
+    http = Http(transport=httpx.MockTransport(handler), sleeper=lambda _: None)
+    terms = config["search_terms"]
+    groups = keyword_groups(terms["discovery_english_phrases"])
+    result = collect_grants(source(config, "grants"), {}, now, http, config["runtime"], terms)
+    assert result.complete and result.pages == len(queries)
+    assert set(source(config, "grants")["keywords"]) <= set(queries)
+    assert set(groups) <= set(queries)
+    assert all(len(group.encode("utf-8")) <= 5500 and len(group.split(" OR ")) <= 60 for group in groups)
+    combined = " OR ".join(groups)
+    assert '"Salesforce Public Sector"' in combined and "OmniStudio" in combined
+    assert '"public sector"' not in combined and ' OR AI OR ' not in combined
+    assert len(queries) < config["runtime"]["max_pages"]

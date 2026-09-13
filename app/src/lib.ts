@@ -100,7 +100,10 @@ export function currencyOptions(signals: Signal[]) {
   for (const signal of signals) {
     if (signal.currency && /^[A-Z]{3}$/.test(signal.currency)) currencies.add(signal.currency)
   }
-  return [...currencies].sort().map((currency) => ({ value: currency, label: currency }))
+  const names = new Intl.DisplayNames('en-GB', { type: 'currency' })
+  return [...currencies]
+    .map((currency) => ({ value: currency, label: names.of(currency) || currency }))
+    .sort((a, b) => a.label.localeCompare(b.label, 'en-GB') || a.value.localeCompare(b.value))
 }
 export function responseDeadline(s: Signal, now = Date.now()) {
   const dates = (s.response_deadlines || [])
@@ -377,7 +380,29 @@ export function filterSignals(
     if (f.change === 'updated' && !isUpdated(s, now)) return false
     return true
   })
+  const capabilityNames = new Map(capabilities.map((c) => [c.id, c.label]))
+  const capabilityKey = (s: Signal) =>
+    [...new Set(s.matched_capabilities.map((id) => capabilityNames.get(id) || id))]
+      .sort((a, b) => a.localeCompare(b, 'en-GB'))
+      .join('\u0000')
+  const capabilityKeys =
+    f.sort === 'capability' ? new Map(result.map((s) => [s.id, capabilityKey(s)])) : null
   return result.sort((a, b) => {
+    // An explicit value/capability sort takes precedence over the default delivery tiers.
+    if (f.sort === 'value' || f.sort === 'value-low') {
+      if (a.value_max === null) return b.value_max === null ? compareRecommended(a, b, now) : 1
+      if (b.value_max === null) return -1
+      return (
+        (f.sort === 'value' ? b.value_max - a.value_max : a.value_max - b.value_max) ||
+        compareRecommended(a, b, now)
+      )
+    }
+    if (capabilityKeys) {
+      const first = capabilityKeys.get(a.id) || ''
+      const second = capabilityKeys.get(b.id) || ''
+      if (!first || !second) return first ? -1 : second ? 1 : compareRecommended(a, b, now)
+      return first.localeCompare(second, 'en-GB') || compareRecommended(a, b, now)
+    }
     const priority = priorityTier(a) - priorityTier(b)
     if (priority) return priority
     switch (f.sort) {
@@ -396,11 +421,6 @@ export function filterSignals(
           (responseDeadline(a, now) ? Date.parse(responseDeadline(a, now)!) : Infinity) -
           (responseDeadline(b, now) ? Date.parse(responseDeadline(b, now)!) : Infinity)
         )
-      case 'value':
-      case 'value-low':
-        if (a.value_max === null) return b.value_max === null ? 0 : 1
-        if (b.value_max === null) return -1
-        return f.sort === 'value' ? b.value_max - a.value_max : a.value_max - b.value_max
       default:
         return compareRecommended(a, b, now)
     }

@@ -24,6 +24,9 @@ def test_workflow_and_published_refresh_times_match():
 
 
 def test_export_publishes_current_schedule_without_claiming_a_new_collection(tmp_path):
+    import shutil
+    from pathlib import Path
+    shutil.copytree(Path(__file__).resolve().parents[2] / "config", tmp_path / "config")
     dataset = Dataset(generated_at="2026-09-11T12:00:00Z", data_updated_at="2026-09-11T12:00:00Z",
                       profile_version="1", scoring_version="none", run={"scheduled_times": ["08:55"]},
                       sources=[], capabilities=[], markets={}, evidence_catalog={}, signals=[])

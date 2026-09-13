@@ -2136,7 +2136,7 @@ blockquote a {
   gap: 25px 22px;
   padding: 28px;
 }
-.filter-grid > label,
+.filter-grid label,
 .save-view-form label {
   display: flex;
   flex-direction: column;
@@ -3032,7 +3032,7 @@ blockquote a {
     padding: 23px 20px;
     gap: 24px 15px;
   }
-  .filter-grid > label {
+  .filter-grid label {
     font-size: 11px;
   }
   .filter-grid input,

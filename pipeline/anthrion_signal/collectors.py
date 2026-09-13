@@ -1,5 +1,6 @@
 """Official public adapters. Each source has an isolated, resumable collection result."""
 import re
+import copy
 import ssl
 import time
 from dataclasses import dataclass, field
@@ -174,7 +175,8 @@ def hydrate_sparse(result, source, frozen, http, settings):
     for raw in result.records:
         tender = raw.data.get("tender") or {}
         text = clean(tender.get("description")) + " ".join(clean(lot.get("description")) for lot in tender.get("lots", []))
-        if raw.data.get("ocid") and (not tender.get("title") or len(text) < 80):
+        if raw.data.get("ocid") and (not tender.get("title") or len(text) < 180
+                                    or clean(tender.get("description")) == clean(tender.get("title"))):
             candidates[raw.data["ocid"]] = raw
     budget = min(source.get("record_limit", 4), max(0, settings["max_pages"] - result.pages))
     for ocid in list(candidates)[:budget]:
@@ -598,9 +600,15 @@ def collect_ted(source, state, frozen, http, settings, terms):
                  for code in market["ted_codes"]]
     if not countries:
         return result
-    query_version = digest([sorted(countries), "buyer-jurisdiction-v2"])
+    scope_filter = settings.get("ted_scope_filter", "classification-cpv IN (48* 72* 7931* 7941*)")
+    query_version = (digest([sorted(countries), "keyword-v1", scope_filter]) if settings.get("ted_scope_filter")
+                     else digest([sorted(countries), "buyer-jurisdiction-v2"]))
     checkpoint = state.get("watermark") if state.get("query_version") == query_version else None
     start = (parse_date(checkpoint) or frozen - timedelta(days=settings["lookback_days"])) - timedelta(days=1)
+    if checkpoint is None:
+        old_start = parse_date((state.get("ted_pending") or {}).get("from")) or parse_date(state.get("watermark"))
+        requested_start = parse_date(settings.get("ted_initial_from"))
+        start = min(value for value in (start, old_start, requested_start) if value is not None)
     pending = state.get("ted_pending") if state.get("query_version") == query_version else None
     if not isinstance(pending, dict) or not all(parse_date(pending.get(k)) for k in ("from", "until", "through")):
         pending = {"from": start.isoformat(), "until": min(start + timedelta(days=1), frozen).isoformat(),
@@ -615,7 +623,7 @@ def collect_ted(source, state, frozen, http, settings, terms):
         while result.pages < settings["max_pages"]:
             begin, end = parse_date(pending["from"]), parse_date(pending["until"])
             body = {"query": f"publication-date >= {begin:%Y%m%d} AND publication-date <= {end:%Y%m%d} "
-                    f"AND buyer-country IN ({' '.join(countries)}) AND classification-cpv IN (48* 72* 7931* 7941*)",
+                    f"AND buyer-country IN ({' '.join(countries)}) AND ({scope_filter})",
                     "fields": TED_FIELDS, "limit": max(1, min(source.get("limit", 200), 250, 10000 // len(TED_FIELDS))),
                     "paginationMode": "ITERATION", "scope": "ALL"}
             if pending.get("token"):
@@ -665,6 +673,72 @@ def collect_ted(source, state, frozen, http, settings, terms):
     return result
 
 
+def keyword_groups(phrases, field=""):
+    # Keep requests below common proxy/query limits. Never use contextual words
+    # such as 'public sector', 'AI', 'Teams' or 'data' as standalone searches.
+    phrases = sorted(set(phrases), key=str.casefold)
+    groups, group, size = [], [], 0
+    for phrase in phrases:
+        escaped = phrase.replace('"', '').replace("\\", "").strip()
+        clause = field + ('"' + escaped + '"' if " " in escaped else escaped)
+        if group and (len(group) >= 60 or size + len(clause.encode("utf-8")) > 5500):
+            groups.append(" OR ".join(group))
+            group, size = [], 0
+        group.append(clause)
+        size += len(clause.encode("utf-8")) + 4
+    if group:
+        groups.append(" OR ".join(group))
+    return groups
+
+
+def ted_keyword_groups(terms):
+    return keyword_groups(terms.get("discovery_phrases", []), "FT ~ ")
+
+
+def collect_ted_discovery(source, state, frozen, http, settings, terms):
+    groups = ted_keyword_groups(terms)
+    budget = settings["max_pages"]
+    reserve = max(1, budget // 5) if groups and budget >= 5 else 0
+    result = collect_ted(source, state, frozen, http, {**settings, "max_pages": budget - reserve}, terms)
+    if not reserve or result.state.get("retry_at"):
+        return result
+    keywords = copy.deepcopy(state.get("ted_keywords", {}))
+    lanes = keywords.setdefault("lanes", {})
+    replay_from = min([frozen - timedelta(days=settings["lookback_days"])] + [value for lane in lanes.values()
+        if (value := parse_date((lane.get("ted_pending") or {}).get("from")) or parse_date(lane.get("watermark")))])
+    cursor = keywords.get("cursor", 0) % len(groups)
+    remaining = reserve + max(0, budget - reserve - result.pages)
+    visited = set()
+    while remaining and cursor not in visited:
+        visited.add(cursor)
+        scope = groups[cursor]
+        key = digest(scope)
+        lane_state = lanes.get(key, {})
+        retry = parse_date(lane_state.get("retry_at"))
+        if not retry or retry <= frozen:
+            lane = collect_ted(source, lane_state, frozen, http,
+                {**settings, "max_pages": min(2, remaining), "ted_scope_filter": scope,
+                 "ted_initial_from": replay_from.isoformat()}, terms)
+            lanes[key] = lane.state
+            result.records.extend(lane.records)
+            result.pages += lane.pages
+            remaining -= max(1, lane.pages)
+            if lane.state.get("retry_at"):
+                # Provider cooldowns apply to the endpoint, not just one query.
+                result.state["retry_at"] = lane.state["retry_at"]
+                cursor = (cursor + 1) % len(groups)
+                break
+        cursor = (cursor + 1) % len(groups)
+    active = {digest(group) for group in groups}
+    keywords.update(cursor=cursor, lanes={key: value for key, value in lanes.items() if key in active})
+    result.state["ted_keywords"] = keywords
+    if any(not parse_date(lanes.get(key, {}).get("watermark")) or
+           parse_date(lanes[key]["watermark"]) < frozen - timedelta(days=1) for key in active):
+        result.complete = False
+        result.message = "Classification search retained; additional keyword windows are catching up within the page budget."
+    return result
+
+
 def collect_usaspending(source, state, frozen, http, settings, terms):
     result = Collection(state=dict(state))
     # This API's date filter is transaction activity, not last-modified time. Replay
@@ -704,7 +778,8 @@ def collect_grants(source, state, frozen, http, settings, terms):
     cache = dict(state.get("detail_cache", {}))
     result.state["detail_cache"] = cache
     try:
-        for keyword in source["keywords"]:
+        queries = list(dict.fromkeys(source["keywords"] + keyword_groups(terms.get("discovery_english_phrases", []))))
+        for keyword in queries:
             offset, seen = 0, set()
             while True:
                 if result.pages >= settings["max_pages"]:
@@ -835,13 +910,15 @@ def collect_with_backfill(source, state, frozen, http, settings, terms, charter)
     budget = settings["max_pages"]
     policy = charter["discovery"]
     historical = state.get("discovery_backfill", {})
-    if historical.get("version") != charter["version"]:
-        historical = {"version": charter["version"], "cursor": (frozen - timedelta(days=policy["backfill_days"])).isoformat(),
+    collection_version = policy.get("collection_version", charter["version"])
+    if historical.get("version") != collection_version:
+        historical = {"version": collection_version, "cursor": (frozen - timedelta(days=policy["backfill_days"])).isoformat(),
                       "until": (frozen - timedelta(days=settings["lookback_days"])).isoformat(), "checkpoint": {}}
     if parse_date(historical["cursor"]) >= parse_date(historical["until"]):
         historical = {**historical, "complete": True}
     reserve = max(1, int(budget * policy["backfill_page_fraction"])) if supported and budget >= 4 and not historical.get("complete") else 0
-    result = collector(source, state, frozen, http, {**settings, "max_pages": budget - reserve}, terms)
+    fresh_collector = collect_ted_discovery if source["collector"] == "ted" else collector
+    result = fresh_collector(source, state, frozen, http, {**settings, "max_pages": budget - reserve}, terms)
     if not reserve or parse_date(result.state.get("retry_at")):
         return result
     until = parse_date(historical["until"])

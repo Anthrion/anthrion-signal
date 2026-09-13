@@ -381,6 +381,7 @@ const sortOptions = [
   ['deadline', 'Closing soon'],
   ['value', 'Highest value'],
   ['value-low', 'Lowest value'],
+  ['capability', 'Capability A-Z'],
 ] as const
 
 export function SortMenu({

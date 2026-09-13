@@ -430,7 +430,7 @@ describe('team workflows', () => {
       priorityTier({ ...signal, delivery_priority: 'ai', discovery_families: ['ai', 'analytics'] }),
     ).toBe(1)
   })
-  test('priority groups also preserve deadline and value sorting within the group', () => {
+  test('deadline retains priority groups but explicit values sort globally', () => {
     const rows = [
       {
         ...signal,
@@ -454,12 +454,29 @@ describe('team workflows', () => {
         deadline_at: '2026-09-12',
       },
     ] as Signal[]
-    for (const sort of ['deadline', 'value'])
-      expect(filterSignals(rows, { ...defaults, sort }, [], now).map((s) => s.id)).toEqual([
-        'crm-soon',
-        'crm-later',
-        'ai',
-      ])
+    expect(
+      filterSignals(rows, { ...defaults, sort: 'deadline' }, [], now).map((s) => s.id),
+    ).toEqual(['crm-soon', 'crm-later', 'ai'])
+    const withMissing = [...rows, { ...rows[0], id: 'unknown', value_max: null }]
+    expect(
+      filterSignals(withMissing, { ...defaults, sort: 'value' }, [], now).map((s) => s.id),
+    ).toEqual(['ai', 'crm-soon', 'crm-later', 'unknown'])
+    expect(
+      filterSignals(withMissing, { ...defaults, sort: 'value-low' }, [], now).map((s) => s.id),
+    ).toEqual(['crm-later', 'crm-soon', 'ai', 'unknown'])
+  })
+  test('capability sorting is alphabetical by displayed labels, with untagged records last', () => {
+    const rows = [
+      { ...signal, id: 'crm', matched_capabilities: ['crm'], delivery_priority: 'platform' },
+      { ...signal, id: 'unknown', matched_capabilities: [] },
+      { ...signal, id: 'ai', matched_capabilities: ['ai'], delivery_priority: 'ai' },
+    ] as Signal[]
+    expect(
+      filterSignals(rows, { ...defaults, sort: 'capability' }, [], now, [
+        { id: 'crm', label: 'CRM & customer platforms', family: 'CRM' },
+        { id: 'ai', label: 'AI agents & assistants', family: 'AI' },
+      ]).map((s) => s.id),
+    ).toEqual(['ai', 'crm', 'unknown'])
   })
   test('old saved views and shared score filters migrate without hiding valid records', () => {
     expect(

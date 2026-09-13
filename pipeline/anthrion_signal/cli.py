@@ -85,10 +85,20 @@ def derive_renewals(signals, now, config):
 
 def export(root):
     data = Dataset.model_validate(read_json(root / "data/current.json", {}))
-    data.signals = [s for s in data.signals if is_public_opportunity(s, datetime.now(UTC))]
+    config = load_config(root)
+    translations = available_translations(root, data.signals)
+    prefilter(data.signals, config["company_profile"], config["search_terms"], config["capabilities"], translations)
+    data.signals = [s for s in data.signals if is_public_opportunity(s, datetime.now(UTC)) and
+                    s.prefilter_score >= config["capabilities"]["discovery"]["minimum_candidate_score"]]
+    public_ids = {s.id for s in data.signals}
     data.translations = {key: EnglishText.model_validate(value)
-                         for key, value in available_translations(root, data.signals).items()}
+                         for key, value in translations.items() if key in public_ids}
+    data.capabilities = [{"id": c["id"], "label": c["label"], "family": c["family"],
+        "search_terms": c.get("explicit", []) + c.get("needs", []) + c.get("aliases", [])}
+        for c in config["capabilities"]["capabilities"] if c["id"] != "pipeline"]
     data.run.update(scheduled_timezone="Europe/London", scheduled_times=SCHEDULED_TIMES)
+    data.run["discovery_version"] = config["capabilities"]["version"]
+    data.run["public_signals"] = len(data.signals)
     target = root / "app/public/data"
     target.mkdir(parents=True, exist_ok=True)
     atomic_json(target / "current.json", public_data(data))
@@ -99,7 +109,7 @@ def public_data(dataset):
     return dataset.model_dump(exclude={"signals": {"__all__": {
         "analysis", "analysis_cache_key", "ai_status", "ai_model", "ai_scored_at", "fit_score",
         "confidence_score", "known_weight", "score_components", "score_explanation", "recommendation",
-        "prefilter_score"}}, "run": {"gemini_calls", "cache_hits", "ai_failures", "candidates_shortlisted", "high_fit_signals"}})
+        "prefilter_score", "capability_evidence"}}, "run": {"gemini_calls", "cache_hits", "ai_failures", "candidates_shortlisted", "high_fit_signals"}})
 
 
 def run(root, args):
@@ -156,7 +166,8 @@ def run(root, args):
     signals, index, stats = reconcile(previous, incoming)
     signals = [s for s in signals if not (s.source == "govuk" and s.notice_type in
                ("person", "role", "organisation", "minister", "world_location", "statistics_announcement"))]
-    prefilter(signals, config["company_profile"], config["search_terms"], config["capabilities"])
+    prefilter(signals, config["company_profile"], config["search_terms"], config["capabilities"],
+              available_translations(root, signals))
     print(f"Reconciled {len(signals)} candidates; applying source-based discovery and availability rules", flush=True)
     ai_stats = {"gemini_calls": 0, "cache_hits": 0, "ai_failures": 0}
     for s in signals:

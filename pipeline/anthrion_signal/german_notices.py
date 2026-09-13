@@ -11,7 +11,7 @@ from zipfile import BadZipFile, ZipFile
 
 from .collectors import Collection, RawRecord, SourceUnavailable, releases
 from .normalise import normalise_ocds, set_hashes
-from .utils import clean, iso, parse_date, unique
+from .utils import clean, digest, iso, parse_date, unique
 
 
 NS = {
@@ -142,6 +142,7 @@ def enrich_release(release, xml, stem):
 
 
 def relevant_release(release, terms, tracked):
+    from .vocabulary import collection_match
     # Closing notices can omit the original title/CPV and arrive before their
     # older competition during backfill. Never discard that retirement evidence.
     tags = " ".join(release.get("tag") or []).lower()
@@ -162,7 +163,7 @@ def relevant_release(release, terms, tracked):
     keywords = [*terms.get("high_intent", []), *terms.get("supplementary", []),
                 "kundenbeziehungsmanagement", "kundenmanagement", "fallmanagement", "kuenstliche intelligenz",
                 "k\u00fcnstliche intelligenz", "digitalisierung", "datenplattform", "prozessautomatisierung"]
-    return any(re.search(r"(?<!\w)" + re.escape(keyword.casefold()) + r"(?!\w)", text) for keyword in keywords)
+    return collection_match(text, terms) or any(re.search(r"(?<!\w)" + re.escape(keyword.casefold()) + r"(?!\w)", text) for keyword in keywords)
 
 
 def collect_german_notices(source, state, frozen, http, settings, terms):
@@ -175,6 +176,10 @@ def collect_german_notices(source, state, frozen, http, settings, terms):
     days = {value.date() for value in pending}
     if first_day <= last_day:
         days.update(first_day + timedelta(days=i) for i in range((last_day - first_day).days + 1))
+    vocabulary = digest(sorted(terms.get("discovery_phrases", [])))
+    if terms.get("discovery_phrases") and state.get("discovery_vocabulary") != vocabulary:
+        days.update(last_day - timedelta(days=i) for i in range(settings["lookback_days"]))
+        result.state["discovery_vocabulary"] = vocabulary
     days = sorted(days, reverse=True)
     result.state["scheduled_through"] = last_day.isoformat()
     result.state["pending_days"] = [day.isoformat() for day in days]

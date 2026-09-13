@@ -1,4 +1,4 @@
-version: '2026-09-11.1'
+version: '2026-09-13.1'
 charter: >-
   Anthrion provides Salesforce platform and ecosystem development, administration,
   architecture, implementation, integration, migration, managed support and technical
@@ -8,6 +8,7 @@ charter: >-
   route does not establish supplier eligibility, credentials or past references.
 source: Company capability charter approved for Anthrion Signal
 discovery:
+  collection_version: '2026-09-11.1'
   backfill_days: 365
   backfill_page_fraction: 0.25
   minimum_candidate_score: 12
@@ -30,7 +31,7 @@ capabilities:
   - id: salesforce
     label: Salesforce platform
     family: CRM & platforms
-    explicit: [Salesforce, Salesforce CRM, Customer 360, Headless 360, Agentforce 360 Platform, Lightning Platform, Force.com, Lightning Web Components, Visualforce, Salesforce Flow, Flow Builder, OmniStudio, Salesforce Identity, Salesforce Shield, Hyperforce]
+    explicit: [Salesforce, Salesforce CRM, Customer 360, Headless 360, Agentforce 360 Platform, Lightning Platform, Force.com, Lightning Web Components, Visualforce, Salesforce Flow, Salesforce Flow Builder, OmniStudio, Salesforce Identity, Salesforce Shield, Hyperforce, Salesforce Scheduler, Lightning Scheduler]
     contextual: [Lightning, Apex, LWC]
     needs: [customer application platform, enterprise application platform, custom business application]
     products: [Salesforce Platform, Headless 360, Flow, OmniStudio]
@@ -54,12 +55,12 @@ capabilities:
   - id: service
     label: Case management & service
     family: Service transformation
-    explicit: [Service Cloud, Public Sector Solutions]
-    aliases: [case and matter management, matter management system, licensing system, licensing platform, permit application system]
+    explicit: [Service Cloud, Salesforce Public Sector, Salesforce Public Sector Solutions]
+    aliases: [case and matter management, matter management system, licensing system, licensing platform, permit application system, benefits management system, eligibility management system, social housing allocation system, housing allocation system, inspection management system, appointment booking platform, customer appointment scheduling, citizen request management]
     needs: [case management, casework, case working, case handling, case processing, case workflow, case tracking, case allocation, case triage, complaints management, complaint handling, enquiry management, inquiry management, FOI management, freedom of information management, subject access request management, information rights management, incident management platform, request management system, referral management, claims management, application processing, licensing applications, permit management, investigation management, enforcement cases, appeals management, grievance management, ombudsman case management, support tickets, workflow driven case system]
     products: [Service Cloud, Public Sector Solutions, Experience Cloud, Flow, Agentforce]
     patterns: [Case intake, triage, ownership, evidence, audit history and external self-service]
-    queries: [case management procurement, complaints management tender, regulatory casework system]
+    queries: [case management procurement, complaints management tender, regulatory casework system, Salesforce Public Sector, benefits management system, housing allocation system, Salesforce Scheduler]
   - id: contact_centre
     label: Contact centre & customer service
     family: Service transformation
@@ -73,7 +74,7 @@ capabilities:
     label: Portals & self-service
     family: CRM & platforms
     explicit: [Experience Cloud, Community Cloud]
-    needs: [customer portal, citizen portal, member portal, partner portal, supplier portal, dealer portal, student portal, patient portal, resident portal, tenant portal, applicant portal, grant portal, self service website, digital self service, secure portal, digital front door, external user platform, online service portal, digital services platform, application portal, web forms platform, digital application process]
+    needs: [customer portal, citizen portal, member portal, partner portal, supplier portal, dealer portal, student portal, patient portal, resident portal, tenant portal, applicant portal, grant portal, self service website, digital self service, secure portal, digital front door, external user platform, online service portal, digital services platform, application portal, web forms platform, digital application process, customer identity and access management, customer identity platform, citizen identity platform, customer single sign on, employee self service, manager self service, employee portal]
     products: [Experience Cloud, Salesforce Platform, Service Cloud, Heroku]
     patterns: [Authenticated external access to records, cases, applications and workflow]
     queries: [customer portal supplier, citizen portal tender]
@@ -98,7 +99,7 @@ capabilities:
     label: Customer data & governance
     family: Data & integration
     explicit: [Data Cloud, Data 360, Informatica]
-    needs: [customer data platform, master data management, master data, data quality, data cleansing, deduplication, identity resolution, data activation, data governance, data catalogue, data lineage, data harmonisation, data harmonization, zero copy, single customer view, customer 360, data unification, data federation]
+    needs: [customer data platform, master data management, master data, data quality, data cleansing, customer deduplication, record deduplication, customer identity resolution, data activation, data governance, data catalogue, data lineage, data harmonisation, data harmonization, single customer view, customer 360, data unification, data federation]
     contextual: [CDP, MDM, data platform, data migration]
     products: [Data 360, Informatica, MuleSoft]
     patterns: [Unified, governed customer and enterprise data with activation and integration]
@@ -107,7 +108,7 @@ capabilities:
     label: Integration & APIs
     family: Data & integration
     explicit: [MuleSoft, Anypoint Platform]
-    needs: [systems integration, system integration, application integration, enterprise integration, API integration, API management, API gateway, API platform, API lifecycle, integration platform, iPaaS, enterprise service bus, legacy integration, legacy systems integration, data integration, data synchronisation, data synchronization, event driven architecture, middleware implementation]
+    needs: [systems integration, system integration, application integration, enterprise integration, API integration, API management, API gateway, API platform, API lifecycle, integration platform, iPaaS, enterprise service bus, legacy integration, legacy systems integration, data integration, data synchronisation, data synchronization, event driven architecture, middleware implementation, integrate with existing systems, integration with existing systems, open banking API]
     contextual: [ESB, middleware, legacy systems, API]
     products: [MuleSoft, Anypoint Platform, APIs, external integration services]
     patterns: [Governed APIs and orchestration connecting existing and new systems]
@@ -117,7 +118,7 @@ capabilities:
     family: Data & integration
     explicit: [Tableau CRM, CRM Analytics, Einstein Analytics]
     contextual: [Tableau, dashboards, reporting, BI]
-    needs: [business intelligence, BI platform, analytics platform, data visualisation, data visualization, executive dashboards, self service analytics, embedded analytics, operational analytics, customer analytics, sales analytics, performance reporting system, management information system, predictive analytics]
+    needs: [business intelligence, BI platform, analytics platform, data visualisation, data visualization, executive dashboards, self service analytics, embedded analytics, operational analytics, customer analytics, sales analytics, performance reporting system, management information system, predictive analytics, financial benchmarking tool, financial benchmarking and insights tool, financial benchmarking insights tool, people analytics]
     products: [Tableau, CRM Analytics, Data 360]
     patterns: [Operational or customer analytics connected to trusted source systems]
     queries: [business intelligence procurement, embedded analytics tender]
@@ -133,7 +134,7 @@ capabilities:
   - id: transformation
     label: Digital implementation
     family: Advisory & delivery
-    needs: [digital transformation, service transformation, business transformation, application modernisation, application modernization, legacy modernisation, legacy modernization, system consolidation, application consolidation, cloud application platform, managed runtime, application hosting platform]
+    needs: [digital transformation, service transformation, business transformation, application modernisation, application modernization, legacy modernisation, legacy modernization, system consolidation, application consolidation, cloud application platform, managed runtime, application hosting platform, software engineering quality, application development]
     explicit: [Heroku]
     contextual: [PaaS, application support, cloud hosting]
     products: [Salesforce Platform, Heroku, MuleSoft, customer-selected hosting]
@@ -142,16 +143,16 @@ capabilities:
   - id: workflow
     label: Workflow & low-code
     family: AI & automation
-    aliases: [enterprise document management, document management system, records management system]
+    aliases: [enterprise document management, document management system, records management system, business rules engine, document generation platform, document assembly software, correspondence automation, OmniStudio Document Generation, digitisation of procedures, digitisation of simplified procedures, digitization of procedures]
     needs: [workflow automation, business process automation, approval workflow, business process management, low code, no code, paperless process, replace spreadsheets, replace email based workflow, replace spreadsheets and emails, manual process automation, digital forms, electronic forms, internal business application, workflow platform, process orchestration]
     products: [Salesforce Platform, Flow, Service Cloud, Heroku]
     patterns: [Structured business records and approvals replacing disconnected manual work]
-    queries: [workflow automation procurement, replace spreadsheets workflow supplier]
+    queries: [workflow automation procurement, replace spreadsheets workflow supplier, OmniStudio, Salesforce document generation, business rules engine procurement]
   - id: ai
     label: AI agents & assistants
     family: AI & automation
     explicit: [Agentforce, Einstein GPT, Salesforce AI, OpenAI, ChatGPT, Claude, Anthropic, Gemini, Vertex AI, Azure OpenAI, Model Context Protocol]
-    needs: [artificial intelligence, AI agent, AI agents, enterprise AI, AI implementation, AI integration, AI assistant, intelligent assistant, digital assistant, virtual assistant, virtual agent, agentic AI, agentic workflow, autonomous agents, multi agent, agent orchestration, agent platform, AI customer service, enterprise agents, intelligent chatbot]
+    needs: [artificial intelligence, AI agent, AI agents, enterprise AI, AI implementation, AI integration, AI assistant, intelligent assistant, digital assistant, virtual assistant, virtual agent, agentic AI, agentic workflow, autonomous agents, multi agent, agent orchestration, agent platform, AI customer service, enterprise agents, intelligent chatbot, chatbot, chatbots]
     contextual: [AI, Einstein, copilot, MCP, Bedrock, agents SDK]
     products: [Agentforce, OpenAI, Claude, Gemini, suitable LLM and agent stacks]
     patterns: [Standalone or CRM-connected AI with retrieval, governed tools and deterministic business actions]
@@ -181,6 +182,7 @@ capabilities:
     queries: [document intelligence procurement, knowledge assistant tender]
   - id: managed
     label: Managed services & support
+    aliases: [maintenance and support of information systems, maintenance support and upgrade of the information systems, information system maintenance]
     family: Advisory & delivery
     needs: [Salesforce support, Salesforce maintenance, Salesforce enhancement, Salesforce managed service, CRM managed service, application maintenance, platform support, release management, Salesforce technical support, CRM support partner, ongoing enhancement]
     products: [Salesforce ecosystem, integration and AI platforms]
@@ -188,9 +190,10 @@ capabilities:
     queries: [Salesforce managed services, CRM support tender]
   - id: industry
     label: Industry & public services
+    aliases: [electronic applications for admission, school admissions platform, school admission system]
     family: Service transformation
-    explicit: [Government Cloud, Nonprofit Cloud, Education Cloud, Health Cloud, Financial Services Cloud, Manufacturing Cloud, Automotive Cloud, Consumer Goods Cloud, Communications Cloud, Energy and Utilities Cloud, Media Cloud, Loyalty Management]
-    needs: [fundraising platform, donor management, supporter management, volunteer management, beneficiary management, grant management, student lifecycle, student success platform, student recruitment system, admissions platform, alumni management, learner engagement, citizen services platform, resident services platform, regulatory casework, patient engagement, care coordination platform, patient CRM]
+    explicit: [Salesforce Government Cloud, Salesforce Public Sector, Nonprofit Cloud, Education Cloud, Health Cloud, Financial Services Cloud, Manufacturing Cloud, Automotive Cloud, Consumer Goods Cloud, Communications Cloud, Energy and Utilities Cloud, Media Cloud, Salesforce Loyalty Management]
+    needs: [fundraising platform, donor management, supporter management, volunteer management, beneficiary management, grant management system, grants management system, grantmaking platform, student lifecycle, student success platform, student recruitment system, admissions platform, admissions system, alumni management, learner engagement, citizen services platform, resident services platform, regulatory casework, patient engagement platform, care coordination platform, patient CRM, benefits management system, housing allocation system]
     products: [Salesforce industry solutions, Experience Cloud, Agentforce]
     patterns: [Domain workflows and relationships, subject to actual specialist and eligibility requirements]
     queries: [grant management system procurement, student services platform tender, patient engagement platform]
@@ -198,7 +201,7 @@ capabilities:
     label: Enterprise system connections
     family: Data & integration
     needs: [integrate SAP with CRM, SAP integration, ERP integration, finance systems integration, customer platform integration, Dynamics integration, Salesforce integration, payment gateway integration, Stripe integration, legacy case system, integrate existing Dynamics, enterprise systems integration]
-    contextual: [SAP, Oracle, Microsoft, Dynamics, Business Central, Workday, ServiceNow, Stripe, Adyen, PayPal, Shopify, Magento, Teams, SharePoint, Microsoft 365, Google Workspace, AWS, Azure, GCP, Genesys, Twilio, Five9, ERP, EHR, EMR]
+    contextual: [SAP, Oracle, Microsoft, Dynamics, Business Central, Workday, ServiceNow, Stripe, Adyen, PayPal, Shopify, Magento, Microsoft Teams, SharePoint, Microsoft 365, Google Workspace, AWS, Azure, GCP, Genesys, Twilio, Five9, ERP, EHR, EMR]
     products: [MuleSoft, APIs, Data 360, customer-selected enterprise systems]
     patterns: [Existing vendor products are integration context, not an exclusion by themselves]
     queries: [CRM legacy integration procurement, enterprise integration partner]

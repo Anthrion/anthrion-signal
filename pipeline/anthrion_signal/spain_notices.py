@@ -222,6 +222,7 @@ def parse_placsp_page(content):
 
 
 def relevant_placsp_record(record, terms):
+    from .vocabulary import collection_match
     if record["state"] in TERMINAL:
         return True
     if any(str(code).startswith(("48", "72")) for code in record.get("cpv_codes", [])):
@@ -234,7 +235,7 @@ def relevant_placsp_record(record, terms):
                 "software", "integracion de sistemas", "gestion de expedientes", "portal ciudadano"}
     configured = terms.get("keywords", []) if isinstance(terms, dict) else terms if isinstance(terms, (list, tuple)) else []
     keywords.update(str(term).casefold() for term in configured if isinstance(term, str) and len(term) > 2)
-    return any(re.search(r"(?<!\w)" + re.escape(term) + r"(?!\w)", text) for term in keywords)
+    return (collection_match(text, terms) if isinstance(terms, dict) else False) or any(re.search(r"(?<!\w)" + re.escape(term) + r"(?!\w)", text) for term in keywords)
 
 
 def _retain_records(result, page, lane, source, frozen, terms):
@@ -277,6 +278,8 @@ def collect_spain_notices(source, state, frozen, http, settings, terms):
     saved.setdefault("pending", [])
     saved.setdefault("versions", {})
     saved.setdefault("active_records", {})
+    vocabulary = digest(sorted(terms.get("discovery_phrases", []))) if isinstance(terms, dict) else None
+    replay = bool(vocabulary and terms.get("discovery_phrases") and saved.get("discovery_vocabulary") != vocabulary)
     for ident, record in list(saved["active_records"].items()):
         if _deadline_passed(record, frozen):
             result.records.append(RawRecord({**record, "expired": True}, source, frozen.isoformat(), "spain_placsp"))
@@ -288,9 +291,9 @@ def collect_spain_notices(source, state, frozen, http, settings, terms):
         if not budget:
             raise SourceUnavailable("PLACSP request budget is zero; checkpoint retained")
         headers = {"Accept": "application/atom+xml, application/xml"}
-        if saved.get("head_etag"):
+        if saved.get("head_etag") and not replay:
             headers["If-None-Match"] = saved["head_etag"]
-        if saved.get("head_last_modified"):
+        if saved.get("head_last_modified") and not replay:
             headers["If-Modified-Since"] = saved["head_last_modified"]
         result.pages += 1
         response = _request_page(http, endpoint, headers)
@@ -303,8 +306,10 @@ def collect_spain_notices(source, state, frozen, http, settings, terms):
             if old_head and new_head < old_head:
                 raise SourceUnavailable("PLACSP head moved backwards; checkpoint retained")
             cutoff = old_head or frozen - timedelta(days=max(1, int(source.get("initial_lookback_days", 7))))
+            if replay:
+                cutoff = min(cutoff, frozen - timedelta(days=settings["lookback_days"]))
             lane = {"url": endpoint, "after": cutoff.isoformat(), "through": page["updated"], "seen": [_page_key(endpoint)]}
-            changed = digest(page) != saved.get("head_hash")
+            changed = replay or digest(page) != saved.get("head_hash")
             if changed:
                 _retain_records(result, page, lane, source, frozen, terms)
             if changed and _needs_older(page, lane):
@@ -323,6 +328,8 @@ def collect_spain_notices(source, state, frozen, http, settings, terms):
             saved["head_hash"] = digest(page)
             saved["head_etag"] = response.headers.get("etag")
             saved["head_last_modified"] = response.headers.get("last-modified")
+            if replay:
+                saved["discovery_vocabulary"] = vocabulary
         while saved["pending"] and result.pages < budget:
             lane = saved["pending"][0]
             key = _page_key(lane["url"])

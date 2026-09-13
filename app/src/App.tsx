@@ -1178,15 +1178,18 @@ function FilterPanel({
             onChange={(e) => update({ region: e.target.value })}
           />
         </label>
-        <label>
-          CPV code
-          <input
-            value={f.cpv}
-            inputMode="numeric"
-            placeholder="e.g. 722"
-            onChange={(e) => update({ cpv: e.target.value })}
-          />
-        </label>
+        <div className="filter-value-range">
+          <label>
+            CPV code
+            <input
+              value={f.cpv}
+              inputMode="numeric"
+              placeholder="e.g. 722"
+              onChange={(e) => update({ cpv: e.target.value })}
+            />
+          </label>
+          {select('Currency', 'currency', currencyOptions(data.signals))}
+        </div>
         <div className="filter-value-range">
           <label>
             Minimum value
@@ -1209,7 +1212,6 @@ function FilterPanel({
             />
           </label>
         </div>
-        {select('Currency', 'currency', currencyOptions(data.signals))}
       </div>
       <div className="modal-actions">
         <button className="button secondary" onClick={onReset}>
