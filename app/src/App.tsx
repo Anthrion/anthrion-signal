@@ -901,7 +901,7 @@ function SignalRow({
             <span className="row-title">{text.title}</span>
             <span className="row-buyer">
               <Building2 size={12} />
-              <span>{s.buyer_name || 'Buyer not published'}</span>
+              <span>{text.buyerName}</span>
             </span>
           </span>
           <span className="row-numbers">
@@ -994,7 +994,7 @@ function ConsoleDetail({
               <h2>{text.title}</h2>
               <div className="inspector-buyerline">
                 <p className="inspector-buyer">
-                  <span>{s.buyer_name || 'Buyer not published'}</span>
+                  <span>{text.buyerName}</span>
                 </p>
                 <div className="inspector-utilities">
                   <IconButton
@@ -1276,7 +1276,7 @@ function SignalDetail({
         <h2>{text.title}</h2>
         <div className="buyer">
           <Building2 size={14} />
-          {s.buyer_name || 'Buyer not published'}
+          <span>{text.buyerName}</span>
         </div>
         <div className="detail-actions">
           <button className="button secondary" onClick={onSave}>

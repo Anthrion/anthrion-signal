@@ -1,5 +1,6 @@
 import json
 from datetime import UTC, datetime
+from types import SimpleNamespace
 
 import httpx
 import pytest
@@ -21,6 +22,7 @@ from anthrion_signal.translation import (
     source_key,
     split_text,
     translation_lock,
+    untranslated_prose,
     validate_translation,
 )
 from anthrion_signal.utils import atomic_json, digest
@@ -39,6 +41,142 @@ class Clock:
 
 MODELS = (ModelBudget("gemini-3.5-flash-lite", rpm=1000, tpm=1_000_000),
           ModelBudget("gemini-3.1-flash-lite", rpm=1000, tpm=1_000_000))
+
+
+@pytest.mark.parametrize("source", [
+    "Gesucht wird die Implementierung einer Kundenplattform.",
+    "Implementazione della piattaforma per la gestione dei clienti.",
+    "Servicios de desarrollo y mantenimiento de aplicaciones informaticas.",
+    "Fourniture et maintenance du logiciel de gestion des clients.",
+    "Hankinnan kohteena on asiakkuudenhallinnan tietojarjestelman toteuttaminen.",
+    "Upphandlingen avser ett system for hantering av kundservicearenden.",
+    "Kommunen onsker at anskaffe et system til digital sagsbehandling.",
+    "\u03a8\u03b7\u03c6\u03b9\u03b1\u03ba\u03cc\u03c2 \u039c\u03b5\u03c4\u03b1\u03c3\u03c7\u03b7\u03bc\u03b1\u03c4\u03b9\u03c3\u03bc\u03cc\u03c2 \u0394\u03b9\u03b1\u03b4\u03b9\u03ba\u03b1\u03c3\u03b9\u03ce\u03bd \u039a\u03c4\u03ae\u03c3\u03b7\u03c2 \u0399\u03b8\u03b1\u03b3\u03ad\u03bd\u03b5\u03b9\u03b1\u03c2",
+])
+def test_foreign_prose_cannot_pass_by_claiming_to_be_english(source):
+    assert untranslated_prose(source)
+    assert not validate_translation(source, {"text": source, "language": "en"})
+    assert not validate_translation(source, {"text": source, "language": "mul"})
+    assert not validate_translation(source, {"text": source, "language": "und"})
+    assert untranslated_prose("We invite suppliers to submit proposals.\n\n" + source)
+
+
+@pytest.mark.parametrize("text", [
+    "Analysis, optimisation, and redesign of organisational structures and business processes, particularly in the context of digital transformation.",
+    "The contracting authority is AB Botkyrkabyggen.",
+    "Bergstrasse District, Heppenheim - Huawei maintenance contract extension.",
+    "Security-enhancing technology - Ankaret and Lovsangargarden residential care homes",
+    "Services for the Deutsche Bundesbank and Bundesministerium der Finanzen.",
+    "We require a CRM implementation for 25 users.",
+    "The municipalities of Elves, Aurland, Austrheim, Austevoll, Etne, Fedje, Gulen, Masfjorden, Modalen, Osteroy, Samnanger, Sveio, Tysnes, Vaksdal and Vindafjord have established a joint ICT operations company.",
+    "Helse Nord-Trondelag HF, St. Olavs Hospital HF and Helse More og Romsdal HF have, by their clinics for mental health care, drug treatment, rehabilitation and habilitation need to use digital, standardised and normed review and mapping tools.",
+    "\u0394\u0391\u03a0\u0395\u0395\u03a0 02/2026",
+])
+def test_english_with_official_names_and_short_identifiers_is_preserved(text):
+    assert validate_translation(text, {"text": text, "language": "en"})
+
+
+def test_protected_foreign_buyer_does_not_invalidate_english_passage():
+    name = "\u039a\u039f\u0399\u039d\u03a9\u039d\u0399\u0391 \u03a4\u0397\u03a3 \u03a0\u039b\u0397\u03a1\u039f\u03a6\u039f\u03a1\u0399\u0391\u03a3"
+    source = f"{name}: CRM procurement."
+    assert validate_translation(source, {"text": source, "language": "en"}, [name])
+
+
+def test_previously_copied_foreign_cache_is_requeued_but_good_cache_is_reused(tmp_path):
+    queue = TranslationQueue(tmp_path / "cache.json")
+    bad = "Gesucht wird die Implementierung einer Kundenplattform."
+    good = "We require a customer platform."
+    for source in (bad, good):
+        key = queue.add(source)
+        queue.state["fields"][key]["parts"][0]["result"] = {"text": source, "language": "en"}
+    queue.save()
+    resumed = TranslationQueue(queue.path)
+    for source in (bad, good):
+        resumed.add(source)
+    assert resumed.completed(field_key(bad)) is None
+    assert resumed.completed(field_key(good)) == good
+    assert len(list(resumed.pending(MODELS[0]))) == 1
+
+
+def test_validator_correction_recovers_good_rejected_result_without_retrying_or_unblocking(tmp_path):
+    queue = TranslationQueue(tmp_path / "cache.json")
+    source = "10052652 - Adobe Creative Cloud Lot LOT-0000: 10052652 - Adobe Creative Cloud. 10052652 - Adobe Creative Cloud"
+    key = queue.add(source)
+    part = queue.state["fields"][key]["parts"][0]
+    part["rejected"] = {"text": source, "language": "de"}
+    part["blocked"] = True
+    queue.add(source)
+    assert queue.completed(key) is None
+    part["blocked"] = False
+    queue.add(source)
+    assert queue.completed(key) == source
+
+
+def test_english_prose_can_include_a_list_of_place_names_without_retranslating_it():
+    text = "The following broadcasters may participate.\nMDR - Saxony-Anhalt, Saxony, Thuringia;\nThe agreement runs for two years."
+    assert validate_translation(text, {"text": text, "language": "en"})
+
+
+def test_names_have_separate_reusable_cache_and_never_replace_official_name(tmp_path):
+    queue = TranslationQueue(tmp_path / "cache.json")
+    buyer = "Stadtverwaltung Berlin"
+    signal = SimpleNamespace(id="one", title="A customer platform", description="", buyer_name=buyer,
+                             last_material_update="2026-09-13")
+    queue.prepare([signal, SimpleNamespace(**{**vars(signal), "id": "two"})])
+    assert len(queue.active) == 2
+    assert field_key(buyer) != field_key(buyer, "organisation")
+    for key in queue.active:
+        field = queue.state["fields"][key]
+        name = field["purpose"] == "organisation"
+        assert field["protected_names"] == []
+        field["parts"][0]["result"] = {"text": "Berlin City Administration" if name else signal.title,
+                                       "language": "de" if name else "en"}
+    overlay = queue.overlay([signal])
+    assert overlay["signals"]["one"]["buyer_name"] == "Berlin City Administration"
+    assert signal.buyer_name == buyer
+    atomic_json(tmp_path / "data/translation/translations.en.json", overlay)
+    public = available_translations(tmp_path, [vars(signal)])["one"]
+    assert public["buyer_original"] == buyer
+    changed = {**vars(signal), "buyer_name": "Another buyer"}
+    public = available_translations(tmp_path, [changed])["one"]
+    assert "buyer_name" not in public
+    assert public["title"] == signal.title
+
+
+def test_notice_prose_is_queued_before_supplementary_names(tmp_path):
+    queue = TranslationQueue(tmp_path / "cache.json")
+    records = [SimpleNamespace(id=str(n), title=f"Notice {n}", description=f"Description {n}",
+                               buyer_name=f"Buyer {n}", last_material_update=str(n)) for n in range(3)]
+    queue.prepare(records)
+    assert [queue.state["fields"][key]["purpose"] for key in queue.active] == ["passage"] * 6 + ["organisation"] * 3
+
+
+def test_quality_retry_is_bounded_and_safety_blocks_never_reset(tmp_path):
+    clock = Clock()
+    queue = TranslationQueue(tmp_path / "cache.json", clock)
+    key = queue.add("We require a new customer platform.")
+    part = queue.state["fields"][key]["parts"][0]
+    exhausted = {model.name: 2 for model in MODELS}
+    part["failures"] = exhausted.copy()
+    queue.retry_quality(part)
+    clock.now += 3599
+    queue.retry_quality(part)
+    assert part["failures"] == exhausted
+    clock.now += 1
+    queue.retry_quality(part)
+    assert part["failures"] == {}
+    part["failures"] = exhausted.copy()
+    queue.retry_quality(part)
+    clock.now += 3601
+    queue.retry_quality(part)
+    assert part["failures"] == exhausted
+    clock.now = next_reset(clock()) + 1
+    queue.retry_quality(part)
+    assert part["failures"] == {}
+    part.update(blocked=True, failures=exhausted.copy())
+    clock.now = next_reset(clock()) + 1
+    queue.retry_quality(part)
+    assert part["blocked"] and part["failures"] == exhausted
 
 
 def test_ci_crash_retains_prepaid_quota_and_new_attempt_cannot_reuse_it(tmp_path):
@@ -218,6 +356,23 @@ def test_rate_limited_primary_uses_backup_without_resetting_ledger(tmp_path, ser
     persisted = QuotaLedger(tmp_path / "quota.json", clock)
     assert persisted.model_state(MODELS[0])["blocked_until"] > clock() + 3600
     assert persisted.model_state(MODELS[0])["days"][pacific_day(clock())] == 2
+
+
+def test_large_batch_hands_off_to_backup_when_split_consumes_primary_daily_allowance(tmp_path, service):
+    create, clock, requests = service
+
+    def handler(request, items, counting):
+        if counting and len(items) > 1:
+            return httpx.Response(200, json={"totalTokens": 7000})
+
+    models = (ModelBudget(MODELS[0].name, rpm=1000, tpm=1_000_000, rpd=3), MODELS[1])
+    queue = TranslationQueue(tmp_path / "cache.json", clock)
+    queue.add("We need a customer platform.")
+    queue.add("We need a reporting platform.")
+    summary = queue.run(create(handler), models)
+    assert summary["pending_fields"] == 0
+    assert summary["stop_reason"] == "complete"
+    assert ["3.5" in request.url.path for request, _ in requests] == [True, True, True, False, False]
 
 
 def test_both_daily_budgets_exhausted_leave_work_queued(tmp_path, service):

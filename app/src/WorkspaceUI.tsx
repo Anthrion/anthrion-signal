@@ -7,6 +7,7 @@ import {
   SquareCheck,
   EyeOff,
   Globe2,
+  Languages,
 } from 'lucide-react'
 import type { DisplayLanguage } from './types'
 import { LiquidMetal } from '@paper-design/shaders-react'
@@ -257,22 +258,120 @@ export function MarketSection({
           </button>
         ))}
       </nav>
-      <label
-        className="language-control"
-        title={language === 'en' ? 'English machine translation' : 'Original notice language'}
-      >
-        <Globe2 size={16} aria-hidden="true" />
-        <select
-          aria-label="Record language"
-          value={language}
-          onChange={(event) => onLanguage(event.target.value as DisplayLanguage)}
-        >
-          <option value="en">EN</option>
-          <option value="original">Original</option>
-        </select>
-        <ChevronDown size={12} aria-hidden="true" />
-      </label>
+      <LanguageMenu value={language} onChange={onLanguage} />
     </section>
+  )
+}
+
+const languageOptions = [
+  { value: 'en', label: 'English', icon: Languages },
+  { value: 'original', label: 'Original', icon: Globe2 },
+] as const
+
+function LanguageMenu({
+  value,
+  onChange,
+}: {
+  value: DisplayLanguage
+  onChange: (value: DisplayLanguage) => void
+}) {
+  const [open, setOpen] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+  const trigger = useRef<HTMLButtonElement>(null)
+  const options = useRef<(HTMLButtonElement | null)[]>([])
+  const id = useId()
+  const selected = value === 'en' ? 0 : 1
+  const SelectedIcon = languageOptions[selected].icon
+  useEffect(() => {
+    if (!open) return
+    options.current[selected]?.focus({ preventScroll: true })
+    const outside = (event: PointerEvent) => {
+      if (!ref.current?.contains(event.target as Node)) setOpen(false)
+    }
+    document.addEventListener('pointerdown', outside)
+    return () => document.removeEventListener('pointerdown', outside)
+  }, [open, selected])
+  return (
+    <div
+      className="language-control"
+      ref={ref}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false)
+      }}
+    >
+      <button
+        className="language-trigger"
+        ref={trigger}
+        aria-label={`Record language: ${languageOptions[selected].label}`}
+        aria-haspopup="menu"
+        aria-expanded={open}
+        aria-controls={open ? id : undefined}
+        onClick={() => setOpen(!open)}
+        onKeyDown={(event) => {
+          if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+            event.preventDefault()
+            setOpen(true)
+          }
+        }}
+      >
+        <SelectedIcon size={16} aria-hidden="true" />
+        <span>{languageOptions[selected].label}</span>
+        <ChevronDown size={13} aria-hidden="true" />
+      </button>
+      {open && (
+        <div
+          className="language-options"
+          role="menu"
+          id={id}
+          aria-label="Record language"
+          onKeyDown={(event) => {
+            const index = options.current.indexOf(document.activeElement as HTMLButtonElement)
+            const next =
+              event.key === 'ArrowDown' || event.key === 'ArrowUp'
+                ? (index + 1) % 2
+                : event.key === 'Home' || event.key.toLowerCase() === 'e'
+                  ? 0
+                  : event.key === 'End' || event.key.toLowerCase() === 'o'
+                    ? 1
+                    : -1
+            if (next >= 0) {
+              event.preventDefault()
+              options.current[next]?.focus({ preventScroll: true })
+            }
+            if (event.key === 'Escape') {
+              event.preventDefault()
+              setOpen(false)
+              trigger.current?.focus({ preventScroll: true })
+            }
+            if (event.key === 'Tab') {
+              setOpen(false)
+              trigger.current?.focus({ preventScroll: true })
+            }
+          }}
+        >
+          {languageOptions.map(({ value: key, label, icon: Icon }, index) => (
+            <button
+              key={key}
+              ref={(element) => {
+                options.current[index] = element
+              }}
+              role="menuitemradio"
+              aria-checked={value === key}
+              tabIndex={-1}
+              onClick={() => {
+                onChange(key)
+                setOpen(false)
+                trigger.current?.focus({ preventScroll: true })
+              }}
+            >
+              <Icon size={17} aria-hidden="true" />
+              <span>{label}</span>
+              <Check size={15} className="language-check" aria-hidden="true" />
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
   )
 }
 

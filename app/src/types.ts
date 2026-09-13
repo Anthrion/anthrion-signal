@@ -129,6 +129,8 @@ export interface EnglishText {
   version: string
   title: string
   description: string
+  buyer_name?: string | null
+  buyer_original?: string | null
 }
 export interface Dataset {
   schema_version: string

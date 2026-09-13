@@ -34,12 +34,14 @@ def code_digest(root):
     return hashlib.sha256(b"\0".join(entries)).hexdigest()
 
 
-def make_plan(root, now, event, collect_requested=False, force_full=False):
+def make_plan(root, now, event, collect_requested=False, force_full=False, schedule="50 * * * *"):
     signature = {"code": code_digest(root), "day": now.astimezone(ZoneInfo("Europe/London")).date().isoformat()}
     full = force_full or event == "push" or read_state(root / "data/verification_state.json") != signature
-    collect = event == "schedule" or (event == "workflow_dispatch" and collect_requested)
+    collect = (event == "schedule" and schedule == "50 * * * *") or (event == "workflow_dispatch" and collect_requested)
     reason = "Collection requested" if collect else "Existing-data deployment"
-    if event == "schedule":
+    if event == "schedule" and not collect:
+        reason = "Translation-only check; procurement sources are not queried"
+    if event == "schedule" and collect:
         previous = read_state(root / "data/run_metadata.json")
         try:
             finished = datetime.fromisoformat(previous["finished_at"])
@@ -68,7 +70,8 @@ def main():
     if sys.argv[1] != "plan":
         raise SystemExit("Expected plan or passed")
     plan = make_plan(root, datetime.now(UTC), os.getenv("GITHUB_EVENT_NAME", ""),
-                     os.getenv("COLLECT_REQUESTED") == "true", os.getenv("FORCE_FULL_TESTS") == "true")
+                     os.getenv("COLLECT_REQUESTED") == "true", os.getenv("FORCE_FULL_TESTS") == "true",
+                     os.getenv("SCHEDULE_TRIGGER", "50 * * * *"))
     path.parent.mkdir(exist_ok=True)
     path.write_text(json.dumps(plan, indent=2) + "\n", encoding="utf-8")
     if os.getenv("GITHUB_OUTPUT"):

@@ -13,6 +13,8 @@ def test_workflow_and_published_refresh_times_match():
     times = []
     for schedule in workflow["on"]["schedule"]:
         assert schedule["timezone"] == "Europe/London"
+        if schedule["cron"] == "5,20,35 * * * *":
+            continue  # Translation-only checks do not claim to collect new notices.
         minute, hours, day, month, weekday = schedule["cron"].split()
         assert (day, month, weekday) == ("*", "*", "*")
         selected_hours = range(24) if hours == "*" else map(int, hours.split(","))

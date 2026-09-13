@@ -210,6 +210,7 @@ export function matchesSearch(
       english?.title,
       english?.description,
       s.buyer_name,
+      translatedBuyer(s, english),
       s.ocid,
       ...(s.external_ids || []),
     ]
@@ -225,6 +226,17 @@ export function matchesSearch(
       matched.has(c.id) &&
       [c.id, c.label, ...(c.search_terms || [])].some((term) => searchText(term) === q),
   )
+}
+export function translatedBuyer(s: Signal, english?: NonNullable<Dataset['translations']>[string]) {
+  return s.buyer_name && english?.buyer_original === s.buyer_name ? english.buyer_name || '' : ''
+}
+
+export function displayBuyer(s: Signal, english?: NonNullable<Dataset['translations']>[string]) {
+  const official = s.buyer_name || 'Buyer not published'
+  const translated = translatedBuyer(s, english).trim()
+  return translated && !searchText(official).includes(searchText(translated))
+    ? `${official} (${translated})`
+    : official
 }
 export const isNew = (s: Signal, now = Date.now()) => now - Date.parse(s.first_seen_at) < 86400000
 const collectionDay = new Intl.DateTimeFormat('en-GB', {
@@ -341,7 +353,13 @@ export function filterSignals(
     if (f.type && s.signal_type !== f.type) return false
     if (f.capability && !s.matched_capabilities.includes(f.capability)) return false
     if (f.sector && !s.categories.includes(f.sector)) return false
-    if (f.buyer && !(s.buyer_name || '').toLowerCase().includes(f.buyer.toLowerCase())) return false
+    if (
+      f.buyer &&
+      !searchText([s.buyer_name, translatedBuyer(s, translations[s.id])].join(' ')).includes(
+        searchText(f.buyer),
+      )
+    )
+      return false
     if (f.region && !s.regions.some((r) => r.toLowerCase().includes(f.region.toLowerCase())))
       return false
     if (f.cpv && !s.cpv_codes.some((c) => c.startsWith(f.cpv))) return false

@@ -5,8 +5,8 @@ from pathlib import Path
 
 import pytest
 
-from anthrion_signal.translation import QuotaLedger
-from anthrion_signal.utils import atomic_json
+from anthrion_signal.translation import QuotaLedger, TranslationQueue
+from anthrion_signal.utils import atomic_json, read_json
 
 
 @pytest.fixture
@@ -56,3 +56,21 @@ def test_remote_reservation_failure_cannot_make_api_calls(command, tmp_path, mon
     assert not ledger.state["allocations"]["123-1"].get("started")
     assert not (tmp_path / "data/.translation.lock").exists()
     assert calls[-1] == ["git", "push", "origin", "HEAD:main"]
+
+
+def test_idle_translation_checks_make_no_requests_or_timestamp_only_commits(command, tmp_path, monkeypatch):
+    records = command.Dataset.model_validate(read_json(tmp_path / "data/current.json", {})).signals
+    queue = TranslationQueue(tmp_path / "data/translation/cache.json")
+    queue.prepare(records)
+    for key in queue.active:
+        for part in queue.state["fields"][key]["parts"]:
+            part["result"] = {"text": part["source"], "language": "en"}
+    queue.save()
+    monkeypatch.delenv("GEMINI_API_KEY", raising=False)
+    monkeypatch.setattr(command.subprocess, "run", lambda *a, **k: pytest.fail("Idle work must not reserve quota"))
+    monkeypatch.setattr(command.GeminiTranslator, "translate", lambda *a, **k: pytest.fail("Idle work must not call the API"))
+    command.main()
+    before = {file.name: file.read_bytes() for file in (tmp_path / "data/translation").glob("*.json")}
+    command.main()
+    after = {file.name: file.read_bytes() for file in (tmp_path / "data/translation").glob("*.json")}
+    assert before == after

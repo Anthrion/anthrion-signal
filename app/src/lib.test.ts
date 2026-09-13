@@ -19,6 +19,7 @@ import {
   normaliseFilters,
   priorityTier,
   responseDeadline,
+  displayBuyer,
 } from './lib'
 const now = Date.parse('2026-09-09T12:00:00Z')
 const signal = {
@@ -54,6 +55,38 @@ const signal = {
   last_material_update: '2026-09-08T14:00:00Z',
 } as unknown as Signal
 describe('team workflows', () => {
+  test('English buyer renderings supplement the exact official name without stale or duplicate aliases', () => {
+    const original = { ...signal, buyer_name: 'Stadtverwaltung Berlin' }
+    const english = {
+      source_hash: 'test',
+      version: 'test',
+      title: 'Platform',
+      description: '',
+      buyer_original: original.buyer_name,
+      buyer_name: 'Berlin City Administration',
+    }
+    expect(displayBuyer(original, english)).toBe(
+      'Stadtverwaltung Berlin (Berlin City Administration)',
+    )
+    expect(displayBuyer(original)).toBe(original.buyer_name)
+    expect(displayBuyer(original, { ...english, buyer_name: original.buyer_name })).toBe(
+      original.buyer_name,
+    )
+    expect(displayBuyer(original, { ...english, buyer_original: 'Other buyer' })).toBe(
+      original.buyer_name,
+    )
+    expect(matchesSearch(original, 'Berlin City Administration', [], english)).toBe(true)
+    expect(
+      filterSignals(
+        [original],
+        { ...defaults, view: 'all', buyer: 'City Administration' },
+        [],
+        now,
+        [],
+        { one: english },
+      ),
+    ).toEqual([original])
+  })
   test('direct awards and restricted routes stay unavailable, while a remaining open lot survives', () => {
     expect(isAvailableOpportunity({ ...signal, notice_type: 'veat' }, now)).toBe(false)
     for (const status of ['restricted', 'not_listed', 'unverified'])

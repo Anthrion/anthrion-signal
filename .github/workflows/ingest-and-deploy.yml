@@ -4,6 +4,8 @@ on:
   schedule:
     - cron: '50 * * * *'
       timezone: Europe/London
+    - cron: '5,20,35 * * * *'
+      timezone: Europe/London
   workflow_dispatch:
     inputs:
       collect:
@@ -51,6 +53,7 @@ jobs:
         env:
           COLLECT_REQUESTED: ${{ inputs.collect }}
           FORCE_FULL_TESTS: ${{ inputs.full_tests }}
+          SCHEDULE_TRIGGER: ${{ github.event.schedule }}
         run: python scripts/refresh_plan.py plan
       - name: Save previous publication signature
         run: python scripts/publication_state.py before
@@ -81,8 +84,6 @@ jobs:
           fi
       - name: Validate pipeline and public dataset
         run: |
-          python -m pytest -q
-          python -m ruff check pipeline scripts/refresh_plan.py scripts/translate_records.py scripts/publication_state.py scripts/reconcile_release_data.py
           python -m anthrion_signal.cli validate
           python -m anthrion_signal.cli export
           python scripts/check_public_output.py
@@ -91,6 +92,11 @@ jobs:
         env:
           FORCE_DEPLOY: ${{ github.event_name != 'schedule' }}
         run: python scripts/publication_state.py after
+      - name: Verify pipeline changes
+        if: steps.plan.outputs.collect == 'true' || steps.changed.outputs.deploy == 'true' || steps.plan.outputs.full_tests == 'true'
+        run: |
+          python -m pytest -q
+          python -m ruff check pipeline scripts/refresh_plan.py scripts/translate_records.py scripts/publication_state.py scripts/reconcile_release_data.py
       - uses: actions/setup-node@v4
         if: steps.changed.outputs.deploy == 'true' || steps.plan.outputs.full_tests == 'true'
         with:

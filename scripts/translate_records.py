@@ -113,7 +113,12 @@ def main():
             atomic_bytes(output / "results.jsonl", ("\n".join(json.dumps(row) for row in rows) + "\n").encode())
         else:
             atomic_json(output / "translations.en.json", queue.overlay(records))
-        atomic_json(output / "summary.json", summary)
+        previous = read_json(output / "summary.json", {})
+        # Idle checks should not create timestamp-only commits every fifteen minutes.
+        def meaningful(value):
+            return {k: v for k, v in value.items() if k != "finished_at"}
+        if summary["api_calls"] or meaningful(summary) != meaningful(previous):
+            atomic_json(output / "summary.json", summary)
         print(json.dumps(summary, indent=2), flush=True)
 
 

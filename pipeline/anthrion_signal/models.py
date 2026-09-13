@@ -274,6 +274,8 @@ class EnglishText(StrictModel):
     version: str
     title: str
     description: str
+    buyer_name: str | None = None
+    buyer_original: str | None = None
 
 
 class Dataset(StrictModel):

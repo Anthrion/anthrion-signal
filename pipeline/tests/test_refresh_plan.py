@@ -51,6 +51,17 @@ def test_daily_suite_uses_london_day_and_retries_after_a_missed_tick(root):
     assert refresh.make_plan(root, before_midnight + timedelta(hours=8), "schedule")["full_tests"]
 
 
+def test_translation_checks_do_not_increase_source_polling_even_when_delayed(root):
+    assert not refresh.make_plan(root, NOW, "schedule", schedule="5,20,35 * * * *")["collect"]
+    assert refresh.make_plan(root, NOW + timedelta(minutes=17), "schedule", schedule="50 * * * *")["collect"]
+    workflow = yaml.load((ROOT / ".github/workflows/ingest-and-deploy.yml").read_text(), Loader=yaml.BaseLoader)
+    assert [item["cron"] for item in workflow["on"]["schedule"]] == ["50 * * * *", "5,20,35 * * * *"]
+    steps = {step.get("name"): step for step in workflow["jobs"]["build"]["steps"]}
+    assert steps["Plan collection and verification"]["env"]["SCHEDULE_TRIGGER"] == "${{ github.event.schedule }}"
+    assert "steps.changed.outputs.deploy == 'true'" in steps["Verify pipeline changes"]["if"]
+    assert "if" not in steps["Validate pipeline and public dataset"]
+
+
 @pytest.mark.parametrize("value", [None, [], {"code": "tested-code"}, "invalid-json"])
 def test_missing_or_invalid_verification_state_requires_full_tests(root, value):
     write(root / "data/verification_state.json", value)
