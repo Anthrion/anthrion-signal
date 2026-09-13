@@ -61,10 +61,28 @@ jobs:
           MAX_PAGES_PER_SOURCE: '80'
           PYTHONUNBUFFERED: '1'
         run: python -m anthrion_signal.cli ingest
+      - name: Translate new and outstanding records
+        id: translate
+        continue-on-error: true
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          PYTHONUNBUFFERED: '1'
+        run: python scripts/translate_records.py records --github-checkpoint --max-calls 60 --max-seconds 300
+      - name: Checkpoint private translation progress
+        if: always() && steps.translate.outcome != 'skipped'
+        continue-on-error: true
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- data/translation data/translation_quota.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Checkpoint static English translations [skip ci]'
+            git push origin HEAD:main
+          fi
       - name: Validate pipeline and public dataset
         run: |
           python -m pytest -q
-          python -m ruff check pipeline scripts/refresh_plan.py
+          python -m ruff check pipeline scripts/refresh_plan.py scripts/translate_records.py scripts/publication_state.py scripts/reconcile_release_data.py
           python -m anthrion_signal.cli validate
           python -m anthrion_signal.cli export
           python scripts/check_public_output.py
@@ -129,6 +147,7 @@ jobs:
         if: always()
         env:
           COLLECTION_OUTCOME: ${{ steps.collect.outcome }}
+          TRANSLATION_OUTCOME: ${{ steps.translate.outcome }}
         run: python scripts/run_summary.py
 
   deploy:

@@ -137,7 +137,7 @@ def defer_collection(result, exc):
     result.complete, result.message = False, str(exc)
     if exc.retry_at:
         result.state["retry_at"] = exc.retry_at.isoformat()
-    elif exc.data_error:
+    elif exc.data_error or exc.status_code in (401, 403):
         result.state["retry_at"] = (datetime.now(UTC) + timedelta(hours=1)).isoformat()
 
 
@@ -284,7 +284,7 @@ def collect_monthly(source, state, frozen, http, settings, terms):
             # Retry failed partitions only after the other partitions have had a turn.
             pending.remove(partition)
             pending.append(partition)
-            if exc.data_error or exc.status_code in (429, 503) or (errors >= 3 and not result.records):
+            if exc.data_error or exc.status_code in (401, 403, 429, 503) or (errors >= 3 and not result.records):
                 break
     if result.complete:
         result.state["watermark"] = cycle["through"]
@@ -352,7 +352,7 @@ def wales_listing(source, frozen, http):
 
 def collect_govuk(source, state, frozen, http, settings, terms):
     result = Collection(state=dict(state))
-    start = (parse_date(state.get("watermark")) or frozen - timedelta(days=90)) - timedelta(days=1)
+    start = (parse_date(state.get("watermark")) or frozen - timedelta(days=settings["lookback_days"])) - timedelta(days=1)
     seen = set()
     cycle_end = parse_date(state.get("query_cycle_to")) or frozen
     result.state["query_cycle_to"] = cycle_end.isoformat()
@@ -407,7 +407,7 @@ def collect_govuk(source, state, frozen, http, settings, terms):
             result.state.pop("query_cycle_to", None)
             result.state["next_query"] = 0
     except SourceUnavailable as exc:
-        result.complete, result.message = False, str(exc)
+        defer_collection(result, exc)
     return result
 
 
@@ -577,6 +577,20 @@ def collect_upcoming(source, state, frozen, http, settings, terms):
     return result
 
 
+TED_FIELDS = [
+    "publication-number", "notice-identifier", "title-proc", "notice-title", "buyer-name",
+    "buyer-country", "publication-date", "form-type", "notice-type", "place-of-performance",
+    "classification-cpv", "description-proc", "description-lot", "estimated-value-proc",
+    "estimated-value-cur-proc", "total-value", "total-value-cur", "framework-agreement-lot",
+    "deadline-receipt-tender-date-lot", "deadline-receipt-tender-time-lot", "winner-name",
+    "deadline-receipt-request-date-lot", "deadline-receipt-request-time-lot",
+    "deadline-receipt-expressions-date-lot", "deadline-receipt-expressions-time-lot",
+    "procedure-type", "competition-termination-proc", "dps-usage-lot", "dps-termination-lot",
+    "identifier-lot", "procedure-identifier", "previous-notice-id-proc",
+    "change-notice-version-identifier",
+]
+
+
 def collect_ted(source, state, frozen, http, settings, terms):
     result = Collection(state=dict(state))
     countries = [code for country, market in terms["markets"].items()
@@ -587,36 +601,67 @@ def collect_ted(source, state, frozen, http, settings, terms):
     query_version = digest([sorted(countries), "buyer-jurisdiction-v2"])
     checkpoint = state.get("watermark") if state.get("query_version") == query_version else None
     start = (parse_date(checkpoint) or frozen - timedelta(days=settings["lookback_days"])) - timedelta(days=1)
-    body = {"query": f"publication-date >= {start:%Y%m%d} AND publication-date <= {frozen:%Y%m%d} "
-            f"AND buyer-country IN ({' '.join(countries)}) AND classification-cpv IN (48* 72* 7931* 7941*)",
-            "fields": ["publication-number", "notice-identifier", "title-proc", "notice-title", "buyer-name",
-                       "buyer-country", "publication-date", "form-type", "notice-type", "place-of-performance",
-                       "classification-cpv", "description-proc", "description-lot", "estimated-value-proc",
-                       "estimated-value-cur-proc", "total-value", "total-value-cur", "framework-agreement-lot",
-                       "deadline-receipt-tender-date-lot", "deadline-receipt-tender-time-lot", "winner-name"],
-            "limit": min(source.get("limit", 200), 250), "paginationMode": "ITERATION", "scope": "ALL"}
+    pending = state.get("ted_pending") if state.get("query_version") == query_version else None
+    if not isinstance(pending, dict) or not all(parse_date(pending.get(k)) for k in ("from", "until", "through")):
+        pending = {"from": start.isoformat(), "until": min(start + timedelta(days=1), frozen).isoformat(),
+                   "through": frozen.isoformat()}
+    else:
+        pending = dict(pending)
+    # Freeze each small publication window. A rejected continuation replays only
+    # its unfinished day, never the entire backlog or a newer moving date range.
+    restarted = False
     seen_tokens = set()
     try:
-        while True:
-            if result.pages >= settings["max_pages"]:
-                result.complete, result.message = False, "TED iteration budget reached."
-                break
-            data = http.request("POST", source["url"], json=body).json()
+        while result.pages < settings["max_pages"]:
+            begin, end = parse_date(pending["from"]), parse_date(pending["until"])
+            body = {"query": f"publication-date >= {begin:%Y%m%d} AND publication-date <= {end:%Y%m%d} "
+                    f"AND buyer-country IN ({' '.join(countries)}) AND classification-cpv IN (48* 72* 7931* 7941*)",
+                    "fields": TED_FIELDS, "limit": max(1, min(source.get("limit", 200), 250, 10000 // len(TED_FIELDS))),
+                    "paginationMode": "ITERATION", "scope": "ALL"}
+            if pending.get("token"):
+                body["iterationNextToken"] = pending["token"]
             result.pages += 1
-            if not isinstance(data.get("notices"), list) or data.get("timedOut"):
+            try:
+                data = http.request("POST", source["url"], json=body).json()
+            except SourceUnavailable as exc:
+                if exc.status_code in (400, 404, 410) and pending.get("token") and not restarted:
+                    pending.pop("token", None)
+                    result.state["ted_pending"] = dict(pending)
+                    restarted = True
+                    seen_tokens.clear()
+                    continue
+                raise
+            except ValueError:
+                raise SourceUnavailable("TED did not return JSON") from None
+            if not isinstance(data, dict) or not isinstance(data.get("notices"), list) or data.get("timedOut"):
                 raise SourceUnavailable("TED returned an incomplete search response")
+            if any(not isinstance(n, dict) or not re.fullmatch(r"\d+-\d{4}", str(n.get("publication-number", "")))
+                   for n in data["notices"]):
+                raise SourceUnavailable("TED returned a notice without its publication identifier")
             result.records.extend(RawRecord(n, source, frozen.isoformat(), "ted") for n in data["notices"])
             token = data.get("iterationNextToken")
             if not token or not data.get("notices"):
-                result.state["watermark"] = frozen.isoformat()
+                through = parse_date(pending["through"])
+                result.state["watermark"] = end.isoformat()
                 result.state["query_version"] = query_version
-                break
-            if token in seen_tokens:
+                if end >= through:
+                    result.state.pop("ted_pending", None)
+                    return result
+                pending = {"from": end.isoformat(), "until": min(end + timedelta(days=1), through).isoformat(),
+                           "through": through.isoformat()}
+                seen_tokens.clear()
+                restarted = False
+            elif token in seen_tokens or token == pending.get("token"):
+                pending.pop("token", None)
+                result.state["ted_pending"] = dict(pending)
                 raise SourceUnavailable("TED repeated its iteration token")
-            seen_tokens.add(token)
-            body["iterationNextToken"] = token
+            else:
+                seen_tokens.add(token)
+                pending["token"] = token
+            result.state.update(query_version=query_version, ted_pending=dict(pending))
+        result.complete, result.message = False, "TED page budget reached; the fixed window resumes next run."
     except SourceUnavailable as exc:
-        result.complete, result.message = False, str(exc)
+        defer_collection(result, exc)
     return result
 
 
@@ -755,6 +800,11 @@ def collect_nyc(source, state, frozen, http, settings, terms):
     return collect_nyc_city_record(source, state, frozen, http, settings, terms)
 
 
+def collect_ramp(source, state, frozen, http, settings, terms):
+    from .la_ramp import collect_la_ramp
+    return collect_la_ramp(source, state, frozen, http, settings, terms)
+
+
 def collect_spain(source, state, frozen, http, settings, terms):
     from .spain_notices import collect_spain_notices
     return collect_spain_notices(source, state, frozen, http, settings, terms)
@@ -763,7 +813,7 @@ def collect_spain(source, state, frozen, http, settings, terms):
 COLLECTORS = {"ocds_cursor": collect_cursor, "ocds_monthly": collect_monthly, "govuk": collect_govuk,
               "digital_outcomes": collect_digital, "upcoming_agreements": collect_upcoming, "ted": collect_ted,
               "usaspending": collect_usaspending, "grants": collect_grants, "german_daily": collect_german_daily,
-              "nyc_city_record": collect_nyc, "spain_atom": collect_spain}
+              "nyc_city_record": collect_nyc, "spain_atom": collect_spain, "la_ramp": collect_ramp}
 
 
 def collect_with_backfill(source, state, frozen, http, settings, terms, charter):

@@ -68,11 +68,19 @@ npm ci
 npm run dev -- --host 127.0.0.1 --port 4174
 ```
 
-The local route is `http://127.0.0.1:4174/anthrion-signal/`. `VITE_BASE_PATH` overrides the repository path. No enabled provider requires a model key. Keep credentials out of frontend variables, public data and Git.
+The local route is `http://127.0.0.1:4174/anthrion-signal/`. `VITE_BASE_PATH` overrides the repository path. Collection does not require a model key. English translation uses the private `GEMINI_API_KEY` environment variable. Keep credentials out of frontend variables, public data and Git.
 
 `python -m anthrion_signal.cli rescore` is the compatibility command for rebuilding source classification and publication without contacting providers. `export` copies validated public data into the frontend. On Windows, stop a preview process that holds the output JSON open before an atomic dataset update, then restart it.
 
 Use `--refresh-daily` for a deliberate bounded recheck of a daily snapshot after changing discovery rules. It skips the local daily refresh interval, not provider Retry-After limits; normal scheduled runs leave it off.
+
+## English and Value Controls
+
+The market row offers EN (default) and Original. English titles and descriptions are translated privately during collection, saved by source-text hash, and included in the static public dataset. Search matches both languages. Translation never changes source IDs, eligibility, the CRM/Salesforce-first priority, original CSV facts, saved records or hidden-record storage. Pending or rejected translations leave the original opportunity visible.
+
+Each hourly workflow allows at most 60 translation HTTP attempts and five minutes, within persisted per-model daily/minute budgets. It commits the entire run allowance before any API request so an interrupted GitHub runner cannot forget its quota usage. Completed text is checkpointed separately from build/test success. Oversized passages split, temporary failures back off or use the verified backup model, and exhausted budgets leave work queued. There is no guarantee of translation time or error-free machine translation. See the [evaluation and operating instructions](docs/gemini-translation-evaluation-2026-09-13.md). Do not run a local worker concurrently with GitHub using an independent quota ledger.
+
+Highest value, Lowest value and the adjacent minimum/maximum inputs use the published numeric amounts in the selected market. No currency conversion is applied. The currency selector lists supported currencies plus any additional codes present in the feed; select a currency for like-for-like comparisons in mixed-currency markets. Ranges persist when changing market. Unknown values sort last within each team-priority group and do not match a numeric range.
 
 ## Scheduling and Budget
 
@@ -94,6 +102,7 @@ Canonical records retain 180 days of recent updates plus future deadlines or con
 .\.venv\Scripts\python -m pytest -q
 .\.venv\Scripts\python -m ruff check pipeline scripts/check_public_output.py
 .\.venv\Scripts\python -m anthrion_signal.cli validate
+.\.venv\Scripts\python -m anthrion_signal.cli export
 .\.venv\Scripts\python scripts/check_public_output.py
 cd app
 npm test

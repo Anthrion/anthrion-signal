@@ -1,5 +1,14 @@
 import { useEffect, useId, useRef, useState, useSyncExternalStore } from 'react'
-import { Check, ChevronDown, ArrowDownWideNarrow, Square, SquareCheck, EyeOff } from 'lucide-react'
+import {
+  Check,
+  ChevronDown,
+  ArrowDownWideNarrow,
+  Square,
+  SquareCheck,
+  EyeOff,
+  Globe2,
+} from 'lucide-react'
+import type { DisplayLanguage } from './types'
 import { LiquidMetal } from '@paper-design/shaders-react'
 import { markets } from './lib'
 import { applyGlassLight, brandLightPosition, scrollMovesSurface } from './glassLighting'
@@ -221,9 +230,13 @@ export function GlassReflection({ trackLight = false }: { trackLight?: boolean }
 export function MarketSection({
   selected,
   onSelect,
+  language,
+  onLanguage,
 }: {
   selected: string
   onSelect: (id: string) => void
+  language: DisplayLanguage
+  onLanguage: (language: DisplayLanguage) => void
 }) {
   return (
     <section className="market-section" aria-label="Market selection">
@@ -244,32 +257,44 @@ export function MarketSection({
           </button>
         ))}
       </nav>
+      <label
+        className="language-control"
+        title={language === 'en' ? 'English machine translation' : 'Original notice language'}
+      >
+        <Globe2 size={16} aria-hidden="true" />
+        <select
+          aria-label="Record language"
+          value={language}
+          onChange={(event) => onLanguage(event.target.value as DisplayLanguage)}
+        >
+          <option value="en">EN</option>
+          <option value="original">Original</option>
+        </select>
+        <ChevronDown size={12} aria-hidden="true" />
+      </label>
     </section>
   )
 }
 
-const makeSortOptions = (currency: string) =>
-  [
-    ['recent', 'Most recent'],
-    ['updated', 'Recently updated'],
-    ['deadline', 'Closing soon'],
-    ['value', `Highest value (${currency})`],
-  ] as const
+const sortOptions = [
+  ['recent', 'Most recent'],
+  ['updated', 'Recently updated'],
+  ['deadline', 'Closing soon'],
+  ['value', 'Highest value'],
+  ['value-low', 'Lowest value'],
+] as const
 
 export function SortMenu({
   value,
   onChange,
-  currency = 'GBP',
   showHidden,
   onShowHidden,
 }: {
   value: string
   onChange: (value: string) => void
-  currency?: string
   showHidden: boolean
   onShowHidden: (value: boolean) => void
 }) {
-  const sortOptions = makeSortOptions(currency)
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
   const trigger = useRef<HTMLButtonElement>(null)

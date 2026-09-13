@@ -112,5 +112,8 @@ def test_every_publication_requires_browser_checks_and_full_success_is_not_recor
     assert full["env"]["SIGNAL_TEST_PREVIEW"] == smoke["env"]["SIGNAL_TEST_PREVIEW"] == "true"
     assert steps.index(full) < steps.index(passed) < steps.index(by_name["Persist canonical state"])
     assert steps.index(smoke) < steps.index(by_name["Upload Pages build"])
-    assert not any(step.get("continue-on-error") == "true" for step in steps)
+    optional = {"Translate new and outstanding records", "Checkpoint private translation progress"}
+    assert {step.get("name") for step in steps if step.get("continue-on-error") == "true"} == optional
+    assert steps.index(by_name["Translate new and outstanding records"]) < steps.index(by_name["Validate pipeline and public dataset"])
+    assert "--github-checkpoint" in by_name["Translate new and outstanding records"]["run"]
     assert workflow["concurrency"]["cancel-in-progress"] == "false"

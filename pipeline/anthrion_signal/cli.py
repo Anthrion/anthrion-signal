@@ -9,9 +9,10 @@ from .collectors import Http, collect_with_backfill, hydrate_sparse
 from .config import capability_catalog, evidence_catalog, load_config
 from .discovery import is_public_opportunity, lifecycle, prefilter, ranking_key
 from .dedupe import reconcile
-from .models import Dataset, Signal, SourceHealth
+from .models import Dataset, EnglishText, Signal, SourceHealth
 from .normalise import NORMALISERS, set_hashes
 from .retention import archive_expired, restore_matching
+from .translation import available_translations
 from .utils import atomic_bytes, atomic_json, digest, parse_date, read_json
 
 SCHEDULED_TIMES = [f"{hour:02}:50" for hour in range(24)]
@@ -85,6 +86,8 @@ def derive_renewals(signals, now, config):
 def export(root):
     data = Dataset.model_validate(read_json(root / "data/current.json", {}))
     data.signals = [s for s in data.signals if is_public_opportunity(s, datetime.now(UTC))]
+    data.translations = {key: EnglishText.model_validate(value)
+                         for key, value in available_translations(root, data.signals).items()}
     data.run.update(scheduled_timezone="Europe/London", scheduled_times=SCHEDULED_TIMES)
     target = root / "app/public/data"
     target.mkdir(parents=True, exist_ok=True)
@@ -157,6 +160,11 @@ def run(root, args):
     print(f"Reconciled {len(signals)} candidates; applying source-based discovery and availability rules", flush=True)
     ai_stats = {"gemini_calls": 0, "cache_hits": 0, "ai_failures": 0}
     for s in signals:
+        deadlines = sorted(value for value in s.response_deadlines if parse_date(value))
+        if deadlines:
+            upcoming = [value for value in deadlines if parse_date(value) > now]
+            s.deadline_at = min(upcoming) if upcoming else max(deadlines)
+            set_hashes(s)
         s.lifecycle_state, s.lifecycle_reason = lifecycle(s, now)
         s.fit_score, s.confidence_score, s.known_weight = None, 0, 0
         s.score_components, s.score_explanation, s.ai_status = [], "", "disabled"

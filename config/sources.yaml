@@ -158,6 +158,19 @@ sources:
     max_pages_per_run: 6
     refresh_hours: 24
     coverage: New York City procurement notices, including open solicitations and subsequent status changes.
+  - id: la_ramp
+    name: Los Angeles RAMP
+    enabled: true
+    collector: la_ramp
+    source_type: official_notice
+    url: https://data.lacity.org/resource/hf3r-utnq.json
+    metadata_url: https://data.lacity.org/api/views/hf3r-utnq.json
+    website: https://www.rampla.org
+    docs: https://catalog.data.gov/dataset/ramp-open-bid-opportunities
+    country: US
+    refresh_hours: 24
+    allow_task_orders: false
+    coverage: Official open bid listings. Task-order-only routes are excluded until participation rights are confirmed; full terms remain in the original notice.
   - id: grants
     name: Grants.gov
     enabled: true

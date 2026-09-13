@@ -65,6 +65,9 @@ def test_portal_hostnames_do_not_create_salesforce_requirements(signal, config):
     ("Case management platform", "Replace the CRM and migrate customer data.", "platform"),
     ("Generative AI discovery", "An artificial intelligence proof of concept. Monthly reporting is required.", "ai"),
     ("Kundenbeziehungsmanagement", "CRM-System Implementierung und Datenmigration.", "platform"),
+    ("Civil Case and Matter Management System", "Case and matter management system", "platform"),
+    ("Cannabis Licensing System RFP", "Licensing system", "platform"),
+    ("Enterprise Document Management System", "Document management system", "platform"),
 ])
 def test_delivery_priority_requires_an_explicit_capability_not_context(signal, config, title, description, expected):
     record = signal.model_copy(update={"title": title, "description": description, "cpv_codes": []})

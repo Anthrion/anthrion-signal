@@ -5,13 +5,13 @@ from html import unescape
 from urllib.parse import urljoin
 
 from .models import Document, Provenance, Signal
-from .utils import canonical_url, clean, digest, iso, unique
+from .utils import canonical_url, clean, digest, iso, parse_date, unique
 
 
 MATERIAL_FIELDS = ["title", "description", "buyer_name", "deadline_at", "contract_start", "contract_end",
                    "extension_end", "value_min", "value_max", "currency", "procurement_stage", "signal_type",
                    "status", "framework", "eligibility_text", "incumbent_supplier", "cpv_codes", "lot_ids", "lot_id",
-                   "countries", "regions"]
+                   "countries", "regions", "response_deadlines", "notice_type"]
 
 
 def material_payload(signal):
@@ -234,7 +234,9 @@ def normalise_ted(raw):
     if not re.fullmatch(r"\d+-\d{4}", number):
         raise ValueError("Missing TED publication number")
     form = ted_text(r.get("form-type")).lower()
-    stage = "award" if form in ("result", "cont-modif") else "planning" if form in ("planning", "dir-awa-pre") else "tender" if form == "competition" else "unknown"
+    notice_type = ted_text(r.get("notice-type")).lower()
+    direct_award = form == "dir-awa-pre" or notice_type in ("veat", "dir-awa-pre")
+    stage = "award" if form in ("result", "cont-modif") or direct_award else "planning" if form == "planning" else "tender" if form == "competition" else "unknown"
     title = ted_text(r.get("title-proc")) or ted_text(r.get("notice-title"))
     description = "\n\n".join(unique([ted_text(r.get("description-proc")), ted_text(r.get("description-lot"))]))
     countries = {"GBR": "GB", "DEU": "DE", "ITA": "IT", "ESP": "ES", "GRC": "GR", "SWE": "SE", "FIN": "FI", "DNK": "DK", "NOR": "NO", "ISL": "IS"}
@@ -242,18 +244,25 @@ def normalise_ted(raw):
     buyer_countries = r.get("buyer-country") or r.get("place-of-performance") or []
     if isinstance(buyer_countries, str):
         buyer_countries = [buyer_countries]
-    dates, times = r.get("deadline-receipt-tender-date-lot") or [], r.get("deadline-receipt-tender-time-lot") or []
-    if isinstance(dates, str):
-        dates = [dates]
-    if isinstance(times, str):
-        times = [times]
     deadlines = []
-    for i, day in enumerate(dates):
-        # Search arrays do not identify lots. Only one date and one time can be
-        # paired safely; multiple lots require the full notice for exact cutoffs.
-        value = day[:10] + "T" + times[0] if len(dates) == len(times) == 1 else day
-        if iso(value):
-            deadlines.append(iso(value))
+    for phase in ("request", "expressions", "tender"):
+        dates = r.get(f"deadline-receipt-{phase}-date-lot") or []
+        times = r.get(f"deadline-receipt-{phase}-time-lot") or []
+        dates = [dates] if isinstance(dates, str) else dates
+        times = [times] if isinstance(times, str) else times
+        for day in dates:
+            # Search arrays have no lot/time pairing. Do not invent an exact
+            # cutoff for multiple lots. Qualification precedes invitation to bid.
+            value = day[:10] + "T" + times[0] if len(dates) == len(times) == 1 else day
+            if iso(value):
+                deadlines.append(iso(value))
+        if deadlines:
+            break
+    deadlines = sorted(set(deadlines))
+    now = parse_date(raw.retrieved_at)
+    upcoming = [value for value in deadlines if parse_date(value) > now]
+    deadline = min(upcoming) if upcoming else max(deadlines, default=None)
+    terminated = r.get("competition-termination-proc") is True or r.get("competition-termination-proc") == "true"
     framework_values = r.get("framework-agreement-lot") or []
     framework = "Framework agreement" if any(v in ("fa-mix", "fa-w-rc", "fa-wo-rc") for v in framework_values) else None
     value = money(r.get("total-value")) if stage == "award" else money(r.get("estimated-value-proc"))
@@ -261,13 +270,20 @@ def normalise_ted(raw):
     if isinstance(currencies, list):
         currencies = unique(currencies)
         currencies = currencies[0] if len(currencies) == 1 else None
+    change_ref = ted_text(r.get("change-notice-version-identifier"))
+    changed_notice = re.fullmatch(r"([0-9a-fA-F]{8}(?:-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12})(?:-\d+)?", change_ref)
+    # BT-758 explicitly replaces a notice version. A general previous-procedure
+    # reference does not: a lot award must not close an entire admission system.
+    aliases = ["ted:" + number, "ted-notice:" + ted_text(r.get("notice-identifier")) if r.get("notice-identifier") else None]
+    if changed_notice:
+        aliases.append("ted-notice:" + changed_notice[1])
     return base(raw, title=title, description=description or title, url=f"https://ted.europa.eu/en/notice/-/detail/{number}",
         buyer_name=ted_text(r.get("buyer-name")) or None, signal_type=classify(stage, title, description, framework=framework) if stage != "unknown" else "STRATEGIC_INTENT", procurement_stage=stage,
-        external_ids=unique(["ted:" + number, "ted-notice:" + ted_text(r.get("notice-identifier")) if r.get("notice-identifier") else None]),
-        notice_type=ted_text(r.get("notice-type")), status="awarded" if stage == "award" else "active",
+        external_ids=unique(aliases),
+        notice_type=notice_type, status="cancelled" if terminated else "closed" if direct_award else "awarded" if stage == "award" else "active",
         published_at=iso(ted_text(r.get("publication-date"))), updated_at=iso(ted_text(r.get("publication-date"))),
-        deadline_at=min(deadlines) if deadlines else None,
-        eligibility_text="Multiple lot deadlines are published. The earliest is shown; check the source notice for the relevant lot." if len(set(deadlines)) > 1 else None,
+        deadline_at=deadline, response_deadlines=deadlines,
+        eligibility_text="Multiple lot deadlines are published. The next remaining date is shown; check the source notice for the relevant lot." if len(deadlines) > 1 else None,
         value_max=value, currency=currencies, framework=framework, incumbent_supplier=ted_text(r.get("winner-name")) or None,
         cpv_codes=re.findall(r"\d{8}", ted_text(r.get("classification-cpv"))), regions=[region] if region else [],
         countries=unique([countries[c] for c in buyer_countries if c in countries]))
@@ -330,6 +346,11 @@ def normalise_nyc(raw):
     return normalise_nyc_city_record(raw)
 
 
+def normalise_ramp(raw):
+    from .la_ramp import normalise_la_ramp
+    return normalise_la_ramp(raw)
+
+
 def normalise_spain(raw):
     from .spain_notices import normalise_spain_notice
     return normalise_spain_notice(raw)
@@ -337,4 +358,5 @@ def normalise_spain(raw):
 
 NORMALISERS = {"ocds": normalise_ocds, "govuk": normalise_govuk, "html": normalise_html, "ted": normalise_ted,
                "usaspending": normalise_usaspending, "grants": normalise_grants,
-               "german_ocds": normalise_german, "nyc_city_record": normalise_nyc, "spain_placsp": normalise_spain}
+               "german_ocds": normalise_german, "nyc_city_record": normalise_nyc, "spain_placsp": normalise_spain,
+               "la_ramp": normalise_ramp}

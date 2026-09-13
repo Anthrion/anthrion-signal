@@ -214,6 +214,7 @@ class Signal(StrictModel):
     published_at: str | None = None
     updated_at: str | None = None
     deadline_at: str | None = None
+    response_deadlines: list[str] = Field(default_factory=list)
     contract_start: str | None = None
     contract_end: str | None = None
     extension_end: str | None = None
@@ -268,6 +269,13 @@ class SourceHealth(StrictModel):
     coverage: str | None = None
 
 
+class EnglishText(StrictModel):
+    source_hash: str
+    version: str
+    title: str
+    description: str
+
+
 class Dataset(StrictModel):
     schema_version: str = "1.0"
     generated_at: str
@@ -281,3 +289,4 @@ class Dataset(StrictModel):
     markets: dict[str, Any]
     evidence_catalog: dict[str, Any]
     signals: list[Signal]
+    translations: dict[str, EnglishText] = Field(default_factory=dict)

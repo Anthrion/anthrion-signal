@@ -1,5 +1,7 @@
 import { defineConfig } from '@playwright/test'
 
+const browserName = process.env.SIGNAL_TEST_BROWSER === 'webkit' ? 'webkit' : 'chromium'
+
 export default defineConfig({
   testDir: './tests',
   timeout: 45000,
@@ -13,11 +15,13 @@ export default defineConfig({
         timeout: 30000,
       },
   use: {
+    browserName,
     baseURL: process.env.SIGNAL_TEST_URL || 'http://127.0.0.1:4174/anthrion-signal/',
     headless: true,
-    launchOptions: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE
-      ? { executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE }
-      : {},
+    launchOptions:
+      browserName === 'chromium' && process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE
+        ? { executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE }
+        : {},
   },
   projects: [
     { name: 'desktop', use: { viewport: { width: 1440, height: 1050 } } },

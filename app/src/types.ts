@@ -46,6 +46,7 @@ export interface Signal {
   published_at: string | null
   updated_at: string | null
   deadline_at: string | null
+  response_deadlines?: string[]
   contract_start: string | null
   contract_end: string | null
   extension_end: string | null
@@ -122,6 +123,13 @@ export interface Source {
   countries?: string[]
   coverage?: string | null
 }
+export type DisplayLanguage = 'en' | 'original'
+export interface EnglishText {
+  source_hash: string
+  version: string
+  title: string
+  description: string
+}
 export interface Dataset {
   schema_version: string
   generated_at: string
@@ -136,6 +144,7 @@ export interface Dataset {
   >
   markets: Record<string, { name: string; enabled: boolean; coverage?: string }>
   signals: Signal[]
+  translations?: Record<string, EnglishText>
   run: {
     sources_attempted: number
     sources_succeeded: number

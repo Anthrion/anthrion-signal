@@ -27,7 +27,8 @@ import {
   Target,
   X,
 } from 'lucide-react'
-import type { Dataset, Filters, Signal } from './types'
+import type { Dataset, DisplayLanguage, Filters, Signal } from './types'
+import { TranslationProvider, useSignalText } from './Translation'
 import {
   AmbientGlass,
   BrandSignature,
@@ -44,6 +45,7 @@ import {
   amount,
   calendar,
   csv,
+  currencyOptions,
   date,
   defaults,
   download,
@@ -54,12 +56,12 @@ import {
   lifecycleState,
   markets,
   matchesMarket,
+  responseDeadline,
   marketIsEnabled,
   readFilters,
   normaliseFilters,
   safeURL,
   typeLabels,
-  valueCurrency,
 } from './lib'
 
 const navItems = [
@@ -79,21 +81,46 @@ function useLocal<T>(key: string, initial: T, validate: (value: unknown) => valu
       return initial
     }
   })
+  const valueRef = useRef(value)
   const [storageError, setStorageError] = useState(false)
   useEffect(() => {
     try {
-      localStorage.setItem(key, JSON.stringify(value))
+      localStorage.setItem(key, JSON.stringify(valueRef.current))
       setStorageError(false)
     } catch {
       setStorageError(true)
     }
-  }, [key, value])
+  }, [key])
+  const updateValue = useCallback(
+    (update: React.SetStateAction<T>) => {
+      let current = valueRef.current
+      try {
+        const stored: unknown = JSON.parse(localStorage.getItem(key) || 'null')
+        if (validate(stored)) current = stored
+      } catch {
+        /* Keep usable in-memory preferences when storage is unavailable. */
+      }
+      const next = typeof update === 'function' ? (update as (previous: T) => T)(current) : update
+      valueRef.current = next
+      try {
+        localStorage.setItem(key, JSON.stringify(next))
+        setStorageError(false)
+      } catch {
+        setStorageError(true)
+      }
+      setValue(next)
+    },
+    [key, validate],
+  )
   useEffect(() => {
     const sync = (event: StorageEvent) => {
       try {
         if (event.storageArea !== localStorage || event.key !== key) return
         const stored: unknown = JSON.parse(event.newValue || 'null')
-        if (validate(stored)) setValue(stored)
+        if (validate(stored)) {
+          valueRef.current = stored
+          setValue(stored)
+        }
       } catch {
         /* Keep the last valid preferences if storage is malformed. */
       }
@@ -101,11 +128,13 @@ function useLocal<T>(key: string, initial: T, validate: (value: unknown) => valu
     window.addEventListener('storage', sync)
     return () => window.removeEventListener('storage', sync)
   }, [key, validate])
-  return [value, setValue, storageError] as const
+  return [value, updateValue, storageError] as const
 }
 
 const validSaved = (value: unknown): value is string[] =>
   Array.isArray(value) && value.every((id) => typeof id === 'string')
+const validLanguage = (value: unknown): value is DisplayLanguage =>
+  value === 'en' || value === 'original'
 
 function IconButton({
   label,
@@ -180,11 +209,34 @@ function Modal({
   )
 }
 
+function WorkspaceProviders({
+  language,
+  translations,
+  children,
+}: {
+  language: DisplayLanguage
+  translations: Dataset['translations']
+  children: ReactNode
+}) {
+  return (
+    <MotionConfig reducedMotion="user">
+      <TranslationProvider language={language} translations={translations}>
+        {children}
+      </TranslationProvider>
+    </MotionConfig>
+  )
+}
+
 export default function App() {
   const [data, setData] = useState<Dataset | null>(null)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(true)
   const [filters, setFilters] = useState<Filters>(readFilters)
+  const [language, setLanguage] = useLocal<DisplayLanguage>(
+    'anthrion-language-v1',
+    'en',
+    validLanguage,
+  )
   const [saved, setSaved, storageError] = useLocal<string[]>('anthrion-saved-v1', [], validSaved)
   const [hidden, setHidden, hiddenStorageError] = useLocal<string[]>(
     'anthrion-hidden-v1',
@@ -317,9 +369,19 @@ export default function App() {
     [data, hiddenIds, showHidden],
   )
   const filtered = useMemo(
-    () => filterSignals(visibleSignals, filters, saved, time, data?.capabilities),
+    () =>
+      filterSignals(visibleSignals, filters, saved, time, data?.capabilities, data?.translations),
     [data, visibleSignals, filters, saved, time],
   )
+  // Outgoing rows are visual only; counts, selection and export use saved intent immediately.
+  const renderedFiltered = useMemo(() => {
+    if (!Object.keys(departing).length) return filtered
+    const visual = (data?.signals || []).filter((s) => {
+      const phase = departing[s.id]
+      return (phase ? phase === 'unhide' : hiddenIds.has(s.id)) === showHidden
+    })
+    return filterSignals(visual, filters, saved, time, data?.capabilities, data?.translations)
+  }, [data, departing, filtered, filters, hiddenIds, saved, showHidden, time])
   const marketSignals = useMemo(
     () =>
       visibleSignals.filter(
@@ -365,7 +427,7 @@ export default function App() {
       else feedRef.current?.focus({ preventScroll: true })
     })
     return () => cancelAnimationFrame(frame)
-  }, [hidden, filtered])
+  }, [hidden, filtered, departing])
   const dismiss = (id: string) => {
     if (pendingDepartures.current.has(id)) return
     const restoring = hiddenIds.has(id)
@@ -384,19 +446,15 @@ export default function App() {
         (document.activeElement === focusOrigin || document.activeElement === document.body)
       )
         pendingRowFocus.current = filtered.findIndex((s) => s.id === id)
-      setHidden((ids) =>
-        restoring
-          ? ids.filter((existing) => existing !== id)
-          : ids.includes(id)
-            ? ids
-            : [...ids, id],
-      )
       setDeparting((current) => {
         const next = { ...current }
         delete next[id]
         return next
       })
     }
+    setHidden((ids) =>
+      restoring ? ids.filter((existing) => existing !== id) : ids.includes(id) ? ids : [...ids, id],
+    )
     if (reducedMotion) commit()
     else {
       setDeparting((current) => ({ ...current, [id]: restoring ? 'unhide' : 'hide' }))
@@ -450,7 +508,7 @@ export default function App() {
   }
 
   return (
-    <MotionConfig reducedMotion="user">
+    <WorkspaceProviders language={language} translations={data?.translations}>
       <div className="app-shell console-shell">
         <AmbientGlass />
         <a className="skip-link" href="#main">
@@ -488,7 +546,6 @@ export default function App() {
               </button>
               <SortMenu
                 value={filters.sort}
-                currency={valueCurrency(filters)}
                 onChange={(sort) => update({ sort })}
                 showHidden={showHidden}
                 onShowHidden={(value) => {
@@ -516,7 +573,12 @@ export default function App() {
             </div>
           </header>
           <div className="workspace-content">
-            <MarketSection selected={filters.market} onSelect={switchMarket} />
+            <MarketSection
+              selected={filters.market}
+              onSelect={switchMarket}
+              language={language}
+              onLanguage={setLanguage}
+            />
             {(error || (!fresh && data)) && (
               <div className="alert" role="status">
                 <Clock3 size={17} />
@@ -615,7 +677,7 @@ export default function App() {
                     </div>
                   ) : (
                     <VirtualSignalList
-                      signals={filtered}
+                      signals={renderedFiltered}
                       scrollRef={feedRef}
                       resetKey={`${JSON.stringify(filters)}:${showHidden}`}
                       shiftKey={hidden.join('|')}
@@ -625,7 +687,11 @@ export default function App() {
                           signal={signal}
                           selected={selectedSignal?.id === signal.id}
                           saved={saved.includes(signal.id)}
-                          hidden={hiddenIds.has(signal.id)}
+                          hidden={
+                            departing[signal.id]
+                              ? departing[signal.id] === 'unhide'
+                              : hiddenIds.has(signal.id)
+                          }
                           departure={departing[signal.id]}
                           onDepartureEnd={() =>
                             pendingDepartures.current.get(signal.id)?.complete()
@@ -638,7 +704,7 @@ export default function App() {
                       )}
                     />
                   )}
-                  {!loading && filtered.length === 0 && (
+                  {!loading && renderedFiltered.length === 0 && (
                     <div className="empty-state">
                       {marketEnabled ? <FileSearch size={30} /> : <Globe2 size={30} />}
                       <h3>
@@ -779,7 +845,7 @@ export default function App() {
           </Modal>
         )}
       </div>
-    </MotionConfig>
+    </WorkspaceProviders>
   )
 }
 
@@ -806,6 +872,7 @@ function SignalRow({
   onHide: () => void
   now: number
 }) {
+  const text = useSignalText(s)
   return (
     <div className="row-motion" data-signal-id={s.id} data-departure={departure}>
       <article
@@ -821,7 +888,7 @@ function SignalRow({
         {selected && <MetalEdge />}
         <button
           className="row-select"
-          aria-label={s.title}
+          aria-label={text.title}
           aria-pressed={selected}
           aria-controls="selected-opportunity"
           onClick={() => onOpen()}
@@ -831,7 +898,7 @@ function SignalRow({
               <span>{typeLabels[s.signal_type]}</span>
               {isUpdated(s, now) && <span className="row-updated">Updated</span>}
             </span>
-            <span className="row-title">{s.title}</span>
+            <span className="row-title">{text.title}</span>
             <span className="row-buyer">
               <Building2 size={12} />
               <span>{s.buyer_name || 'Buyer not published'}</span>
@@ -839,7 +906,7 @@ function SignalRow({
           </span>
           <span className="row-numbers">
             {s.value_max !== null && <strong>{amount(s.value_max, s.currency)}</strong>}
-            {s.deadline_at && <span>{date(s.deadline_at)}</span>}
+            {responseDeadline(s) && <span>{date(responseDeadline(s))}</span>}
           </span>
         </button>
         <div className="row-utilities">
@@ -856,7 +923,7 @@ function SignalRow({
               checked={departure ? departure === 'hide' : hidden}
               disabled={!!departure}
               onChange={onHide}
-              aria-label={`${hidden ? 'Unhide' : 'Hide'} ${s.title}`}
+              aria-label={`${hidden ? 'Unhide' : 'Hide'} ${text.title}`}
             />
             <span>{hidden ? 'Unhide' : 'Hide'}</span>
           </label>
@@ -899,11 +966,13 @@ function ConsoleDetail({
   onInspect: (tab: string) => void
 }) {
   const ref = useRef<HTMLDivElement>(null)
+  const text = useSignalText(s)
   useEffect(() => {
     ref.current?.scrollTo({ top: 0 })
   }, [s.id])
   const paragraphs = (
-    s.description?.trim() || 'No description was published. Review the source notice for details.'
+    text.description?.trim() ||
+    'No description was published. Review the source notice for details.'
   )
     .split(/\n\s*\n/)
     .filter((paragraph) => paragraph.trim())
@@ -922,7 +991,7 @@ function ConsoleDetail({
         <div className="inspector-content">
           <div className="inspector-heading">
             <div>
-              <h2>{s.title}</h2>
+              <h2>{text.title}</h2>
               <div className="inspector-buyerline">
                 <p className="inspector-buyer">
                   <span>{s.buyer_name || 'Buyer not published'}</span>
@@ -967,8 +1036,10 @@ function ConsoleDetail({
               <dt>Deadline</dt>
               <dd>
                 <CalendarClock size={20} />
-                <span>{s.deadline_at ? date(s.deadline_at) : 'Deadline not published'}</span>
-                {s.deadline_at && (
+                <span>
+                  {responseDeadline(s) ? date(responseDeadline(s)) : 'Deadline not published'}
+                </span>
+                {responseDeadline(s) && (
                   <IconButton label="Add deadline to calendar" onClick={() => calendar(s)}>
                     <CalendarPlus size={16} />
                   </IconButton>
@@ -1000,6 +1071,11 @@ function ConsoleDetail({
             </p>
           )}
           <div className="inspector-summary">
+            {text.original && (
+              <span className="translation-status" title="English translation is not available yet">
+                Original text
+              </span>
+            )}
             {paragraphs.map((paragraph, index) => (
               <p key={index}>{paragraph}</p>
             ))}
@@ -1111,40 +1187,29 @@ function FilterPanel({
             onChange={(e) => update({ cpv: e.target.value })}
           />
         </label>
-        <label>
-          Minimum value ({valueCurrency(f)})
-          <input
-            type="number"
-            min="0"
-            value={f.minValue}
-            placeholder="No minimum"
-            onChange={(e) => update({ minValue: e.target.value })}
-          />
-        </label>
-        <label>
-          Maximum value ({valueCurrency(f)})
-          <input
-            type="number"
-            min="0"
-            value={f.maxValue}
-            placeholder="No maximum"
-            onChange={(e) => update({ maxValue: e.target.value })}
-          />
-        </label>
-        {select(
-          'Currency',
-          'currency',
-          [
-            ...new Set(
-              data.signals
-                .filter((s) => matchesMarket(s, f.market))
-                .map((s) => s.currency)
-                .filter((c): c is string => !!c),
-            ),
-          ]
-            .sort()
-            .map((c) => ({ value: c, label: c })),
-        )}
+        <div className="filter-value-range">
+          <label>
+            Minimum value
+            <input
+              type="number"
+              min="0"
+              value={f.minValue}
+              placeholder="No minimum"
+              onChange={(e) => update({ minValue: e.target.value })}
+            />
+          </label>
+          <label>
+            Maximum value
+            <input
+              type="number"
+              min="0"
+              value={f.maxValue}
+              placeholder="No maximum"
+              onChange={(e) => update({ maxValue: e.target.value })}
+            />
+          </label>
+        </div>
+        {select('Currency', 'currency', currencyOptions(data.signals))}
       </div>
       <div className="modal-actions">
         <button className="button secondary" onClick={onReset}>
@@ -1178,6 +1243,7 @@ function SignalDetail({
   onBack: () => void
 }) {
   const contentRef = useRef<HTMLDivElement>(null)
+  const text = useSignalText(s)
   const tabs = ['overview', 'sources']
   const activeTab = tabs.includes(tab) ? tab : 'overview'
   useEffect(() => {
@@ -1185,7 +1251,7 @@ function SignalDetail({
   }, [activeTab, s.id])
   const facts = [
     ['Published value', amount(s.value_max, s.currency, false)],
-    ['Closing date', date(s.deadline_at)],
+    ['Closing date', date(responseDeadline(s))],
     ['Published', date(s.published_at)],
     [
       'Contract period',
@@ -1207,7 +1273,7 @@ function SignalDetail({
         <div className="detail-eyebrow">
           <span className="type-label">{typeLabels[s.signal_type]}</span>
         </div>
-        <h2>{s.title}</h2>
+        <h2>{text.title}</h2>
         <div className="buyer">
           <Building2 size={14} />
           {s.buyer_name || 'Buyer not published'}
@@ -1217,7 +1283,7 @@ function SignalDetail({
             {saved ? <BookmarkCheck size={15} /> : <Bookmark size={15} />}
             {saved ? 'Saved' : 'Save opportunity'}
           </button>
-          {s.deadline_at && (
+          {responseDeadline(s) && (
             <IconButton label="Add deadline to calendar" onClick={() => calendar(s)}>
               <CalendarPlus size={17} />
             </IconButton>
@@ -1271,8 +1337,16 @@ function SignalDetail({
           <>
             <section className="detail-section">
               <h3>Opportunity scope</h3>
+              {text.original && (
+                <span
+                  className="translation-status"
+                  title="English translation is not available yet"
+                >
+                  Original text
+                </span>
+              )}
               <p className="detail-summary">
-                {s.description?.trim() ||
+                {text.description?.trim() ||
                   'No description was published. Review the source notice for details.'}
               </p>
               <p className="lifecycle-note">

@@ -153,6 +153,29 @@ test('Added today counts first collection, not updates, and hidden records stay 
   await expect(row(page, 'a')).toBeVisible()
 })
 
+test('Hide and Unhide persist immediately before their animations finish', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' })
+  await page.goto('./?view=all')
+  await row(page, 'a')
+    .getByRole('checkbox', { name: 'Hide CRM implementation A', exact: true })
+    .click()
+  expect(
+    await page.evaluate(() => JSON.parse(localStorage.getItem('anthrion-hidden-v1')!)),
+  ).toEqual(['visibility-a'])
+  await page.reload()
+  await expect(row(page, 'b')).toBeVisible()
+  await expect(row(page, 'a')).toHaveCount(0)
+  await hiddenMode(page)
+  await row(page, 'a')
+    .getByRole('checkbox', { name: 'Unhide CRM implementation A', exact: true })
+    .click()
+  expect(
+    await page.evaluate(() => JSON.parse(localStorage.getItem('anthrion-hidden-v1')!)),
+  ).toEqual([])
+  await page.reload()
+  await expect(row(page, 'a')).toBeVisible()
+})
+
 test('hide dust is nonblank, rows close the gap, and Unhide slides the record left', async ({
   page,
 }) => {

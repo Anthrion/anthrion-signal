@@ -6,7 +6,7 @@ from urllib.parse import urlparse
 
 from anthrion_signal.models import Dataset
 
-path = Path("data/current.json")
+path = Path("app/public/data/current.json")
 raw = json.loads(path.read_text(encoding="utf-8"))
 data = Dataset.model_validate(raw)
 retired = {"analysis", "fit_score", "confidence_score", "ai_status", "score_components", "recommendation"}

@@ -52,11 +52,19 @@ def contains(text, phrase):
 
 def lifecycle(signal, now):
     status = signal.status.casefold().replace("-", "_")
-    deadline = parse_date(signal.deadline_at)
+    deadlines = [parse_date(value) for value in signal.response_deadlines]
+    deadlines = [value for value in deadlines if value]
+    deadline = max(deadlines) if deadlines else parse_date(signal.deadline_at)
+    if (signal.notice_type or "").casefold() in ("veat", "dir-awa-pre"):
+        return "CLOSED", "Direct-award transparency notice, not an open supplier competition."
     if status in ("cancelled", "canceled", "unsuccessful"):
         return "CANCELLED", "The source reports cancellation or an unsuccessful procurement."
     if status == "withdrawn":
         return "WITHDRAWN", "The source reports withdrawal."
+    if status == "not_listed":
+        return "CLOSED", "No longer listed in two independently updated complete open-opportunity snapshots."
+    if status == "restricted":
+        return "CLOSED", "The procurement route requires existing contract participation rights."
     if signal.signal_type == "AWARD" or status == "awarded":
         return "AWARDED", "Published award intelligence, not an open bid."
     if status in ("closed", "complete", "completed", "terminated"):
@@ -80,7 +88,7 @@ def lifecycle(signal, now):
 
 
 def is_public_opportunity(signal, now):
-    if (signal.status.casefold() == "postponed" or is_award_intelligence(signal)
+    if (signal.status.casefold() in ("postponed", "unverified") or is_award_intelligence(signal)
             or lifecycle(signal, now)[0] in TERMINAL or signal.exclusion_reasons):
         return False
     checks = getattr(signal.analysis, "eligibility_checks", [])

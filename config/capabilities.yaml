@@ -55,6 +55,7 @@ capabilities:
     label: Case management & service
     family: Service transformation
     explicit: [Service Cloud, Public Sector Solutions]
+    aliases: [case and matter management, matter management system, licensing system, licensing platform, permit application system]
     needs: [case management, casework, case working, case handling, case processing, case workflow, case tracking, case allocation, case triage, complaints management, complaint handling, enquiry management, inquiry management, FOI management, freedom of information management, subject access request management, information rights management, incident management platform, request management system, referral management, claims management, application processing, licensing applications, permit management, investigation management, enforcement cases, appeals management, grievance management, ombudsman case management, support tickets, workflow driven case system]
     products: [Service Cloud, Public Sector Solutions, Experience Cloud, Flow, Agentforce]
     patterns: [Case intake, triage, ownership, evidence, audit history and external self-service]
@@ -141,6 +142,7 @@ capabilities:
   - id: workflow
     label: Workflow & low-code
     family: AI & automation
+    aliases: [enterprise document management, document management system, records management system]
     needs: [workflow automation, business process automation, approval workflow, business process management, low code, no code, paperless process, replace spreadsheets, replace email based workflow, replace spreadsheets and emails, manual process automation, digital forms, electronic forms, internal business application, workflow platform, process orchestration]
     products: [Salesforce Platform, Flow, Service Cloud, Heroku]
     patterns: [Structured business records and approvals replacing disconnected manual work]

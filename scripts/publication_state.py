@@ -7,19 +7,25 @@ from pathlib import Path
 
 from refresh_plan import code_digest
 
+def signature_for(root):
+    from anthrion_signal.translation import available_translations
+    from anthrion_signal.utils import digest
+
+    data = json.loads((root / "data/current.json").read_text(encoding="utf-8"))
+    return {
+        "code": os.getenv("BUILD_CODE_DIGEST") or code_digest(root),
+        "content": data["run"]["content_digest"],
+        "translations": digest(available_translations(root, data.get("signals", []))),
+        "health": [[s["id"], s["status"]] for s in data["sources"]],
+        "day": datetime.now(UTC).date().isoformat(),
+    }
+
+
 root = Path.cwd()
-path = root / "data/current.json"
-data = json.loads(path.read_text(encoding="utf-8"))
-signature = {
-    "code": os.getenv("BUILD_CODE_DIGEST") or code_digest(root),
-    "content": data["run"]["content_digest"],
-    "health": [[s["id"], s["status"]] for s in data["sources"]],
-    "day": datetime.now(UTC).date().isoformat(),
-}
 previous_path = root / "data/publication_state.json"
 if sys.argv[1] == "deployed":
     deployed = json.loads(os.environ["DEPLOYED_SIGNATURE"])
-    if set(deployed) != {"code", "content", "health", "day"}:
+    if set(deployed) != {"code", "content", "translations", "health", "day"}:
         raise SystemExit("Invalid publication signature")
     previous_path.write_text(json.dumps(deployed, indent=2) + "\n", encoding="utf-8")
     print("Successful publication recorded.")
@@ -27,6 +33,7 @@ elif sys.argv[1] == "before":
     root.joinpath("tmp").mkdir(exist_ok=True)
     root.joinpath("tmp/publication-before.json").write_text(previous_path.read_text(encoding="utf-8") if previous_path.exists() else "{}", encoding="utf-8")
 else:
+    signature = signature_for(root)
     previous = json.loads(root.joinpath("tmp/publication-before.json").read_text(encoding="utf-8"))
     changed = signature != previous or os.getenv("FORCE_DEPLOY") == "true"
     if os.getenv("GITHUB_OUTPUT"):

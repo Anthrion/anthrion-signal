@@ -34,7 +34,7 @@ def test_ted_keeps_buyer_jurisdiction_description_currency_and_exact_single_dead
     assert s.signal_type == 'LIVE_TENDER'
 
 
-@pytest.mark.parametrize('form,stage', [('result', 'award'), ('planning', 'planning'), ('dir-awa-pre', 'planning'), ('change', 'unknown')])
+@pytest.mark.parametrize('form,stage', [('result', 'award'), ('planning', 'planning'), ('dir-awa-pre', 'award'), ('change', 'unknown')])
 def test_ted_notice_families_are_not_all_open_tenders(config, now, form, stage):
     s = normalise_ted(raw(config, now, 'ted', ted_notice(**{'form-type': form})))
     assert s.procurement_stage == stage

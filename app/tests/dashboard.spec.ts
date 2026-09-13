@@ -54,6 +54,7 @@ const sourceFixture = (dataset: Dataset): Dataset => {
   )
   return {
     ...dataset,
+    translations: {},
     signals: [...extra, ...dataset.signals].map((signal) => ({
       ...signal,
       fit_score: null,
@@ -130,10 +131,8 @@ test.beforeEach(async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' })
   // Deterministic source facts exercise every optional category without API calls.
   // These in-memory records never change canonical data or production assets.
-  await page.route('**/data/current.json', async (route) => {
-    const response = await route.fetch()
-    await route.fulfill({ response, json: sourceFixture(await response.json()) })
-  })
+  const dataset = sourceFixture(await (await page.request.get('./data/current.json')).json())
+  await page.route('**/data/current.json', (route) => route.fulfill({ json: dataset }))
 })
 
 test('real feed, logo, filtering, saving, evidence and search', async ({ page }, info) => {
@@ -350,7 +349,7 @@ test('every discovery label fits its card at compact and wide sizes', async ({ p
   await page.screenshot({ path: `../artifacts/console-compact-fixed-${info.project.name}.png` })
 })
 
-test('market rail is centred without the removed summary and remains keyboard accessible', async ({
+test('market and language controls form a centred row and remain keyboard accessible', async ({
   page,
 }) => {
   await page.goto('./')
@@ -359,9 +358,20 @@ test('market rail is centred without the removed summary and remains keyboard ac
   await expect(page.locator('h1')).toHaveText('Live Opportunities')
   for (const width of [390, 1139, 1440, 1920]) {
     await page.setViewportSize({ width, height: 920 })
+    await expect
+      .poll(() =>
+        page.locator('.market-section').evaluate((section) => {
+          const rail = section.querySelector('.market-tabs')!.getBoundingClientRect()
+          const language = section.querySelector('.language-control')!.getBoundingClientRect()
+          return Math.abs(
+            (rail.left + language.right) / 2 - document.documentElement.clientWidth / 2,
+          )
+        }),
+      )
+      .toBeLessThan(1)
     const rail = await page.locator('.market-tabs').boundingBox()
-    const clientWidth = await page.evaluate(() => document.documentElement.clientWidth)
-    expect(Math.abs(rail!.x + rail!.width / 2 - clientWidth / 2)).toBeLessThan(1)
+    const language = await page.locator('.language-control').boundingBox()
+    expect(rail!.x + rail!.width).toBeLessThan(language!.x)
   }
   await page.setViewportSize({ width: 390, height: 844 })
   const greece = page
@@ -598,10 +608,10 @@ test('every refiner and sort keeps platform opportunities before standalone AI',
     await ready(page)
     await expect(page.locator('.feed-heading .count-badge')).toHaveText('6')
     await expect(page.locator('.row-title')).toHaveText(order(false))
-    for (const label of ['Recently updated', 'Closing soon', 'Highest value (GBP)']) {
+    for (const label of ['Recently updated', 'Closing soon', 'Highest value', 'Lowest value']) {
       await page.getByRole('button', { name: /^Sort opportunities:/ }).click()
       await page.getByRole('menuitemradio', { name: label, exact: true }).click()
-      await expect(page.locator('.row-title')).toHaveText(order(true))
+      await expect(page.locator('.row-title')).toHaveText(order(label !== 'Lowest value'))
     }
     await page.getByRole('button', { name: /^Sort opportunities:/ }).click()
     await page.getByRole('menuitemradio', { name: 'Most recent', exact: true }).click()
@@ -788,22 +798,36 @@ test('exactly five refiners remain available across markets and empty states', a
   await expect(page.getByText('No matching signals', { exact: true })).toBeVisible()
 })
 
-test('market currency controls sort and filter without cross-currency comparisons', async ({
+test('universal value labels, both sort directions and adjacent range controls', async ({
   page,
 }) => {
   await page.goto('./?view=all&market=US')
   await ready(page)
   await page.getByRole('button', { name: 'Sort opportunities: Most recent' }).click()
-  await page.getByRole('menuitemradio', { name: 'Highest value (USD)' }).click()
+  await page.getByRole('menuitemradio', { name: 'Highest value', exact: true }).click()
   await expect(
-    page.getByRole('button', { name: 'Sort opportunities: Highest value (USD)' }),
+    page.getByRole('button', { name: 'Sort opportunities: Highest value' }),
   ).toBeVisible()
   await page.getByRole('button', { name: 'Filters', exact: true }).click()
+  await expect(
+    page.getByLabel('Currency', { exact: true }).locator('option[value="JPY"]'),
+  ).toHaveCount(1)
   await page.getByLabel('Currency', { exact: true }).selectOption('USD')
-  await page.getByLabel('Minimum value (USD)', { exact: true }).fill('100000')
+  await page.getByLabel('Minimum value', { exact: true }).fill('100000')
+  await page.getByLabel('Maximum value', { exact: true }).fill('900000')
+  const minimum = await page.getByLabel('Minimum value', { exact: true }).boundingBox()
+  const maximum = await page.getByLabel('Maximum value', { exact: true }).boundingBox()
+  expect(Math.abs(minimum!.y - maximum!.y)).toBeLessThan(2)
+  expect(minimum!.x + minimum!.width).toBeLessThan(maximum!.x)
   await page.getByRole('button', { name: /^Show \d+ signals$/ }).click()
   await ready(page)
   expect(page.url()).toContain('currency=USD')
+  await page.getByRole('button', { name: 'Sort opportunities: Highest value' }).click()
+  await page.getByRole('menuitemradio', { name: 'Lowest value', exact: true }).click()
+  await page.getByRole('button', { name: 'Germany', exact: true }).click()
+  await expect(page.getByRole('button', { name: 'Sort opportunities: Lowest value' })).toBeVisible()
+  expect(page.url()).toContain('minValue=100000')
+  expect(page.url()).toContain('maxValue=900000')
 })
 
 test('failed refresh and malformed storage retain a usable workspace', async ({ page }) => {
@@ -1296,7 +1320,7 @@ test('unmodified public feed retains real records and exposes source facts witho
   const actual = new Set(
     dataset.signals
       .filter((s: { countries: string[] }) => s.countries.includes('GB'))
-      .map((s: { title: string }) => s.title),
+      .map((s: { id: string; title: string }) => dataset.translations?.[s.id]?.title ?? s.title),
   )
   shown.forEach((title) => expect(actual.has(title)).toBe(true))
   await page.screenshot({ path: `../artifacts/discovery-v2-real-${info.project.name}.png` })

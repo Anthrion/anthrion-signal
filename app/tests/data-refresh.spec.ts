@@ -46,7 +46,7 @@ test('published data renders real records across every market', async ({ page },
     )
     const signal = dataset.signals.find((item) => item.id === id)
     expect(signal).toBeDefined()
-    expect(signal!.title).toBe(title)
+    expect(dataset.translations?.[signal!.id]?.title ?? signal!.title).toBe(title)
     expect(signal!.countries.some((country) => market.countries.includes(country))).toBe(true)
     await row.locator('.row-select').click()
     const panel = page.locator('.console-detail:visible')

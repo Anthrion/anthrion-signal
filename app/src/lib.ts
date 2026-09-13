@@ -92,35 +92,50 @@ export const amount = (value: number | null, currency: string | null, compact = 
     return `${value.toLocaleString('en-GB')} ${currency || ''}`
   }
 }
-export function valueCurrency(filters: Pick<Filters, 'market' | 'currency'>) {
-  return /^[A-Z]{3}$/.test(filters.currency || '')
-    ? filters.currency
-    : filters.market === 'US'
-      ? 'USD'
-      : filters.market && filters.market !== 'GB'
-        ? 'EUR'
-        : 'GBP'
+export function currencyOptions(signals: Signal[]) {
+  const currencies = new Set(['GBP', 'USD', 'EUR', 'DKK', 'NOK', 'SEK', 'ISK'])
+  if (typeof Intl.supportedValuesOf === 'function') {
+    for (const currency of Intl.supportedValuesOf('currency')) currencies.add(currency)
+  }
+  for (const signal of signals) {
+    if (signal.currency && /^[A-Z]{3}$/.test(signal.currency)) currencies.add(signal.currency)
+  }
+  return [...currencies].sort().map((currency) => ({ value: currency, label: currency }))
 }
-export const daysLeft = (s: Signal, now = Date.now()) =>
-  s.deadline_at ? Math.ceil((Date.parse(s.deadline_at) - now) / 86400000) : null
+export function responseDeadline(s: Signal, now = Date.now()) {
+  const dates = (s.response_deadlines || [])
+    .filter((value) => Number.isFinite(Date.parse(value)))
+    .sort((a, b) => Date.parse(a) - Date.parse(b))
+  return dates.find((value) => Date.parse(value) > now) || dates.at(-1) || s.deadline_at
+}
+export const daysLeft = (s: Signal, now = Date.now()) => {
+  const deadline = responseDeadline(s, now)
+  return deadline ? Math.ceil((Date.parse(deadline) - now) / 86400000) : null
+}
 export function deadlineCaption(s: Signal, now = Date.now()) {
-  if (!s.deadline_at)
+  const deadline = responseDeadline(s, now)
+  if (!deadline)
     return s.procurement_stage === 'planning' ? 'Early-stage opportunity' : 'Deadline not published'
-  const remaining = Date.parse(s.deadline_at) - now
-  const label = date(s.deadline_at, { day: 'numeric', month: 'short' })
+  const remaining = Date.parse(deadline) - now
+  const label = date(deadline, { day: 'numeric', month: 'short' })
   if (remaining <= 0) return `Closed ${label}`
   if (remaining < 3600000) return `${label} · ${Math.ceil(remaining / 60000)}m left`
   if (remaining < 86400000) return `${label} · ${Math.ceil(remaining / 3600000)}h left`
   return `${label}${remaining <= 14 * 86400000 ? ` · ${Math.ceil(remaining / 86400000)}d left` : ''}`
 }
 export function lifecycleState(s: Signal, now = Date.now()) {
+  if (['veat', 'dir-awa-pre'].includes(s.notice_type?.toLowerCase() || '')) return 'CLOSED'
   if (['cancelled', 'canceled', 'unsuccessful'].includes(s.status)) return 'CANCELLED'
   if (s.status === 'withdrawn') return 'WITHDRAWN'
   if (s.signal_type === 'AWARD' || s.status === 'awarded') return 'AWARDED'
-  if (['closed', 'complete', 'completed', 'terminated'].includes(s.status)) return 'CLOSED'
+  if (
+    ['closed', 'complete', 'completed', 'terminated', 'not_listed', 'restricted'].includes(s.status)
+  )
+    return 'CLOSED'
   if (s.status === 'postponed') return 'UNKNOWN'
-  if (s.status === 'expired' || (s.deadline_at && Date.parse(s.deadline_at) <= now))
-    return 'EXPIRED'
+  const deadlines = (s.response_deadlines || []).map(Date.parse).filter(Number.isFinite)
+  const finalDeadline = deadlines.length ? Math.max(...deadlines) : Date.parse(s.deadline_at || '')
+  if (s.status === 'expired' || finalDeadline <= now) return 'EXPIRED'
   if (s.signal_type === 'RENEWAL_SIGNAL') return 'FUTURE'
   if (['EARLY_MARKET_ENGAGEMENT', 'RFI'].includes(s.signal_type)) {
     return s.deadline_at ||
@@ -160,7 +175,7 @@ export function isAwardIntelligence(s: Signal) {
 export function isAvailableOpportunity(s: Signal, now = Date.now()) {
   return (
     !isAwardIntelligence(s) &&
-    s.status !== 'postponed' &&
+    !['postponed', 'unverified'].includes(s.status) &&
     !['AWARDED', 'CLOSED', 'EXPIRED', 'CANCELLED', 'WITHDRAWN'].includes(lifecycleState(s, now)) &&
     !s.exclusion_reasons?.length &&
     !s.analysis?.eligibility_checks?.some((check) => check.status === 'CONFIRMED_BLOCKER')
@@ -184,11 +199,20 @@ export function matchesSearch(
   s: Signal,
   query: string,
   capabilities: Dataset['capabilities'] = [],
+  english?: NonNullable<Dataset['translations']>[string],
 ) {
   const q = searchText(query)
   if (!q) return true
   const text = searchText(
-    [s.title, s.description, s.buyer_name, s.ocid, ...(s.external_ids || [])]
+    [
+      s.title,
+      s.description,
+      english?.title,
+      english?.description,
+      s.buyer_name,
+      s.ocid,
+      ...(s.external_ids || []),
+    ]
       .filter(Boolean)
       .join(' '),
   )
@@ -276,6 +300,7 @@ export function filterSignals(
   saved: string[] = [],
   now = Date.now(),
   capabilities: Dataset['capabilities'] = [],
+  translations: Dataset['translations'] = {},
 ) {
   const currentViews = ['live', 'closing', 'early', 'pipeline', 'frameworks', 'funding']
   const result = signals.filter((s) => {
@@ -311,7 +336,7 @@ export function filterSignals(
         if (!isAddedToday(s, now)) return false
         break
     }
-    if (!matchesSearch(s, f.q, capabilities)) return false
+    if (!matchesSearch(s, f.q, capabilities, translations[s.id])) return false
     if (f.source && !s.provenance.some((p) => p.source === f.source)) return false
     if (f.type && s.signal_type !== f.type) return false
     if (f.capability && !s.matched_capabilities.includes(f.capability)) return false
@@ -320,19 +345,13 @@ export function filterSignals(
     if (f.region && !s.regions.some((r) => r.toLowerCase().includes(f.region.toLowerCase())))
       return false
     if (f.cpv && !s.cpv_codes.some((c) => c.startsWith(f.cpv))) return false
-    if (
-      f.minValue &&
-      (s.value_max === null || s.value_max < Number(f.minValue) || s.currency !== valueCurrency(f))
-    )
-      return false
-    if (
-      f.maxValue &&
-      (s.value_max === null || s.value_max > Number(f.maxValue) || s.currency !== valueCurrency(f))
-    )
-      return false
+    if (f.minValue && (s.value_max === null || s.value_max < Number(f.minValue))) return false
+    if (f.maxValue && (s.value_max === null || s.value_max > Number(f.maxValue))) return false
     if (
       f.deadline &&
-      (!s.deadline_at || Date.parse(s.deadline_at) <= now || daysLeft(s, now)! > Number(f.deadline))
+      (!responseDeadline(s, now) ||
+        daysLeft(s, now)! <= 0 ||
+        daysLeft(s, now)! > Number(f.deadline))
     )
       return false
     if (f.currency && s.currency !== f.currency) return false
@@ -356,14 +375,14 @@ export function filterSignals(
         )
       case 'deadline':
         return (
-          (a.deadline_at ? Date.parse(a.deadline_at) : Infinity) -
-          (b.deadline_at ? Date.parse(b.deadline_at) : Infinity)
+          (responseDeadline(a, now) ? Date.parse(responseDeadline(a, now)!) : Infinity) -
+          (responseDeadline(b, now) ? Date.parse(responseDeadline(b, now)!) : Infinity)
         )
       case 'value':
-        return (
-          (b.currency === valueCurrency(f) ? (b.value_max ?? -1) : -1) -
-          (a.currency === valueCurrency(f) ? (a.value_max ?? -1) : -1)
-        )
+      case 'value-low':
+        if (a.value_max === null) return b.value_max === null ? 0 : 1
+        if (b.value_max === null) return -1
+        return f.sort === 'value' ? b.value_max - a.value_max : a.value_max - b.value_max
       default:
         return compareRecommended(a, b, now)
     }
@@ -403,7 +422,7 @@ export function csv(signals: Signal[]) {
       lifecycleLabels[lifecycleState(s)],
       s.value_max,
       s.currency,
-      s.deadline_at,
+      responseDeadline(s),
       s.primary_source_url,
     ]),
   ]
@@ -419,10 +438,11 @@ export function download(name: string, body: string, mime: string) {
   setTimeout(() => URL.revokeObjectURL(url), 1000)
 }
 export function calendar(s: Signal) {
-  if (!s.deadline_at) return
+  const deadline = responseDeadline(s)
+  if (!deadline) return
   const escape = (v: string) =>
     v.replace(/\\/g, '\\\\').replace(/\n/g, '\\n').replace(/,/g, '\\,').replace(/;/g, '\\;')
-  const dt = new Date(s.deadline_at)
+  const dt = new Date(deadline)
     .toISOString()
     .replace(/[-:]/g, '')
     .replace(/\.\d{3}/, '')

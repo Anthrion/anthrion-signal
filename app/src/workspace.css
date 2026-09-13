@@ -230,6 +230,53 @@
   justify-content: center;
   min-height: 66px;
   padding: 6px 15px 3px;
+  gap: 18px;
+}
+.language-control {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  position: relative;
+  gap: 7px;
+  color: var(--muted);
+}
+.language-control select {
+  width: 91px;
+  min-height: 38px;
+  padding: 0 20px 0 0;
+  color: var(--text);
+  border: 0;
+  background: transparent;
+  appearance: none;
+  cursor: pointer;
+  font-size: 13px;
+}
+.language-control select option {
+  background: var(--surface);
+  color: var(--text);
+}
+.language-control > svg:last-child {
+  pointer-events: none;
+  position: absolute;
+  right: 4px;
+}
+.translation-status {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.4;
+}
+.filter-value-range {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-column: 1 / -1;
+  gap: 12px;
+}
+.filter-value-range label,
+.filter-value-range input {
+  min-width: 0;
+  width: 100%;
 }
 .source-name {
   min-width: 0;

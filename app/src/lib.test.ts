@@ -10,7 +10,7 @@ import {
   matchesMarket,
   marketIsEnabled,
   amount,
-  valueCurrency,
+  currencyOptions,
   matchesSearch,
   lifecycleState,
   isAwardIntelligence,
@@ -18,6 +18,7 @@ import {
   isAddedToday,
   normaliseFilters,
   priorityTier,
+  responseDeadline,
 } from './lib'
 const now = Date.parse('2026-09-09T12:00:00Z')
 const signal = {
@@ -53,6 +54,19 @@ const signal = {
   last_material_update: '2026-09-08T14:00:00Z',
 } as unknown as Signal
 describe('team workflows', () => {
+  test('direct awards and restricted routes stay unavailable, while a remaining open lot survives', () => {
+    expect(isAvailableOpportunity({ ...signal, notice_type: 'veat' }, now)).toBe(false)
+    for (const status of ['restricted', 'not_listed', 'unverified'])
+      expect(isAvailableOpportunity({ ...signal, status }, now)).toBe(false)
+    const lots = {
+      ...signal,
+      deadline_at: '2025-01-01',
+      response_deadlines: ['2025-01-01', '2027-01-01'],
+    }
+    expect(isAvailableOpportunity(lots, now)).toBe(true)
+    expect(responseDeadline(lots, now)).toBe('2027-01-01')
+    expect(deadlineCaption(lots, now)).not.toContain('Closed')
+  })
   test('Added today uses collection time and the London calendar day, not a rolling day or publication time', () => {
     const now = Date.parse('2026-09-11T23:30:00Z')
     expect(isAddedToday({ ...signal, first_seen_at: '2026-09-11T23:00:00Z' }, now)).toBe(true)
@@ -89,26 +103,77 @@ describe('team workflows', () => {
     })
     expect(normaliseFilters({ view: 'funding' }).view).toBe('all')
   })
-  test('values retain currencies and sorting/ranges use the selected market currency', () => {
+  test('published values sort both ways and ranges work across markets without conversion', () => {
     expect(amount(300, null)).toBe('300 (currency not published)')
-    expect(valueCurrency({ market: 'US', currency: '' })).toBe('USD')
     const us = [
       { ...signal, id: 'small', countries: ['US'], value_max: 100, currency: 'USD' },
       { ...signal, id: 'foreign', countries: ['US'], value_max: 100000, currency: 'GBP' },
       { ...signal, id: 'large', countries: ['US'], value_max: 900, currency: 'USD' },
+      { ...signal, id: 'unknown', countries: ['US'], value_max: null, currency: 'USD' },
+      { ...signal, id: 'zero', countries: ['US'], value_max: 0, currency: 'USD' },
     ]
     const filters = { ...defaults, view: 'all', market: 'US', sort: 'value' }
     expect(filterSignals(us, filters, [], now).map((s) => s.id)).toEqual([
+      'foreign',
       'large',
       'small',
-      'foreign',
+      'zero',
+      'unknown',
     ])
     expect(filterSignals(us, { ...filters, minValue: '500' }, [], now).map((s) => s.id)).toEqual([
+      'foreign',
       'large',
     ])
     expect(filterSignals(us, { ...filters, currency: 'GBP' }, [], now).map((s) => s.id)).toEqual([
       'foreign',
     ])
+    expect(filterSignals(us, { ...filters, sort: 'value-low' }, [], now).map((s) => s.id)).toEqual([
+      'zero',
+      'small',
+      'large',
+      'foreign',
+      'unknown',
+    ])
+    const range = { ...filters, minValue: '500', maxValue: '1000' }
+    expect(filterSignals(us, range, [], now).map((s) => s.id)).toEqual(['large'])
+    const nordic = us.map((s) => ({ ...s, countries: ['NO'], currency: 'NOK' }))
+    expect(
+      filterSignals(nordic, { ...range, market: 'NORDICS' }, [], now).map((s) => s.id),
+    ).toEqual(['large'])
+    expect(currencyOptions(us).map((option) => option.value)).toEqual(
+      expect.arrayContaining(['GBP', 'USD', 'EUR', 'SEK', 'NOK', 'DKK', 'ISK', 'JPY']),
+    )
+  })
+  test('English search never changes source eligibility or priority', () => {
+    const source = {
+      ...signal,
+      title: 'Kundenplattform',
+      description: 'Implementierung und Betrieb',
+    }
+    const translations = {
+      [source.id]: {
+        title: 'Customer platform',
+        description: 'Implementation and operation',
+        source_hash: 'fixture',
+        version: 'en-procurement-2',
+      },
+    }
+    expect(
+      filterSignals([source], { ...defaults, q: 'customer platform' }, [], now, [], translations),
+    ).toEqual([source])
+    expect(
+      filterSignals([source], { ...defaults, q: 'Kundenplattform' }, [], now, [], translations),
+    ).toEqual([source])
+    expect(
+      filterSignals(
+        [{ ...source, status: 'awarded' }],
+        { ...defaults, q: 'customer platform' },
+        [],
+        now,
+        [],
+        translations,
+      ),
+    ).toEqual([])
   })
   test('market selection scopes each country, all markets and the Nordic region', () => {
     expect(matchesMarket(signal, 'GB')).toBe(true)
