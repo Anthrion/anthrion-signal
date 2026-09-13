@@ -1,14 +1,21 @@
 {
   "contracts_finder": {
     "discovery_backfill": {
-      "checkpoint": {},
+      "checkpoint": {
+        "cursor_window": {
+          "cursor": "cHVibGlzaGVkRnJvbT0yMDI1LTExLTA2VDA4OjIyOjM3WnxwdWJsaXNoZWRUbz0yMDI1LTExLTA3VDA4OjIyOjM3WnxsaW1pdD0xMDB8bmV4dEN1cnNvcj03NDgzNDI=",
+          "from": "2025-11-06T08:22:37+00:00",
+          "to": "2025-11-07T08:22:37+00:00"
+        },
+        "watermark": "2025-11-06T09:22:37+00:00"
+      },
       "complete": false,
-      "cursor": "2025-10-30T09:22:37+00:00",
+      "cursor": "2025-11-06T09:22:37+00:00",
       "until": "2026-08-29T09:22:37+00:00",
       "version": "2026-09-11.1"
     },
-    "last_success": "2026-09-13T01:27:07+00:00",
-    "watermark": "2026-09-13T01:27:07+00:00"
+    "last_success": "2026-09-13T06:47:49+00:00",
+    "watermark": "2026-09-13T06:47:49+00:00"
   },
   "digital_outcomes": {
     "digital_details": {
@@ -301,26 +308,26 @@
         "signature": "b2aee5b3e6ce3664b8f4fa34d0c7af362ce424caff17606f774ef6426bc7b279"
       }
     },
-    "last_success": "2026-09-13T01:27:07+00:00",
+    "last_success": "2026-09-13T06:47:49+00:00",
     "next_detail": 0,
-    "watermark": "2026-09-13T01:27:07+00:00"
+    "watermark": "2026-09-13T06:47:49+00:00"
   },
   "find_tender": {
     "discovery_backfill": {
       "checkpoint": {
-        "retry_at": "2026-09-13T01:29:38.408559+00:00",
-        "watermark": "2025-09-14T11:48:39+00:00"
+        "retry_at": "2026-09-13T06:50:20.485096+00:00",
+        "watermark": "2025-09-14T18:48:39+00:00"
       },
       "complete": false,
-      "cursor": "2025-09-13T18:48:39+00:00",
+      "cursor": "2025-09-14T18:48:39+00:00",
       "until": "2026-08-29T18:48:39+00:00",
       "version": "2026-09-11.1"
     },
-    "last_success": "2026-09-13T01:27:07+00:00",
-    "watermark": "2026-09-13T01:27:07+00:00"
+    "last_success": "2026-09-13T06:47:49+00:00",
+    "watermark": "2026-09-13T06:47:49+00:00"
   },
   "germany": {
-    "last_success": "2026-09-13T01:27:07+00:00",
+    "last_success": "2026-09-13T06:47:49+00:00",
     "pending_days": [],
     "scheduled_through": "2026-09-12",
     "tracked_ocids": [
@@ -600,7 +607,7 @@
   "govuk": {
     "discovery_backfill": {
       "checkpoint": {
-        "next_query": 16,
+        "next_query": 36,
         "queries": {
           "AI agent procurement": {
             "from": "2025-09-11T09:22:37+00:00",
@@ -619,7 +626,7 @@
           },
           "API management tender": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "Agentforce": {
@@ -719,13 +726,13 @@
           },
           "case management procurement": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "citizen portal tender": {
-            "from": "2025-09-11T09:22:37+00:00",
-            "offset": 200,
-            "to": "2025-10-12T09:22:37+00:00"
+            "from": "2025-10-11T09:22:37+00:00",
+            "offset": 0,
+            "through": "2025-10-12T09:22:37+00:00"
           },
           "citizen services": {
             "from": "2025-09-11T09:22:37+00:00",
@@ -744,7 +751,7 @@
           },
           "complaints management tender": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "contact centre": {
@@ -754,27 +761,27 @@
           },
           "contact centre implementation": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "customer journey platform procurement": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "customer portal supplier": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "customer relationship management tender": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "customer service platform procurement": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "data platform": {
@@ -784,7 +791,7 @@
           },
           "data quality implementation": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "digital transformation procurement": {
@@ -799,12 +806,12 @@
           },
           "donor management tender": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "ecommerce platform tender": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "embedded analytics tender": {
@@ -854,12 +861,12 @@
           },
           "marketing automation tender": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "master data management tender": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "patient engagement platform": {
@@ -874,12 +881,12 @@
           },
           "quote to cash implementation": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "regulatory casework system": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "replace spreadsheets workflow supplier": {
@@ -889,17 +896,17 @@
           },
           "sales automation procurement": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "single customer view procurement": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "stakeholder management procurement": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "student services platform tender": {
@@ -909,7 +916,7 @@
           },
           "systems integration procurement": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "workflow automation procurement": {
@@ -1044,7 +1051,7 @@
       },
       "case management": {
         "from": "2026-06-10T10:57:03+00:00",
-        "offset": 2600,
+        "offset": 2700,
         "to": "2026-09-09T10:57:03+00:00"
       },
       "case management procurement": {
@@ -1059,7 +1066,7 @@
       },
       "citizen services": {
         "from": "2026-06-10T10:57:03+00:00",
-        "offset": 2600,
+        "offset": 2700,
         "to": "2026-09-09T10:57:03+00:00"
       },
       "collaboration workflow platform tender": {
@@ -1069,7 +1076,7 @@
       },
       "commercial pipeline digital": {
         "from": "2026-06-10T10:57:03+00:00",
-        "offset": 2600,
+        "offset": 2700,
         "to": "2026-09-09T10:57:03+00:00"
       },
       "complaints management tender": {
@@ -1079,7 +1086,7 @@
       },
       "contact centre": {
         "from": "2026-06-10T10:57:03+00:00",
-        "offset": 2600,
+        "offset": 2700,
         "to": "2026-09-09T10:57:03+00:00"
       },
       "contact centre implementation": {
@@ -1109,7 +1116,7 @@
       },
       "data platform": {
         "from": "2026-06-10T10:57:03+00:00",
-        "offset": 2600,
+        "offset": 2700,
         "to": "2026-09-09T10:57:03+00:00"
       },
       "data quality implementation": {
@@ -1119,7 +1126,7 @@
       },
       "digital transformation procurement": {
         "from": "2026-06-10T10:57:03+00:00",
-        "offset": 2600,
+        "offset": 2700,
         "to": "2026-09-09T10:57:03+00:00"
       },
       "document intelligence procurement": {
@@ -1154,8 +1161,8 @@
       },
       "generative AI": {
         "from": "2026-09-08T10:57:03+00:00",
-        "offset": 0,
-        "through": "2026-09-09T10:57:03+00:00"
+        "offset": 100,
+        "to": "2026-09-10T22:19:02+00:00"
       },
       "generative AI tender": {
         "from": "2026-09-09T22:19:02+00:00",
@@ -1199,7 +1206,7 @@
       },
       "procurement pipeline technology": {
         "from": "2026-06-10T10:57:03+00:00",
-        "offset": 2600,
+        "offset": 2700,
         "to": "2026-09-09T10:57:03+00:00"
       },
       "quote to cash implementation": {
@@ -8450,11 +8457,11 @@
         "signature": "09b8d00cfd1baed19e90925fed74d54286de35f3e657c8f1cbcfe32e6867c1b0"
       }
     },
-    "last_success": "2026-09-13T01:27:07+00:00",
-    "watermark": "2026-09-13T01:27:07+00:00"
+    "last_success": "2026-09-13T06:47:49+00:00",
+    "watermark": "2026-09-13T06:47:49+00:00"
   },
   "nyc_city_record": {
-    "last_success": "2026-09-13T01:27:07+00:00",
+    "last_success": "2026-09-13T06:47:49+00:00",
     "query_version": "nyc-procurement-v1",
     "watermark": "2026-09-12T16:23:45+00:00"
   },
@@ -8463,18 +8470,6 @@
       "checkpoint": {
         "monthly_cycle": {
           "pending": [
-            {
-              "month": "10-2025",
-              "type": 20
-            },
-            {
-              "month": "10-2025",
-              "type": 101
-            },
-            {
-              "month": "10-2025",
-              "type": 102
-            },
             {
               "month": "10-2025",
               "type": 103
@@ -8514,6 +8509,18 @@
             {
               "month": "10-2025",
               "type": 14
+            },
+            {
+              "month": "10-2025",
+              "type": 20
+            },
+            {
+              "month": "10-2025",
+              "type": 101
+            },
+            {
+              "month": "10-2025",
+              "type": 102
             }
           ],
           "through": "2025-10-01T09:22:36+00:00"
@@ -8529,18 +8536,6 @@
       "pending": [
         {
           "month": "08-2026",
-          "type": 20
-        },
-        {
-          "month": "08-2026",
-          "type": 101
-        },
-        {
-          "month": "08-2026",
-          "type": 102
-        },
-        {
-          "month": "08-2026",
           "type": 103
         },
         {
@@ -8630,6 +8625,18 @@
         {
           "month": "08-2026",
           "type": 14
+        },
+        {
+          "month": "08-2026",
+          "type": 20
+        },
+        {
+          "month": "08-2026",
+          "type": 101
+        },
+        {
+          "month": "08-2026",
+          "type": 102
         }
       ],
       "through": "2026-09-12T09:22:37+00:00"
@@ -24869,20 +24876,20 @@
     "discovery_backfill": {
       "checkpoint": {
         "query_version": "17f39a916251985f06623cfefe55453a709aeb10fdb2339cad86b7b5fd1b240c",
-        "watermark": "2025-10-27T09:22:37+00:00"
+        "watermark": "2025-11-02T09:22:37+00:00"
       },
       "complete": false,
-      "cursor": "2025-10-27T09:22:37+00:00",
+      "cursor": "2025-11-02T09:22:37+00:00",
       "until": "2026-08-29T09:22:37+00:00",
       "version": "2026-09-11.1"
     },
-    "last_success": "2026-09-13T01:27:07+00:00",
+    "last_success": "2026-09-13T06:47:49+00:00",
     "query_version": "17f39a916251985f06623cfefe55453a709aeb10fdb2339cad86b7b5fd1b240c",
-    "watermark": "2026-09-13T01:27:07+00:00"
+    "watermark": "2026-09-13T06:47:49+00:00"
   },
   "upcoming_agreements": {
-    "last_success": "2026-09-13T01:27:07+00:00",
-    "watermark": "2026-09-13T01:27:07+00:00"
+    "last_success": "2026-09-13T06:47:49+00:00",
+    "watermark": "2026-09-13T06:47:49+00:00"
   },
   "usaspending": {
     "last_success": "2026-09-09T23:17:56+00:00",
@@ -24893,18 +24900,6 @@
       "checkpoint": {
         "monthly_cycle": {
           "pending": [
-            {
-              "month": "10-2025",
-              "type": 51
-            },
-            {
-              "month": "10-2025",
-              "type": 52
-            },
-            {
-              "month": "10-2025",
-              "type": 53
-            },
             {
               "month": "10-2025",
               "type": 1
@@ -24940,6 +24935,18 @@
             {
               "month": "10-2025",
               "type": 20
+            },
+            {
+              "month": "10-2025",
+              "type": 51
+            },
+            {
+              "month": "10-2025",
+              "type": 52
+            },
+            {
+              "month": "10-2025",
+              "type": 53
             }
           ],
           "through": "2025-10-01T09:22:36+00:00"
@@ -24953,18 +24960,6 @@
     "monthly_cycle": {
       "pending": [
         {
-          "month": "08-2026",
-          "type": 52
-        },
-        {
-          "month": "08-2026",
-          "type": 53
-        },
-        {
-          "month": "09-2026",
-          "type": 1
-        },
-        {
           "month": "09-2026",
           "type": 2
         },
@@ -25047,6 +25042,18 @@
         {
           "month": "08-2026",
           "type": 51
+        },
+        {
+          "month": "08-2026",
+          "type": 52
+        },
+        {
+          "month": "08-2026",
+          "type": 53
+        },
+        {
+          "month": "09-2026",
+          "type": 1
         }
       ],
       "through": "2026-09-11T13:29:55+00:00"
