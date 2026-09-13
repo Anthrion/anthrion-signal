@@ -57,6 +57,12 @@ def has_software(text):
         r"\b\w+(?:system|systeme|systemen|systemet|systemer|systema|jarjestelma|jarjestelman|plattform|plattformen)\b", text))
 
 
+def paper_application(text):
+    return bool(phrase_hits(text, ("investigational new drug", "grant application", "funding application",
+        "patent application", "clinical trial application", "drug application"))) and not phrase_hits(text,
+        ("software", "digital", "crm", "database", "web application", "application platform"))
+
+
 def evidence_excerpt(quote, phrase):
     tokens = list(re.finditer(r"\w+", quote))
     words = [search_text(token.group()).strip() for token in tokens]
@@ -67,7 +73,7 @@ def evidence_excerpt(quote, phrase):
     return quote
 
 
-def capability_hits(cap, segments, software_cpv=False):
+def capability_hits(cap, segments, software_cpv=False, funding=False):
     if cap["id"] == "pipeline":
         return []
     evidence = []
@@ -84,6 +90,12 @@ def capability_hits(cap, segments, software_cpv=False):
             for phrase in phrase_hits(text, phrases):
                 if not affirmed(text, phrase):
                     continue
+                if phrase == "application development" and paper_application(text):
+                    continue
+                if funding and phrase in ("data integration", "data harmonisation", "data harmonization"):
+                    if not software_cpv and not phrase_hits(text, ("software", "database", "api", "crm", "platform",
+                            "middleware", "information system", "data pipeline", "etl")):
+                        continue
                 # A foreign-language alias may describe a human service. Software CPV
                 # supports a functional phrase, but never proves a tag by itself.
                 if level == "needs" and phrase in AMBIGUOUS_NEEDS and not (technical or software_cpv):
@@ -119,6 +131,9 @@ def unrelated_supply(title, text, evidence, cpv_codes=()):
     licences = phrase_hits(title, ("microsoft licences", "microsoft licenses", "microsoft software licences",
         "microsoft software licenses", "software assurance microsoft", "siem licences", "siem licenses",
         "microsoft lizenzen", "αδειων microsoft", "αδειων λογισμικου microsoft"))
+    if phrase_hits(title, ("firewall", "firewalls", "cortafuegos")) and phrase_hits(title,
+            ("licences", "licenses", "licencias", "lizenzen")):
+        licences.append("firewall licences")
     generic_supply = {"it infrastructure", "supply of equipment", "προμηθεια εξοπλισμου", "πληροφοριακων υποδομων"}
     if hardware and set(hardware) <= generic_supply:
         physical_codes = any(code.startswith(("30", "32", "34", "35", "38", "39", "4882")) for code in cpv_codes)
@@ -146,6 +161,10 @@ def unrelated_supply(title, text, evidence, cpv_codes=()):
     network_codes = any(code.startswith(("6421", "724110", "324")) for code in cpv_codes)
     if connectivity and (network_scope or network_codes) and not addressable:
         return "Network connectivity or broadband infrastructure without a stated business-application or AI delivery scope."
+    building = phrase_hits(title, ("school", "building", "schule", "grundschule", "gebaude"))
+    construction = phrase_hits(title, ("renovation", "refurbishment", "sanierung", "neubau", "umbau"))
+    if building and construction and not addressable:
+        return "Building renovation without a separately stated business-application or AI delivery scope."
     if (hardware or licences) and not addressable:
         return "Hardware, infrastructure or licence supply without a stated CRM, business-application or AI delivery scope."
     return None

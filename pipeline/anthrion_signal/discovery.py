@@ -1,7 +1,7 @@
 """High-recall candidate discovery. These signals are not technical fit scores."""
 import re
 
-from .capability_matching import capability_hits, evidence_excerpt, unrelated_supply
+from .capability_matching import capability_hits, evidence_excerpt, paper_application, unrelated_supply
 from .utils import digest, parse_date, unique
 from .vocabulary import phrase_hits, search_text
 
@@ -30,14 +30,18 @@ def discovery_text(value):
         r"\b(?:to register with|register (?:here|your (?:organisation|organization|interest))|"
         r"submit (?:your |the |a )?(?:bid|tender|proposal|response)|"
         r"(?:register|apply) (?:and apply )?(?:via|on|through)|"
-        r"(?:responses|bids|proposals)\b[^.!?]{0,80}\bsubmitted|being released through|"
+        r"(?:responses?|bids?|proposals?|applications?|submissions?)\b[^.!?]{0,120}\bsubmitted|being released through|"
         r"to access the solicitation|this will take you to the public portal|"
         r"(?:visit|check)\b[^.!?]{0,60}\bportal|contact\b[^.!?]{0,60}\bservice desk|"
         r"available (?:online )?through)\b", re.IGNORECASE)
     build_scope = re.compile(r"\b(?:develop|implement|build|replace|upgrade|procure)\w*\b[^.!?]{0,90}"
                              r"\b(?:portal|software|platform|application)\b", re.IGNORECASE)
+    # This published administrative boilerplate describes an existing submission
+    # service, not the work being funded by the surrounding opportunity.
+    submission_platform = re.compile(r"\b(?:EDA is excited to announce the launch of its new grants management platform|"
+        r"EDGE was developed to streamline the application and grants management process)\b", re.IGNORECASE)
     return search_text(" ".join(sentence for sentence in sentences
-                               if not (registration.search(sentence)
+                               if not submission_platform.search(sentence) and not (registration.search(sentence)
                                        and re.search(r"\b(?:portal|atamis|e-sourcing|passport|isupplier|service desk)\b", sentence, re.IGNORECASE)
                                        and not build_scope.search(sentence))))
 
@@ -151,7 +155,7 @@ def prefilter(signals, profile, terms, charter=None, translations=None):
         families, hits, strengths, primary_families, evidence = [], [], [], [], []
         software_cpv = any(code.startswith(("48", "72")) for code in signal.cpv_codes)
         for cap in caps:
-            matches = capability_hits(cap, segments, software_cpv)
+            matches = capability_hits(cap, segments, software_cpv, signal.signal_type == "FUNDING")
             explicit = [e["phrase"] for e in matches if e["strength"] == "explicit"]
             needs = [e["phrase"] for e in matches if e["strength"] == "needs"]
             contextual = [e["phrase"] for e in matches if e["strength"] == "contextual"]
@@ -168,7 +172,8 @@ def prefilter(signals, profile, terms, charter=None, translations=None):
         cpv = any(code.startswith(tuple(terms["cpv_prefixes"])) for code in signal.cpv_codes)
         digital_scope = unique(p for segment in segments for p in phrase_hits(segment["text"], (
             "software development", "website development", "software engineering", "digital telephony",
-            "open banking", "application development", "information systems development", "software implementation")))
+            "open banking", "application development", "information systems development", "software implementation"))
+            if p != "application development" or not paper_application(segment["text"]))
         score = min(100, max(strengths, default=0) + min(24, max(0, len(families) - 1) * 6) + (12 if cpv else 0))
         # Unclassified digital delivery remains a reviewable candidate, not an invented capability.
         if digital_scope:

@@ -74,10 +74,36 @@ def test_mechanical_interface_coordination_is_not_software_integration(signal, c
     ("Broadband network construction", "Construct the network. Lot 2: Implement a customer portal and CRM.", False),
     ("Broadband network AI assistant", "Develop an AI assistant for field staff.", False),
     ("Broadband network", "Scope not yet published.", False),
+    ("SUMINISTRO DE LICENCIAS Y SOPORTE PARA DOS FIREWALLS PALOALTO", "Renovación de licencias de cortafuegos.", True),
+    ("Erweiterung und Sanierung der Aventinus-Grundschule", "Kernsanierung in zwei Bauabschnitten.", True),
+    ("School refurbishment and software", "Lot 2: Implement a student admissions system.", False),
 ])
 def test_narrow_supply_exclusions_preserve_mixed_and_sparse_notices(signal, config, title, description, excluded):
     classify(signal, config, title, description, ["48000000"])
     assert bool(signal.exclusion_reasons) is excluded
+
+
+@pytest.mark.parametrize("description,required", [
+    ("Submission of a pre-proposal/pre-application is required and must be submitted through the electronic Biomedical Research Application Portal (eBRAP).", set()),
+    ("EDGE was developed to streamline the application and grants management process by implementing a single platform with higher data quality.", set()),
+    ("Funding for full Investigational New Drug (IND) application development and clinical trials.", set()),
+    ("The R33 phase supports prototype development, large trial testing and data integration.", set()),
+    ("Coordinating cross-project data integration, analysis, and visualization.", set()),
+    ("Develop a software platform for data integration across clinical databases.", {"integration"}),
+    ("Develop software for Investigational New Drug application development and tracking.", {"transformation"}),
+    ("Develop a new application portal for applicants to submit proposals.", {"portals"}),
+    ("EDGE was developed to streamline the application and grants management process by implementing a single platform with higher data quality. This funding develops a new patient CRM and AI assistant.", {"crm", "ai"}),
+])
+def test_funding_scope_excludes_administration_and_paper_applications_but_keeps_software(signal, config, description, required):
+    signal.signal_type = "FUNDING"
+    classify(signal, config, "Funding opportunity", description)
+    assert required <= set(signal.matched_capabilities)
+    if not required:
+        assert not signal.matched_capabilities
+        assert signal.prefilter_score < 12
+    else:
+        assert signal.prefilter_score >= 12
+        assert not signal.exclusion_reasons
 
 
 @pytest.mark.parametrize("language", ["de", "it", "es", "sv", "fi", "no", "da", "el", "is"])
