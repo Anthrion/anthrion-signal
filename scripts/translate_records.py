@@ -36,12 +36,12 @@ def main():
     parser.add_argument("--output-dir", type=Path)
     parser.add_argument("--github-checkpoint", action="store_true")
     args = parser.parse_args()
-    if not 1 <= args.max_calls <= 350 or not 1 <= args.max_seconds <= 1800:
-        parser.error("Use 1-350 API calls and a 1-1800 second run budget")
     budgets = {m.name: m for m in DEFAULT_MODELS}
     names = args.models.split(",")
     if len(set(names)) != len(names) or not set(names).issubset(budgets):
         parser.error("Only unique, explicitly verified translation models are allowed")
+    if not 1 <= args.max_calls <= sum(budgets[name].rpd for name in names) or not 1 <= args.max_seconds <= 1800:
+        parser.error("Use a positive call count within the selected models' daily limits and a 1-1800 second run budget")
     root = args.root.resolve()
     if args.github_checkpoint and (args.mode != "records" or os.getenv("GITHUB_ACTIONS") != "true"):
         parser.error("GitHub checkpoints are only for the records job in GitHub Actions")
@@ -82,10 +82,10 @@ def main():
         if args.github_checkpoint and pending:
             identifier = f"{os.environ['GITHUB_RUN_ID']}-{os.environ['GITHUB_RUN_ATTEMPT']}"
             try:
-                ledger.allocate(identifier, models, args.max_calls)
-            except RunFinished:
+                ledger.allocate(identifier, models, args.max_calls, minimum_calls=2)
+            except RunFinished as exc:
                 atomic_json(output / "translations.en.json", queue.overlay(records))
-                print(json.dumps({"stop_reason": "daily_budget", "api_calls": 0}), flush=True)
+                print(json.dumps({"stop_reason": exc.reason, "api_calls": 0}), flush=True)
                 return
             for command in (
                 ["git", "config", "user.name", "github-actions[bot]"],

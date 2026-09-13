@@ -72,10 +72,10 @@ SCHEMA = {
 @dataclass(frozen=True)
 class ModelBudget:
     name: str
-    # Deliberately count countTokens as well as generation against these local ceilings.
-    rpm: int = 6
-    tpm: int = 100_000
-    rpd: int = 350
+    # Anthrion Signal's AI Studio limits, verified 2026-09-13. Count all HTTP attempts.
+    rpm: int = 15
+    tpm: int = 250_000
+    rpd: int = 500
     input_limit: int = 6_000
     output_limit: int = 16_000
 
@@ -97,7 +97,9 @@ class TranslationError(Exception):
 
 
 class RunFinished(Exception):
-    pass
+    def __init__(self, reason="run_budget"):
+        super().__init__(reason)
+        self.reason = reason
 
 
 def protect_literals(text, names=()):
@@ -143,9 +145,9 @@ class QuotaLedger:
             raise ValueError("Invalid translation quota ledger; refusing to reset usage")
         self.allowance = None
 
-    def allocate(self, identifier, models, calls):
+    def allocate(self, identifier, models, calls, minimum_calls=1):
         """Reserve a whole CI run before its first network call, then checkpoint this ledger remotely."""
-        if calls < 1 or not models or len({model.name for model in models}) != len(models):
+        if calls < 1 or minimum_calls < 1 or not models or len({model.name for model in models}) != len(models):
             raise ValueError("A positive allowance and unique models are required")
         allocations = self.state.setdefault("allocations", {})
         if identifier in allocations:
@@ -154,8 +156,10 @@ class QuotaLedger:
         limits = {model.name: 0 for model in models}
         remaining = {model.name: max(0, model.rpd - self.model_state(model)["days"].get(day, 0))
                      for model in models}
+        if max(remaining.values()) < minimum_calls:
+            raise RunFinished("daily_budget")
         for _ in range(calls):
-            eligible = [name for name in limits if limits[name] < remaining[name]]
+            eligible = [name for name in limits if remaining[name] >= minimum_calls and limits[name] < remaining[name]]
             if not eligible:
                 break
             name = min(eligible, key=lambda name: limits[name])
@@ -194,6 +198,21 @@ class QuotaLedger:
         entry["recent"] = [r for r in entry["recent"] if r["at"] > now - 61]
         return entry
 
+    def daily_remaining(self, model):
+        day = pacific_day(self.clock())
+        remaining = model.rpd - self.model_state(model)["days"].get(day, 0)
+        if self.allowance is not None:
+            allocation = self.state["allocations"][self.allowance]
+            if allocation["day"] == day:
+                remaining += allocation["limits"].get(model.name, 0) - allocation["used"].get(model.name, 0)
+        return max(0, remaining)
+
+    def daily_exhausted(self, model, calls=2):
+        entry = self.model_state(model)
+        return self.daily_remaining(model) < calls or (
+            entry.get("blocked_reason") == "daily_quota" and entry["blocked_until"] > self.clock()
+        )
+
     def delay(self, model, tokens, calls=1):
         now = self.clock()
         entry = self.model_state(model)
@@ -209,7 +228,7 @@ class QuotaLedger:
         if daily_exhausted:
             delay = max(delay, next_reset(now) - now + 1)
         recent = sorted(entry["recent"], key=lambda r: r["at"])
-        while recent and (len(recent) >= model.rpm or sum(r["tokens"] for r in recent) + tokens > model.tpm):
+        while recent and (len(recent) + calls > model.rpm or sum(r["tokens"] for r in recent) + tokens > model.tpm):
             delay = max(delay, recent.pop(0)["at"] + 61 - now)
         return delay
 
@@ -232,7 +251,8 @@ class QuotaLedger:
         entry["consecutive_errors"] = entry.get("consecutive_errors", 0) + 1
         backoff = min(3600, 61 * 2 ** min(entry["consecutive_errors"] - 1, 6))
         until = next_reset(now) + 1 if error.kind == "daily_quota" else now + max(backoff, error.retry_after)
-        entry["blocked_until"] = max(entry["blocked_until"], until)
+        if until >= entry["blocked_until"]:
+            entry["blocked_until"], entry["blocked_reason"] = until, error.kind
         self.save()
 
     def usage(self, model, usage):
@@ -332,15 +352,27 @@ class GeminiTranslator:
                                  "responseMimeType": "application/json", "responseSchema": SCHEMA},
         }
 
-    def translate(self, model, items):
+    @classmethod
+    def prepare_request(cls, model, items):
         literals, protected = {}, []
         for item in items:
             text, mapping = protect_literals(item["text"], item.get("protected_names", []))
             literals[item["id"]] = mapping
             protected.append({"id": item["id"], "text": text, "purpose": item.get("purpose", "passage")})
-        body = self.request(model, protected)
+        return cls.request(model, protected), literals
+
+    @staticmethod
+    def estimate(body):
         # UTF-8 byte length is a deliberately generous pre-count estimate, not a chars/token claim.
-        estimate = len(json.dumps(body, ensure_ascii=False).encode("utf-8")) + 1024
+        return len(json.dumps(body, ensure_ascii=False).encode("utf-8")) + 1024
+
+    def ready_in(self, model, items):
+        body, _ = self.prepare_request(model, items)
+        return self.ledger.delay(model, self.estimate(body), calls=2)
+
+    def translate(self, model, items):
+        body, literals = self.prepare_request(model, items)
+        estimate = self.estimate(body)
         self.wait(self.ledger.delay(model, estimate, calls=2))
         counted = self.post(model, "countTokens", {"generateContentRequest": {"model": f"models/{model.name}", **body}}, estimate)
         tokens = counted.get("totalTokens")
@@ -650,18 +682,20 @@ class TranslationQueue:
         disabled, stop_reason, batches, split_events = set(), "complete", 0, 0
         failures = Counter()
 
+        def items_for(work):
+            return [{"id": f"{key}:{index}", "text": part["source"],
+                     "purpose": self.state["fields"][key].get("purpose", "passage"),
+                     "protected_names": self.state["fields"][key].get("protected_names", [])}
+                    for key, index, part in work]
+
         def process(model, work):
             nonlocal batches, split_events
             # A split may consume the last allowance on this model. Return outstanding work to
             # the scheduler so a ready backup can take it, instead of ending the entire run.
             if translator.ledger.delay(model, 0, calls=2) > 0:
                 return
-            items = [{"id": f"{key}:{index}", "text": part["source"],
-                      "purpose": self.state["fields"][key].get("purpose", "passage"),
-                      "protected_names": self.state["fields"][key].get("protected_names", [])}
-                     for key, index, part in work]
             try:
-                results = translator.translate(model, items)
+                results = translator.translate(model, items_for(work))
             except TranslationError as exc:
                 failures[exc.kind] += 1
                 if exc.kind == "too_large":
@@ -725,11 +759,18 @@ class TranslationQueue:
                         work.append(entry)
                         size += chars
                     if work:
-                        # Generation does the exact input reservation; this check avoids spent daily budgets.
-                        delay = translator.ledger.delay(model, 0, calls=2)
+                        # Compare the actual next batch, so a token-limited model cannot stall a ready backup.
+                        try:
+                            delay = translator.ready_in(model, items_for(work))
+                        except TranslationError as exc:
+                            if exc.kind != "too_large":
+                                raise
+                            delay = translator.ledger.delay(model, 0, calls=2)
                         choices.append((delay, model, work))
                 if not choices:
                     break
+                if all(translator.ledger.daily_exhausted(model) for _, model, _ in choices):
+                    raise RunFinished("daily_budget")
                 delay, model, work = min(choices, key=lambda item: item[0])
                 translator.wait(delay)
                 try:
@@ -744,8 +785,8 @@ class TranslationQueue:
                         translator.ledger.block(model, exc)
                     else:
                         raise
-        except RunFinished:
-            stop_reason = "run_budget"
+        except RunFinished as exc:
+            stop_reason = exc.reason
         pending = sum(self.completed(key) is None for key in self.active)
         return {"api_calls": translator.calls, "completed_fields": len(self.active) - pending,
                 "pending_fields": pending, "split_events": split_events,

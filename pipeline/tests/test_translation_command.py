@@ -74,3 +74,16 @@ def test_idle_translation_checks_make_no_requests_or_timestamp_only_commits(comm
     command.main()
     after = {file.name: file.read_bytes() for file in (tmp_path / "data/translation").glob("*.json")}
     assert before == after
+
+
+def test_spent_daily_quota_does_not_make_empty_reservation_commits(command, tmp_path, monkeypatch, capsys):
+    monkeypatch.setenv("GEMINI_API_KEY", "test-key")
+    ledger = QuotaLedger(tmp_path / "data/translation_quota.json")
+    for model in command.DEFAULT_MODELS:
+        ledger.allocate(model.name, [model], model.rpd - 1)
+    before = ledger.path.read_bytes()
+    monkeypatch.setattr(command.subprocess, "run", lambda *a, **k: pytest.fail("No usable quota to reserve"))
+    monkeypatch.setattr(command, "GeminiTranslator", lambda *a, **k: pytest.fail("No API requests without quota"))
+    command.main()
+    assert ledger.path.read_bytes() == before
+    assert '"stop_reason": "daily_budget"' in capsys.readouterr().out

@@ -70,7 +70,7 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           PYTHONUNBUFFERED: '1'
-        run: python scripts/translate_records.py records --github-checkpoint --max-calls 60 --max-seconds 300
+        run: python scripts/translate_records.py records --github-checkpoint --max-calls 150 --max-seconds 300
       - name: Checkpoint private translation progress
         if: always() && steps.translate.outcome != 'skipped'
         continue-on-error: true

@@ -12,6 +12,7 @@ from urllib.robotparser import RobotFileParser
 import httpx
 from bs4 import BeautifulSoup
 
+from .source_tls import DEVOLVED_API_HOSTS, devolved_tls_context
 from .utils import clean, digest, iso, parse_date
 
 
@@ -25,9 +26,12 @@ class SourceUnavailable(Exception):
 
 class Http:
     def __init__(self, user_agent="AnthrionSignal/1.0", transport=None, sleeper=time.sleep):
+        mounts = {} if transport is not None else {
+            f"https://{host}": httpx.HTTPTransport(verify=devolved_tls_context()) for host in DEVOLVED_API_HOSTS
+        }
         self.client = httpx.Client(verify=ssl.create_default_context(), timeout=40, follow_redirects=True,
                                   headers={"User-Agent": user_agent, "Accept": "application/json,text/html"},
-                                  transport=transport)
+                                  transport=transport, mounts=mounts)
         self.sleeper = sleeper
         self.robots = {}
         self.last_request = 0.0

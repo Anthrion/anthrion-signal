@@ -28,6 +28,9 @@ anthrion-signal = "anthrion_signal.cli:main"
 [tool.setuptools.packages.find]
 where = ["pipeline"]
 
+[tool.setuptools.package-data]
+anthrion_signal = ["certificates/*.pem"]
+
 [tool.pytest.ini_options]
 pythonpath = ["pipeline"]
 testpaths = ["pipeline/tests"]

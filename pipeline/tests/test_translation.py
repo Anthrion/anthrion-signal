@@ -6,9 +6,11 @@ import httpx
 import pytest
 
 from anthrion_signal.translation import (
+    DEFAULT_MODELS,
     GeminiTranslator,
     ModelBudget,
     QuotaLedger,
+    RunFinished,
     TranslationError,
     TranslationQueue,
     VERSION,
@@ -41,6 +43,73 @@ class Clock:
 
 MODELS = (ModelBudget("gemini-3.5-flash-lite", rpm=1000, tpm=1_000_000),
           ModelBudget("gemini-3.1-flash-lite", rpm=1000, tpm=1_000_000))
+
+
+def test_verified_limits_use_full_project_capacity_without_resetting_previous_usage(tmp_path):
+    clock = Clock()
+    ledger = QuotaLedger(tmp_path / "quota.json", clock)
+    day = pacific_day(clock())
+    for model in DEFAULT_MODELS:
+        assert (model.rpm, model.tpm, model.rpd) == (15, 250_000, 500)
+        ledger.model_state(model)["days"][day] = 350
+        assert ledger.daily_remaining(model) == 150
+        assert not ledger.daily_exhausted(model)
+    ledger.allocate("new-limits", DEFAULT_MODELS, 300, minimum_calls=2)
+    ledger.activate("new-limits")
+    for model in DEFAULT_MODELS:
+        assert ledger.model_state(model)["days"][day] == 500
+        assert ledger.daily_remaining(model) == 150
+        assert not ledger.daily_exhausted(model)
+        ledger.reserve(model, 100)
+    ledger.finish_allowance()
+    for model in DEFAULT_MODELS:
+        assert ledger.model_state(model)["days"][day] == 351
+
+
+def test_no_ci_reservation_when_no_model_can_complete_count_and_generation(tmp_path):
+    clock = Clock()
+    ledger = QuotaLedger(tmp_path / "quota.json", clock)
+    for model in DEFAULT_MODELS:
+        ledger.model_state(model)["days"][pacific_day(clock())] = model.rpd - 1
+    with pytest.raises(RunFinished) as error:
+        ledger.allocate("unusable", DEFAULT_MODELS, 150, minimum_calls=2)
+    assert error.value.reason == "daily_budget"
+    assert "unusable" not in ledger.state["allocations"]
+    assert not ledger.path.exists()
+
+
+def test_ci_reserves_only_usable_model_capacity_without_crossing_daily_limit(tmp_path):
+    clock = Clock()
+    ledger = QuotaLedger(tmp_path / "quota.json", clock)
+    day = pacific_day(clock())
+    ledger.model_state(DEFAULT_MODELS[0])["days"][day] = 499
+    ledger.model_state(DEFAULT_MODELS[1])["days"][day] = 498
+    ledger.allocate("last-batch", DEFAULT_MODELS, 150, minimum_calls=2)
+    ledger.activate("last-batch")
+    limits = ledger.state["allocations"]["last-batch"]["limits"]
+    assert list(limits.values()) == [0, 2]
+    ledger.reserve(DEFAULT_MODELS[1], 100)
+    ledger.reserve(DEFAULT_MODELS[1], 100)
+    with pytest.raises(TranslationError, match="local_quota"):
+        ledger.reserve(DEFAULT_MODELS[1], 100)
+    ledger.finish_allowance()
+    assert ledger.model_state(DEFAULT_MODELS[0])["days"][day] == 499
+    assert ledger.model_state(DEFAULT_MODELS[1])["days"][day] == 500
+
+
+def test_minute_preflight_reserves_room_for_both_requests(tmp_path):
+    clock = Clock()
+    ledger = QuotaLedger(tmp_path / "quota.json", clock)
+    model = DEFAULT_MODELS[0]
+    for _ in range(14):
+        ledger.reserve(model, 100)
+    assert ledger.delay(model, 100, calls=1) == 0
+    assert ledger.delay(model, 100, calls=2) == 61
+    ledger.reserve(model, 100)
+    with pytest.raises(TranslationError, match="local_quota"):
+        ledger.reserve(model, 100)
+    clock.sleep(61)
+    assert ledger.delay(model, 100, calls=2) == 0
 
 
 @pytest.mark.parametrize("source", [
@@ -384,8 +453,40 @@ def test_both_daily_budgets_exhausted_leave_work_queued(tmp_path, service):
     queue = TranslationQueue(tmp_path / "cache.json", clock)
     queue.add("A lead must not disappear when translation is unavailable.")
     result = queue.run(translator, MODELS)
+    assert result["stop_reason"] == "daily_budget"
     assert result["pending_fields"] == 1
     assert not requests
+
+
+def test_token_busy_primary_uses_ready_backup_without_sleeping(tmp_path, service):
+    create, clock, requests = service
+    models = (ModelBudget(MODELS[0].name, tpm=20_000), MODELS[1])
+    translator = create()
+    translator.ledger.reserve(models[0], 18_000)
+    queue = TranslationQueue(tmp_path / "cache.json", clock)
+    queue.add("We need Salesforce implementation.")
+    started = clock()
+    result = queue.run(translator, models)
+    assert result["pending_fields"] == 0
+    assert clock() == started
+    assert len(requests) == 2
+    assert all(models[1].name in request.url.path for request, _ in requests)
+
+
+def test_provider_daily_limit_pauses_queue_until_reset(tmp_path, service):
+    create, clock, requests = service
+    translator = create()
+    for model in MODELS:
+        translator.ledger.block(model, TranslationError("daily_quota"))
+    queue = TranslationQueue(tmp_path / "cache.json", clock)
+    queue.add("A public procurement opportunity.")
+    result = queue.run(translator, MODELS)
+    assert result["stop_reason"] == "daily_budget"
+    assert result["pending_fields"] == 1
+    assert not requests
+    clock.now = next_reset(clock()) + 2
+    assert queue.run(translator, MODELS)["stop_reason"] == "run_budget"
+    assert queue.run(create(), MODELS)["pending_fields"] == 0
 
 
 def test_input_token_limit_splits_batches(tmp_path, service):

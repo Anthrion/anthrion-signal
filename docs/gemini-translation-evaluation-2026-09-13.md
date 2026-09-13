@@ -64,12 +64,21 @@ The Anthrion Signal project's AI Studio page showed 15 RPM, 250,000 input TPM an
 500 RPD for each of the two Flash-Lite models. These are project-specific observed
 limits, not universal or permanent guarantees.
 
-The worker uses stricter ceilings per model: 6 HTTP requests/minute, 100,000
-estimated input tokens/minute, and 350 HTTP requests/Pacific day. It conservatively
-charges token-count calls and failed requests against its local request budgets
-as well as successful generation calls. Failed or interrupted calls never receive
-an automatic quota refund. Existing project activity outside this worker is not
-visible to the local ledger; headroom and provider-error handling are still needed.
+The initial worker used 6 HTTP requests/minute, 100,000 estimated input tokens/minute
+and 350 HTTP requests/Pacific day. The September 13 follow-up rechecked the actual
+Anthrion Signal project in AI Studio and removed that extra headroom: the worker now
+uses 15 RPM, 250,000 input TPM and 500 RPD per model. Existing usage is retained, not
+reset. A 61-second sliding window, conservative full-request input estimates,
+exact token counts and provider backoff protect the request limits. Token-count
+calls and failed requests are still conservatively charged alongside generation;
+we have not assumed that those calls are exempt from this project's quota.
+Failed or interrupted calls never receive an automatic refund. Activity elsewhere
+in the same Google project is not visible to the ledger, so provider-error handling
+is essential even though there is no separate daily reserve. The scheduler considers
+the next batch's token needs before choosing a model, avoiding unnecessary waits
+when the other model is ready. A spent daily quota is reported separately from a
+bounded run ending, and an unusable last counting-only call no longer causes an
+empty reservation commit.
 
 The release snapshot, after merging the newer GitHub collections with the local
 record corrections, contains 3,158 unique eligible title/description fields
@@ -136,8 +145,10 @@ stale `data/.translation.lock` file. Keep cached quota state across restarts.
 ## Production Integration
 
 The hourly `:50` workflow runs a bounded translation pass after collection, with
-at most 60 HTTP attempts and five minutes per pass. The per-day project ledger
-still applies across all runs; this is not 60 new calls regardless of prior usage.
+at most 150 HTTP attempts and five minutes per pass, matching the two verified
+models' combined minute capacity. Translation-only checks also run at :05, :20
+and :35, including overnight. The per-day project ledger still applies across all
+runs; this is not 150 new calls regardless of prior usage.
 Before the first HTTP request, a run commits and pushes its entire allowance.
 A lost runner therefore leaves those calls accounted for. Normal completion
 returns only the unused allowance. Actual requests are never refunded.
