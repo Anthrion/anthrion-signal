@@ -157,7 +157,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:23.452533+00:00",
+            "language": "en",
+            "model": "gemini-3.1-flash-lite",
+            "text": "Bernadette Grafton\nProgram Analyst"
+          },
           "source": "Bernadette Grafton\nProgram Analyst"
         }
       ],
@@ -193,7 +198,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:23.450882+00:00",
+            "language": "es",
+            "model": "gemini-3.1-flash-lite",
+            "text": "Governing Board of the City Council of Torrejón de Ardoz"
+          },
           "source": "Junta de Gobierno del Ayuntamiento de Torrejón de Ardoz"
         }
       ],
@@ -1447,7 +1457,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:46.447407+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "MM PERTE 07 2025 SV PA SARA"
+          },
           "source": "MM PERTE 07 2025 SV PA SARA"
         }
       ],
@@ -1983,13 +1998,26 @@
       "parts": [
         {
           "blocked": false,
-          "failures": {},
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
           "quality_retry": {
             "after": 0,
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "rejected": {
+            "id": "053a516f32ec8b3186f54696a9efeb9ece3c0ea60f548cf4eec4e38c45127faa:0",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Software Development and Verification (GNC Software Support)"
+          },
+          "result": {
+            "at": "2026-09-13T18:32:46.432901+00:00",
+            "language": "mul",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Software Development and Verification (GNC Software Unterstützung)"
+          },
           "source": "Software Development and Verification (GNC Software Unterstützung)"
         }
       ],
@@ -2359,7 +2387,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:23.446885+00:00",
+            "language": "de",
+            "model": "gemini-3.1-flash-lite",
+            "text": "Würzburg-Schweinfurt University of Applied Sciences"
+          },
           "source": "Technische Hochschule Würzburg-Schweinfurt"
         }
       ],
@@ -3096,7 +3129,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:56.379916+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Centralised service for various communications and cybersecurity services, as well as those for the control and quality of services for the ministries and autonomous bodies of the Autonomous Community of the Region of Murcia (CARM) and the rest of the administrations or public entities included."
+          },
           "source": "Servicio centralizado de diversos servicios de comunicaciones y ciberseguridad, así como aquellos para el control y calidad de los servicios a las Consejerías y Organismos Autónomos de la Comunidad Autónoma de la Región de Murcia (CARM) y al resto de administraciones o entes públicos incluido."
         }
       ],
@@ -3348,7 +3386,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:23.447761+00:00",
+            "language": "de",
+            "model": "gemini-3.1-flash-lite",
+            "text": "Federal Institute for Research on Building, Urban Affairs and Spatial Development (BBSR) at the Federal Office for Building and Regional Planning (BBR)"
+          },
           "source": "Bundesinsitut für Bau-, Stadt- und Raumforschung (BBSR) im Bundesamt für Bauwesen und Raumordnung (BBR)"
         }
       ],
@@ -3977,7 +4020,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:16.896102+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Austin FY 2021 &ndash; FY 2023 EDA Planning and Local Technical Assistance"
+          },
           "source": "Austin FY 2021 &ndash; FY 2023 EDA Planning and Local Technical Assistance"
         }
       ],
@@ -4885,13 +4933,26 @@
       "parts": [
         {
           "blocked": false,
-          "failures": {},
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
           "quality_retry": {
             "after": 0,
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "rejected": {
+            "id": "0d8591e8f726c24e09ea8dd20ff7d8629cb67ea18b42afd2b327d9c494902dac:0",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Food and Drug Administration Office of Minority Health and Health Equity Convener for Racial &amp; Ethnic minority Acceleration Consortium for Health Equity (REACH)"
+          },
+          "result": {
+            "at": "2026-09-13T18:33:18.053715+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "FDA OMHHE Convener for Racial &amp; Ethnic minority Acceleration Consortium for Health Equity (REACH)"
+          },
           "source": "FDA OMHHE Convener for Racial &amp; Ethnic minority Acceleration Consortium for Health Equity (REACH)"
         }
       ],
@@ -7488,7 +7549,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:56.384203+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Data Network and Internet Services Telephony and Mass Messaging Services Interconnection and other network device management services Information Security Services. CSIRT rapid response centre Information Security Services. Cybersecurity consultancy and regulatory compliance Communications control and quality services"
+          },
           "source": "Servicios de Redes de datos e Internet Servicios de Telefonía y Mensajería Masiva Servicios de gestión de Interconexiones y otros dispositivos de red Servicios de seguridad de la Información. Centro de respuesta rápida CSIRT Servicios de seguridad de la Información. Consultoría y cumplimiento normativo en ciberseguridad Servicios de control y calidad de las comunicaciones"
         }
       ],
@@ -8706,7 +8772,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:46.446509+00:00",
+            "language": "sv",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The RFI relates to internal alarm systems within welfare technology, such as alarm systems, medication storage and digital solutions for care and housing accommodations at the care administration as well as group housing and service housing at the social administration."
+          },
           "source": "RFI:n avser Interna larmsystem inom välfärdsteknik, så som t.ex. larmsystem, medicinförvaring och digitala lösningar för vård- och omsorgsboende vid omsorgsförvaltningen samt gruppbostad och servicebostad vid socialförvaltningen."
         }
       ],
@@ -9063,18 +9134,19 @@
         {
           "blocked": false,
           "failures": {
-            "gemini-3.1-flash-lite": 2
+            "gemini-3.1-flash-lite": 2,
+            "gemini-3.5-flash-lite": 2
           },
           "quality_retry": {
-            "after": 0,
+            "after": 1789328022.9768941,
             "day": "2026-09-13",
             "round": 0
           },
           "rejected": {
             "id": "17b934c61b3a1041e8c35e44657cd55e7ed7191d2646ecc706de79c8846ee041:0",
             "language": "en",
-            "model": "gemini-3.1-flash-lite",
-            "text": "European Commission, DG BUDG - Budget; EP - European Parliament; European External Action Service (EEAS); The General Secretariat of the Council of the European Union; European Research Council Executive Agency; European Innovation Council and SMEs Executive Agency (EISMEA); European Research Executive Agency (REA); Health and Digital Executive Agency (HaDEA); Agency for Support for BEREC (BEREC Office); Authority for Anti-Money Laundering and Countering the Financing of Terrorism; Circular Bio-based Europe Joint Undertaking; Community Plant Variety Office; Europe's Rail Joint Undertaking; European Cybersecurity Industrial, Technology and Research Competence Centre; European Defence Agency; European Environment Agency (EEA); European Fisheries Control Agency (EFCA); European Food Safety Authority; European Foundation for the Improvement of Living and Working Conditions; European High-Performance Computing Joint Undertaking; European Labour Authority (ELA); European Public Prosecutor’s Office; European Schools; European Securities and Markets Authority; European Union Agency For Law Enforcement Training; European Union Agency for Asylum; European Union Agency for Criminal Justice Cooperation (Eurojust); European Union Agency for Cybersecurity (ENISA); European Union Agency for Fundamental Rights; European Union Agency for Law Enforcement Cooperation; European Union Agency for Railways; European Union Agency for the Cooperation of Energy Regulators; European Union Agency for the Operational Management of Large-Scale IT Systems in the Area of Freedom, Security and Justice (eu-LISA); European Union Drugs Agency; Global Health EDCTP3 Joint Undertaking; Innovative Health Initiative Joint Undertaking (IHI JU); Single Resolution Board (SRB); Committee of the Regions of the European Union; European Economic and Social Committee"
+            "model": "gemini-3.5-flash-lite",
+            "text": "European Commission, DG BUDG - Budget; EP - European Parliament; European External Action Service (EEAS); The General Secretariat of the Council of the European Union; Executive Agency for the European Research Council; European Innovation Council and SMEs Executive Agency (EISMEA); European Research Executive Agency (REA); Health and Digital Executive Agency (HaDEA); Agency for Support for BEREC (BEREC Office); Authority for Anti-Money Laundering and Countering the Financing of Terrorism; Circular Bio-based Europe Joint Undertaking; Community Plant Variety Office; Europe's Rail Joint Undertaking; European Cybersecurity Industrial, Technology and Research Competence Centre; European Defence Agency; European Environment Agency (EEA); European Fisheries Control Agency (EFCA); European Food Safety Authority; European Foundation for the Improvement of Living and Working Conditions; European High-Performance Computing Joint Undertaking; European Labour Authority (ELA); European Public Prosecutor’s Office; European Schools; European Securities and Markets Authority; European Union Agency For Law Enforcement Training; European Union Agency for Asylum; European Union Agency for Criminal Justice Cooperation (Eurojust); European Union Agency for Cybersecurity (ENISA); European Union Agency for Fundamental Rights; European Union Agency for Law Enforcement Cooperation; European Union Agency for Railways; European Union Agency for the Cooperation of Energy Regulators; European Union Agency for the Operational Management of Large-Scale IT Systems in the Area of Freedom, Security and Justice (eu-LISA); European Union Drugs Agency; Global Health EDCTP3 Joint Undertaking; Innovative Health Initiative Joint Undertaking (IHI JU); Single Resolution Board (SRB); Committee of the Regions of the European Union; European Economic and Social Committee"
           },
           "result": null,
           "source": "European Commission, DG BUDG - Budget; EP - European Parliament; European External Action Service (EEAS); The General Secretariat of the Council of the European Union; Agence Exécutive du Conseil Européen de la Recherche; European Innovation Council and SMEs Executive Agency (EISMEA); European Research Executive Agency (REA); Health and Digital Executive Agency (HaDEA); Agency for Support for BEREC (BEREC Office); Authority for Anti-Money Laundering and Countering the Financing of Terrorism; Circular Bio-based Europe Joint Undertaking; Community Plant Variety Office; Europe's Rail Joint Undertaking; European Cybersecurity Industrial, Technology and Research Competence Centre; European Defence Agency; European Environment Agency (EEA); European Fisheries Control Agency (EFCA); European Food Safety Authority; European Foundation for the Improvement of Living and Working Conditions; European High-Performance Computing Joint Undertaking; European Labour Authority (ELA); European Public Prosecutor’s Office; European Schools; European Securities and Markets Authority; European Union Agency For Law Enforcement Training; European Union Agency for Asylum; European Union Agency for Criminal Justice Cooperation (Eurojust); European Union Agency for Cybersecurity (ENISA); European Union Agency for Fundamental Rights; European Union Agency for Law Enforcement Cooperation; European Union Agency for Railways; European Union Agency for the Cooperation of Energy Regulators; European Union Agency for the Operational Management of Large-Scale IT Systems in the Area of Freedom, Security and Justice (eu-LISA); European Union Drugs Agency; Global Health EDCTP3 Joint Undertaking; Innovative Health Initiative Joint Undertaking (IHI JU); Single Resolution Board (SRB); Committee of the Regions of the European Union; European Economic and Social Committee"
@@ -9989,7 +10061,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:56.384331+00:00",
+            "language": "it",
+            "model": "gemini-3.5-flash-lite",
+            "text": "NOTICE OF MARKET CONSULTATION, pursuant to Article 77 of Legislative Decree 36/2023, for the verification of non-fungibility/exclusivity of the Application Management Services (AMS) service."
+          },
           "source": "AVVISO DI CONSULTAZIONE DI MERCATO, ai sensi dell art. 77 del D.Lgs. 36/2023, per la verifica di infungibilita/esclusivita del servizio di Application Management Services (AMS)."
         }
       ],
@@ -10637,7 +10714,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:23.447643+00:00",
+            "language": "en",
+            "model": "gemini-3.1-flash-lite",
+            "text": "London Borough of Croydon"
+          },
           "source": "London Borough of Croydon"
         }
       ],
@@ -11024,7 +11106,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:36.272567+00:00",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "KID intends to tender a framework agreement, which will then be concluded between the bidder submitting the most economically advantageous tender in accordance with the award criteria and KID. The subject of the tendered service is the procurement of services for the digitalisation of existing files and ongoing incoming post (documents to be scanned) of the Immigration Office (ABH)/LH MD in full compliance with the relevant data protection requirements and the strict specification that the physical documents to be scanned and their digital copies do not leave the legal territory of the Federal Republic at any time (domestic clause). By submitting a tender, bidders undertake to provide the necessary personnel, technical and logistical resources required for this purpose during the term of the contract."
+          },
           "source": "Die KID beabsichtigt, einen Rahmenvertrag auszuschreiben, der dann zwischen dem Bieter des wirtschaftlich-günstigsten Angebots nach Maßgabe der Zuschlagskriterien und der KID geschlossen wird. Gegenstand der ausgeschriebenen Leistung ist die Beschaffung von Dienstleistungen für die Digitalisierung der Bestandsakten und des laufenden Posteingangs (Scangut) der Ausländerbehörde (ABH)/LH MD unter vollumfänglicher Einhaltung der einschlägigen datenschutzrechtlichen Maßgaben sowie der strikten Vorgabe, dass das physische Scan-gut und dessen Digitalisate den Rechtsraum der Bundesrepublik zu keinem Zeitpunkt verlässt (Inlandsklausel). Die Bieter verpflichten sich mit Angebotsabgabe, die dafür nötigen personellen, technischen und logistischen Ressourcen während der Vertragslaufzeit bereit zu stellen."
         }
       ],
@@ -11206,7 +11293,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:46.445063+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "TECHNICAL ASSISTANCE SERVICES FOR THE MANAGEMENT AND EXECUTION OF THE MISIÓN PROJECT"
+          },
           "source": "SERVICIOS DE ASISTENCIA TÉCNICA EN LA GESTIÓN Y EJECUCIÓN DEL PROYECTO MISIÓN"
         }
       ],
@@ -12130,17 +12222,18 @@
         {
           "blocked": false,
           "failures": {
-            "gemini-3.1-flash-lite": 2
+            "gemini-3.1-flash-lite": 2,
+            "gemini-3.5-flash-lite": 2
           },
           "quality_retry": {
-            "after": 0,
+            "after": 1789328022.9769683,
             "day": "2026-09-13",
             "round": 0
           },
           "rejected": {
             "id": "20b9e4851a90baf78c10e3674569b157138e9af1aa399851ec33d1de6db96b1d:0",
             "language": "da",
-            "model": "gemini-3.1-flash-lite",
+            "model": "gemini-3.5-flash-lite",
             "text": "Ørsted Services A/S; Ørsted Wind Power A/S; Ørsted A/S; Ørsted Bioenergy & Thermal Power A/S; Ørsted Salg & Service A/S; Orsted Germany GmbH; Gode Wind 1 Offshore Wind Farm GmbH & Co. OHG; Orsted Gode Wind 2 GmbH; Borkum Riffgrund I Offshore Windpark A/S GmbH & Co. oHG; Ørsted Group; Borkum Riffgrund 3 GmbH & Co. oHG; Gode Wind 3 GmbH & Co. oHG; Borkum Riffgrund II Holding GmbH; Danish Oil Pipe A/S; Ørsted Horns Rev I A/S; Nysted I A/S; Ørsted Horns Rev 2 A/S; Ørsted - Anholt Offshore A/S; Borkum Riffgrund 2 Offshore Wind Farm GmbH & Co. oHG; Borkum Riffgrund I Holding A/S; Orsted Speicher R GmbH; Orsted Gode Wind 3 Holding GmbH; Orsted Gode Wind 3 Finance GmbH; Ørsted Wind Power Denmark A/S; Anholt Havvindmøllepark I/S; Borkum Riffgrund 3 Orsted Holding GmbH; Orsted Polska Sp. z o.o.; Orsted Speicher R GmbH; Orsted Borkum Riffgrund I HoldCo GmbH"
           },
           "result": null,
@@ -12392,7 +12485,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:56.399105+00:00",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Description: The State of Saxony-Anhalt has its own state data network, which is currently operated technically by an IT service provider. The state data network was set up by this IT service provider. The intention now is to retender the operation of the state data network as a high-performance and integrated state data network (LAN/WAN) as well as all measures and services necessary for this. The operation of the operations centre with, among other things, network-related services, the operation of components and systems within a data centre and necessary operational and technical tools are also to be awarded. To prepare for this retender, the MID as the responsible authority for the State of Saxony-Anhalt is conducting a market exploration in accordance with § 28 of the VgV. The aim is in particular to explore what organisational, technical and economic solutions are available on the market to ensure operation on a permanent, secure, reliable and scalable basis, as well as the conditions that may be necessary for this and the general time schedule. This is expressly not a call for competition or any other bidding procedure, but rather a non-binding market analysis for orientation and as a basis for decision-making for the preparation of any subsequent procurement procedure. Companies that wish to participate in the market exploration will be provided with further documents in the market exploration procedure. In order to gain access to these documents, an expression of interest and the submission of a non-disclosure agreement are required to protect sensitive data regarding critical infrastructure. Interested parties are therefore requested to express their interest in participating in the present market exploration procedure by 28.11.2025 at the latest by sending an email with the subject 'Market exploration procedure state data network' to the following email address: lnstender@sachsen-anhalt.de and stating the necessary contact details (name of the company, registered office of the company, address of the company and email address). You will then receive a draft non-disclosure agreement, which must then be completed and returned signed. Upon receipt of the non-disclosure agreement, the further documents for the market exploration will be sent to the interested parties concerned. These contain further information and documents. It is planned to conduct online market exploration discussions with the interested parties. These are expected to be scheduled in the four calendar weeks following the above-mentioned deadline. To prepare for the discussions, participants are asked to complete and submit a prepared questionnaire. Further information on this can be found in the market exploration documents, which will be made available after the submission of the non-disclosure agreement."
+          },
           "source": "Beschreibung: Das Land Sachsen-Anhalt verfügt über ein landeseigenes Landesdatennetz, das derzeit durch einen IT-Dienstleister technisch betrieben wird. Der Aufbau des Landesdatennetzes erfolgte durch diesen IT-Dienstleister. Beabsichtigt ist nunmehr die Neuvergabe des Betriebes des Landesdatennetzes als leistungsfähiges und integriertes Landesdatennetzes (LAN/WAN) sowie aller dafür notwendigen Maßnahmen und Leistungen. Vergeben werden sollen auch der Betrieb des Betriebszentrums mit u. a. netznahen Diensten, der Betrieb von Komponenten und Systemen innerhalb eines Rechenzentrums und notwendige operative und technische Tools. Zur Vorbereitung dieser Neuvergabe führt das MID als zuständige Behörde für das Land Sachsen-Anhalt eine Markterkundung gem.§ 28 VgV durch. Ziel ist insbesondere die Erkundung, welche organisatorischen, technischen und wirtschaftlichen Lösungen am Markt vorhanden sind, um den Betrieb dauerhaft sicher, zuverlässig und skalierbar sicherzustellen, sowie die dafür ggf. notwendigen Voraussetzungen und die zeitlichen Rahmenbedingungen. Es handelt sich hierbei ausdrücklich nicht um eine Ausschreibung oder ein sonstiges Bieterverfahren, sondern um eine unverbindliche Marktanalyse zur Orientierung und als Entscheidungsgrundlage für die Vorbereitung eines etwaigen späteren Vergabeverfahrens. Unternehmen, die sich an der Markterkundung beteiligen möchten, werden im Markterkundungsverfahren weitere Unterlagen zur Verfügung gestellt. Um Zugang zu diesen Unterlagen zu erhalten, ist zum Schutz sensibler Daten über kritische Infrastruktur eine Interessenbekundung und die Abgabe einer Verschwiegenheitserklärung erforderlich. Interessenten werden daher gebeten, ihr Interesse an der Teilnahme am vorliegenden Markterkundungsverfahren bis spätestens 28.11.2025 an durch E-Mail mit dem Betreff Markterkundungsverfahren Landesdatennetz an folgende E-Mail-Adresse zu bekunden: lnstender@sachsen-anhalt.de und darin die notwendigen Kontaktdaten (Name des Unternehmens, Sitz des Unternehmens, Anschrift des Unternehmens und E-Mail-Adresse) anzugeben. Sie erhalten daraufhin den Vordruck einer Verschwiegenheitserklärung, der anschließend ausgefüllt und unterzeichnet zurückzusenden ist. Nach Eingang der Verschwiegenheitserklärung werden den betreffenden Interessenten die weiteren Unterlagen zur Markterkundung übersandt. Diese enthalten weitergehende Informationen und Unterlagen. Es ist vorgesehen, mit den Interessenten online stattfindende Markterkundungsgespräche zu führen. Diese werden voraussichtlich in den auf die o.g. Frist nachfolgenden vier Kalenderwochen vorgesehen. Zur Vorbereitung der Gespräche werden die Teilnehmer gebeten, einen vorbereiteten Fragebogen auszufüllen und einzureichen. Weitere Informationen hierzu sind den Markterkundungsunterlagen zu entnehmen, die nach Abgabe der Verschwiegenheitserklärung zur Verfügung gestellt werden."
         }
       ],
@@ -15686,7 +15784,12 @@
             "model": "gemini-3.1-flash-lite",
             "text": "Nässjö Affärsverk AB"
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:35.527269+00:00",
+            "language": "sv",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Nässjö Business Utility Ltd"
+          },
           "source": "Nässjö Affärsverk AB"
         }
       ],
@@ -15768,7 +15871,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:46.445204+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "S0112"
+          },
           "source": "S0112"
         }
       ],
@@ -17582,7 +17690,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:16.903299+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "UPDATED NOTICE - PLEASE READ: April 6, 2023 EDA is excited to announce the launch of its new grants management platform: the Economic Development Grants Experience (EDGE). EDGE was developed to streamline the application and grants management process by implementing a single platform with increased transparency, improved user experience, higher data quality, and more efficiency throughout the entire grant lifecycle. As of April 6th, 2023, applications can no longer be submitted on Grants.gov, and will ONLY be accepted through EDGE. To apply in EDGE, please go to: sfgrants.eda.gov . More information on how to apply is provided in the full NOFO. Please note that the above does not apply for Partnership Planning applications . For more information, please reach out to your point of contact. Program Description: EDA makes planning and local technical assistance investments to support economic development, foster job creation, and attract private investment in economically distressed areas of the United States. Under the Planning program, EDA makes Partnership Planning, Short-Term Planning, and State Planning awards to eligible recipients to create and implement regional economic development plans designed to build capacity and guide the economic prosperity and resiliency of an area or region. More specifically, EDA makes Partnership Planning investments to designated planning organizations (i.e., District Organizations) serving EDA-designated Economic Development Districts and to Indian Tribes to facilitate the development, implementation, revision, or replacement of Comprehensive Economic Development Strategies (CEDS), which articulate and prioritize the strategic economic goals of recipients’ respective regions. EDA also makes Short-Term and State Planning awards for economic development planning activities that guide the eventual creation and retention of high-quality jobs, particularly for the unemployed and underemployed in the Nation’s most economically distressed regions. Under the Local Technical Assistance program, EDA makes awards to strengthen the capacity of local or State organizations, institutions of higher education, and other eligible entities to undertake and promote effective economic development programs through projects such as feasibility studies, impact analyses, disaster resiliency plans, and project planning. *Please note: While the published Notice of Funding Opportunity (available under \"Related Documents\") states that the ED900A form and the SF424B form are both required for a complete application, these forms are no longer required and have therefore been removed from the package template."
+          },
           "source": "UPDATED NOTICE - PLEASE READ: April 6, 2023 EDA is excited to announce the launch of its new grants management platform: the Economic Development Grants Experience (EDGE). EDGE was developed to streamline the application and grants management process by implementing a single platform with increased transparency, improved user experience, higher data quality, and more efficiency throughout the entire grant lifecycle. As of April 6th, 2023, applications can no longer be submitted on Grants.gov, and will ONLY be accepted through EDGE. To apply in EDGE, please go to: sfgrants.eda.gov . More information on how to apply is provided in the full NOFO. Please note that the above does not apply for Partnership Planning applications . For more information, please reach out to your point of contact. Program Description: EDA makes planning and local technical assistance investments to support economic development, foster job creation, and attract private investment in economically distressed areas of the United States. Under the Planning program, EDA makes Partnership Planning, Short-Term Planning, and State Planning awards to eligible recipients to create and implement regional economic development plans designed to build capacity and guide the economic prosperity and resiliency of an area or region. More specifically, EDA makes Partnership Planning investments to designated planning organizations (i.e., District Organizations) serving EDA-designated Economic Development Districts and to Indian Tribes to facilitate the development, implementation, revision, or replacement of Comprehensive Economic Development Strategies (CEDS), which articulate and prioritize the strategic economic goals of recipients’ respective regions. EDA also makes Short-Term and State Planning awards for economic development planning activities that guide the eventual creation and retention of high-quality jobs, particularly for the unemployed and underemployed in the Nation’s most economically distressed regions. Under the Local Technical Assistance program, EDA makes awards to strengthen the capacity of local or State organizations, institutions of higher education, and other eligible entities to undertake and promote effective economic development programs through projects such as feasibility studies, impact analyses, disaster resiliency plans, and project planning. *Please note: While the published Notice of Funding Opportunity (available under \"Related Documents\") states that the ED900A form and the SF424B form are both required for a complete application, these forms are no longer required and have therefore been removed from the package template."
         }
       ],
@@ -19271,7 +19384,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:23.450618+00:00",
+            "language": "en",
+            "model": "gemini-3.1-flash-lite",
+            "text": "Elena G Howell\nGrants Officer"
+          },
           "source": "Elena G Howell\nGrants Officer"
         }
       ],
@@ -19443,7 +19561,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:01.944281+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Catalyze Product Definition Medical Device prototype design/testing and disease target identification and assay development (R61/R33 - Clinical Trial Not Allowed)"
+          },
           "source": "Catalyze Product Definition Medical Device prototype design/testing and disease target identification and assay development (R61/R33 - Clinical Trial Not Allowed)"
         }
       ],
@@ -20263,7 +20386,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:23.454190+00:00",
+            "language": "en",
+            "model": "gemini-3.1-flash-lite",
+            "text": "Riley Oleary\nPolicy Analyst"
+          },
           "source": "Riley Oleary\nPolicy Analyst"
         }
       ],
@@ -20299,7 +20427,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:56.399859+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "FY 2021 - 2023 Economic Development RNTA"
+          },
           "source": "FY 2021 - 2023 Economic Development RNTA"
         }
       ],
@@ -20846,7 +20979,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:23.450825+00:00",
+            "language": "es",
+            "model": "gemini-3.1-flash-lite",
+            "text": "Environment and Water Consortium of the Province of Cáceres - Mas Medio"
+          },
           "source": "Consorcio Medio Ambiente y Aguas Provincia de Cáceres - Mas Medio"
         }
       ],
@@ -21475,7 +21613,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:16.893380+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "UPDATED NOTICE - PLEASE READ: April 6, 2023 EDA is excited to announce the launch of its new grants management platform: the Economic Development Grants Experience (EDGE). EDGE was developed to streamline the application and grants management process by implementing a single platform with increased transparency, improved user experience, higher data quality, and more efficiency throughout the entire grant lifecycle. As of April 6th, 2023, applications can no longer be submitted on Grants.gov, and will ONLY be accepted through EDGE. To apply in EDGE, please go to: sfgrants.eda.gov . More information on how to apply is provided in the full NOFO. PARTNERSHIP PLANNING program instructions: Please note that applicants will be invited to submit applications through EDGE for the Partnership Planning program. For more information, please reach out to your EDA point of contact. Program Description: EDA makes planning and local technical assistance investments to support economic development, foster job creation, and attract private investment in economically distressed areas of the United States. Under the Planning program, EDA makes Partnership Planning, Short-Term Planning, and State Planning awards to eligible recipients to create and implement regional economic development plans designed to build capacity and guide the economic prosperity and resiliency of an area or region. More specifically, EDA makes Partnership Planning investments to designated planning organizations (i.e., District Organizations) serving EDA-designated Economic Development Districts and to Indian Tribes to facilitate the development, implementation, revision, or replacement of Comprehensive Economic Development Strategies (CEDS), which articulate and prioritize the strategic economic goals of recipients’ respective regions. EDA also makes Short-Term and State Planning awards for economic development planning activities that guide the eventual creation and retention of high-quality jobs, particularly for the unemployed and underemployed in the Nation’s most economically distressed regions. Under the Local Technical Assistance program, EDA makes awards to strengthen the capacity of local or State organizations, institutions of higher education, and other eligible entities to undertake and promote effective economic development programs through projects such as feasibility studies, impact analyses, disaster resiliency plans, and project planning. **Please note: While the published Notice of Funding Opportunity (available under \"Related Documents\") states that the ED900A form and the SF424B form are both required for a complete application, these forms are no longer required and have therefore been removed from the package template."
+          },
           "source": "UPDATED NOTICE - PLEASE READ: April 6, 2023 EDA is excited to announce the launch of its new grants management platform: the Economic Development Grants Experience (EDGE). EDGE was developed to streamline the application and grants management process by implementing a single platform with increased transparency, improved user experience, higher data quality, and more efficiency throughout the entire grant lifecycle. As of April 6th, 2023, applications can no longer be submitted on Grants.gov, and will ONLY be accepted through EDGE. To apply in EDGE, please go to: sfgrants.eda.gov . More information on how to apply is provided in the full NOFO. PARTNERSHIP PLANNING program instructions: Please note that applicants will be invited to submit applications through EDGE for the Partnership Planning program. For more information, please reach out to your EDA point of contact. Program Description: EDA makes planning and local technical assistance investments to support economic development, foster job creation, and attract private investment in economically distressed areas of the United States. Under the Planning program, EDA makes Partnership Planning, Short-Term Planning, and State Planning awards to eligible recipients to create and implement regional economic development plans designed to build capacity and guide the economic prosperity and resiliency of an area or region. More specifically, EDA makes Partnership Planning investments to designated planning organizations (i.e., District Organizations) serving EDA-designated Economic Development Districts and to Indian Tribes to facilitate the development, implementation, revision, or replacement of Comprehensive Economic Development Strategies (CEDS), which articulate and prioritize the strategic economic goals of recipients’ respective regions. EDA also makes Short-Term and State Planning awards for economic development planning activities that guide the eventual creation and retention of high-quality jobs, particularly for the unemployed and underemployed in the Nation’s most economically distressed regions. Under the Local Technical Assistance program, EDA makes awards to strengthen the capacity of local or State organizations, institutions of higher education, and other eligible entities to undertake and promote effective economic development programs through projects such as feasibility studies, impact analyses, disaster resiliency plans, and project planning. **Please note: While the published Notice of Funding Opportunity (available under \"Related Documents\") states that the ED900A form and the SF424B form are both required for a complete application, these forms are no longer required and have therefore been removed from the package template."
         }
       ],
@@ -22170,7 +22313,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:36.269808+00:00",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The objective is an economical and future-oriented provision based on current tariff models and technologies (incl. use of 5G). The assignment of the individual mobile phone connections (sub-contracts of the framework agreement) takes place in two different usage profiles for data communication and a telephony flat rate & SMS flat rate for the country group 1. The subject matter of the service to be provided is the provision and activation of 2.230 (as of 01.04.2026) mobile phone connections (the number may deviate downwards or upwards depending on the requirements of the contracting authority) in various tariffs and with various options. The provision of subsidised or unsubsidised mobile phones as well as other hardware is not the subject matter of the service to be provided. The subject matter of the service to be provided is: - Provision and activation of 2.230 (as of 01.04.2026) mobile phone connections (the number may deviate downwards or upwards depending on the requirements of the contracting authority) in various tariffs and with various options, - Provision and dispatch of the necessary SIM cards with up to four cards per mobile phone connection to the contracting authority in the course of a rollout, - Pre-configuration of the SIM cards (hardware) and the individual connections (network-side), - e-SIM integration in accordance with the available hardware with up to four eSIMs per mobile phone connection (service portal etc.), - Dispatch of information material to the employees of the contracting authority, - Porting of the contracting authority's existing mobile phone numbers from the previous provider to the contractor, - Activation of further mobile phone connections with new phone numbers as required by the contracting authority, - Provision of a business app for the users of the mobile phone connections, - Provision of a service portal for administration for individual users of the contracting authority, - Provision of an evaluation and analysis tool by means of which the contracting authority can run evaluations on the consumption volume (minute consumption or data volume) at any time for freely selectable periods and in any level of detail, - Carrying out a one-day user training session for the service portal for a maximum of eight participants, - Free-of-charge invoicing with itemised bills in electronic form and, if desired by the client, in paper form, - Free-of-charge business customer hotline for all users (7/24), - Provision of a contact person (key account service manager) and a user help desk for individual employees of the contracting authority, as well as - other services in the course of general customer service. The contracting authority may terminate up to 10 percent of the mobile phone connections per contract year without giving reasons on a date determined by it. In the event of major restructuring measures, up to 25 percent of the mobile phone connections may be terminated by the contracting authority. However, a minimum number of 1.500 mobile phone connections remaining activated until the end of the framework agreement is guaranteed by the contracting authority."
+          },
           "source": "Zielsetzung ist eine wirtschaftliche und zukunftsorientierte Ausstattung auf Basis aktueller Tarifmodelle und Technologien (inkl. Einsatz von 5G). Die Zuordnung der einzelnen Mobilfunkanschlüsse (Teilverträge des Rahmenvertrags) erfolgt in zwei unterschiedlichen Nutzungsprofilen für die Datenkommunikation und eine Telefonie-Flat & SMS-Flat für die Ländergruppe 1. Gegenstand der zu erbringenden Leistung ist die Bereitstellung und Aktivierung von 2.230 (Stand 01.04.2026) Mobilfunkanschlüssen (die Anzahl kann je nach Bedarf der Auftraggeberin nach unten oder oben abweichen) in verschiedenen Tarifen und mit verschiedenen Optionen. Die Bereitstellung subventionierter oder unsubventionierter Mobiltelefone sowie sonstiger Hardware sind nicht Gegenstand der zu erbringenden Leistung. Gegenstand der zu erbringenden Leistung ist: - Bereitstellung und Aktivierung von 2.230 (Stand 01.04.2026) Mobilfunkanschlüssen (die Anzahl kann je nach Bedarf der Auftraggeberin nach unten oder oben abweichen) in verschiedenen Tarifen und mit verschiedenen Optionen, - Bereitstellung und Versendung der notwendigen SIM-Karten mit bis zu vier Karten je Mobilfunkanschluss an die Auftraggeberin im Zuge eines Rollouts, - Vorkonfigurieren der SIM-Karten (Hardware) und der einzelnen Anschlüsse (netzseitig), - e-SIM Integration entsprechend der zur Verfügung stehenden Hardware mit bis zu vier eSIM je Mobilfunkanschluss (Serviceportal etc.), - Versenden von Informationsmaterial an die Beschäftigten der Auftraggeberin, - Portierung der bestehenden Mobilfunk-Rufnummern der Auftraggeberin vom bisherigen Provider zum Auftragnehmer, - Aktivierung weiterer Mobilfunkanschlüsse mit neuen Rufnummern nach Bedarf der Auftraggeberin, - Bereitstellung einer Business-App für die Nutzenden der Mobilfunkanschlüsse, - Bereitstellung eines Serviceportals zur Administration für einzelne Benutzer der Auftraggeberin, - Bereitstellung eines Auswertungs-, Analysetools mittels dessen die Auftraggeberin je-derzeit über frei wählbare Zeiträume in jeglicher Detailtiefe Auswertungen zum Verbrauchsvolumen (Minutenverbrauch bzw. Datenvolumen) fahren kann, - Durchführen einer eintägigen User-Schulung für das Serviceportal für maximal acht Teilnehmer, - kostenfreie Rechnungsstellung mit Einzelverbindungsnachweisen in elektronischer und ggf. nach Wunsch des Auftraggebers in Papierform, - kostenfreie Geschäftskundenhotline für alle Benutzer (7/24), - Bereitstellen eines Ansprechpartners (Key-Account-Service-Manager) und eines User-Help-Desks für einzelne Mitarbeiter der Auftraggeberin sowie - sonstige Leistungen im Zuge eines allgemeinen Kundenservices. Die Auftraggeberin kann ohne Angaben von Gründen pro Vertragsjahr bis zu 10 Prozent der Mobilfunkanschlüsse zu einem von ihr festgelegten Datum kündigen. Im Fall von größeren Restrukturierungsmaßnahmen können bis zu 25 Prozent der Mobilfunkanschlüsse durch die Auftraggeberin gekündigt werden. Es wird jedoch eine Mindestanzahl von 1.500 Mobilfunkanschlüsse, die bis zum Ende des Rahmenvertrags aktiviert bleiben, durch die Auftraggeberin garantiert."
         }
       ],
@@ -23788,13 +23936,26 @@
       "parts": [
         {
           "blocked": false,
-          "failures": {},
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
           "quality_retry": {
             "after": 0,
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "rejected": {
+            "id": "421fa642556ca0b8214c68cade1de4b6076cdd7fd6e9048ba039964973b4e7f8:0",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Tietopyyntö: Opetushallituksen maksullisten tuotteiden logistiikka- ja käyttöoikeuspalvelu sekä verkkokauppa"
+          },
+          "result": {
+            "at": "2026-09-13T18:33:01.932813+00:00",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Request for information: The Finnish National Agency for Education's logistics and user licence service for fee-charging products as well as an online shop"
+          },
           "source": "Tietopyyntö: Opetushallituksen maksullisten tuotteiden logistiikka- ja käyttöoikeuspalvelu sekä verkkokauppa"
         }
       ],
@@ -23812,7 +23973,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:56.384560+00:00",
+            "language": "it",
+            "model": "gemini-3.5-flash-lite",
+            "text": "NOTICE OF MARKET CONSULTATION, pursuant to Article 77 of Legislative Decree 36/2023, for the verification of non-fungibility/exclusivity of the Application Management Services (AMS) service, consisting of updating, maintenance and application management activities relating to the following applications Net@H2O, Net@SIL, Net@SIA, Net@Report, Net@Web, Net@Pay, MMS and DIGIDOC, owned by Engineering Ingegneria Informatica S.p.A."
+          },
           "source": "AVVISO DI CONSULTAZIONE DI MERCATO, ai sensi dell art. 77 del D.Lgs. 36/2023, per la verifica di infungibilita/esclusivita del servizio di Application Management Services (AMS), consistente nelle attivita di aggiornamento, manutenzione, gestione applicativa relativamente ai seguenti applicativi Net@H2O, Net@SIL, Net@SIA, Net@Report, Net@Web, Net@Pay, MMS e DIGIDOC, di proprieta di Engineering Ingegneria Informatica S.p.A."
         }
       ],
@@ -27148,7 +27314,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:46.437811+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Prior information notice: Laboratory information system (LIMS) for the health companies in Helse Nord."
+          },
           "source": "Prior information notice: Laboratory information system (LIMS) for the health companies in Helse Nord."
         }
       ],
@@ -31425,7 +31596,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:46.447084+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Trondheim municipality is preparing a procurement aimed at tenderers who can offer training outside the school ́s physical frames, so-called alternative training arenas. Trondheim municipality has offered its pupils alternative training arenas at different farms for several years, but the municipality now wants a broader spectrum of activities for its pupils, such as E-sport, outdoor activities, motorsports etc. Trondheim municipality would, thus, like information from potential tenderers so that the municipality can be better aware of what systems are available in the market and how such services can be organised in cooperation with the school. This is so that the municipality shall design the best possible tender documentation and achieve good tenders that cover the municipality ́s needs so that good services are achieved."
+          },
           "source": "Trondheim municipality is preparing a procurement aimed at tenderers who can offer training outside the school ́s physical frames, so-called alternative training arenas. Trondheim municipality has offered its pupils alternative training arenas at different farms for several years, but the municipality now wants a broader spectrum of activities for its pupils, such as E-sport, outdoor activities, motorsports etc. Trondheim municipality would, thus, like information from potential tenderers so that the municipality can be better aware of what systems are available in the market and how such services can be organised in cooperation with the school. This is so that the municipality shall design the best possible tender documentation and achieve good tenders that cover the municipality ́s needs so that good services are achieved."
         }
       ],
@@ -33517,7 +33693,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:56.379476+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Supply of software and hardware for the management of a real-time security and emergency control and coordination centre and its maintenance, as well as the supply of body-worn and vehicle-mounted cameras for patrols, all integrated with the current systems of the local police of Torrejón de Ardoz"
+          },
           "source": "Suministro de software y hardware para gestión de centro de control y coordinación de seguridad y emergencias en tiempo real y su mantenimiento, así como suministro de cámaras personales y embarcadas en patrullas, todo ello integrado con los sistemas actuales de la policía local de Torrejón de Ardoz"
         }
       ],
@@ -34094,7 +34275,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:46.445168+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "TECHNICAL ASSISTANCE SERVICES FOR THE MANAGEMENT AND EXECUTION OF THE MISIÓN PROJECT Misión Project Technical Office; Misión Project Services"
+          },
           "source": "SERVICIOS DE ASISTENCIA TÉCNICA EN LA GESTIÓN Y EJECUCIÓN DEL PROYECTO MISIÓN Oficina Tecnica del Proyecto Mision; Servicios del Proyecto Misión"
         }
       ],
@@ -39512,7 +39698,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:16.901452+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Philadelphia FY 2021 &ndash; FY 2023 EDA Planning and Local Technical Assistance"
+          },
           "source": "Philadelphia FY 2021 &ndash; FY 2023 EDA Planning and Local Technical Assistance"
         }
       ],
@@ -40934,13 +41125,26 @@
       "parts": [
         {
           "blocked": false,
-          "failures": {},
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
           "quality_retry": {
             "after": 0,
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "rejected": {
+            "id": "7428fcc34f0f6df4b1277dfa9452087b0a5131e49741c337ddb49a9cbc0b71f8:0",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Markterkundung Betrieb Landesdatennetz"
+          },
+          "result": {
+            "at": "2026-09-13T18:33:01.941889+00:00",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Market consultation on the operation of the state data network"
+          },
           "source": "Markterkundung Betrieb Landesdatennetz"
         }
       ],
@@ -41766,7 +41970,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:46.447666+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "SUPPLY OF LICENCES AND SUPPORT FOR TWO PALO ALTO PA-5260 FIREWALLS,"
+          },
           "source": "SUMINISTRO DE LICENCIAS Y SOPORTE PARA DOS FIREWALLS PALOALTO PA-5260,"
         }
       ],
@@ -42834,7 +43043,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:23.451329+00:00",
+            "language": "de",
+            "model": "gemini-3.1-flash-lite",
+            "text": "City of Abensberg"
+          },
           "source": "Stadt Abensberg"
         }
       ],
@@ -43334,7 +43548,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:46.446606+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Invitation to market dialogue - Procurement of alternative training laboratory for primary and secondary schools - from the school year autumn 2026"
+          },
           "source": "Invitation to market dialogue - Procurement of alternative training laboratory for primary and secondary schools - from the school year autumn 2026"
         }
       ],
@@ -47306,7 +47525,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:16.899422+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "FY 2023 Disaster Supplemental"
+          },
           "source": "FY 2023 Disaster Supplemental"
         }
       ],
@@ -48725,7 +48949,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:46.445312+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Renewal of the subscription for the right to use data centre software licences (VMware, Red Hat, TrendMicro, SUSE and Commvault) for Barcelona City Council (5 Lots)."
+          },
           "source": "Renovación de la suscripción del derecho de uso de las licencias del software de CPD (WMware, Redhat, TrendMicro, Suse y Commvault) para el Ayuntamiento de Barcelona (5 Lotes)."
         }
       ],
@@ -49891,7 +50120,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:46.447912+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "SUPPLY OF LICENCES AND SUPPORT FOR TWO PALO ALTO PA-5260 FIREWALLS FOR THE REGIONAL MINISTRY OF EDUCATIONAL DEVELOPMENT AND VOCATIONAL TRAINING The purpose of this contract is the renewal of the supply of licences and official technical manufacturer support for two (2) Palo Alto PA-5260 corporate firewalls, without any delivery of hardware, with one installed in the Torretriana Data Processing Centre (DPC) and the other in the Scientific Computer Centre of Andalusia (CICA)"
+          },
           "source": "SUMINISTRO DE LICENCIAS Y SOPORTE PARA DOS FIREWALLS PALOALTO PA-5260, PARA LA CONSEJERÍA DE DESARROLLO EDUCATIVO Y FORMACIÓN PROFESIONAL El presente contrato tiene por objeto la renovación del suministro de licencias y soporte oficial de fabricante técnico de dos (2) cortafuegos corporativos Palo Alto PA-5260, sin que exista entrega de hardware, instalados uno en el Centro de Proceso de Datos (CPD) de Torretriana y otro en el Centro Informático Científico de Andalucía (CICA)"
         }
       ],
@@ -50390,7 +50624,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:16.898608+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "NOTICE: Application Process as of April 6th EDA is excited to announce the launch of its new grants management platform: the Economic Development Grants Experience (EDGE). EDGE was developed to streamline the application and grants management process by implementing a single platform with increased transparency, improved user experience, higher data quality, and more efficiency throughout the entire grant lifecycle. As of April 6th, 2023, applications can no longer be submitted on Grants.gov, and will ONLY be accepted through EDGE. To apply in EDGE, please go to: sfgrants.eda.gov. More information on how to apply is provided in the full NOFO. PARTNERSHIP PLANNING program instructions: Please note that applicants will be invited to submit applications through EDGE for the Partnership Planning program. For more information, please reach out to your EDA point of contact. Program Description: EDA makes planning and local technical assistance investments to support economic development, foster job creation, and attract private investment in economically distressed areas of the United States. Under the Planning program, EDA makes Partnership Planning, Short-Term Planning, and State Planning awards to eligible recipients to create and implement regional economic development plans designed to build capacity and guide the economic prosperity and resiliency of an area or region. More specifically, EDA makes Partnership Planning investments to designated planning organizations (i.e., District Organizations) serving EDA-designated Economic Development Districts and to Indian Tribes to facilitate the development, implementation, revision, or replacement of Comprehensive Economic Development Strategies (CEDS), which articulate and prioritize the strategic economic goals of recipients’ respective regions. EDA also makes Short-Term and State Planning awards for economic development planning activities that guide the eventual creation and retention of high-quality jobs, particularly for the unemployed and underemployed in the Nation’s most economically distressed regions. Under the Local Technical Assistance program, EDA makes awards to strengthen the capacity of local or State organizations, institutions of higher education, and other eligible entities to undertake and promote effective economic development programs through projects such as feasibility studies, impact analyses, disaster resiliency plans, and project planning. *Please note: While the published Notice of Funding Opportunity (available under \"Related Documents\") states that the ED900A form and the SF424B form are both required for a complete application, these forms are no longer required and have therefore been removed from the package template."
+          },
           "source": "NOTICE: Application Process as of April 6th EDA is excited to announce the launch of its new grants management platform: the Economic Development Grants Experience (EDGE). EDGE was developed to streamline the application and grants management process by implementing a single platform with increased transparency, improved user experience, higher data quality, and more efficiency throughout the entire grant lifecycle. As of April 6th, 2023, applications can no longer be submitted on Grants.gov, and will ONLY be accepted through EDGE. To apply in EDGE, please go to: sfgrants.eda.gov. More information on how to apply is provided in the full NOFO. PARTNERSHIP PLANNING program instructions: Please note that applicants will be invited to submit applications through EDGE for the Partnership Planning program. For more information, please reach out to your EDA point of contact. Program Description: EDA makes planning and local technical assistance investments to support economic development, foster job creation, and attract private investment in economically distressed areas of the United States. Under the Planning program, EDA makes Partnership Planning, Short-Term Planning, and State Planning awards to eligible recipients to create and implement regional economic development plans designed to build capacity and guide the economic prosperity and resiliency of an area or region. More specifically, EDA makes Partnership Planning investments to designated planning organizations (i.e., District Organizations) serving EDA-designated Economic Development Districts and to Indian Tribes to facilitate the development, implementation, revision, or replacement of Comprehensive Economic Development Strategies (CEDS), which articulate and prioritize the strategic economic goals of recipients’ respective regions. EDA also makes Short-Term and State Planning awards for economic development planning activities that guide the eventual creation and retention of high-quality jobs, particularly for the unemployed and underemployed in the Nation’s most economically distressed regions. Under the Local Technical Assistance program, EDA makes awards to strengthen the capacity of local or State organizations, institutions of higher education, and other eligible entities to undertake and promote effective economic development programs through projects such as feasibility studies, impact analyses, disaster resiliency plans, and project planning. *Please note: While the published Notice of Funding Opportunity (available under \"Related Documents\") states that the ED900A form and the SF424B form are both required for a complete application, these forms are no longer required and have therefore been removed from the package template."
         }
       ],
@@ -50426,7 +50665,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:01.946245+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Tactical Behaviors for Autonomous Maneuver"
+          },
           "source": "Tactical Behaviors for Autonomous Maneuver"
         }
       ],
@@ -51066,7 +51310,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:36.274946+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "This notice of funding opportunity (NOFO) provides funding to conduct efficacy studies in an established rare disease preclinical model to demonstrate that a proposed therapeutic agent warrants further development. In addition to preclinical efficacy, accompanying pharmacodynamic and pharmacokinetic studies would be supported. Therapeutic agents include small molecules, biologics or biotechnology-derived products. The goal of this NOFO is to spur therapeutic development for a variety of rare diseases by advancing projects to the point where they would attract subsequent investment supporting full Investigational New Drug (IND) application development or progression to clinical trials in the case of repurposing or repositioning."
+          },
           "source": "This notice of funding opportunity (NOFO) provides funding to conduct efficacy studies in an established rare disease preclinical model to demonstrate that a proposed therapeutic agent warrants further development. In addition to preclinical efficacy, accompanying pharmacodynamic and pharmacokinetic studies would be supported. Therapeutic agents include small molecules, biologics or biotechnology-derived products. The goal of this NOFO is to spur therapeutic development for a variety of rare diseases by advancing projects to the point where they would attract subsequent investment supporting full Investigational New Drug (IND) application development or progression to clinical trials in the case of repurposing or repositioning."
         }
       ],
@@ -52584,7 +52833,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:23.450763+00:00",
+            "language": "es",
+            "model": "gemini-3.1-flash-lite",
+            "text": "Municipal Institute of Informatics of Barcelona"
+          },
           "source": "Instituto Municipal de Informática de Barcelona"
         }
       ],
@@ -52656,7 +52910,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:16.894956+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Chicago FY 2021 &ndash; FY 2023 EDA Planning and Local Technical Assistance"
+          },
           "source": "Chicago FY 2021 &ndash; FY 2023 EDA Planning and Local Technical Assistance"
         }
       ],
@@ -53861,7 +54120,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:36.272639+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Preclinical Proof of Concept Studies for Rare Diseases (R21 Clinical Trial Not Allowed)"
+          },
           "source": "Preclinical Proof of Concept Studies for Rare Diseases (R21 Clinical Trial Not Allowed)"
         }
       ],
@@ -53933,17 +54197,18 @@
         {
           "blocked": false,
           "failures": {
-            "gemini-3.1-flash-lite": 2
+            "gemini-3.1-flash-lite": 2,
+            "gemini-3.5-flash-lite": 2
           },
           "quality_retry": {
-            "after": 0,
+            "after": 1789328022.9770374,
             "day": "2026-09-13",
             "round": 0
           },
           "rejected": {
             "id": "984720aa0631a8157e49446825926d634cce3577dc85224dc50528d836754116:0",
             "language": "fi",
-            "model": "gemini-3.1-flash-lite",
+            "model": "gemini-3.5-flash-lite",
             "text": "City of Jyväskylä"
           },
           "result": null,
@@ -54103,7 +54368,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:36.267607+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "This is not a call for competition. The London Borough of Croydon is undertaking preliminary market engagement in relation to the potential commissioning of an Erasmus+ teacher/educator training and international mobility programme for Croydon schools. The Council is seeking expressions of interest only from organisations with demonstrable previous experience of managing and delivering Erasmus+ projects and international education mobility programmes on behalf of schools or public-sector organisations. The appointed provider would be expected to provide end-to-end programme management, including: • Previous experience of successfully managing and delivering Erasmus+ projects, including details of the number and type of projects delivered • Management and coordination of international teacher training, CPD and school visits across European destinations, with destinations to be confirmed • Organisation and management of participant travel, accommodation, and associated logistics • Support with participant recruitment and selection, including ensuring appropriate eligibility and allocation processes • Management of Erasmus+ grant administration, financial monitoring, evidence, and reporting requirements • Support for safeguarding, risk management and participant welfare throughout the programme • Delivery or commissioning of high-quality teacher CPD and training aligned to the agreed programme objectives • Development and implementation of programme evaluation, impact measurement, and outcomes reporting • Monitoring and reporting on participant outcomes and the wider impact of the programme on participating schools; and • Effective stakeholder management and communication with the Council, schools, training providers, and international partners. The programme is intended to support Croydon schools in developing practice in areas including inclusion and SEND, digital and AI-enabled education, wellbeing, sustainability, innovation, and oracy/communication-rich learning, aligned with relevant Erasmus+ priorities. Providers should only register an interest where they can demonstrate the relevant specialist experience, capacity, international networks and organisational infrastructure required to manage an Erasmus+ mobility programme from participant selection through to final evaluation and grant reporting. Registering your interest Providers wishing to participate must register their interest through the correspondence area no later than 21 September 2026 Please complete the sections provided in the document attached and return via the messaging area on the inTend Portal: Following the registration deadline, the Council will review responses and may engage with organisations whose experience and capabilities align with the requirements. This market engagement exercise is intended to inform the Council's understanding of the market and potential future commissioning arrangements. It does not constitute a procurement process, and participation does not provide any advantage in any future procurement activity. Organisation name Main contact name and job title Contact email address A brief response confirming: • the number of Erasmus+ projects your organisation has previously managed • your experience of managing international school/teacher mobility programmes • your experience of grant administration and reporting • your ability to manage travel, accommodation, participant selection, safeguarding, CPD and evaluation; and • a brief example of a comparable programme successfully delivered. Word Limit: 250 words The London Borough of Croydon use the Intend portal to manage supplier records and to run procurement activities. If you do not yet have an account, please register, if you do have an account, It is essential that your company information on Intend matches the details held by Companies House, please do log in and check this. Intend Portal: https://in-tendhost.co.uk/croydontenders/aspx/Home Register on the Central Digital Platform If you haven’t already, please register your organisation on the Central Digital Platform. This is a government-wide initiative to streamline supplier engagement and improve transparency. Again please do ensure your information matches your Companies House details. Central Digital Platform Registration: https://www.gov.uk/government/publications/procurement-act-2023-short-guides/suppliers-how-to-register-your-organisation-and-first-administrator-on-find-a-tender-in-three-easy-steps-html We appreciate your cooperation and look forward to working together. Lot 1: . None"
+          },
           "source": "This is not a call for competition. The London Borough of Croydon is undertaking preliminary market engagement in relation to the potential commissioning of an Erasmus+ teacher/educator training and international mobility programme for Croydon schools. The Council is seeking expressions of interest only from organisations with demonstrable previous experience of managing and delivering Erasmus+ projects and international education mobility programmes on behalf of schools or public-sector organisations. The appointed provider would be expected to provide end-to-end programme management, including: • Previous experience of successfully managing and delivering Erasmus+ projects, including details of the number and type of projects delivered • Management and coordination of international teacher training, CPD and school visits across European destinations, with destinations to be confirmed • Organisation and management of participant travel, accommodation, and associated logistics • Support with participant recruitment and selection, including ensuring appropriate eligibility and allocation processes • Management of Erasmus+ grant administration, financial monitoring, evidence, and reporting requirements • Support for safeguarding, risk management and participant welfare throughout the programme • Delivery or commissioning of high-quality teacher CPD and training aligned to the agreed programme objectives • Development and implementation of programme evaluation, impact measurement, and outcomes reporting • Monitoring and reporting on participant outcomes and the wider impact of the programme on participating schools; and • Effective stakeholder management and communication with the Council, schools, training providers, and international partners. The programme is intended to support Croydon schools in developing practice in areas including inclusion and SEND, digital and AI-enabled education, wellbeing, sustainability, innovation, and oracy/communication-rich learning, aligned with relevant Erasmus+ priorities. Providers should only register an interest where they can demonstrate the relevant specialist experience, capacity, international networks and organisational infrastructure required to manage an Erasmus+ mobility programme from participant selection through to final evaluation and grant reporting. Registering your interest Providers wishing to participate must register their interest through the correspondence area no later than 21 September 2026 Please complete the sections provided in the document attached and return via the messaging area on the inTend Portal: Following the registration deadline, the Council will review responses and may engage with organisations whose experience and capabilities align with the requirements. This market engagement exercise is intended to inform the Council's understanding of the market and potential future commissioning arrangements. It does not constitute a procurement process, and participation does not provide any advantage in any future procurement activity. Organisation name Main contact name and job title Contact email address A brief response confirming: • the number of Erasmus+ projects your organisation has previously managed • your experience of managing international school/teacher mobility programmes • your experience of grant administration and reporting • your ability to manage travel, accommodation, participant selection, safeguarding, CPD and evaluation; and • a brief example of a comparable programme successfully delivered. Word Limit: 250 words The London Borough of Croydon use the Intend portal to manage supplier records and to run procurement activities. If you do not yet have an account, please register, if you do have an account, It is essential that your company information on Intend matches the details held by Companies House, please do log in and check this. Intend Portal: https://in-tendhost.co.uk/croydontenders/aspx/Home Register on the Central Digital Platform If you haven’t already, please register your organisation on the Central Digital Platform. This is a government-wide initiative to streamline supplier engagement and improve transparency. Again please do ensure your information matches your Companies House details. Central Digital Platform Registration: https://www.gov.uk/government/publications/procurement-act-2023-short-guides/suppliers-how-to-register-your-organisation-and-first-administrator-on-find-a-tender-in-three-easy-steps-html We appreciate your cooperation and look forward to working together. Lot 1: . None"
         }
       ],
@@ -54395,18 +54665,19 @@
         {
           "blocked": false,
           "failures": {
-            "gemini-3.1-flash-lite": 2
+            "gemini-3.1-flash-lite": 2,
+            "gemini-3.5-flash-lite": 2
           },
           "quality_retry": {
-            "after": 0,
+            "after": 1789328022.9768674,
             "day": "2026-09-13",
             "round": 0
           },
           "rejected": {
             "id": "99750f3b5801779cd6452c3ff6f313604a17c998b7f8a515daf267f21fa7a6da:0",
             "language": "fi",
-            "model": "gemini-3.1-flash-lite",
-            "text": "Numera Palvelut Oy; Municipality of Hattula; City of Hämeenlinna; Municipality of Janakkala; Kanta-Häme Wellbeing Services County; Tavastia Education Joint Authority"
+            "model": "gemini-3.5-flash-lite",
+            "text": "Numera Services Ltd; Municipality of Hattula; City of Hämeenlinna; Municipality of Janakkala; Kanta-Häme Wellbeing Services County; Tavastia Education Federation of Municipalities"
           },
           "result": null,
           "source": "Numera Palvelut Oy; Hattulan kunta; Hämeenlinnan kaupunki; Janakkalan kunta; Kanta-Hämeen hyvinvointialue; Koulutuskuntayhtymä Tavastia"
@@ -54732,7 +55003,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:23.453796+00:00",
+            "language": "en",
+            "model": "gemini-3.1-flash-lite",
+            "text": "Christopher D Justice\nContract Specialist"
+          },
           "source": "Christopher D Justice\nContract Specialist"
         }
       ],
@@ -56554,7 +56830,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:01.943111+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "NOTICE: PLEASE READ - April 6, 2023 EDA is excited to announce the launch of its new grants management platform: the Economic Development Grants Experience (EDGE). EDGE was developed to streamline the application and grants management process by implementing a single platform with increased transparency, improved user experience, higher data quality, and more efficiency throughout the entire grant lifecycle. As of April 6th , 2023, applications can no longer be submitted on Grants.gov, and will ONLY be accepted through EDGE. Once your concept proposal has been reviewed, you will receive an invitation to apply in EDGE. More information on how to apply is provided in the full NOFO. You must submit concept proposals to rnta@eda.gov. Program Description EDA provides strategic investments on a competitive merit basis to support economic development, foster job creation, and attract private investment in economically distressed areas of the United States. Under this NOFO, EDA solicits applications from applicants in order to provide investments that support research and technical assistance projects under EDA’s R&E and NTA programs. Grants and cooperative agreements made under these programs are designed to leverage existing regional assets and support the implementation of economic development strategies that advance new ideas and creative approaches to advance economic prosperity in distressed communities. This NOFO employs a two-step application process: (1) the Concept Proposal and (2) the Full Application. EDA will only review Full Applications submitted by applicants who first submitted a Concept Proposal. Any Full Application received from an applicant that did not submit a Concept Proposal will be deemed ineligible and not considered for funding. For the Concept Proposal, applicants may use the optional template available at https://eda.gov/programs/rnta/resources/. Full Applications must be submitted through Grants.gov using the link that EDA will provide with its response to the Concept Proposal. *Please note: While the published Notice of Funding Opportunity (available under \"Related Documents\") states that the ED900A form and the SF424B form are both required for a complete application, these forms are no longer required and have therefore been removed from the package template."
+          },
           "source": "NOTICE: PLEASE READ - April 6, 2023 EDA is excited to announce the launch of its new grants management platform: the Economic Development Grants Experience (EDGE). EDGE was developed to streamline the application and grants management process by implementing a single platform with increased transparency, improved user experience, higher data quality, and more efficiency throughout the entire grant lifecycle. As of April 6th , 2023, applications can no longer be submitted on Grants.gov, and will ONLY be accepted through EDGE. Once your concept proposal has been reviewed, you will receive an invitation to apply in EDGE. More information on how to apply is provided in the full NOFO. You must submit concept proposals to rnta@eda.gov. Program Description EDA provides strategic investments on a competitive merit basis to support economic development, foster job creation, and attract private investment in economically distressed areas of the United States. Under this NOFO, EDA solicits applications from applicants in order to provide investments that support research and technical assistance projects under EDA’s R&E and NTA programs. Grants and cooperative agreements made under these programs are designed to leverage existing regional assets and support the implementation of economic development strategies that advance new ideas and creative approaches to advance economic prosperity in distressed communities. This NOFO employs a two-step application process: (1) the Concept Proposal and (2) the Full Application. EDA will only review Full Applications submitted by applicants who first submitted a Concept Proposal. Any Full Application received from an applicant that did not submit a Concept Proposal will be deemed ineligible and not considered for funding. For the Concept Proposal, applicants may use the optional template available at https://eda.gov/programs/rnta/resources/. Full Applications must be submitted through Grants.gov using the link that EDA will provide with its response to the Concept Proposal. *Please note: While the published Notice of Funding Opportunity (available under \"Related Documents\") states that the ED900A form and the SF424B form are both required for a complete application, these forms are no longer required and have therefore been removed from the package template."
         }
       ],
@@ -57633,7 +57914,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:36.277392+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "DOD Defense Health Agency (DHA) Research &amp; Development FY23-FY27 BROAD AGENCY ANNOUNCEMENT for Extramural Medical Research"
+          },
           "source": "DOD Defense Health Agency (DHA) Research &amp; Development FY23-FY27 BROAD AGENCY ANNOUNCEMENT for Extramural Medical Research"
         }
       ],
@@ -59209,7 +59495,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:36.272171+00:00",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Framework Agreement on the Digitalisation of Files from the Immigration Office of the State Capital of Magdeburg"
+          },
           "source": "Rahmenvertrag Digitalisierung von Akten der Ausländerbehörde der Landeshauptstadt Magdeburg"
         }
       ],
@@ -59576,17 +59867,18 @@
         {
           "blocked": false,
           "failures": {
-            "gemini-3.1-flash-lite": 2
+            "gemini-3.1-flash-lite": 2,
+            "gemini-3.5-flash-lite": 2
           },
           "quality_retry": {
-            "after": 0,
+            "after": 1789328022.977048,
             "day": "2026-09-13",
             "round": 0
           },
           "rejected": {
             "id": "a75bc1ed52ea36ebc96fd2efbd217da49307b3e138f57632a5922d13f4af3946:0",
             "language": "sv",
-            "model": "gemini-3.1-flash-lite",
+            "model": "gemini-3.5-flash-lite",
             "text": "Västra Götaland Region"
           },
           "result": null,
@@ -61852,7 +62144,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:23.446981+00:00",
+            "language": "de",
+            "model": "gemini-3.1-flash-lite",
+            "text": "City of Bad Homburg v. d. Höhe - The Magistrate, Legal Department - Procurement Office -"
+          },
           "source": "Stadt Bad Homburg v. d. Höhe - Der Magistrat, Fachbereich Recht - Vergabestelle -"
         }
       ],
@@ -62063,7 +62360,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:23.449852+00:00",
+            "language": "de",
+            "model": "gemini-3.1-flash-lite",
+            "text": "Municipal Information Services Magdeburg Ltd (KID)"
+          },
           "source": "Kommunale Informationsdienste Magdeburg GmbH (KID)"
         }
       ],
@@ -62258,7 +62560,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:46.437237+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Procurement of implementation services, SaaS licences, evolutionary maintenance and other recurrent services for “CRM” software for Servicios Funerarios de Madrid (Empresa Municipal de Servicios Funerarios y Cementerios de Madrid, S.A.)"
+          },
           "source": "Contratación de los servicios de implantación, licencias SaaS, mantenimiento evolutivo y resto de servicios recurrentes de un software “CRM” para Servicios Funerarios de Madrid (Empresa Municipal de Servicios Funerarios y Cementerios de Madrid, S.A.)"
         }
       ],
@@ -62337,7 +62644,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:46.444979+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Invitation to market dialogue. Sykehusinnkjøp HF hereby invites tenderers to a market dialogue for the procurement of a laboratory information system for the health companies in Helse Nord. The market dialogue is a part of the preliminary work for the procurement and is being carried out because the Contracting Authority would like input for the procurement from potential suppliers, possibly also from other interested parties. As a part of this process, suppliers are invited to provide input to the procurement prior to the announcement. The feedback makes it possible to make a decision about the type of procurement and procurement procedure. Based on input from the market dialogue, the Contracting Authority will, as needed, open to a closer dialogue with some of the suppliers for further details and discussions. The contracting authority would like input on the following points: Short presentation of the supplier/tendererWhich the specialist areas the system is meant to cover (see further information on all disciplines within the laboratory service in annex \"Invitation to market dialogue\") About the solution, including brief information on functionality, possibilities and limitations, and: Describe how the system is built up in the tender documentation. modules, and which advantages this provides. How the system is deployed to clients; web based and/or sw deployed on clients. By the latter; whether there are specific requirements for clients. How the system will be deployed back-end. Describe how the system supports portable devices (tablets etc.). References to customers where the system is in use (and possibly which parts of the system they use). The tenderer ́s thoughts on how the system will support future development within the disciplines, e.g. within AI, integrations (i.a. FHIR), personalised medicine, etc. Input for the procurement as regards the expected functionality described in chapter 5 (see annex \"Invitation to Market Dialogue\"):How does the system ensure user friendliness, intuitive user interface and training? How does the system cover the overall description and for each of the disciplines covered by the solution? If there is functionality that cannot be offered we would like to know this. Which disciplines the solution covers and whether it covers all disciplines within the laboratory service (note possible exceptions for transfusion medicine/blood bank). How the system supports decision support functionality. How the solution supports artificial intelligence. How the system supports personalised medicine. How does the system support different integration mechanisms with other systems (FHIR, message exchange in accordance with Norwegian requirements, etc.?) Delivery. Which factors affect delivery time and how do you handle risk? All the functionalities are ready developed and can be delivered. If there is functionality that needs to be developed, it is desirable to know. Delivery model: cloud and/or local installation. If the system is cloud compatible; about Norwegian requirements are complied with. Whether there are specific requirements for HW and underlying SW-platform for customers. Short proposals as to how the system will be implemented at Customer Provisions that the Customer is expected to fulfil. Frequency of release bicycles and response to new functionality and error recovery. Integrations: does this require assistance from customers? Describe the pricing model and what factors affect the total cost of ownership (TCO) Licenses Maintenance/support price driven factors. And input that the tenderer deems important. Deadline for written feedback on the above mentioned points from interested parties: 28.11.2025. This is only a prior information notice in order to get information on the market and to have a dialogue with relevant suppliers. The actual competition may be announced at a later date. Feedback on or questions to the market survey is done in the Mercell communication module. After this market survey, the contracting authority will assess the need to hold meetings(s) with relevant interested parties."
+          },
           "source": "Invitation to market dialogue. Sykehusinnkjøp HF hereby invites tenderers to a market dialogue for the procurement of a laboratory information system for the health companies in Helse Nord. The market dialogue is a part of the preliminary work for the procurement and is being carried out because the Contracting Authority would like input for the procurement from potential suppliers, possibly also from other interested parties. As a part of this process, suppliers are invited to provide input to the procurement prior to the announcement. The feedback makes it possible to make a decision about the type of procurement and procurement procedure. Based on input from the market dialogue, the Contracting Authority will, as needed, open to a closer dialogue with some of the suppliers for further details and discussions. The contracting authority would like input on the following points: Short presentation of the supplier/tendererWhich the specialist areas the system is meant to cover (see further information on all disciplines within the laboratory service in annex \"Invitation to market dialogue\") About the solution, including brief information on functionality, possibilities and limitations, and: Describe how the system is built up in the tender documentation. modules, and which advantages this provides. How the system is deployed to clients; web based and/or sw deployed on clients. By the latter; whether there are specific requirements for clients. How the system will be deployed back-end. Describe how the system supports portable devices (tablets etc.). References to customers where the system is in use (and possibly which parts of the system they use). The tenderer ́s thoughts on how the system will support future development within the disciplines, e.g. within AI, integrations (i.a. FHIR), personalised medicine, etc. Input for the procurement as regards the expected functionality described in chapter 5 (see annex \"Invitation to Market Dialogue\"):How does the system ensure user friendliness, intuitive user interface and training? How does the system cover the overall description and for each of the disciplines covered by the solution? If there is functionality that cannot be offered we would like to know this. Which disciplines the solution covers and whether it covers all disciplines within the laboratory service (note possible exceptions for transfusion medicine/blood bank). How the system supports decision support functionality. How the solution supports artificial intelligence. How the system supports personalised medicine. How does the system support different integration mechanisms with other systems (FHIR, message exchange in accordance with Norwegian requirements, etc.?) Delivery. Which factors affect delivery time and how do you handle risk? All the functionalities are ready developed and can be delivered. If there is functionality that needs to be developed, it is desirable to know. Delivery model: cloud and/or local installation. If the system is cloud compatible; about Norwegian requirements are complied with. Whether there are specific requirements for HW and underlying SW-platform for customers. Short proposals as to how the system will be implemented at Customer Provisions that the Customer is expected to fulfil. Frequency of release bicycles and response to new functionality and error recovery. Integrations: does this require assistance from customers? Describe the pricing model and what factors affect the total cost of ownership (TCO) Licenses Maintenance/support price driven factors. And input that the tenderer deems important. Deadline for written feedback on the above mentioned points from interested parties: 28.11.2025. This is only a prior information notice in order to get information on the market and to have a dialogue with relevant suppliers. The actual competition may be announced at a later date. Feedback on or questions to the market survey is done in the Mercell communication module. After this market survey, the contracting authority will assess the need to hold meetings(s) with relevant interested parties."
         }
       ],
@@ -63102,7 +63414,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:56.379746+00:00",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "As part of the construction measures, the complete school is to be core-refurbished in two construction phases, the student capacity expanded to 4,5 streams, and the educational concept of the learning landscape and all-day care integrated."
+          },
           "source": "Im Zuge der Baumaßnahmen soll die komplette Schule in zwei Bauabschnitten kernsaniert werden, die Schülerkapazität auf 4,5 Züge erweiter, sowie das pädagogische Konzept der Lernlandschaft und die Ganztagsbetreuung integriert werden."
         }
       ],
@@ -63807,7 +64124,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:46.435358+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The USAMRDC’s mission is to provide solutions to medical problems of importance to the American Service Member at home and abroad, as well as to the general public at large. The scope of this effort and the priorities attached to specific projects are influenced by changes in military and civilian medical science and technology (S&T), operational requirements, military threat assessments, and national defense strategies. Extramural research and development programs play a vital role in the fulfillment of the objectives established by the USAMRDC. General information on the USAMRDC can be obtained at https://mrdc.health.mil/. This BAA is intended to solicit extramural research and development ideas using the authority provided by 10 USC 4001. The BAA is issued under the provisions of the Competition in Contracting Act of 1984 (Public Law 98-369), as implemented in FAR 6.102(d)(2) and 35.016 and in Department of Defense Grant and Agreement Regulations (DoDGARs) 22.315. In accordance with FAR 35.016, projects funded under this BAA must be for basic and applied research to support scientific study and experimentation directed toward advancing the state-of-the-art or increasing knowledge or understanding rather than focusing on development of a specific system or hardware solution. Research and development funded through this BAA are intended and expected to benefit and inform both military and civilian medical practice and knowledge. This BAA utilizes competitive procedures in accordance with 10 USC 3012 for the selection for award of S&T proposals/applications. For the purposes of this BAA, S&T includes activities involving basic research, applied research, advanced technology development, and, under certain conditions, may include activities involving advanced component development and prototypes. The selection process is highly competitive, and the quantity of meaningful submissions (both pre-proposals/pre-applications and full proposals/applications) received typically exceeds the number of awards that available funding can support. This BAA provides a general description of USAMRDC’s research and development programs, including Research Areas of Interest, evaluation and selection criteria, pre-proposal/ pre-application and full proposal/application preparation instructions, and general administrative information. Specific submission information and additional administrative requirements can be found in the document titled, “General Submission Instructions,” which is available on Grants.gov along with this BAA. The FY23-FY27 USAMRDC BAA is continuously open for a 5-year period, from October 1, 2022 through September 30, 2027, at 11:59 p.m. Eastern Time. Submission of a pre-proposal/pre-application is required and must be submitted through the electronic Biomedical Research Application Portal (eBRAP) (https://eBRAP.org/). Pre-proposals/pre-applications may be submitted at any time throughout the 5-year period. If the USAMRDC is interested in receiving a full proposal/application, the Principal Investigator will be sent an invitation to submit via eBRAP. A full proposal/application must be submitted through Grants.gov (http://www.grants.gov/). Invited full proposals/applications can be submitted under this FY23-FY27 BAA through September 30, 2027."
+          },
           "source": "The USAMRDC’s mission is to provide solutions to medical problems of importance to the American Service Member at home and abroad, as well as to the general public at large. The scope of this effort and the priorities attached to specific projects are influenced by changes in military and civilian medical science and technology (S&T), operational requirements, military threat assessments, and national defense strategies. Extramural research and development programs play a vital role in the fulfillment of the objectives established by the USAMRDC. General information on the USAMRDC can be obtained at https://mrdc.health.mil/. This BAA is intended to solicit extramural research and development ideas using the authority provided by 10 USC 4001. The BAA is issued under the provisions of the Competition in Contracting Act of 1984 (Public Law 98-369), as implemented in FAR 6.102(d)(2) and 35.016 and in Department of Defense Grant and Agreement Regulations (DoDGARs) 22.315. In accordance with FAR 35.016, projects funded under this BAA must be for basic and applied research to support scientific study and experimentation directed toward advancing the state-of-the-art or increasing knowledge or understanding rather than focusing on development of a specific system or hardware solution. Research and development funded through this BAA are intended and expected to benefit and inform both military and civilian medical practice and knowledge. This BAA utilizes competitive procedures in accordance with 10 USC 3012 for the selection for award of S&T proposals/applications. For the purposes of this BAA, S&T includes activities involving basic research, applied research, advanced technology development, and, under certain conditions, may include activities involving advanced component development and prototypes. The selection process is highly competitive, and the quantity of meaningful submissions (both pre-proposals/pre-applications and full proposals/applications) received typically exceeds the number of awards that available funding can support. This BAA provides a general description of USAMRDC’s research and development programs, including Research Areas of Interest, evaluation and selection criteria, pre-proposal/ pre-application and full proposal/application preparation instructions, and general administrative information. Specific submission information and additional administrative requirements can be found in the document titled, “General Submission Instructions,” which is available on Grants.gov along with this BAA. The FY23-FY27 USAMRDC BAA is continuously open for a 5-year period, from October 1, 2022 through September 30, 2027, at 11:59 p.m. Eastern Time. Submission of a pre-proposal/pre-application is required and must be submitted through the electronic Biomedical Research Application Portal (eBRAP) (https://eBRAP.org/). Pre-proposals/pre-applications may be submitted at any time throughout the 5-year period. If the USAMRDC is interested in receiving a full proposal/application, the Principal Investigator will be sent an invitation to submit via eBRAP. A full proposal/application must be submitted through Grants.gov (http://www.grants.gov/). Invited full proposals/applications can be submitted under this FY23-FY27 BAA through September 30, 2027."
         }
       ],
@@ -64741,7 +65063,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:36.271360+00:00",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "With the ESF Federal Programme \"Education, Economy, Work in the Quarter - BIWAQ\", the Federal Ministry for Housing, Urban Development and Building (BMWSB) grants funds for projects that link labour market policy activities and approaches for strengthening the local economy with area-related integrated urban development. The aim of this call for tenders is to commission a management office for the technical and scientific support of BIWAQ from November 2026 up to and including March 2029 for 29 months. During this period, a maximum of 52 BIWAQ projects will take place. The tasks of the management office are summarised as follows: • Technical support and advice for the maximum of 52 BIWAQ VI projects • Monitoring and evaluation of the projects and analysis of programme implementation at overall programme level • Support in processing ad-hoc assignments • Preparation, implementation and follow-up of events • Accompanying public relations work • Coordination meetings with the contracting authority"
+          },
           "source": "Mit dem ESF-Bundesprogramm „Bildung, Wirtschaft, Arbeit im Quartier – BIWAQ“ gewährt das Bundesministerium für Wohnen, Stadtentwicklung und Bauwesen (BMWSB) Zuwendungen für Projekte, die arbeitsmarktpolitische Aktivitäten und Ansätze zur Stärkung der lokalen Ökonomie mit der gebietsbezogenen integrierten Stadtentwicklung verknüpfen. Ziel dieser Ausschreibung ist die Beauftragung einer Regiestelle für die fachliche und wissenschaftliche Begleitung von BIWAQ von November 2026 bis einschließlich März 2029 für 29 Monate. In diesem Zeitraum finden maximal 52 BIWAQ-Projekte statt. Zu den Aufgaben der Regiestelle gehören zusammengefasst: • Fachliche Begleitung und Beratung der maximal 52 BIWAQ VI Projekte • Monitoring und Evaluierung der Projekte und Auswertung der Programmumsetzung auf Gesamtprogrammebene • Unterstützung bei der Bearbeitung von Ad-hoc-Aufträgen • Vorbereitung, Durchführung und Nachbereitung von Veranstaltungen • Begleitendende Öffentlichkeitsarbeit • Abstimmungsgespräche mit dem Auftraggeber"
         }
       ],
@@ -65747,7 +66074,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:46.446358+00:00",
+            "language": "sv",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Internal RFI welfare technology alarm systems"
+          },
           "source": "RFI Interna larmsystem inom välfärdsteknik"
         }
       ],
@@ -67730,7 +68062,12 @@
             "model": "gemini-3.1-flash-lite",
             "text": "Specialfastigheter Sverige AB"
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:35.527957+00:00",
+            "language": "sv",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Special Properties Sweden Ltd"
+          },
           "source": "Specialfastigheter Sverige AB"
         }
       ],
@@ -67843,18 +68180,19 @@
         {
           "blocked": false,
           "failures": {
-            "gemini-3.1-flash-lite": 2
+            "gemini-3.1-flash-lite": 2,
+            "gemini-3.5-flash-lite": 2
           },
           "quality_retry": {
-            "after": 0,
+            "after": 1789328022.980042,
             "day": "2026-09-13",
             "round": 0
           },
           "rejected": {
             "id": "bc7e43f8552d772a1db7ceafd804462eec3986704b35ad0b16c29d1b86cf6f66:0",
             "language": "fi",
-            "model": "gemini-3.1-flash-lite",
-            "text": "City of Helsinki, Urban Environment Division; City of Espoo; City of Vantaa; City of Helsinki Construction Services Stara; Port of Helsinki Ltd"
+            "model": "gemini-3.5-flash-lite",
+            "text": "City of Helsinki, Urban Environment Division; City of Espoo; City of Vantaa; Helsinki City Construction Service Stara; Port of Helsinki Ltd"
           },
           "result": null,
           "source": "Helsingin kaupunki, kaupunkiympäristön toimiala; Espoon kaupunki; Vantaan kaupunki; Helsingin kaupungin rakentamispalveluliikelaitos Stara; Helsingin Satama Oy"
@@ -68264,7 +68602,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:56.379564+00:00",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "24-01 GSA - Extension and refurbishment of the Aventinus Primary School Abensberg"
+          },
           "source": "24-01 GSA - Erweiterung und Sanierung der Aventinus-Grundschule Abensberg"
         }
       ],
@@ -68899,7 +69242,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:46.436237+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Artificial Intelligence DPS"
+          },
           "source": "Artificial Intelligence DPS"
         }
       ],
@@ -69125,7 +69473,12 @@
             "model": "gemini-3.1-flash-lite",
             "text": "Miguel Servet Foundation; Andalusian Health Service; Vic Hospital Consortium; Maastricht University Medical Centre; North Estonia Medical Centre; Ziekenhuis Aan De Stroom; Voivodeship Specialist Hospital in Olsztyn"
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:35.523017+00:00",
+            "language": "mul",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Miguel Servet Foundation; Andalusian Health Service; Hospital Consortium of Vic; Maastricht Academic Hospital; North Estonia Medical Centre; Antwerp Hospital Network; Provincial Specialised Hospital in Olsztyn"
+          },
           "source": "Fundación Miguel Servet; Servicio Andaluz de Salud; Consorci Hospitalari de Vic; Academisch Ziekenhuis Maastricht; Põhja-Eesti Regionaalhaigla; Ziekenhuis Aan De Stroom; Wojewódzki Szpital Specjalistyczny W Olsztynie"
         }
       ],
@@ -70831,17 +71184,18 @@
         {
           "blocked": false,
           "failures": {
-            "gemini-3.1-flash-lite": 2
+            "gemini-3.1-flash-lite": 2,
+            "gemini-3.5-flash-lite": 2
           },
           "quality_retry": {
-            "after": 0,
+            "after": 1789328022.976885,
             "day": "2026-09-13",
             "round": 0
           },
           "rejected": {
             "id": "c44ec653468ec6a427b9797cd6e11ff8dffdc90e5e27b4d90aea938da00f6e67:0",
             "language": "fi",
-            "model": "gemini-3.1-flash-lite",
+            "model": "gemini-3.5-flash-lite",
             "text": "City of Vantaa"
           },
           "result": null,
@@ -71109,18 +71463,19 @@
         {
           "blocked": false,
           "failures": {
-            "gemini-3.1-flash-lite": 2
+            "gemini-3.1-flash-lite": 2,
+            "gemini-3.5-flash-lite": 2
           },
           "quality_retry": {
-            "after": 0,
+            "after": 1789328022.9800603,
             "day": "2026-09-13",
             "round": 0
           },
           "rejected": {
             "id": "c4e209ec2bb297e80a8b02c0e0aca557e7ee149d18b27681075ca1cfaf64062c:0",
             "language": "sv",
-            "model": "gemini-3.1-flash-lite",
-            "text": "Gävleborg Region"
+            "model": "gemini-3.5-flash-lite",
+            "text": "Region Gävleborg"
           },
           "result": null,
           "source": "Region Gävleborg"
@@ -71835,7 +72190,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:23.448508+00:00",
+            "language": "de",
+            "model": "gemini-3.1-flash-lite",
+            "text": "German Aerospace Centre (DLR)"
+          },
           "source": "Deutsches Zentrum für Luft- und Raumfahrt e.V. (DLR)"
         }
       ],
@@ -73222,7 +73582,12 @@
             "model": "gemini-3.1-flash-lite",
             "text": "Orka náttúrunnar ohf."
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:35.526467+00:00",
+            "language": "is",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Nature Energy plc"
+          },
           "source": "Orka náttúrunnar ohf."
         }
       ],
@@ -73393,7 +73758,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:09.045287+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Seattle FY 2021 &ndash; FY 2023 EDA Planning and Local Technical Assistance"
+          },
           "source": "Seattle FY 2021 &ndash; FY 2023 EDA Planning and Local Technical Assistance"
         }
       ],
@@ -73493,7 +73863,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:36.270793+00:00",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "ESF Federal Programme \"Education, Economy, Work in the Quarter - BIWAQ\": Funding round BIWAQ VI in the ESF funding period 2026-2028 (ESF Plus): BIWAQ VI Management Office"
+          },
           "source": "ESF-Bundesprogramm „Bildung, Wirtschaft, Arbeit im Quartier - BIWAQ“: Förderrunde BIWAQ VI in der ESF-Förderperiode 2026-2028 (ESF Plus): Regiestelle BIWAQ VI"
         }
       ],
@@ -73839,7 +74214,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:46.436939+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Crown Commercial Service has set up a Dynamic Purchasing System for the supply of artificial intelligence services. Crown Commercial Service is inviting suppliers to request to participate in the Artificial Intelligence DPS. This DPS offers a simple route to purchase artificial intelligence services in the public sector, allowing customers to access a wide range of competition in an emerging market, including discovery and consultancy services, licencing, customisation and support for AI applications, and end-to-end partnerships. If you are successfully appointed to the DPS following your submission you will be invited by customers (buyers) to submit tenders for relevant services through a call for competition. This DPS remains open for any supplier to request to participate throughout the duration of the DPS. CCS reserves the right to reduce, extend or terminate the DPS period at any time during its lifetime in accordance with the terms set out in the DPS contract. Additional information: Please be advised that an extension has been utilised on this DPS and the end date is now 23 February 2029. The contract value has also been increased and it is now £400m. Please note the Closing Date, Contract Start Date and Contract End Date have been manipulated to support compatibility system issues. Please refer to the contract notice for the correct dates, timelines etc."
+          },
           "source": "Crown Commercial Service has set up a Dynamic Purchasing System for the supply of artificial intelligence services. Crown Commercial Service is inviting suppliers to request to participate in the Artificial Intelligence DPS. This DPS offers a simple route to purchase artificial intelligence services in the public sector, allowing customers to access a wide range of competition in an emerging market, including discovery and consultancy services, licencing, customisation and support for AI applications, and end-to-end partnerships. If you are successfully appointed to the DPS following your submission you will be invited by customers (buyers) to submit tenders for relevant services through a call for competition. This DPS remains open for any supplier to request to participate throughout the duration of the DPS. CCS reserves the right to reduce, extend or terminate the DPS period at any time during its lifetime in accordance with the terms set out in the DPS contract. Additional information: Please be advised that an extension has been utilised on this DPS and the end date is now 23 February 2029. The contract value has also been increased and it is now £400m. Please note the Closing Date, Contract Start Date and Contract End Date have been manipulated to support compatibility system issues. Please refer to the contract notice for the correct dates, timelines etc."
         }
       ],
@@ -74503,7 +74883,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:46.447585+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Service Contract for the Implementation of Software and IT Tools for the Management of the Integrated Water Cycle within the Aqua-Ceres Project (PCAUII00138) Recovery, Transformation and Resilience Plan - Financed by the European Union – Next Generation EU"
+          },
           "source": "Contrato de Servicios para la Implantación del Software y Herramientas Informáticas para la Gestión del Ciclo Integral del Agua dentro del Proyecto Aqua-Ceres (PCAUII00138) Plan de Recuperación, Transformación y Resiliencia - Financiado por la Unión Europea – Next Generation EU"
         }
       ],
@@ -74742,7 +75127,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:23.451393+00:00",
+            "language": "es",
+            "model": "gemini-3.1-flash-lite",
+            "text": "MINISTRY OF THE PRESIDENCY, DEMOGRAPHIC CHALLENGE, EQUALITY AND TOURISM"
+          },
           "source": "CONSEJERÍA DE PRESIDENCIA, RETO DEMOGRÁFICO, IGUALDAD Y TURISMO"
         }
       ],
@@ -75131,7 +75521,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:16.903818+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The goal of this FOA is to support a convener for FDA OMHHE's Racial & Ethnic minority Acceleration Consortium for Health Equity (REACH). REACH, supported through a separate FOA, will consist of 5-8 multi-project cooperative agreement (U01) awardees that will strengthen and advance minority health and health equity regulatory needs by supporting communications, research, and collaboration on diseases and conditions that disproportionately impact racial and ethnic minority populations, as well as prepare for and proactively respond to existing/emerging threats that impact racial and ethnic minority and other underrepresented or undeserved communities. The REACH convener supported by this FOA will be responsible for: coordinating cross-REACH data integration, analysis, and visualization; coordinating convening, workshops, and fostering collaborations amongst REACH investigators by managing the REACH subcommittees and an infrastructure to support collaborative studies."
+          },
           "source": "The goal of this FOA is to support a convener for FDA OMHHE's Racial & Ethnic minority Acceleration Consortium for Health Equity (REACH). REACH, supported through a separate FOA, will consist of 5-8 multi-project cooperative agreement (U01) awardees that will strengthen and advance minority health and health equity regulatory needs by supporting communications, research, and collaboration on diseases and conditions that disproportionately impact racial and ethnic minority populations, as well as prepare for and proactively respond to existing/emerging threats that impact racial and ethnic minority and other underrepresented or undeserved communities. The REACH convener supported by this FOA will be responsible for: coordinating cross-REACH data integration, analysis, and visualization; coordinating convening, workshops, and fostering collaborations amongst REACH investigators by managing the REACH subcommittees and an infrastructure to support collaborative studies."
         }
       ],
@@ -75231,7 +75626,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:16.897233+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Atlanta FY 2021 &ndash; FY 2023 EDA Planning and Local Technical Assistance"
+          },
           "source": "Atlanta FY 2021 &ndash; FY 2023 EDA Planning and Local Technical Assistance"
         }
       ],
@@ -76259,17 +76659,18 @@
         {
           "blocked": false,
           "failures": {
-            "gemini-3.1-flash-lite": 2
+            "gemini-3.1-flash-lite": 2,
+            "gemini-3.5-flash-lite": 2
           },
           "quality_retry": {
-            "after": 0,
+            "after": 1789328022.9770281,
             "day": "2026-09-13",
             "round": 0
           },
           "rejected": {
             "id": "d28445168230d3f1ecb8104d67cf20d0ae7fd7f8b8781bff60d1d3240731d4f6:0",
             "language": "da",
-            "model": "gemini-3.1-flash-lite",
+            "model": "gemini-3.5-flash-lite",
             "text": "Ørsted Services A/S; Ørsted Wind Power A/S; Ørsted A/S; Ørsted Bioenergy & Thermal Power A/S; Ørsted Salg & Service A/S; Orsted Germany GmbH; Gode Wind 1 Offshore Wind Farm GmbH & Co. OHG; Orsted Gode Wind 2 GmbH; Borkum Riffgrund I Offshore Windpark A/S GmbH & Co. oHG; Borkum Riffgrund 2 Offshore Wind Farm GmbH & Co OHG; Ørsted Group; Borkum Riffgrund 3 GmbH & Co. oHG; Gode Wind 3 GmbH & Co. oHG; Borkum Riffgrund II Holding GmbH; Danish Oil Pipe A/S; Ørsted Horns Rev I A/S; Nysted I A/S; Ørsted Horns Rev 2 A/S; Ørsted - Anholt Offshore A/S; Borkum Riffgrund I Holding A/S; Orsted Borkum Riffgrund I HoldCo GmbH; Orsted Speicher R GmbH; Orsted Gode Wind 3 Holding GmbH; Orsted Gode Wind 3 Finance GmbH; Ørsted Wind Power Denmark A/S; Anholt Havvindmøllepark I/S; Borkum Riffgrund 3 Orsted Holding GmbH; Orsted Polska Sp. z o.o."
           },
           "result": null,
@@ -76734,7 +77135,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:09.047914+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Denver FY 2021 &ndash; FY 2023 EDA Planning and Local Technical Assistance"
+          },
           "source": "Denver FY 2021 &ndash; FY 2023 EDA Planning and Local Technical Assistance"
         }
       ],
@@ -78097,7 +78503,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:09.046746+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "UPDATED NOTICE - PLEASE READ: April 6, 2023 EDA is excited to announce the launch of its new grants management platform: the Economic Development Grants Experience (EDGE). EDGE was developed to streamline the application and grants management process by implementing a single platform with increased transparency, improved user experience, higher data quality, and more efficiency throughout the entire grant lifecycle. As of April 6th, 2023, applications can no longer be submitted on Grants.gov, and will ONLY be accepted through EDGE. To apply in EDGE, please go to: sfgrants.eda.gov. More information on how to apply is provided in the full NOFO. PARTNERSHIP PLANNING program instructions: Please note that applicants will be invited to submit applications through EDGE for the Partnership Planning program. For more information, please reach out to your EDA point of contact. Program Description: EDA makes planning and local technical assistance investments to support economic development, foster job creation, and attract private investment in economically distressed areas of the United States. Under the Planning program, EDA makes Partnership Planning, Short-Term Planning, and State Planning awards to eligible recipients to create and implement regional economic development plans designed to build capacity and guide the economic prosperity and resiliency of an area or region. More specifically, EDA makes Partnership Planning investments to designated planning organizations (i.e., District Organizations) serving EDA-designated Economic Development Districts and to Indian Tribes to facilitate the development, implementation, revision, or replacement of Comprehensive Economic Development Strategies (CEDS), which articulate and prioritize the strategic economic goals of recipients’ respective regions. EDA also makes Short-Term and State Planning awards for economic development planning activities that guide the eventual creation and retention of high-quality jobs, particularly for the unemployed and underemployed in the Nation’s most economically distressed regions. Under the Local Technical Assistance program, EDA makes awards to strengthen the capacity of local or State organizations, institutions of higher education, and other eligible entities to undertake and promote effective economic development programs through projects such as feasibility studies, impact analyses, disaster resiliency plans, and project planning. **Please note: While the published Notice of Funding Opportunity (available under \"Related Documents\") states that the ED900A form and the SF424B form are both required for a complete application, these forms are no longer required and have therefore been removed from the package template."
+          },
           "source": "UPDATED NOTICE - PLEASE READ: April 6, 2023 EDA is excited to announce the launch of its new grants management platform: the Economic Development Grants Experience (EDGE). EDGE was developed to streamline the application and grants management process by implementing a single platform with increased transparency, improved user experience, higher data quality, and more efficiency throughout the entire grant lifecycle. As of April 6th, 2023, applications can no longer be submitted on Grants.gov, and will ONLY be accepted through EDGE. To apply in EDGE, please go to: sfgrants.eda.gov. More information on how to apply is provided in the full NOFO. PARTNERSHIP PLANNING program instructions: Please note that applicants will be invited to submit applications through EDGE for the Partnership Planning program. For more information, please reach out to your EDA point of contact. Program Description: EDA makes planning and local technical assistance investments to support economic development, foster job creation, and attract private investment in economically distressed areas of the United States. Under the Planning program, EDA makes Partnership Planning, Short-Term Planning, and State Planning awards to eligible recipients to create and implement regional economic development plans designed to build capacity and guide the economic prosperity and resiliency of an area or region. More specifically, EDA makes Partnership Planning investments to designated planning organizations (i.e., District Organizations) serving EDA-designated Economic Development Districts and to Indian Tribes to facilitate the development, implementation, revision, or replacement of Comprehensive Economic Development Strategies (CEDS), which articulate and prioritize the strategic economic goals of recipients’ respective regions. EDA also makes Short-Term and State Planning awards for economic development planning activities that guide the eventual creation and retention of high-quality jobs, particularly for the unemployed and underemployed in the Nation’s most economically distressed regions. Under the Local Technical Assistance program, EDA makes awards to strengthen the capacity of local or State organizations, institutions of higher education, and other eligible entities to undertake and promote effective economic development programs through projects such as feasibility studies, impact analyses, disaster resiliency plans, and project planning. **Please note: While the published Notice of Funding Opportunity (available under \"Related Documents\") states that the ED900A form and the SF424B form are both required for a complete application, these forms are no longer required and have therefore been removed from the package template."
         }
       ],
@@ -78711,7 +79122,8 @@
         {
           "blocked": false,
           "failures": {
-            "gemini-3.1-flash-lite": 2
+            "gemini-3.1-flash-lite": 2,
+            "gemini-3.5-flash-lite": 1
           },
           "quality_retry": {
             "after": 0,
@@ -78721,10 +79133,15 @@
           "rejected": {
             "id": "d9a9f99154d7be86dec262ab8cdb30ea302e0c08fc709ef0a73b6468a0a02074:0",
             "language": "it",
-            "model": "gemini-3.1-flash-lite",
-            "text": "Azienda Zero Passaggio Gaudenzio 1 - Padua"
+            "model": "gemini-3.5-flash-lite",
+            "text": "Zero Agency Gaudenzio Passaggio 1 - Padua"
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:42.978443+00:00",
+            "language": "it",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Zero Authority Gaudenzio Passage 1 - Padua"
+          },
           "source": "Azienda Zero Passaggio Gaudenzio 1 - Padova"
         }
       ],
@@ -79531,7 +79948,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:36.268309+00:00",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Mobile phone contracts (03/U/2026)"
+          },
           "source": "Mobilfunkverträge (03/U/2026)"
         }
       ],
@@ -80339,7 +80761,12 @@
             "model": "gemini-3.1-flash-lite",
             "text": "Västra Mälardalen Municipal Association"
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:35.526052+00:00",
+            "language": "sv",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Western Mälardalen Municipal Association"
+          },
           "source": "Västra Mälardalens Kommunalförbund"
         }
       ],
@@ -81575,7 +82002,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:23.450707+00:00",
+            "language": "es",
+            "model": "gemini-3.1-flash-lite",
+            "text": "Municipal Company for Funeral Services and Cemeteries of Madrid, S.A."
+          },
           "source": "Empresa Municipal de Servicios Funerarios y Cementerios de Madrid, S.A."
         }
       ],
@@ -82802,13 +83234,26 @@
       "parts": [
         {
           "blocked": false,
-          "failures": {},
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
           "quality_retry": {
             "after": 0,
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "rejected": {
+            "id": "e58a3fa30ed7b5b4980df3cdec1301fcb0f73e9a6ad5ac1d78f99318e7a132fd:0",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Tämä ei ole hankintailmoitus, eikä tarjouspyyntö, vaan Tietopyyntö mahdollisille Toimittajille. Tähän tietopyyntöön ei siis pyydetä, eikä anneta tarjouksia. Tietopyynnöllä saatuihin kommentteihin tai kysymyksiin ei vastata. Opetushallituksen yhtenä tehtävänä on oppimateriaalien ja julkaisujen kustantaminen. Asiakkaita ovat sekä yksityishenkilöt että organisaatiot, erityisesti koulut ja oppilaitokset. Tuotteet toimitetaan asiakkaalle joko fyysisesti (esim. oppikirjat) tai digitaalisesti (esim. sähköiset oppimateriaalit). Pyydämme ajantasaista tietoa kokonaispalvelusta, joka käsittää tuotteiden logistiikka-, lisenssi- ja verkkokauppapalvelun. Hankittava palvelu sisältää • SaaS-verkkokaupparatkaisun, josta asiakkaat voivat ostaa Opetushallituksen julkaisemia tietokirjoja, oppikirjoja, julkaisuja ja digitaalisten oppimateriaalien lisenssejä sekä ladattavia tiedostoja yleisesti käytössä olevilla maksuvälineillä • oppikirjojen ja julkaisujen logistiikka- ja jakelupalvelun, ml. jakelu keskeisille jälleenmyyjille kuten Kirjastopalvelu, kirjakaupat ja oppimateriaalien välittäjät • digituotteiden lisenssien hallintapalvelun sekä • myynnin tilityspalvelun, ml. varastonarvon raportoinnin. Palvelun vaatimukset • Verkkokaupan tulee palvella asiakkaitamme suomeksi, ruotsiksi ja englanniksi. • Palvelun tulee täyttää digipalvelulain vaatimukset esteettömyydestä ja saavutettavuudesta. • Palvelu on mahdollista integroida Opetushallituksen digitaaliseen oppimisalustaan (lisenssienhallinta) ja tuoterekisteriin. • Verkkokaupparatkaisussa tulee olla mahdollisuus siihen, että Opetushallitus voi muokata verkkokaupan ulkoasua, tekstejä ja asetuksia. Lisäksi verkkokauppaan tulee voida lisätä näytesivuja, lukunäytteitä ja esittelyvideoita. Pyydämme seuraavia tietoja 1. Onko Toimittajalla tarjota em. kuvauksen täyttävää kokonaispalvelua? 2. Millainen hinnoittelumalli Toimittajalla on käytössä? 3. Onko Toimittajalla em. kuvauksen pohjalta huomioita mahdolliseen hankinnan vaatimusmäärittelyyn? 4. Valinnainen lisäkysymys: Opetushallitus selvittää vaihtoehtoja itse kehitetyn tuotetietojärjestelmän ja rojaltirekisterin korvaamiseksi. Onko Toimittajan palveluun mahdollista räätälöidä tuote- ja rojaltirekisteri, joka sisältää tarvittavat tietokannat ja käyttöliittymän? Tietopyyntö ei velvoita hankintayksikköä suorittamaan varsinaista hankintaa tai toteuttamaan sitä tietopyynnössä kuvatulla tavalla. Hankintayksikkö ei ole velvollinen ottamaan huomioon tietopyyntöön saatuja vastauksia tarjouspyynnön laadinnassa. Tietopyyntöön vastaaminen ei sido tarjoajaa eikä vaikuta tarjoajan asemaan mahdollisessa kilpailutuksessa. Tietopyyntöön vastaamisesta tai mahdollisesta tuote-esittelystä ei makseta korvausta."
+          },
+          "result": {
+            "at": "2026-09-13T18:33:01.941811+00:00",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "This is not a procurement notice or a call for tenders, but a Request for Information directed at potential Suppliers. Therefore, no tenders are requested or to be submitted in response to this request for information. No comments or questions received via the request for information will be answered. One of the tasks of the Finnish National Agency for Education is the publishing of learning materials and publications. Customers include both private individuals and organisations, in particular schools and educational institutions. Products are delivered to the customer either physically (e.g. textbooks) or digitally (e.g. electronic learning materials). We request up-to-date information on a comprehensive service encompassing product logistics, licensing, and online shop services. The service to be procured includes • a SaaS online shop solution where customers can purchase non-fiction books, textbooks, publications, and licences for digital learning materials published by the Finnish National Agency for Education, as well as downloadable files, using commonly used payment methods • a logistics and distribution service for textbooks and publications, including distribution to key resellers such as Library Service, bookshops, and learning material intermediaries • a digital product licence management service, and • a sales settlement service, including inventory value reporting. Service requirements • The online shop must serve our customers in Finnish, Swedish, and English. • The service must meet the accessibility requirements of the Act on the Provision of Digital Services. • It shall be possible to integrate the service with the Finnish National Agency for Education's digital learning platform (licence management) and product register. • The online shop solution must provide the capability for the Finnish National Agency for Education to edit the layout, texts, and settings of the online shop. In addition, it must be possible to add sample pages, reading samples, and promotional videos to the online shop. We request the following information 1. Does the Supplier have a comprehensive service meeting the above description to offer? 2. What pricing model does the Supplier use? 3. Based on the above description, does the Supplier have any comments on the potential requirement specification for the procurement? 4. Optional additional question: The Finnish National Agency for Education is exploring alternatives to replace its self-developed product information system and royalty register. Is it possible to tailor a product and royalty register into the Supplier's service that includes the necessary databases and user interface? The request for information does not oblige the contracting authority to carry out the actual procurement or to implement it in the manner described in the request for information. The contracting authority is not obliged to take account of responses received to the request for information when drawing up the call for tenders. Responding to the request for information does not bind the tenderer or affect the tenderer's position in any potential procurement procedure. No compensation will be paid for responding to the request for information or for any product demonstration."
+          },
           "source": "Tämä ei ole hankintailmoitus, eikä tarjouspyyntö, vaan Tietopyyntö mahdollisille Toimittajille. Tähän tietopyyntöön ei siis pyydetä, eikä anneta tarjouksia. Tietopyynnöllä saatuihin kommentteihin tai kysymyksiin ei vastata. Opetushallituksen yhtenä tehtävänä on oppimateriaalien ja julkaisujen kustantaminen. Asiakkaita ovat sekä yksityishenkilöt että organisaatiot, erityisesti koulut ja oppilaitokset. Tuotteet toimitetaan asiakkaalle joko fyysisesti (esim. oppikirjat) tai digitaalisesti (esim. sähköiset oppimateriaalit). Pyydämme ajantasaista tietoa kokonaispalvelusta, joka käsittää tuotteiden logistiikka-, lisenssi- ja verkkokauppapalvelun. Hankittava palvelu sisältää • SaaS-verkkokaupparatkaisun, josta asiakkaat voivat ostaa Opetushallituksen julkaisemia tietokirjoja, oppikirjoja, julkaisuja ja digitaalisten oppimateriaalien lisenssejä sekä ladattavia tiedostoja yleisesti käytössä olevilla maksuvälineillä • oppikirjojen ja julkaisujen logistiikka- ja jakelupalvelun, ml. jakelu keskeisille jälleenmyyjille kuten Kirjastopalvelu, kirjakaupat ja oppimateriaalien välittäjät • digituotteiden lisenssien hallintapalvelun sekä • myynnin tilityspalvelun, ml. varastonarvon raportoinnin. Palvelun vaatimukset • Verkkokaupan tulee palvella asiakkaitamme suomeksi, ruotsiksi ja englanniksi. • Palvelun tulee täyttää digipalvelulain vaatimukset esteettömyydestä ja saavutettavuudesta. • Palvelu on mahdollista integroida Opetushallituksen digitaaliseen oppimisalustaan (lisenssienhallinta) ja tuoterekisteriin. • Verkkokaupparatkaisussa tulee olla mahdollisuus siihen, että Opetushallitus voi muokata verkkokaupan ulkoasua, tekstejä ja asetuksia. Lisäksi verkkokauppaan tulee voida lisätä näytesivuja, lukunäytteitä ja esittelyvideoita. Pyydämme seuraavia tietoja 1. Onko Toimittajalla tarjota em. kuvauksen täyttävää kokonaispalvelua? 2. Millainen hinnoittelumalli Toimittajalla on käytössä? 3. Onko Toimittajalla em. kuvauksen pohjalta huomioita mahdolliseen hankinnan vaatimusmäärittelyyn? 4. Valinnainen lisäkysymys: Opetushallitus selvittää vaihtoehtoja itse kehitetyn tuotetietojärjestelmän ja rojaltirekisterin korvaamiseksi. Onko Toimittajan palveluun mahdollista räätälöidä tuote- ja rojaltirekisteri, joka sisältää tarvittavat tietokannat ja käyttöliittymän? Tietopyyntö ei velvoita hankintayksikköä suorittamaan varsinaista hankintaa tai toteuttamaan sitä tietopyynnössä kuvatulla tavalla. Hankintayksikkö ei ole velvollinen ottamaan huomioon tietopyyntöön saatuja vastauksia tarjouspyynnön laadinnassa. Tietopyyntöön vastaaminen ei sido tarjoajaa eikä vaikuta tarjoajan asemaan mahdollisessa kilpailutuksessa. Tietopyyntöön vastaamisesta tai mahdollisesta tuote-esittelystä ei makseta korvausta."
         }
       ],
@@ -83523,7 +83968,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:09.040780+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "**UPDATE 5 APRIL 2024: The proposal submission date has been updated to 24 April 2024. The FOA has been amended to reflect this submission date and include a Question and Answer document based on questions received from interested applicants. Other than the updated proposal submission date in the FOA, the actual FOA Amendment has not been changed. However, the answers provided in the Q&A document are considered part of the FOA Amendment.** **CYCLE 2 UPDATE 20 MARCH 2024 - THE OPPORTUNITY WEBINAR FOR CYCLE 2 WILL BE HELD ONLINE VIA MS TEAMS AT 1500 EDT ON 22 MARCH 2024 AT THE FOLLOWING LINK: https://dod.teams.microsoft.us/l/meetup-join/19%3adod%3ameeting_5fa41fe6fa874484b473d8a6ba7921c6%40thread.v2/0?context=%7b%22Tid%22%3a%22fae6d70f-954b-4811-92b6-0530d6f84c43%22%2c%22Oid%22%3a%22e9f6fc39-8f22-44e5-8bd0-64f0cde32305%22%2c%22IsBroadcastMeeting%22%3atrue%7d **UPDATE 14 MARCH 2024 - CYCLE 2 HAS BEEN POSTED TO THE ANNOUNCEMENT. PLEASE REVIEW THE UPDATED ANNOUNCEMENT IN FULL FOR SUBMISSION TIME, UPDATED TOPIC, AND FUNDING AMOUNT AND SCHEDULE CHANGES FROM CYCLE 1** TACTICAL BEHAVIORS FOR AUTONOMOUS MANEUVER COLLABORATIVE RESEARCH PROGRAM (TBAM-CRP) Future Army forces will be called upon to operate and maneuver in multi-domain operations (MDO), against a modern and capable peer adversary. The battlefield of the future may impose additional constraints on maneuver forces such as disruption in communication as well as positioning services. To field a highly capable fighting force in this future battlefield, novel tactics and doctrines leveraging nascent technologies in robotics and autonomous systems (RAS) will need to be developed. Teams of RAS will serve an increasingly critical role in the future force to deliver situational awareness, defend key locations or positions, or take point in dynamic and hazardous situations. Resilience to disruptions, failures, or unexpected scenarios, is a key quality for teams of RAS to operate alongside other future Army forces. The US Army Combat Capabilities Development Command (DEVCOM) Army Research Laboratory (ARL) is focused on developing fundamental understanding and informing the art-of-the-possible for warfighter concepts through research to greatly improve the scope of mission capabilities of teams of RAS, develop robust and resilient approaches to plan under extreme conditions of uncertainty, to learn coordinated strategies for groups of agents to achieve a common objective, all within a complex maneuver environment including adversaries. The Tactical Behaviors for Autonomous Maneuver Collaborative Research Program (TBAM-CRP) is focused on developing and experimentally evaluating coordinated and individual behaviors for small groups of autonomous agents to learn doctrinal as well as novel tactics for maneuvering in military relevant environments. The TBAM-CRP will leverage developments in other internal and extramural programs as well as identify new research directions to find novel solutions to these maneuver problems in analogical simulations representing complex realistic terrain. The Tactical Behaviors for Autonomous Maneuver Collaborative Research Program (TBAM-CRP) will consist of a series of sprint efforts executed with annual program reviews. Each topic will be focused on addressing a different set of scientific areas which will support the research aims of an associated ARL researcher from a related internal essential research program (ERP) or mission-funded program. The TBAM-CRP has been developed in coordination with other related ARL-funded collaborative efforts (see descriptions of ARL collaborative alliances at https://www.arl.army.mil/business/collaborativealliances/) and shares a common vision of highly collaborative academia-industry-government partnerships; however, it will be executed with a program model adapted from the Scalable, Adaptive, and Resilient Autonomy (SARA), which established a new paradigm for collaborative research. Some key properties of this new approach are described below: • TBAM-CRP sprint topics will be offered on a two-year cycle. Proposals will be solicited for a possible two-year period structured as a first-year pilot followed by a second-year option where the option may be awarded based upon progress assessed at an annual review. The FOA will be amended annually to identify a specific problem statement and scope for that specific cycle. The topics for each cycle will be chosen to address the long-term program goal. • Five new topics (Cycles 1-5) are expected in FY22, 24, 26, 28, 30. Each topic will be carefully chosen based on the previous accomplishments in the prior cycle(s), the development of new technologies and capabilities in the broader research and development communities, and the Army’s evolving needs for future capabilities. • For each topic, funding will be provided to those Recipients selected under a cooperative agreement (CA). • Enhanced Research Program funding from ARL or Other Government Agencies (OGAs) may become available during a cycle which provides a mechanism for growth and enhancement within the TBAM-CRP. A proposal should not include any discussion of the Enhanced Research Program. Recipients receiving a CA will be notified and provided details if the opportunity for Enhanced Research Program funding becomes available during their award period of performance. • There is no limitation on the place of performance, although on-site collaboration at ARL facilities and with ARL researchers as well as with other Recipients are encouraged. Research outcomes in this program must, at the very least, be demonstrated in sophisticated simulations of relevant environments. Together with ARL collaborators, these results may be adapted for higher TRL experimentation on surrogate platforms at ARL test facilities such as the Robotics Research Collaboration Campus (R2C2) at Graces Quarters, Aberdeen Proving Ground, Maryland. "
+          },
           "source": "**UPDATE 5 APRIL 2024: The proposal submission date has been updated to 24 April 2024. The FOA has been amended to reflect this submission date and include a Question and Answer document based on questions received from interested applicants. Other than the updated proposal submission date in the FOA, the actual FOA Amendment has not been changed. However, the answers provided in the Q&A document are considered part of the FOA Amendment.** **CYCLE 2 UPDATE 20 MARCH 2024 - THE OPPORTUNITY WEBINAR FOR CYCLE 2 WILL BE HELD ONLINE VIA MS TEAMS AT 1500 EDT ON 22 MARCH 2024 AT THE FOLLOWING LINK: https://dod.teams.microsoft.us/l/meetup-join/19%3adod%3ameeting_5fa41fe6fa874484b473d8a6ba7921c6%40thread.v2/0?context=%7b%22Tid%22%3a%22fae6d70f-954b-4811-92b6-0530d6f84c43%22%2c%22Oid%22%3a%22e9f6fc39-8f22-44e5-8bd0-64f0cde32305%22%2c%22IsBroadcastMeeting%22%3atrue%7d **UPDATE 14 MARCH 2024 - CYCLE 2 HAS BEEN POSTED TO THE ANNOUNCEMENT. PLEASE REVIEW THE UPDATED ANNOUNCEMENT IN FULL FOR SUBMISSION TIME, UPDATED TOPIC, AND FUNDING AMOUNT AND SCHEDULE CHANGES FROM CYCLE 1** TACTICAL BEHAVIORS FOR AUTONOMOUS MANEUVER COLLABORATIVE RESEARCH PROGRAM (TBAM-CRP) Future Army forces will be called upon to operate and maneuver in multi-domain operations (MDO), against a modern and capable peer adversary. The battlefield of the future may impose additional constraints on maneuver forces such as disruption in communication as well as positioning services. To field a highly capable fighting force in this future battlefield, novel tactics and doctrines leveraging nascent technologies in robotics and autonomous systems (RAS) will need to be developed. Teams of RAS will serve an increasingly critical role in the future force to deliver situational awareness, defend key locations or positions, or take point in dynamic and hazardous situations. Resilience to disruptions, failures, or unexpected scenarios, is a key quality for teams of RAS to operate alongside other future Army forces. The US Army Combat Capabilities Development Command (DEVCOM) Army Research Laboratory (ARL) is focused on developing fundamental understanding and informing the art-of-the-possible for warfighter concepts through research to greatly improve the scope of mission capabilities of teams of RAS, develop robust and resilient approaches to plan under extreme conditions of uncertainty, to learn coordinated strategies for groups of agents to achieve a common objective, all within a complex maneuver environment including adversaries. The Tactical Behaviors for Autonomous Maneuver Collaborative Research Program (TBAM-CRP) is focused on developing and experimentally evaluating coordinated and individual behaviors for small groups of autonomous agents to learn doctrinal as well as novel tactics for maneuvering in military relevant environments. The TBAM-CRP will leverage developments in other internal and extramural programs as well as identify new research directions to find novel solutions to these maneuver problems in analogical simulations representing complex realistic terrain. The Tactical Behaviors for Autonomous Maneuver Collaborative Research Program (TBAM-CRP) will consist of a series of sprint efforts executed with annual program reviews. Each topic will be focused on addressing a different set of scientific areas which will support the research aims of an associated ARL researcher from a related internal essential research program (ERP) or mission-funded program. The TBAM-CRP has been developed in coordination with other related ARL-funded collaborative efforts (see descriptions of ARL collaborative alliances at https://www.arl.army.mil/business/collaborativealliances/) and shares a common vision of highly collaborative academia-industry-government partnerships; however, it will be executed with a program model adapted from the Scalable, Adaptive, and Resilient Autonomy (SARA), which established a new paradigm for collaborative research. Some key properties of this new approach are described below: • TBAM-CRP sprint topics will be offered on a two-year cycle. Proposals will be solicited for a possible two-year period structured as a first-year pilot followed by a second-year option where the option may be awarded based upon progress assessed at an annual review. The FOA will be amended annually to identify a specific problem statement and scope for that specific cycle. The topics for each cycle will be chosen to address the long-term program goal. • Five new topics (Cycles 1-5) are expected in FY22, 24, 26, 28, 30. Each topic will be carefully chosen based on the previous accomplishments in the prior cycle(s), the development of new technologies and capabilities in the broader research and development communities, and the Army’s evolving needs for future capabilities. • For each topic, funding will be provided to those Recipients selected under a cooperative agreement (CA). • Enhanced Research Program funding from ARL or Other Government Agencies (OGAs) may become available during a cycle which provides a mechanism for growth and enhancement within the TBAM-CRP. A proposal should not include any discussion of the Enhanced Research Program. Recipients receiving a CA will be notified and provided details if the opportunity for Enhanced Research Program funding becomes available during their award period of performance. • There is no limitation on the place of performance, although on-site collaboration at ARL facilities and with ARL researchers as well as with other Recipients are encouraged. Research outcomes in this program must, at the very least, be demonstrated in sophisticated simulations of relevant environments. Together with ARL collaborators, these results may be adapted for higher TRL experimentation on surrogate platforms at ARL test facilities such as the Robotics Research Collaboration Campus (R2C2) at Graces Quarters, Aberdeen Proving Ground, Maryland. "
         },
         {
@@ -83534,7 +83984,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:09.043887+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "• Recipients will be furnished with access to the ARL Autonomy Stack software suite as well as all relevant simulation tools and multi-agent learning support. • Recipients will be provided with information about the current state of the Autonomous Systems Enterprise (ASE) with an overview of developments in the associated collaborative research alliances including Distributed and Collaborative Intelligent Systems and Technology (DCIST), Scalable, Adaptive, and Resilient Autonomy (SARA), as well as internal ARL essential research programs including the AI for Maneuver and Mobility (AIMM), Emerging Overmatch Technologies (EOT), and Versatile Tactical Power and Propulsion (VICTOR). Capabilities demonstrated in simulation should reflect significant appropriate developments. This midpoint review is expected to take place as a mini symposium where Recipients can share results with one another along with the ARL community to foster further collaboration. • At the end of the second year, a capstone demonstration will be executed by those Recipients receiving an option to their award in a set of simulated relevant environments, either those environment scenarios provided by the Government and other program performers, or optionally of a specific environment developed by the Recipient to exhibit their developed capability. Any system level capability demonstration that can be made with the internal ARL collaborator or description of capability development and program contribution can also be made at this time. These system demonstrations are expected to coincide to foster further integration and adoption with related internal research programs as well as partner organizations from within the DEVCOM, other Army and DoD service branches and agencies, in addition to other government agencies. Proposals that follow the requirements of the FOA will be evaluated in accordance with merit-based, competitive procedures. These procedures will include evaluation factors and an adjectival and color rating system. A review team, consisting of a qualified group of Government scientists and managers will evaluate the compliant proposals and provide the results of that evaluation to the decision-maker for the Government. Relevant internal research program materials approved for public release and contact information will be provided to potential proposers during introductory presentations to help facilitate identification of collaboration between proposers and individual ARL researchers or internal research programs. Additional connections to ARL programs can be identified during the proposal review process. Eligible applicants under this FOA include institutions of higher education, nonprofit organizations, and for-profit organizations (i.e., large and small businesses) for scientific research in the knowledge domains outlined throughout this Funding Opportunity. Federally Funded Research and Development Centers (FFRDC) may propose as well, with effort as allowed by their sponsoring agency and in accordance with their sponsoring agency policy."
+          },
           "source": "• Recipients will be furnished with access to the ARL Autonomy Stack software suite as well as all relevant simulation tools and multi-agent learning support. • Recipients will be provided with information about the current state of the Autonomous Systems Enterprise (ASE) with an overview of developments in the associated collaborative research alliances including Distributed and Collaborative Intelligent Systems and Technology (DCIST), Scalable, Adaptive, and Resilient Autonomy (SARA), as well as internal ARL essential research programs including the AI for Maneuver and Mobility (AIMM), Emerging Overmatch Technologies (EOT), and Versatile Tactical Power and Propulsion (VICTOR). Capabilities demonstrated in simulation should reflect significant appropriate developments. This midpoint review is expected to take place as a mini symposium where Recipients can share results with one another along with the ARL community to foster further collaboration. • At the end of the second year, a capstone demonstration will be executed by those Recipients receiving an option to their award in a set of simulated relevant environments, either those environment scenarios provided by the Government and other program performers, or optionally of a specific environment developed by the Recipient to exhibit their developed capability. Any system level capability demonstration that can be made with the internal ARL collaborator or description of capability development and program contribution can also be made at this time. These system demonstrations are expected to coincide to foster further integration and adoption with related internal research programs as well as partner organizations from within the DEVCOM, other Army and DoD service branches and agencies, in addition to other government agencies. Proposals that follow the requirements of the FOA will be evaluated in accordance with merit-based, competitive procedures. These procedures will include evaluation factors and an adjectival and color rating system. A review team, consisting of a qualified group of Government scientists and managers will evaluate the compliant proposals and provide the results of that evaluation to the decision-maker for the Government. Relevant internal research program materials approved for public release and contact information will be provided to potential proposers during introductory presentations to help facilitate identification of collaboration between proposers and individual ARL researchers or internal research programs. Additional connections to ARL programs can be identified during the proposal review process. Eligible applicants under this FOA include institutions of higher education, nonprofit organizations, and for-profit organizations (i.e., large and small businesses) for scientific research in the knowledge domains outlined throughout this Funding Opportunity. Federally Funded Research and Development Centers (FFRDC) may propose as well, with effort as allowed by their sponsoring agency and in accordance with their sponsoring agency policy."
         }
       ],
@@ -84947,7 +85402,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:16.900116+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Subject to the availability of funds, awards made under this NOFO will help communities and regions devise and implement long-term economic recovery strategies through a variety of non-construction and construction projects, as appropriate, to address economic challenges in areas where a Presidential declaration of a major disaster was issued under the Robert T. Stafford Disaster Relief and Emergency Assistance Act (42 U.S.C. § 5121 et seq.) (Stafford Act) “as a result of Hurricanes Ian and Fiona, and of wildfires, flooding, and other natural disasters occurring in calendar years 2021 and 2022....” EDA is excited to announce the launch of its new grants management platform: the Economic Development Grants Experience (EDGE). EDGE was developed to streamline the application and grants management process by implementing a single platform with increased transparency, improved user experience, higher data quality, and more efficiency throughout the entire grant lifecycle. Starting April 6, 2023, applications will no longer be accepted on Grants.gov , and will ONLY be accepted through EDGE ( sfgrants.eda.gov ) . To apply for the FY 2023 Disaster Supplemental NOFO, please access the portal here . More information on how to apply is provided in the full NOFO."
+          },
           "source": "Subject to the availability of funds, awards made under this NOFO will help communities and regions devise and implement long-term economic recovery strategies through a variety of non-construction and construction projects, as appropriate, to address economic challenges in areas where a Presidential declaration of a major disaster was issued under the Robert T. Stafford Disaster Relief and Emergency Assistance Act (42 U.S.C. § 5121 et seq.) (Stafford Act) “as a result of Hurricanes Ian and Fiona, and of wildfires, flooding, and other natural disasters occurring in calendar years 2021 and 2022....” EDA is excited to announce the launch of its new grants management platform: the Economic Development Grants Experience (EDGE). EDGE was developed to streamline the application and grants management process by implementing a single platform with increased transparency, improved user experience, higher data quality, and more efficiency throughout the entire grant lifecycle. Starting April 6, 2023, applications will no longer be accepted on Grants.gov , and will ONLY be accepted through EDGE ( sfgrants.eda.gov ) . To apply for the FY 2023 Disaster Supplemental NOFO, please access the portal here . More information on how to apply is provided in the full NOFO."
         }
       ],
@@ -86386,7 +86846,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:56.386267+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The purpose of this contract is the SERVICES FOR THE ANALYSIS, DESIGN, DEVELOPMENT AND IMPLEMENTATION OF A VIRTUAL AGENT COORDINATION SYSTEM (CoVA) APPLIED TO INTERGENERATIONAL ASSISTANCE FOR THE ADMINISTRATION OF THE PRINCIPALITY OF ASTURIAS which enables a proactive and efficient administration, covering both processes and people and the technology necessary for its proper use, security and management. This contract is part of Public Procurement of Innovative Technology (CPTI), its purpose has an innovative content and employs functional specifications, rather than technical requirements: It is aimed at the acquisition of a service that does not exist in the Principality of Asturias, but can be developed in a reasonable time, given that the technology is at a degree of development that allows it to do so. The main tasks included in this contract are the following: a. Implementation of a virtual agent coordination system based on artificial intelligence applied to intergenerational assistance for the Administration of the Principality of Asturias that allows the exploitation of the data generated and managed. b. All services necessary for the commissioning of the contracted elements, necessary subscriptions/licences, as well as their management and maintenance during the pilot demonstration phase. c. The exploitation of the potential of the data of the Administration of the Principality of Asturias (hereinafter, APA) to implement new forms of public management based on interoperability and data analytics. d. Establish the technological and procedural bases for the implementation of a proactive administration that allows the optimisation of public expenditure while maximising its performance. e. The development of techniques/rules for the automated management and classification of data, documents and files using advanced Artificial Intelligence techniques. f. The incorporation of deep learning techniques since these digitalisation processes can produce immense amounts of data for training and thus be able to provide processing that increases efficiency, effectiveness and intelligence in the processing of data in the processes of Public Administrations. g. The creation of a corporate data space that includes origin data, those that may have been inferred during the scope of use of the system, as well as facilitating interoperability and administrative processing circuits. h. Creation of a proactive care and assistance environment with citizens. i. Creation of a specialised sandbox that serves as an ideation and experimentation environment. j. Integration with the APA's electronic file processing system (SITE), and other applications and systems indicated in these specifications. k. Ensuring the artificial intelligence (AI) supply chain, for which measures will be implemented to guarantee the integrity and security of the artificial intelligence models at all stages, components and data used, with strict legal compliance with EU Regulation 2024/1689, and compliance with the decree 98/2025 regulating the use of artificial intelligence in the Administration of the Principality of Asturias."
+          },
           "source": "El objeto del presente contrato son los SERVICIOS DE ANÁLISIS, DISEÑO, DESARROLLO E IMPLANTACIÓN DE UN SISTEMA DE COORDINACIÓN VIRTUAL DE AGENTES (CoVA) APLICADOS A LA ASITENCIA INTERGENERACIONAL PARA LA ADMINISTRACIÓN DEL PRINCIPADO DE ASTURIAS que permita una administración proactiva y eficiente, abarcando tanto los procesos como las personas y la tecnología necesaria para un adecuado uso, seguridad y manejo de la misma. Este contrato se enmarca en la Compra Pública de Tecnología Innovadora, (CPTI), su objeto tiene un contenido innovador y emplea especificaciones funcionales, y no requisitos técnicos: Se orienta a la adquisición de un servicio que no existe en el Principado de Asturias, pero puede desarrollarse en un tiempo razonable, dado que la tecnología está en un grado de desarrollo que así lo permite. Las tareas principales incluidas en este contrato son las siguientes: a. Implementación de un sistema de coordinación virtual de agentes basados en inteligencia artificial aplicados a la asistencia intergeneracional para la Administración del Principado de Asturias que permita el aprovechamiento de los datos generados y gestionados. b. Todos los servicios necesarios para la puesta en marcha de los elementos contratados, suscripciones/licencias necesarias, así como su gestión y mantenimiento durante la fase piloto de demostración. c. El aprovechamiento del potencial de los datos de la Administración del Principado de Asturias (en adelante, APA) para implementar nuevas formas de gestión pública basada en la interoperabilidad y analítica de datos. d. Establecer las bases tecnológicas y procedimentales para la implantación de una Administración proactiva que permita la optimización del gasto público maximizando su rendimiento. e. El desarrollo de técnicas/reglas para la gestión automatizada y clasificación de datos, documentos y expedientes mediante técnicas avanzadas de Inteligencia Artificial. f. La incorporación de técnicas de aprendizaje profundo (Deep Learning) ya que en estos procesos de digitalización pueden producir inmensas cantidades de datos para el entrenamiento y así poder dar un procesamiento que incremente la eficiencia, la eficacia y la inteligencia en el tratamiento de los datos en los procesos de las Administraciones Públicas. g. La creación de un espacio de datos corporativo que incluya los datos en origen, aquellos que se hayan podido inferir durante en el ámbito de uso del sistema, así como facilitar la interoperabilidad y circuitos de tramitación administrativa. h. Creación de un entono de atención y asistencia proactiva con la ciudadanía. i. Creación de un sandbox especializado que sirva de entorno de ideación y para la experimentación. j. Integración con el sistema de tramitación electrónica de expedientes (SITE) de la APA, y otras aplicaciones y sistemas indicados en este pliego. k. Asegurar la cadena de suministro de la inteligencia artificial (IA), para lo que se implementarán las medidas para garantizar la integridad y seguridad de los modelos de inteligencia artificial en todas las etapas, componentes y datos utilizados, con estricto cumplimiento legal del Reglamento UE 2024/1689, y cumplimiento con el decreto 98/2025 que regula el uso de la inteligencia artificial en la Administración del Principado de Asturias."
         }
       ],
@@ -87093,7 +87558,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:23.451504+00:00",
+            "language": "de",
+            "model": "gemini-3.1-flash-lite",
+            "text": "State of Saxony-Anhalt, represented by the Ministry for Infrastructure and Digital Affairs (MID)"
+          },
           "source": "Land Sachsen-Anhalt, vertreten durch das Ministerium für Infrastruktur und Digitales (MID)"
         }
       ],
@@ -87828,7 +88298,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:56.384784+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "PUBLIC PROCUREMENT OF INNOVATIVE TECHNOLOGY FOR A SERVICE FOR THE ANALYSIS, DESIGN, DEVELOPMENT AND IMPLEMENTATION OF AN INTELLIGENT AGENT COORDINATION SYSTEM (CoVA) APPLIED TO INTERGENERATIONAL ASSISTANCE FOR THE ADMINISTRATION OF THE PRINCIPALITY OF ASTURIAS, WITHIN THE FRAMEWORK OF THE DIGITAL EUROPE PROJECT (DIGITAL) FINANCED AT 60% BY THE ERDF OPERATIONAL PROGRAMME ASTURIAS 2021-2027"
+          },
           "source": "COMPRA PÚBLICA DE TECNOLOGÍA INNOVADORA, DE UN SERVICIO DE ANÁLISIS, DISEÑO, DESARROLLO E IMPLANTACIÓN DE UN SISTEMA DE COORDINACIÓN DE AGENTES INTELIGENTES (CoVA) APLICADOS A LA ASISTENCIA INTERGENERACIONAL PARA LA ADMINISTRACIÓN DEL PRINCIPADO DE ASTURIAS, EN EL MARCO DEL PROYECTO EUROPA DIGITAL (DIGITAL) FINANCIADO EN UN 60% POR EL PROGRAMA OPERATIVO FEDER ASTURIAS 2021-2027"
         }
       ],
@@ -88336,18 +88811,19 @@
         {
           "blocked": false,
           "failures": {
-            "gemini-3.1-flash-lite": 2
+            "gemini-3.1-flash-lite": 2,
+            "gemini-3.5-flash-lite": 2
           },
           "quality_retry": {
-            "after": 0,
+            "after": 1789328022.9804847,
             "day": "2026-09-13",
             "round": 0
           },
           "rejected": {
             "id": "f499c81f86c58d817f70b39cc6b28256b46455d503a913c6990b485417682357:0",
             "language": "sv",
-            "model": "gemini-3.1-flash-lite",
-            "text": "City of Västerås; Hallstahammar Municipality; Mälarhamnar AB"
+            "model": "gemini-3.5-flash-lite",
+            "text": "City of Västerås; Municipality of Hallstahammar; Mälarhamnar AB"
           },
           "result": null,
           "source": "Västerås stad; Hallstahammars kommun; Mälarhamnar AB"
@@ -88840,7 +89316,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:01.945094+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The goal of the NHLBI Catalyze Program is to provide a comprehensive suite of support and services to facilitate the transition of basic science discoveries into viable diagnostic and therapeutic candidates that have been cleared for human testing, and to develop translational researchers fluent in product development and entrepreneurship. This specific Catalyze Product Definition initiative will provide the early stage translational support needed for the activities required to develop and test device prototypes, identify diagnostic disease targets and develop associated assays, and develop research tools to treat HLBS diseases and disorders. This is a phased initiative for early stage projects. The R61 phase provides support to identify and test initial prototype designs, to identify a disease target and generate experimental design, and to identify, test and pilot research tools. The R33 phase provides support for continued prototype development and testing, in addition to modifying design features and user feedback, diagnostic product generation, exploration of assay components, and characterization of a load design, and research tool improvement, large trial testing and data integration. Following successful completion of the program, it is expected that the potential products will be poised to move forward for in vivo testing (optimization, safety, efficacy) with additional support from NIH and/or other federal and private programs. This initiative has a companion initiative that supports development of therapeutics and combination products and is also part of a suite of innovation grants to advance projects to the point where they can meet the entry criteria for the NHLBI Catalyze Preclinical Program."
+          },
           "source": "The goal of the NHLBI Catalyze Program is to provide a comprehensive suite of support and services to facilitate the transition of basic science discoveries into viable diagnostic and therapeutic candidates that have been cleared for human testing, and to develop translational researchers fluent in product development and entrepreneurship. This specific Catalyze Product Definition initiative will provide the early stage translational support needed for the activities required to develop and test device prototypes, identify diagnostic disease targets and develop associated assays, and develop research tools to treat HLBS diseases and disorders. This is a phased initiative for early stage projects. The R61 phase provides support to identify and test initial prototype designs, to identify a disease target and generate experimental design, and to identify, test and pilot research tools. The R33 phase provides support for continued prototype development and testing, in addition to modifying design features and user feedback, diagnostic product generation, exploration of assay components, and characterization of a load design, and research tool improvement, large trial testing and data integration. Following successful completion of the program, it is expected that the potential products will be poised to move forward for in vivo testing (optimization, safety, efficacy) with additional support from NIH and/or other federal and private programs. This initiative has a companion initiative that supports development of therapeutics and combination products and is also part of a suite of innovation grants to advance projects to the point where they can meet the entry criteria for the NHLBI Catalyze Preclinical Program."
         }
       ],
@@ -89640,7 +90121,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:36.272086+00:00",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The subject of this activity is the provision of support services and consultancy in the field of development, verification planning and verification execution for embedded software in the context of the development of the GNC system with a particular focus on – development and documentation of the flight software specifications, – implementation of the flight software specifications – development and documentation of the verification specifications and procedures applied, – implementation and execution of the verification activities, and – evaluation of the verification results. The subject of this activity is the provision of support services and consultancy in the field of development, verification planning and verification execution for embedded software in the context of the development of the GNC system with a particular focus on – development and documentation of the flight software specifications, – implementation of the flight software specifications – development and documentation of the verification specifications and procedures applied, – implementation and execution of the verification activities, and – evaluation of the verification results"
+          },
           "source": "Gegenstand dieser Tätigkeit ist die Bereitstellung von Unterstützungsleistungen und Beratung im Bereich der Entwicklung, Verifikationsplanung und Verifikationsdurchführung für eingebettete Software im Rahmen der Entwicklung des GNC Systems mit besonderem Schwerpunkt auf – Entwicklung und Dokumentation der Flugsoftware-Spezifikationen, – Implementierung der Flugsoftware-Spezifikationen – Entwicklung und Dokumentation der anzuwendenden Verifizierungsspezifikationen und -verfahren angewandten Verfahren, – Implementierung und Durchführung der Verifikationsaktivitäten, and – Auswertung der Verifikationsergebnisse. Gegenstand dieser Tätigkeit ist die Bereitstellung von Unterstützungsleistungen und Beratung im Bereich der Entwicklung, Verifikationsplanung und Verifikationsdurchführung für eingebettete Software im Rahmen der Entwicklung des GNC Systems mit besonderem Schwerpunkt auf – Entwicklung und Dokumentation der Flugsoftware-Spezifikationen, – Implementierung der Flugsoftware-Spezifikationen – Entwicklung und Dokumentation der anzuwendenden Verifizierungsspezifikationen und -verfahren angewandten Verfahren, – Implementierung und Durchführung der Verifikationsaktivitäten, and – Auswertung der Verifikationsergebnisse"
         }
       ],
@@ -90066,7 +90552,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:32:46.437721+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Open procedure"
+          },
           "source": "Procedimiento abierto"
         }
       ],
@@ -90653,18 +91144,19 @@
         {
           "blocked": false,
           "failures": {
-            "gemini-3.1-flash-lite": 2
+            "gemini-3.1-flash-lite": 2,
+            "gemini-3.5-flash-lite": 2
           },
           "quality_retry": {
-            "after": 0,
+            "after": 1789328022.9769065,
             "day": "2026-09-13",
             "round": 0
           },
           "rejected": {
             "id": "fa9234aa3ae0eb5c65870be97a2f0ac5b99b35be30732e45527d2efa4c6a07aa:0",
             "language": "sv",
-            "model": "gemini-3.1-flash-lite",
-            "text": "Västernorrland Region"
+            "model": "gemini-3.5-flash-lite",
+            "text": "Region Västernorrland"
           },
           "result": null,
           "source": "Region Västernorrland"
@@ -90684,7 +91176,12 @@
             "day": "2026-09-13",
             "round": 0
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-13T18:33:23.451432+00:00",
+            "language": "fi",
+            "model": "gemini-3.1-flash-lite",
+            "text": "Finnish National Agency for Education"
+          },
           "source": "Opetushallitus/ Utbildningsstyrelsen"
         }
       ],
