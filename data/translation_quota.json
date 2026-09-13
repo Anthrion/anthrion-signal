@@ -1,13 +1,17 @@
 {
   "allocations": {
     "34761499780-1": {
-      "closed": false,
+      "closed": true,
       "day": "2026-09-13",
       "limits": {
         "gemini-3.1-flash-lite": 47,
         "gemini-3.5-flash-lite": 13
       },
-      "used": {}
+      "started": true,
+      "used": {
+        "gemini-3.1-flash-lite": 6,
+        "gemini-3.5-flash-lite": 4
+      }
     }
   },
   "models": {
@@ -16,26 +20,60 @@
       "consecutive_errors": 0,
       "days": {
         "2026-09-12": 9,
-        "2026-09-13": 307
+        "2026-09-13": 266
       },
-      "recent": [],
+      "recent": [
+        {
+          "at": 1789308606.495463,
+          "tokens": 17513
+        },
+        {
+          "at": 1789308606.5804734,
+          "tokens": 5480
+        },
+        {
+          "at": 1789308618.8345754,
+          "tokens": 17504
+        },
+        {
+          "at": 1789308618.91484,
+          "tokens": 6062
+        },
+        {
+          "at": 1789308631.631697,
+          "tokens": 3996
+        },
+        {
+          "at": 1789308631.7075703,
+          "tokens": 783
+        }
+      ],
       "usage": {
-        "candidatesTokenCount": 461421,
-        "promptTokenCount": 522517,
+        "candidatesTokenCount": 470422,
+        "promptTokenCount": 533023,
         "thoughtsTokenCount": 0
       }
     },
     "gemini-3.5-flash-lite": {
-      "blocked_until": 0,
+      "blocked_until": 1789308667.429797,
       "consecutive_errors": 0,
       "days": {
         "2026-09-12": 16,
-        "2026-09-13": 350
+        "2026-09-13": 341
       },
-      "recent": [],
+      "recent": [
+        {
+          "at": 1789308667.4310284,
+          "tokens": 3996
+        },
+        {
+          "at": 1789308667.5222359,
+          "tokens": 783
+        }
+      ],
       "usage": {
-        "candidatesTokenCount": 642344,
-        "promptTokenCount": 709491,
+        "candidatesTokenCount": 642481,
+        "promptTokenCount": 709970,
         "thoughtsTokenCount": 0
       }
     }
