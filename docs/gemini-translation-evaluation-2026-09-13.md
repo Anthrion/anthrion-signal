@@ -163,3 +163,24 @@ The initial benchmark passed 338 Python tests, including 34 translation-specific
 tests. Production integration adds crash-accounting, source-hash, publication,
 bilingual search and browser regression tests. Expand the thin Norwegian sample
 and test Icelandic before claiming equal coverage for every Nordic language.
+
+## Release Backfill
+
+The reconciled release snapshot contains 1,668 public records and 3,158 unique
+nonblank title/description fields (2,307,239 source characters). All fields and
+record pairs completed before publication. The three bounded production passes
+used 597 HTTP attempts in total, including token-count requests and rejected
+attempts. Re-exporting the completed cache required no API calls.
+
+The prompt was clarified to copy already-English text verbatim and avoid adding
+digit-based abbreviations for spelled-out terms. Rejected fields received one
+bounded retry under that clarification; safety blocks were not reset. One Greek
+passage still substituted `3D` for a spelled-out source term. An assistant source
+review corrected that terminology and preserved the original procurement
+acronyms. The cache records the review; all completed parts passed the unchanged
+validation rules. This is automated validation and a limited assistant review,
+not a professional certification of translation accuracy.
+
+Release verification: 349 Python tests, 30 frontend unit tests, 103 production
+Chromium browser checks, and eight focused WebKit desktop/mobile checks passed.
+One desktop-specific screenshot test is intentionally skipped on mobile.

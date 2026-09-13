@@ -109,6 +109,28 @@ def test_export_only_exact_complete_translations_and_tolerates_bad_cache(tmp_pat
     assert available_translations(tmp_path, [signal]) == {}
 
 
+def test_prompt_clarification_retries_rejected_fields_once_but_never_safety_blocks(tmp_path):
+    path = tmp_path / "cache.json"
+    queue = TranslationQueue(path)
+    key = queue.add("An already-English source must remain unchanged.")
+    field = queue.state["fields"][key]
+    field.pop("retry_profile")
+    field["parts"][0]["failures"] = {model.name: 2 for model in MODELS}
+    field["parts"][0]["blocked"] = True
+    queue.save()
+    resumed = TranslationQueue(path)
+    resumed.add("An already-English source must remain unchanged.")
+    part = resumed.state["fields"][key]["parts"][0]
+    assert part["failures"] == {}
+    assert part["blocked"]
+    assert not list(resumed.pending(MODELS[0]))
+    part["failures"] = {MODELS[0].name: 2}
+    resumed.save()
+    resumed = TranslationQueue(path)
+    resumed.add("An already-English source must remain unchanged.")
+    assert resumed.state["fields"][key]["parts"][0]["failures"][MODELS[0].name] == 2
+
+
 def response(items, finish="STOP"):
     return httpx.Response(200, json={
         "candidates": [{"finishReason": finish, "content": {"parts": [{"text": json.dumps({
