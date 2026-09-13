@@ -45,7 +45,7 @@ def inspect_dataset(root, path, record_ids=()):
     for row in added:
         text = discovery_text(row.title + " " + row.description)
         if (not any(term in text for term in scope_terms)
-                and "Relationship-management database" not in row.prefilter_matches):
+                and "relationship-management database" not in row.prefilter_matches):
             context_only.append(row)
 
     markets = defaultdict(lambda: {"total": 0, "untagged": 0, "new_english_matches": 0})

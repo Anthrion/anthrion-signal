@@ -16,7 +16,7 @@ Matches are local to source sentences, with phrase, field, source/translation ba
 
 Context-only product mentions need relevant context. Microsoft licences are not integration work; ordinary teams are not Microsoft Teams; backup deduplication is not customer-data work; an explicitly excluded helpdesk is not a service requirement. Stage vocabulary does not create a capability. Relationship databases require nearby relationship-management evidence, not separate grant eligibility and research data-management passages.
 
-Clear hardware and commodity-licence supplies without addressable application/CRM/AI scope are suppressed. Mixed lots with relevant software remain. Generic IT-infrastructure services and sparse application roll-outs are retained. Source availability, awards, participation restrictions and deadlines still take precedence.
+Clear hardware and commodity-licence supplies without addressable application/CRM/AI scope are suppressed. Positively identified broadband construction and connectivity-only contracts are also excluded, even when a provider assigns an IT classification. Mixed lots with relevant software remain. Generic IT-infrastructure services and sparse application roll-outs are retained. Source availability, awards, participation restrictions and deadlines still take precedence.
 
 ## Collection and restart behaviour
 
@@ -38,6 +38,6 @@ Capability A-Z sorts by the displayed capability names with untagged notices las
 
 The release comparison uses a frozen 1,668-record public snapshot from 2026-09-13T14:07:52Z. `scripts/verify_discovery_release.py` produces an inspectable before/after report without modifying source records or checkpoints. The regression suite covers positive and negative examples, each active native-language pack, mixed lots, stale translations, stable record identity, query restarts and bounded replay.
 
-In that frozen comparison, 100 previously untagged records gained supported capabilities. Forty-two notices were suppressed as out-of-scope supplies or incidental matches without the required delivery evidence, leaving 1,626 records before any new collection or deadline changes. Some remaining records intentionally have no tag because their published facts do not establish one. These are reproducible snapshot figures, not a promise about the continually changing live count.
+In that frozen comparison, 100 previously untagged records gained supported capabilities. Fifty notices were suppressed as out-of-scope supplies, network infrastructure or incidental matches without the required delivery evidence, leaving 1,618 records before any new collection or deadline changes. This includes eight connectivity-only notices caught in the final live value-sort check. Some remaining records intentionally have no tag because their published facts do not establish one. These are reproducible snapshot figures, not a promise about the continually changing live count.
 
 Official TED syntax and limits: https://ted.europa.eu/en/help/search-browse and https://docs.ted.europa.eu/ODS/latest/reuse/search-api.html. All 18 final TED keyword groups and all eight additional Grants.gov groups were accepted by their public APIs during bounded read-only probes. Syntax acceptance is not evidence that every returned notice is relevant; local scope and availability checks remain necessary.

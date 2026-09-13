@@ -137,6 +137,15 @@ def unrelated_supply(title, text, evidence, cpv_codes=()):
         ) for e in evidence)
     if hardware and phrase_hits(title, ("support", "services", "service", "consulting", "υπηρεσιες", "dienstleistungen")):
         hardware = []
+    connectivity = phrase_hits(title, ("broadband network", "fibre network", "fiber network", "leased fibre",
+        "gigabit netz", "gigabit netzes", "breitband", "breitbandanbindung", "glasfasernetz",
+        "fiberforbindelser", "rete in fibra ottica", "red de fibra optica", "δικτυο οπτικων ινων"))
+    network_scope = phrase_hits(title + text, ("construction", "installation", "network operator", "leased",
+        "errichtung", "aufbau", "betrieb", "ausbau", "netzbetreiber", "anbindung", "hyrda",
+        "costruzione", "construccion", "κατασκευη"))
+    network_codes = any(code.startswith(("6421", "724110", "324")) for code in cpv_codes)
+    if connectivity and (network_scope or network_codes) and not addressable:
+        return "Network connectivity or broadband infrastructure without a stated business-application or AI delivery scope."
     if (hardware or licences) and not addressable:
         return "Hardware, infrastructure or licence supply without a stated CRM, business-application or AI delivery scope."
     return None

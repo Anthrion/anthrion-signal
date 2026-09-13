@@ -69,6 +69,11 @@ def test_mechanical_interface_coordination_is_not_software_integration(signal, c
     ("Servers and CRM", "Lot 1: New servers. Lot 2: A customer relationship management platform.", False),
     ("Unknown software notice", "Further information is in the tender documents.", False),
     ("Supply of equipment for a secure application roll-out", "Details in procurement documents.", False),
+    ("Planung, Errichtung und Betrieb eines Gigabit-Netzes", "Netzbetreiber für den Breitbandausbau.", True),
+    ("Hyrda fiberförbindelser och tjänster", "Hyrda förbindelser för nätverket.", True),
+    ("Broadband network construction", "Construct the network. Lot 2: Implement a customer portal and CRM.", False),
+    ("Broadband network AI assistant", "Develop an AI assistant for field staff.", False),
+    ("Broadband network", "Scope not yet published.", False),
 ])
 def test_narrow_supply_exclusions_preserve_mixed_and_sparse_notices(signal, config, title, description, excluded):
     classify(signal, config, title, description, ["48000000"])
