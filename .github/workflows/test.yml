@@ -24,7 +24,7 @@ jobs:
       - run: pip install -e '.[test]'
       - run: python -m pytest -q
       - run: python -m ruff check pipeline
-      - run: python scripts/check_public_output.py
       - run: python -m anthrion_signal.cli export
+      - run: python scripts/check_public_output.py
       - run: npm ci && npm test && npm run build
         working-directory: app

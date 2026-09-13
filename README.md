@@ -26,7 +26,7 @@ Awards, inferred incumbent renewals, cancellations, withdrawals, expired respons
 
 Capability classification uses explicit phrases, translated aliases, functional needs and CPV codes. Context-only words do not promote standalone AI into the platform-first group. Supplier-portal hostnames do not count as Salesforce implementation requirements. The company profile retains supplied public facts without assuming framework memberships, certifications or overseas delivery presence.
 
-Gemini dispatch, its SDK dependency, workflow credentials and score-based product features have been retired. Historical canonical analysis and offline validation helpers remain for migration/history, but public serialization strips model analysis, recommendations and scores. Old score-filter URLs migrate to source-only views. Legacy `--no-ai` remains accepted; nonzero `--max-ai` is rejected.
+Gemini-based scoring, its SDK dependency and score-based product features have been retired. Historical canonical analysis and offline validation helpers remain for migration/history, but public serialization strips model analysis, recommendations and scores. Gemini is used separately for private, cached English translation only. Old score-filter URLs migrate to source-only views. Legacy `--no-ai` remains accepted; nonzero `--max-ai` is rejected.
 
 ## Sources
 
@@ -43,6 +43,7 @@ Gemini dispatch, its SDK dependency, workflow credentials and score-based produc
 | German Public Procurement | Official paired daily OCDS/eForms exports; completed days, national-only notices and TED aliases |
 | Spanish Public Procurement | Official PLACSP Atom/CODICE; bounded pending pages, terminal updates and source-local deadline safeguards |
 | NYC City Record | Official DCAS/Socrata API; daily current/recent notices, stable cursor and New York timezone handling |
+| LA RAMP | Official public solicitation listings; bounded detail retrieval, source deadlines and availability checks |
 | Grants.gov | Official funding search/details; actual detail-call budget and reuse of unchanged facts |
 
 Failures preserve previous records and completed checkpoints. Budget-limited results are partial, not complete coverage. Retries are bounded and TLS verification stays enabled. Source-specific reuse terms remain applicable; linked documents do not automatically share a dataset's licence.
