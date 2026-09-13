@@ -1,21 +1,14 @@
 {
   "contracts_finder": {
     "discovery_backfill": {
-      "checkpoint": {
-        "cursor_window": {
-          "cursor": "cHVibGlzaGVkRnJvbT0yMDI1LTEwLTIzVDA4OjIyOjM3WnxwdWJsaXNoZWRUbz0yMDI1LTEwLTI0VDA4OjIyOjM3WnxsaW1pdD0xMDB8bmV4dEN1cnNvcj03NDY5NTU=",
-          "from": "2025-10-23T08:22:37+00:00",
-          "to": "2025-10-24T08:22:37+00:00"
-        },
-        "watermark": "2025-10-23T09:22:37+00:00"
-      },
+      "checkpoint": {},
       "complete": false,
-      "cursor": "2025-10-23T09:22:37+00:00",
+      "cursor": "2025-10-30T09:22:37+00:00",
       "until": "2026-08-29T09:22:37+00:00",
       "version": "2026-09-11.1"
     },
-    "last_success": "2026-09-12T23:26:29+00:00",
-    "watermark": "2026-09-12T23:26:29+00:00"
+    "last_success": "2026-09-13T01:27:07+00:00",
+    "watermark": "2026-09-13T01:27:07+00:00"
   },
   "digital_outcomes": {
     "digital_details": {
@@ -308,28 +301,28 @@
         "signature": "b2aee5b3e6ce3664b8f4fa34d0c7af362ce424caff17606f774ef6426bc7b279"
       }
     },
-    "last_success": "2026-09-12T23:26:29+00:00",
+    "last_success": "2026-09-13T01:27:07+00:00",
     "next_detail": 0,
-    "watermark": "2026-09-12T23:26:29+00:00"
+    "watermark": "2026-09-13T01:27:07+00:00"
   },
   "find_tender": {
     "discovery_backfill": {
       "checkpoint": {
-        "retry_at": "2026-09-12T23:29:00.326634+00:00",
-        "watermark": "2025-09-14T00:18:39+00:00"
+        "retry_at": "2026-09-13T01:29:38.408559+00:00",
+        "watermark": "2025-09-14T11:48:39+00:00"
       },
       "complete": false,
       "cursor": "2025-09-13T18:48:39+00:00",
       "until": "2026-08-29T18:48:39+00:00",
       "version": "2026-09-11.1"
     },
-    "last_success": "2026-09-12T23:26:29+00:00",
-    "watermark": "2026-09-12T23:26:29+00:00"
+    "last_success": "2026-09-13T01:27:07+00:00",
+    "watermark": "2026-09-13T01:27:07+00:00"
   },
   "germany": {
-    "last_success": "2026-09-12T23:26:29+00:00",
+    "last_success": "2026-09-13T01:27:07+00:00",
     "pending_days": [],
-    "scheduled_through": "2026-09-11",
+    "scheduled_through": "2026-09-12",
     "tracked_ocids": [
       "ocds-mnwr74-005cd0bb-19eb-4986-82a9-331b1aad53bb",
       "ocds-mnwr74-019f80df-4d80-4824-beca-a983c30f656a",
@@ -354,6 +347,7 @@
       "ocds-mnwr74-11cf703c-2466-4f39-a43c-bdeffde70c45",
       "ocds-mnwr74-1206c72a-b6d5-4574-84b5-dea5a5e66109",
       "ocds-mnwr74-1443f065-1beb-49a3-bb1d-ed98254626ed",
+      "ocds-mnwr74-1571ebc5-f6f1-4299-810a-ef140ece9fd4",
       "ocds-mnwr74-15e47aef-b650-4141-8fee-ce9d8447c694",
       "ocds-mnwr74-16c98937-2e0c-467c-baf8-35e8606aa06e",
       "ocds-mnwr74-18402aa0-af7d-489d-8bbc-0f5382dba3a7",
@@ -372,6 +366,7 @@
       "ocds-mnwr74-25745160",
       "ocds-mnwr74-25762156",
       "ocds-mnwr74-25773772",
+      "ocds-mnwr74-25778650",
       "ocds-mnwr74-25781968",
       "ocds-mnwr74-25782410",
       "ocds-mnwr74-25782800",
@@ -447,6 +442,16 @@
       "ocds-mnwr74-25811534",
       "ocds-mnwr74-25811864",
       "ocds-mnwr74-25812104",
+      "ocds-mnwr74-25812678",
+      "ocds-mnwr74-25813090",
+      "ocds-mnwr74-25813408",
+      "ocds-mnwr74-25813464",
+      "ocds-mnwr74-25813548",
+      "ocds-mnwr74-25813562",
+      "ocds-mnwr74-25813606",
+      "ocds-mnwr74-25813878",
+      "ocds-mnwr74-25816360",
+      "ocds-mnwr74-25816388",
       "ocds-mnwr74-281e8004-fab0-4b67-aa0e-bcd119ba8729",
       "ocds-mnwr74-2a7e44fc-8917-4387-85a0-7a977a80ee24",
       "ocds-mnwr74-30cb1f76-d50f-43a2-94d3-3d3056573d5e",
@@ -470,6 +475,7 @@
       "ocds-mnwr74-457db124-841a-4662-bd3f-45df37eda6e3",
       "ocds-mnwr74-4653c99c-72e8-4874-8ac3-d403d7b769a6",
       "ocds-mnwr74-4aeb1b72-2d26-4b57-a561-c05da75348c4",
+      "ocds-mnwr74-4d4948c7-1e89-492b-b5cb-6b96ec46a604",
       "ocds-mnwr74-4fb4dd1c-6ae9-413a-b70d-670cff4a4edb",
       "ocds-mnwr74-4ff28467-67f4-4e7f-8b20-40927c29b54e",
       "ocds-mnwr74-4ff444bc-474b-4fee-ba15-4348f576766a",
@@ -482,6 +488,7 @@
       "ocds-mnwr74-57858b67-7efd-48b1-9fcf-fba0fa158434",
       "ocds-mnwr74-57e9f020-156e-4576-b776-871dc660b3fc",
       "ocds-mnwr74-599f3668-c97c-47f8-a868-ee9d9fc6b0b2",
+      "ocds-mnwr74-59f67b01-55e8-475b-8e86-af79e502e114",
       "ocds-mnwr74-5b6ccf75-fc7a-4034-9df0-02d181c16df0",
       "ocds-mnwr74-5e4a3625-594f-40c6-93db-63a76bc3ebb4",
       "ocds-mnwr74-621843ea-5f1e-4f8d-b832-06270a109960",
@@ -538,12 +545,14 @@
       "ocds-mnwr74-bf49f65f-2d58-4f77-a7ac-d5f52b77f1e8",
       "ocds-mnwr74-c4985267-3874-41e4-80c1-f90af0170a52",
       "ocds-mnwr74-c5e8fae1-0b9f-4b5f-9deb-34782dc2f40d",
+      "ocds-mnwr74-c6cc30e4-8a27-4916-ae2b-d2b77def85a4",
       "ocds-mnwr74-ca0e5473-cfff-4c44-abbd-2f364b7f7d48",
       "ocds-mnwr74-cae95a5c-ebf1-421b-869c-82ce3dc22092",
       "ocds-mnwr74-cc67b8d7-5d79-40c8-ba47-2d911423d5de",
       "ocds-mnwr74-cc689969-6870-4f85-8c89-24b618697885",
       "ocds-mnwr74-cc7d3e0c-85d1-435c-80e6-ca343958ceb8",
       "ocds-mnwr74-cef349d4-d26a-4088-8748-792474e156f6",
+      "ocds-mnwr74-cefe7f4f-e860-48ee-b1a4-0c9501f809f4",
       "ocds-mnwr74-cf3c8480-060d-4ecf-bd2e-52f06f62f61d",
       "ocds-mnwr74-cfb86d87-a0eb-43b3-b8e1-eedeece9c28d",
       "ocds-mnwr74-d1109e05-252b-451b-b952-206af16397e6",
@@ -555,6 +564,7 @@
       "ocds-mnwr74-d4425a9b-53d6-4cc5-bad0-78c451d87734",
       "ocds-mnwr74-d54eef77-40ca-4a2b-ad71-e6ceef25de4b",
       "ocds-mnwr74-d6506133-a895-4e0e-a307-c191940b390e",
+      "ocds-mnwr74-d82222eb-c353-4fa8-9efc-488107d89c38",
       "ocds-mnwr74-d835e8ed-5cf8-4066-9669-d11f10a950e2",
       "ocds-mnwr74-d8a3611b-393a-40fb-b50a-660a3740c49b",
       "ocds-mnwr74-d9c293ff-f6aa-4e7b-848a-2b72e94be249",
@@ -569,6 +579,7 @@
       "ocds-mnwr74-e321a9b1-6a55-485e-abb9-697f0e1cb2eb",
       "ocds-mnwr74-e39a87e7-4230-4fb1-95f8-40f34e69bf1b",
       "ocds-mnwr74-e4994906-81f5-4759-9572-a7994fbfd4ab",
+      "ocds-mnwr74-e5de49d5-d4b3-4ff6-a4ae-278b5a470654",
       "ocds-mnwr74-e6a6653d-4919-4ed3-9226-a509de9ee095",
       "ocds-mnwr74-e8670eb2-c9e0-4c1b-ac03-e007a2c51f31",
       "ocds-mnwr74-ee0b224c-c82b-4080-a9e4-fb59631e48a4",
@@ -584,12 +595,12 @@
       "ocds-mnwr74-fd112986-9c4a-43a5-890c-4c1827443820",
       "ocds-mnwr74-fe57295e-352e-49de-8b1c-514b3021369f"
     ],
-    "watermark": "2026-09-11"
+    "watermark": "2026-09-12"
   },
   "govuk": {
     "discovery_backfill": {
       "checkpoint": {
-        "next_query": 58,
+        "next_query": 16,
         "queries": {
           "AI agent procurement": {
             "from": "2025-09-11T09:22:37+00:00",
@@ -598,7 +609,7 @@
           },
           "AI agents": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "AI assistant tender": {
@@ -618,12 +629,12 @@
           },
           "CRM legacy integration procurement": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "CRM market engagement": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "CRM procurement": {
@@ -637,9 +648,9 @@
             "to": "2025-10-12T09:22:37+00:00"
           },
           "CRM transformation": {
-            "from": "2025-09-11T09:22:37+00:00",
-            "offset": 200,
-            "to": "2025-10-12T09:22:37+00:00"
+            "from": "2025-10-11T09:22:37+00:00",
+            "offset": 0,
+            "through": "2025-10-12T09:22:37+00:00"
           },
           "LLM implementation procurement": {
             "from": "2025-09-11T09:22:37+00:00",
@@ -653,17 +664,17 @@
           },
           "Salesforce consulting tender": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "Salesforce contract resources": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "Salesforce implementation": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "Salesforce managed services": {
@@ -673,7 +684,7 @@
           },
           "Salesforce professional services": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "application modernisation tender": {
@@ -683,7 +694,7 @@
           },
           "artificial intelligence procurement": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "automated triage tender": {
@@ -693,7 +704,7 @@
           },
           "automation integration": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "business intelligence procurement": {
@@ -703,7 +714,7 @@
           },
           "case management": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "case management procurement": {
@@ -718,17 +729,17 @@
           },
           "citizen services": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "collaboration workflow platform tender": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "commercial pipeline digital": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "complaints management tender": {
@@ -738,7 +749,7 @@
           },
           "contact centre": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "contact centre implementation": {
@@ -768,7 +779,7 @@
           },
           "data platform": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "data quality implementation": {
@@ -778,7 +789,7 @@
           },
           "digital transformation procurement": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "document intelligence procurement": {
@@ -803,7 +814,7 @@
           },
           "enterprise integration partner": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "field service software tender": {
@@ -813,7 +824,7 @@
           },
           "generative AI": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "generative AI tender": {
@@ -858,7 +869,7 @@
           },
           "procurement pipeline technology": {
             "from": "2025-09-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-10-12T09:22:37+00:00"
           },
           "quote to cash implementation": {
@@ -1022,9 +1033,9 @@
         "through": "2026-09-10T22:19:02+00:00"
       },
       "automation integration": {
-        "from": "2026-09-08T10:57:03+00:00",
-        "offset": 100,
-        "to": "2026-09-10T22:19:02+00:00"
+        "from": "2026-09-09T22:19:02+00:00",
+        "offset": 0,
+        "through": "2026-09-10T22:19:02+00:00"
       },
       "business intelligence procurement": {
         "from": "2026-09-09T22:19:02+00:00",
@@ -1033,7 +1044,7 @@
       },
       "case management": {
         "from": "2026-06-10T10:57:03+00:00",
-        "offset": 2500,
+        "offset": 2600,
         "to": "2026-09-09T10:57:03+00:00"
       },
       "case management procurement": {
@@ -1048,7 +1059,7 @@
       },
       "citizen services": {
         "from": "2026-06-10T10:57:03+00:00",
-        "offset": 2500,
+        "offset": 2600,
         "to": "2026-09-09T10:57:03+00:00"
       },
       "collaboration workflow platform tender": {
@@ -1058,7 +1069,7 @@
       },
       "commercial pipeline digital": {
         "from": "2026-06-10T10:57:03+00:00",
-        "offset": 2500,
+        "offset": 2600,
         "to": "2026-09-09T10:57:03+00:00"
       },
       "complaints management tender": {
@@ -1068,7 +1079,7 @@
       },
       "contact centre": {
         "from": "2026-06-10T10:57:03+00:00",
-        "offset": 2500,
+        "offset": 2600,
         "to": "2026-09-09T10:57:03+00:00"
       },
       "contact centre implementation": {
@@ -1098,7 +1109,7 @@
       },
       "data platform": {
         "from": "2026-06-10T10:57:03+00:00",
-        "offset": 2500,
+        "offset": 2600,
         "to": "2026-09-09T10:57:03+00:00"
       },
       "data quality implementation": {
@@ -1108,7 +1119,7 @@
       },
       "digital transformation procurement": {
         "from": "2026-06-10T10:57:03+00:00",
-        "offset": 2500,
+        "offset": 2600,
         "to": "2026-09-09T10:57:03+00:00"
       },
       "document intelligence procurement": {
@@ -1142,9 +1153,9 @@
         "through": "2026-09-10T22:19:02+00:00"
       },
       "generative AI": {
-        "from": "2026-06-10T10:57:03+00:00",
-        "offset": 2500,
-        "to": "2026-09-09T10:57:03+00:00"
+        "from": "2026-09-08T10:57:03+00:00",
+        "offset": 0,
+        "through": "2026-09-09T10:57:03+00:00"
       },
       "generative AI tender": {
         "from": "2026-09-09T22:19:02+00:00",
@@ -1188,7 +1199,7 @@
       },
       "procurement pipeline technology": {
         "from": "2026-06-10T10:57:03+00:00",
-        "offset": 2500,
+        "offset": 2600,
         "to": "2026-09-09T10:57:03+00:00"
       },
       "quote to cash implementation": {
@@ -8439,11 +8450,11 @@
         "signature": "09b8d00cfd1baed19e90925fed74d54286de35f3e657c8f1cbcfe32e6867c1b0"
       }
     },
-    "last_success": "2026-09-12T23:26:29+00:00",
-    "watermark": "2026-09-12T23:26:29+00:00"
+    "last_success": "2026-09-13T01:27:07+00:00",
+    "watermark": "2026-09-13T01:27:07+00:00"
   },
   "nyc_city_record": {
-    "last_success": "2026-09-12T23:26:29+00:00",
+    "last_success": "2026-09-13T01:27:07+00:00",
     "query_version": "nyc-procurement-v1",
     "watermark": "2026-09-12T16:23:45+00:00"
   },
@@ -8452,18 +8463,6 @@
       "checkpoint": {
         "monthly_cycle": {
           "pending": [
-            {
-              "month": "10-2025",
-              "type": 6
-            },
-            {
-              "month": "10-2025",
-              "type": 7
-            },
-            {
-              "month": "10-2025",
-              "type": 14
-            },
             {
               "month": "10-2025",
               "type": 20
@@ -8503,6 +8502,18 @@
             {
               "month": "10-2025",
               "type": 5
+            },
+            {
+              "month": "10-2025",
+              "type": 6
+            },
+            {
+              "month": "10-2025",
+              "type": 7
+            },
+            {
+              "month": "10-2025",
+              "type": 14
             }
           ],
           "through": "2025-10-01T09:22:36+00:00"
@@ -8518,18 +8529,6 @@
       "pending": [
         {
           "month": "08-2026",
-          "type": 6
-        },
-        {
-          "month": "08-2026",
-          "type": 7
-        },
-        {
-          "month": "08-2026",
-          "type": 14
-        },
-        {
-          "month": "08-2026",
           "type": 20
         },
         {
@@ -8619,6 +8618,18 @@
         {
           "month": "08-2026",
           "type": 5
+        },
+        {
+          "month": "08-2026",
+          "type": 6
+        },
+        {
+          "month": "08-2026",
+          "type": 7
+        },
+        {
+          "month": "08-2026",
+          "type": 14
         }
       ],
       "through": "2026-09-12T09:22:37+00:00"
@@ -8821,52 +8832,6 @@
         "value": 197769.6,
         "winner": ""
       },
-      "20233200": {
-        "buyer": "Dirección General LogiRail S.A.",
-        "buyer_identifiers": [
-          "EA0008351",
-          "A28944767",
-          "50191410031461"
-        ],
-        "contracting_system": "0",
-        "cpv_codes": [
-          "72200000",
-          "72000000"
-        ],
-        "currency": "EUR",
-        "deadline_at": null,
-        "deadline_date": "2026-09-11",
-        "deadline_description": "",
-        "deadline_time": "12:00:00",
-        "description": "",
-        "documents": [
-          {
-            "title": "PCP2.pdf",
-            "url": "https://contrataciondelestado.es/FileSystem/servlet/GetDocumentByIdServlet?DocumentIdParam=wdjRPws7CKAI3HFcAzMq9ad4zuL11ffPvkfij2%2F1YNztkyjxdShwLjtK52Lz3OjY3cvL2nySn5G0Hck%2BEtwC5KV5QWjDAQW7XXv%2Fh9uZR5CHAj0WEJrB5sP7amrh2jBD&cifrado=QUC1GjXXSiLkydRHJBmbpw%3D%3D"
-          },
-          {
-            "title": "Anexo1.pdf",
-            "url": "https://contrataciondelestado.es/FileSystem/servlet/GetDocumentByIdServlet?DocumentIdParam=e3DdtjMwO3Ruf4Ze2gc%2BIbA0w29o72QIjybnGdYvwHgwgcS4IjRfNPekzE6AFgg7hjGcqKLMWF75CI8R0oI4vcsPZrkqu6iE%2Bc6bxHj664HVTD3T98KC0nSgQFM0q%2B5s&cifrado=QUC1GjXXSiLkydRHJBmbpw%3D%3D"
-          }
-        ],
-        "entry_id": "https://contrataciondelestado.es/sindicacion/licitacionesPerfilContratante/20233200",
-        "id": "20233200",
-        "lots": [],
-        "procedure": "1",
-        "published": "2026-07-31",
-        "reference": "030/2026/SER/DG",
-        "regions": [
-          "Madrid"
-        ],
-        "result_codes": [],
-        "state": "PUB",
-        "ted_ids": [],
-        "title": "Servicio de soporte, mantenimiento y evolución de los sistemas cliente",
-        "updated": "2026-09-07T11:05:25.414000+00:00",
-        "url": "https://contrataciondelestado.es/wps/poc?idEvl=dNQ%2FbKVloiKAAM7L03kM8A%3D%3D&uri=deeplink%3Adetalle_licitacion",
-        "value": 292237.08,
-        "winner": ""
-      },
       "20255786": {
         "buyer": "Aena. Consejo de Administración",
         "buyer_identifiers": [
@@ -8983,59 +8948,6 @@
         "value": 19710000.0,
         "winner": ""
       },
-      "20287245": {
-        "buyer": "Pleno del Consorcio de Seguridad, Emergencia, Salvamento, Prevención y Extinción de Incendios de Lanzarote",
-        "buyer_identifiers": [
-          "LA0008787",
-          "P3500025F",
-          "31541090197869"
-        ],
-        "contracting_system": "0",
-        "cpv_codes": [
-          "72212517",
-          "30210000",
-          "72224000",
-          "32321200",
-          "48800000",
-          "48900000",
-          "39134000",
-          "72264000",
-          "30200000"
-        ],
-        "currency": "EUR",
-        "deadline_at": null,
-        "deadline_date": "2026-09-11",
-        "deadline_description": "",
-        "deadline_time": "11:00:00",
-        "description": "",
-        "documents": [
-          {
-            "title": "Pliego administrativo.pdf",
-            "url": "https://contrataciondelestado.es/FileSystem/servlet/GetDocumentByIdServlet?DocumentIdParam=3bJIwdBq7PkaELRYiFflsja%2FL%2FDx74XsSN83ntfRO%2B0Jxf%2FxSP%2Ftj9eUta9gozClWAnKDpbut4TQEa4cM2hbxvgKp3mFsgcnW7iPQgiNER6HAj0WEJrB5sP7amrh2jBD&cifrado=QUC1GjXXSiLkydRHJBmbpw%3D%3D"
-          },
-          {
-            "title": "Pliego tecnico.pdf",
-            "url": "https://contrataciondelestado.es/FileSystem/servlet/GetDocumentByIdServlet?DocumentIdParam=DDbQ9KJRqT%2FPtT6jOkQOZ0Ywx%2BRN%2BfS5Jg2bby4EpjaBz0E9gCHh%2BT0%2FLH%2FSNG3Edyty3GUPRiZtB%2FXD7I%2B%2BXsJoUA%2FEctJYrEx22122vLwZyAJWGsSt0OzTSTyw9JAs&cifrado=QUC1GjXXSiLkydRHJBmbpw%3D%3D"
-          }
-        ],
-        "entry_id": "https://contrataciondelestado.es/sindicacion/licitacionesPerfilContratante/20287245",
-        "id": "20287245",
-        "lots": [],
-        "procedure": "1",
-        "published": "2026-08-12",
-        "reference": "873/2026",
-        "regions": [
-          "Lanzarote"
-        ],
-        "result_codes": [],
-        "state": "PUB",
-        "ted_ids": [],
-        "title": "Implantación y mantenimiento del sistema integral de gestión de emergencias en el tiempo real para el CECOPIN destinado al Consorcio de Seguridad y Emergencias de Lanzarote",
-        "updated": "2026-09-04T21:03:46.632000+00:00",
-        "url": "https://contrataciondelestado.es/wps/poc?idEvl=lYcNW1Di6SiTylGzYmBF9Q%3D%3D&uri=deeplink%3Adetalle_licitacion",
-        "value": 1278454.08,
-        "winner": ""
-      },
       "20305353": {
         "buyer": "Presidencia de la Autoridad Portuaria de Bilbao",
         "buyer_identifiers": [
@@ -9123,54 +9035,6 @@
         "updated": "2026-09-07T09:31:27.473000+00:00",
         "url": "https://contrataciondelestado.es/wps/poc?idEvl=EqpE6xn2x48UqXM96WStVA%3D%3D&uri=deeplink%3Adetalle_licitacion",
         "value": 1666800.0,
-        "winner": ""
-      },
-      "20356527": {
-        "buyer": "Concejal delegado de Contratación, Patrimonio, Secretaria General, Servicios Lingüísticos, Servicios Informáticos, Administración Electrónica, Transparencia, Participación Ciudadana y Atención a la Ciudadanía del Ayuntamiento de Benicarló",
-        "buyer_identifiers": [
-          "L01120271",
-          "P1202700I",
-          "31606790204439"
-        ],
-        "contracting_system": "0",
-        "cpv_codes": [
-          "72267000",
-          "72590000",
-          "48000000",
-          "72416000"
-        ],
-        "currency": "EUR",
-        "deadline_at": null,
-        "deadline_date": "2026-09-11",
-        "deadline_description": "PCAP QUE RIGE LA CONTRATACIÓN DE LOS SERVICIOS DE SUSCRIPCIÓN, SOPORTE, MANTENIMIENTO, EVOLUCIÓN TECNOLÓGICA, MIGRACIÓN A ENTORNO CLOUD/SaaS Y SERVICIOS ASOCIADOS DE LAS APLICACIONES INFORMÁTICAS QUE COMPONEN LA PLATAFORMA DE GESTIÓN ECONÓMICO-FINANCIERA, PRESUPUESTARIA, TRIBUTARIA Y RECAUDATORIA DEL AYTO. BENICARLÓ Y DEL ORGANISMO AUTÓNOMO DE CENTROS SOCIALES ESPECIALIZADOS, Y DE GESTIÓN DE RECURSOS HUMANOS, NÓMINA Y SEGUROS SOCIALES DEL AYTO DE BENICARLÓ, MEDIANTE PROCEDIMIENTO NEGOCIADO SIN PUBLICIDAD POR RAZONES DE EXCLUSIVIDAD",
-        "deadline_time": "23:59:00",
-        "description": "",
-        "documents": [
-          {
-            "title": "Diligencia PCAP.pdf",
-            "url": "https://contrataciondelestado.es/FileSystem/servlet/GetDocumentByIdServlet?DocumentIdParam=D78o%2BEYuI%2FaGzuguXeYaE6UGoHFB2ULlCjA1lsx0uq%2FyQrhFrNYjAh9GrN0ywKEFz56vg%2FcIv5GkEHVb4xyAXeTsgvHKt%2FVLDd2XSXEsPyL6CYyL7SIrUOBFfNf52ZqA&cifrado=QUC1GjXXSiLkydRHJBmbpw%3D%3D"
-          },
-          {
-            "title": "Diligencia nuevo PPT.pdf",
-            "url": "https://contrataciondelestado.es/FileSystem/servlet/GetDocumentByIdServlet?DocumentIdParam=JgG%2B6YvM2dqKT%2BVsaUQ4DlEVT5v%2BvP9okZky90XX%2FBBxLP0FiorrGuaF3rtRhPlp7tpkBqXxxk51qM%2B0PxgMrY69Gzb0rKyEFJq%2Bf1E5V8oC1%2FzDIE0Kw%2FPWNnLS0Z0z&cifrado=QUC1GjXXSiLkydRHJBmbpw%3D%3D"
-          }
-        ],
-        "entry_id": "https://contrataciondelestado.es/sindicacion/licitacionesPerfilContratante/20356527",
-        "id": "20356527",
-        "lots": [],
-        "procedure": "3",
-        "published": "2026-08-27",
-        "reference": "25/2026",
-        "regions": [
-          "Castellón/Castelló"
-        ],
-        "result_codes": [],
-        "state": "PUB",
-        "ted_ids": [],
-        "title": "Servicios para continuidad, soporte, mantenimiento, evolución tecnológica, migración a entorno cloud/SaaS y prestación de servicios asociados de las aplicaciones informáticas utilizadas para la gestión económico-financiera, presupuestaria, tributaria y recaudatoria del Ayunt. de Benicarló y del OACSE, así como para la gestión de recursos humanos, nómina y seguros sociales del Ayunt.",
-        "updated": "2026-09-07T11:10:32.160000+00:00",
-        "url": "https://contrataciondelestado.es/wps/poc?idEvl=Wqx9Umgj3HLua%2Fi14w%2FPLA%3D%3D&uri=deeplink%3Adetalle_licitacion",
-        "value": 984318.0,
         "winner": ""
       },
       "20356724": {
@@ -25005,20 +24869,20 @@
     "discovery_backfill": {
       "checkpoint": {
         "query_version": "17f39a916251985f06623cfefe55453a709aeb10fdb2339cad86b7b5fd1b240c",
-        "watermark": "2025-10-21T09:22:37+00:00"
+        "watermark": "2025-10-27T09:22:37+00:00"
       },
       "complete": false,
-      "cursor": "2025-10-21T09:22:37+00:00",
+      "cursor": "2025-10-27T09:22:37+00:00",
       "until": "2026-08-29T09:22:37+00:00",
       "version": "2026-09-11.1"
     },
-    "last_success": "2026-09-12T23:26:29+00:00",
+    "last_success": "2026-09-13T01:27:07+00:00",
     "query_version": "17f39a916251985f06623cfefe55453a709aeb10fdb2339cad86b7b5fd1b240c",
-    "watermark": "2026-09-12T23:26:29+00:00"
+    "watermark": "2026-09-13T01:27:07+00:00"
   },
   "upcoming_agreements": {
-    "last_success": "2026-09-12T23:26:29+00:00",
-    "watermark": "2026-09-12T23:26:29+00:00"
+    "last_success": "2026-09-13T01:27:07+00:00",
+    "watermark": "2026-09-13T01:27:07+00:00"
   },
   "usaspending": {
     "last_success": "2026-09-09T23:17:56+00:00",
@@ -25029,18 +24893,6 @@
       "checkpoint": {
         "monthly_cycle": {
           "pending": [
-            {
-              "month": "10-2025",
-              "type": 7
-            },
-            {
-              "month": "10-2025",
-              "type": 14
-            },
-            {
-              "month": "10-2025",
-              "type": 20
-            },
             {
               "month": "10-2025",
               "type": 51
@@ -25076,6 +24928,18 @@
             {
               "month": "10-2025",
               "type": 6
+            },
+            {
+              "month": "10-2025",
+              "type": 7
+            },
+            {
+              "month": "10-2025",
+              "type": 14
+            },
+            {
+              "month": "10-2025",
+              "type": 20
             }
           ],
           "through": "2025-10-01T09:22:36+00:00"
@@ -25090,18 +24954,6 @@
       "pending": [
         {
           "month": "08-2026",
-          "type": 14
-        },
-        {
-          "month": "08-2026",
-          "type": 20
-        },
-        {
-          "month": "08-2026",
-          "type": 51
-        },
-        {
-          "month": "08-2026",
           "type": 52
         },
         {
@@ -25183,6 +25035,18 @@
         {
           "month": "08-2026",
           "type": 7
+        },
+        {
+          "month": "08-2026",
+          "type": 14
+        },
+        {
+          "month": "08-2026",
+          "type": 20
+        },
+        {
+          "month": "08-2026",
+          "type": 51
         }
       ],
       "through": "2026-09-11T13:29:55+00:00"
