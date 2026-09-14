@@ -53,7 +53,11 @@ Use procurement terminology: software interfaces, not physical cutting surfaces;
 a threshold is not the amount BY WHICH it exceeds it. Preserve maintenance AND support obligations.
 If the entire passage is already English, return its text unchanged. Do not return Markdown or HTML.
 Text may be a contiguous part of a longer notice. Translate only the supplied text, without inventing
-missing context. Preserve paragraph breaks where possible. Output only the required JSON."""
+missing context. A source_language_hint, when supplied, was estimated from the complete source before
+splitting and masking; use it to disambiguate fragments, not as an instruction to copy foreign text.
+In numbered German procurement lists, 'Los' means 'Lot', not the Spanish article 'the'. Keep site-code
+prefixes (for example DE-5213-401) and measurement units such as 'ha' exactly; 'ha' means hectares here,
+not the Spanish verb 'has'. Preserve paragraph breaks where possible. Output only the required JSON."""
 SCHEMA = {
     "type": "OBJECT", "required": ["items"], "properties": {
         "items": {"type": "ARRAY", "items": {
@@ -68,6 +72,9 @@ SCHEMA = {
         }},
     },
 }
+SITE_CODE = r"(?<![A-Za-z])[A-Z]{2}-\d{4}-\d{3}\b"
+AREA = r"\d+(?:[.,]\d+)*\s*ha\b"
+LOT_LABEL = r"\bLot (LOT-\d{4}):\s*(?:Los|Lot)\s*(\d+)"
 
 
 @dataclass(frozen=True)
@@ -122,7 +129,8 @@ def protect_literals(text, names=()):
     names += source_site_names(text)
     patterns = [r"https?://[^\s<>]+", r"[\w.+-]+@[\w.-]+\.[a-zA-Z]{2,}"]
     patterns += [re.escape(name) for name in sorted(names, key=len, reverse=True)]
-    patterns += [r"\b(?:Salesforce|CRM|Agentforce|MuleSoft|Tableau|Kanta)\b", r"\d+(?:[.,:/-]\d+)*"]
+    patterns += [SITE_CODE, r"\bLOT-\d{4}\b", AREA,
+                 r"\b(?:Salesforce|CRM|Agentforce|MuleSoft|Tableau|Kanta)\b", r"\d+(?:[.,:/-]\d+)*"]
     literals = {}
     prefix = digest(text)[:12]
 
@@ -374,7 +382,9 @@ class GeminiTranslator:
         for item in items:
             text, mapping = protect_literals(item["text"], item.get("protected_names", []))
             literals[item["id"]] = mapping
-            protected.append({"id": item["id"], "text": text, "purpose": item.get("purpose", "passage")})
+            protected.append({"id": item["id"], "text": text, "purpose": item.get("purpose", "passage"),
+                              **({"source_language_hint": item["source_language_hint"]}
+                                 if item.get("source_language_hint") else {})})
         return cls.request(model, protected), literals
 
     @staticmethod
@@ -444,6 +454,12 @@ def english_detector():
         Language.CZECH, Language.SLOVAK, Language.SLOVENE, Language.ROMANIAN, Language.BULGARIAN,
         Language.CROATIAN, Language.HUNGARIAN, Language.TURKISH, Language.UKRAINIAN,
     ).build()
+
+
+@lru_cache(maxsize=8192)
+def source_language_hint(text):
+    language = english_detector().detect_language_of(translation_text(text))
+    return language.iso_code_639_1.name.lower() if language else "und"
 
 
 @lru_cache(maxsize=8192)
@@ -524,6 +540,11 @@ def validate_translation(source, result, protected_names=(), purpose="passage"):
     def numbers(value):
         return Counter(re.findall(r"\d+(?:[.,:/-]\d+)*", value))
     if numbers(source) != numbers(text):
+        return False
+    for pattern in (SITE_CODE, AREA):
+        if Counter(re.findall(pattern, source)) != Counter(re.findall(pattern, text)):
+            return False
+    if source_site_names(source) and Counter(re.findall(LOT_LABEL, source)) != Counter(re.findall(LOT_LABEL, text)):
         return False
     for url in re.findall(r"https?://[^\s<>]+|[\w.+-]+@[\w.-]+\.[a-zA-Z]{2,}", source):
         if url.rstrip(".,;)") not in text:
@@ -711,6 +732,8 @@ class TranslationQueue:
         def items_for(work):
             return [{"id": f"{key}:{index}", "text": part["source"],
                      "purpose": self.state["fields"][key].get("purpose", "passage"),
+                     "source_language_hint": source_language_hint(
+                         "".join(p["source"] for p in self.state["fields"][key]["parts"])),
                      "protected_names": self.state["fields"][key].get("protected_names", [])}
                     for key, index, part in work]
 

@@ -229,6 +229,35 @@ def test_site_names_remain_protected_when_splitting_before_their_area(tmp_path):
     assert "Offenbacher Wald und Queichwiesen" in literals.values()
 
 
+@pytest.mark.parametrize("broken", [
+    "Lot LOT-0001: Lot 41OF-6914-401 Bienwald und Viehstrichwiesen. 3.127 ha",
+    "Lot LOT-0001: Lot 41DE-6914-401 Bienwald und Viehstrichwiesen. 3.127 has",
+    "Lot LOT-0001: The 41DE-6914-401 Bienwald und Viehstrichwiesen. 3.127 ha",
+])
+def test_site_identifiers_area_units_and_lot_labels_cannot_be_mistranslated(broken):
+    source = "Lot LOT-0001: Los 41DE-6914-401 Bienwald und Viehstrichwiesen. 3.127 ha"
+    assert not validate_translation(source, {"text": broken, "language": "de"})
+    masked, literals = protect_literals(source)
+    assert "DE-6914-401" in literals.values()
+    assert "3.127 ha" in literals.values()
+    assert "LOT-0001" in literals.values()
+    assert restore_literals(masked, literals) == source
+
+
+def test_fragments_receive_language_hint_from_complete_unmasked_source(tmp_path, service):
+    create, clock, requests = service
+    queue = TranslationQueue(tmp_path / "cache.json", clock)
+    source = "Die Erfassung muss durch qualifizierte Fachleute erfolgen.\nLos 19"
+    key = queue.add(source)
+    field = queue.state["fields"][key]
+    first, last = source.split("\n")
+    field["parts"] = [queue.part(first + "\n"), queue.part(last)]
+    field["parts"][0]["result"] = {"text": "The survey must be performed by qualified professionals.", "language": "de"}
+    queue.run(create(max_calls=2), MODELS)
+    assert requests[0][1][0]["source_language_hint"] == "de"
+    assert "Fachleute" not in requests[0][1][0]["text"]
+
+
 def test_existing_encoded_english_cache_is_decoded_and_reused_without_provider_calls(tmp_path, service):
     create, clock, requests = service
     source = "Research &amp; development for the buyer&rsquo;s platform, covering 60 users."

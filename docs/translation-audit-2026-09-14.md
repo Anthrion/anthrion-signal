@@ -22,6 +22,12 @@ not a guarantee that GitHub will start a run every fifteen minutes.
   with explicit German site identifiers and area measurements are now protected,
   including when a source passage splits between a name and its area. This is a
   narrow source-structure rule, not an exemption for arbitrary lot descriptions.
+  Review of the first repair pass caught a further fragment-level error: German
+  `Los`, `DE` and `ha` were interpreted as Spanish words, producing `The`, `OF`
+  and `has`. That deployment was cancelled before publication. Complete site
+  identifiers and hectare quantities are now protected and checked, and the
+  structured lot labels are validated. Each fragment receives a language hint
+  estimated from the complete unmasked source to avoid losing that context.
 - A broader entity scan found 11 otherwise translated records containing named
   references such as `&amp;`, `&reg;` or `&rsquo;`. Their existing cache text is decoded
   and revalidated without retranslating. A dry run preserved all 1,899 completed
