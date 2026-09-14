@@ -7629,13 +7629,12 @@
         {
           "blocked": false,
           "failures": {
-            "gemini-3.1-flash-lite": 2,
-            "gemini-3.5-flash-lite": 2
+            "gemini-3.1-flash-lite": 2
           },
           "quality_retry": {
-            "after": 1789354689.7250931,
+            "after": 0,
             "day": "2026-09-13",
-            "round": 0
+            "round": 1
           },
           "rejected": {
             "id": "112432b6f43941f9ea725243d39e07d183a915c32215e98aaaec016ac6a7b818:0",
@@ -70209,13 +70208,12 @@
         {
           "blocked": false,
           "failures": {
-            "gemini-3.1-flash-lite": 2,
-            "gemini-3.5-flash-lite": 2
+            "gemini-3.1-flash-lite": 2
           },
           "quality_retry": {
-            "after": 1789354704.51696,
+            "after": 0,
             "day": "2026-09-13",
-            "round": 0
+            "round": 1
           },
           "rejected": {
             "id": "a53c2d821909c72d34c87949190255782d8f36c3066bd40504d647e09c0f3a72:0",
