@@ -88,6 +88,7 @@ jobs:
           python -m anthrion_signal.cli validate
           python -m anthrion_signal.cli export
           python scripts/check_public_output.py
+          python scripts/audit_translations.py
       - name: Detect meaningful publication changes
         id: changed
         env:
@@ -97,7 +98,7 @@ jobs:
         if: steps.plan.outputs.collect == 'true' || steps.changed.outputs.deploy == 'true' || steps.plan.outputs.full_tests == 'true'
         run: |
           python -m pytest -q
-          python -m ruff check pipeline scripts/refresh_plan.py scripts/translate_records.py scripts/publication_state.py scripts/reconcile_release_data.py
+          python -m ruff check pipeline scripts/refresh_plan.py scripts/translate_records.py scripts/publication_state.py scripts/reconcile_release_data.py scripts/audit_translations.py
       - uses: actions/setup-node@v4
         if: steps.changed.outputs.deploy == 'true' || steps.plan.outputs.full_tests == 'true'
         with:

@@ -11,6 +11,7 @@ from dataclasses import dataclass
 from datetime import UTC, datetime, timedelta
 from email.utils import parsedate_to_datetime
 from functools import lru_cache
+from html import unescape
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -20,7 +21,7 @@ from lingua import Language, LanguageDetectorBuilder
 from .utils import atomic_json, digest, read_json
 
 VERSION = "en-procurement-2"
-RETRY_PROFILE = "english-coverage-and-organisation-names-2"
+RETRY_PROFILE = "decoded-entities-and-source-site-names-3"
 PACIFIC = ZoneInfo("America/Los_Angeles")
 SYSTEM = """Translate each supplied procurement passage into accurate, complete British English.
 FIRST: if a passage is already English, copy it character-for-character. This takes precedence over
@@ -102,8 +103,23 @@ class RunFinished(Exception):
         self.reason = reason
 
 
+def translation_text(text):
+    """Decode complete HTML character references without rewriting canonical source text or URLs."""
+    return re.sub(r"&(?:#[xX][0-9a-fA-F]+|#[0-9]+|[A-Za-z][A-Za-z0-9]+);",
+                  lambda match: unescape(match.group()), text)
+
+
+def source_site_names(text):
+    """Keep named German conservation sites paired with their site codes and area measurements."""
+    # This narrow source structure identifies location labels, not arbitrary lot descriptions.
+    # Never infer a name from model output or exempt the rest of the notice's prose.
+    return re.findall(r"\bDE-\d{4}-\d{3}\s+([^.;:\n]{2,180})\.\s*(?=\d[\d.,]*\s+(?:ha\b|Lot LOT-))", text)
+
+
 def protect_literals(text, names=()):
-    names = [name for name in names if name and len(name) > 1]
+    text = translation_text(text)
+    names = [translation_text(name) for name in names if name and len(name) > 1]
+    names += source_site_names(text)
     patterns = [r"https?://[^\s<>]+", r"[\w.+-]+@[\w.-]+\.[a-zA-Z]{2,}"]
     patterns += [re.escape(name) for name in sorted(names, key=len, reverse=True)]
     patterns += [r"\b(?:Salesforce|CRM|Agentforce|MuleSoft|Tableau|Kanta)\b", r"\d+(?:[.,:/-]\d+)*"]
@@ -472,9 +488,11 @@ def foreign_prose(remaining):
     return False
 
 
-def untranslated_prose(text, protected_names=()):
-    remaining = text
-    for name in protected_names:
+def untranslated_prose(text, protected_names=(), source=""):
+    remaining = translation_text(text)
+    names = [translation_text(name) for name in protected_names if name]
+    names += source_site_names(translation_text(source))
+    for name in sorted(set(names), key=len, reverse=True):
         if name:
             remaining = re.sub(re.escape(name), "", remaining, flags=re.I)
     remaining = re.sub(r"https?://[^\s<>]+|[\w.+-]+@[\w.-]+\.[a-zA-Z]{2,}", "", remaining)
@@ -482,6 +500,7 @@ def untranslated_prose(text, protected_names=()):
 
 
 def validate_translation(source, result, protected_names=(), purpose="passage"):
+    source = translation_text(source)
     text, language = result.get("text"), result.get("language")
     if not isinstance(text, str) or not text.strip() or not isinstance(language, str):
         return False
@@ -489,7 +508,7 @@ def validate_translation(source, result, protected_names=(), purpose="passage"):
         return False
     if language == "en" and text.strip() != source.strip():
         return False
-    if untranslated_prose(text, protected_names):
+    if translation_text(text) != text or untranslated_prose(text, protected_names, source):
         return False
     if language not in ("en", "und", "mul") and text.strip() == source.strip() and purpose == "passage":
         remainder = source
@@ -564,7 +583,8 @@ def available_translations(root, signals):
         if any(not isinstance(entry.get(field), str) or (source.get(field, "").strip() and not entry[field].strip())
                for field in ("title", "description")):
             continue
-        if any(untranslated_prose(entry[field], [source.get("buyer_name")]) for field in ("title", "description")):
+        if any(untranslated_prose(entry[field], [source.get("buyer_name")], source.get(field, ""))
+               for field in ("title", "description")):
             continue
         result[source["id"]] = {field: entry[field] for field in ("source_hash", "version", "title", "description")}
         if (source.get("buyer_name") and entry.get("buyer_original") == source["buyer_name"]
@@ -611,16 +631,22 @@ class TranslationQueue:
             field["retry_profile"] = RETRY_PROFILE
         field["protected_names"] = sorted(set(field.get("protected_names", [])) | {
             name for name in protected_names if name and name.casefold() in text.casefold()
-        })
+        } | set(source_site_names(translation_text(text))))
         for part in field["parts"]:
+            for slot in ("result", "rejected"):
+                previous = part.get(slot)
+                if previous and isinstance(previous.get("text"), str):
+                    decoded = translation_text(previous["text"])
+                    if decoded != previous["text"]:
+                        part[slot] = {**previous, "text": decoded, "normalization": "html-character-references-1"}
             # Reuse a previously rejected result only when the current checks now accept it.
             # This avoids another API request after a validator false positive is corrected.
             if (part["result"] is None and not part["blocked"] and part.get("rejected")
                     and validate_translation(part["source"], part["rejected"], field["protected_names"], purpose)):
                 part["result"] = part["rejected"]
             if part["result"] and (not validate_translation(part["source"], part["result"], field["protected_names"], purpose)
-                                   or any(name.casefold() in part["source"].casefold()
-                                      and name.casefold() not in part["result"]["text"].casefold()
+                                   or any(translation_text(name).casefold() in translation_text(part["source"]).casefold()
+                                      and translation_text(name).casefold() not in part["result"]["text"].casefold()
                                       for name in field["protected_names"])):
                 part["rejected"] = part["result"]
                 part["result"], part["failures"] = None, {}
@@ -654,7 +680,7 @@ class TranslationQueue:
         if not all(p["result"] is not None for p in parts):
             return None
         if all(p["result"]["language"] == "en" for p in parts):
-            return "".join(p["source"] for p in parts)
+            return translation_text("".join(p["source"] for p in parts))
         return "\n\n".join(p["result"]["text"].strip() for p in parts)
 
     def prepare(self, signals):

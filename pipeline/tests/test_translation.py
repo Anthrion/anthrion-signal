@@ -22,8 +22,10 @@ from anthrion_signal.translation import (
     protect_literals,
     restore_literals,
     source_key,
+    source_site_names,
     split_text,
     translation_lock,
+    translation_text,
     untranslated_prose,
     validate_translation,
 )
@@ -149,6 +151,105 @@ def test_protected_foreign_buyer_does_not_invalidate_english_passage():
     name = "\u039a\u039f\u0399\u039d\u03a9\u039d\u0399\u0391 \u03a4\u0397\u03a3 \u03a0\u039b\u0397\u03a1\u039f\u03a6\u039f\u03a1\u0399\u0391\u03a3"
     source = f"{name}: CRM procurement."
     assert validate_translation(source, {"text": source, "language": "en"}, [name])
+
+
+def test_encoded_italian_characters_are_not_protected_as_procurement_numbers():
+    source = "L&#8217;appalto avr&#224; durata di 60 mesi, per &#8364; 280.000 ai sensi dell'art. 71 del 36/2023."
+    masked, literals = protect_literals(source)
+    assert "L’appalto avrà" in masked
+    assert set(literals.values()) == {"60", "280.000", "71", "36/2023"}
+    assert restore_literals(masked, literals) == translation_text(source)
+    english = "The contract will last 60 months, for € 280.000 under art. 71 of 36/2023."
+    assert validate_translation(source, {"text": english, "language": "it"})
+    assert not validate_translation(source, {"text": english.replace("60", "50"), "language": "it"})
+    assert not validate_translation(source, {"text": english.replace("36/2023", "36/2024"), "language": "it"})
+
+
+def test_character_decoding_preserves_url_parameters_and_rejects_encoded_foreign_output():
+    url = "https://example.org/?notice=71&notices=36&copy=1"
+    assert translation_text(url) == url
+    assert translation_text("&#x2019; &amp; &unknown;") == "’ & &unknown;"
+    source = "L&#8217;affidamento dei servizi di sviluppo e manutenzione delle applicazioni."
+    assert not validate_translation(source, {"text": source, "language": "en"})
+    assert untranslated_prose(source)
+
+
+def test_english_entity_decoding_survives_cache_resume_without_changing_source(tmp_path, service):
+    create, clock, requests = service
+    source = "The authority&#8217;s contract covers 60 months &amp; 280.000 users."
+    signal = SimpleNamespace(id="encoded", title=source, description="", buyer_name=None,
+                             last_material_update="2026-09-14")
+    queue = TranslationQueue(tmp_path / "cache.json", clock)
+    queue.prepare([signal])
+    queue.run(create(), MODELS)
+    assert queue.overlay([signal])["signals"][signal.id]["title"] == translation_text(source)
+    resumed = TranslationQueue(queue.path, clock)
+    resumed.prepare([signal])
+    assert resumed.run(create(), MODELS)["api_calls"] == 0
+    assert len(requests) == 2
+    assert signal.title == source
+    assert resumed.state["fields"][field_key(source)]["parts"][0]["source"] == source
+    assert resumed.overlay([signal])["signals"][signal.id]["source_hash"] == source_key(signal)
+
+
+def test_named_site_lists_do_not_hide_untranslated_requirements_or_changed_figures(tmp_path):
+    sites = ("Lot LOT-0001: Lot 1 DE-5213-401 Neunkhausener Plateau. 370 ha "
+             "Lot LOT-0002: Lot 2 DE-5507-401 Ahrgebirge. 3.803 ha "
+             "Lot LOT-0003: Lot 3 DE-6715-401 Offenbacher Wald, Bellheimer Wald und Queichwiesen. 2.259 ha")
+    source = "Erfassung der Vogelarten. " + sites.replace(": Lot ", ": Los ")
+    english = "Survey of bird species. " + sites
+    assert "Offenbacher Wald, Bellheimer Wald und Queichwiesen" in source_site_names(source)
+    assert validate_translation(source, {"text": english, "language": "de"})
+    assert not validate_translation(source, {"text": source, "language": "de"})
+    assert not validate_translation(source, {"text": english.replace("370", "371"), "language": "de"})
+    untranslated = "\nDie Erfassung muss durch qualifizierte Fachleute erfolgen."
+    assert not validate_translation(source + untranslated, {"text": english + untranslated, "language": "de"})
+    ordinary_lot = "Lot LOT-0001: Entwicklung und Wartung der Anwendung."
+    assert source_site_names(ordinary_lot) == []
+    assert untranslated_prose(ordinary_lot, source=ordinary_lot)
+    signal = SimpleNamespace(id="sites", title="Bird survey", description=source, buyer_name=None,
+                             last_material_update="2026-09-14")
+    queue = TranslationQueue(tmp_path / "cache.json")
+    queue.prepare([signal])
+    queue.state["fields"][field_key(signal.title)]["parts"][0]["result"] = {
+        "text": signal.title, "language": "en"}
+    queue.state["fields"][field_key(source)]["parts"][0]["result"] = {"text": english, "language": "de"}
+    atomic_json(tmp_path / "data/translation/translations.en.json", queue.overlay([signal]))
+    assert available_translations(tmp_path, [vars(signal)])["sites"]["description"] == english
+
+
+def test_site_names_remain_protected_when_splitting_before_their_area(tmp_path):
+    source = "Lot LOT-0001: Los 1 DE-6715-401 Offenbacher Wald und Queichwiesen. 2.259 ha"
+    queue = TranslationQueue(tmp_path / "cache.json")
+    key = queue.add(source)
+    names = queue.state["fields"][key]["protected_names"]
+    first = source.split("2.259")[0]
+    masked, literals = protect_literals(first, names)
+    assert "Offenbacher" not in masked
+    assert "Offenbacher Wald und Queichwiesen" in literals.values()
+
+
+def test_existing_encoded_english_cache_is_decoded_and_reused_without_provider_calls(tmp_path, service):
+    create, clock, requests = service
+    source = "Research &amp; development for the buyer&rsquo;s platform, covering 60 users."
+    queue = TranslationQueue(tmp_path / "cache.json", clock)
+    key = queue.add(source)
+    queue.state["fields"][key]["parts"][0]["result"] = {"text": source, "language": "en"}
+    queue.save()
+    resumed = TranslationQueue(queue.path, clock)
+    resumed.add(source)
+    assert resumed.completed(key) == "Research & development for the buyer’s platform, covering 60 users."
+    assert resumed.run(create(), MODELS)["api_calls"] == 0
+    assert not requests
+
+
+def test_decoding_cached_output_does_not_accept_a_changed_contract_value(tmp_path):
+    source = "Research &amp; development for 60 users."
+    queue = TranslationQueue(tmp_path / "cache.json")
+    key = queue.add(source)
+    queue.state["fields"][key]["parts"][0]["result"] = {"text": source.replace("60", "50"), "language": "en"}
+    queue.add(source)
+    assert queue.completed(key) is None
 
 
 def test_previously_copied_foreign_cache_is_requeued_but_good_cache_is_reused(tmp_path):
