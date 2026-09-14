@@ -60,3 +60,33 @@ These are automated language and integrity checks plus a focused review of the
 affected notices. They do not establish professional translation accuracy for all
 1,901 records. Official organisation and location names may intentionally remain
 in their source language.
+
+## Deployed result
+
+[Production workflow 34846781656](https://github.com/stevostar1234/anthrion-signal/actions/runs/34846781656)
+completed successfully. A fresh download and browser verification at 13:12 UTC
+(14:12 UK time) confirmed **1,886 / 1,886 published records** with complete,
+validated English title/description pairs, including **73 / 73 Italian records**.
+No published pair failed the strict coverage audit. The 15 records present in the
+morning snapshot but absent from this release all had response deadlines that
+passed between 08:00 and 13:00 UTC; they were not lost through translation.
+
+- 469 pipeline tests, 32 frontend unit tests and 107 production browser checks
+  passed. One desktop-specific check was intentionally skipped on mobile.
+- The independent GitHub test workflow also passed. Ten focused local browser
+  checks covered every market, translation controls, search, refresh and hidden IDs.
+- Both repaired notices were checked directly on the deployed site in desktop and
+  mobile browsers: complete English paragraphs, original titles, language switching,
+  correct source links, no page errors and no browser requests to translation APIs.
+- The final production pass used zero additional provider requests. The preceding
+  two repair passes used 22 and 16 attempts respectively, retained in the shared
+  quota ledger. No consumed requests were refunded or quota history reset.
+- Nine supplementary organisation-name renderings remain held by quality checks.
+  Their original official buyer names remain visible; no notice translation is
+  waiting on those optional renderings.
+
+Local evidence is retained in `artifacts/translation-audit-2026-09-14/`, including
+the before/after live datasets, audit output, source-list review script and desktop/
+mobile screenshots. Original titles, descriptions, IDs, dates, amounts and source
+URLs were preserved. Existing classification can use the newly available English
+text; two records gained derived capability annotations during export.
