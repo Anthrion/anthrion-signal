@@ -75,6 +75,7 @@ SCHEMA = {
 SITE_CODE = r"(?<![A-Za-z])[A-Z]{2}-\d{4}-\d{3}\b"
 AREA = r"\d+(?:[.,]\d+)*\s*ha\b"
 LOT_LABEL = r"\bLot (LOT-\d{4}):\s*(?:Los|Lot)\s*(\d+)"
+ENGLISH_LOT_LABEL = r"\bLot (LOT-\d{4}):\s*Lot\s*(\d+)"
 
 
 @dataclass(frozen=True)
@@ -120,7 +121,7 @@ def source_site_names(text):
     """Keep named German conservation sites paired with their site codes and area measurements."""
     # This narrow source structure identifies location labels, not arbitrary lot descriptions.
     # Never infer a name from model output or exempt the rest of the notice's prose.
-    return re.findall(r"\bDE-\d{4}-\d{3}\s+([^.;:\n]{2,180})\.\s*(?=\d[\d.,]*\s+(?:ha\b|Lot LOT-))", text)
+    return re.findall(rf"{SITE_CODE}\s+([^.;:\n]{{2,180}})\.\s*(?=\d[\d.,]*\s+(?:ha\b|Lot LOT-))", text)
 
 
 def protect_literals(text, names=()):
@@ -512,6 +513,10 @@ def untranslated_prose(text, protected_names=(), source=""):
         if name:
             remaining = re.sub(re.escape(name), "", remaining, flags=re.I)
     remaining = re.sub(r"https?://[^\s<>]+|[\w.+-]+@[\w.-]+\.[a-zA-Z]{2,}", "", remaining)
+    # Repeated identifier prefixes and unit abbreviations are not natural-language evidence.
+    # The validator separately checks that the original identifiers, quantities and labels survive.
+    remaining = re.sub(ENGLISH_LOT_LABEL, "", remaining)
+    remaining = re.sub(rf"{SITE_CODE}|{AREA}", "", remaining)
     return foreign_prose(remaining)
 
 
@@ -544,7 +549,8 @@ def validate_translation(source, result, protected_names=(), purpose="passage"):
     for pattern in (SITE_CODE, AREA):
         if Counter(re.findall(pattern, source)) != Counter(re.findall(pattern, text)):
             return False
-    if source_site_names(source) and Counter(re.findall(LOT_LABEL, source)) != Counter(re.findall(LOT_LABEL, text)):
+    if (source_site_names(source)
+            and Counter(re.findall(LOT_LABEL, source)) != Counter(re.findall(ENGLISH_LOT_LABEL, text))):
         return False
     for url in re.findall(r"https?://[^\s<>]+|[\w.+-]+@[\w.-]+\.[a-zA-Z]{2,}", source):
         if url.rstrip(".,;)") not in text:
@@ -650,10 +656,14 @@ class TranslationQueue:
                 if part["result"] is None:
                     part["failures"] = {}
             field["retry_profile"] = RETRY_PROFILE
-        field["protected_names"] = sorted(set(field.get("protected_names", [])) | {
+        previous_names = set(field.get("protected_names", []))
+        field["protected_names"] = sorted(previous_names | {
             name for name in protected_names if name and name.casefold() in text.casefold()
         } | set(source_site_names(translation_text(text))))
         for part in field["parts"]:
+            if part["result"] is None and any(name in part["source"]
+                    for name in set(field["protected_names"]) - previous_names):
+                part["failures"] = {}
             for slot in ("result", "rejected"):
                 previous = part.get(slot)
                 if previous and isinstance(previous.get("text"), str):

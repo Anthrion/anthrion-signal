@@ -28,6 +28,13 @@ not a guarantee that GitHub will start a run every fifteen minutes.
   identifiers and hectare quantities are now protected and checked, and the
   structured lot labels are validated. Each fragment receives a language hint
   estimated from the complete unmasked source to avoid losing that context.
+  Repeated structural labels, site identifiers and hectare quantities are excluded
+  from language detection while retaining their separate integrity checks. The
+  final list-only fragment was also reviewed against its exact source: only the
+  24 German `Los` labels became `Lot`; all names, codes, quantities and units were
+  copied unchanged. Its cache entry records `assistant-source-review` provenance,
+  and the completed passage passes the same production validation without an
+  additional provider request.
 - A broader entity scan found 11 otherwise translated records containing named
   references such as `&amp;`, `&reg;` or `&rsquo;`. Their existing cache text is decoded
   and revalidated without retranslating. A dry run preserved all 1,899 completed

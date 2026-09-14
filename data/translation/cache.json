@@ -31850,10 +31850,7 @@
         },
         {
           "blocked": false,
-          "failures": {
-            "gemini-3.1-flash-lite": 2,
-            "gemini-3.5-flash-lite": 2
-          },
+          "failures": {},
           "quality_retry": {
             "after": 1789394133.0995345,
             "day": "2026-09-14",
@@ -31865,13 +31862,20 @@
             "model": "gemini-3.1-flash-lite",
             "text": "44 ha Lot LOT-0019: Lot 19 DE-6815-401 Neupotzer Altrhein. 238 ha Lot LOT-0020: Lot 20 DE-6816-402 Hördter Rheinaue inklusive Kahnbusch und Oberscherpfer Wald und DE-6816-403 Karlskopf und Leimersheimer Altrhein. 1.755 ha 150 ha Lot LOT-0021: Lot 21 DE-6915-402 Wörther Altrhein und Wörther Rheinhafen. 239 ha Lot LOT-0022: Lot 22 DE-7015-405 Neuburger Altrheine. 108 ha Lot LOT-0023: Lot 23 DE-5409-401 Ahrmündung. 167 ha Lot LOT-0024: Lot 24 DE-5412-401 Westerwälder Seenplatte. 416 ha Lot LOT-0025: Lot 25 DE-5509-401 Laacher See. 354 ha Lot LOT-0026: Lot 26 DE-5609-401 Unteres Mittelrheingebiet. 2.066 ha Lot LOT-0027: Lot 27 DE-5610-401 Maifeld Kaan-Lonnig. 1.020 ha Lot LOT-0028: Lot 28 DE-5709-401 Maifeld Einig-Naunheim. 609 ha Lot LOT-0029: Lot29 DE-5809-401 Mittel- und Untermosel. 3.421 ha Lot LOT-0030: Lot 30 DE-5611-401 Lahnhänge. 1.374 ha Lot LOT-0031: Lot 31 DE-6014-402 Selztal zwischen Hahnheim und Ingelheim. 381 ha Lot LOT-0032: Lot 32 DE-6315-401 Klärteiche Offstein. 65 ha Lot LOT-0033: Lot 33 DE-6015-301 NSG Laubenheimer-Bodenheimer Ried. 72 ha Lot LOT-0034: Lot 34 DE-6016-302 NSG Kisselwörth und Sändchen. 73 ha Lot LOT-0035: Lot 35 DE-6304-401 Saargau Bilzingen/Fisch. 322 ha Lot LOT-0036: Lot 36 DE-6313-401 Wälder westlich Kirchheimbolanden. 1.246 ha Lot LOT-0037: Lot 37 DE-6616-401 Otterstadter Altrhein und Angelhofer Altrhein inklusive Binsfeld. 1.172 ha Lot LOT-0038: Lot 38 DE-6716-401 NSG Mechtersheimer Tongruben und DE-6716-402 Berghausener und Lingenfelder Altrhein mit Insel Flotzgrün. 33 ha 1.805 ha Lot LOT-0039: Lot 39 DE-6812-401 Pfälzerwald. 3.668 ha Lot LOT-0040: Lot 40 DE-6816-404 Sondernheimer Tongruben. 43 ha Lot LOT-0041: Lot 41DE-6914-401 Bienwald and Viehstrichwiesen. 3.127 ha Lot LOT-0042: Lot 42 DE-6915-403 Goldgrund und Daxlander Au. 852 ha"
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-14T13:00:30.477792+00:00",
+            "language": "de",
+            "model": "assistant-source-review",
+            "review": "Only the 24 structured German lot labels Los were rendered as Lot. Every site name, identifier, area quantity and unit is unchanged from the source.",
+            "text": "44 ha Lot LOT-0019: Lot 19 DE-6815-401 Neupotzer Altrhein. 238 ha Lot LOT-0020: Lot 20 DE-6816-402 Hördter Rheinaue inklusive Kahnbusch und Oberscherpfer Wald und DE-6816-403 Karlskopf und Leimersheimer Altrhein. 1.755 ha 150 ha Lot LOT-0021: Lot 21 DE-6915-402 Wörther Altrhein und Wörther Rheinhafen. 239 ha Lot LOT-0022: Lot 22 DE-7015-405 Neuburger Altrheine. 108 ha Lot LOT-0023: Lot 23 DE-5409-401 Ahrmündung. 167 ha Lot LOT-0024: Lot 24 DE-5412-401 Westerwälder Seenplatte. 416 ha Lot LOT-0025: Lot 25 DE-5509-401 Laacher See. 354 ha Lot LOT-0026: Lot 26 DE-5609-401 Unteres Mittelrheingebiet. 2.066 ha Lot LOT-0027: Lot 27 DE-5610-401 Maifeld Kaan-Lonnig. 1.020 ha Lot LOT-0028: Lot 28 DE-5709-401 Maifeld Einig-Naunheim. 609 ha Lot LOT-0029: Lot29 DE-5809-401 Mittel- und Untermosel. 3.421 ha Lot LOT-0030: Lot 30 DE-5611-401 Lahnhänge. 1.374 ha Lot LOT-0031: Lot 31 DE-6014-402 Selztal zwischen Hahnheim und Ingelheim. 381 ha Lot LOT-0032: Lot 32 DE-6315-401 Klärteiche Offstein. 65 ha Lot LOT-0033: Lot 33 DE-6015-301 NSG Laubenheimer-Bodenheimer Ried. 72 ha Lot LOT-0034: Lot 34 DE-6016-302 NSG Kisselwörth und Sändchen. 73 ha Lot LOT-0035: Lot 35 DE-6304-401 Saargau Bilzingen/Fisch. 322 ha Lot LOT-0036: Lot 36 DE-6313-401 Wälder westlich Kirchheimbolanden. 1.246 ha Lot LOT-0037: Lot 37 DE-6616-401 Otterstadter Altrhein und Angelhofer Altrhein inklusive Binsfeld. 1.172 ha Lot LOT-0038: Lot 38 DE-6716-401 NSG Mechtersheimer Tongruben und DE-6716-402 Berghausener und Lingenfelder Altrhein mit Insel Flotzgrün. 33 ha 1.805 ha Lot LOT-0039: Lot 39 DE-6812-401 Pfälzerwald. 3.668 ha Lot LOT-0040: Lot 40 DE-6816-404 Sondernheimer Tongruben. 43 ha Lot LOT-0041: Lot 41DE-6914-401 Bienwald und Viehstrichwiesen. 3.127 ha Lot LOT-0042: Lot 42 DE-6915-403 Goldgrund und Daxlander Au. 852 ha"
+          },
           "source": "44 ha Lot LOT-0019: Los 19 DE-6815-401 Neupotzer Altrhein. 238 ha Lot LOT-0020: Los 20 DE-6816-402 Hördter Rheinaue inklusive Kahnbusch und Oberscherpfer Wald und DE-6816-403 Karlskopf und Leimersheimer Altrhein. 1.755 ha 150 ha Lot LOT-0021: Los 21 DE-6915-402 Wörther Altrhein und Wörther Rheinhafen. 239 ha Lot LOT-0022: Los 22 DE-7015-405 Neuburger Altrheine. 108 ha Lot LOT-0023: Los 23 DE-5409-401 Ahrmündung. 167 ha Lot LOT-0024: Los 24 DE-5412-401 Westerwälder Seenplatte. 416 ha Lot LOT-0025: Los 25 DE-5509-401 Laacher See. 354 ha Lot LOT-0026: Los 26 DE-5609-401 Unteres Mittelrheingebiet. 2.066 ha Lot LOT-0027: Los 27 DE-5610-401 Maifeld Kaan-Lonnig. 1.020 ha Lot LOT-0028: Los 28 DE-5709-401 Maifeld Einig-Naunheim. 609 ha Lot LOT-0029: Los29 DE-5809-401 Mittel- und Untermosel. 3.421 ha Lot LOT-0030: Los 30 DE-5611-401 Lahnhänge. 1.374 ha Lot LOT-0031: Los 31 DE-6014-402 Selztal zwischen Hahnheim und Ingelheim. 381 ha Lot LOT-0032: Los 32 DE-6315-401 Klärteiche Offstein. 65 ha Lot LOT-0033: Los 33 DE-6015-301 NSG Laubenheimer-Bodenheimer Ried. 72 ha Lot LOT-0034: Los 34 DE-6016-302 NSG Kisselwörth und Sändchen. 73 ha Lot LOT-0035: Los 35 DE-6304-401 Saargau Bilzingen/Fisch. 322 ha Lot LOT-0036: Los 36 DE-6313-401 Wälder westlich Kirchheimbolanden. 1.246 ha Lot LOT-0037: Los 37 DE-6616-401 Otterstadter Altrhein und Angelhofer Altrhein inklusive Binsfeld. 1.172 ha Lot LOT-0038: Los 38 DE-6716-401 NSG Mechtersheimer Tongruben und DE-6716-402 Berghausener und Lingenfelder Altrhein mit Insel Flotzgrün. 33 ha 1.805 ha Lot LOT-0039: Los 39 DE-6812-401 Pfälzerwald. 3.668 ha Lot LOT-0040: Los 40 DE-6816-404 Sondernheimer Tongruben. 43 ha Lot LOT-0041: Los 41DE-6914-401 Bienwald und Viehstrichwiesen. 3.127 ha Lot LOT-0042: Los 42 DE-6915-403 Goldgrund und Daxlander Au. 852 ha"
         }
       ],
       "protected_names": [
         "Ahrgebirge",
         "Ahrmündung",
+        "Bienwald und Viehstrichwiesen",
         "Bobenheimer und Roxheimer Altrhein mit Silbersee",
         "Dünen- und Sandgebiet Mainz-Ingelheim",
         "Eich-Gimbsheimer Altrhein",

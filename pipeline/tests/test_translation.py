@@ -258,6 +258,28 @@ def test_fragments_receive_language_hint_from_complete_unmasked_source(tmp_path,
     assert "Fachleute" not in requests[0][1][0]["text"]
 
 
+def test_source_site_labels_with_attached_numbers_pass_without_ignoring_foreign_prose(tmp_path):
+    source = ("44 ha Lot LOT-0029: Los29 DE-5809-401 Mittel- und Untermosel. 3.421 ha "
+              "Lot LOT-0041: Los 41DE-6914-401 Bienwald und Viehstrichwiesen. 3.127 ha")
+    english = source.replace("Los", "Lot")
+    names = source_site_names(source)
+    assert "Bienwald und Viehstrichwiesen" in names
+    assert not untranslated_prose(english, source=source)
+    assert validate_translation(source, {"text": english, "language": "de"})
+    assert not validate_translation(source, {"text": source, "language": "de"})
+    requirement = "\nDie Erfassung muss durch qualifizierte Fachleute erfolgen."
+    assert not validate_translation(source + requirement, {"text": english + requirement, "language": "de"})
+    queue = TranslationQueue(tmp_path / "cache.json")
+    key = queue.add(source)
+    field = queue.state["fields"][key]
+    field["protected_names"].remove("Bienwald und Viehstrichwiesen")
+    field["parts"][0]["failures"] = {model.name: 2 for model in MODELS}
+    field["parts"][0]["blocked"] = True
+    queue.add(source)
+    assert field["parts"][0]["blocked"]
+    assert not list(queue.pending(MODELS[0]))
+
+
 def test_existing_encoded_english_cache_is_decoded_and_reused_without_provider_calls(tmp_path, service):
     create, clock, requests = service
     source = "Research &amp; development for the buyer&rsquo;s platform, covering 60 users."
