@@ -12842,18 +12842,17 @@
         {
           "blocked": false,
           "failures": {
-            "gemini-3.1-flash-lite": 2,
             "gemini-3.5-flash-lite": 2
           },
           "quality_retry": {
-            "after": 1789475537.0729945,
+            "after": 0,
             "day": "2026-09-15",
-            "round": 0
+            "round": 1
           },
           "rejected": {
             "id": "17b934c61b3a1041e8c35e44657cd55e7ed7191d2646ecc706de79c8846ee041:0",
             "language": "en",
-            "model": "gemini-3.1-flash-lite",
+            "model": "gemini-3.5-flash-lite",
             "text": "European Commission, DG BUDG - Budget; EP - European Parliament; European External Action Service (EEAS); The General Secretariat of the Council of the European Union; Agence Exécutive du Conseil Européen de la Recherche; European Innovation Council and SMEs Executive Agency (EISMEA); European Research Executive Agency (REA); Health and Digital Executive Agency (HaDEA); Agency for Support for BEREC (BEREC Office); Authority for Anti-Money Laundering and Countering the Financing of Terrorism; Circular Bio-based Europe Joint Undertaking; Community Plant Variety Office; Europe's Rail Joint Undertaking; European Cybersecurity Industrial, Technology and Research Competence Centre; European Defence Agency; European Environment Agency (EEA); European Fisheries Control Agency (EFCA); European Food Safety Authority; European Foundation for the Improvement of Living and Working Conditions; European High-Performance Computing Joint Undertaking; European Labour Authority (ELA); European Public Prosecutor’s Office; European Schools; European Securities and Markets Authority; European Union Agency For Law Enforcement Training; European Union Agency for Asylum; European Union Agency for Criminal Justice Cooperation (Eurojust); European Union Agency for Cybersecurity (ENISA); European Union Agency for Fundamental Rights; European Union Agency for Law Enforcement Cooperation; European Union Agency for Railways; European Union Agency for the Cooperation of Energy Regulators; European Union Agency for the Operational Management of Large-Scale IT Systems in the Area of Freedom, Security and Justice (eu-LISA); European Union Drugs Agency; Global Health EDCTP3 Joint Undertaking; Innovative Health Initiative Joint Undertaking (IHI JU); Single Resolution Board (SRB); Committee of the Regions of the European Union; European Economic and Social Committee"
           },
           "result": null,
@@ -17409,18 +17408,17 @@
         {
           "blocked": false,
           "failures": {
-            "gemini-3.1-flash-lite": 2,
             "gemini-3.5-flash-lite": 2
           },
           "quality_retry": {
-            "after": 1789475537.0731776,
+            "after": 0,
             "day": "2026-09-15",
-            "round": 0
+            "round": 1
           },
           "rejected": {
             "id": "20b9e4851a90baf78c10e3674569b157138e9af1aa399851ec33d1de6db96b1d:0",
             "language": "da",
-            "model": "gemini-3.1-flash-lite",
+            "model": "gemini-3.5-flash-lite",
             "text": "Ørsted Services A/S; Ørsted Wind Power A/S; Ørsted A/S; Ørsted Bioenergy & Thermal Power A/S; Ørsted Salg & Service A/S; Orsted Germany GmbH; Gode Wind 1 Offshore Wind Farm GmbH & Co. OHG; Orsted Gode Wind 2 GmbH; Borkum Riffgrund I Offshore Windpark A/S GmbH & Co. oHG; Ørsted Group; Borkum Riffgrund 3 GmbH & Co. oHG; Gode Wind 3 GmbH & Co. oHG; Borkum Riffgrund II Holding GmbH; Danish Oil Pipe A/S; Ørsted Horns Rev I A/S; Nysted I A/S; Ørsted Horns Rev 2 A/S; Ørsted - Anholt Offshore A/S; Borkum Riffgrund 2 Offshore Wind Farm GmbH & Co. oHG; Borkum Riffgrund I Holding A/S; Orsted Speicher R GmbH; Orsted Gode Wind 3 Holding GmbH; Orsted Gode Wind 3 Finance GmbH; Ørsted Wind Power Denmark A/S; Anholt Havvindmøllepark I/S; Borkum Riffgrund 3 Orsted Holding GmbH; Orsted Polska Sp. z o.o.; Orsted Speicher R GmbH; Orsted Borkum Riffgrund I HoldCo GmbH"
           },
           "result": null,
@@ -77813,19 +77811,18 @@
         {
           "blocked": false,
           "failures": {
-            "gemini-3.1-flash-lite": 2,
             "gemini-3.5-flash-lite": 2
           },
           "quality_retry": {
-            "after": 1789475537.0733464,
+            "after": 0,
             "day": "2026-09-15",
-            "round": 0
+            "round": 1
           },
           "rejected": {
             "id": "984720aa0631a8157e49446825926d634cce3577dc85224dc50528d836754116:0",
             "language": "fi",
-            "model": "gemini-3.1-flash-lite",
-            "text": "Jyväskylä City"
+            "model": "gemini-3.5-flash-lite",
+            "text": "City of Jyväskylä"
           },
           "result": null,
           "source": "Jyväskylän kaupunki"
@@ -78429,19 +78426,18 @@
         {
           "blocked": false,
           "failures": {
-            "gemini-3.1-flash-lite": 2,
             "gemini-3.5-flash-lite": 2
           },
           "quality_retry": {
-            "after": 1789475537.0726297,
+            "after": 0,
             "day": "2026-09-15",
-            "round": 0
+            "round": 1
           },
           "rejected": {
             "id": "99750f3b5801779cd6452c3ff6f313604a17c998b7f8a515daf267f21fa7a6da:0",
             "language": "fi",
-            "model": "gemini-3.1-flash-lite",
-            "text": "Numera Palvelut Oy; Hattula Municipality; Hämeenlinna City; Janakkala Municipality; Kanta-Häme Wellbeing Services County; Tavastia Education Joint Authority"
+            "model": "gemini-3.5-flash-lite",
+            "text": "Numera Services Ltd; Municipality of Hattula; City of Hämeenlinna; Municipality of Janakkala; Kanta-Häme Wellbeing Services County; Tavastia Education Consortium"
           },
           "result": null,
           "source": "Numera Palvelut Oy; Hattulan kunta; Hämeenlinnan kaupunki; Janakkalan kunta; Kanta-Hämeen hyvinvointialue; Koulutuskuntayhtymä Tavastia"
@@ -85891,18 +85887,17 @@
         {
           "blocked": false,
           "failures": {
-            "gemini-3.1-flash-lite": 2,
             "gemini-3.5-flash-lite": 2
           },
           "quality_retry": {
-            "after": 1789475537.0733652,
+            "after": 0,
             "day": "2026-09-15",
-            "round": 0
+            "round": 1
           },
           "rejected": {
             "id": "a75bc1ed52ea36ebc96fd2efbd217da49307b3e138f57632a5922d13f4af3946:0",
             "language": "sv",
-            "model": "gemini-3.1-flash-lite",
+            "model": "gemini-3.5-flash-lite",
             "text": "Västra Götaland Region"
           },
           "result": null,
@@ -101498,19 +101493,18 @@
         {
           "blocked": false,
           "failures": {
-            "gemini-3.1-flash-lite": 2,
             "gemini-3.5-flash-lite": 2
           },
           "quality_retry": {
-            "after": 1789475537.0733817,
+            "after": 0,
             "day": "2026-09-15",
-            "round": 0
+            "round": 1
           },
           "rejected": {
             "id": "c4e209ec2bb297e80a8b02c0e0aca557e7ee149d18b27681075ca1cfaf64062c:0",
             "language": "sv",
-            "model": "gemini-3.1-flash-lite",
-            "text": "Gävleborg Region"
+            "model": "gemini-3.5-flash-lite",
+            "text": "Region Gävleborg"
           },
           "result": null,
           "source": "Region Gävleborg"
@@ -105913,19 +105907,18 @@
         {
           "blocked": false,
           "failures": {
-            "gemini-3.1-flash-lite": 2,
             "gemini-3.5-flash-lite": 2
           },
           "quality_retry": {
-            "after": 1789475525.5649912,
+            "after": 0,
             "day": "2026-09-15",
-            "round": 0
+            "round": 1
           },
           "rejected": {
             "id": "cd85e0b23e10b5562c2b75de5b9213ebbc6e31c35d155856d274bfb40e725767:0",
             "language": "de",
-            "model": "gemini-3.1-flash-lite",
-            "text": "Digital modernisation BS Dülmen"
+            "model": "gemini-3.5-flash-lite",
+            "text": "Digital modernisation BS D7uchebichen"
           },
           "result": null,
           "source": "Digitale Modernisierung BS Dülmen"
@@ -108804,18 +108797,17 @@
         {
           "blocked": false,
           "failures": {
-            "gemini-3.1-flash-lite": 2,
             "gemini-3.5-flash-lite": 2
           },
           "quality_retry": {
-            "after": 1789475537.073328,
+            "after": 0,
             "day": "2026-09-15",
-            "round": 0
+            "round": 1
           },
           "rejected": {
             "id": "d28445168230d3f1ecb8104d67cf20d0ae7fd7f8b8781bff60d1d3240731d4f6:0",
             "language": "da",
-            "model": "gemini-3.1-flash-lite",
+            "model": "gemini-3.5-flash-lite",
             "text": "Ørsted Services A/S; Ørsted Wind Power A/S; Ørsted A/S; Ørsted Bioenergy & Thermal Power A/S; Ørsted Salg & Service A/S; Orsted Germany GmbH; Gode Wind 1 Offshore Wind Farm GmbH & Co. OHG; Orsted Gode Wind 2 GmbH; Borkum Riffgrund I Offshore Windpark A/S GmbH & Co. oHG; Borkum Riffgrund 2 Offshore Wind Farm GmbH & Co OHG; Ørsted Group; Borkum Riffgrund 3 GmbH & Co. oHG; Gode Wind 3 GmbH & Co. oHG; Borkum Riffgrund II Holding GmbH; Danish Oil Pipe A/S; Ørsted Horns Rev I A/S; Nysted I A/S; Ørsted Horns Rev 2 A/S; Ørsted - Anholt Offshore A/S; Borkum Riffgrund I Holding A/S; Orsted Borkum Riffgrund I HoldCo GmbH; Orsted Speicher R GmbH; Orsted Gode Wind 3 Holding GmbH; Orsted Gode Wind 3 Finance GmbH; Ørsted Wind Power Denmark A/S; Anholt Havvindmøllepark I/S; Borkum Riffgrund 3 Orsted Holding GmbH; Orsted Polska Sp. z o.o."
           },
           "result": null,
@@ -126593,19 +126585,18 @@
         {
           "blocked": false,
           "failures": {
-            "gemini-3.1-flash-lite": 2,
             "gemini-3.5-flash-lite": 2
           },
           "quality_retry": {
-            "after": 1789475537.0734062,
+            "after": 0,
             "day": "2026-09-15",
-            "round": 0
+            "round": 1
           },
           "rejected": {
             "id": "f499c81f86c58d817f70b39cc6b28256b46455d503a913c6990b485417682357:0",
             "language": "sv",
-            "model": "gemini-3.1-flash-lite",
-            "text": "Västerås City; Hallstahammar Municipality; Mälarhamnar Ltd"
+            "model": "gemini-3.5-flash-lite",
+            "text": "City of Västerås; Municipality of Hallstahammar; Mälarhamnar AB"
           },
           "result": null,
           "source": "Västerås stad; Hallstahammars kommun; Mälarhamnar AB"
@@ -129668,19 +129659,18 @@
         {
           "blocked": false,
           "failures": {
-            "gemini-3.1-flash-lite": 2,
             "gemini-3.5-flash-lite": 2
           },
           "quality_retry": {
-            "after": 1789475537.0730178,
+            "after": 0,
             "day": "2026-09-15",
-            "round": 0
+            "round": 1
           },
           "rejected": {
             "id": "fa9234aa3ae0eb5c65870be97a2f0ac5b99b35be30732e45527d2efa4c6a07aa:0",
             "language": "sv",
-            "model": "gemini-3.1-flash-lite",
-            "text": "Västernorrland Region"
+            "model": "gemini-3.5-flash-lite",
+            "text": "Region Västernorrland"
           },
           "result": null,
           "source": "Region Västernorrland"
