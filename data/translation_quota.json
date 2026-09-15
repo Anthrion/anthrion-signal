@@ -337,30 +337,42 @@
       }
     },
     "35014765882-1": {
-      "closed": false,
+      "closed": true,
       "day": "2026-09-15",
       "limits": {
         "gemini-3.1-flash-lite": 75,
         "gemini-3.5-flash-lite": 75
       },
-      "used": {}
+      "started": true,
+      "used": {
+        "gemini-3.1-flash-lite": 8
+      }
     }
   },
   "models": {
     "gemini-3.1-flash-lite": {
       "blocked_reason": "transient",
-      "blocked_until": 1789493625.0042908,
-      "consecutive_errors": 3,
+      "blocked_until": 1789501215.2407615,
+      "consecutive_errors": 0,
       "days": {
         "2026-09-12": 9,
         "2026-09-13": 420,
         "2026-09-14": 54,
-        "2026-09-15": 99
+        "2026-09-15": 32
       },
-      "recent": [],
+      "recent": [
+        {
+          "at": 1789501215.2418675,
+          "tokens": 11079
+        },
+        {
+          "at": 1789501215.3782427,
+          "tokens": 3332
+        }
+      ],
       "usage": {
-        "candidatesTokenCount": 791611,
-        "promptTokenCount": 915338,
+        "candidatesTokenCount": 796016,
+        "promptTokenCount": 921831,
         "thoughtsTokenCount": 0
       }
     },
@@ -371,7 +383,7 @@
         "2026-09-12": 16,
         "2026-09-13": 500,
         "2026-09-14": 172,
-        "2026-09-15": 121
+        "2026-09-15": 46
       },
       "recent": [],
       "usage": {
