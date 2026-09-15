@@ -319,6 +319,37 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "00d5b069f4cc25fa6e3070b36c39f8ee35b01dd6e3368a15aad34e9db039a95d": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 2
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "rejected": {
+            "id": "00d5b069f4cc25fa6e3070b36c39f8ee35b01dd6e3368a15aad34e9db039a95d:0",
+            "language": "da",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Levering af ydelser i relation til efter- og videreuddannelsesaktiviteter-EA"
+          },
+          "result": {
+            "at": "2026-09-15T06:53:40.670862+00:00",
+            "language": "da",
+            "model": "gemini-3.1-flash-lite",
+            "text": "Provision of services in relation to further and continuing education activities-EA"
+          },
+          "source": "Levering af ydelser i relation til efter- og videreuddannelsesaktiviteter-EA"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "00e14c47f20269fe477ace3437013af971212a945097956f24e2602e3ca851ed": {
       "parts": [
         {
@@ -2027,6 +2058,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "0416a5fbc3c46cee9818248434c86d96d8db01d55f3e4f6602f6dd8f291efd39": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:52:46.303044+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The renewal for a period of ten months of the support for a Dell Powerstore 1000T storage system that serves various information systems considered critical in the Administration of the Community of Castile and León. Submission deadline (source local time): 2026-09-29 14:00:00. Time zone not supplied; check the source notice."
+          },
+          "source": "La renovación por un periodo de diez meses del soporte de un sistema de almacenamiento Dell Powerstore 1000T que da servicio a diversos sistemas de información considerados críticos en de la Administración de la Comunidad de Castilla y León. Submission deadline (source local time): 2026-09-29 14:00:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "0418f928150905c8ad6fe7175fb1899fbf48c6af48fc16410ed171bf2af797d5": {
       "parts": [
         {
@@ -3016,6 +3070,37 @@
             "text": "Framework for Student Placement Systems and Associated Services for Universities, Colleges and Schools in Scotland including provision of all software and any associated licensing. Potential Services include, but are not limited to: System Implementation; Migration Support; Support and Maintenance; Hosting. Required solutions should have the capability to operate effectively across multi-campus environments. Student Placement software could be used for many professions but the initial requirement will be based upon the requirement of the Scottish education profession, which is looking to implement one system across the Scottish Higher Education sector and the 32 Scottish local authorities. This framework agreement is available to participation from: Full and Associate Members, and future members, of: Advanced Procurement Universities and Colleges (APUC Ltd) http://www.apuc-scot.ac.uk/#!/members The Scottish local authorities. https://www.cosla.gov.uk/councils Lot 1: . Framework for Student Placement Systems and Associated Services for Universities, Colleges and Schools in Scotland including provision of all software and any associated licensing. Potential Services include, but are not limited to: System Implementation; Migration Support; Support and Maintenance; Hosting. Required solutions should have the capability to operate effectively across multi-campus environments. Student Placement software could be used for many professions but the initial requirement will be based upon the requirement of the Scottish education profession, which is looking to implement one system across the Scottish Higher Education sector and the 32 Scottish local authorities. This framework agreement is available to participation from: Full and Associate Members, and future members, of: Advanced Procurement Universities and Colleges (APUC Ltd) http://www.apuc-scot.ac.uk/#!/members The Scottish local authorities. https://www.cosla.gov.uk/councils"
           },
           "source": "Framework for Student Placement Systems and Associated Services for Universities, Colleges and Schools in Scotland including provision of all software and any associated licensing. Potential Services include, but are not limited to: System Implementation; Migration Support; Support and Maintenance; Hosting. Required solutions should have the capability to operate effectively across multi-campus environments. Student Placement software could be used for many professions but the initial requirement will be based upon the requirement of the Scottish education profession, which is looking to implement one system across the Scottish Higher Education sector and the 32 Scottish local authorities. This framework agreement is available to participation from: Full and Associate Members, and future members, of: Advanced Procurement Universities and Colleges (APUC Ltd) http://www.apuc-scot.ac.uk/#!/members The Scottish local authorities. https://www.cosla.gov.uk/councils Lot 1: . Framework for Student Placement Systems and Associated Services for Universities, Colleges and Schools in Scotland including provision of all software and any associated licensing. Potential Services include, but are not limited to: System Implementation; Migration Support; Support and Maintenance; Hosting. Required solutions should have the capability to operate effectively across multi-campus environments. Student Placement software could be used for many professions but the initial requirement will be based upon the requirement of the Scottish education profession, which is looking to implement one system across the Scottish Higher Education sector and the 32 Scottish local authorities. This framework agreement is available to participation from: Full and Associate Members, and future members, of: Advanced Procurement Universities and Colleges (APUC Ltd) http://www.apuc-scot.ac.uk/#!/members The Scottish local authorities. https://www.cosla.gov.uk/councils"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "05bf60b1b84e214826e3f0701c3f28de970f89136013282a85e7b1266f0c4719": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 2
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "rejected": {
+            "id": "05bf60b1b84e214826e3f0701c3f28de970f89136013282a85e7b1266f0c4719:0",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Kutsu markkinavuoropuheluun: Fimea.fi verkkosivu-uudistus"
+          },
+          "result": {
+            "at": "2026-09-15T06:53:40.682528+00:00",
+            "language": "fi",
+            "model": "gemini-3.1-flash-lite",
+            "text": "Invitation to market dialogue: Fimea.fi website renewal"
+          },
+          "source": "Kutsu markkinavuoropuheluun: Fimea.fi verkkosivu-uudistus"
         }
       ],
       "protected_names": [],
@@ -5699,6 +5784,31 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "0b09d0f6317d3d79b73a129d30788eac1680126ca3fbdf497d1c9ef55ff74ee6": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:05.788971+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Foreseen contracting for the year 2026 for the various services of the City Council of Gandia."
+          },
+          "source": "Previsión de contratación para el año 2026 de los diferentes servicios del Ayuntamiento de Gandia."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "0b18273cb69a14fe9a9ec2b6945dfb19e93194b630fb080255c4f11f8c320630": {
       "parts": [
         {
@@ -6245,6 +6355,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "0c2bdd2e4913d035732a9eb766bbc7b5ca46ac55dcdeb084a837c80ee10b7111": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:32.012612+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "KCH Interventional Facilities Management"
+          },
+          "source": "KCH Interventional Facilities Management"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "0c3b1dd560728e8153c12800736cee713af7009b97269febe0e56edad47f9141": {
       "parts": [
         {
@@ -6590,6 +6723,37 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "0cfe8507c64e430c4fd5311f730198cfd3ecd5b877cb02a17a42b4821738c947": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "rejected": {
+            "id": "0cfe8507c64e430c4fd5311f730198cfd3ecd5b877cb02a17a42b4821738c947:0",
+            "language": "it",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Sistema di qualificazione per l'esecuzione dei servizi informatici per il Gruppo Dolomiti Energia"
+          },
+          "result": {
+            "at": "2026-09-15T06:53:25.996514+00:00",
+            "language": "it",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Qualification system for the execution of IT services for the Dolomiti Energia Group"
+          },
+          "source": "Sistema di qualificazione per l'esecuzione dei servizi informatici per il Gruppo Dolomiti Energia"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "0cff88ac6c70a5e64ec5985c9f431e380c4d44905cfc9729733ed2d04de86cec": {
@@ -7989,6 +8153,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "0f854ffffffc3d85edad4595f2b6855a05c8da24398ffb7410e9905e73a9d077": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:52:46.303756+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Development and maintenance service for the software \"App paseos saludables camina Agüimes\" Submission deadline (source local time): 2026-09-25 23:59:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Servicio de desarrollo y mantenimiento del Software \"App paseos saludables camina Agüimes\" Submission deadline (source local time): 2026-09-25 23:59:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "0f8ea34f4ec33ae45e5413a057da4ef26e656b6ad819410ca40b6b15c3b01d67": {
       "parts": [
         {
@@ -8547,6 +8734,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "106c31815250d2cde8de68ed3cdc61a048f3d1d459d16961ae8ad91ba100b179": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:52:46.295333+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Pre-market Engagement (PME): CRM System to Integrate with a CCaaS Platform for Police Control Room & Contact Centre"
+          },
+          "source": "Pre-market Engagement (PME): CRM System to Integrate with a CCaaS Platform for Police Control Room & Contact Centre"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "107c62701e3e4eb19ff1eb0175c13c6261905d6d20d8d289b33fdd133e702cec": {
       "parts": [
         {
@@ -8838,6 +9048,39 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "10d37b31c98a6408a3cefd43a0ff29d7cd5f407069bc33e85b11a5b0c1cef955": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 2
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "rejected": {
+            "id": "10d37b31c98a6408a3cefd43a0ff29d7cd5f407069bc33e85b11a5b0c1cef955:0",
+            "language": "it",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Servizi digitali per la Scuola Superiore Meridionale"
+          },
+          "result": {
+            "at": "2026-09-15T06:53:40.679960+00:00",
+            "language": "it",
+            "model": "gemini-3.1-flash-lite",
+            "text": "Digital services for the Scuola Superiore Meridionale"
+          },
+          "source": "Servizi digitali per la Scuola Superiore Meridionale"
+        }
+      ],
+      "protected_names": [
+        "Scuola Superiore Meridionale"
+      ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "10e24c43386e6a80bb37c27ca7dc5ce0406bfd5cbe513989fb98c91652ab1797": {
       "parts": [
         {
@@ -9118,6 +9361,29 @@
       "protected_names": [
         "Fondimpresa"
       ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "11310abbbea2e9a440f7b68c495a0568850cbe5a0792272cf291fc5a1908cccf": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:16.264301+00:00",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "GENERAL Fimea has started preparing for the procurement of the Fimea.fi website renewal. Fimea is a central agency under the Ministry of Social Affairs and Health that acts as the licensing and supervisory authority for medicines, medical devices, blood and tissue products, biobanks, and operators in the pharmaceutical sector intended for humans or animals. As part of the preparation of the procurement, the contracting authority is conducting a market dialogue. The actual procurement will be implemented as an open procurement procedure. Please note that this is a market survey notice and not a call for tenders. This market survey notice does not yet request tenders. Participation in the market dialogue is completely voluntary. Participation or non-participation in the market dialogue does not affect a tenderer's opportunities to participate in the procurement procedure to be implemented later. The market dialogue does not oblige anyone to participate in the actual tendering, nor does it exclude anyone from it. PRELIMINARY DESCRIPTION OF THE PROCUREMENT The aim of the procurement is to renew the Fimea.fi website and content management system so that the public site is user-friendly, accessible and supports the management of up-to-date content. The procurement will preliminarily be implemented using a hybrid model consisting of three separate parts: 1. Service design service, expert work • Design of user journeys and concepts • Definition of user interface and information architecture • Visual plan • Architecture description and solution description • Accessibility plan 2. New content management system and website implementation • Ready-to-use content management system (using SaaS model) • Renewed site structure and user interface • Language versions (Finnish, Swedish and English) • Content management features (preview, scheduling, version history) • Integrations and technical interfaces • Accessibility and data protection • Commissioning, training and documentation 3. Maintenance and further development Fixed-price maintenance: • Includes continuous usability of the service, security updates, backups, monitoring and SLA services. • Fixed monthly price for the contract period Hourly-rate minor development: • Includes small changes and additional features according to the agile model. • Invoicing according to actual work at an hourly rate. Both parts will be implemented as a SaaS service, where the supplier is responsible for technical management and continuity. The service design and definition phase as well as the implementation project are preliminarily scheduled for the years Q2/2026 – Q2/2027 and the maintenance and further development phase from Q3/2027 onwards. The website will be renewed at the same time in terms of appearance and structure in a way that better serves users. The basic content of the website will publish text, images and attachments. Contents will also include embedded videos or audio files. Embedded audio/video files are hosted on other services. The contents (articles and podcasts) of the Sic web magazine are intended to be integrated as part of the Fimea.fi entity as part of the website implementation. However, the web magazine will not be brought to the Fimea.fi site as a separate entity. MARKET DIALOGUE The market dialogue is intended for companies interested in tendering, and it includes commenting on preliminary tender documents before the publication of the call for tenders. Written commenting on the tender documents is preliminarily planned to be organised around the turn of January and February 2026. The publication of the actual call for tenders is preliminarily planned for February 2026. The information provided in this notice and in the market dialogue itself is preliminary and may change as the preparation progresses. The announced schedule of the procurement is also preliminary and may change as the preparation of the procurement progresses. Please note that the market survey does not include a question & answer phase. Companies interested in the procurement are requested to register in accordance with the instructions described below. REGISTRATION FOR THE MARKET DIALOGUE Companies interested in the procurement are requested to report their contact details by email to the address kilpailutus@hansel.fi. The registration shall be headed as follows: \"Fimea.fi verkkosivu-uudistus – Ilmoittautuminen markkinavuoropuheluun\". State in the message the name of your organisation and the email address of the contact person to whom the draft tender documents will be delivered. We request registrations for the market dialogue no later than by 23.1.2026 at 12:00. Hansel Oy acts in a consulting role in the procurement."
+          },
+          "source": "YLEISTÄ Fimea on käynnistänyt Fimea.fi verkkosivu-uudistuksen hankinnan valmistelun. Fimea on sosiaali- ja terveysministeriön alainen keskusvirasto, joka toimii ihmisille tai eläimille tarkoitettujen lääkkeiden, lääkinnällisten laitteiden, veri- ja kudosvalmisteiden, biopankkien sekä lääkealan toimijoiden lupa- ja valvontaviranomaisena. Osana kilpailutuksen valmistelua hankintayksikkö toteuttaa markkinavuoropuhelun. Varsinainen hankinta tullaan toteuttamaan avoimena hankintamenettelynä. Huomioittehan, että kyseessä on markkinakartoitusilmoitus, eikä tarjouspyyntö. Tällä markkinakartoitusilmoituksella ei vielä pyydetä tarjouksia. Markkinavuoropuheluun osallistuminen on täysin vapaaehtoista. Markkinavuoropuheluun osallistuminen tai osallistumatta jättäminen ei vaikuta tarjoajan mahdollisuuksiin osallistua myöhemmin toteutettavaan hankintamenettelyyn. Markkinavuoropuhelu ei velvoita ketään osallistumaan varsinaiseen kilpailutukseen, eikä myöskään sulje ketään sen ulkopuolelle. ALUSTAVA HANKINNAN KUVAUS Hankinnan tavoitteena on uudistaa Fimea.fi-verkkosivusto ja julkaisujärjestelmä siten, että julkinen sivusto on käyttäjäystävällinen, saavutettava ja tukee ajantasaisen sisällön hallintaa. Hankinta tullaan alustavasti toteuttamaan hybridimallilla, joka koostuu kolmesta erillisestä osasta: 1. Palvelumuotoilupalvelu, asiantuntijatyö • Käyttäjäpolkujen ja konseptien suunnittelu • Käyttöliittymä- ja informaatioarkkitehtuurin määrittely • Visuaalinen suunnitelma • Arkkitehtuurikuvaus ja ratkaisukuvaus • Saavutettavuussuunnitelma 2. Uusi julkaisujärjestelmä ja sivuston toteutus • Käyttövalmis julkaisujärjestelmä (SaaS-mallilla) • Uudistettu sivustorakenne ja käyttöliittymä • Kieliversiot (suomi, ruotsi ja englanti) • Sisällönhallinnan ominaisuudet (esikatselu, ajastus, versiohistoria) • Integraatiot ja tekniset rajapinnat • Saavutettavuus ja tietosuoja • Käyttöönotto, koulutus ja dokumentaatio 3. Ylläpito- ja jatkokehitys Kiinteähintainen ylläpito: • Sisältää palvelun jatkuvan käytettävyyden, tietoturvapäivitykset, varmistukset, monitoroinnin ja SLA-palvelut. • Kiinteä kuukausihinta sopimuskauden ajan Tuntihintainen pienkehitys: • Sisältää ketterän mallin mukaiset pienet muutokset ja lisäominaisuudet. • Laskutus toteuman mukaan tuntihinnalla. Molemmat osat toteutetaan SaaS-palveluna, joissa toimittaja vastaa teknisestä hallinnasta ja jatkuvuudesta. Palvelumuotoilu- ja määrittelyvaihe sekä toteutusprojekti ajoittuu alustavasti vuosille Q2/2026 – Q2/2027 ja ylläpito- ja jatkokehitysvaihe Q3/2027 eteenpäin. Verkkosivut uudistetaan samalla ulkonäön ja rakenteen suhteen tavalla, joka palvelee paremmin käyttäjiä. Verkkosivuston perussisältönä julkaistaan tekstiä, kuvia ja liitetiedostoja. Sisältöinä on myös upotettuja videoita tai äänitiedostoja. Upotetut audio-/videotiedostot sijaitsevat muissa palveluissa. Sic-verkkolehden sisällöt (artikkelit ja podcastit) on tarkoitus yhdistää osaksi Fimea.fi -kokonaisuutta osana verkkosivuston toteuttamista. Verkkolehteä ei kuitenkaan tuoda Fimea.fi-sivulle omana kokonaisuutenaan. MARKKINAVUOROPUHELU Markkinavuoropuhelu on tarkoitettu tarjoamisesta kiinnostuneille yrityksille, ja se sisältää alustavien tarjouspyyntömateriaalien kommentointia ennen tarjouspyynnön julkaisua. Tarjouspyyntömateriaalien kirjallinen kommentointi on alustavasti suunniteltu järjestettävän tammi-helmikuun vaihteessa 2026. Varsinaisen tarjouspyynnön julkaisu on alustavasti suunniteltu helmikuulle 2026. Tällä ilmoituksella, sekä itse markkinavuoropuhelussa annetut tiedot ovat alustavia, ja ne saattavat muuttua valmistelun edetessä. Myös hankinnan ilmoitettu aikataulu on alustava, ja se saattaa muuttua kilpailutuksen valmistelun edetessä. Huomioithan, että markkinakartoitus ei sisällä kysymys & vastaus -vaihetta. Hankinnasta kiinnostuneita yrityksiä pyydetään ilmoittautumaan alla kuvatun ohjeistuksen mukaisesti. MARKKINAVUOROPUHELUUN ILMOITTAUTUMINEN Hankinnasta kiinnostuneita yrityksiä pyydetään ilmoittamaan yhteystietonsa sähköpostitse osoitteeseen kilpailutus@hansel.fi. Ilmoittautuminen otsikoidaan seuraavasti: ”Fimea.fi verkkosivu-uudistus – Ilmoittautuminen markkinavuoropuheluun”. Ilmoita viestiin organisaatiosi nimi, sekä yhteyshenkilön sähköpostiosoite, johon tarjouspyynnön luonnosmateriaalit toimitetaan. Pyydämme ilmoittautumisia markkinavuoropuheluun viimeistään 23.1.2026 kello 12:00 mennessä. Hansel Oy toimii hankinnassa konsultoivassa roolissa."
+        }
+      ],
+      "protected_names": [],
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
@@ -12684,6 +12950,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "18c991e09cd7bb46707d6a8c2b00e77eb308deda10bcc70b57a6da15a39b82c6": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:52:46.315982+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Royal Navy Catering Management System"
+          },
+          "source": "Royal Navy Catering Management System"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "18cb5362d818613cf8428e04d954ce6a137e101087fc8b867aa80bce4ada40a1": {
       "parts": [
         {
@@ -12701,6 +12990,29 @@
             "text": "ROMI (Return on marketing Investment) tool"
           },
           "source": "ROMI (Return on marketing Investment) tool"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "18d0cb6b1b9e805ddc77f72ccf6bd1f9d049688d119e51e939b20956432ec3ee": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:52:46.306241+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Services contract for the content management and portal platform of the Madrid City Council Submission deadline (source local time): 2026-09-28 23:59:00. Time zone not supplied; check the source notice. Please note that the support time limit of the DGPE is Monday to Thursday from 9:00 to 19:00 hours and Friday from 9:00 to 15:00 hours. Where the submission of the tender is carried out in two phases, it must be sent to the electronic archive containing the tender, under the terms indicated in clause 23 of the administrative clauses document (PCAP), to the Registry of the Municipal District Office of Ciudad Lineal."
+          },
+          "source": "Contrato de servicios para la plataforma de gestión de contenidos y portales del Ayuntamiento de Madrid Submission deadline (source local time): 2026-09-28 23:59:00. Time zone not supplied; check the source notice. Se advierte que el limite horario de soporte de la DGPE es de lunes a jueves de 9:00 a 19:00 horas y viernes de 9:00 a 15:00 horas. Cuando el envio de la oferta se efectue en dos fases, deberá enviarse al archivo electrónico que contenga la oferta, en los terminos indicados en la cláusula 23 del PCAP, al Registro de la Junta Municipal de Ciudad Lineal."
         }
       ],
       "protected_names": [],
@@ -13685,6 +13997,37 @@
             "text": "Forth Valley Meet the Real Buyer 2026"
           },
           "source": "Forth Valley Meet the Real Buyer 2026"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "1a4c6e0de994c6f6073e243cb80e5a5bd5e2b3d2e12e4e8d69cb82b5835fdfd3": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "rejected": {
+            "id": "1a4c6e0de994c6f6073e243cb80e5a5bd5e2b3d2e12e4e8d69cb82b5835fdfd3:0",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "SUMINISTRO DE LICENCIAS, SERVICIOS Y SOPORTE DE UNA PLATAFORMA DE MONITORIZACIÓN, que consiste por un lado en la adquisición de licencias perpetuas e ilimitadas del producto BC Link® así como de sus aplicativos BC Mview®, BC Workstation®, BC Tracker® y BC Home® junto con su instalación, configuración y puesta en marcha, y, el soporte asociado del producto de 12 meses."
+          },
+          "result": {
+            "at": "2026-09-15T06:53:25.995471+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "SUPPLY OF LICENCES, SERVICES AND SUPPORT FOR A MONITORING PLATFORM, consisting on the one hand of the acquisition of perpetual and unlimited licences for the BC Link® product as well as its applications BC Mview®, BC Workstation®, BC Tracker® and BC Home® together with their installation, configuration and commissioning, and the associated product support for 12 months."
+          },
+          "source": "SUMINISTRO DE LICENCIAS, SERVICIOS Y SOPORTE DE UNA PLATAFORMA DE MONITORIZACIÓN, que consiste por un lado en la adquisición de licencias perpetuas e ilimitadas del producto BC Link® así como de sus aplicativos BC Mview®, BC Workstation®, BC Tracker® y BC Home® junto con su instalación, configuración y puesta en marcha, y, el soporte asociado del producto de 12 meses."
         }
       ],
       "protected_names": [],
@@ -20160,6 +20503,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "27751183972cdc9ebd6c57d6914f96331cfd10dad7e6adbd2a3ceb835b5158e5": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:32.014822+00:00",
+            "language": "da",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Purchasing Community IFIRS; Business Academy Aarhus"
+          },
+          "source": "Indkøbsfællesskabet IFIRS; Erhvervsakademi Aarhus"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "277634d8864432d30401051067a75b8c5c714ccfee0e75196afaf32d209bfff1": {
       "parts": [
         {
@@ -22038,6 +22404,37 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "2b1b8f00b28b6b47a52c5b725c2958ae870220dfacc028e564da4f6c09a4df23": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "rejected": {
+            "id": "2b1b8f00b28b6b47a52c5b725c2958ae870220dfacc028e564da4f6c09a4df23:0",
+            "language": "da",
+            "model": "gemini-3.5-flash-lite",
+            "text": "SKI planlægger at udbyde en rammeaftale angående levering af kopi- og printmaskiner. Rammeaftalens sortiment forventes at omfatte multifunktionsmaskiner (MFP) og printere til kontorbrug i sort/hvid og farve samt farve til printere, tilbehør (papirkassetter, efterbehandling, kortlæser, kryptering, tonere, m.m.), follow me-licenser og administrationssoftware og ydelser vedr. service, integration og installation. Rammeaftalen vil være forpligtende for de af SKI's kunder, som inden udbuddet har tilsluttet sig. Rammeaftalen vil endvidere være forpligtende for staten, idet det er en centralt koordineret aftale. Nærmere oplysninger om kundegruppen og udstrækningen af forpligtelsen vil fremgå af udbudsmaterialet, når rammeaftalen udbydes."
+          },
+          "result": {
+            "at": "2026-09-15T06:53:25.999501+00:00",
+            "language": "da",
+            "model": "gemini-3.5-flash-lite",
+            "text": "SKI is planning to tender a framework agreement concerning the supply of copy and print machines. The range of the framework agreement is expected to include multi-function printers (MFPs) and office printers in black and white and colour, as well as colour for printers, accessories (paper cassettes, finishing, card readers, encryption, toners, etc.), follow-me licences and administration software, and services relating to service, integration and installation. The framework agreement will be binding for SKI customers who have acceded to it prior to the tender. The framework agreement will furthermore be binding for the state, as it is a centrally coordinated agreement. Further details regarding the customer group and the extent of the obligation will appear from the tender documents when the framework agreement is put out to tender."
+          },
+          "source": "SKI planlægger at udbyde en rammeaftale angående levering af kopi- og printmaskiner. Rammeaftalens sortiment forventes at omfatte multifunktionsmaskiner (MFP) og printere til kontorbrug i sort/hvid og farve samt farve til printere, tilbehør (papirkassetter, efterbehandling, kortlæser, kryptering, tonere, m.m.), follow me-licenser og administrationssoftware og ydelser vedr. service, integration og installation. Rammeaftalen vil være forpligtende for de af SKI's kunder, som inden udbuddet har tilsluttet sig. Rammeaftalen vil endvidere være forpligtende for staten, idet det er en centralt koordineret aftale. Nærmere oplysninger om kundegruppen og udstrækningen af forpligtelsen vil fremgå af udbudsmaterialet, når rammeaftalen udbydes."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "2b1e6c2096bd5488d4d00358b50259b6c1d8aa1a8bea0020312f3a834fe83418": {
       "parts": [
         {
@@ -22548,6 +22945,29 @@
             "text": "Procurement of an electronic tender implementation tool and contract tool (KGV/KAV)."
           },
           "source": "Procurement of an electronic tender implementation tool and contract tool (KGV/KAV)."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "2c3f01a27dec4a851b35615745dfb58faeb0a4834f8fed05bed2bf7c3a5328fd": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:52:46.295707+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "HIOWC & TVP is seeking information from qualified suppliers regarding the provision of a Customer Relationship Management (CRM) system that will integrate with a new Contact Centre as a Service (CCaaS) platform currently being procured for our Police Control Room and Contact Centre environments. Please see the attached document for further information and instruction Please submit responses by the closing date to the following address: procurementict@thamesvalley.police.uk"
+          },
+          "source": "HIOWC & TVP is seeking information from qualified suppliers regarding the provision of a Customer Relationship Management (CRM) system that will integrate with a new Contact Centre as a Service (CCaaS) platform currently being procured for our Police Control Room and Contact Centre environments. Please see the attached document for further information and instruction Please submit responses by the closing date to the following address: procurementict@thamesvalley.police.uk"
         }
       ],
       "protected_names": [],
@@ -23909,6 +24329,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "2e6e98d9a286d469145c49760b0be5fde05337f01a23f8060e0979152af4b64c": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:32.013129+00:00",
+            "language": "pt",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Presidency of the Alto Palancia Inter-Municipal Commonwealth"
+          },
+          "source": "Presidencia de la Mancomunidad Intermunicipal Alto Palancia"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "2e720a2beb8e69039c62ff95f657cccd5324891bdf613f12bf794306fcc75df9": {
       "parts": [
         {
@@ -25124,6 +25567,29 @@
       "purpose": "passage",
       "retry_profile": "english-coverage-and-organisation-names-2"
     },
+    "318f28322af4f4bdd2fc60f6b726fa533a5fa28d864d3bcf954b3ce993c23312": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:32.018383+00:00",
+            "language": "it",
+            "model": "gemini-3.5-flash-lite",
+            "text": "University of Trieste"
+          },
+          "source": "Università degli Studi di Trieste"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "31aa845a608c8fe3deba9c9af724edaaaec8b92df55f6c6f04cce20503e73e29": {
       "parts": [
         {
@@ -25358,6 +25824,31 @@
         }
       ],
       "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "320a5f909ea03c87f5817ce0c45b6d981c20cafbf61e80c2f4f3a087102a871b": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:52:46.302208+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Implementation and maintenance of a software solution for the comprehensive human resources management of Autoridad Portuaria de Marín y Ría de Pontevedra Submission deadline (source local time): 2026-09-28 19:00:00. Time zone not supplied; check the source notice. Implementation and maintenance of a software solution for the comprehensive human resources management of Autoridad Portuaria de Marín y Ría de Pontevedra"
+          },
+          "source": "Implantación y mantenimiento de solución informática para la gestión integral de recursos humanos de la Autoridad Portuaria de Marín y Ría de Pontevedra Submission deadline (source local time): 2026-09-28 19:00:00. Time zone not supplied; check the source notice. Implantación y mantenimiento de solución informática para la gestión integral de recursos humanos de la Autoridad Portuaria de Marín y Ría de Pontevedra"
+        }
+      ],
+      "protected_names": [
+        "Autoridad Portuaria de Marín y Ría de Pontevedra"
+      ],
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
@@ -25675,6 +26166,37 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "328339503d13ae6a98b06329cd419ff3f2af8fbfd352f0d5d8bbf696fed7d14c": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "rejected": {
+            "id": "328339503d13ae6a98b06329cd419ff3f2af8fbfd352f0d5d8bbf696fed7d14c:0",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "El objeto del presente contrato es la prestación de los servicios de asistencia técnica necesarios para, por un lado, la gestión, provisión y administración de la infraestructura informática en la que se apoyan los servicios proporcionados y gestionado por la Agencia Estatal de Administración Digital (en adelante AEAD), así como para la asunción y ejecución de las responsabilidades detalladas en el estatuto de la AEAD en relación con el departamento de Infraestructuras y Cloud y el departamento de Puesto deTrabajo dentro de la Dirección de Prestación de Infraestructuras y Operaciones, y por otro para el diseño, ejecución y seguimiento de proyectos de transformación y mejora de dicha gestión."
+          },
+          "result": {
+            "at": "2026-09-15T06:53:25.996108+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The purpose of this contract is the provision of technical assistance services required, on the one hand, for the management, provision and administration of the computer infrastructure supporting the services provided and managed by the State Agency for Digital Administration (hereinafter AEAD), as well as for the assumption and execution of the responsibilities detailed in the statute of the AEAD in relation to the Infrastructure and Cloud department and the Workstation department within the Directorate of Infrastructure Provision and Operations, and, on the other hand, for the design, execution and monitoring of transformation and improvement projects for said management."
+          },
+          "source": "El objeto del presente contrato es la prestación de los servicios de asistencia técnica necesarios para, por un lado, la gestión, provisión y administración de la infraestructura informática en la que se apoyan los servicios proporcionados y gestionado por la Agencia Estatal de Administración Digital (en adelante AEAD), así como para la asunción y ejecución de las responsabilidades detalladas en el estatuto de la AEAD en relación con el departamento de Infraestructuras y Cloud y el departamento de Puesto deTrabajo dentro de la Dirección de Prestación de Infraestructuras y Operaciones, y por otro para el diseño, ejecución y seguimiento de proyectos de transformación y mejora de dicha gestión."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "3295d5db1a9902d28024bda57f0fc34474038d167f888d58052bab556f25f02c": {
@@ -26872,6 +27394,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "34e916baca74f12055a59b870d9bad44e84ef88713ed76c93fd9cca5bc38616a": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:32.011217+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Thames Valley Police"
+          },
+          "source": "Thames Valley Police"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "352b68fab8e05c53f8309150bfafd7a99e3794f2f63a201e8fa3cb08c6708cd1": {
       "parts": [
         {
@@ -27906,6 +28451,29 @@
             "text": "Electronic patient journal system, doctor's office Karmøy municipality."
           },
           "source": "Electronic patient journal system, doctor's office Karmøy municipality."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "37a33b791632a4888ec41017a84d1f7c8a6aca6eda224e374a4dbfdddfcc2ae1": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:52:46.309760+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Technical assistance, operation, service desk (CAU) and maintenance of the basic and communications software for the information systems of the Department of Information Technology and Communications of the Valladolid City Council. Submission deadline (source local time): 2026-10-15 23:59:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Asistencia técnica, operación, CAU y mantenimiento del software de base y de comunicaciones de los sistemas de información del Departamento de Tecnologías de la Información y las Comunicaciones del Ayuntamiento de Valladolid. Submission deadline (source local time): 2026-10-15 23:59:00. Time zone not supplied; check the source notice."
         }
       ],
       "protected_names": [],
@@ -29956,6 +30524,37 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "3bc7afcdf62ecc51698ed6aa94a005328c4f013fb56eba2f0b954149bc0f6a3c": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "rejected": {
+            "id": "3bc7afcdf62ecc51698ed6aa94a005328c4f013fb56eba2f0b954149bc0f6a3c:0",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Contrato mixto de servicios para la actualización de la plataforma de gestión centralizada de logs."
+          },
+          "result": {
+            "at": "2026-09-15T06:53:25.996812+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Mixed service contract for the updating of the centralised log management platform."
+          },
+          "source": "Contrato mixto de servicios para la actualización de la plataforma de gestión centralizada de logs."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "3bd00caebf3eefd2fa3ae8c393a9e2470993bc7afd712eb48bfaa72fcfdc16dc": {
       "parts": [
         {
@@ -30499,6 +31098,39 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "3cd2a3b2a6722b2a726a36ea86b41393be914087528f5a8a0db61f88962bd0ef": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "rejected": {
+            "id": "3cd2a3b2a6722b2a726a36ea86b41393be914087528f5a8a0db61f88962bd0ef:0",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Vorinformation gemäß § 38 VgV zur Migration bestehender SAP S/4HANA-ERP- und SAP-HCM-On-Premise-Systeme in die SAP S/4HANA Cloud, Private Edition Die Humboldt-Universität zu Berlin benötigt technische und funktionale Migration ihres bestehenden SAP-S/4 HANA-ERP-Systems sowie des SAP-HCM-Systems von On-Premise in die SAP-S/4 HANA-Cloud-Private-Edition mit dem Ziel eines zukünftigen Cloud-Betriebsmodells ab 01.01.2027."
+          },
+          "result": {
+            "at": "2026-09-15T06:53:25.998636+00:00",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Prior information pursuant to Section 38 of the Ordinance on Public Procurement (VgV) regarding the migration of existing SAP S/4 HANA ERP and SAP HCM on-premise systems to SAP S/4 HANA Cloud, Private Edition The Humboldt-Universität zu Berlin requires technical and functional migration of its existing SAP S/4 HANA ERP system as well as the SAP HCM system from on-premise to SAP S/4 HANA Cloud Private Edition with the aim of a future cloud operating model from 01.01.2027."
+          },
+          "source": "Vorinformation gemäß § 38 VgV zur Migration bestehender SAP S/4HANA-ERP- und SAP-HCM-On-Premise-Systeme in die SAP S/4HANA Cloud, Private Edition Die Humboldt-Universität zu Berlin benötigt technische und funktionale Migration ihres bestehenden SAP-S/4 HANA-ERP-Systems sowie des SAP-HCM-Systems von On-Premise in die SAP-S/4 HANA-Cloud-Private-Edition mit dem Ziel eines zukünftigen Cloud-Betriebsmodells ab 01.01.2027."
+        }
+      ],
+      "protected_names": [
+        "Humboldt-Universität zu Berlin"
+      ],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "3cfaab3ebd35bc0ba15b90358dac02f6de1c974a3dd49f6dd22bd16bb94f357c": {
@@ -34712,6 +35344,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "45807482abdec1258837cb681f6e390a383958e0a5fb42025bbfe5013e53eeb8": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:52:46.306534+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Management, monitoring and justification services for activities promoted by the Santiago-Pontones Town Council within the framework of Royal Decree 5/2026 of 17 February, adopting urgent measures in response to damage caused by various adverse meteorological phenomena, with special impact in the Autonomous Communities of Andalusia and Extremadura"
+          },
+          "source": "Servicios de gestión, seguimiento y justificación de las actuaciones promovidas por el Ayuntamiento de Santiago- Pontones, en el marco del Real Decreto 5/2026, de 17 de febrero, por el que se adoptan medidas urgentes en respuesta a los daños causados por diversos fenómenos meteorológicos adversos, de especial afectación en las comunidades autónomas de Andalucía y Extremadura"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "458d1c156a3a30f20b59345719761fe91dad8984c14da037ffa8dc26585c91ba": {
       "parts": [
         {
@@ -34729,6 +35384,29 @@
             "text": "Norwegian Center for Holocaust and Minority Studies"
           },
           "source": "Norwegian Center for Holocaust and Minority Studies"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "45930366e6cdcb5b9722e3104b2d4773891e9f8f874f407c8dfa07c746a48c24": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:32.012694+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Directorate General of Posts and Telecom"
+          },
+          "source": "Dirección General de Correos Telecom"
         }
       ],
       "protected_names": [],
@@ -34961,6 +35639,33 @@
       ],
       "protected_names": [
         "Historic England"
+      ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "46319c8318306e7e3f602170eb7e54ec1b32e22625a3c25156c0b50d9c93bdf0": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:05.774862+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Support and managed administration services for the information systems of the various IT sections belonging to the Judicial Documentation Centre of the Consejo General del Poder Judicial."
+          },
+          "source": "Servicios de soporte y administración gestionada de los sistemas de información de las distintas secciones de informática pertenecientes al Centro de Documentación Judicial del Consejo General del Poder Judicial."
+        }
+      ],
+      "protected_names": [
+        "Consejo General del Poder Judicial"
       ],
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
@@ -36205,6 +36910,29 @@
       ],
       "protected_names": [],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "48a8412bbc24ec8401c9f545feb29691baad9c9887e611fee69ef591a0b18642": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:32.013047+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Mayorship of the Municipality of Agüimes"
+          },
+          "source": "Alcaldía del Ayuntamiento de Agüimes"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "48a8ba6047f6ee8739e03c519e8593452c48d90b9e8e3c591085c9a7ea9f9768": {
@@ -37630,6 +38358,37 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "4b69c1876496947c9d7fb9575fbdba94d191ab37d0f5b487184e71272cf3b2ad": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 2
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "rejected": {
+            "id": "4b69c1876496947c9d7fb9575fbdba94d191ab37d0f5b487184e71272cf3b2ad:0",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Tietopyyntö: Kuljetusrobottien hankinta"
+          },
+          "result": {
+            "at": "2026-09-15T06:53:40.672608+00:00",
+            "language": "fi",
+            "model": "gemini-3.1-flash-lite",
+            "text": "Request for information: Procurement of transport robots"
+          },
+          "source": "Tietopyyntö: Kuljetusrobottien hankinta"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "4b6c414f846ea769ef1465f187fde869ef5be757a4d09214adf70ed0d6b3c390": {
       "parts": [
         {
@@ -37880,6 +38639,29 @@
             "text": "GovTech Platforms GmbH"
           },
           "source": "GovTech Platforms GmbH"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "4bcb6c62842e284ec35e85d1100a13c31214a0269f3b1fd5f96fdd8ae22efa60": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:32.020123+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Provincial Council of Tarragona"
+          },
+          "source": "DIPUTACIÓN DE TARRAGONA"
         }
       ],
       "protected_names": [],
@@ -39877,6 +40659,54 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "50025b97b96e59760da7b7e00ea16ee958ab5c05002bc38e8f4778a292b82f3f": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:32.012859+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Port Authority of Marín and Ría de Pontevedra"
+          },
+          "source": "Autoridad Portuaria de Marín y Ría de Pontevedra"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "50147693104f4bdd32b70bdd86bddb215ad89d91919e003fcbed3cd48210d831": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:05.777312+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Intro and purpose: The European Free Trade Association (EFTA) is issuing this Request for Information (RFI) to identify potential technology vendors and solutions for replacing the current Case, Records, and Document Management system. This RFI is intended to gather information about available solutions and suppliers to inform the development of a Request for Proposal (RFP) expected to launch in March 2026. We invite technology vendors with relevant expertise to provide information about their solutions, implementation approaches, and experience with similar organizations. Responses to this RFI will help EFTA better understand the current market landscape and refine our requirements for the formal procurement process. This RFI is for informational purposes only and does not constitute a commitment by EFTA to issue an RFP or award a contract. About EFTA: The European Free Trade Association is an intergovernmental organization established in 1960 to promote free trade and economic integration between its member states: Iceland, Liechtenstein, Norway, and Switzerland. EFTA manages various trade agreements, including the European Economic Area (EEA) Agreement, which allows three of its members to participate in the EU's single market. The EFTA Secretariat operates across three locations: Geneva (headquarters), Brussels, and Luxembourg. With approximately [staff number] personnel, the Secretariat supports Member States in promoting free trade and economic integration through six operational divisions. Our work requires comprehensive document, records, and case management capabilities to support trade facilitation, legal, and administrative functions across multiple duty stations and in collaboration with external stakeholders in Member State ministries."
+          },
+          "source": "Intro and purpose: The European Free Trade Association (EFTA) is issuing this Request for Information (RFI) to identify potential technology vendors and solutions for replacing the current Case, Records, and Document Management system. This RFI is intended to gather information about available solutions and suppliers to inform the development of a Request for Proposal (RFP) expected to launch in March 2026. We invite technology vendors with relevant expertise to provide information about their solutions, implementation approaches, and experience with similar organizations. Responses to this RFI will help EFTA better understand the current market landscape and refine our requirements for the formal procurement process. This RFI is for informational purposes only and does not constitute a commitment by EFTA to issue an RFP or award a contract. About EFTA: The European Free Trade Association is an intergovernmental organization established in 1960 to promote free trade and economic integration between its member states: Iceland, Liechtenstein, Norway, and Switzerland. EFTA manages various trade agreements, including the European Economic Area (EEA) Agreement, which allows three of its members to participate in the EU's single market. The EFTA Secretariat operates across three locations: Geneva (headquarters), Brussels, and Luxembourg. With approximately [staff number] personnel, the Secretariat supports Member States in promoting free trade and economic integration through six operational divisions. Our work requires comprehensive document, records, and case management capabilities to support trade facilitation, legal, and administrative functions across multiple duty stations and in collaboration with external stakeholders in Member State ministries."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "504267325da0ab33978b8f3d9e2e8f6b8fc761a86feb598467a1a269f30a4a61": {
       "parts": [
         {
@@ -40030,6 +40860,37 @@
             "text": "Scottish Procurement will soon be tendering for the re-let of the Technology Peripherals and Infrastructure Framework. The current framework agreement is due to expire in May 2026. The new framework will build on the success of the current framework and will likely cover a broad range of requirements under the following product groups: General IT Peripherals, Audio-Visual, Desktop Print, Networking, Servers and Storage equipment. All services associated with the the product groups detailed above will also be considered to be within scope of the framework. Lot 2: IT Infrastructure Projects. Lot 2 of the framework agreement will cover more complex requirements such as hardware installations and integrations (including Audio-visual and Network Infrastructure Solutions). Tenderers must have the capability to offer a broad range of products and services in the following product groups: General IT Peripherals, Audio-Visual, Desktop Print, Networking, Servers and Storage equipment. All services associated with the the product groups detailed above are considered to be within scope of the framework.. This PIN is issued to provide and gather information only and does not constitute a call for competition. Lot 1: IT Hardware Catalogue. Lot 1 of the framework agreement will cover a broad range of transactional requirements under the following product groups: General IT Peripherals, Audio-Visual, Desktop Print, Networking, Servers and Storage equipment. All services associated with the the product groups detailed above are considered to be within scope of the framework.. This PIN is issued to provide and gather information only and does not constitute a call for competition."
           },
           "source": "Scottish Procurement will soon be tendering for the re-let of the Technology Peripherals and Infrastructure Framework. The current framework agreement is due to expire in May 2026. The new framework will build on the success of the current framework and will likely cover a broad range of requirements under the following product groups: General IT Peripherals, Audio-Visual, Desktop Print, Networking, Servers and Storage equipment. All services associated with the the product groups detailed above will also be considered to be within scope of the framework. Lot 2: IT Infrastructure Projects. Lot 2 of the framework agreement will cover more complex requirements such as hardware installations and integrations (including Audio-visual and Network Infrastructure Solutions). Tenderers must have the capability to offer a broad range of products and services in the following product groups: General IT Peripherals, Audio-Visual, Desktop Print, Networking, Servers and Storage equipment. All services associated with the the product groups detailed above are considered to be within scope of the framework.. This PIN is issued to provide and gather information only and does not constitute a call for competition. Lot 1: IT Hardware Catalogue. Lot 1 of the framework agreement will cover a broad range of transactional requirements under the following product groups: General IT Peripherals, Audio-Visual, Desktop Print, Networking, Servers and Storage equipment. All services associated with the the product groups detailed above are considered to be within scope of the framework.. This PIN is issued to provide and gather information only and does not constitute a call for competition."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "5090e2d82ea5e4e4dc46cfc2205d494bbd2e0df47257d62a54856977eee4abbb": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "rejected": {
+            "id": "5090e2d82ea5e4e4dc46cfc2205d494bbd2e0df47257d62a54856977eee4abbb:0",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Migration bestehender SAP S/4HANA-ERP- und SAP-HCM-On-Premise-Systeme in die SAP S/4HANA Cloud, Private Edition"
+          },
+          "result": {
+            "at": "2026-09-15T06:53:25.998274+00:00",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Migration of existing SAP S/4 HANA ERP and SAP HCM on-premise systems to SAP S/4 HANA Cloud, Private Edition"
+          },
+          "source": "Migration bestehender SAP S/4HANA-ERP- und SAP-HCM-On-Premise-Systeme in die SAP S/4HANA Cloud, Private Edition"
         }
       ],
       "protected_names": [],
@@ -40692,6 +41553,31 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "520820e3c361c0ba00074a024af0ff92ab091549c245af4a09d618f3249fb05d": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:52:46.301512+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Implementation and maintenance of a software solution for the comprehensive human resources management of Autoridad Portuaria de Marín y Ría de Pontevedra"
+          },
+          "source": "Implantación y mantenimiento de solución informática para la gestión integral de recursos humanos de la Autoridad Portuaria de Marín y Ría de Pontevedra"
+        }
+      ],
+      "protected_names": [
+        "Autoridad Portuaria de Marín y Ría de Pontevedra"
+      ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "5209f279083f08188a5a5f4ece1596ea87d832af2dd56764143535474f9f50aa": {
       "parts": [
         {
@@ -41134,6 +42020,29 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "52f7dea034039c299d46fd094de782ef1c621c42b96fa6587b4f4ede226dcd60": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:26.006965+00:00",
+            "language": "pl",
+            "model": "gemini-3.5-flash-lite",
+            "text": "ERP system"
+          },
+          "source": "ERP-System"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "52f7df949ae86c9ba17d222cd66ce19e16bcfcb39ccec144d39b4981407ae53e": {
@@ -42323,6 +43232,37 @@
             "text": "Energinet invites suppliers to provide market input on software solutions for information and data management in a future energy operating environment, supporting secure, reliable, and data-driven operation of critical energy infrastructure. Please read the attached documents carefully and take the information into consideration when submitting your responses to Energinet via Comdia: •Letter of market involvement regarding Information and Data Management - ATLAS •Appendix 1 - Market Consultation Data management system Registration for the market dialogue must be made via Comdia no later than 30 September 2026. The market dialogue is expected to take place in week 44 (2026) and 2 hours are allocated to each supplier. The meeting will be held as an online meeting via Microsoft Teams. Based on the responses received, Energinet intends to invite 2-4 suppliers to participate in the market dialogue. Energinet withholds the right to choose the participants based on a written description that each supplier is encouraged to forward in connection to the registration. Participation in the market dialogue is voluntary and does not obligate participants to submit a tender in any subsequent procurement process. Energinet wishes to assure participating suppliers that all responses will be treated confidentially and used solely for Energinet’s internal purposes in connection with the preparation of procurement processes relating to the relevant services."
           },
           "source": "Energinet invites suppliers to provide market input on software solutions for information and data management in a future energy operating environment, supporting secure, reliable, and data-driven operation of critical energy infrastructure. Please read the attached documents carefully and take the information into consideration when submitting your responses to Energinet via Comdia: •Letter of market involvement regarding Information and Data Management - ATLAS •Appendix 1 - Market Consultation Data management system Registration for the market dialogue must be made via Comdia no later than 30 September 2026. The market dialogue is expected to take place in week 44 (2026) and 2 hours are allocated to each supplier. The meeting will be held as an online meeting via Microsoft Teams. Based on the responses received, Energinet intends to invite 2-4 suppliers to participate in the market dialogue. Energinet withholds the right to choose the participants based on a written description that each supplier is encouraged to forward in connection to the registration. Participation in the market dialogue is voluntary and does not obligate participants to submit a tender in any subsequent procurement process. Energinet wishes to assure participating suppliers that all responses will be treated confidentially and used solely for Energinet’s internal purposes in connection with the preparation of procurement processes relating to the relevant services."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "566606ce9e01892e2b722c02a7ee8d18c78a9d6a4bd9ec90ca77cae84d457f80": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "rejected": {
+            "id": "566606ce9e01892e2b722c02a7ee8d18c78a9d6a4bd9ec90ca77cae84d457f80:0",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Suministro de licencias, servicios y soporte de una plataforma de monitorización."
+          },
+          "result": {
+            "at": "2026-09-15T06:53:25.995137+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Supply of licences, services and support for a monitoring platform."
+          },
+          "source": "Suministro de licencias, servicios y soporte de una plataforma de monitorización."
         }
       ],
       "protected_names": [],
@@ -45607,6 +46547,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "5cd3dfccef525335cbfbd734842d1412343f7beedfee4c0d35a6a45a63a0cc35": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:16.292927+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "PreCommercial Procurement (PCP) to buy R&D (research and development) services on innovative and sustainable solutions to transition healthcare supply chains from linear to circular models – REHEAL."
+          },
+          "source": "PreCommercial Procurement (PCP) to buy R&D (research and development) services on innovative and sustainable solutions to transition healthcare supply chains from linear to circular models – REHEAL."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "5cd45d02a69e65811209b3fe38a18b1391d630f60965b2d83c02bc0f973cf5c2": {
       "parts": [
         {
@@ -47423,6 +48386,37 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "60b38d74efe3ec2734f05dc9498ea9ef43f519a38fb753b67a8510d3f53d0c46": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "rejected": {
+            "id": "60b38d74efe3ec2734f05dc9498ea9ef43f519a38fb753b67a8510d3f53d0c46:0",
+            "language": "it",
+            "model": "gemini-3.5-flash-lite",
+            "text": "AVVISO DI PREINFORMAZIONE AI SENSI DELL'ART 81 DEL D.LGS. 36/2023 RELATIVO ALLE PROCEDURE DA ESPLETARE NEL CORSO DELL'ANNO 2026"
+          },
+          "result": {
+            "at": "2026-09-15T06:53:25.995021+00:00",
+            "language": "it",
+            "model": "gemini-3.5-flash-lite",
+            "text": "PRIOR INFORMATION NOTICE PURSUANT TO ARTICLE 81 OF LEGISLATIVE DECREE 36/2023 CONCERNING PROCEDURES TO BE CARRIED OUT DURING THE YEAR 2026"
+          },
+          "source": "AVVISO DI PREINFORMAZIONE AI SENSI DELL'ART 81 DEL D.LGS. 36/2023 RELATIVO ALLE PROCEDURE DA ESPLETARE NEL CORSO DELL'ANNO 2026"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "60b44afef4c23c4b4dfd5e3a7083aa11ef1ed6b109c372776bce1ed9cedb97d7": {
       "parts": [
         {
@@ -48995,6 +49989,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "640cc91b5f1f6f982bff4d96d58ff9096bf22cf33e5867ba5df2d317aedc5924": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:16.292720+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Suministro de licencias de uso de Google Workspace."
+          },
+          "source": "Suministro de licencias de uso de Google Workspace."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "64180ad2aa21a8139177527a205e2771f5ce3ecb5ae9abc57ee374481a40e514": {
       "parts": [
         {
@@ -49321,6 +50338,37 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "64d82262e8207b2f4a8c777c3b3653dd81452b155c4e309d82032209f0d269d1": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "rejected": {
+            "id": "64d82262e8207b2f4a8c777c3b3653dd81452b155c4e309d82032209f0d269d1:0",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Adquisición de licencias avanzadas para entornos de producción de la plataforma de gestión de logs centralizada y la migración, actualización, mantenimiento correctivo y resolución de incidèncias relacionadas con la plataforma."
+          },
+          "result": {
+            "at": "2026-09-15T06:53:25.996989+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Acquisition of advanced licences for production environments of the centralised log management platform and the migration, update, corrective maintenance and resolution of incidents related to the platform."
+          },
+          "source": "Adquisición de licencias avanzadas para entornos de producción de la plataforma de gestión de logs centralizada y la migración, actualización, mantenimiento correctivo y resolución de incidèncias relacionadas con la plataforma."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "64e11fc952c5ed6e73e74500cb17828d59a56ad7454e07849b8dccd72ba3c82f": {
@@ -49876,6 +50924,29 @@
             "text": "Service contract for the supply of a case management software in SaaS mode and related maintenance and support services"
           },
           "source": "Contrato de servicios de suministro de un programa de gestión de expedientes en modalidad SaaS y servicios conexos de mantenimiento y soporte"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "6682d38ae0004d42a9332756072335ed66ab3df5527792361cb2316726a6d25d": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:52:46.316295+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The Royal Navy needs an end-to-end solution to manage catering endurance that covers stores management, galley management, ordering, receiving, nutrition, finances, and best practice; that is intuitive, automated where possible and supports crew members to do their best work, significantly improving the lived experience of catering services and safeguarding public funds."
+          },
+          "source": "The Royal Navy needs an end-to-end solution to manage catering endurance that covers stores management, galley management, ordering, receiving, nutrition, finances, and best practice; that is intuitive, automated where possible and supports crew members to do their best work, significantly improving the lived experience of catering services and safeguarding public funds."
         }
       ],
       "protected_names": [],
@@ -51537,6 +52608,29 @@
             "text": "Isavia ohf."
           },
           "source": "Isavia ohf."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "69ebf29eb9cb85f8769b285543d7c965e5711281557b1988ab1381dcefa546af": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:32.013224+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Mayorship of the Municipality of Santiago-Pontones"
+          },
+          "source": "Alcaldía del Ayuntamiento de Santiago-Pontones"
         }
       ],
       "protected_names": [],
@@ -58662,6 +59756,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "78940bd859040dc2fafaabdaa0201353884e243abfb48845a17fc8a5a50e0d07": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:32.027662+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Directorate General of Renfe International Projects State Commercial Company, S.A."
+          },
+          "source": "Dirección General de Renfe Proyectos Internacionales Sociedad Mercantil Estatal, S.A."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "789703c321c4eb09905585dd2ff68fe2eaf62594c268e93a6555004e7c699673": {
       "parts": [
         {
@@ -59159,6 +60276,29 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "7a0193de73899bcab072dd54cc60c572824b0fd5461d703c7612f9a596c13424": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:52:46.297457+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Axtension IP Continuity to ExFlow AP Implementation"
+          },
+          "source": "Axtension IP Continuity to ExFlow AP Implementation"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "7a0641874705011a3dc197bf5f2a30dac44c7751eedb719cf6080bde7fe684c3": {
@@ -60168,6 +61308,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "7c6081f28c46d9e728db855fd81892dd642dd9a548c3965aade6e89cd6765684": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:52:46.303916+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Procurement of an integrated and centralised time and attendance control and staff presence management system for the Intermunicipal Community of Alto Palancia."
+          },
+          "source": "Contratación de un sistema integral y centralizado de control horario y gestión de presencia del personal de la Mancomunidad Intermunicipal del Alto Palancia."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "7c60e66af3785b6476d5fffb29e9e884868ce0f6debe37af12a25a7de0b29ed2": {
       "parts": [
         {
@@ -60986,6 +62149,52 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "7dee260332636307e134873eb5150bef23b0703b9da112f9805f6b90f6e1ba40": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:52:46.305416+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Procurement of an integrated and centralised time and attendance control and staff presence management system for the Intermunicipal Community of Alto Palancia. Submission deadline (source local time): 2026-09-29 23:59:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Contratación de un sistema integral y centralizado de control horario y gestión de presencia del personal de la Mancomunidad Intermunicipal del Alto Palancia. Submission deadline (source local time): 2026-09-29 23:59:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "7df98ec35e73e227b846a6fe3302fcc91ee79e4194891875b851501af0654029": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:32.012977+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Ministry of Mobility, Digital Transformation and Artificial Intelligence of the Regional Government of Castile and León"
+          },
+          "source": "Consejería de Movilidad, Transformación Digital e Inteligencia Artificial de la Junta de Castilla y León"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "7e1347bfe7c955f90a035c35b1d02461c274c5ae304670548e4e6902675ef8e9": {
       "parts": [
         {
@@ -61111,6 +62320,29 @@
       ],
       "protected_names": [],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "7e3402db06c9eac408a593ec9554bb0d35c2d04de404a07c24be9658c0353668": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:32.016880+00:00",
+            "language": "it",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Southern Superior School"
+          },
+          "source": "Scuola Superiore Meridionale"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "7e3a88875a4d319a0a8e624be21536349ad8add336b30cdb0c649e8bfd3da87e": {
@@ -61644,6 +62876,31 @@
             "text": "CivTech 12 - Challenge 12.4 - How can technology improve both the efficiency and the patient experience in NHS transport, starting with renal services?​"
           },
           "source": "CivTech 12 - Challenge 12.4 - How can technology improve both the efficiency and the patient experience in NHS transport, starting with renal services?​"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "7f4ae0860f8feac4618d27c9b9aec2630b87fca28ef3974b558627f60e4eb735": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:05.774048+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Maintenance service for the SIRA information and research management system for the University of the Balearic Islands."
+          },
+          "source": "Servicio de mantenimiento del sistema de información y gestión de la investigación SIRA para la Universidad de las Illes Balears."
         }
       ],
       "protected_names": [],
@@ -64216,6 +65473,29 @@
             "text": "Consultancy and technical assistance services for the modernisation, simplification and innovation of processes through the application and use of artificial intelligence and other advanced technologies in the Government Area of Economy, Innovation and Finance, in the Digital Office of the General Coordination of the Mayor's Office and in the O.A. Informática of the Madrid City Council (single category) Submission deadline (source local time): 2029-09-30 23:59:00. Time zone not supplied; check the source notice."
           },
           "source": "Servicios de consultoría y asistencia técnica para la modernización,simplificación e innovación de procesos mediante la aplicación y uso de inteligencia artificial y otras tecnologías avanzadas en el Área de Gobierno de Economía,Innovación y Hacienda,en la Oficina Digital de la Coordinación General de la Alcaldía y en el O.A.Informática del Ayuntamiento de Madrid (categoría única) Submission deadline (source local time): 2029-09-30 23:59:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "8418002685e48a7d2b2db4e3f87f1e40e4f70a55a8cbbf3da76a3c4ef3418f02": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:52:46.308220+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Management, monitoring and justification services for activities promoted by the Santiago-Pontones Town Council within the framework of Royal Decree 5/2026 of 17 February, adopting urgent measures in response to damage caused by various adverse meteorological phenomena, with special impact in the Autonomous Communities of Andalusia and Extremadura Submission deadline (source local time): 2026-09-28 23:59:00. Time zone not supplied; check the source notice. Period of 15 calendar days to submit tenders. See clause 7.2 of the PCAP"
+          },
+          "source": "Servicios de gestión, seguimiento y justificación de las actuaciones promovidas por el Ayuntamiento de Santiago- Pontones, en el marco del Real Decreto 5/2026, de 17 de febrero, por el que se adoptan medidas urgentes en respuesta a los daños causados por diversos fenómenos meteorológicos adversos, de especial afectación en las comunidades autónomas de Andalucía y Extremadura Submission deadline (source local time): 2026-09-28 23:59:00. Time zone not supplied; check the source notice. Plazo de 15 días naturales para presentar ofertas. Ver claúsula 7.2 PCAP"
         }
       ],
       "protected_names": [],
@@ -69871,6 +71151,37 @@
       "purpose": "passage",
       "retry_profile": "english-coverage-and-organisation-names-2"
     },
+    "8e97e9691509fadb7dfda8ce6e0362a11dd6d5d0fd5dad49b0731c4dce67ab9a": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "rejected": {
+            "id": "8e97e9691509fadb7dfda8ce6e0362a11dd6d5d0fd5dad49b0731c4dce67ab9a:0",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Estudios de demanda sobre servicios ferroviarios"
+          },
+          "result": {
+            "at": "2026-09-15T06:53:25.998124+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Demand studies on rail services"
+          },
+          "source": "Estudios de demanda sobre servicios ferroviarios"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "8e9dbdce70507f922e5fc5cbcf57ac235f02e266e60fcd326ad7410cf0a86e17": {
       "parts": [
         {
@@ -72538,6 +73849,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "92d6f2683e3756d99d6868446524fc1c38bbc77ee83d246259129f52cf522acb": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:26.006896+00:00",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "This notice serves exclusively to carry out a non-binding market consultation pursuant to Section 28 paragraph 1 of the Public Procurement Ordinance (VgV). The aim of the market consultation is to inform the market at an early stage about a potential future procurement requirement and to gather insights on technical, economic and organisational solution approaches, current market conditions, the competitive situation and the fundamental feasibility of the planned project. In particular, the market consultation serves to identify the pros and cons of potential performance components, to record existing market experience and to examine whether and to what extent several companies can offer comparable services. In this way, a well-founded overview of market interest and the current competitive situation is to be obtained. This notice is expressly neither a contract notice nor a call for tenders or requests to participate. No procurement procedure is initiated by carrying out the market consultation. The contracting authority is not obliged to carry out a procurement procedure on the basis of the market consultation and is not bound by its results. Participation does not establish any legal claims whatsoever, in particular no claim to the execution of a procurement procedure or to consideration in any subsequent procurement procedure. Participation in the market consultation is voluntary and free of charge. Participating companies will not be reimbursed for any costs incurred in connection with participation, the preparation of statements, concepts or the submission of documents. Participation in the market consultation is not a prerequisite for subsequent participation in a procurement procedure and has no influence on a company's chances of being awarded the contract. The contracting authority requests interested market participants to provide meaningful, comprehensible and substantive feedback. In particular, feedback is requested on potential implementation variants, economic framework conditions, opportunities and risks, potential problems or obstacles in the implementation of the envisaged concept, as well as own ideas and suggestions for improvement. Where possible, feedback should be provided in a structured format. Interested companies are requested to express their interest immediately and informally by email to ta-vergabestellevol@hu-berlin.de and to submit their statements, ideas, suggestions for implementation and economic assessments. Following the evaluation of the submitted documents, selected interested parties may be invited to explain their concepts in more detail within the framework of a structured dialogue. This deepening may take the form of an on-site appointment or alternatively via video or telephone conference and serves to clarify open questions and to evaluate the impact of the proposed solution approaches on the requirements of the contracting authority. All documents submitted as part of the market consultation shall become the property of the contracting authority. By participating, interested parties agree that their submitted concepts, evaluations, proposals and other findings may be used for the preparation of a possible procurement and for the development of implementation proposals and, where necessary, passed on to the contracting authority, unless this is explicitly objected to. Ideas and suggestions from market participants may, where applicable, become anonymised components of a subsequent specification. The contracting authority guarantees the protection of business and trade secrets. Information obtained during the market consultation will not be passed on to third parties, with the exception of the contracting authority itself and, where applicable, consultancy firms commissioned by it. The market consultation is to be carried out promptly and is expected to be concluded by the end of January 2026. All submitted feedback will be evaluated and made available to the contracting authority in consolidated form. If the contracting authority should initiate a procurement procedure on the basis of the results of the market consultation, it will take appropriate measures to exclude any distortion of competition. These include in particular the equal treatment of all interested companies, the provision of relevant information to all applicants and tenderers, and the setting of reasonable time limits. Anticipated schedule • Publication of the market consultation: 18.12.2025 • Declaration of interest in participation: immediately • Submission of the initial concept: January 2026 • Presentations and interviews: January 2026"
+          },
+          "source": "Diese Bekanntmachung dient ausschließlich der Durchführung einer unverbindlichen Markterkundung gemäß § 28 Absatz 1 der Vergabeverordnung (VgV). Ziel der Markterkundung ist es, den Markt frühzeitig über einen möglichen zukünftigen Beschaffungsbedarf zu informieren sowie Erkenntnisse zu technischen, wirtschaftlichen und organisatorischen Lösungsansätzen, zu aktuellen Marktbedingungen, zur Wettbewerbssituation sowie zur grundsätzlichen Machbarkeit des geplanten Vorhabens zu gewinnen. Die Markterkundung dient insbesondere dazu, Vor- und Nachteile möglicher Leistungsbestandteile zu identifizieren, bestehende Markterfahrungen zu erfassen und zu prüfen, ob und inwieweit mehrere Unternehmen vergleichbare Leistungen anbieten können. Auf diese Weise soll ein fundierter Überblick über das Marktinteresse und die aktuelle Wettbewerbssituation erlangt werden. Bei der vorliegenden Bekanntmachung handelt es sich ausdrücklich weder um eine Auftragsbekanntmachung noch um eine Aufforderung zur Abgabe von Angeboten oder Teilnahmeanträgen. Durch die Durchführung der Markterkundung wird kein Vergabeverfahren eingeleitet. Der Auftraggeber ist nicht verpflichtet, auf Grundlage der Markterkundung ein Vergabeverfahren durchzuführen, und ist an deren Ergebnisse nicht gebunden. Die Teilnahme begründet keinerlei Rechtsansprüche, insbesondere keinen Anspruch auf Durchführung eines Vergabeverfahrens oder auf Berücksichtigung in einem etwaigen späteren Vergabeverfahren. Die Teilnahme an der Markterkundung ist freiwillig und unentgeltlich. Den teilnehmenden Unternehmen werden keine Kosten erstattet, die ihnen im Zusammenhang mit der Teilnahme, der Ausarbeitung von Stellungnahmen, Konzepten oder der Übermittlung von Unterlagen entstehen. Die Teilnahme an der Markterkundung ist keine Voraussetzung für eine spätere Beteiligung an einem Vergabeverfahren und hat keinen Einfluss auf die Zuschlagschancen eines Unternehmens. Der Auftraggeber bittet interessierte Marktteilnehmer um aussagekräftige, nachvollziehbare und weiterführende Rückmeldungen. Insbesondere werden Hinweise zu möglichen Umsetzungsvarianten, wirtschaftlichen Rahmenbedingungen, Chancen und Risiken, potenziellen Problemen oder Hindernissen bei der Umsetzung des vorgesehenen Konzepts sowie eigene Ideen und Verbesserungsvorschläge erbeten. Die Rückmeldungen sollen nach Möglichkeit in strukturierter Form erfolgen. Interessierte Unternehmen werden gebeten, ihr Interesse unverzüglich und formlos per E-Mail an ta-vergabestellevol@hu-berlin.de zu bekunden und ihre Stellungnahmen, Ideen, Vorschläge zur Umsetzung sowie wirtschaftliche Einschätzungen zu übermitteln. Im Anschluss an die Auswertung der eingereichten Unterlagen können ausgewählte Interessenten eingeladen werden, ihre Konzepte im Rahmen eines strukturierten Dialogs näher zu erläutern. Diese Vertiefung kann in Form eines Vor-Ort-Termins oder ersatzweise per Video- oder Telefonkonferenz erfolgen und dient der Klärung offener Fragen sowie der Bewertung der Auswirkungen der vorgeschlagenen Lösungsansätze auf die Anforderungen des Auftraggebers. Sämtliche im Rahmen der Markterkundung übermittelten Unterlagen gehen in das Eigentum des Auftraggebers über. Mit der Teilnahme erklären sich die Interessenten damit einverstanden, dass ihre eingereichten Konzepte, Bewertungen, Vorschläge und sonstigen Erkenntnisse zur Vorbereitung einer möglichen Beschaffung sowie zur Erarbeitung von Umsetzungsvorschlägen genutzt und soweit erforderlich, an den Auftraggeber weitergegeben werden dürfen, sofern dem nicht ausdrücklich widersprochen wird. Ideen und Vorschläge der Marktteilnehmer können dabei ggf. anonymisiert Bestandteil einer späteren Leistungsbeschreibung werden. Der Auftraggeber gewährleistet den Schutz von Geschäfts- und Betriebsgeheimnissen. Eine Weitergabe von im Rahmen der Markterkundung erlangten Informationen an Dritte erfolgt nicht, mit Ausnahme des Auftraggebers selbst sowie ggf. von durch ihn beauftragten Beratungsunternehmen. Die Markterkundung soll zeitnah durchgeführt und voraussichtlich bis Ende Januar 2026 abgeschlossen werden. Sämtliche eingereichten Rückmeldungen werden ausgewertet und dem Auftraggeber in konsolidierter Form zur Verfügung gestellt. Sofern der Auftraggeber auf Grundlage der Ergebnisse der Markterkundung ein Vergabeverfahren einleiten sollte, wird er geeignete Maßnahmen ergreifen, um eine Verfälschung des Wettbewerbs auszuschließen. Hierzu zählen insbesondere die Gleichbehandlung aller interessierten Unternehmen, die Bereitstellung relevanter Informationen für alle Bewerber und Bieter sowie die Festlegung angemessener Fristen. Voraussichtliche Zeitplanung • Veröffentlichung der Markterkundung: 18.12.2025 • Interessenbekundung zur Teilnahme: unverzüglich • Einreichung der Erstkonzeption: Januar 2026 • Präsentationen und Interviews: Januar 2026"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "92e0c964c65716d3b426f8a898eb32371a05a7d9b0213d4af7d406afa91e39d4": {
       "parts": [
         {
@@ -74875,6 +76209,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "97f76387c4334f05505d723c38cb0deb9b65af1d2ff36ac077a3f12671096faf": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:52:46.299385+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Service for the description, digitalisation and generation of various types of metadata for textual materials held in libraries of the Ministry of Defence."
+          },
+          "source": "Servicio de descripción, digitalización y generación de distintos tipos de metadatos de materiales textuales conservados en bibliotecas del Ministerio de Defensa."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "97f8741df29ee3ecb503c61601ebfe3fb6c2a1cc2eb1c3eb016c8355a4837b76": {
       "parts": [
         {
@@ -76814,6 +78171,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "9b6a46ae30570157f544edf8d4aab9232d0df53df56ae5b581feb52c0f381d9d": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:32.016146+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Odin Prosjekt AS; European Free Trade Association"
+          },
+          "source": "Odin Prosjekt AS; European Free Trade Association"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "9b91a52ec2a0ccb789020c0491a1436d9a858a2ad1cd90c82c73962c1b5fffac": {
       "parts": [
         {
@@ -77615,6 +78995,37 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "9cd6be7b758f7617c068436d3053509bf605f940bbc250140c78c471f3be97bb": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 2
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "rejected": {
+            "id": "9cd6be7b758f7617c068436d3053509bf605f940bbc250140c78c471f3be97bb:0",
+            "language": "da",
+            "model": "gemini-3.5-flash-lite",
+            "text": "IFIRS udbyder på vegne af Erhvervsakademi Aarhus en rammeaftale om levering af ydelser i relation til efter- og videreuddannelsesaktiviteter målrettet beskæftigelsesområdet, herunder identifikation af kompetencebehov, udvikling af uddannelsesaktiviteter og ekstraydelser til ledige målrettet beskæftigelse. De konkrete ydelser er nærmere beskrevet i bilag 1.Udbuddet er opdelt i delaftaler inden for følgende fagområder:LedelseKommunikation, salg og kundeoplevelser IT og digital markedsføring Delaftalen rummer fag inden for Akademiuddannelsen i Ledelse (eks. Ledelse i praksis 10 ECTS). Der vil alene være tale om fag fra de pågældende studieordninger, der har et belastningsniveau på 5 og 10 ECTS, hvilket svarer til et forløb for ledige under betegnelsen ”6 ugers selvvalgt uddannelse”.; Delaftalen rummer fag inden for Akademiuddannelsen i Kommunikation og formidling (eks. Sociale medier 10 ECTS) og Akademiuddannelsen i Salg og markedsføring (eks. Salg og salgspsykologi 10 ECTS eller Strategisk salg og Key Account management 10 ECTS). Der vil alene være tale om fag fra de pågældende studieordninger, der har et belastningsniveau på 5 og 10 ECTS, hvilket svarer til et forløb for ledige under betegnelsen ”6 ugers selvvalgt uddannelse”.; Delaftalen rummer fag inden for Akademiuddannelsen i Informationsteknologi (eks. Anvendelse af kunstig intelligens 10 ECTS) og Akademiuddannelsen i Salg og Markedsføring (eks. Digital Markedsføring 10 ECTS eller E-handel 10 ECTS). Der vil alene være tale om fag fra de pågældende studieordninger, der har et belastningsniveau på 5 og 10 ECTS, hvilket svarer til et forløb for ledige under betegnelsen ”6 ugers selvvalgt uddannelse”."
+          },
+          "result": {
+            "at": "2026-09-15T06:53:40.672505+00:00",
+            "language": "da",
+            "model": "gemini-3.1-flash-lite",
+            "text": "IFIRS is tendering on behalf of Business Academy Aarhus a framework agreement for the provision of services in relation to further and continuing education activities targeted at the employment sector, including identification of competence needs, development of educational activities and additional services for the unemployed targeted at employment. The specific services are described in more detail in Annex 1. The tender is divided into sub-agreements within the following subject areas: Leadership, Communication, sales and customer experience, IT and digital marketing. The sub-agreement includes subjects within the Academy Profession Degree in Leadership (e.g. Leadership in practice 10 ECTS). This will only concern subjects from the relevant curricula that have a workload level of 5 and 10 ECTS, which corresponds to a course for the unemployed under the designation \"6 weeks of self-selected education\". The sub-agreement includes subjects within the Academy Profession Degree in Communication and Media (e.g. Social media 10 ECTS) and the Academy Profession Degree in Sales and Marketing (e.g. Sales and sales psychology 10 ECTS or Strategic sales and Key Account management 10 ECTS). This will only concern subjects from the relevant curricula that have a workload level of 5 and 10 ECTS, which corresponds to a course for the unemployed under the designation \"6 weeks of self-selected education\". The sub-agreement includes subjects within the Academy Profession Degree in Information Technology (e.g. Application of artificial intelligence 10 ECTS) and the Academy Profession Degree in Sales and Marketing (e.g. Digital Marketing 10 ECTS or E-commerce 10 ECTS). This will only concern subjects from the relevant curricula that have a workload level of 5 and 10 ECTS, which corresponds to a course for the unemployed under the designation \"6 weeks of self-selected education\"."
+          },
+          "source": "IFIRS udbyder på vegne af Erhvervsakademi Aarhus en rammeaftale om levering af ydelser i relation til efter- og videreuddannelsesaktiviteter målrettet beskæftigelsesområdet, herunder identifikation af kompetencebehov, udvikling af uddannelsesaktiviteter og ekstraydelser til ledige målrettet beskæftigelse. De konkrete ydelser er nærmere beskrevet i bilag 1.Udbuddet er opdelt i delaftaler inden for følgende fagområder:LedelseKommunikation, salg og kundeoplevelser IT og digital markedsføring Delaftalen rummer fag inden for Akademiuddannelsen i Ledelse (eks. Ledelse i praksis 10 ECTS). Der vil alene være tale om fag fra de pågældende studieordninger, der har et belastningsniveau på 5 og 10 ECTS, hvilket svarer til et forløb for ledige under betegnelsen ”6 ugers selvvalgt uddannelse”.; Delaftalen rummer fag inden for Akademiuddannelsen i Kommunikation og formidling (eks. Sociale medier 10 ECTS) og Akademiuddannelsen i Salg og markedsføring (eks. Salg og salgspsykologi 10 ECTS eller Strategisk salg og Key Account management 10 ECTS). Der vil alene være tale om fag fra de pågældende studieordninger, der har et belastningsniveau på 5 og 10 ECTS, hvilket svarer til et forløb for ledige under betegnelsen ”6 ugers selvvalgt uddannelse”.; Delaftalen rummer fag inden for Akademiuddannelsen i Informationsteknologi (eks. Anvendelse af kunstig intelligens 10 ECTS) og Akademiuddannelsen i Salg og Markedsføring (eks. Digital Markedsføring 10 ECTS eller E-handel 10 ECTS). Der vil alene være tale om fag fra de pågældende studieordninger, der har et belastningsniveau på 5 og 10 ECTS, hvilket svarer til et forløb for ledige under betegnelsen ”6 ugers selvvalgt uddannelse”."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "9cd6f89c3d09531a799bc290a7d531663c321a4d00d27dcede581a3143080201": {
       "parts": [
         {
@@ -78165,6 +79576,29 @@
             "text": "Framework agreement procurement consultants"
           },
           "source": "Ramavtal upphandlingskonsulter"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "9dc95c680abcb7ef115e24051a548f625d52b737a651726afc7b8cf46efb9556": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:52:46.302418+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The renewal for a period of ten months of the support for a Dell Powerstore 1000T storage system that serves various information systems considered critical in the Administration of the Community of Castile and León."
+          },
+          "source": "La renovación por un periodo de diez meses del soporte de un sistema de almacenamiento Dell Powerstore 1000T que da servicio a diversos sistemas de información considerados críticos en de la Administración de la Comunidad de Castilla y León."
         }
       ],
       "protected_names": [],
@@ -79998,6 +81432,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "a15bfae3c24a5ec39c71d0f07005ab194f72e72cf8eb088bd054966e53dd1bc7": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:52:46.299217+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Procurement of a comprehensive human resources management solution for Correos Telecom (including payroll processing, time and attendance tracking, and training management) Submission deadline (source local time): 2026-10-12 10:00:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Contratación de una solución integral de gestión de recursos humanos para Correos Telecom, (incluyendo la elaboración de nómina, el control horario y la gestión de la formación) Submission deadline (source local time): 2026-10-12 10:00:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "a194614a14890fa704a614e9fb13200b9d106af2befa87e1194db260d5474e0d": {
       "parts": [
         {
@@ -80148,6 +81605,29 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "a1e580ba1d1b05d7ba6fd16915c440914f9a179484644d8d4d5fd22cf004011a": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:16.303547+00:00",
+            "language": "lt",
+            "model": "gemini-3.5-flash-lite",
+            "text": "50.10 Kopi og print (2027)"
+          },
+          "source": "50.10 Kopi og print (2027)"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "a1f210546514b2bf9f772609ba1c105eba55bcb24908a669f5ca3b347d618e8c": {
@@ -81195,6 +82675,37 @@
             "text": "Notice of Electronic Tender for Subproject 2 entitled: \"National Programme for the Simplification of Procedures - Digitisation of Simplified Procedures and new simplification proposals through digitisation\" of the Action \"Enhancement of the National Policy on Administrative Procedures - Mitos and EPAD\""
           },
           "source": "Διακήρυξη Ηλεκτρονικού Διαγωνισμού για το Υποέργο 2 με τίτλο: «Εθνικό Πρόγραμμα Απλούστευσης Διαδικασιών – Ψηφιοποίηση Απλουστευμένων Διαδικασιών και νέες προτάσεις απλούστευσης μέσω ψηφιοποίησης» της Πράξης «Ενίσχυση της Εθνικής Πολιτικής Διοικητικών Διαδικασιών – Μίτος και ΕΠΑΔ»"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "a3d558d287cddd5c32399a60dfaa0ae072e860d13e4247454cd6dcc1aa24d2e9": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 2
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "rejected": {
+            "id": "a3d558d287cddd5c32399a60dfaa0ae072e860d13e4247454cd6dcc1aa24d2e9:0",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "TÄMÄ EI OLE HANKINTAILMOITUS TAI TARJOUSPYYNTÖ VAAN TIETOPYYNTÖ MARKKINAKARTOITUSTA JA TEKNISTÄ VUOROPUHELUA VARTEN: Tämän tietopyynnön avulla kartoitetaan markkinoita ja saadaan hankintaa koskevaa tietoa. Hankintayksikkö ei aloita tarjouskilpailua Tietopyynnön julkaisulla, vaan mahdollinen hankintailmoitus ja tarjouspyyntö julkaistaan myöhemmin. Tietopyyntö ei velvoita hankintayksikköä toteuttamaan varsinaista hankintaa. Tietopyyntöön vastaaminen ei ole edellytys myöhempään mahdollisesti järjestettävään tarjouskilpailuun osallistumiselle. Toimittajille ei makseta korvausta tietopyyntöön vastaamisesta, markkinavuoropuheluun tai toimittajatapaamisiin osallistumisesta. Tähän tietopyyntöön annettuja vastauksia käytetään suunniteltaessa kuljetusrobottien hankintaa. HUSin tarkoituksena on hankkia oheisessa liitteessä kuvatun laajuinen kuljetusrobottien kokonaisuus palveluineen. Tietopyynnön tarkoituksena on selvittää markkinatilannetta. Tarkoituksena on selvittää tekniset ratkaisut, järjestelmän tyypilliset keskeiset ominaisuudet ja hinnoitteluperiaatteet. HUS on kiinnostunut myös SOTE-referenssikohteista sekä toteuttamistanne ratkaisuista, joissa on toimitettu ja otettu käyttöön kuljetusrobotteja. HUS on kiinnostunut tämän toiminta-alueen ratkaisuvaihtoehdoista ja toivoo saavansa tekstimuotoisia kuvauksia ratkaisuistanne sekä vastauksia kysymyksiinsä. Lisäksi järjestetään toimittajavuopuhelutapaamiset halukkaiden toimittajien kanssa. HUS pyytää kiinnostuneita toimittajia: 1. Ilmoittautumaan määräaikaan mennessä toimittajavuoropuhelutapaamisiin, jotka järjestetään viikolla 6-7. Tapaamisia järjestetään yksi kunkin toimittajan kanssa. Ilmoittautumisen yhteydessä tulee kuvata perusteet, miten toimittaja täyttää edellytyksen osallistua toimittajavuoropuheluun. Toimittajavuoropuheluihin pyydetään toimittajia tuomaan oman kuljetusrobottinsa esittelyyn ja testattavaksi HUSin tiloihin (aikataulu ja osoite ilmoitetaan erikseen). Tämä ei kuitenkaan ole pakollista, vaan toimittajavuoropuheluun voi osallistua ilman robottiakin. Jotta toimittaja voi osallistua toimittajavuoropuhelutapaamisiin vähimmäisvaatimuksena on, että mobiilirobotti pystyy kuljettamaan ruokavaunuja. Toimittajavuorotapaamisiin otetaan maksimissaan viisi (5) tarjoajaa. Mikäli toimittajia olisi enemmän, otetaan mukaan ensisijaisesti ne viisi toimittajaa, joilla on kokemusta vähintään yhdestä toimitetusta kuljetusrobotista, joka on ollut EU/ETA-alueella käytössä asiakkaalla sairaalassa, terveydenhuollon tai sosiaalihuollon toimipisteessä vähintään kuuden kuukauden ajan. 2. Kommentoimaan tämän tietopyynnön liitteinä olevia asiakirjoja määräaikaan mennessä. Ks. myös liitteessä 1 ’’Hankinnan kuvaus’’ olevat kysymykset, joihin HUS pyytää vastaamaan. Ilmoittautumisen ja kommentoimisen määräajat: 1. HUS pyytää halukkaita ilmoittautumaan toimittajavuoropuhelutapaamisiin viimeistään 19.1.2026 klo 14.00 mennessä. 2. HUS pyytää kommentoimaan tietopyynnön liitteenä olevia asiakirjoja ja vastaamaan kysymyksiin 30.1.2026 klo 14.00 mennessä. Pyydämme teitä lähettämään vastauksenne ja ilmoittautumisenne liittyen tietopyyntöön sähköpostitse osoitteeseen susanna.pirila@kpmg.fi. Viestin aiheeksi maininta \"HUS KULJETUSROBOTIT\". IN ENGLISH BELOW HUS does not translate the annexes of this request for information. The supplier can translate the annexes at its own expense. The purpose of this Request for Information (RFI) is to survey the market and gather information related to the procurement. The contracting authority will not initiate a tendering process by publishing this RFI; any possible procurement notice and request for tender will be published later. The RFI does not oblige the contracting authority to carry out an actual procurement. Responding to the RFI is not a prerequisite for participating in any potential future tendering process. No compensation will be paid to suppliers for responding to the RFI, participating in market dialogue, or attending supplier meetings. The responses to this RFI will be used in planning the procurement of transport robots. The contracting authority intends to procure a comprehensive transport robot solution with related services as described in the attached documents. The purpose of the RFI is to clarify the market situation, technical solutions, typical key features of the system, and pricing principles. The contracting authority requests interested suppliers to: 1. Register by the deadline for supplier dialogue meetings, which will be held during weeks 6–7. One meeting will be arranged with each supplier. When registering, please describe the grounds on which the supplier meets the requirements to participate in the dialogue. Suppliers are requested to bring their own transport robot for presentation and testing at the contracting authority’s premises (schedule and address will be provided separately). This is not mandatory; participation without a robot is possible. The minimum requirement for participation is that the mobile robot can transport food trolleys. A maximum of five (5) suppliers will be invited to the dialogue meetings. If there are more than five suppliers, priority will be given to those with experience of at least one delivered transport robot that has been in use for at least six months in a hospital, healthcare, or social care facility within the EU/EEA area. 2. Comment on the documents attached to this RFI by the deadline. See also the questions in Appendix 1 “Description of the Procurement,” which the contracting authority requests you to answer. Deadlines for registration and commenting: Registration for supplier dialogue meetings no later than 19 January 2026 at 14:00. Comments on the attached documents and answers to the questions no later than 30 January 2026 at 14:00. Please send your responses and registrations related to this RFI by email to susanna.pirila@kpmg.fi. Use the subject line: “HUS TRANSPORT ROBOTS.”"
+          },
+          "result": {
+            "at": "2026-09-15T06:53:40.679764+00:00",
+            "language": "fi",
+            "model": "gemini-3.1-flash-lite",
+            "text": "THIS IS NOT A PROCUREMENT NOTICE OR A CALL FOR TENDERS BUT A REQUEST FOR INFORMATION FOR MARKET SURVEY AND TECHNICAL DIALOGUE: This request for information is used to survey the market and obtain information regarding the procurement. The contracting authority will not initiate a tendering process by publishing the Request for Information, but any potential procurement notice and call for tenders will be published later. The Request for Information does not oblige the contracting authority to carry out the actual procurement. Responding to the Request for Information is not a prerequisite for participating in any potential future tendering process. Suppliers will not be paid compensation for responding to the Request for Information, or for participating in market dialogue or supplier meetings. Responses provided to this Request for Information will be used in planning the procurement of transport robots. HUS's intention is to procure a comprehensive transport robot solution with services as described in the attached annex. The purpose of the Request for Information is to clarify the market situation. The intention is to clarify technical solutions, typical key features of the system and pricing principles. HUS is also interested in health and social services reference sites as well as solutions you have implemented where transport robots have been delivered and commissioned. HUS is interested in solution alternatives in this area of operation and hopes to receive text-based descriptions of your solutions as well as answers to its questions. In addition, supplier dialogue meetings will be arranged with interested suppliers. HUS requests interested suppliers: 1. To register by the deadline for the supplier dialogue meetings, which will be held in week 6-7. One meeting will be held with each supplier. In connection with the registration, the grounds for how the supplier meets the requirements to participate in the supplier dialogue must be described. Suppliers are requested to bring their own transport robot to the supplier dialogue meetings for presentation and testing at HUS's premises (schedule and address will be announced separately). However, this is not mandatory; one can participate in the supplier dialogue without a robot. In order for a supplier to be able to participate in the supplier dialogue meetings, the minimum requirement is that the mobile robot is able to transport food trolleys. A maximum of five (5) tenderers will be accepted for the supplier dialogue meetings. If there are more suppliers, priority will be given to those five suppliers who have experience of at least one delivered transport robot that has been in use at a customer's hospital, healthcare or social services unit in the EU/EEA area for at least six months. 2. To comment on the documents attached to this Request for Information by the deadline. See also the questions in the attachment 1 ''Description of the procurement'', which HUS requests you to answer. Deadlines for registration and commenting: 1. HUS requests interested parties to register for the supplier dialogue meetings no later than 19.1.2026 at 14.00. 2. HUS requests comments on the documents attached to the Request for Information and answers to the questions no later than 30.1.2026 at 14.00. We ask you to send your responses and registration regarding the Request for Information by email to the address susanna.pirila@kpmg.fi. Mention \"HUS KULJETUSROBOTIT\" as the subject of the message. IN ENGLISH BELOW HUS does not translate the annexes of this request for information. The supplier can translate the annexes at its own expense. The purpose of this Request for Information (RFI) is to survey the market and gather information related to the procurement. The contracting authority will not initiate a tendering process by publishing this RFI; any possible procurement notice and request for tender will be published later. The RFI does not oblige the contracting authority to carry out an actual procurement. Responding to the RFI is not a prerequisite for participating in any potential future tendering process. No compensation will be paid to suppliers for responding to the RFI, participating in market dialogue, or attending supplier meetings. The responses to this RFI will be used in planning the procurement of transport robots. The contracting authority intends to procure a comprehensive transport robot solution with related services as described in the attached documents. The purpose of the RFI is to clarify the market situation, technical solutions, typical key features of the system, and pricing principles. The contracting authority requests interested suppliers to: 1. Register by the deadline for supplier dialogue meetings, which will be held during weeks 6–7. One meeting will be arranged with each supplier. When registering, please describe the grounds on which the supplier meets the requirements to participate in the dialogue. Suppliers are requested to bring their own transport robot for presentation and testing at the contracting authority’s premises (schedule and address will be provided separately). This is not mandatory; participation without a robot is possible. The minimum requirement for participation is that the mobile robot can transport food trolleys. A maximum of five (5) suppliers will be invited to the dialogue meetings. If there are more than five suppliers, priority will be given to those with experience of at least one delivered transport robot that has been in use for at least six months in a hospital, healthcare, or social care facility within the EU/EEA area. 2. Comment on the documents attached to this RFI by the deadline. See also the questions in Appendix 1 “Description of the Procurement,” which the contracting authority requests you to answer. Deadlines for registration and commenting: Registration for supplier dialogue meetings no later than 19 January 2026 at 14:00. Comments on the attached documents and answers to the questions no later than 30 January 2026 at 14:00. Please send your responses and registrations related to this RFI by email to susanna.pirila@kpmg.fi. Use the subject line: “HUS TRANSPORT ROBOTS.”"
+          },
+          "source": "TÄMÄ EI OLE HANKINTAILMOITUS TAI TARJOUSPYYNTÖ VAAN TIETOPYYNTÖ MARKKINAKARTOITUSTA JA TEKNISTÄ VUOROPUHELUA VARTEN: Tämän tietopyynnön avulla kartoitetaan markkinoita ja saadaan hankintaa koskevaa tietoa. Hankintayksikkö ei aloita tarjouskilpailua Tietopyynnön julkaisulla, vaan mahdollinen hankintailmoitus ja tarjouspyyntö julkaistaan myöhemmin. Tietopyyntö ei velvoita hankintayksikköä toteuttamaan varsinaista hankintaa. Tietopyyntöön vastaaminen ei ole edellytys myöhempään mahdollisesti järjestettävään tarjouskilpailuun osallistumiselle. Toimittajille ei makseta korvausta tietopyyntöön vastaamisesta, markkinavuoropuheluun tai toimittajatapaamisiin osallistumisesta. Tähän tietopyyntöön annettuja vastauksia käytetään suunniteltaessa kuljetusrobottien hankintaa. HUSin tarkoituksena on hankkia oheisessa liitteessä kuvatun laajuinen kuljetusrobottien kokonaisuus palveluineen. Tietopyynnön tarkoituksena on selvittää markkinatilannetta. Tarkoituksena on selvittää tekniset ratkaisut, järjestelmän tyypilliset keskeiset ominaisuudet ja hinnoitteluperiaatteet. HUS on kiinnostunut myös SOTE-referenssikohteista sekä toteuttamistanne ratkaisuista, joissa on toimitettu ja otettu käyttöön kuljetusrobotteja. HUS on kiinnostunut tämän toiminta-alueen ratkaisuvaihtoehdoista ja toivoo saavansa tekstimuotoisia kuvauksia ratkaisuistanne sekä vastauksia kysymyksiinsä. Lisäksi järjestetään toimittajavuopuhelutapaamiset halukkaiden toimittajien kanssa. HUS pyytää kiinnostuneita toimittajia: 1. Ilmoittautumaan määräaikaan mennessä toimittajavuoropuhelutapaamisiin, jotka järjestetään viikolla 6-7. Tapaamisia järjestetään yksi kunkin toimittajan kanssa. Ilmoittautumisen yhteydessä tulee kuvata perusteet, miten toimittaja täyttää edellytyksen osallistua toimittajavuoropuheluun. Toimittajavuoropuheluihin pyydetään toimittajia tuomaan oman kuljetusrobottinsa esittelyyn ja testattavaksi HUSin tiloihin (aikataulu ja osoite ilmoitetaan erikseen). Tämä ei kuitenkaan ole pakollista, vaan toimittajavuoropuheluun voi osallistua ilman robottiakin. Jotta toimittaja voi osallistua toimittajavuoropuhelutapaamisiin vähimmäisvaatimuksena on, että mobiilirobotti pystyy kuljettamaan ruokavaunuja. Toimittajavuorotapaamisiin otetaan maksimissaan viisi (5) tarjoajaa. Mikäli toimittajia olisi enemmän, otetaan mukaan ensisijaisesti ne viisi toimittajaa, joilla on kokemusta vähintään yhdestä toimitetusta kuljetusrobotista, joka on ollut EU/ETA-alueella käytössä asiakkaalla sairaalassa, terveydenhuollon tai sosiaalihuollon toimipisteessä vähintään kuuden kuukauden ajan. 2. Kommentoimaan tämän tietopyynnön liitteinä olevia asiakirjoja määräaikaan mennessä. Ks. myös liitteessä 1 ’’Hankinnan kuvaus’’ olevat kysymykset, joihin HUS pyytää vastaamaan. Ilmoittautumisen ja kommentoimisen määräajat: 1. HUS pyytää halukkaita ilmoittautumaan toimittajavuoropuhelutapaamisiin viimeistään 19.1.2026 klo 14.00 mennessä. 2. HUS pyytää kommentoimaan tietopyynnön liitteenä olevia asiakirjoja ja vastaamaan kysymyksiin 30.1.2026 klo 14.00 mennessä. Pyydämme teitä lähettämään vastauksenne ja ilmoittautumisenne liittyen tietopyyntöön sähköpostitse osoitteeseen susanna.pirila@kpmg.fi. Viestin aiheeksi maininta \"HUS KULJETUSROBOTIT\". IN ENGLISH BELOW HUS does not translate the annexes of this request for information. The supplier can translate the annexes at its own expense. The purpose of this Request for Information (RFI) is to survey the market and gather information related to the procurement. The contracting authority will not initiate a tendering process by publishing this RFI; any possible procurement notice and request for tender will be published later. The RFI does not oblige the contracting authority to carry out an actual procurement. Responding to the RFI is not a prerequisite for participating in any potential future tendering process. No compensation will be paid to suppliers for responding to the RFI, participating in market dialogue, or attending supplier meetings. The responses to this RFI will be used in planning the procurement of transport robots. The contracting authority intends to procure a comprehensive transport robot solution with related services as described in the attached documents. The purpose of the RFI is to clarify the market situation, technical solutions, typical key features of the system, and pricing principles. The contracting authority requests interested suppliers to: 1. Register by the deadline for supplier dialogue meetings, which will be held during weeks 6–7. One meeting will be arranged with each supplier. When registering, please describe the grounds on which the supplier meets the requirements to participate in the dialogue. Suppliers are requested to bring their own transport robot for presentation and testing at the contracting authority’s premises (schedule and address will be provided separately). This is not mandatory; participation without a robot is possible. The minimum requirement for participation is that the mobile robot can transport food trolleys. A maximum of five (5) suppliers will be invited to the dialogue meetings. If there are more than five suppliers, priority will be given to those with experience of at least one delivered transport robot that has been in use for at least six months in a hospital, healthcare, or social care facility within the EU/EEA area. 2. Comment on the documents attached to this RFI by the deadline. See also the questions in Appendix 1 “Description of the Procurement,” which the contracting authority requests you to answer. Deadlines for registration and commenting: Registration for supplier dialogue meetings no later than 19 January 2026 at 14:00. Comments on the attached documents and answers to the questions no later than 30 January 2026 at 14:00. Please send your responses and registrations related to this RFI by email to susanna.pirila@kpmg.fi. Use the subject line: “HUS TRANSPORT ROBOTS.”"
         }
       ],
       "protected_names": [],
@@ -84994,6 +86505,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "ab58e1fb14601fc240206c5d4c2cc74befdcb35f6c004671b60258e0c8e06d70": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:32.029897+00:00",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Neuruppin Housing Construction Company with Limited Liability"
+          },
+          "source": "Neuruppiner Wohnungsbaugesellschaft mbH"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "ab821384ca4745353967ac521e3e1da8cc4e54cc1196e8475bc424e17d662146": {
       "parts": [
         {
@@ -85032,6 +86566,39 @@
         }
       ],
       "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "aba28075f1c64c9875bf1529b80de115622d3650ae9615e646e187fd3dd4bf6e": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "rejected": {
+            "id": "aba28075f1c64c9875bf1529b80de115622d3650ae9615e646e187fd3dd4bf6e:0",
+            "language": "sv",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Sjöfartsverket inbjuder härmed leverantörer av tjänster och lösningar inom området Säkerhetslednings-, Underhålls- och Personalplaneringssystem att lämna information som svarar på denna RFI (Request For Information)."
+          },
+          "result": {
+            "at": "2026-09-15T06:53:25.996412+00:00",
+            "language": "sv",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Sjöfartsverket hereby invites suppliers of services and solutions in the field of safety management, maintenance and personnel planning systems to submit information in response to this RFI (Request For Information)."
+          },
+          "source": "Sjöfartsverket inbjuder härmed leverantörer av tjänster och lösningar inom området Säkerhetslednings-, Underhålls- och Personalplaneringssystem att lämna information som svarar på denna RFI (Request For Information)."
+        }
+      ],
+      "protected_names": [
+        "Sjöfartsverket"
+      ],
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
@@ -85988,6 +87555,29 @@
             "text": "Senate Department for Mobility, Transport, Climate Action and the Environment"
           },
           "source": "Senatsverwaltung fuer Mobilitaet, Verkehr, Klimaschutz und Umwelt"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "ad82bc13443758689e8e923be01cef155c3c7b1ff3d8498309a3375025702f87": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:32.018473+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Directorate of the State Agency for Digital Administration"
+          },
+          "source": "Dirección de la Agencia Estatal de Administración Digital"
         }
       ],
       "protected_names": [],
@@ -87118,6 +88708,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "b014709cccbb30d1509a898ca8cda7e15c92d9203ccd74a1286f9f5544cfedd6": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:32.026044+00:00",
+            "language": "pl",
+            "model": "gemini-3.5-flash-lite",
+            "text": "NHS National Services Scotland (NSS); Galician Health Service – Lugo, A Mariña and Monforte de Lemos Health Area; Capital Region of Denmark (REGIONH); LifeScience Krakow Cluster Foundation (KLSK); Mitera Private General, Maternity, Gynaecological and Paediatric Clinic Joint-Stock Company (MITERA)"
+          },
+          "source": "NHS National Services Scotland (NSS); Servizo Gallego de Salud – Area Sanitaria de Lugo, A Marina y Monforte de Lemos; Region Hovedstaden (REGIONH); Fundacja Klaster Lifescience Krakow (KLSK); Mitera Idiotiki Geniki, Maieytiki, Gynaikologiki Kai Paidiatriki Kliniki Anonymi Etaireia (MITERA)"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "b014c54d82594174e3f8287e057d5a465749dea6a645ede6433f8ac3e616f3cf": {
       "parts": [
         {
@@ -88069,6 +89682,37 @@
       "protected_names": [
         "Scottish Government"
       ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "b2207d5f8d233dcc7fa7900aada7a19632eb9befd54879233715597356f2eb5f": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "rejected": {
+            "id": "b2207d5f8d233dcc7fa7900aada7a19632eb9befd54879233715597356f2eb5f:0",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Servicios de asistencia técnica para la operación y explotación de los centros de proceso de datos de la AEAD 4914"
+          },
+          "result": {
+            "at": "2026-09-15T06:53:25.998757+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Technical assistance services for the operation and exploitation of the data processing centres of AEAD 4914"
+          },
+          "source": "Servicios de asistencia técnica para la operación y explotación de los centros de proceso de datos de la AEAD 4914"
+        }
+      ],
+      "protected_names": [],
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
@@ -89140,6 +90784,29 @@
             "text": "Full Business Case Consultancy Services"
           },
           "source": "Full Business Case Consultancy Services"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "b3daa016cea92cb9eb5f532f633793bda4aae14527f7da865bb7c77eba8f4071": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:52:46.303158+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Development and maintenance service for the software \"App paseos saludables camina Agüimes\""
+          },
+          "source": "Servicio de desarrollo y mantenimiento del Software \"App paseos saludables camina Agüimes\""
         }
       ],
       "protected_names": [],
@@ -91868,6 +93535,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "b8e9890b8aa8ad7d5165452059a75bcd047a7edd40843f6652fd9e6abab67a40": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:32.012782+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Sub-Directorate General of Economic Services and Cashier Offices"
+          },
+          "source": "Subdirección General de Servicios Económicos y Pagadurías"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "b8ed80a23ccd608a9f631a561a942d3dd81cf825bb7d00f930ca6fe031dd14d6": {
       "parts": [
         {
@@ -92064,6 +93754,37 @@
             "text": "Lot 1: Services for the maintenance, further development and support of the DPMApatente/-gebrauchsmuster (patents/utility models) specialist systems and the contracting authority's cross-sectional services. Lot 2: Services for the maintenance, further development and support of the DPMAmarken (trademarks) specialist system of the contracting authority. Lot LOT-0001: Lot 1 - Development services for DPMApat/gbm and cross-sectional services. Services for the maintenance, further development and support of the DPMApatente/-gebrauchsmuster specialist systems and the contracting authority's cross-sectional services. Lot LOT-0002: Lot 2 - Development services for DPMAmarken. Services for the maintenance, further development and support of the DPMAmarken specialist system of the contracting authority."
           },
           "source": "Los 1: Dienstleistungen im Rahmen der Pflege, der Weiterentwicklung und des Supports für die Fachsysteme DPMApatente/-gebrauchsmuster und die Querschnittsdienste des Auftraggebers. Los 2: Dienstleistungen im Rahmen der Pflege, der Weiterentwicklung und des Supports für das Fachsystem DPMAmarken des Auftraggebers. Lot LOT-0001: Los 1 - Dienstleistungen Entwicklung DPMApat/gbm und Querschnittsdienste. Dienstleistungen im Rahmen der Pflege, der Weiterentwicklung und des Supports für die Fachsysteme DPMApatente/-gebrauchsmuster und die Querschnittsdienste des Auftraggebers. Lot LOT-0002: Los 2 - Dienstleistungen Entwicklung DPMAmarken. Dienstleistungen im Rahmen der Pflege, der Weiterentwicklung und des Supports für das Fachsystem DPMAmarken des Auftraggebers."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "b9394b40e59459b156e880e917a47ad307be056f8e46ff9a768f812f8928299e": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 2
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "rejected": {
+            "id": "b9394b40e59459b156e880e917a47ad307be056f8e46ff9a768f812f8928299e:0",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "F_NEXT_G_ Suministro e instalación sensores y marketing PSTD"
+          },
+          "result": {
+            "at": "2026-09-15T06:53:40.679873+00:00",
+            "language": "es",
+            "model": "gemini-3.1-flash-lite",
+            "text": "F_NEXT_G_ Supply and installation of sensors and PSTD marketing"
+          },
+          "source": "F_NEXT_G_ Suministro e instalación sensores y marketing PSTD"
         }
       ],
       "protected_names": [],
@@ -94859,6 +96580,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "bea9e4c9e981d73c11094cd172c77a113487c06c979048b782149867b96e6c9e": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:32.020238+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Executive Presidency of the E.F.E. Agency Public State Commercial Company, S.A.U., S.M.E."
+          },
+          "source": "Presidencia Ejecutiva de la Agencia E.F.E. S.A.U., S.M.E."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "beb64f71737086a0b9e509ed175793b1e290e59ca28c8bda249da6bb1cf09be4": {
       "parts": [
         {
@@ -94962,6 +96706,29 @@
       ],
       "protected_names": [],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "bef7a04c8e4a207e63b92106f3e179961f5be7617d68204f1be99a821a574d57": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:32.016962+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Governing Board of the Municipality of Gandía"
+          },
+          "source": "Junta de Gobierno del Ayuntamiento de Gandía"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "befae39ae0f52abc4fe2b3eb1c0ae8cf46d93e6b9ae0c435032acbe287413355": {
@@ -95248,6 +97015,29 @@
             "text": "Early engagement for Pre-Procurement Engagement for a TechFirst Technology Education Platform"
           },
           "source": "Early engagement for Pre-Procurement Engagement for a TechFirst Technology Education Platform"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "bf79b6c7f18fa36d12f59a77a8ccf08bb074194d2f936a206ea2d8b5a6e98679": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:52:46.298365+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Procurement of a comprehensive human resources management solution for Correos Telecom (including payroll processing, time and attendance tracking, and training management)"
+          },
+          "source": "Contratación de una solución integral de gestión de recursos humanos para Correos Telecom, (incluyendo la elaboración de nómina, el control horario y la gestión de la formación)"
         }
       ],
       "protected_names": [],
@@ -95844,6 +97634,29 @@
             "text": "Berlin Bar Association; Hanseatic Bar Association of Bremen; Düsseldorf Bar Association; Frankfurt am Main Bar Association; Hanseatic Bar Association of Hamburg; Bar Association for the Higher Regional Court District of Hamm; Cologne Bar Association; Bar Association for the Higher Regional Court District of Munich; Nuremberg Bar Association; Saxony Bar Association; Stuttgart Bar Association"
           },
           "source": "Rechtsanwaltskammer Berlin; Hanseatische Rechtsanwaltskammer Bremen; Rechtsanwaltskammer Düsseldorf; Rechtsanwaltskammer Frankfurt am Main; Hanseatische Rechtsanwaltskammer Hamburg; Rechtsanwaltskammer für den Oberlandesgerichtsbezirk Hamm; Rechtsanwaltskammer Köln; Rechtsanwaltskammer für den Oberlandesgerichtsbezirk München; Rechtsanwaltskammer Nürnberg; Rechtsanwaltskammer Sachsen; Rechtsanwaltskammer Stuttgart"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "c086652bad75f0e9ddf2ce12bdd4eeb612111723dfc40960e5b522992a177187": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:32.019228+00:00",
+            "language": "it",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Dolomiti Energia Holding Spa"
+          },
+          "source": "Dolomiti Energia Holding Spa"
         }
       ],
       "protected_names": [],
@@ -98692,6 +100505,29 @@
       "purpose": "organisation",
       "retry_profile": "english-coverage-and-organisation-names-2"
     },
+    "c60e62b2bde4a5eade469e6f888f97e2023d9ed582daeb483883aea28a83dd8a": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:32.017758+00:00",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Finnish Medicines Agency Fimea"
+          },
+          "source": "Lääkealan turvallisuus- ja kehittämiskeskus Fimea"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "c61b88ccd014bbf2316b4d7ef3f43cfe9ad6d01b7473eebdb73fa48fa973596a": {
       "parts": [
         {
@@ -100946,6 +102782,31 @@
             "text": "The procurement covers products and solutions for the city's overall IT infrastructure, including both data centre and network components. The city's IT environment is structured as a cohesive ecosystem where data centres, networks, security and connecting LAN environments are technically and functionally integrated. Data centre components such as data centre switches, routers, firewalls, servers, storage solutions, load balancing and related support functions (e.g. BAM) are dependent on and interact with LAN infrastructure, including access points and LAN switches, to ensure availability, performance, security and efficient operation throughout the entire IT environment."
           },
           "source": "Upphandlingen omfattar produkter och lösningar för stadens samlade IT-infrastruktur, inklusive både datacenter- och nätverkskomponenter. Stadens IT-miljö är uppbyggd som ett sammanhängande ekosystem där datacenter, nätverk, säkerhet och anslutande LAN-miljöer är tekniskt och funktionellt integrerade. Datacenterkomponenter såsom datacenterswitchar, routrar, brandväggar, servrar, lagringslösningar, lastbalansering och relaterade stödfunktioner (exempelvis BAM) är beroende av och samverkar med LAN-infrastruktur, inklusive accesspunkter och LAN-switchar, för att säkerställa tillgänglighet, prestanda, säkerhet och en effektiv drift i hela IT-miljön."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "ca912896d6e437999cddf24a898caf210d6a2c457e7d1fdfd57e2bcb0a4eaae0": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:05.786152+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Supply and installation of sensors and management of proximity marketing campaigns for the PSTD Grand Tour UNESCO Territories and Lands of Cáceres and Trujillo in accordance with the technical specifications. Financed at 100% by Next Generation EU Funds. Supply and installation of sensors and marketing for the UNESCO Territories Tourism Sustainability Plan of the province.; Supply and installation of sensors and marketing for the Lands of Cáceres and Trujillo Tourism Sustainability Plan."
+          },
+          "source": "Suministro e instalación de sensores y gestión de las campañas de marketing de proximidad para los PSTD Grand Tour Territorios UNESCO y Tierras de Cáceres y Trujillo según pliego técnico. Financiado al 100% por Fondos Next Generation EU Suministro e instalación de sensores y marketing Plan de Sostenibilidad Turística Territorios UNESCO de la provincia.; Suministro e instalación de sensores y marketing Plan de Sostenibilidad Turística Tierras de Cáceres y Trujillo."
         }
       ],
       "protected_names": [],
@@ -103826,6 +105687,62 @@
             "text": "Supply of a server with 8 NVIDIA B200 GPUs"
           },
           "source": "Suministro de un servidor con 8 GPUs NVIDIA B200"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "d077608549ba81b57a5adfec30c3e7487a789f05c5d268f8d29cc30b4bf4b91f": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "rejected": {
+            "id": "d077608549ba81b57a5adfec30c3e7487a789f05c5d268f8d29cc30b4bf4b91f:0",
+            "language": "sv",
+            "model": "gemini-3.5-flash-lite",
+            "text": "RFI - Säkerhetslednings-, Underhålls- och Personalplaneringssystem"
+          },
+          "result": {
+            "at": "2026-09-15T06:53:25.996217+00:00",
+            "language": "sv",
+            "model": "gemini-3.5-flash-lite",
+            "text": "RFI - Safety Management, Maintenance and Personnel Planning System"
+          },
+          "source": "RFI - Säkerhetslednings-, Underhålls- och Personalplaneringssystem"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "d086877d497f184a00dcaea84a0bd65777ed5fd5fd1781368bb5f3b7f3599299": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:05.776112+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "EFTA - New Case, Records and Document system"
+          },
+          "source": "EFTA - New Case, Records and Document system"
         }
       ],
       "protected_names": [],
@@ -108687,6 +110604,37 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "d9c391f0bfa1975d96a1ee5ceb33acf0182c28cb0e1cfcb924dc0e8dbba50f5c": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "rejected": {
+            "id": "d9c391f0bfa1975d96a1ee5ceb33acf0182c28cb0e1cfcb924dc0e8dbba50f5c:0",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "El objeto del contrato de servicio es la contratación de los servicios de CPDs, infraestructuras y operaciones de los serviciosTIC de los centros dependientes de la Dirección Gerencia del Hospital Universitario Nuestra Señora de Candelaria."
+          },
+          "result": {
+            "at": "2026-09-15T06:53:25.996711+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The purpose of the service contract is the procurement of data centre services, infrastructure and operations for the IT services of the centres reporting to the Management Directorate of the Hospital Universitario Nuestra Señora de Candelaria."
+          },
+          "source": "El objeto del contrato de servicio es la contratación de los servicios de CPDs, infraestructuras y operaciones de los serviciosTIC de los centros dependientes de la Dirección Gerencia del Hospital Universitario Nuestra Señora de Candelaria."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "d9d0e69d37a04c745a510bd670a3269ba162d6a475627487f7be0bc72d19f3a9": {
       "parts": [
         {
@@ -109934,6 +111882,37 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "dc4b058caf724306d0cbcb867db669de558b80285fdaa1b0ba4d88a3e4708ad4": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "rejected": {
+            "id": "dc4b058caf724306d0cbcb867db669de558b80285fdaa1b0ba4d88a3e4708ad4:0",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Markterkundung: Conversion des SAP S4/HANA und HCM in SAP S/4 HANA Cloud Private Edition"
+          },
+          "result": {
+            "at": "2026-09-15T06:53:25.999613+00:00",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Market consultation: Conversion of SAP S4/HANA and HCM to SAP S/4 HANA Cloud Private Edition"
+          },
+          "source": "Markterkundung: Conversion des SAP S4/HANA und HCM in SAP S/4 HANA Cloud Private Edition"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "dc4b987ae3332348d6d32adf50d38595b1aa26d9ca2972b6d69dad650d3a06dc": {
@@ -111466,6 +113445,31 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "de938c60c3ebf35bad2d6f96987440a01e9943152fb8856fd282b710d53924a9": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:05.774675+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "It is proposed to contract the maintenance service for the IT solution named SIRA, the research information and management system that enables researchers and managers to handle their activity (CV, scientific production, projects) in a centralised, streamlined and user-friendly manner. This IT solution is necessary to maintain research activity at the UIB, both by researchers and the management thereof by support staff in the offices and departments of the UIB. The SIRA application is the basis of the UIB's Research Management System. To ensure proper operation, as well as the incorporation of updates and regulatory adaptations, it is necessary to contract the right to use the IT solution as well as corrective and evolutionary maintenance."
+          },
+          "source": "Se propone la contratación del servicio de mantenimiento de la solución informática de nombre SIRA, el sistema de información y gestión de la investigación que facilita a los investigadores y gestores vehicular su actividad (currículum, producción científica, proyectos) de manera centralizada, ágil y amigable. Esta solución informática es necesaria para mantener la actividad de investigación a la UIB, tanto por parte de investigadores como la gestión de la misma por parte del personal de soporte de las oficinas y servicios de la UIB. El aplicativo SIRA es la base del Sistema de Gestión de la Investigación de la UIB. Para garantizar el correcto funcionamiento, así como la incorporación de actualizaciones y adaptaciones normativas, es necesario contratar el derecho del uso de la solución informática así como el mantenimiento correctivo y evolutivo."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "dea249fac5cb1e313e4eef8cb3e89ddbb182a3dbf970fbccf02b725b0f13ea3e": {
       "parts": [
         {
@@ -112936,6 +114940,37 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "e287af9427465549ff04ef6b875ba56600fa509326dfb927c2499a28a59f435a": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "rejected": {
+            "id": "e287af9427465549ff04ef6b875ba56600fa509326dfb927c2499a28a59f435a:0",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Servicios de asistencia técnica para la Administración y mejora de la gestión de los sistemas, servicios y aplicaciones gestionados por la AEAD 4905"
+          },
+          "result": {
+            "at": "2026-09-15T06:53:25.995620+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Technical assistance services for the administration and improvement of the management of systems, services and applications managed by AEAD 4905"
+          },
+          "source": "Servicios de asistencia técnica para la Administración y mejora de la gestión de los sistemas, servicios y aplicaciones gestionados por la AEAD 4905"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "e28adce067d22be3599a0187fc0d06c47373cd12d8f31800cce73040943b34dd": {
@@ -115498,6 +117533,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "e73991b4c8cb522a1b856f88ecbf34b050c8cb3a98661c62b262cec5526b6e42": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:32.019312+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Ministry of Health of the Government of the Canary Islands"
+          },
+          "source": "Consejería de Sanidad del Gobierno de Canarias"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "e73a18022625543a08b3630fdeb61be406d491c6993e92b43bed630ec2421a15": {
       "parts": [
         {
@@ -116203,6 +118261,31 @@
         }
       ],
       "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "e8a009904d139cd967d55f1b5e78f7040c9e2a772f189184a1d087ccb2ecd569": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:26.008668+00:00",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The Neuruppiner Wohnungsbaugesellschaft mbH (contracting authority) is planning the retendering and implementation of a modern ERP software solution for managing its portfolio of around 5.000 economic units. Due to the anticipated contract value, the procurement will be carried out within the framework of an EU-wide negotiated procedure with a call for competition (above-threshold range). To prepare for this procurement procedure and to precisely determine the subject matter of the contract, the contracting authority is hereby conducting a market consultation pursuant to Section 28 VgV. The aim of this consultation is to examine the current state of the art and market availability of specific requirements and to incorporate them into the final specification. A non-binding product presentation is sought."
+          },
+          "source": "Die Neuruppiner Wohnungsbaugesellschaft mbH (Auftraggeberin) plant die Neuausschreibung und Implementierung einer modernen ERP-Softwarelösung zur Verwaltung ihres Bestandes von rund 5.000 Wirtschaftseinheiten. Aufgrund des voraussichtlichen Auftragswerts wird die Beschaffung im Rahmen eines EU-weiten Verhandlungsverfahrens mit Teilnahmewettbewerb (Oberschwellenbereich) durchgeführt. Zur Vorbereitung dieses Vergabeverfahrens und zur präzisen Ermittlung des Leistungsgegenstandes führt die Auftraggeberin hiermit eine Markterkundung gemäß § 28 VgV durch. Ziel dieser Erkundung ist es, den aktuellen Stand der Technik sowie die Marktverfügbarkeit spezifischer Anforderungen zu prüfen und in die finale Leistungsbeschreibung einfließen zu lassen. Es wird eine unverbindliche Produktvorstellung angestrebt."
+        }
+      ],
+      "protected_names": [
+        "Neuruppiner Wohnungsbaugesellschaft mbH"
+      ],
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
@@ -119477,6 +121560,37 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "ef37d89a77ccc3b1e57c473c0afa2b91c9b3c8ed3fd31038e5dff151535fe789": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "rejected": {
+            "id": "ef37d89a77ccc3b1e57c473c0afa2b91c9b3c8ed3fd31038e5dff151535fe789:0",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "El objeto del presente contrato es la prestación de los servicios de asistencia técnica necesarios para la operación y explotación de los Centros de Proceso de Datos de la AEAD."
+          },
+          "result": {
+            "at": "2026-09-15T06:53:25.998907+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The purpose of this contract is the provision of technical assistance services required for the operation and exploitation of the Data Processing Centres of the AEAD."
+          },
+          "source": "El objeto del presente contrato es la prestación de los servicios de asistencia técnica necesarios para la operación y explotación de los Centros de Proceso de Datos de la AEAD."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "ef3b120809dc3ff1bd2273af37895ef96d159c643ff6aa9b7e34ab18f520cb1c": {
       "parts": [
         {
@@ -120115,6 +122229,29 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "f068281a796a41825d0b8b71bf04ffe24f7a25b1dbf4bbe9f868f7dc498146a9": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:52:46.301237+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Service for the description, digitalisation and generation of various types of metadata for textual materials held in libraries of the Ministry of Defence. Submission deadline (source local time): 2026-09-28 23:59:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Servicio de descripción, digitalización y generación de distintos tipos de metadatos de materiales textuales conservados en bibliotecas del Ministerio de Defensa. Submission deadline (source local time): 2026-09-28 23:59:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "f06ce554bfda6e86d4e651c716d6e324bbfcbbe3ac1201bacdfb51c5d679df43": {
@@ -123223,6 +125360,37 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "f6a2d358ba5add541a64a80619da9b21ce7c456a910d999df4d5e13bdbc295e9": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 2
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "rejected": {
+            "id": "f6a2d358ba5add541a64a80619da9b21ce7c456a910d999df4d5e13bdbc295e9:0",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Plan Anual de Contratación 2026 - Ayuntamiento de Gandia"
+          },
+          "result": {
+            "at": "2026-09-15T06:53:40.681190+00:00",
+            "language": "es",
+            "model": "gemini-3.1-flash-lite",
+            "text": "Annual Procurement Plan 2026 - Gandia City Council"
+          },
+          "source": "Plan Anual de Contratación 2026 - Ayuntamiento de Gandia"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "f6a77aab54d4e3f36a4ecf2e80de996db479d65ecbd766ba891fab40e6336146": {
       "parts": [
         {
@@ -123245,6 +125413,29 @@
       "protected_names": [
         "Cabinet Office"
       ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "f6ab7fe1bc32213899aa97579c1dcee9ca6dd3483502e5415e65ba1c79ca67fe": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:16.293574+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "This PIN provides early information about the expected starting date and purchase volume and about the open market consultation that is organised in preparation of this precommercial procurement (PCP). The procurement aims to trigger new solutions to be developed and tested to address the following challenge: REHEAL aims to stimulate the development of new solutions that will support the transition of healthcare supply chains from linear to circular models to enhance sustainability and resilience. Key areas include developing supply chain management platforms that prioritise product longevity, material tracking, and regulatory compliance, employing advanced data analytics and AI to optimise reverse logistics and explore recovery opportunities. Solutions should enable scenario analysis and modelling, allowing healthcare providers to identify and implement the most impactful strategies tailored to regional needs."
+          },
+          "source": "This PIN provides early information about the expected starting date and purchase volume and about the open market consultation that is organised in preparation of this precommercial procurement (PCP). The procurement aims to trigger new solutions to be developed and tested to address the following challenge: REHEAL aims to stimulate the development of new solutions that will support the transition of healthcare supply chains from linear to circular models to enhance sustainability and resilience. Key areas include developing supply chain management platforms that prioritise product longevity, material tracking, and regulatory compliance, employing advanced data analytics and AI to optimise reverse logistics and explore recovery opportunities. Solutions should enable scenario analysis and modelling, allowing healthcare providers to identify and implement the most impactful strategies tailored to regional needs."
+        }
+      ],
+      "protected_names": [],
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
@@ -124124,6 +126315,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "f842fc3fe33b113659a66199be0957bec2989b9dc54fe0b2fd96d559714298e5": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:53:32.028449+00:00",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Humboldt University of Berlin"
+          },
+          "source": "Humboldt-Universität zu Berlin"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "f8507e30b1f00a2471ff4271492b5cc0abde0869dc61361dbcc6985f6c036a70": {
       "parts": [
         {
@@ -124639,6 +126853,29 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "f911909f8966311b9fe5afb1dc9767d62cbe5dccc1023bf8130ba7632ad05d33": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-14",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T06:52:46.298201+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "King's Interventional Facilities Management LLP (KFM), acting on behalf of King's College Hospital NHS Foundation Trust, is undertaking preliminary market engagement to inform a future procurement relating to the continuity of Axtension Invoice Processing (IP) and the implementation of ExFlow AP within Microsoft Dynamics 365 Finance & Operations. Additional information: King's Interventional Facilities Management LLP (KFM), acting on behalf of King's College Hospital NHS Foundation Trust, is undertaking preliminary market engagement to inform a future procurement relating to the continuity of Axtension Invoice Processing (IP) and the implementation of ExFlow AP within Microsoft Dynamics 365 Finance & Operations. This notice is issued solely for market engagement and capability assessment purposes. It is not a call for competition and will not result in the award of a contract. Interested suppliers are invited to review the Request for Information (RFI) documentation available via Atamis and provide non-binding responses by the stated deadline."
+          },
+          "source": "King's Interventional Facilities Management LLP (KFM), acting on behalf of King's College Hospital NHS Foundation Trust, is undertaking preliminary market engagement to inform a future procurement relating to the continuity of Axtension Invoice Processing (IP) and the implementation of ExFlow AP within Microsoft Dynamics 365 Finance & Operations. Additional information: King's Interventional Facilities Management LLP (KFM), acting on behalf of King's College Hospital NHS Foundation Trust, is undertaking preliminary market engagement to inform a future procurement relating to the continuity of Axtension Invoice Processing (IP) and the implementation of ExFlow AP within Microsoft Dynamics 365 Finance & Operations. This notice is issued solely for market engagement and capability assessment purposes. It is not a call for competition and will not result in the award of a contract. Interested suppliers are invited to review the Request for Information (RFI) documentation available via Atamis and provide non-binding responses by the stated deadline."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "f91434d05bbb3bc6fc6be596715b286d8b1dd7c2b1c864ae644899a387430140": {
