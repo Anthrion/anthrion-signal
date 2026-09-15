@@ -523,6 +523,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "013ca213a0595bb8af29e2b195df90ac9de3b23e6ca898f001adb84d9e803383": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:18.122256+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Governing Board of the Municipality of Teulada"
+          },
+          "source": "Junta de Gobierno del Ayuntamiento de Teulada"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "01489e8ca979e06025248872894a00251b4ad6d81197f4a7d2ddc071096b4907": {
       "parts": [
         {
@@ -5182,6 +5205,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "0969886102828337414ac8e1be4d245aa355873a5bb88408230d44d8f11a7baf": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:18.123953+00:00",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Eberhard Karls University of Tübingen"
+          },
+          "source": "Eberhard Karls Universität Tübingen"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "096f99baf48a74c9c24c9f7bcfb9f6d7bf5ae80450401e781f34c50ad8280c49": {
       "parts": [
         {
@@ -5911,6 +5957,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "0b06a6c3fb839daa19cd1b7a39ee06b8828f5a4aa2c0fbac65bde4ef40b36ad0": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:05.733532+00:00",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Braunschweig Beteiligungen GmbH (BSBG) is a wholly owned subsidiary of the City of Braunschweig. At the same time, it is the parent company of a group and holds a number of subsidiaries that operate in the field of public services. With currently twelve employees, BSBG essentially provides commercial services for its subsidiary, Braunschweiger Verkehrs-GmbH (BSVG). Braunschweiger Verkehrs-GmbH (BSVG) is a wholly owned subsidiary of BSBG which provides public transport services in Braunschweig with around 780 employees (around 520 of whom are in driving service). BSVG has the \"Lindenberg\" bus depot and the \"Am Hauptgüterbahnhof\" depot for the light rail system, as well as its administrative headquarters. 37,6 million passengers are transported annually. BSVG operates its own light rail route network with a length of 39,62 km. The transport company has 51 light rail vehicles and 165 buses. All IT including the hosting of SAP (ERP and HR), application support and extended application support is outsourced to an external service provider."
+          },
+          "source": "Die Braunschweig Beteiligungen GmbH (BSBG) ist eine hundertprozentige Tochtergesellschaft der Stadt Braunschweig. Gleichzeitig ist sie Obergesellschaft eines Konzerns und hält eine Reihe von Tochtergesellschaften, die im Bereich der Daseinsvorsorge tätig sind. Mit aktuell zwölf Mitarbeitenden erbringt die BSBG im Wesentlichen kaufmännische Dienstleistungen für ihre Tochtergesellschaft, die Braunschweiger Verkehrs-GmbH (BSVG). Die Braunschweiger Verkehrs-GmbH (BSVG) ist eine hundertprozentige Tochter der BSBG, die mit rund 780 Mitarbeitenden (davon rund 520 im Fahrdienst) ÖPNV-Leistungen in Braunschweig erbringt. Die BSVG verfügt über den Busbetriebshof \"Lindenberg\" sowie den Betriebshof \"Am Hauptgüterbahnhof\" für die Stadtbahn samt Verwaltungssitz. Jährlich werden 37,6 Mio. Fahrgäste transportiert. Die BSVG betreibt ein eigenes Streckennetz für die Stadtbahn mit einer Länge von 39,62 km. Das Verkehrsunternehmen hat 51 Stadtbahnen und 165 Busse. Die gesamte IT inkl. des Hostings von SAP (ERP und HR), die Anwendungsbetreuung und die erweiterte Anwendungsbetreuung ist auf einen externen Dienstleister ausgelagert."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "0b09d0f6317d3d79b73a129d30788eac1680126ca3fbdf497d1c9ef55ff74ee6": {
       "parts": [
         {
@@ -6275,6 +6344,29 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "0bcfd3d4396f899346fee59220decc98827779f2df76ce74324f2fd036109870": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:34:54.225606+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Comprehensive and specialised technical assistance service for the Comprehensive Action Plan of the Municipal Council of Montilla."
+          },
+          "source": "Servicio de Asistencia Técnica Integral y especializada del Plan de Actuación Integral del Excmo. Ayuntamiento de Montilla."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "0bd326ee6e756985730781552ed8f87e6365121ec5de949873c658eabde2c5d6": {
@@ -6991,6 +7083,29 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "0d5c0dc417117d43be64204a36dec57671bf0f37727122cd0db9bc7f59cda253": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:05.714020+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The purpose of this contract is the supply of a Computer-Aided Maintenance Management System (CAMMS) and the provision of implementation, integration, data migration, parameterisation, training, support and quality control services, adapted to the needs of the University of the Balearic Islands (UIB), in accordance with the provisions of the technical specifications. Submission deadline (source local time): 2026-09-30 23:59:00. Time zone not supplied; check the source notice. As this is a simplified open procedure, all bidders participating in tenders conducted via a simplified open procedure must be registered in the corresponding Official Tenderers Register by the closing date for the submission of tenders."
+          },
+          "source": "El presente contrato tiene por objeto el suministro de un sistema de Gestión de Mantenimiento Asistido por Ordenador (GMAO) y la prestación de los servicios de implantación, integración, migración de datos, parametrización, formación, acompañamiento y control de calidad, adaptados a las necesidades de la Universitat de les Illes Balears (UIB), conforme a lo establecido en el PPT. Submission deadline (source local time): 2026-09-30 23:59:00. Time zone not supplied; check the source notice. Al tratarse de un procedimiento abierto simplificado, todos los licitadores que se presenten a licitaciones realizadas mediante procedimiento abierto simplificado deberán estar inscritas en el correspondiente Registro Oficial de Licitadores en la fecha final de presentación de ofertas."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "0d5d313be27cf4f282a5601478bc48d3c400d9510375ef6afb6b68304fc5ef69": {
@@ -8738,6 +8853,29 @@
       ],
       "protected_names": [],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "100558947eb0755d0dad88fb573d51dd10890e9e01e2ce08760798debbe9d3d8": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:18.122814+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Mayoral Office of the Municipality of Gilet"
+          },
+          "source": "Alcaldía del Ayuntamiento de Gilet"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "10085728f2c09874181ca044f428dc66a53a723f32048b42126b3e39b99995c8": {
@@ -17387,6 +17525,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "1fefca037f914cc14f7b6254ae351973ee2a30e2ed568731024be3c50aaa802b": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:34:54.225472+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Auditing, consultancy and assistance services for the implementation and maintenance of compliance with current regulatory frameworks on data protection and the duties of a data protection officer. Submission deadline (source local time): 2026-10-01 14:00:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Servicios de auditoria, consultoría y asistencia para la implantación y el mantenimiento del cumplimiento de los marcos normativos en vigor en materia de protección de datos y las funciones de delegado de protección de datos. Submission deadline (source local time): 2026-10-01 14:00:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "1ffc0d10dc94bed7488e519ebe149751d1ef3c9fca20b09fd5b3b1a3e372db7f": {
       "parts": [
         {
@@ -18522,6 +18683,29 @@
             "text": "Implementation and maintenance of a SAP SuccessFactors people management tool"
           },
           "source": "Implementación y mantenimiento de una herramienta de gestión de personas SAP Successfactors"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "227db7cd543c8d5d8e58f7de26285ff95540251ddd7755a52670fc5793ee75ec": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:05.722704+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Training service: Big Data & Cloud Engineering Master's Degree and Artificial Intelligence Master's Degree. Submission deadline (source local time): 2026-10-01 12:00:00. Time zone not supplied; check the source notice. The deadline for submitting tenders is a minimum of 10 natural days, in accordance with Ineco's Contracting Instructions."
+          },
+          "source": "Servicio de formación: Máster Big Data & Cloud Engineering y Máster en Inteligencia artificial. Submission deadline (source local time): 2026-10-01 12:00:00. Time zone not supplied; check the source notice. El plazo de presentación de ofertas es, como mínimo, de 10 días naturales, de conformidad con las Instrucciones de Contratación de Ineco."
         }
       ],
       "protected_names": [],
@@ -22799,6 +22983,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "2a7ca8d6df260fed55d0b5b4b906c5b267a8a02ddaf340a4834744066ebd8157": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:12.476475+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "procurement of digital transformation services TDI"
+          },
+          "source": "contratación de servicios de transformación digital TDI"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "2aabcdf10b3b34c782839b4706fb93d780f3000fd4ff924f7990c49cd7ceef85": {
       "parts": [
         {
@@ -25473,6 +25680,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "2f5223a706a77db714c9a1296fe76a412deb4530345c4be8f181764e6728ebb3": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:34:54.231340+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Consultancy service for Acuamed's energy management: Lot 1: Energy consultancy. Lot 2: Corporate energy management platform."
+          },
+          "source": "Servicio de consultoría para la gestión energética de Acuamed: Lote 1:Consultoría energética. Lote 2_Plataforma corporativa de gestión energética."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "2f75ccb3d0c3810f10d6420a4b0a0ebfa4b1e60fe558028b962447d8b4fbd17e": {
       "parts": [
         {
@@ -25777,6 +26007,29 @@
             "text": "Request for information - D/S POLO (Port Activity) development and maintenance services framework arrangement"
           },
           "source": "Tietopyyntö - D/S POLO (Port Activity) kehitys- ja ylläpitopalveluiden puitejärjestely"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "3023add74d0395fc4b513e5458083c97954a588bd22f9e8bd8a94f1ae53db3e6": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:05.724081+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Contract for infrastructure and IT application services to support the areas of Intervention, Treasury and Budget Office of Sagunto City Council under a service model (SaaS). Submission deadline (source local time): 2026-10-16 23:59:00. Time zone not supplied; check the source notice. In accordance with section E.1 of annex I of the administrative clauses document"
+          },
+          "source": "Contrato de servicios de infraestructura y aplicaciones informáticas de soporte a las áreas de Intervención, Tesorería y Oficina Presupuestaria del Ayuntamiento de Sagunto en modalidad servicio (SAAS). Submission deadline (source local time): 2026-10-16 23:59:00. Time zone not supplied; check the source notice. Conforme al apartado E.1 del anexo I del PCAP"
         }
       ],
       "protected_names": [],
@@ -28937,6 +29190,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "360c6647f4416b0dd5246f40d56c2d85b0aec6cc80785d9a10922411d49b92cc": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:18.122091+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "University of Plymouth"
+          },
+          "source": "University of Plymouth"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "3610a3a0c981e6fa8ed1082a0360b71f8ba356662f2c81c7b8cc3e6233b3118c": {
       "parts": [
         {
@@ -29568,6 +29844,29 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "3816b1c575e226515d79c7a8d7792dde699c804253808124597966f8dbb0ce2e": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:34:54.217250+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "People Services Enterprise Platform"
+          },
+          "source": "People Services Enterprise Platform"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "381ce172c855bedbbbe3eaa29f81c71ea339135a2d4e765eafe04abd3cedebfb": {
@@ -31070,6 +31369,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "3a5a89150a28f4e3431fd2d14c0f306a025a96a63fac5cb8b2b737dd22bdc4c8": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:18.122614+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Board of Directors of Waters of the Mediterranean Basins, S.M.E., S.A. (ACUAMED)"
+          },
+          "source": "Consejo de Administración de Aguas de las Cuencas Mediterráneas, S.M.E., S.A. (ACUAMED)"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "3a610de74e7721185dbbd1f24a50aff8bd49eb370bc716fbc62216216a97a7b8": {
       "parts": [
         {
@@ -31345,6 +31667,29 @@
             "text": "Digital collection system for waste collection"
           },
           "source": "Digitalt insamlingssystem för avfallinsamlingen"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "3b25d47117d80d9a74bc252790b34803998b5529cb2dc554d85c8d9c756ccb4c": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:34:54.236611+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The purpose of this contract is the supply of a Computerised Maintenance Management System (CMMS) and the provision of implementation, integration, data migration, parametrisation, training, support and quality control services, adapted to the needs of the University of the Balearic Islands (UIB), in accordance with the provisions of the technical specifications."
+          },
+          "source": "El presente contrato tiene por objeto el suministro de un sistema de Gestión de Mantenimiento Asistido por Ordenador (GMAO) y la prestación de los servicios de implantación, integración, migración de datos, parametrización, formación, acompañamiento y control de calidad, adaptados a las necesidades de la Universitat de les Illes Balears (UIB), conforme a lo establecido en el PPT."
         }
       ],
       "protected_names": [],
@@ -31712,6 +32057,31 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "3c0107e16ada6ffa2b85f2e50928c8a02e40084ceaa0681fb02804a54db8a4fb": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:34:54.222331+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Procurement of a patient record management solution for Peninsular Dental School CIC ( a wholly owned subsidiary of University of Plymouth) This opportunity is for all elements of the solution including licencing, transition, migration, training and professional services for a 5 + 2 year period Lot LOT-0000: . None"
+          },
+          "source": "Procurement of a patient record management solution for Peninsular Dental School CIC ( a wholly owned subsidiary of University of Plymouth) This opportunity is for all elements of the solution including licencing, transition, migration, training and professional services for a 5 + 2 year period Lot LOT-0000: . None"
+        }
+      ],
+      "protected_names": [
+        "University of Plymouth"
+      ],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "3c0448a519755020d3b6b87be4438c44a6e4a8fd5497a7ef8943b29dc8cf0098": {
@@ -35074,6 +35444,31 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "42ce4cba3a4e692fa7c25558ef583b44fd1d657a699e6c4f4d57eb929b2d91d2": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:12.478526+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "26/00084 - Avinor AS - RFI - Wayfinding - Digital maps"
+          },
+          "source": "26/00084 - Avinor AS - RFI - Wayfinding - Digital maps"
+        }
+      ],
+      "protected_names": [
+        "Avinor AS"
+      ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "42dc6942d891c549e2ac1a5a9d44bb3192788706ce01212fee2ede376f1efba4": {
       "parts": [
         {
@@ -35991,6 +36386,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "44806582f88aab648f2f7b81af9c130a3f27176f014de82692313d361799338b": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:12.476931+00:00",
+            "language": "da",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Invitation to participate in market dialogue prior to the procurement of a digital recruitment solution for the Municipality of Copenhagen"
+          },
+          "source": "Invitation til deltagelse i markedsdialog forud for anskaffelse af digital løsning til rekruttering i Københavns Kommune"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "4480c96b94819a1278125c2c74e2f8977b3900e7b44ff6657bf71fd399892214": {
       "parts": [
         {
@@ -36375,6 +36793,29 @@
             "text": "Supply of bandwidth management equipment for the Directorate General for Information Technologies and Communications"
           },
           "source": "Suministro del equipamiento de gestión de ancho de banda para la Dirección General de Tecnologías de la Información y las Comunicaciones"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "4526e579efef5afe2b48f828d70bcdafefa265bb206b853c2aa534c24bf126cd": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:12.480398+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Telephony and Call Centre - Teams Front End"
+          },
+          "source": "Telephony and Call Centre - Teams Front End"
         }
       ],
       "protected_names": [],
@@ -36828,6 +37269,29 @@
         "Historic England"
       ],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "46290b9bfabf6ad3da3824e2728a92f791be8eab063e68abe3f2701c4c5b9d8b": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:18.126153+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Regional Ministry of Environment, Housing and Territorial Planning of the Junta of Castile and León"
+          },
+          "source": "Consejería de Medio Ambiente, Vivienda y Ordenación del Territorio de la Junta de Castilla y León"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "46319c8318306e7e3f602170eb7e54ec1b32e22625a3c25156c0b50d9c93bdf0": {
@@ -39089,6 +39553,29 @@
       ],
       "protected_names": [],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "4a417a827f5f42d3637aa301bbe140c1dfaac8eb9a9e07ecb1fd5d96535e7494": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:18.122521+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Directorate of Acquisitions of the Logistic Support Command of the Air and Space Army"
+          },
+          "source": "Dirección de Adquisiciones del Mando de Apoyo Logístico del Ejército del Aire y del Espacio"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "4a4cd81b75edd5c7d90f009c2fee25b24a19e8395cbdaf0dc1ab1cc76adf1325": {
@@ -43513,6 +44000,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "530883be11ab60f57c958892bec20ef1e8465d25b0c847f5aff1451d72f24f08": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:18.128490+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Fermanagh and Omagh District Council"
+          },
+          "source": "Fermanagh and Omagh District Council"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "531484e6523fd8da3cb8cedca3250269a78bc0545ddcd8be95905a1288d8e6c6": {
       "parts": [
         {
@@ -44505,6 +45015,37 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "5569445ae1d4cb31f32dec4f652695121218f0ffcb24e98311749e148a819b1b": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 2
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "rejected": {
+            "id": "5569445ae1d4cb31f32dec4f652695121218f0ffcb24e98311749e148a819b1b:0",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Mantenimiento y soporte del terminal Cisco de videoconferencia y sus componentes en sala 8a de la SGFAL, por 2 años Submission deadline (source local time): 2026-09-30 10:00:00. Time zone not supplied; check the source notice."
+          },
+          "result": {
+            "at": "2026-09-15T20:35:22.306570+00:00",
+            "language": "mul",
+            "model": "gemini-3.1-flash-lite",
+            "text": "Maintenance and support of the Cisco videoconferencing terminal and its components in room 8a of the SGFAL, for 2 years Submission deadline (source local time): 2026-09-30 10:00:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Mantenimiento y soporte del terminal Cisco de videoconferencia y sus componentes en sala 8a de la SGFAL, por 2 años Submission deadline (source local time): 2026-09-30 10:00:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "556c8c1574965cc77abad1c126637965ef58417d7963be5f572831d784be6709": {
       "parts": [
         {
@@ -44897,6 +45438,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "5677687cd4230af7621f5c5c86cf25accbbb5d852ded8719ffbf420448cd888d": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:18.121199+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Presidency of the State Ports Public Agency"
+          },
+          "source": "Presidencia del Organismo Público Puertos del Estado"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "56792a46398501cdf64f1d058d486b12e6a0aa3574d3aca2cb048fcd3901db10": {
       "parts": [
         {
@@ -45183,6 +45747,29 @@
             "text": "Supervisory and information system for the LVR State Youth Office and facilities in the Rhineland"
           },
           "source": "Aufsichts- und Informationssystem für das LVR-Landesjugendamt und Einrichtungen im Rheinland"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "56ffab7c45208314c290361482fc944642ab2c6b49136e532d431fb9073a0726": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:34:54.236322+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Consultancy service for Acuamed's energy management: Lot 1: Energy consultancy. Lot 2: Corporate energy management platform. Submission deadline (source local time): 2026-09-28 14:00:00. Time zone not supplied; check the source notice. Consultancy service for Acuamed's energy management: Lot 1: Energy consultancy. Lot 2: Corporate energy management platform."
+          },
+          "source": "Servicio de consultoría para la gestión energética de Acuamed: Lote 1:Consultoría energética. Lote 2_Plataforma corporativa de gestión energética. Submission deadline (source local time): 2026-09-28 14:00:00. Time zone not supplied; check the source notice. Servicio de consultoría para la gestión energética de Acuamed: Lote 1:Consultoría energética. Lote 2_Plataforma corporativa de gestión energética."
         }
       ],
       "protected_names": [],
@@ -45675,6 +46262,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "57e3189fe58225cb64561bd04552d5c532e6f6272e3279eea3d50da09e5a1510": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:18.126053+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Governing Board of the Municipality of San Esteban de Gormaz"
+          },
+          "source": "Junta de Gobierno del Ayuntamiento de San Esteban de Gormaz"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "57e4141123ff2b12c5cd73763b25827d3644cdb26bc891640e35e84e18653763": {
       "parts": [
         {
@@ -45778,6 +46388,29 @@
       ],
       "protected_names": [],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "580ccdaa99e5436d4f36da484cc16cfe91cef53f35645b68a5ab78c50b235799": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:18.122754+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Mayoral Office of the Municipality of Atarfe"
+          },
+          "source": "Alcaldía del Ayuntamiento de Atarfe"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "580d1c1b8bef0862e0813ccc3d5c75f4215a4283074ceac88b462d21570818b8": {
@@ -46456,6 +47089,29 @@
       ],
       "protected_names": [],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "58fa01567d0fdc48278948fa99a7c923937b8b128dc522628954a3212dbb09be": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:18.127475+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "University of Exeter"
+          },
+          "source": "University of Exeter"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "59016b6fc94c606d4a4cb2f045bee9fceadd2baa358a5e9778517377d5852180": {
@@ -47150,6 +47806,29 @@
             "text": "Supply of Microsoft Office Licences 365"
           },
           "source": "Suministro de Licencias Microsoft Office 365"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "5affd43623824793e47c686090f79bb8fa0b011eafb168c41a3ba2b11b2cb9d8": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:34:54.220831+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Supply, configuration, parametrisation, deployment and integration of a Municipal Artificial Intelligence Platform to improve citizen services, the Electronic Office and AI-assisted urban planning licences, within the framework of the Ciudad Real IMPULSO CAPITAL PAI, co-financed by ERDF"
+          },
+          "source": "Suministro, configuración, parametrización, implantación e integración de una Plataforma Municipal de Inteligencia Artificial para la mejora de la atención ciudadana, la Sede Electrónica y las licencias urbanísticas asistidas por IA, en el marco del PAI Ciudad Real IMPULSO CAPITAL, cofinanciado por FEDER"
         }
       ],
       "protected_names": [],
@@ -48443,6 +49122,29 @@
       "protected_names": [
         "Staatsinstitut für Schulqualität und Bildungsforschung (ISB)"
       ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "5d28f11f7f65530dc551e2288bf3bbc46b4c062d7bc90bf07f11de94226f4735": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:05.723454+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Development of the activities within the remit of the Directorate-General for Communication corresponding to the monitoring, tracking and management of social media accounts Submission deadline (source local time): 2026-09-30 23:59:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Desarrollo de las actividades competencia de la Dirección General de Comunicación correspondientes al seguimiento, monitorización y gestión de las cuentas de redes sociales Submission deadline (source local time): 2026-09-30 23:59:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
@@ -52130,6 +52832,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "64d6f073f1a5dc87e2828cad2d5a0a45260e865787a9ebfaeb6a3108a590b959": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:34:54.228541+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "20269V32 Technical assistance service for the digitalisation and standardisation of CITAAM files and the study of a future operational system"
+          },
+          "source": "20269V32 Servicio de asistencia técnica para la digitalización y normalización de expedientes de la CITAAM y el estudio de un sistema de explotación futuro"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "64d82262e8207b2f4a8c777c3b3653dd81452b155c4e309d82032209f0d269d1": {
       "parts": [
         {
@@ -52555,6 +53280,29 @@
             "text": "Design, Supply and Delivery of Uniform and PPE"
           },
           "source": "Design, Supply and Delivery of Uniform and PPE"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "65c0f6bf77b6ffc3bd3eee3f9915351171ba8a84dd5914c807e3adf661c46f5b": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:05.714938+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Systems administration and development support services for Madrid City Council IT (3 lots) Submission deadline (source local time): 2026-09-30 23:59:00. Time zone not supplied; check the source notice. Please note that the DGPE support opening hours are Monday to Thursday from 9:00 to 19:00 hours and Friday from 9:00 to 15:00 hours. Where the submission of the tender is carried out in two phases, the electronic file containing the tender must be sent, under the terms indicated in clause 23 of the administrative clauses document, to the Registry of the Ciudad Lineal District Municipal Board, Calle Hermanos García Noblejas 16, 28037 MADRID, from Monday to Thursday from 9:00 hours to 17:00 hours and on Friday from 9:00 hours to 14:00 hours."
+          },
+          "source": "Servicios de administración de sistemas y soporte al desarrollo para Informática del Ayuntamiento de Madrid (3 lotes) Submission deadline (source local time): 2026-09-30 23:59:00. Time zone not supplied; check the source notice. Se advierte que el límite horario de soporte de la DGPE es de lunes a jueves de 9:00 a 19:00 horas y viernes de 9:00 a 15:00 horas. Cuando el envío de la oferta se efectúe en dos fases, deberá enviarse el archivo electrónico que contenga la oferta, en los términos indicados en la cláusula 23 del PCAP, al Registro de la Junta Municipal de Distrito de Ciudad Lineal, Calle Hermanos García Noblejas 16, 28037 MADRID, de lunes a jueves de 9:00 horas a 17:00 horas y el viernes de 9:00 horas a 14:00 horas."
         }
       ],
       "protected_names": [],
@@ -54283,6 +55031,29 @@
             "text": "IT services in artificial intelligence and new technologies through the establishment of a dynamic purchasing system Submission deadline (source local time): 2029-10-01 23:59:00. Time zone not supplied; check the source notice."
           },
           "source": "Servicios informáticos en Inteligencia Artificial y nuevas tecnologías mediante la constitución de un Sistema Dinámico de Adquisición Submission deadline (source local time): 2029-10-01 23:59:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "6950b008b2f2b851f03d8273c6f0cdf21bea2f64286628affc7643a271412198": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:05.726447+00:00",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Expansion of the ML Cloud Tübingen at HLRS"
+          },
+          "source": "Erweiterung der ML Cloud Tübingen am HLRS"
         }
       ],
       "protected_names": [],
@@ -56650,6 +57421,29 @@
             "text": "Training service - AI system integration and browser-based learning and development environments"
           },
           "source": "Schulungsdienstleistung - KI-Systemintegration und browserbasierte Lern- und Entwicklungsumgebungen"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "6dea0591406d042b400285bf0eebc5244730b2d663ffa8890b05e64e9c7f8988": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:34:54.227684+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Supply, installation and commissioning of a radial endobronchial ultrasound (rEBUS) miniprobe system with planning software intended for the diagnosis of peripheral lung lesions and other bronchoscopic applications in the Pulmonology Clinical Management Unit of the San Agustín University Hospital, Health Area I West of SESPA"
+          },
+          "source": "Suministro, instalación y puesta en funcionamiento de un sistema de Minisonda Ecográfica Radial (rEBUS) con software planificador destinado al diagnóstico de lesiones pulmonares periféricas y otras aplicaciones broncoscópicas en la UGC de Neumología del Hospital Universitario San Agustín, Área de Salud I Occidente del SESPA"
         }
       ],
       "protected_names": [],
@@ -64902,6 +65696,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "7ee3b3bd1a5a54854af3987c4fc21f5725a83df9b60cb68517cae26d6a9e1597": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:18.121088+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Central London Community Healthcare NHS Trust"
+          },
+          "source": "Central London Community Healthcare NHS Trust"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "7f0505d94df78e708ef90337211deeecc96fb0458320d14081c93bf0538efd96": {
       "parts": [
         {
@@ -65155,6 +65972,29 @@
             "text": "Vehicle Administration - Request for Information (RFI)"
           },
           "source": "Vehicle Administration - Request for Information (RFI)"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "7f34e4f0bd8b808e8ae451979c5e4b3e48754bf8b621566f6fc0447e7714a69d": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:12.476375+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "RFI - Trade system for the sweeping service. Trøndelag Fire and Rescue Service IKS (TBRT) shall procure a new trade system for the chimney sweeping service. The contracting authority is not obliged to procure a new system for TBRT. See the attached description for further information."
+          },
+          "source": "RFI - Trade system for the sweeping service. Trøndelag Fire and Rescue Service IKS (TBRT) shall procure a new trade system for the chimney sweeping service. The contracting authority is not obliged to procure a new system for TBRT. See the attached description for further information."
         }
       ],
       "protected_names": [],
@@ -66614,6 +67454,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "8202673cede2fcd3ac6da8473be6a89f45d6d76b8ed1c62d68fd5bacfa58b7f3": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:12.478743+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Avinor wishes to conduct a RFI with vendors in the field of digital maps and wayfinding. Avinor is interested to explore the possibility to leverage digital navigation solutions in a more commercial way. Please see the attached PDF for more information."
+          },
+          "source": "Avinor wishes to conduct a RFI with vendors in the field of digital maps and wayfinding. Avinor is interested to explore the possibility to leverage digital navigation solutions in a more commercial way. Please see the attached PDF for more information."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "820718a12bee493552ef9ec36e8d7cad04601e9ca2e200de4303adc1a23cc1d7": {
       "parts": [
         {
@@ -66821,6 +67684,29 @@
       ],
       "protected_names": [],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "8258a00e6b2e210e67f48a4e150ee642d278e87f4b3f13eff160b04fe49e9c06": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:18.122692+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Local Governing Board of the Municipality of San Fernando de Henares"
+          },
+          "source": "Junta de Gobierno Local del Ayuntamiento de San Fernando de Henares"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "825da89d89293ea59a99e6bdba47123c298048958d5bdf84b9eda6084298a9e2": {
@@ -68474,6 +69360,31 @@
         }
       ],
       "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "84f24f904d17336fcddc8a2d9bd0c60ec436274c3f0267df38724cec8054d95a": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:05.729783+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Essex County Council (ECC) is seeking information from suppliers who can provide an existing, fully developed, cloud based DBS processing platform to support its HR Shared Services Team. The team delivers recruitment and vetting services for ECC and external public sector customers. ECC is an established DBS Registered Body, Umbrella Organisation, & a Responsible Organisation and will continue operating in these capacities throughout the contract. All DBS applications must be submitted under ECC's Registered Body identity, with counter signatory duties remaining with ECC. The supplier will act solely as a processor and platform provider. The platform must support Basic, Standard and Enhanced DBS checks, provide comprehensive reporting to support invoicing and financial processes, offer customer self service capability, and operate with minimal impact on ECC's infrastructure. Suppliers must demonstrate appropriate business continuity arrangements (excluding any DBS initiated eBulk suspension) and provide training and knowledge transfer at mobilisation to enable ECC to train system users. ECC's current contract ends on 30 September 2026, and this early market engagement is being undertaken in preparation for that expiry. We aim to understand market capability, implementation timescales, indicative costs, and interest ahead of issuing our formal Request for Quotation (RFQ). We are keen to identify suppliers who wish to be included in the RFQ process. We look forward to hearing from interested suppliers as part of this early engagement exercise."
+          },
+          "source": "Essex County Council (ECC) is seeking information from suppliers who can provide an existing, fully developed, cloud based DBS processing platform to support its HR Shared Services Team. The team delivers recruitment and vetting services for ECC and external public sector customers. ECC is an established DBS Registered Body, Umbrella Organisation, & a Responsible Organisation and will continue operating in these capacities throughout the contract. All DBS applications must be submitted under ECC's Registered Body identity, with counter signatory duties remaining with ECC. The supplier will act solely as a processor and platform provider. The platform must support Basic, Standard and Enhanced DBS checks, provide comprehensive reporting to support invoicing and financial processes, offer customer self service capability, and operate with minimal impact on ECC's infrastructure. Suppliers must demonstrate appropriate business continuity arrangements (excluding any DBS initiated eBulk suspension) and provide training and knowledge transfer at mobilisation to enable ECC to train system users. ECC's current contract ends on 30 September 2026, and this early market engagement is being undertaken in preparation for that expiry. We aim to understand market capability, implementation timescales, indicative costs, and interest ahead of issuing our formal Request for Quotation (RFQ). We are keen to identify suppliers who wish to be included in the RFQ process. We look forward to hearing from interested suppliers as part of this early engagement exercise."
+        }
+      ],
+      "protected_names": [
+        "ESSEX COUNTY COUNCIL"
+      ],
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
@@ -71899,6 +72810,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "8ad9045d0b6a6c28af1d51944a1d02a8ad55cd5c5e7c048892f1f67e3df46d46": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:05.728739+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Cloud Based DBS Processing Platform"
+          },
+          "source": "Cloud Based DBS Processing Platform"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "8adbc55828332f2402f445f29703fca5c90e76090e873550314e0c7740c0bf73": {
       "parts": [
         {
@@ -72177,6 +73111,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "8b2ff705ec05425712fef81fc92ec4e55889b344cdb020be7584e61cdd5dc68d": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:12.477245+00:00",
+            "language": "da",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The Municipality of Copenhagen wishes to investigate which systems can support the administrations' managers and employees in recruitment within the Municipality of Copenhagen. In this connection, the Municipality of Copenhagen is holding a market dialogue, expectedly in week 8, 2026. Please refer to the attached invitation letter and annexes. Please note the response deadline of 21 January 2026, at 23:59."
+          },
+          "source": "Københavns Kommune ønsker at undersøge, hvilke systemer der kan understøtte forvaltningernes ledere og medarbejdere i rekruttering i Københavns Kommune.I den forbindelse afholder Københavns Kommune markedsdialog, forventeligt i uge 8, 2026.Der henvises til vedhæftede invitationsskrivelse samt bilag.Bemærk venligst svarfristen den 21. januar 2026, kl. 23:59."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "8b37355d7ea368bc95dd546ca42c77182ec86fd008cbbf8a0fb75b2d5e185921": {
       "parts": [
         {
@@ -72198,6 +73155,31 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "8b3fa285439f7bb6c87bda5abd3e476d9a30de2bec4c43147062035337f0d010": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:12.478965+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Mixed contract for the supply, support and maintenance of the departmental rehabilitation information system of the Servicio Cántabro de Salud, via an open procedure"
+          },
+          "source": "Contrato mixto para el suministro, soporte y mantenimiento del sistema de informacion departamental de rehabilitacion del Servicio Cántabro de Salud, mediante procedimiento abierto"
+        }
+      ],
+      "protected_names": [
+        "Servicio Cántabro de Salud"
+      ],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "8b56b1f78b6e0a802419893c443956d028d68e3c8229a6247a48d896d6c37716": {
@@ -72323,6 +73305,29 @@
             "text": "SIC and SOC Coding of the Graduate Outcomes survey"
           },
           "source": "SIC and SOC Coding of the Graduate Outcomes survey"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "8b896821bae185a36f00574ad134e048d9a86980cacb41a0a726c010204b31c8": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:05.719654+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Training service: Big Data & Cloud Engineering Master's Degree and Artificial Intelligence Master's Degree."
+          },
+          "source": "Servicio de formación: Máster Big Data & Cloud Engineering y Máster en Inteligencia artificial."
         }
       ],
       "protected_names": [],
@@ -76527,6 +77532,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "929dc2580d772032d218c7d237dc0bb027a3b7016e9ce7a0f8890f0398f785fd": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:05.717372+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The subject matter of this contract is the supply of Municipal Cemetery Management software. Submission deadline (source local time): 2026-09-30 23:59:00. Time zone not supplied; check the source notice. Proposals must be submitted solely and exclusively on the public sector contracts platform. Please bear in mind in the event of any issues that the support hours of the DGPE are Monday to Thursday from 9:00-19:00 and Friday from 9:00 to 15:00"
+          },
+          "source": "Constituye el objeto del presente contrato el suministro software Gestión Cementerio municipal. Submission deadline (source local time): 2026-09-30 23:59:00. Time zone not supplied; check the source notice. Las proposiciones se presentaran única y exclusivamente en la plataforma de contratos del sector público. Téngase en cuenta ante posibles incidencias que el horario de soporte de la DGPE es de L-J de 9:00-19:00 y V de 9:00 a 15:00"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "92a4c85ff15429ff846c256aa58976a4353c51035dae407e892f8812715bbadc": {
       "parts": [
         {
@@ -80551,6 +81579,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "9a083ba93f875f24c6ca7f21b7e17dc05457e1f835f95337f5a538bab5b7291a": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:34:54.223295+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Renewal of the antivirus software for the Municipality of Teulada"
+          },
+          "source": "Renovación del antivirus del Ayuntamiento de Teulada"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "9a1062582704fd16ff1f7ea1c4c5d747544437c361b3a756c28d6dc17cc38e94": {
       "parts": [
         {
@@ -81583,6 +82634,37 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "9c436e1440c560e35d22b42ec1801b41e3ee0a04af78e7b44ede00759c03eafc": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 2
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "rejected": {
+            "id": "9c436e1440c560e35d22b42ec1801b41e3ee0a04af78e7b44ede00759c03eafc:0",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Renovación del antivirus del Ayuntamiento de Teulada Submission deadline (source local time): 2026-10-01 14:00:00. Time zone not supplied; check the source notice."
+          },
+          "result": {
+            "at": "2026-09-15T20:35:22.307112+00:00",
+            "language": "mul",
+            "model": "gemini-3.1-flash-lite",
+            "text": "Renewal of the antivirus for Teulada Town Council Submission deadline (source local time): 2026-10-01 14:00:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Renovación del antivirus del Ayuntamiento de Teulada Submission deadline (source local time): 2026-10-01 14:00:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "9c43f9487fd1780a36b46fce20a1b9954bd62225b83789fb52f6a28083a7bd39": {
       "parts": [
         {
@@ -82281,6 +83363,31 @@
       ],
       "protected_names": [
         "Ministry of Defence"
+      ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "9d3217e7c3f90586e4904b7e56dffaf956a83488219d24fe6df4a42846ca646e": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:12.480980+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "At the University of Exeter communication is key to how we engage with our students, colleagues and partners. Whilst the use of telephony has vastly reduced in recent years, with other forms of communication being more prevalent, telephony still has a place in many areas, including accommodation, estates patrol, clearing etc. Currently the University has a disparate number of Telephony systems for internal and external telephony as well as two separate call centre systems. It is intended to simplify the overall telephony system where possible and have a single provider for telephony and a single provider for call centre operations. This could be the same provider and indeed the same system if appropriate. Lot LOT-0000: ."
+          },
+          "source": "At the University of Exeter communication is key to how we engage with our students, colleagues and partners. Whilst the use of telephony has vastly reduced in recent years, with other forms of communication being more prevalent, telephony still has a place in many areas, including accommodation, estates patrol, clearing etc. Currently the University has a disparate number of Telephony systems for internal and external telephony as well as two separate call centre systems. It is intended to simplify the overall telephony system where possible and have a single provider for telephony and a single provider for call centre operations. This could be the same provider and indeed the same system if appropriate. Lot LOT-0000: ."
+        }
+      ],
+      "protected_names": [
+        "University of Exeter"
       ],
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
@@ -83622,6 +84729,52 @@
       "purpose": "passage",
       "retry_profile": "english-coverage-and-organisation-names-2"
     },
+    "9f7a13b3e0c558932f3eee95bc32ca975bee8008ab3d421ff7278736b59c8492": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:34:54.219798+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Services for the provision of a comprehensive human resources management system for Puertos del Estado"
+          },
+          "source": "Servicios para la puesta a disposición de un sistema integral de gestión de recursos humanos para Puertos del Estado"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "9f7f68e42e41ef687c9c489f0d233f530b3955c63280e8712f5cc8af9496615a": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:34:54.222458+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Support and maintenance service for Sareb's anti-money laundering and terrorist fraud prevention platform (Ariadna)"
+          },
+          "source": "Servicio de soporte y mantenimiento de la plataforma de prevención de blanqueo de capitales y fraude terrorista de Sareb (Ariadna)"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "9f9e710b9342861a5e9daeff3dda90ae06605d0929479395a823418a704d38f1": {
       "parts": [
         {
@@ -84607,6 +85760,29 @@
       ],
       "protected_names": [],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "a1a7f1057418c616e689f825f72a9decccea6a94bc4da9844f48ce220692d852": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:18.125968+00:00",
+            "language": "nb",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Trøndelag Fire and Rescue Service IKS"
+          },
+          "source": "Trøndelag brann- og redningstjeneste IKS"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "a1aaf993bc7bdc97ea3c2e1b4ae324018900458fef941e8dfb66aa275b731b59": {
@@ -86537,6 +87713,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "a4eae4151b248484d2c621308286a0be39ea6fbc5612f9ddf478c22e7435101a": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:05.715066+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Service for the extraction, genotyping, DNA analysis, registration and storage of canine samples in San Fernando de Henares"
+          },
+          "source": "Servicio de extracción, genotipado, ADN, análisis, registro y almacenamiento de muestras caninas en San Fernando de Henares"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "a4faca0b3f82958d94b74479c57161dc933c0ab3f8ad3d020413f5d4ec6f9e31": {
       "parts": [
         {
@@ -86608,6 +87807,29 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "a50f58fafa0ef8f27e6d2b1d53bb7a060030dea17d5e222e3e1c8efb67e68407": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:34:54.220592+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Services for the provision of a comprehensive human resources management system for Puertos del Estado Submission deadline (source local time): 2026-10-13 12:00:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Servicios para la puesta a disposición de un sistema integral de gestión de recursos humanos para Puertos del Estado Submission deadline (source local time): 2026-10-13 12:00:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "a52b07722ae864b7547fc0e06cdb07a1d03edfc6435982179f07d51006b46e30": {
@@ -86731,6 +87953,31 @@
       ],
       "protected_names": [
         "Landkreis Rosenheim"
+      ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "a55aee261766b4303e19d0c9de22d8036933c32f5b4f16cd8423b53a6c9855a0": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:05.727793+00:00",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "With this procurement procedure, Eberhard Karls Universität Tübingen intends to award the contract for the expansion of the Machine Learning Cloud Tübingen at HLRS. The cluster to be procured is intended to expand the \"Conway\" installation operated at HLRS with additional compute resources. The system is to support high-performance and distributed AI experiments for researchers at the Tübingen AI Center, the Cluster of Excellence for Machine Learning in Science, Hertie AI and the Collaborative Research Centre \"Robust Vision\". The tender covers the delivery, assembly, commissioning and acceptance testing of the overall system at the High Performance Computing Center Stuttgart (HLRS), as well as warranty, repairs and support."
+          },
+          "source": "Die Eberhard Karls Universität Tübingen beabsichtigt mit diesem Vergabeverfahren die Vergabe der Erweiterung der Machine Learning Cloud Tübingen am HLRS. Der anzuschaffende Cluster soll die am HLRS betriebene Installation \"Conway\" um weitere Compute Ressourcen erweitern. Das System soll hoch performante und verteilte KI-Experimente für Wissenschaftler des Tübingen AI Centers, des Exzellenzclusters für Maschinelles Lernen in den Wissenschaften, Hertie AI und des Sonderforschungsbereichs \"Robust Vision\" unterstützen. Die Ausschreibung umfasst Lieferung, Aufbau, Inbetriebnahme und Abnahme des Gesamtsystems am Höchstleistungsrechenzentrum Stuttgart, (HLRS), sowie Garantie, Reparaturen und Support."
+        }
+      ],
+      "protected_names": [
+        "Eberhard Karls Universität Tübingen"
       ],
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
@@ -87929,6 +89176,29 @@
       "protected_names": [
         "Landesmesse Stuttgart GmbH & Co. KG"
       ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "a7c08246f94c9c14415d99d8d49110091c9bd74d9649295f99ca16b99d6ce980": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:05.715641+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Service for the extraction, genotyping, DNA analysis, registration and storage of canine samples in San Fernando de Henares Submission deadline (source local time): 2026-10-14 23:59:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Servicio de extracción, genotipado, ADN, análisis, registro y almacenamiento de muestras caninas en San Fernando de Henares Submission deadline (source local time): 2026-10-14 23:59:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
@@ -90314,6 +91584,29 @@
       "protected_names": [
         "Dirección de Asuntos Económicos del Ejército"
       ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "ac23e80caf575d95c224826079ee4365e42df9eca314ab1bf4fce19cfdc97448": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:05.725851+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Acquisition and maintenance of software licences for MC MUTUAL's COGNOS products"
+          },
+          "source": "Adquisición y mantenimiento de las licencias software de los productos COGNOS de MC MUTUAL"
+        }
+      ],
+      "protected_names": [],
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
@@ -93245,6 +94538,29 @@
         "Scottish Government"
       ],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "b2161c249f39e0ae5ef94e99b22da4ed558368794c9d92c91cb9cae5dc7d81bf": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:18.122319+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Plenary of the Municipality of Montilla"
+          },
+          "source": "Pleno del Ayuntamiento de Montilla"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "b2207d5f8d233dcc7fa7900aada7a19632eb9befd54879233715597356f2eb5f": {
@@ -102966,6 +104282,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "c39dd9cfc1c5498a9adbd730ca89aeff1264d257d4d6b4aa7a202c9b5b0fe62d": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:34:54.229116+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "20269V32 Technical assistance service for the digitalisation and standardisation of CITAAM files and the study of a future operational system Submission deadline (source local time): 2026-09-17 23:59:00. Time zone not supplied; check the source notice."
+          },
+          "source": "20269V32 Servicio de asistencia técnica para la digitalización y normalización de expedientes de la CITAAM y el estudio de un sistema de explotación futuro Submission deadline (source local time): 2026-09-17 23:59:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "c3b2915fa754098dabad8cb1a56ab1e4fc2b46da320870d494ff0ec11aa9af65": {
       "parts": [
         {
@@ -106716,6 +108055,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "ca721fd08bdcd75361bef5c18eca1bf495409e93735c1203c82ae199e19b7343": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:34:54.219674+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "This RFI seeks information from vendors regarding a HR/L&D and OD Enterprise platform (with CRM, Service Desk, Automated GenAI support, Forms/Workforces, intelligent automation/Agentic AI and single UI for all core connected systems) and the underlying data infrastructure/architecture (data layer to extract and transform/ write back into core People systems (multiple instances) and a cloud based data storage/processing layer) to inform a potential future procurement. Responses will be used to understand market capabilities, implementation approaches, pricing models, interoperability, security/compliance, and support options. This is not a tender and no award will be made based on responses. The responses will inform a Business Case to move forward to a tendering process."
+          },
+          "source": "This RFI seeks information from vendors regarding a HR/L&D and OD Enterprise platform (with CRM, Service Desk, Automated GenAI support, Forms/Workforces, intelligent automation/Agentic AI and single UI for all core connected systems) and the underlying data infrastructure/architecture (data layer to extract and transform/ write back into core People systems (multiple instances) and a cloud based data storage/processing layer) to inform a potential future procurement. Responses will be used to understand market capabilities, implementation approaches, pricing models, interoperability, security/compliance, and support options. This is not a tender and no award will be made based on responses. The responses will inform a Business Case to move forward to a tendering process."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "ca75143fbe62d01370f9702bf3b4bbe390d014d175fc8c1559dc6b48025a6483": {
       "parts": [
         {
@@ -108063,6 +109425,29 @@
             "text": "AT1541 - Marketing and Creative Agency Support"
           },
           "source": "AT1541 - Marketing and Creative Agency Support"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "cd4f3959292332d6da5a053b00e2807b53fd9e0fa29c3f7c07fd38e93f985421": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:05.724250+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The supply, installation, commissioning and maintenance of an integral solution for the prevention, monitoring and management of fire risk in the municipality of Gilet."
+          },
+          "source": "El suministro, instalación, puesta en funcionamiento y mantenimiento de una solución integral para la prevención, monitorización y gestión del riesgo de incendio en el municipio de Gilet."
         }
       ],
       "protected_names": [],
@@ -109721,6 +111106,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "d04e1c0f4b4b40c4f064bcfdaffc8f6c5f7c566f6fca81ebd21ebcd13c2610f3": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:12.476806+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Contract for the supply, installation and service of digitalisation systems in 46 civic amenity sites in Castilla y León"
+          },
+          "source": "Contrato de suministro, instalación y servicio de sistemas de digitalización en 46 puntos limpios de Castilla y León"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "d053cc4c24ecb2499c753bdc78708944e731fe0734dcb80060b50dddbe31e862": {
       "parts": [
         {
@@ -109829,6 +111237,29 @@
       ],
       "protected_names": [],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "d08b645374a2d67ef0effc34e79ce17f73641ebb92369da34ef1b4f018fbad63": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:18.122424+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Management of Health Area III - Avilés of the Health Service of the Principality of Asturias (SESPA)"
+          },
+          "source": "Gerencia del Área Sanitaria III - Avilés del Servicio de Salud del Principado de Asturias (SESPA)"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "d0946d6a66c59aa29707f469b033c203a06ea24f6ae97d314f92b7d08893e39d": {
@@ -112447,6 +113878,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "d5aec9e29bd09f48dfee57549f2121b5c9fbe04a538b8a96aaf73ff462bba099": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:34:54.223188+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Maintenance and support of the Cisco videoconferencing terminal and its components in room 8a of the SGFAL, for 2 years"
+          },
+          "source": "Mantenimiento y soporte del terminal Cisco de videoconferencia y sus componentes en sala 8a de la SGFAL, por 2 años"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "d5b20fb418f3ca9d523e659adba41e999986ffaa0d9117041dec78b12ce2af47": {
       "parts": [
         {
@@ -113498,6 +114952,29 @@
             "text": "Support services for IT operations"
           },
           "source": "Unterstützungsleistungen für den IT-Betrieb"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "d7533a25cb6a2891a30ac8dcd6d9ae20d07d3847b543272120c231051c034037": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:12.481115+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "PRE MARKET ENGAGEMENT FOR TENDER FOR THE DIGITISATION AND DISPOSAL OF PLANNING RECORDS REF: 2526 TNDR RP 003 Pre Market Engagement***"
+          },
+          "source": "PRE MARKET ENGAGEMENT FOR TENDER FOR THE DIGITISATION AND DISPOSAL OF PLANNING RECORDS REF: 2526 TNDR RP 003 Pre Market Engagement***"
         }
       ],
       "protected_names": [],
@@ -116541,6 +118018,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "dce3d92d7efe7609ff0dc95e20346d5598cbced1c3463f9883413baf4aa71cd5": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:05.730592+00:00",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "BSBG and BSVG - Successor ERP and HCM system"
+          },
+          "source": "BSBG und BSVG - Nachfolge ERP- und HCM-System"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "dceb97fbe322c87627828ef48c552bc52a9ed40572edc21396d402d81a1c7cba": {
       "parts": [
         {
@@ -117706,6 +119206,31 @@
       "purpose": "passage",
       "retry_profile": "english-coverage-and-organisation-names-2"
     },
+    "de880155f7367d3befd8f4ea956576ab0471d4e131a1f04f84e6a377f8184f30": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:12.482591+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "***PRE-MARKET ENGAGEMENT EXERCISE*** PLEASE NOTE: The Pre-Market Engagement Questionnaire can be accessed in the Cft Documents area. Fermanagh and Omagh District Council (FODC) is currently considering whether to initiate a procurement process to establish a contract with a Supplier to digitise and dispose of records. This would establish a contract with a supplier to collect, prepare, digitise and index hard copy planning records and safely dispose of the physical copies. This Pre Market Engagement exercise will also inform the Council of the availability of Frameworks when determining the final Procurement process. The Council is also wishing to explore a potential option for online access to the final digitised records for the public, which will generate revenue and overall enhance operational efficiencies, including cost reductions and ensuring the long-term integrity of historical records. The broad scope of the project is outlined in more detail in the Attached Questionnaire. Before commencing the procurement process, FODC is undertaking pre-market research and seeks to assess; • the level of market interest in participating, • the potential options available in the market, and • in particular the potential to make use of emerging technologies, including AI. No part of this process should be read as generating an expectation in relation to any future procurement process for this project. This market engagement exercise does not guarantee the commencement of a commercial competition resulting in monetary income or future outlay. **PLEASE NOTE: ALL COMPLETED QUESTIONNAIRES MUST BE SUBMITTED VIA THE eTendersNI PortaI.*** Respondees are not required to wait until the closing date to submit a response. PME QUESTIONNAIRE RESPONSES MAY BE SUBMITTED VIA THE ETENDERSNI CFT MESSAGING FACILITY AT ANY TIME UP TO Mid-Day 12:00 on 7th October 2025 Lot 1: ."
+          },
+          "source": "***PRE-MARKET ENGAGEMENT EXERCISE*** PLEASE NOTE: The Pre-Market Engagement Questionnaire can be accessed in the Cft Documents area. Fermanagh and Omagh District Council (FODC) is currently considering whether to initiate a procurement process to establish a contract with a Supplier to digitise and dispose of records. This would establish a contract with a supplier to collect, prepare, digitise and index hard copy planning records and safely dispose of the physical copies. This Pre Market Engagement exercise will also inform the Council of the availability of Frameworks when determining the final Procurement process. The Council is also wishing to explore a potential option for online access to the final digitised records for the public, which will generate revenue and overall enhance operational efficiencies, including cost reductions and ensuring the long-term integrity of historical records. The broad scope of the project is outlined in more detail in the Attached Questionnaire. Before commencing the procurement process, FODC is undertaking pre-market research and seeks to assess; • the level of market interest in participating, • the potential options available in the market, and • in particular the potential to make use of emerging technologies, including AI. No part of this process should be read as generating an expectation in relation to any future procurement process for this project. This market engagement exercise does not guarantee the commencement of a commercial competition resulting in monetary income or future outlay. **PLEASE NOTE: ALL COMPLETED QUESTIONNAIRES MUST BE SUBMITTED VIA THE eTendersNI PortaI.*** Respondees are not required to wait until the closing date to submit a response. PME QUESTIONNAIRE RESPONSES MAY BE SUBMITTED VIA THE ETENDERSNI CFT MESSAGING FACILITY AT ANY TIME UP TO Mid-Day 12:00 on 7th October 2025 Lot 1: ."
+        }
+      ],
+      "protected_names": [
+        "Fermanagh and Omagh District Council"
+      ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "de8b1c036c58fd412a5466a469cd42995bb161c026e74d4a570038da23698498": {
       "parts": [
         {
@@ -118788,6 +120313,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "e15bbed53edcac71c1b54e9a7c086bb18143b8903e48ebfcc55d8aefadb76230": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:18.126208+00:00",
+            "language": "nb",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Avinor AS"
+          },
+          "source": "Avinor AS"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "e1603d63d75c13fccbd259ba979dbb7195bdccbc53135e6e29b298152e4135cb": {
       "parts": [
         {
@@ -119006,6 +120554,29 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "e1e09043012bdc1f2d68109d2611ea6dccb8253b6cd4cb0cccaa193bcc0a3ea3": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:05.715747+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The subject matter of this contract is the supply of Municipal Cemetery Management software."
+          },
+          "source": "Constituye el objeto del presente contrato el suministro software Gestión Cementerio municipal."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "e1f883694b47e5f1d9b194ef838accc455a7f0aeaad17ba834ffab48b0512a0b": {
@@ -120239,6 +121810,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "e3f272d92d2374946cfd7f7c82b1c911b82ae38b0af667b7cb17bde14935c217": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:34:54.228389+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Supply, installation and commissioning of a radial endobronchial ultrasound (rEBUS) miniprobe system with planning software intended for the diagnosis of peripheral lung lesions and other bronchoscopic applications in the Pulmonology Clinical Management Unit of the San Agustín University Hospital, Health Area I West of SESPA Submission deadline (source local time): 2026-09-30 14:00:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Suministro, instalación y puesta en funcionamiento de un sistema de Minisonda Ecográfica Radial (rEBUS) con software planificador destinado al diagnóstico de lesiones pulmonares periféricas y otras aplicaciones broncoscópicas en la UGC de Neumología del Hospital Universitario San Agustín, Área de Salud I Occidente del SESPA Submission deadline (source local time): 2026-09-30 14:00:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "e3f78818d0db32a030fe4ee8406396bba3f80df73d582d5269ee03c752233ca3": {
       "parts": [
         {
@@ -120596,6 +122190,31 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "e470916c772c9d0c6dc41eb47dbab31f58f2ea7eec633c0c2a9409afe9c900fa": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:12.479258+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The purpose of the contract is the supply of licences as well as the provision of the services necessary for the implementation, configuration and commissioning of a departmental information system for the Rehabilitation Service in the hospitals of Laredo and Sierrallana Tres Mares corresponding to Areas II, III and IV of the Servicio Cántabro de Salud (SCS)."
+          },
+          "source": "El objeto del contrato es el suministro de las licencias asI como la prestacion de los servicios necesarios para la implantacion, configuracion y puesta en marcha de un sistema de informacion departamental para el Servicio de Rehabilitacion en los hospitales de Laredo y Sierrallana Tres Mares correspondientes a las Áreas II III y IV del Servicio Cántabro de Salud (SCS)."
+        }
+      ],
+      "protected_names": [
+        "Servicio Cántabro de Salud"
+      ],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "e47e7154ef638ea3f1f5479eaa4e4fd8d96d98379dbf45efdccbb1b9fd5d15c5": {
@@ -122926,6 +124545,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "e8d06941cbd2e8d258870482704fc161b7eed99c1a4316c6b84ae509300d0334": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:05.725752+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The supply, installation, commissioning and maintenance of an integral solution for the prevention, monitoring and management of fire risk in the municipality of Gilet. Submission deadline (source local time): 2026-09-28 09:00:00. Time zone not supplied; check the source notice."
+          },
+          "source": "El suministro, instalación, puesta en funcionamiento y mantenimiento de una solución integral para la prevención, monitorización y gestión del riesgo de incendio en el municipio de Gilet. Submission deadline (source local time): 2026-09-28 09:00:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "e8d978ad74ffc6a5616710dca14885bcf64cb91491b3c8bc32e2d1aba3aea02c": {
       "parts": [
         {
@@ -124506,6 +126148,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "ebb8c195349d7ddad1d16185efd92a9ab0d4db9067a4ee4e904ec747d12460e0": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:34:54.227422+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Comprehensive and specialised technical assistance service for the Comprehensive Action Plan of the Municipal Council of Montilla. Submission deadline (source local time): 2026-09-30 23:59:00. Time zone not supplied; check the source notice. Only bids submitted through the preparation and submission tool provided by PLACSP will be accepted. For any questions or incidents regarding the downloading, use and operation of said tool, please contact the Platform managers via email at licitacionE@hacienda.gob.es, from Monday to Thursday between 8:30 and 18:30 and on Fridays from 9:00 to 15:00, indicating the file number, contracting authority and details of the error, attaching a screenshot if possible."
+          },
+          "source": "Servicio de Asistencia Técnica Integral y especializada del Plan de Actuación Integral del Excmo. Ayuntamiento de Montilla. Submission deadline (source local time): 2026-09-30 23:59:00. Time zone not supplied; check the source notice. Sólo se admitirán ofertas presentadas a través de la herramienta de preparación y presentación que facilita la PLACSP. Para cualquier tipo de duda o incidencia con la descarga, uso y manejo de dicha herramienta, póngase en contacto con los responsables de la Plataforma a través del correo-e licitacionE@hacienda.gob.es, en horario de lunes a jueves de 8:30 a 18:30 y viernes de 9:00 a 15:00, indicando el número de expediente, órgano de contratación y detalle del error, adjuntando captura de pantalla si es posible."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "ebc06f621b15e84caee37edadca80d6db33b760352456d942350b1c614a971a5": {
       "parts": [
         {
@@ -125989,6 +127654,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "ee55f9b59263a5e721bf2eb5a7886dbb33e32071070a23588c179a0dd9f60e8f": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:18.126899+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Cantabrian Health Service"
+          },
+          "source": "Servicio Cántabro de Salud"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "ee63bf96969d9b5ce3bc35da91c64c69eb8e5f5b42a23b5b2e7cf71b72a60e52": {
       "parts": [
         {
@@ -126701,6 +128389,29 @@
       "protected_names": [],
       "purpose": "organisation",
       "retry_profile": "english-coverage-and-organisation-names-2"
+    },
+    "ef894abec97649d50169d4c02e598c572a14eca2853a9ed07ac9bf5a47df0c6a": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:34:54.221950+00:00",
+            "language": "fr",
+            "model": "gemini-3.5-flash-lite",
+            "text": "PDSE Patient Record Management Solution"
+          },
+          "source": "PDSE Patient Record Management Solution"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "efa80bc6a28453bef563143d63572deaeed3055a8b3b47fbbb31537162a54c85": {
       "parts": [
@@ -127973,6 +129684,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "f2270372d5cd968fc5d3a9167b004362cea8e6cd6bcfd6c8cfe1cf779eedecdb": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:05.726377+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Acquisition and maintenance of software licences for MC MUTUAL's COGNOS products Submission deadline (source local time): 2026-09-17 23:59:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Adquisición y mantenimiento de las licencias software de los productos COGNOS de MC MUTUAL Submission deadline (source local time): 2026-09-17 23:59:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "f22e0eb7d60fc0e4108ca18dfcfa7fae29418bba26552a0f83421f846891727f": {
       "parts": [
         {
@@ -128883,6 +130617,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "f381fea60eddcaa1435e7847a9f0a738edc38d245b155df693f60a9e55092c8a": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:34:54.223046+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Support and maintenance service for Sareb's anti-money laundering and terrorist fraud prevention platform (Ariadna) Submission deadline (source local time): 2026-10-01 10:00:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Servicio de soporte y mantenimiento de la plataforma de prevención de blanqueo de capitales y fraude terrorista de Sareb (Ariadna) Submission deadline (source local time): 2026-10-01 10:00:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "f38ceeb35a4f4b33e7ae74e7765d368a02492d4dc32e1dbc43fa61e1d5e06129": {
       "parts": [
         {
@@ -128912,6 +130669,29 @@
       ],
       "protected_names": [],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "f38f7a304d17409939e5ea29c618f22ddcaf9d7a06134ccdbbd87a1caf2d9207": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:18.122186+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Secretariat-General for Regional and Local Financing"
+          },
+          "source": "Secretaría General de Financiación Autonómica y Local"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "f391a51bc8378f8da7b0efb4ca782ea17d5b67ae8b58521b86718395bb7b374a": {
@@ -130231,6 +132011,37 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "f669b4d690743250c922db6a0309d66ddce2a9fba27069c8bdecca682d832e34": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "rejected": {
+            "id": "f669b4d690743250c922db6a0309d66ddce2a9fba27069c8bdecca682d832e34:0",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Braunschweig Holdings GmbH; Braunschweiger Transport Company GmbH"
+          },
+          "result": {
+            "at": "2026-09-15T20:35:19.294437+00:00",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Braunschweig Participations GmbH; Brunswick Transport GmbH"
+          },
+          "source": "Braunschweig Beteiligungen GmbH; Braunschweiger Verkehrs GmbH"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "f6770c8254836ab489749af571df4cafe77e2fce637668e84bbd705ca5d3d470": {
       "parts": [
         {
@@ -130851,6 +132662,29 @@
             "text": "The National Institute of Allergy and Infectious Diseases (NIAID) seeks to advance its mission by supporting multidisciplinary, consortium-based research using precision systems biology approaches to uncover links among chronic illnesses, infectious diseases and microbiomes. There is an urgent scientific and clinical need to understand the pathways by which infections lead to chronic lifelong health issues or alternatively, how long-term illnesses might predispose or exacerbate acute infections. The objective is to harness cutting-edge technologies along with longitudinal patient cohorts and biobank data for comprehensive analysis of genetic, environmental, and lifestyle factors leading to advances in prevention and treatment strategies for both chronic and infectious diseases. The cutting-edge technologies may include multi-omics, computational modeling, artificial intelligence, organoid-based validation systems, and integration of real-world data, alongside improved access to digital health records and advanced clinical informatics tools. The goal is to generate meaningful insights into disease progression and host-pathogen interactions. Grant authorities that allow NIAID to forecast this opportunity are as follows: Sections 301 and 405 of the Public Health Service Act as amended (42 USC 241 and 284) and under Federal Regulations 42 CFR Part 52 and 2 CFR Part 200."
           },
           "source": "The National Institute of Allergy and Infectious Diseases (NIAID) seeks to advance its mission by supporting multidisciplinary, consortium-based research using precision systems biology approaches to uncover links among chronic illnesses, infectious diseases and microbiomes. There is an urgent scientific and clinical need to understand the pathways by which infections lead to chronic lifelong health issues or alternatively, how long-term illnesses might predispose or exacerbate acute infections. The objective is to harness cutting-edge technologies along with longitudinal patient cohorts and biobank data for comprehensive analysis of genetic, environmental, and lifestyle factors leading to advances in prevention and treatment strategies for both chronic and infectious diseases. The cutting-edge technologies may include multi-omics, computational modeling, artificial intelligence, organoid-based validation systems, and integration of real-world data, alongside improved access to digital health records and advanced clinical informatics tools. The goal is to generate meaningful insights into disease progression and host-pathogen interactions. Grant authorities that allow NIAID to forecast this opportunity are as follows: Sections 301 and 405 of the Public Health Service Act as amended (42 USC 241 and 284) and under Federal Regulations 42 CFR Part 52 and 2 CFR Part 200."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "f7a6beb4f6d26cae46b3fa696ad2508c6d5cfdd93b875e1591e9162f3f4c8be1": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:05.722862+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Development of the activities within the remit of the Directorate-General for Communication corresponding to the monitoring, tracking and management of social media accounts"
+          },
+          "source": "Desarrollo de las actividades competencia de la Dirección General de Comunicación correspondientes al seguimiento, monitorización y gestión de las cuentas de redes sociales"
         }
       ],
       "protected_names": [],
@@ -132250,6 +134084,29 @@
       "purpose": "passage",
       "retry_profile": "english-coverage-and-organisation-names-2"
     },
+    "f9fa085367a0bf3248bbbf454d849345bacb9402bd8f67a9256f329a2287578b": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:34:54.223484+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Auditing, consultancy and assistance services for the implementation and maintenance of compliance with current regulatory frameworks on data protection and the duties of a data protection officer."
+          },
+          "source": "Servicios de auditoria, consultoría y asistencia para la implantación y el mantenimiento del cumplimiento de los marcos normativos en vigor en materia de protección de datos y las funciones de delegado de protección de datos."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "fa00e971fa6ec30c1897d591222f0f486b766c4ee1c34191f063c1b247089f6c": {
       "parts": [
         {
@@ -133638,6 +135495,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "fc7053a6daf66934bce87d9ccb184453c9dbbbd618c025e19f80fc37204b0b85": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:05.734239+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "RFI - Trade system sweeping TBRT"
+          },
+          "source": "RFI - Trade system sweeping TBRT"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "fc793037533bd27fe61d8083b30708f0593cce5d828b6e1b789723c22c7d82ee": {
       "parts": [
         {
@@ -134088,6 +135968,29 @@
       ],
       "protected_names": [],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "fd44e7782302edb1fe01f9c21d4d8c6bb87bc23bc07417b96e1ee0e7739caf2e": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:18.121275+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Governing Board of the Municipality of Ciudad Real"
+          },
+          "source": "Junta de Gobierno del Ayuntamiento de Ciudad Real"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "fd48a98b438c9a5fec45cf9cf51de6b075c758f4932abfce4f767e8047372e81": {
@@ -135039,6 +136942,29 @@
             "text": "RFI for Bot protection for Vy"
           },
           "source": "RFI for Bot protection for Vy"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "ff404004a73c1424cf62cf15aba2c968e93c5c20b157101c67eb2fbec0c2b143": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T20:35:12.476681+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "MRR-02-IR-35/25 Contract for the supply, installation and service of digitalisation systems in 46 civic amenity sites in Castilla y León. Co-financed with European funds from the PRTR, Next Generation EU. C12, I3, L4.1"
+          },
+          "source": "MRR-02-IR-35/25 Contrato de suministro, instalación y servicio de sistemas de digitalización en 46 puntos limpios de Castilla y León. Cofinanciado con fondos europeos del PRTR, Next Geberation EU. C12, I3, L4.1"
         }
       ],
       "protected_names": [],
