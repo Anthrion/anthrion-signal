@@ -129,6 +129,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "004b4541b3a3bae9a36245d44dab23202784b04bb58954f2f9edf98db19ea068": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:05.209196+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Update of South East Soil Moisture model"
+          },
+          "source": "Update of South East Soil Moisture model"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "006b14a9a813b14e80f8b439ba31a59eed5b52921383c714635fa15000f69ce1": {
       "parts": [
         {
@@ -1994,6 +2017,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "0411ef250224fd2d2f591449d14e648147b9ae071034bc6c65103ac56ce842cc": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:05.202751+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The Department for Work & Pensions (DWP), referred to as \"the Authority\", is conducting market research to assess the availability, capability, and indicative costs of off the shelf solutions for storing and managing service information that supports individuals. These solutions must comply with the Open Referral UK standard and be suitable for use across multiple organisations and use cases. This RFI does not commit the DWP to undertaking any formal procurement activity. This notice has also been published on FTS. For further information and details on how to respond to this RFI, please refer to the attachment found on the documents section of the Atamis e-Procurement portal: https://dwp2.my.salesforce-sites.com/ProSpend__CS_ContractPage?SearchType=Projects&uid=a1MdO000002h4wrUAA&searchStr=&sortStr=Recently+Published&page=1&filters=&County="
+          },
+          "source": "The Department for Work & Pensions (DWP), referred to as \"the Authority\", is conducting market research to assess the availability, capability, and indicative costs of off the shelf solutions for storing and managing service information that supports individuals. These solutions must comply with the Open Referral UK standard and be suitable for use across multiple organisations and use cases. This RFI does not commit the DWP to undertaking any formal procurement activity. This notice has also been published on FTS. For further information and details on how to respond to this RFI, please refer to the attachment found on the documents section of the Atamis e-Procurement portal: https://dwp2.my.salesforce-sites.com/ProSpend__CS_ContractPage?SearchType=Projects&uid=a1MdO000002h4wrUAA&searchStr=&sortStr=Recently+Published&page=1&filters=&County="
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "0412ee14d707b139340f9192da6bdd13b90790685df6ae7592e4f305d04df378": {
       "parts": [
         {
@@ -2565,6 +2611,31 @@
         }
       ],
       "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "04dda052f68e4eeeeac840e3ab6a0474a9d542fd421ffdd972cf69101823031a": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:05.209527+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Updating the Environment Agency's Soil Moisture Model from Microsoft Excel and Access database to Python and associated managed databases. In addition, be able to provide the output data as gridded data as well as the current areal unit data. Lot 1: ."
+          },
+          "source": "Updating the Environment Agency's Soil Moisture Model from Microsoft Excel and Access database to Python and associated managed databases. In addition, be able to provide the output data as gridded data as well as the current areal unit data. Lot 1: ."
+        }
+      ],
+      "protected_names": [
+        "Environment Agency"
+      ],
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
@@ -7980,6 +8051,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "0f4d298670c3fb3a8d76ce3be7b550a7e446f2ddb8251c748252f8d1e09f17ac": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:29.244314+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Management service for the Digital Innovation Centre of the Community of Madrid, Digitaliza Madrid"
+          },
+          "source": "Servicio de gestión del Centro de Innovación Digital de la Comunidad de Madrid, Digitaliza Madrid"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "0f544e7c44cb56630ea9a4f744b1954049be7f24c9244ca20d17f11fd5755534": {
       "parts": [
         {
@@ -9546,6 +9640,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "1182e416ecd91248124400302bdcebeac0905ad75989ad3230b80737a61885db": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:34.927858+00:00",
+            "language": "it",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Territorial Authority for Residential Building of Udine"
+          },
+          "source": "Azienda territoriale per l'edilizia residenziale di Udine"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "118f7bae106f32a2a72397420ace9eee257a3f5d4e9e85c1b1373c3a720c31b7": {
       "parts": [
         {
@@ -10434,6 +10551,29 @@
             "text": "Establishment and operation of an \"Economic Independence\" office (2027-2029)"
           },
           "source": "Errichtung und Betrieb einer Geschäftsstelle „Wirtschaftliche Eigenständigkeit“ (2027-2029)"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "133dfc0844682c911e9577af17d58eded014e41a5dff574506ec3f09a4d082f5": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:24.448562+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Acquisition of a solution for the recovery of Active Directory (AD) in the event of a severe incident, such as ransomware, accidental deletion, domain controller attacks or AD forest corruption, including solution maintenance. Commissioning service and pool of 20 hours for support in annual recovery tests and assistance in using the solution. Submission deadline (source local time): 2026-09-22 10:00:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Adquisición de una solución para la recuperación del Directorio Activo (DA) en caso de incidente grave, como ransomware, borrados accidentales, ataques a controladores de dominio o corrupción del bosque de DA, incluyendo mantenimiento de la solución. Servicio de puesta en marcha y bolsa de 20 horas para soporte en pruebas de recuperación anuales y apoyo en el uso de la solución. Submission deadline (source local time): 2026-09-22 10:00:00. Time zone not supplied; check the source notice."
         }
       ],
       "protected_names": [],
@@ -13566,6 +13706,37 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "19c26c1d2e3734c1e2e55aac376de67270eb22bf1e41346fa0993c8c49e6f3fa": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "rejected": {
+            "id": "19c26c1d2e3734c1e2e55aac376de67270eb22bf1e41346fa0993c8c49e6f3fa:0",
+            "language": "sv",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Municipality of Värmdö"
+          },
+          "result": {
+            "at": "2026-09-15T12:21:36.113077+00:00",
+            "language": "sv",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Värmdö Municipality"
+          },
+          "source": "Värmdö kommun"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "19c2b9c5ec9d431fb7e9fad713d8692dc0b6d76d608b89e78af20fcd98458e71": {
       "parts": [
         {
@@ -14781,6 +14952,29 @@
       "protected_names": [],
       "purpose": "passage",
       "retry_profile": "english-coverage-and-organisation-names-2"
+    },
+    "1bd730e155dff538b9d34c95d3667c669ef5e9a17217de77e5be0c687edc594e": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:24.456173+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "COMPREHENSIVE SERVICES FOR THE DIGITAL SKILLS SYSTEM OF THE COMMUNITY OF MADRID, MADRID AULA DIGITAL."
+          },
+          "source": "SERVICIOS INTEGRALES PARA EL SISTEMA DE CAPACITACIÓN DIGITAL DE LA COMUNIDAD DE MADRID, MADRID AULA DIGITAL."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "1bdf6e7c6131e537baff8c00955f7124fd3cdee1b07eba93f6500ab6c931da2c": {
       "parts": [
@@ -16850,6 +17044,29 @@
             "text": "Procurement of a handheld analysis instrument with Raman and FTIR."
           },
           "source": "Upphandling av Handhållet analysinstrument med Raman och FTIR."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "1fd42cface8f7824c389352c33f112e772c411ce3a2b99f4508097ca34fd47bd": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:14.178930+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Work to help strengthen ORR's methodology and evidence base for future efficiency reviews, drawing on lessons learned from RIS3 and wider regulatory practice. Lot 1: ."
+          },
+          "source": "Work to help strengthen ORR's methodology and evidence base for future efficiency reviews, drawing on lessons learned from RIS3 and wider regulatory practice. Lot 1: ."
         }
       ],
       "protected_names": [],
@@ -19942,6 +20159,29 @@
       "purpose": "passage",
       "retry_profile": "english-coverage-and-organisation-names-2"
     },
+    "26627365d4ff5dc1b71b5bae284da9f6513c935b7e2aa8c4c14004fa6fa92e2c": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:34.921365+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Environment Agency"
+          },
+          "source": "Environment Agency"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "2664b960b45dc54cafc7dfda056c6379b374b7b71e33e60d151405f5cad934f8": {
       "parts": [
         {
@@ -20613,6 +20853,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "278c7540dde5a59585ccfaa2da52a94f48076f07e36b9b76d1d2963e7dd32a64": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:14.197356+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Atlassian Applications"
+          },
+          "source": "Aplicaciones Atlassian"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "2790cc6ecc4b7edff7c7ac7c7197c741cda07341cc5cf5ea380d81581da5ed47": {
       "parts": [
         {
@@ -20863,6 +21126,29 @@
             "text": "The objective is to manage user identities, roles, and permissions centrally, in an automated and audit-proof manner in the future. The scope of services includes the provision of the IAM software, complete implementation and integration into the existing IT infrastructure, the migration of existing data, comprehensive testing, and ongoing German-language support. The solution must be operated entirely within the ALDB infrastructure. The licences are to be provided for a minimum term of two years, with a maximum of four years. Functionally required are, in particular, joiner, mover, and leaver processes, role and permission management, access requests, approval workflows, identity governance, administration, reporting, audit logging, and interfaces to existing systems such as Active Directory, HR systems, databases, and Kubernetes environments. In addition, a secure backup and recovery concept, a minimum availability of 95 % per month, and regulated training and acceptance processes are provided for. Operational go-live is to take place following a successful test and acceptance phase, at the latest by 01.12.2026. An exit concept must be provided for the end of the contract. The project comprises the following service components: a) Provision of the IAM software solution (on-premise) The contractor must provide the offered Identity & Access Management (IAM) solution as an on-premise solution. This includes all software licences, including all modules and functionalities required to fulfil the functional, technical, and security-related requirements defined in this specification of services. Licencing must enable the management of the intended number of user identities, roles, permissions, target systems, and applications, as well as demand-driven scaling to support future expansions of ALDB's IT landscape. b) Consulting services, implementation, and integration The contractor is responsible for the complete planning, implementation, configuration, parameterisation, integration, commissioning, test support, and professional and technical guidance throughout the entire project duration. The scope of services includes, in particular, the integration of the IAM solution into ALDB's existing IT infrastructure, including the connection of all agreed source and target systems, Active Directory, Microsoft Entra ID, Kubernetes environments, and other business-critical applications. Furthermore, the organisational structure, the role and permission concept, identity lifecycle management, provisioning and de-provisioning processes, approval workflows, access requests, recertification processes, and audit and reporting functions are to be implemented and configured. All implementation and integration work must be carried out in such a way that ALDB's ongoing business operations are not impaired. c) Testing Following the award of the contract and prior to operational go-live, a test environment must be provided that largely corresponds to the subsequent productive environment. Comprehensive functional, technical, integrative, security-related, and professional acceptance tests must be carried out prior to go-live. Operational go-live may only take place after the successful completion of all tests and written approval by ALDB. d) Migration The contractor is responsible for the complete planning, execution, and documentation of the migration in coordination with the contracting authority. As part of the migration, all user identities, roles, permissions, organisational structures, configurations, and all data required for the operation of the IAM solution must be transferred completely, consistently, and without data loss into the new system. The migration must be carried out in such a way that interruptions to productive operations are reduced to a minimum and the integrity of all data is ensured at all times. e) Customer Support The IAM customer service to be provided by the contractor comprises technical support, operation, maintenance, and continuous further development of the implemented Identity & Access Management solution in accordance with ALDB's functional and technical requirements. The service meets KRITIS requirements and is German-language support. The scope of services includes, in particular, incident and problem management, error analysis and troubleshooting, software updates, hotfixes, patches, and security-related updates, as well as support for configuration changes, change requests, extensions, and the integration of additional source and target systems. Furthermore, the contractor supports ALDB in optimising existing identity and access management processes, further developing the role and permission concept, and implementing new functional and regulatory requirements."
           },
           "source": "Ziel ist es, Benutzeridentitäten, Rollen und Berechtigungen künftig zentral, automatisiert und revisionssicher zu verwalten. Der Leistungsumfang umfasst die Bereitstellung der IAM-Software, die vollständige Implementierung und Integration in die bestehende IT-Infrastruktur, die Migration vorhandener Daten, umfassende Tests sowie den laufenden deutschsprachigen Support. Die Lösung muss vollständig innerhalb der ALDB-Infrastruktur betrieben werden. Die Lizenzen sollen über eine MIndeslaufzeit von zwei Jahren, maximal vier Jahren, bereitgestellt werden. Funktional gefordert sind insbesondere Joiner-, Mover- und Leaver-Prozesse, Rollen- und Berechtigungsmanagement, Access Requests, Genehmigungsworkflows, Identity Governance, Administration, Reporting, Audit-Logging sowie Schnittstellen zu bestehenden Systemen wie Active Directory, HR-Systemen, Datenbanken und Kubernetes-Umgebungen. Zusätzlich sind ein sicheres Backup- und Wiederherstellungskonzept, eine Mindestverfügbarkeit von 95 % pro Monat sowie geregelte Schulungs- und Abnahmeprozesse vorgesehen. Die Produktivsetzung soll nach erfolgreicher Test- und Abnahmephase spätestens zum 01.12.2026 erfolgen. Für das Vertragsende ist ein Exit-Konzept vorzusehen. Das Projekt umfasst folgende Leistungsbestandteile: a) Bereitstellung der IAM-Softwarelösung (On-Premise) Der Auftragnehmer hat die angebotene Identity & Access Management (IAM)-Lösung als On-Premise-Lösung bereitzustellen. Hierzu gehören sämtliche Softwarelizenzen einschließlich aller Module und Funktionalitäten, die zur Erfüllung der in dieser Leistungsbeschreibung definierten, fachlichen, technischen und sicherheitsrelevanten Anforderungen erforderlich sind. Die Lizenzierung muss die Verwaltung der vorgesehenen Anzahl von Benutzeridentitäten, Rollen, Berechtigungen, Zielsystemen und Anwendungen ermöglichen sowie eine bedarfsgerechte Skalierung zur Unterstützung zukünftiger Erweiterungen der IT-Landschaft der ALDB gewährleisten. b) Beratungsleistungen, Implementierung und Integration Der Auftragnehmer ist für die vollständige Planung, Implementierung, Konfiguration, Parametrisierung, Integration, Inbetriebnahme, Testunterstützung sowie die fachliche und technische Begleitung während der gesamten Projektlaufzeit verantwortlich. Der Leistungsumfang umfasst insbesondere die Integration der IAM-Lösung in die bestehende IT-Infrastruktur der ALDB einschließlich der Anbindung aller vereinbarten Quell- und Zielsysteme, Active Directory, Microsoft Entra ID, Kubernetes-Umgebungen sowie weiterer geschäftskritischer Anwendungen. Darüber hinaus sind die Organisationsstruktur, das Rollen- und Berechtigungskonzept, Identity Lifecycle Management, Provisionierung- und Deprovisionierungsprozesse, Genehmigungsworkflows, Access Requests, Rezertifizierungsprozesse sowie Audit- und Reportingfunktionen zu implementieren und zu konfigurieren. Alle Implementierungs- und Integrationsarbeiten sind so durchzuführen, dass der laufende Geschäftsbetrieb der ALDB nicht beeinträchtigt wird. c) Test Nach der Zuschlagserteilung und vor der Produktivsetzung ist eine Testumgebung bereitzustellen, die der späteren Produktivumgebung weitestgehend entspricht. Vor dem Go-Live sind umfassende funktionale, technische, integrative, sicherheitsrelevante sowie fachliche Abnahmetests durchzuführen. Erst nach erfolgreichem Abschluss sämtlicher Tests und der schriftlichen Freigabe durch die ALDB darf die Produktivsetzung erfolgen. d) Migration Der Auftragnehmer ist für die vollständige Planung, Durchführung und Dokumentation der Migration verantwortlich in Abstimmung mit der Auftraggeberin. Im Rahmen der Migration sind sämtliche Benutzeridentitäten, Rollen, Berechtigungen, Organisationsstrukturen, Konfigurationen sowie alle für den Betrieb der IAM-Lösung erforderlichen Daten vollständig, konsistent und ohne Datenverlust in das neue System zu übernehmen. Die Migration ist so durchzuführen, dass Unterbrechungen des Produktivbetriebs auf ein Minimum reduziert werden und die Integrität aller Daten jederzeit gewährleistet bleibt. e) Customer Support Der vom Auftragnehmer zu erbringende IAM Customer Service umfasst den technischen Support, den Betrieb, die Wartung sowie die kontinuierliche Weiterentwicklung der implementierten Identity & Access Management-Lösung entsprechend den fachlichen und technischen Anforderungen der ALDB. Der Service erfüllt die Anforderung an KRITIS Anforderungen und ist deutschsprachigen Support. Der Leistungsumfang umfasst insbesondere Incident- und Problem-Management, Fehleranalyse und Fehlerbehebung, Software-Updates, Hotfixes, Patches und sicherheitsrelevante Aktualisierungen sowie Unterstützung bei Konfigurationsänderungen, Change Requests, Erweiterungen und der Integration zusätzlicher Quell- und Zielsysteme. Darüber hinaus unterstützt der Auftragnehmer die ALDB bei der Optimierung bestehender Identity- und Access-Management-Prozesse, der Weiterentwicklung des Rollen- und Berechtigungskonzeptes sowie bei der Umsetzung neuer fachlicher und regulatorischer Anforderungen."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "27fb1df85a323364b89019ec727d1b92b7469f025f67d41efd5a2425ed796e0b": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:05.210202+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "TEN-2627-047 (PA2023) – Asset Allocation System"
+          },
+          "source": "TEN-2627-047 (PA2023) – Asset Allocation System"
         }
       ],
       "protected_names": [],
@@ -24447,6 +24733,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "2ebf547fc3652b7e7ff128ef593d03cb27c12f9646573baad8b4475b2aa3c3a1": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:14.186165+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Dynamic purchasing system for the procurement of IT services and supplies, using the lot system."
+          },
+          "source": "Sistema dinámico de adquisición para la contratación de servicios y suministros informáticos, mediante el sistema de lotes."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "2ec9785366bd0180ba97943dcefcb77a6f210c324a10a71f1078ab0977474100": {
       "parts": [
         {
@@ -26045,6 +26354,29 @@
       ],
       "protected_names": [],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "326e9ea94f0a95bb6ae40a49149313f856adbfb3cdbeece67fbeb1386d2e0c88": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:34.925070+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Governing Board of the Municipality of Getafe"
+          },
+          "source": "Junta de Gobierno del Ayuntamiento de Getafe"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "326eed1ba9a953ba34e000ad77fb0145f6b99e5a55487c4e4741680f919553c6": {
@@ -27917,6 +28249,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "35e1f8a9bf47a0928308fcf083581c2de955df17a6e395a6ccebe96e23eb52f4": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:29.245951+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "A new framework agreement for the provision of IT Software. This covers the purchase, licencing and subscription, but will also include related professional services and support and maintenance related to the software solution, whether cloud-based, on-premises or hybrid. Such software shall include, but not be limited to Desktop applications, Server applications, General business applications, Network software, Security software, Development, Testing and Design software, Software as a Service. Lot LOT-0000: ."
+          },
+          "source": "A new framework agreement for the provision of IT Software. This covers the purchase, licencing and subscription, but will also include related professional services and support and maintenance related to the software solution, whether cloud-based, on-premises or hybrid. Such software shall include, but not be limited to Desktop applications, Server applications, General business applications, Network software, Security software, Development, Testing and Design software, Software as a Service. Lot LOT-0000: ."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "35e416ba04ed5beb54768c8271ef0cc658babd71600ca6c27144e214157846db": {
       "parts": [
         {
@@ -28000,6 +28355,29 @@
       "protected_names": [
         "INNLANDET FYLKESKOMMUNE"
       ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "35fd603ec81de65d1903c1bd5d00225b5391f31c7b4a5f6fc1005d9de6d10201": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:14.183142+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Supply through subscription of Red Hat Linux product licences."
+          },
+          "source": "Suministro mediante subscripción de licencias de producto Red Hat Linux."
+        }
+      ],
+      "protected_names": [],
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
@@ -28163,6 +28541,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "3679c0a2a6c2839951f8e09e4113c923dfaf064702b7ca4ea5351917b6e77b83": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:34.924879+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Office of the Mayor of the Municipality of Andratx"
+          },
+          "source": "Alcaldía del Ayuntamiento de Andratx"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "36990dd4d3ddbc30dca052dfff4eabd5462bdb2d2dc024bcaecceb7077d5a601": {
       "parts": [
         {
@@ -28290,6 +28691,29 @@
       "protected_names": [],
       "purpose": "passage",
       "retry_profile": "english-coverage-and-organisation-names-2"
+    },
+    "371a16c88e1ce76ad742b0ea54c9dc767877cac22d070de3417f0663c7a0f946": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:34.927937+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Governing Board of the Municipality of Cádiz"
+          },
+          "source": "Junta de Gobierno del Ayuntamiento de Cádiz"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "372013a6313057a6ae9f1d2cf57e966775dec36aa8d9cedbb8a22887b4a7c063": {
       "parts": [
@@ -28904,6 +29328,29 @@
       "purpose": "passage",
       "retry_profile": "english-coverage-and-organisation-names-2"
     },
+    "388291251a938538d6480a5b42b0ebc212837f020571567d27f9c6fd563689c0": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:29.245573+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "IT Software Framework"
+          },
+          "source": "IT Software Framework"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "388389aa74bd788b7f2ee55ffac544fcb7f27e6ed36c30f5e4c4e4900b7027da": {
       "parts": [
         {
@@ -29323,6 +29770,29 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "395c7d1454346a20db06feb09d72c05694b7bb05922d074fe4d551f762ee086f": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:05.208480+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "This agreement, let under the Procurement Act 2023 includes consultancy, covering specialisms such as business, strategy and policy, finance, HR, procurement, health or social care and community, infrastructure and environment. As well as restructuring and insolvency. Lot 1: Multidisciplinary. This Lot is designed for integrated requirements where drawing upon multiple disciplines is essential to achieve a cohesive, end-to-end outcome.To ensure appropriate scale and scope, all contracts awarded through this multidisciplinary Lot are subject to a strict £2m maximum call-off value, inclusive of VAT and any extension options.​ This Lot provides a comprehensive, cross-functional consultancy and professional services solution for complex projects that require a blended approach. Customers can use this Lot to access the spectrum of services available across Lots 2 to 9 of the framework. The full scope is set out in the Framework Schedule 1 (Specification) Lot 2: Strategy and policy. This Lot provides comprehensive consultancy and professional services to support the end-to-end design, execution, and optimisation of organisational strategy and public policy. Customers can use this Lot to commission identification of options with recommendations as well as implementation and delivery. The full scope is set out in the Framework Schedule 1 (Specification) Lot 3: Transformation. This Lot provides comprehensive consultancy and professional services to guide organisations through complex, large-scale change, from foundational strategy to successful delivery and measurable outcomes. Services encompass the entire transformation lifecycle, providing strategic direction, identifying options, as well as implementation and delivery. The full scope is set out in the Framework Schedule 1 (Specification) Lot 4: Finance. This Lot provides comprehensive consultancy and professional services encompassing the full spectrum of services relating to finance, financial management and statutory compliance and governance. This may include identification of options with recommendations as well as implementation and delivery. The full scope is set out in the Framework Schedule 1 (Specification) Lot 5: HR. This Lot provides comprehensive consultancy and professional services relating to HR to support the strategic alignment, operational delivery, and cultural development of an organisation's workforce. The Lot covers the full employee lifecycle and includes identification of options with recommendations as well as implementation and delivery. The full scope is set out in the Framework Schedule 1 (Specification) Lot 6: Procurement. This Lot provides comprehensive consultancy and professional services covering the entire commercial lifecycle including procurement and supply chain management. This may include identification of options with recommendations as well as implementation and delivery. The full scope is set out in the Framework Schedule 1 (Specification) Lot 7: Health and social care. This Lot provides comprehensive consultancy and professional services to support the strategic planning and operational improvement of health, social care, and/or community services. This may include identification of options with recommendations as well as implementation and delivery. The full scope is set out in the Framework Schedule 1 (Specification) Lot 8: Infrastructure and public services. This Lot provides comprehensive consultancy and professional services to support the strategic planning, development, and optimisation of national infrastructure, transport networks, and civic spaces. This may include identification of options with recommendations as well as implementation and delivery (excluding construction). The full scope is set out in the Framework Schedule 1 (Specification) Lot 9: Environment and sustainability. This lot provides consultancy and professional services relating to environment and/or sustainability. This may include identification of options with recommendations as well as implementation and delivery (excluding construction). The full scope is set out in the Framework Schedule 1 (Specification) Lot 10: Restructuring and insolvency. This lot provides objective advice in relation to corporate restructuring and insolvency. Although the exact nature of this advice will vary by case, Suppliers must be able to demonstrate the required expertise in relation to distressed corporate situations. The full scope is set out in the Framework Schedule 1 (Specification)"
+          },
+          "source": "This agreement, let under the Procurement Act 2023 includes consultancy, covering specialisms such as business, strategy and policy, finance, HR, procurement, health or social care and community, infrastructure and environment. As well as restructuring and insolvency. Lot 1: Multidisciplinary. This Lot is designed for integrated requirements where drawing upon multiple disciplines is essential to achieve a cohesive, end-to-end outcome.To ensure appropriate scale and scope, all contracts awarded through this multidisciplinary Lot are subject to a strict £2m maximum call-off value, inclusive of VAT and any extension options.​ This Lot provides a comprehensive, cross-functional consultancy and professional services solution for complex projects that require a blended approach. Customers can use this Lot to access the spectrum of services available across Lots 2 to 9 of the framework. The full scope is set out in the Framework Schedule 1 (Specification) Lot 2: Strategy and policy. This Lot provides comprehensive consultancy and professional services to support the end-to-end design, execution, and optimisation of organisational strategy and public policy. Customers can use this Lot to commission identification of options with recommendations as well as implementation and delivery. The full scope is set out in the Framework Schedule 1 (Specification) Lot 3: Transformation. This Lot provides comprehensive consultancy and professional services to guide organisations through complex, large-scale change, from foundational strategy to successful delivery and measurable outcomes. Services encompass the entire transformation lifecycle, providing strategic direction, identifying options, as well as implementation and delivery. The full scope is set out in the Framework Schedule 1 (Specification) Lot 4: Finance. This Lot provides comprehensive consultancy and professional services encompassing the full spectrum of services relating to finance, financial management and statutory compliance and governance. This may include identification of options with recommendations as well as implementation and delivery. The full scope is set out in the Framework Schedule 1 (Specification) Lot 5: HR. This Lot provides comprehensive consultancy and professional services relating to HR to support the strategic alignment, operational delivery, and cultural development of an organisation's workforce. The Lot covers the full employee lifecycle and includes identification of options with recommendations as well as implementation and delivery. The full scope is set out in the Framework Schedule 1 (Specification) Lot 6: Procurement. This Lot provides comprehensive consultancy and professional services covering the entire commercial lifecycle including procurement and supply chain management. This may include identification of options with recommendations as well as implementation and delivery. The full scope is set out in the Framework Schedule 1 (Specification) Lot 7: Health and social care. This Lot provides comprehensive consultancy and professional services to support the strategic planning and operational improvement of health, social care, and/or community services. This may include identification of options with recommendations as well as implementation and delivery. The full scope is set out in the Framework Schedule 1 (Specification) Lot 8: Infrastructure and public services. This Lot provides comprehensive consultancy and professional services to support the strategic planning, development, and optimisation of national infrastructure, transport networks, and civic spaces. This may include identification of options with recommendations as well as implementation and delivery (excluding construction). The full scope is set out in the Framework Schedule 1 (Specification) Lot 9: Environment and sustainability. This lot provides consultancy and professional services relating to environment and/or sustainability. This may include identification of options with recommendations as well as implementation and delivery (excluding construction). The full scope is set out in the Framework Schedule 1 (Specification) Lot 10: Restructuring and insolvency. This lot provides objective advice in relation to corporate restructuring and insolvency. Although the exact nature of this advice will vary by case, Suppliers must be able to demonstrate the required expertise in relation to distressed corporate situations. The full scope is set out in the Framework Schedule 1 (Specification)"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "3965bcc03e335f90c61d2c743a8037b405655c36a9b45a8e543dbfd7d636d5a5": {
@@ -30187,6 +30657,31 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "3acc477c69133b05ed3bef6a74286e6055dd1b4b7dde00de4fda2f5885319499": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:20:56.614115+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "DN Colleges Group is seeking to appoint an experienced website development supplier to support the consolidation and redevelopment of its public-facing website estate. The commission includes discovery and audit, website consolidation planning, information architecture and user journeys, content rationalisation, UX and prototyping, application of the separately commissioned brand, WordPress multisite development, migration, SEO and redirect management, accessibility, testing, launch and handover. The successful supplier will work alongside DN Colleges Group's internal marketing and technical teams and coordinate with the parallel brand and Salesforce CRM programmes. Full requirements, mandatory criteria, evaluation methodology and pricing instructions are set out within the tender documentation. To access this competition: Registered: Login to https://suppliers.multiquote.com and view the opportunity CA18461. Not registered: Visit https://suppliers.multiquote.com then register and quote CA18461 as the reason for registration. Any queries please contact MultiQuote on 020 3920 8054."
+          },
+          "source": "DN Colleges Group is seeking to appoint an experienced website development supplier to support the consolidation and redevelopment of its public-facing website estate. The commission includes discovery and audit, website consolidation planning, information architecture and user journeys, content rationalisation, UX and prototyping, application of the separately commissioned brand, WordPress multisite development, migration, SEO and redirect management, accessibility, testing, launch and handover. The successful supplier will work alongside DN Colleges Group's internal marketing and technical teams and coordinate with the parallel brand and Salesforce CRM programmes. Full requirements, mandatory criteria, evaluation methodology and pricing instructions are set out within the tender documentation. To access this competition: Registered: Login to https://suppliers.multiquote.com and view the opportunity CA18461. Not registered: Visit https://suppliers.multiquote.com then register and quote CA18461 as the reason for registration. Any queries please contact MultiQuote on 020 3920 8054."
+        }
+      ],
+      "protected_names": [
+        "DN Colleges Group"
+      ],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "3ad21d1a6bfc1cd56d614e3fba9c283f5945721e551667456959c4861b1ca3c9": {
@@ -34199,6 +34694,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "430da03a4ac79ed994df9431006c0a0532783e7e7a17ce37e896ad3d4e890f4c": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:24.456283+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Comprehensive services for the digital skills system of the Community of Madrid, Madrid Aula Digital"
+          },
+          "source": "Servicios integrales para el sistema de capacitación digital de la Comunidad de Madrid, Madrid Aula Digital"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "43124889666a0f2e2d34ef0e2b8eebc58ccc9d3f2b271fa1edbe81d02d790208": {
       "parts": [
         {
@@ -34229,6 +34747,29 @@
             "text": "Asset Management System"
           },
           "source": "Asset Management System"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "4328891dba1e7c5e3382395f1ce3b4331d9937af37c0d8ca3c9a1218eb2eefe1": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:24.445166+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Supply, implementation and maintenance of a Municipal Archive management solution, internal access portal and public dissemination portal for the Municipality of Getafe."
+          },
+          "source": "Suministro, implantación y mantenimiento de una solución de gestión del Archivo Municipal, portal interno de acceso y portal de difusión pública para el Ayuntamiento de Getafe."
         }
       ],
       "protected_names": [],
@@ -34673,6 +35214,29 @@
             "text": "Federal Ministry for Digital and State Modernisation"
           },
           "source": "Bundesministerium für Digitales und Staatsmodernisierung"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "4400ba70698246b24b07a61b34d16e8647fb84b55e5631d28f1b9568ecee08f0": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:34.926751+00:00",
+            "language": "it",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Regional Council of Campania"
+          },
+          "source": "Consiglio Regionale della Campania"
         }
       ],
       "protected_names": [],
@@ -35413,6 +35977,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "45939fa4ec505c905cb2524e5597850532176ade3dc2e694057736daa032353c": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:24.456388+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "SUPPLY, INSTALLATION, COMMISSIONING AND MAINTENANCE OF AN EXPLOTATION AID SYSTEM IN BIZKAIBUS"
+          },
+          "source": "SUMIN., INSTALAC., PUESTA EN SERV. Y MANTENIM. DEL UN SISTEMA DE AYUDA A LA EXPLOTACIÓN EN BIZKAIBUS"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "45c4d01442427eaa76523751858a5376d362f6b73b71971bb56ddf7751a12717": {
       "parts": [
         {
@@ -36126,6 +36713,29 @@
       "purpose": "passage",
       "retry_profile": "english-coverage-and-organisation-names-2"
     },
+    "4706031c1aee536d3e657e932448ba5b19b54fa103a0fa87331a143e4c99ae46": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:24.450714+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Smart Bus Timetables"
+          },
+          "source": "Smart Bus Timetables"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "4707209571d88709dd8e821849c66de96a0c82a337de4b509851a330bebb6f04": {
       "parts": [
         {
@@ -36296,6 +36906,31 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "4729d69af2b2823220472a3129cd9ee25d1b6f9dfbf5390d3f1146675f132f27": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:24.452266+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Essex County Council is currently looking to pilot smart bus timetable technology in select stops in Essex. Through investment of the 2026 Bus Grant money, there is an opportunity to invest in ePaper technology for key stops in Essex. This investment would convert certain paper bus stop timetables which host 'Where To Catch Your Bus' artworks to electronic paper. This would allow IPTU staff members to update ePaper stops remotely as soon as they have a timetable update or pertinent change without the need to visit. Shortlist of locations (circa 30). If you are interested in this future opportunity please contact by email: Rachael.flynn@essex.gov.uk"
+          },
+          "source": "Essex County Council is currently looking to pilot smart bus timetable technology in select stops in Essex. Through investment of the 2026 Bus Grant money, there is an opportunity to invest in ePaper technology for key stops in Essex. This investment would convert certain paper bus stop timetables which host 'Where To Catch Your Bus' artworks to electronic paper. This would allow IPTU staff members to update ePaper stops remotely as soon as they have a timetable update or pertinent change without the need to visit. Shortlist of locations (circa 30). If you are interested in this future opportunity please contact by email: Rachael.flynn@essex.gov.uk"
+        }
+      ],
+      "protected_names": [
+        "ESSEX COUNTY COUNCIL"
+      ],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "47322af7bedfc1732885f3fb3cba975eb4e68a5ec5916162d3b8c2e3e8087f98": {
@@ -36572,6 +37207,29 @@
       ],
       "protected_names": [],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "47ce6665b131e373f0508fea3dda8a05148eca2da88cb9b6261e4a84b831191e": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:34.922894+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "NHS HAMPSHIRE AND THE ISLE OF WIGHT INTEGRATED CARE BOARD"
+          },
+          "source": "NHS HAMPSHIRE AND THE ISLE OF WIGHT INTEGRATED CARE BOARD"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "47e45a5c19551a4797c774eff8490ec3de031344a95f3ecec3edd521a1c7172a": {
@@ -38183,6 +38841,29 @@
             "text": "Creation of a logistics market overview for the State of Lower Saxony for each of the reporting years 2026, 2027 and 2028"
           },
           "source": "Erstellung je eines Marktspiegels Logistik für das Land Niedersachsen für die Berichtsjahre 2026, 2027 und 2028"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "4afd6a5abc791b0ab1ce56f0eb295bd244c7e057cfbe08faa0542ec3557df526": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:14.180383+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "715886482 Land Training Assurance Capability (LTAC) UK1"
+          },
+          "source": "715886482 Land Training Assurance Capability (LTAC) UK1"
         }
       ],
       "protected_names": [],
@@ -39988,6 +40669,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "4ed2abe5bb6c473f5c707b23b8474151015d03cb2565d4a056bc9ebc35ad619a": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:29.236888+00:00",
+            "language": "it",
+            "model": "gemini-3.5-flash-lite",
+            "text": "SPC 2 Connectivity."
+          },
+          "source": "SPC 2 Connettività."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "4ee1bc207f2330410db34227da8a155fce113b9269696d63305c6ef443973a00": {
       "parts": [
         {
@@ -40934,6 +41638,37 @@
             "text": "P 01-26 Prequalification - Knowledge power - decision support for Norwegian municipalities."
           },
           "source": "P 01-26 Prequalification - Knowledge power - decision support for Norwegian municipalities."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "50988142f41bfcde024c3d19c5142f7738a878f5562c59073c4a2de6ee5fe713": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 2
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "rejected": {
+            "id": "50988142f41bfcde024c3d19c5142f7738a878f5562c59073c4a2de6ee5fe713:0",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Suministro mediante subscripción de licencias de producto Red Hat Linux. Submission deadline (source local time): 2026-09-30 14:00:00. Time zone not supplied; check the source notice."
+          },
+          "result": {
+            "at": "2026-09-15T12:21:37.543762+00:00",
+            "language": "mul",
+            "model": "gemini-3.1-flash-lite",
+            "text": "Supply via subscription of Red Hat Linux product licences. Submission deadline (source local time): 2026-09-30 14:00:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Suministro mediante subscripción de licencias de producto Red Hat Linux. Submission deadline (source local time): 2026-09-30 14:00:00. Time zone not supplied; check the source notice."
         }
       ],
       "protected_names": [],
@@ -42658,6 +43393,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "54602efbc766f8da6dd26b6d9696f24ea6eb7de24b0323b7dd691c4d2fb21940": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:05.203733+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Consultancy and Professional Services"
+          },
+          "source": "Consultancy and Professional Services"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "547afe2fedb80980717b316e52bf748742bdd4293f41313071cec212e49ab01d": {
       "parts": [
         {
@@ -43084,6 +43842,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "55b5d49a07f56d4f9d79de5dd580ee586b11c5082027c2163abd5667ef44f2b4": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:14.179013+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Storage and Management of Lloyd George Medical Records"
+          },
+          "source": "Storage and Management of Lloyd George Medical Records"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "55c22bdd9d3181eaec03355f82c72701fe9ff3bbd748b780ed0f4b2e4b84fffc": {
       "parts": [
         {
@@ -43159,6 +43940,29 @@
       ],
       "protected_names": [],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "56332d659a1ec9ee32994805caccb7398ac1012d7002f80ef396e4a0019cdbd9": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:34.924789+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Zaragoza Healthcare Sector Management 2"
+          },
+          "source": "Gerencia Sector Sanitario de Zaragoza 2"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "5636e92482438ef9f2d9e49dfd28d962ad64ac8a9712b578a60c134e2fe6af51": {
@@ -43374,6 +44178,37 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "568ed510c8fa6fdabe26f445eb3b15151701aa826d0f68083d4178a4434d538c": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "rejected": {
+            "id": "568ed510c8fa6fdabe26f445eb3b15151701aa826d0f68083d4178a4434d538c:0",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Contrato de asistencia técnica para la gestión e implementación del plan de actuación integrado (PAI) Benidorm Open Arena del Ayuntamiento de Benidorm Submission deadline (source local time): 2026-09-17 23:59:59. Time zone not supplied; check the source notice. Estrategia de Desarrollo Integrado Local (Plan EDIL)"
+          },
+          "result": {
+            "at": "2026-09-15T12:21:24.441614+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Technical assistance contract for the management and implementation of the integrated action plan (IAP) Benidorm Open Arena of the Municipality of Benidorm Submission deadline (source local time): 2026-09-17 23:59:59. Time zone not supplied; check the source notice. Local Urban Integrated Development Strategy (EDIL Plan)"
+          },
+          "source": "Contrato de asistencia técnica para la gestión e implementación del plan de actuación integrado (PAI) Benidorm Open Arena del Ayuntamiento de Benidorm Submission deadline (source local time): 2026-09-17 23:59:59. Time zone not supplied; check the source notice. Estrategia de Desarrollo Integrado Local (Plan EDIL)"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "568ef8a48e88ddb1341f28c1dbff81913cad3d368b0ef295aee30304f6e2724a": {
@@ -45280,6 +46115,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "5a73d628f684d867c0adc66b43cb129a5a6995832f4e9c3b64ac08f440b28a5c": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:24.445004+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Supply of photo-editing software licences for the photography workshop of the Popular University of Torremolinos Submission deadline (source local time): 2026-09-24 23:59:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Suministro licencias software edición fotográfica para taller de fotografía de la Universidad Popular de Torremolinos Submission deadline (source local time): 2026-09-24 23:59:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "5a861e163d260be7af746e7f23ffbd1d892ce2726731682473d74c20198ca5d8": {
       "parts": [
         {
@@ -47059,6 +47917,37 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "5db483f57e787deb45e8ce3ddc174fe518546208712a1e8f55bd359f363dfb6a": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "rejected": {
+            "id": "5db483f57e787deb45e8ce3ddc174fe518546208712a1e8f55bd359f363dfb6a:0",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "El suministro de licencias de software de sistemas operativos para el Ayuntamiento de Andratx. Submission deadline (source local time): 2026-09-25 23:59:00. Time zone not supplied; check the source notice. Los licitadores deberán presentar sus ofertas de forma electrónica a través de la Plataforma de Contratación del Sector Público, en la cual se encuentra el Perfil del Contratante del Ayuntamiento de Andratx. El licitador deberá estar registrado como usuario de la Plataforma. Las ofertas se enviarán mediante la “Herramienta de Preparación y Presentación de Ofertas”."
+          },
+          "result": {
+            "at": "2026-09-15T12:21:24.443890+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The supply of operating system software licences for the Municipality of Andratx. Submission deadline (source local time): 2026-09-25 23:59:00. Time zone not supplied; check the source notice. Tenderers must submit their tenders electronically via the Public Sector Procurement Platform, which hosts the Buyer Profile of the Municipality of Andratx. Tenderers must be registered as users of the Platform. Tenders shall be submitted using the 'Tender Preparation and Submission Tool'."
+          },
+          "source": "El suministro de licencias de software de sistemas operativos para el Ayuntamiento de Andratx. Submission deadline (source local time): 2026-09-25 23:59:00. Time zone not supplied; check the source notice. Los licitadores deberán presentar sus ofertas de forma electrónica a través de la Plataforma de Contratación del Sector Público, en la cual se encuentra el Perfil del Contratante del Ayuntamiento de Andratx. El licitador deberá estar registrado como usuario de la Plataforma. Las ofertas se enviarán mediante la “Herramienta de Preparación y Presentación de Ofertas”."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "5dc13e6aac8e23da8b63e5bc633eb1836043eb4f633eaefa56c71309149e102f": {
@@ -54790,6 +55679,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "6e3569ea09750f13c721d7c4743176deed3225bd8cb413bbc5e3beff4ec9b64f": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:34.926846+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Directorate of the National Institute of Health Management (INGESA)"
+          },
+          "source": "Dirección del Instituto Nacional de Gestión Sanitaria (INGESA)"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "6e35f88870293612cee66d1f17187f4727b71ef63c8a820cf118bda14bf35606": {
       "parts": [
         {
@@ -57807,6 +58719,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "7414945a0d5c3a23db2c872f6211ffee67382ceef3f777e768690c032995cf4c": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:34.920604+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "DN Colleges Group"
+          },
+          "source": "DN Colleges Group"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "741895a304368eaf44152cf6f0dc12bf423f19eb2d53e076d3c6a64ed01d9cc4": {
       "parts": [
         {
@@ -59150,6 +60085,31 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "774c9c88a7f0ff81dd775fd135a3cda554567b2488153b56df25ddd598a8cea5": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:20:56.612001+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "CA18461 - DN Colleges Group - ITT for the Provision of Website Development Services"
+          },
+          "source": "CA18461 - DN Colleges Group - ITT for the Provision of Website Development Services"
+        }
+      ],
+      "protected_names": [
+        "DN Colleges Group"
+      ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "775652126207950da016171dcc1621ae0ba458e4d1bd99c4e30ab2ed00140863": {
       "parts": [
         {
@@ -59502,6 +60462,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "7810e0f9ca164eaef57891046b0a0d00e1f77a889a557a39ac55210920aefc92": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:24.455012+00:00",
+            "language": "it",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Acquisition of the following hardware: - Nr. 12 rack; - Nr. 48 rack-mounted power distribution units; - Nr. 2 Data domain, including support and warranty for n. 60 months and with hardware replacement in the event of failure; - Nr. 3 Hyperconverged Systems: each comprising n. 4 dual-processor nodes, with support and warranty for n. 60 months and with hardware replacement in the event of failure, to be integrated into the currently operating 'DELL VxRail' architecture; - Nr. 3 pairs of ToR switches compatible with the Life Cycle Management management of the currently operating Dell VxRail hyperconverged solution; - Nr. 3 rack-mounted UPS with a maximum occupancy of 3 rack units."
+          },
+          "source": "Acquisizione del seguente hardware: - Nr. 12 rack; - Nr. 48 Power distribution unit da rack; - Nr. 2 Data domain, con inclusi supporto e garanzia per n. 60 mesi e con sostituzione hardware in caso di rottura; - Nr. 3 Sistemi Iperconvergenti: ognuno composto da n. 4 nodi biprocessore, con supporto e garanzia per n. 60 mesi e con sostituzione hardware in caso di rottura e da integrare ad architettura attualmente in esercizio \"DELL VxRail\"; - Nr. 3 coppie di Switch ToR compatibili con la gestione del Life Cycle Management della soluzione iperconvergente Dell VxRail attualmente in esercizio; - Nr. 3 UPS da rack con occupazione massima di 3 rack unit."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "78195a4c1593504f1e2c211cd0320403bd4c2db5461d5beba8f2e8df0e6810bf": {
       "parts": [
         {
@@ -59523,6 +60506,29 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "781e964277b5e2c867b3f0e1141aae1f04fc6ee4004501ec93252dbc151230bd": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:14.192794+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Supply of Material Necessary for Carrying out Automated Haemostasis Analytical Techniques for the Haematology Laboratory of the Miguel Servet University Hospital of Zaragoza, as well as Leasing of the Necessary Equipment, Maintenance and its IT Connection to the Laboratory Information System."
+          },
+          "source": "Suministro de Material Necesario para Realización de Técnicas Analíticas Automáticas de Hemostasia para el Laboratorio de Hematología del Hospital Universitario Miguel Servet de Zaragoza, así como Arrendamiento de los Equipos Necesarios, Mantenimiento y su Conexión Informática al Sistema de Información del Laboratorio."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "781ef98c9c1759299e6c96f32a15296c1abe5bfbfed241490c5bcf9a098126c4": {
@@ -61824,6 +62830,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "7d385de0ab47352f28ad24c0061cba316fbe661dd48fef1b67b1864c2bc65148": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:34.925963+00:00",
+            "language": "it",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Ministry of Defence - National Directorate of Armaments - Directorate of Informatics, Telematics and Advanced Technologies (TELEDIFE)"
+          },
+          "source": "Ministero della Difesa - Direzione Nazionale degli Armamenti - Direzione Informatica, Telematica e Tecnologie Avanzate (TELEDIFE)"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "7d405845c8ffcd7da1fa0ef627ba570d85140d22ac4664c2dce54c6c6521b1ac": {
       "parts": [
         {
@@ -61938,6 +62967,29 @@
             "text": "Getxo City Council - Getxo City Council"
           },
           "source": "Ayuntamiento de Getxo - Ayuntamiento de Getxo"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "7d5e44b3a05b3d0f32e9ef34966cadb552bb6d23d2cd5a62783a8c064c5861ab": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:34.925830+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "ENUSA Advanced Industries S.A., S.M.E."
+          },
+          "source": "ENUSA Industrias Avanzadas S.A., S.M.E."
         }
       ],
       "protected_names": [],
@@ -62907,6 +63959,47 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "7f5e7b8bf39aa48add7f50810619be2f7b838da6d53f115fbf778e46fac50fdf": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:20:56.618874+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "This notice is not an official launch of our procurement(s), it is to alert the market to future opportunities and allow us to begin conversations that will shape plans for multiple future requirements. The Cabinet Office (Government Skills Group) is transforming the way learning and development (L&D) is designed, procured, and delivered across the Civil Service. Following the announcement by the Chief Secretary to the Prime Minister, the government is establishing the new National School of Government and Public Services (hereon The National School). The National School is tasked with delivering high-quality, targeted training to approximately 558,000 civil servants, developing executive leadership in the wider public sector, and to partner with public sector training bodies. The strategic goal of the National School is to shift away from the historically outsourced prime-supplier managed-service model. In its place, the Cabinet Office is building an insourced, hybrid capability. Under this new Future Operating Model (FOM), the Cabinet Office will directly manage core operations, standard curricula, and stakeholder engagement. However, expert external provision will remain a critical element of the programme. The National School transformation programme relies on three core, interdependent pillars to transition Civil Service training away from fully outsourced prime-supplier models toward an in-house, hybrid operating model by April 2028. Together, these pillars work to build direct relationships with suppliers, provide a modern digital learning infrastructure, and establish robust in-house operational workflows. Pillar 1: Future Supplier Partnerships (FSP) The FSP project serves as the commercial enabler of the new operating model, building the in-house capability required to buy learning services and manage supply chains directly. We aim to establish direct, value-driven contractual relationships with UK-based SMEs, universities, business schools, and niche providers. The project team have identified an indicative Three-Stage Roadmap to enable this delivery: Stage 1 (Immediate - April 2027): Procuring urgent digital and specialist training needs that cannot be fulfilled through existing frameworks. Stage 2 (April 2027-March 2028): Phased procurement for core, National School-sponsored curriculum, coaching, and talent programmes. Stage 3 (March 2028 onwards): On-going phased procurements falling out of Stages 1 and 2, depending on the length of contracts identified. The scope of the requirements will cover several key procurement categories, including, but not limited to, specialised coaching pools (including for neuro-diverse leaders), blended training delivery, learning design (retaining Crown Intellectual Property), access to subject matter experts including within academia, independent research and evaluation, helpdesk/admin surge, and off-the-shelf qualifications. Pillar 2: Future Technologies (FT) The Future Technologies project focuses on designing and implementing the digital architecture required to run a personalised training operation for approximately 558,000 civil servants. The core objective here is the setting up and integration of platforms to manage the access, booking, payments, and evaluation of learning materials. This involves transitioning away from heavy manual processes to maximise technological efficiencies. At this stage the project team has identified the central deliverable as a unified online portal allowing learners to access the full National School offering. Key technologies in scope for procurement include, but are not limited to, a new Learning Management System (LMS)/ Learning Experience Platform (LXP), Customer Relationship Management (CRM) systems to centralise stakeholder engagement, and design/delivery tools. Pillar 3: Future Learning Operations (FLO) The Learning Operations project is responsible for building the actual systems, processes, and internal capabilities required to run the day-to-day training operations in-house. Their core objective is establishing an integrated operational function by April 2028 that supports over 558,000 civil servants in completing their learning journeys. It is highly dependent on the digital and commercial pillars to develop the underlying platforms that support operations. Market Involvement As part of the initial phases of the programme, the project teams are keen to connect with the market and gain insight into current trends, operations and barriers. With this in mind, Cabinet Office and the project team have planned the following Sector Connector events. "
+          },
+          "source": "This notice is not an official launch of our procurement(s), it is to alert the market to future opportunities and allow us to begin conversations that will shape plans for multiple future requirements. The Cabinet Office (Government Skills Group) is transforming the way learning and development (L&D) is designed, procured, and delivered across the Civil Service. Following the announcement by the Chief Secretary to the Prime Minister, the government is establishing the new National School of Government and Public Services (hereon The National School). The National School is tasked with delivering high-quality, targeted training to approximately 558,000 civil servants, developing executive leadership in the wider public sector, and to partner with public sector training bodies. The strategic goal of the National School is to shift away from the historically outsourced prime-supplier managed-service model. In its place, the Cabinet Office is building an insourced, hybrid capability. Under this new Future Operating Model (FOM), the Cabinet Office will directly manage core operations, standard curricula, and stakeholder engagement. However, expert external provision will remain a critical element of the programme. The National School transformation programme relies on three core, interdependent pillars to transition Civil Service training away from fully outsourced prime-supplier models toward an in-house, hybrid operating model by April 2028. Together, these pillars work to build direct relationships with suppliers, provide a modern digital learning infrastructure, and establish robust in-house operational workflows. Pillar 1: Future Supplier Partnerships (FSP) The FSP project serves as the commercial enabler of the new operating model, building the in-house capability required to buy learning services and manage supply chains directly. We aim to establish direct, value-driven contractual relationships with UK-based SMEs, universities, business schools, and niche providers. The project team have identified an indicative Three-Stage Roadmap to enable this delivery: Stage 1 (Immediate - April 2027): Procuring urgent digital and specialist training needs that cannot be fulfilled through existing frameworks. Stage 2 (April 2027-March 2028): Phased procurement for core, National School-sponsored curriculum, coaching, and talent programmes. Stage 3 (March 2028 onwards): On-going phased procurements falling out of Stages 1 and 2, depending on the length of contracts identified. The scope of the requirements will cover several key procurement categories, including, but not limited to, specialised coaching pools (including for neuro-diverse leaders), blended training delivery, learning design (retaining Crown Intellectual Property), access to subject matter experts including within academia, independent research and evaluation, helpdesk/admin surge, and off-the-shelf qualifications. Pillar 2: Future Technologies (FT) The Future Technologies project focuses on designing and implementing the digital architecture required to run a personalised training operation for approximately 558,000 civil servants. The core objective here is the setting up and integration of platforms to manage the access, booking, payments, and evaluation of learning materials. This involves transitioning away from heavy manual processes to maximise technological efficiencies. At this stage the project team has identified the central deliverable as a unified online portal allowing learners to access the full National School offering. Key technologies in scope for procurement include, but are not limited to, a new Learning Management System (LMS)/ Learning Experience Platform (LXP), Customer Relationship Management (CRM) systems to centralise stakeholder engagement, and design/delivery tools. Pillar 3: Future Learning Operations (FLO) The Learning Operations project is responsible for building the actual systems, processes, and internal capabilities required to run the day-to-day training operations in-house. Their core objective is establishing an integrated operational function by April 2028 that supports over 558,000 civil servants in completing their learning journeys. It is highly dependent on the digital and commercial pillars to develop the underlying platforms that support operations. Market Involvement As part of the initial phases of the programme, the project teams are keen to connect with the market and gain insight into current trends, operations and barriers. With this in mind, Cabinet Office and the project team have planned the following Sector Connector events. "
+        },
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:20:56.625979+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "To register your interest in attending, please follow the links provided: Academia Manchester - Friday 25 September 2026 - 10am - 1pm The Studio, Level St, Manchester Book your place here: https://www.eventbrite.co.uk/e/1999025378720?aff=oddtdtcreator London - 06 October 2026 - 3:30pm - 6:30pm The Restaurant Town Hall, 10 SC, Canary Wharf Estate, E14 4PU Book your place here: https://www.eventbrite.co.uk/e/1999026827052?aff=oddtdtcreator Edinburgh - 09 October 2026 - 10am - 1pm The Scotsman Hotel, 20 North Bridge, Edinburgh EH1 1TR Book your place here: https://www.eventbrite.co.uk/e/1999027524137?aff=oddtdtcreator Coaching London - 15 September 2026 - 3:30pm-6:30pm The Restaurant Town Hall, 10 South Colonnade, Canary Wharf Estate, E14 4PU Book your place here: https://www.eventbrite.co.uk/e/1999022609437?aff=oddtdtcreator Virtual - 16 September 2026 - 3pm - 5pm Book your place here: https://www.eventbrite.co.uk/e/1999294630058?aff=oddtdtcreator Learning & Development London - 23 September 2026 - 11am- 2pm The Restaurant Town Hall, 10 SC, Canary Wharf Estate, E14 4PU Book your place here: https://www.eventbrite.co.uk/e/1999024350645?aff=oddtdtcreator Manchester - 25 September 2026 - 11am - 2pm The Studio, Level St, Manchester Book your place here: https://www.eventbrite.co.uk/e/1999024763881?aff=oddtdtcreator Edinburgh - 09 October 2026 - 2pm - 5pm The Scotsman Hotel, 20 North Bridge, Edinburgh EH1 1TR Book your place here: https://www.eventbrite.co.uk/e/1999027524137?aff=oddtdtcreator Senior Leadership London - 23 September 2026 3:30pm - 6:30pm The Restaurant Town Hall, 10 SC, Canary Wharf Estate, E14 4PU Book your place here: https://www.eventbrite.co.uk/e/1999023733800?aff=oddtdtcreator Off the Shelf Learning London - 28 September 2026 - 3:30pm - 6:30pm The Restaurant Town Hall, 10 SC, Canary Wharf Estate, E14 4PU Book your place here: https://www.eventbrite.co.uk/e/1999026628458?aff=oddtdtcreator Virtual - 02 October 2026 - 10am - 12pm Book your place here: https://www.eventbrite.co.uk/e/1999295572878?aff=oddtdtcreator Digital Virtual - 11 September 2026 - 11am - 12:30pm Book your place here: https://www.eventbrite.co.uk/e/1999286310173?aff=oddtdtcreator DigiGov Expo at London Excel on 24 and 25 September Representatives from the Future Learning Technology Team will be at the DigiGov Expo at London Excel on 24 and 25 September. Book your place here: https://www.digital-government.co.uk/registration/?utm_campaign=24142620-TECH26 - Visprom&utm_source=GCA&utm_medium=Partner&utm_content=Reg Current Thinking for Programme Delivery The National School Programme are in the early stages of exploring routes to market and have listed below some of the models reviewed for potential use: RM6219 Learning and Training Services DPS. A Dynamic Purchasing System allows for suppliers to register throughout the life cycle. If you would like to apply to become a registered supplier on this DPS, please follow this link: https://supplierregistration.cabinetoffice.gov.uk/dps/RM6219?nav=0 NEPO514 - External Training Dynamic Purchasing System (DPS) for the provision of External Training https://www.nepo.org/solutions/professional-services/external-training RM6126 - Research & Insights DPS This dynamic purchasing system (DPS) is available to all UK central government departments, to procure social, economic and market research, and behavioural insights services for projects of all sizes and values. https://supplierregistration.cabinetoffice.gov.uk/dps/RM6126?nav=0 RM6419 Innovation Marketplace - Dynamic Marketplace It will provide a place for buyers to access suppliers who specialise in innovation. The Innovation Marketplace will cover a wide range of services Innovation Marketplace UK1: Pipeline Notice This list is not exhaustive and does not cover all of the routes to market we are exploring. The above routes are those where suppliers can review and register to become part of any potential future opportunities and we would encourage suppliers to follow the registration processes if it is of interest. The CPV codes selected within this notice have been selected to reflect the current understanding of services and capabilities that are envisaged to fall within scope. These codes are indicative only and may be refined. Funding estimates Included in this notice are based on historic student volumes and spending. Actual contract values will be determined by actual student volumes. Lot 1: ."
+          },
+          "source": "To register your interest in attending, please follow the links provided: Academia Manchester - Friday 25 September 2026 - 10am - 1pm The Studio, Level St, Manchester Book your place here: https://www.eventbrite.co.uk/e/1999025378720?aff=oddtdtcreator London - 06 October 2026 - 3:30pm - 6:30pm The Restaurant Town Hall, 10 SC, Canary Wharf Estate, E14 4PU Book your place here: https://www.eventbrite.co.uk/e/1999026827052?aff=oddtdtcreator Edinburgh - 09 October 2026 - 10am - 1pm The Scotsman Hotel, 20 North Bridge, Edinburgh EH1 1TR Book your place here: https://www.eventbrite.co.uk/e/1999027524137?aff=oddtdtcreator Coaching London - 15 September 2026 - 3:30pm-6:30pm The Restaurant Town Hall, 10 South Colonnade, Canary Wharf Estate, E14 4PU Book your place here: https://www.eventbrite.co.uk/e/1999022609437?aff=oddtdtcreator Virtual - 16 September 2026 - 3pm - 5pm Book your place here: https://www.eventbrite.co.uk/e/1999294630058?aff=oddtdtcreator Learning & Development London - 23 September 2026 - 11am- 2pm The Restaurant Town Hall, 10 SC, Canary Wharf Estate, E14 4PU Book your place here: https://www.eventbrite.co.uk/e/1999024350645?aff=oddtdtcreator Manchester - 25 September 2026 - 11am - 2pm The Studio, Level St, Manchester Book your place here: https://www.eventbrite.co.uk/e/1999024763881?aff=oddtdtcreator Edinburgh - 09 October 2026 - 2pm - 5pm The Scotsman Hotel, 20 North Bridge, Edinburgh EH1 1TR Book your place here: https://www.eventbrite.co.uk/e/1999027524137?aff=oddtdtcreator Senior Leadership London - 23 September 2026 3:30pm - 6:30pm The Restaurant Town Hall, 10 SC, Canary Wharf Estate, E14 4PU Book your place here: https://www.eventbrite.co.uk/e/1999023733800?aff=oddtdtcreator Off the Shelf Learning London - 28 September 2026 - 3:30pm - 6:30pm The Restaurant Town Hall, 10 SC, Canary Wharf Estate, E14 4PU Book your place here: https://www.eventbrite.co.uk/e/1999026628458?aff=oddtdtcreator Virtual - 02 October 2026 - 10am - 12pm Book your place here: https://www.eventbrite.co.uk/e/1999295572878?aff=oddtdtcreator Digital Virtual - 11 September 2026 - 11am - 12:30pm Book your place here: https://www.eventbrite.co.uk/e/1999286310173?aff=oddtdtcreator DigiGov Expo at London Excel on 24 and 25 September Representatives from the Future Learning Technology Team will be at the DigiGov Expo at London Excel on 24 and 25 September. Book your place here: https://www.digital-government.co.uk/registration/?utm_campaign=24142620-TECH26 - Visprom&utm_source=GCA&utm_medium=Partner&utm_content=Reg Current Thinking for Programme Delivery The National School Programme are in the early stages of exploring routes to market and have listed below some of the models reviewed for potential use: RM6219 Learning and Training Services DPS. A Dynamic Purchasing System allows for suppliers to register throughout the life cycle. If you would like to apply to become a registered supplier on this DPS, please follow this link: https://supplierregistration.cabinetoffice.gov.uk/dps/RM6219?nav=0 NEPO514 - External Training Dynamic Purchasing System (DPS) for the provision of External Training https://www.nepo.org/solutions/professional-services/external-training RM6126 - Research & Insights DPS This dynamic purchasing system (DPS) is available to all UK central government departments, to procure social, economic and market research, and behavioural insights services for projects of all sizes and values. https://supplierregistration.cabinetoffice.gov.uk/dps/RM6126?nav=0 RM6419 Innovation Marketplace - Dynamic Marketplace It will provide a place for buyers to access suppliers who specialise in innovation. The Innovation Marketplace will cover a wide range of services Innovation Marketplace UK1: Pipeline Notice This list is not exhaustive and does not cover all of the routes to market we are exploring. The above routes are those where suppliers can review and register to become part of any potential future opportunities and we would encourage suppliers to follow the registration processes if it is of interest. The CPV codes selected within this notice have been selected to reflect the current understanding of services and capabilities that are envisaged to fall within scope. These codes are indicative only and may be refined. Funding estimates Included in this notice are based on historic student volumes and spending. Actual contract values will be determined by actual student volumes. Lot 1: ."
+        }
+      ],
+      "protected_names": [
+        "Cabinet Office"
+      ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "7f5ec42ebcaee22810a34165669edafdaef3ccf3960c2780cc45645ce4250a3a": {
       "parts": [
         {
@@ -63227,6 +64320,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "7fce1643e23011db7305cfd9445b0e06b54480dbcc45a3dcdef91f23bb323e05": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:24.446952+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Acquisition of a solution for the recovery of Active Directory (AD) in the event of a severe incident, such as ransomware, accidental deletion, domain controller attacks or AD forest corruption, including solution maintenance. Commissioning service and pool of 20 hours for support in annual recovery tests and assistance in using the solution."
+          },
+          "source": "Adquisición de una solución para la recuperación del Directorio Activo (DA) en caso de incidente grave, como ransomware, borrados accidentales, ataques a controladores de dominio o corrupción del bosque de DA, incluyendo mantenimiento de la solución. Servicio de puesta en marcha y bolsa de 20 horas para soporte en pruebas de recuperación anuales y apoyo en el uso de la solución."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "7fd7d7d4c26e66f46767a082026f5793d349976631920e1256a05efffef014b8": {
       "parts": [
         {
@@ -63373,6 +64489,29 @@
       ],
       "protected_names": [],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "80061f8d6d3523de8032f47ad6bf464802d0bc96941e634a3474da621426be8c": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:34.924987+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Procurement Commission of the State-Owned Company State Lotteries and Betting, S.M.E., S.A."
+          },
+          "source": "Comisión de Contratación de la Sociedad Estatal Loterías y Apuestas del Estado, S.M.E., S.A."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "801758e05e4ecd4d6799c798a8fea976188a00370e1d3d2daa541c7e0b0230f8": {
@@ -65207,6 +66346,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "839067af1181d54d79a5a890a55bc5ba24f9ba5a0af2851887f12ec0b4b4e7d4": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:20:56.615071+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "EV Infrastructure Back Office"
+          },
+          "source": "EV Infrastructure Back Office"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "83a35a31fa7bda2ab2647971ab39386dbe72465e109e05ffbf38d50c795a6846": {
       "parts": [
         {
@@ -65543,6 +66705,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "843a83143ce1bf0704b6415b48ba1544344a3c75798878f4ea40068b1e19cb7b": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:29.244916+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Consists of the supply, implementation, development and maintenance of an integrated management system for the Local Police of Cadiz (Software) and the hardware equipment necessary for its commissioning, as well as the implementation and integration service with other third-party and proprietary information systems"
+          },
+          "source": "Consiste en el suministro, implantación, desarrollo y mantenimiento de un sistema de gestión integral para la Policía Local de Cádiz (Software) y los equipos hardware necesarios para su puesta en funcionamiento, así como el servicio de implantación e integración con otros sistemas de información de terceros y propios"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "8450432107f5e24554623814da2838c545d1fecbe6d6e9acd10b7150dbf6c2ac": {
       "parts": [
         {
@@ -65690,6 +66875,37 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "848d242f6eec10383c450cdd954cfd5209d08f49e5300235262f7360855976c5": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "rejected": {
+            "id": "848d242f6eec10383c450cdd954cfd5209d08f49e5300235262f7360855976c5:0",
+            "language": "sv",
+            "model": "gemini-3.5-flash-lite",
+            "text": "DIS Organisations och ledarskapskonsulter"
+          },
+          "result": {
+            "at": "2026-09-15T12:21:29.236262+00:00",
+            "language": "sv",
+            "model": "gemini-3.5-flash-lite",
+            "text": "DIS Organisation and leadership consultants"
+          },
+          "source": "DIS Organisations och ledarskapskonsulter"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "849aaead14349c010583f045cf08d86a7bc21fdb0246d19608122bcb61077c32": {
@@ -66035,6 +67251,29 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "852ad8363ebd4c6309738972b8a1902f51a1e49015e6027d7055bd2614f1207c": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:05.201721+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Gloucestershire ICB and Bristol, North Somerset and South Gloucestershire (BNSSG) ICB are merging to form a single integrated body in April 2027. Both organisations currently rely on external providers for the delivery of their IT services. A new, unified service model is required; one that supports the merged organisation from day one, is commercially sustainable, and is capable of evolving as the ICS matures. Six principles shape the design of the future service: 1. Cloud-first and 'secure by design'. All new and renewed services will be cloud-based wherever possible. On-premises infrastructure will be exited as part of transition. This is both a strategic choice and a compliance requirement under the Government Cloud First Policy and Technology Code of Practice. 2. Outcome-focused. The service is defined by what it must deliver, not how it must be delivered. The supplier is expected to bring expertise, innovation and accountability for outcomes, not simply execute a prescriptive technical specification. 3. Single point of accountability. The preferred model is a single managed service provider with end-to-end accountability for operational delivery. This avoids the fragmentation and unclear ownership that characterises the current multi-supplier landscape and reduces the management overhead on the ICB digital team. 4. Lean governance. The ICB digital team will provide strategic oversight, roadmap ownership and supplier governance. It will not carry operational delivery responsibilities. This reflects the lean, strategically focused character of the merged organisation and the direction set by the Model ICB Blueprint. 5. Interoperable by design. The service must integrate cleanly with nationally contracted NHS platforms, in particular NHS.net Connect, the Health and Social Care Network (HSCN) and NHS Secure Boundary Service, as well as local platforms, such as the Gloucestershire ICS WAN and into UHBW and Crown Datacentres in Corsham. Service interfaces with these platforms should be clearly defined before the procurement specification is finalised. 6. Sustainable. The ICB's carbon neutral commitments should be reflected in technology choices, including energy-efficient end-user devices, PoE-powered monitors and cloud-based infrastructure in preference to on-premises data centre equipment. The following service stacks are in scope for the new managed service, reflecting services currently provided across both incumbents, consolidated and extended to support the merged organisation: - Service desk. The primary user-facing support channel, available 08:00-18:00 Monday to Friday. - Desktop support. Onsite presence at both sites as and when required, including end-user support, moves, adds and changes to desktop arrangements, MFD, Audio Visual equipment, and Teams Room management. The onsite support model must include provision for routine physical tasks including WFH equipment management, peripheral replacement, cable and hardware swap-outs, and stock management. - End-user compute. Device lifecycle management including provisioning, refresh (five-year target cycle), configuration, and secure disposal. - Telephony and unified communications. Microsoft Teams Phone as the unified platform for the merged ICB. - Print. Cloud-managed secure print at both sites. - Meeting rooms. Physical teams Room management and audio-visual support at 2 locations with 15 meeting rooms at one and at Shire Hall, Gloucester and 9 at the second location. - Asset management. Asset tagging, recording, and lifecycle tracking for all ICB-owned IT equipment. - Supplier and procurement management. The supplier will assume management of all ongoing third-party technology relationships and will procure all IT equipment and recurring support contracts on behalf of the ICB. Licence management across the estate is required. - DSPT support. The supplier is expected to provide the ICB with the technical evidence and assurance data required to support annual DSPT submission, including patch management records, asset inventory, access control logs and incident reports. - Project, change and architecture. The supplier will own project and change management, problem management, and architecture design. - Digital signatures. Digital signature capability is required as part of the new service. Full details are provided in the service specification. The total maximum contract value for the initial 3-year Contract is £1,920,000 inclusive of VAT (where applicable). At the end of the initial contract term the Commissioner will have two, separate, consecutive one-year extension option periods that can be exercised at the discretion of the Commissioner, giving a maximum possible contract value of £2,700,000 inclusive of VAT (where applicable) over 5 years if the full contract term is fulfilled. The Commissioner is of the view that TUPE does not apply to this service. The Contracting Authority reserves the right to use the Direct Award procedure under the Procurement Act 2023 for any subsequent extensions or new contracts for similar requirements. The new contract will commence on 1st April 2027, although implementation of the services will start during January 2027. Lot 1: ."
+          },
+          "source": "Gloucestershire ICB and Bristol, North Somerset and South Gloucestershire (BNSSG) ICB are merging to form a single integrated body in April 2027. Both organisations currently rely on external providers for the delivery of their IT services. A new, unified service model is required; one that supports the merged organisation from day one, is commercially sustainable, and is capable of evolving as the ICS matures. Six principles shape the design of the future service: 1. Cloud-first and 'secure by design'. All new and renewed services will be cloud-based wherever possible. On-premises infrastructure will be exited as part of transition. This is both a strategic choice and a compliance requirement under the Government Cloud First Policy and Technology Code of Practice. 2. Outcome-focused. The service is defined by what it must deliver, not how it must be delivered. The supplier is expected to bring expertise, innovation and accountability for outcomes, not simply execute a prescriptive technical specification. 3. Single point of accountability. The preferred model is a single managed service provider with end-to-end accountability for operational delivery. This avoids the fragmentation and unclear ownership that characterises the current multi-supplier landscape and reduces the management overhead on the ICB digital team. 4. Lean governance. The ICB digital team will provide strategic oversight, roadmap ownership and supplier governance. It will not carry operational delivery responsibilities. This reflects the lean, strategically focused character of the merged organisation and the direction set by the Model ICB Blueprint. 5. Interoperable by design. The service must integrate cleanly with nationally contracted NHS platforms, in particular NHS.net Connect, the Health and Social Care Network (HSCN) and NHS Secure Boundary Service, as well as local platforms, such as the Gloucestershire ICS WAN and into UHBW and Crown Datacentres in Corsham. Service interfaces with these platforms should be clearly defined before the procurement specification is finalised. 6. Sustainable. The ICB's carbon neutral commitments should be reflected in technology choices, including energy-efficient end-user devices, PoE-powered monitors and cloud-based infrastructure in preference to on-premises data centre equipment. The following service stacks are in scope for the new managed service, reflecting services currently provided across both incumbents, consolidated and extended to support the merged organisation: - Service desk. The primary user-facing support channel, available 08:00-18:00 Monday to Friday. - Desktop support. Onsite presence at both sites as and when required, including end-user support, moves, adds and changes to desktop arrangements, MFD, Audio Visual equipment, and Teams Room management. The onsite support model must include provision for routine physical tasks including WFH equipment management, peripheral replacement, cable and hardware swap-outs, and stock management. - End-user compute. Device lifecycle management including provisioning, refresh (five-year target cycle), configuration, and secure disposal. - Telephony and unified communications. Microsoft Teams Phone as the unified platform for the merged ICB. - Print. Cloud-managed secure print at both sites. - Meeting rooms. Physical teams Room management and audio-visual support at 2 locations with 15 meeting rooms at one and at Shire Hall, Gloucester and 9 at the second location. - Asset management. Asset tagging, recording, and lifecycle tracking for all ICB-owned IT equipment. - Supplier and procurement management. The supplier will assume management of all ongoing third-party technology relationships and will procure all IT equipment and recurring support contracts on behalf of the ICB. Licence management across the estate is required. - DSPT support. The supplier is expected to provide the ICB with the technical evidence and assurance data required to support annual DSPT submission, including patch management records, asset inventory, access control logs and incident reports. - Project, change and architecture. The supplier will own project and change management, problem management, and architecture design. - Digital signatures. Digital signature capability is required as part of the new service. Full details are provided in the service specification. The total maximum contract value for the initial 3-year Contract is £1,920,000 inclusive of VAT (where applicable). At the end of the initial contract term the Commissioner will have two, separate, consecutive one-year extension option periods that can be exercised at the discretion of the Commissioner, giving a maximum possible contract value of £2,700,000 inclusive of VAT (where applicable) over 5 years if the full contract term is fulfilled. The Commissioner is of the view that TUPE does not apply to this service. The Contracting Authority reserves the right to use the Direct Award procedure under the Procurement Act 2023 for any subsequent extensions or new contracts for similar requirements. The new contract will commence on 1st April 2027, although implementation of the services will start during January 2027. Lot 1: ."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "85332a0566665bd426110eaca1b8466174f55fcb78bf63be6f5372f4a3a14491": {
@@ -67217,6 +68456,29 @@
             "text": "Virtualisation cluster"
           },
           "source": "Virtualisierungs Cluster"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "8717b1c85a60257ec80fbdcd4c10867dffc855732e7b69014c94c886c982240c": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:24.458429+00:00",
+            "language": "sv",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Procurement created for grouping of contracts during contract import Business development and strategy concerns the municipality's vision, objectives, core-value strategy and tactics and is often based on analysis.; Financial management covers the measures within an activity carried out to achieve set financial objectives. The financial objectives must be linked to the business's vision, strategic objectives, success factors and operational plans.; Organisational development covers the development/change/streamlining of organisational structures and/or processes within the municipality.; Analysis and methodology covers analysis of data material, provides support in the development of statistical methods and methods for data handling as well as the production of key performance indicators.; HR/Provision of competence concerns the employee's, group's and organisation's competence and the building up of competence. The area covers a review of existing competence and what competence is needed in the future to achieve the business's objectives.; Management and leadership development covers services regarding the development of managers and key personnel and participation in changing the manager's/leader's and employees' approaches."
+          },
+          "source": "Upphandling skapad för gruppering av avtal vid avtalsimport Verksamhetsutveckling och strategi berör kommunens vision, mål, värdegrundstrategi samt taktik och bygger ofta på analys.; Ekonomistyrning omfattar de åtgärder inom en verksamhet som utförs för att uppnå uppsatta ekonomiska mål. De ekonomiska målen måste sammankopplas med verksamhetens vision, strategiska mål, framgångsfaktorer samt verksamhetsplaner.; Organisationsutveckling omfattar utveckling/förändring/effektivisering av organisationsstrukturer och/eller processer inom kommunen.; Analys och metod omfattar analys av datamaterial, utgör stöd i utveckling av statistiska metoder och metoder för datahantering samt framtagande av nyckeltal.; HR/Kompetensförsörjning berör medarbetarens, gruppens och organisationens kompetens och uppbyggnaden av kompetens. Området omfattar en översyn av befintlig kompetens och vilken kompetens som behövs i framtiden för att nå verksamhetens mål.; Chefs- och ledarskapsutveckling omfattar tjänster rörande chefers och nyckelpersoners utveckling och medverkan vid förändring av chefens/ledarens samt medarbetarnas handlingssätt."
         }
       ],
       "protected_names": [],
@@ -68502,6 +69764,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "89eff590099e95efb465357a62b8e2f150a7af61208a50dff3b24a2bdcd8630d": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:24.455539+00:00",
+            "language": "it",
+            "model": "gemini-3.5-flash-lite",
+            "text": "IT security services"
+          },
+          "source": "Servizi di sicurezza informatica"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "89fc29ff056b358e13a18eb24cd652d878ebb36386a3008147f488aff980ecdf": {
       "parts": [
         {
@@ -69264,6 +70549,29 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "8b07117a397aeae7a65c22c544d9fb48dc74ed904c9e1af83bbc708fafc23205": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:29.244682+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Supply of an integrated management system for the local police force of Cadiz"
+          },
+          "source": "Suministro de un sistema de gestión integral para la policía local de Cádiz"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "8b112bb0ef32d5b8d54b798e847a96c4e94c2ef60958673db2ebf25cf26dcead": {
@@ -73938,6 +75246,37 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "92f72273819a47bf7bf8d41e0a2ccff45fc6d10b1b41a01038b59e25de24592e": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "rejected": {
+            "id": "92f72273819a47bf7bf8d41e0a2ccff45fc6d10b1b41a01038b59e25de24592e:0",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Suministro de actualización de versiones y servicios de soporte técnico asociados de software de Toad Submission deadline (source local time): 2026-09-30 15:00:00. Time zone not supplied; check the source notice."
+          },
+          "result": {
+            "at": "2026-09-15T12:21:24.444435+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Supply of version upgrades and associated technical support services for Toad software Submission deadline (source local time): 2026-09-30 15:00:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Suministro de actualización de versiones y servicios de soporte técnico asociados de software de Toad Submission deadline (source local time): 2026-09-30 15:00:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "9308ed0215034937b42a140fab9233518a934b6a97a9046c2fd92e8dc575254f": {
       "parts": [
         {
@@ -74386,6 +75725,31 @@
       "protected_names": [],
       "purpose": "passage",
       "retry_profile": "english-coverage-and-organisation-names-2"
+    },
+    "93f9cbc18fc5408eafd640fe4e24cafe449e2071ecc2417b0c629080c51f34dc": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:20:56.615712+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Stirling Council seeks a Charge Point Network Operator (CPNO) to provide EV Charge Point Management System (CPMS) services for its public and fleet charging network. The contract includes migration from the existing ChargePlace Scotland platform, ongoing operation, customer support, payment processing, monitoring, reporting and account management services for approximately 200 charge points across the Stirling area. Lot 1: . Stirling Council seeks a Charge Point Network Operator (CPNO) to provide EV Charge Point Management System (CPMS) services for its public and fleet charging network. The contract includes migration from the existing ChargePlace Scotland platform, ongoing operation, customer support, payment processing, monitoring, reporting and account management services for approximately 200 charge points across the Stirling area."
+          },
+          "source": "Stirling Council seeks a Charge Point Network Operator (CPNO) to provide EV Charge Point Management System (CPMS) services for its public and fleet charging network. The contract includes migration from the existing ChargePlace Scotland platform, ongoing operation, customer support, payment processing, monitoring, reporting and account management services for approximately 200 charge points across the Stirling area. Lot 1: . Stirling Council seeks a Charge Point Network Operator (CPNO) to provide EV Charge Point Management System (CPMS) services for its public and fleet charging network. The contract includes migration from the existing ChargePlace Scotland platform, ongoing operation, customer support, payment processing, monitoring, reporting and account management services for approximately 200 charge points across the Stirling area."
+        }
+      ],
+      "protected_names": [
+        "Stirling Council"
+      ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "9400cb5a3be5502e7a4dfc04befdee9fbdcc8246fc911afa8291f8093cfd6f15": {
       "parts": [
@@ -75148,6 +76512,29 @@
       "protected_names": [
         "Magistrat der Stadt Bensheim"
       ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "95a8dc55ad379baa9e62afd206b34d22921cc4f4d707d8cbbc816372f3dfa31d": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:05.202160+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Open Referral Tool"
+          },
+          "source": "Open Referral Tool"
+        }
+      ],
+      "protected_names": [],
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
@@ -79158,6 +80545,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "9d005fb79de5041c968aa61c1ea5581da529160527b0b57f14f78cc189038d2e": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:14.179300+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "NHS Hampshire and Isle of Wight Integrated Care Board (ICB) have procured a central storage and retrieve on demand service for Lloyd George Medical Records. This provides a full end-to end solution for all scanning and storage. This includes scanning, indexing, encryption, electronic storage, transportation and secure disposal of documents, storage, retrieval and associated training."
+          },
+          "source": "NHS Hampshire and Isle of Wight Integrated Care Board (ICB) have procured a central storage and retrieve on demand service for Lloyd George Medical Records. This provides a full end-to end solution for all scanning and storage. This includes scanning, indexing, encryption, electronic storage, transportation and secure disposal of documents, storage, retrieval and associated training."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "9d038dcd6b32bdf4e967037c603727eae98b9bd0f1d67a222d1b9346de9de5d1": {
       "parts": [
         {
@@ -79521,6 +80931,29 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "9da563acbcbfbfae18f1db163f105093caac93e35ed48f8724f369d1097a0825": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:24.446656+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Supply, implementation and maintenance of a Municipal Archive management solution, internal access portal and public dissemination portal for the Municipality of Getafe. Submission deadline (source local time): 2026-09-25 23:59:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Suministro, implantación y mantenimiento de una solución de gestión del Archivo Municipal, portal interno de acceso y portal de difusión pública para el Ayuntamiento de Getafe. Submission deadline (source local time): 2026-09-25 23:59:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "9da69ee01e098fd2e43908f2817c66c7942c6030c4496f5035507973c394a42c": {
@@ -80752,6 +82185,29 @@
             "text": "Norwegian Police Shared Services; Norwegian Police Shared Services; Norwegian Police Shared Services"
           },
           "source": "Politiets fellestjenester; Politiets fellestjenester; Politiets Fellestjenester"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "a01183fb4d23311651955ab8fe1cec59361efaf7d3190d1d5cb37880bfd2a3ff": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:34.922809+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Office of Rail and Road"
+          },
+          "source": "Office of Rail and Road"
         }
       ],
       "protected_names": [],
@@ -83989,6 +85445,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "a67cc85f01ce972a95799639ef0a61d07b75e6b8bfe6846f367b4f44aa305fd2": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:29.244422+00:00",
+            "language": "it",
+            "model": "gemini-3.5-flash-lite",
+            "text": "new software for managing the purchase, sales and general accounting cycles, and the budgeting function"
+          },
+          "source": "nuovo software per la gestione del ciclo passivo, attivo, contabilità generale, e funzione di budgeting"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "a68e5eb4736c5cee1c093f80a581aee048e1ef7ceb805f29391b800859c4aefe": {
       "parts": [
         {
@@ -84767,6 +86246,29 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "a8072ea5280520191d424d9c2160b082359998ae30ccda93feecc9c137401b32": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:14.194907+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The supply of operating system software licences for the Municipality of Andratx."
+          },
+          "source": "El suministro de licencias de software de sistemas operativos para el Ayuntamiento de Andratx."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "a81d2005cdf41a6c85643ff5d6a1a75955db766af450d5667eff1a7b5dbacb7d": {
@@ -87538,6 +89040,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "ad6f8954ada5c8ce220fb30806f3cc3bc77fb891668a06dbbbc960e2a4f8dc0e": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:14.178612+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Nest is seeking to appoint one supplier to provide, implement and support one hosted software-as-a-service solution for Nest Invest, comprising two mandatory capabilities: Asset Allocation and Total Portfolio View. The Asset Allocation capability must support Nest Invest’s multi-level fund-of-funds structure and its controlled, model-driven asset allocation process. This includes strategic and tactical asset allocation, portfolio modelling and optimisation, configurable targets, limits and tolerances, portfolio rebalancing, asset restrictions, workflow and approval controls, auditability, scenario analysis and the generation of implementation instructions or outputs for downstream parties. The Total Portfolio View capability must provide a consolidated view of Nest Invest’s portfolio across public and private assets, including positions, exposures, performance and look-through information where available. It must support aggregation and analysis across Nest Invest’s fund structure. The supplier will be required to provide software licensing or subscription services; implementation and configuration; integration with retained data sources and Nest Invest’s planned cloud data platform through appropriate data interfaces and APIs; transition and migration from the incumbent IRP solution; testing and user acceptance support; training and documentation; go-live and transition support; and ongoing hosting, maintenance, technical support and product-roadmap services. The solution must be configured for Nest Invest and supplied electronically as a hosted service. Investment and portfolio data will be received from retained sources, including the fund administrator and custodian, and the solution must generate the required information, reporting and implementation outputs for Nest Invest and its downstream processes. The contract will be awarded to one supplier for an initial term of five years. Nest may extend the contract for an additional two years and subsequently for a further one year, giving a maximum potential term of eight years. The contract does not guarantee any minimum volume of services or minimum expenditure. Lot 1: . None"
+          },
+          "source": "Nest is seeking to appoint one supplier to provide, implement and support one hosted software-as-a-service solution for Nest Invest, comprising two mandatory capabilities: Asset Allocation and Total Portfolio View. The Asset Allocation capability must support Nest Invest’s multi-level fund-of-funds structure and its controlled, model-driven asset allocation process. This includes strategic and tactical asset allocation, portfolio modelling and optimisation, configurable targets, limits and tolerances, portfolio rebalancing, asset restrictions, workflow and approval controls, auditability, scenario analysis and the generation of implementation instructions or outputs for downstream parties. The Total Portfolio View capability must provide a consolidated view of Nest Invest’s portfolio across public and private assets, including positions, exposures, performance and look-through information where available. It must support aggregation and analysis across Nest Invest’s fund structure. The supplier will be required to provide software licensing or subscription services; implementation and configuration; integration with retained data sources and Nest Invest’s planned cloud data platform through appropriate data interfaces and APIs; transition and migration from the incumbent IRP solution; testing and user acceptance support; training and documentation; go-live and transition support; and ongoing hosting, maintenance, technical support and product-roadmap services. The solution must be configured for Nest Invest and supplied electronically as a hosted service. Investment and portfolio data will be received from retained sources, including the fund administrator and custodian, and the solution must generate the required information, reporting and implementation outputs for Nest Invest and its downstream processes. The contract will be awarded to one supplier for an initial term of five years. Nest may extend the contract for an additional two years and subsequently for a further one year, giving a maximum potential term of eight years. The contract does not guarantee any minimum volume of services or minimum expenditure. Lot 1: . None"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "ad8096156021f0450163551493fb448159b082499fd4a7b354396c3f5d061a47": {
       "parts": [
         {
@@ -88456,6 +89981,37 @@
             "text": "Service for the preparation of reports on key performance indicators in road safety. 5 lots."
           },
           "source": "Servicio de elaboración de informes sobre indicadores clave de rendimiento en seguridad vial. 5 lotes."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "af97a8c335fbd1e78566612b5a4862622eae97eee986be420349d77a4fcc06ba": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "rejected": {
+            "id": "af97a8c335fbd1e78566612b5a4862622eae97eee986be420349d77a4fcc06ba:0",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Sistema dinámico de adquisición para la contratación de servicios y suministros informáticos, mediante el sistema de lotes. Submission deadline (source local time): 2028-07-21 09:13:00. Time zone not supplied; check the source notice."
+          },
+          "result": {
+            "at": "2026-09-15T12:21:24.440960+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Dynamic acquisition system for the procurement of IT services and supplies, through the lot system. Submission deadline (source local time): 2028-07-21 09:13:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Sistema dinámico de adquisición para la contratación de servicios y suministros informáticos, mediante el sistema de lotes. Submission deadline (source local time): 2028-07-21 09:13:00. Time zone not supplied; check the source notice."
         }
       ],
       "protected_names": [],
@@ -90790,6 +92346,31 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "b3c273271059870bcbe780957cf34fd3e78130e38314688309830aeec23049ce": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:05.185150+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "DN Colleges Group is seeking to appoint a specialist to deliver a comprehensive brand strategy and rebranding commission across the Group. The requirement includes research and stakeholder engagement, brand strategy and architecture, visual and verbal identity development, brand guidelines, templates and assets, implementation and rollout planning, student engagement, and training/handover to the Group's internal teams. The successful supplier will be expected to work collaboratively with DN Colleges Group and alongside the separately commissioned website development project. Full requirements, mandatory criteria, evaluation methodology and pricing instructions are set out within the tender documentation. To access this competition: Registered: Login to https://suppliers.multiquote.com and view the opportunity CA18460. Not registered: Visit https://suppliers.multiquote.com then register and quote CA18460 as the reason for registration. Any queries please contact MultiQuote on 020 3920 8054."
+          },
+          "source": "DN Colleges Group is seeking to appoint a specialist to deliver a comprehensive brand strategy and rebranding commission across the Group. The requirement includes research and stakeholder engagement, brand strategy and architecture, visual and verbal identity development, brand guidelines, templates and assets, implementation and rollout planning, student engagement, and training/handover to the Group's internal teams. The successful supplier will be expected to work collaboratively with DN Colleges Group and alongside the separately commissioned website development project. Full requirements, mandatory criteria, evaluation methodology and pricing instructions are set out within the tender documentation. To access this competition: Registered: Login to https://suppliers.multiquote.com and view the opportunity CA18460. Not registered: Visit https://suppliers.multiquote.com then register and quote CA18460 as the reason for registration. Any queries please contact MultiQuote on 020 3920 8054."
+        }
+      ],
+      "protected_names": [
+        "DN Colleges Group"
+      ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "b3daa016cea92cb9eb5f532f633793bda4aae14527f7da865bb7c77eba8f4071": {
       "parts": [
         {
@@ -91990,6 +93571,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "b631d4660a149f7f77f363421e46e0c0f03ea175da436465607501cbddc1a6fd": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:14.190500+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Technical assistance contract for the management and implementation of the integrated action plan (PAI) Benidorm Open Arena of the City Council of Benidorm"
+          },
+          "source": "Contrato de asistencia técnica para la gestión e implementación del plan de actuación integrado (PAI) Benidorm Open Arena del Ayuntamiento de Benidorm"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "b64b0bbe4108befc1a1b21a368fa0cb579f352bcf5456bfa4b4eea005c131f30": {
       "parts": [
         {
@@ -92493,6 +94097,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "b73130e4a19029c3b56f88d55d5cbcfce0f136365fa6fb0719f82b2eabe2a802": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:24.450125+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Servicio de mantenimiento, diseño y desarrollo de la web de la Universidad de La Laguna Submission deadline (source local time): 2026-10-08 10:00:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Servicio de mantenimiento, diseño y desarrollo de la web de la Universidad de La Laguna Submission deadline (source local time): 2026-10-08 10:00:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "b738e27bfc2cbe992092601cb111fb0158b5b1af68bdfa7bf782eeac8f014517": {
       "parts": [
         {
@@ -92867,6 +94494,29 @@
       ],
       "protected_names": [],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "b7e77c865444e3bac336fe5f01f7d1aa54bcfcddb09bad0597582a9cbbcdbc3f": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:34.929110+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "City of Bradford Metropolitan District Council"
+          },
+          "source": "City of Bradford Metropolitan District Council"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "b7e941b9559541182bf51aca3b9d7146f2d6a881a02a443430ae34d6d5a13022": {
@@ -95631,6 +97281,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "bd3223462e549c5dc32ec5bb646f936d368ecf8adc644a9b9d1d45749db59081": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:14.199288+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Supply of version upgrades and associated technical support services for Toad software"
+          },
+          "source": "Suministro de actualización de versiones y servicios de soporte técnico asociados de software de Toad"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "bd33b4ad160e1d6ce14af8d86139c5164c26cb84eb7f8319b39cd6dcea4890f6": {
       "parts": [
         {
@@ -96514,6 +98187,29 @@
       ],
       "protected_names": [],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "be85eddf1d96dde79a6ed85ab00cc0cc734918d2aac71d9252d850eb4d086ac5": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:34.923576+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Northern Collieries S.A."
+          },
+          "source": "Hulleras del Norte S.A."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "be86bbd646594ad85de872bc022eeb3e5af14d250745c984a358e4373d9efa4b": {
@@ -97421,6 +99117,29 @@
       "protected_names": [
         "ekom21 - Kommunales Gebietsrechenzentrum Hessen"
       ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "c02c282681492a4944f593d97647b206b4cd53fc019541011680d3cbd6064c2a": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:14.192918+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Supply of VMware licences, including support, maintenance and migration of virtualised critical environments"
+          },
+          "source": "Suministro de licencias VMware, incluyendo soporte, mantenimiento y migración de los entornos críticos virtualizados"
+        }
+      ],
+      "protected_names": [],
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
@@ -101875,6 +103594,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "c91f5940b5228f351c7bcb54dd376e88e3901e2f3dacca46bab638291f9f7000": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:14.183029+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Establishment of a framework agreement for the supply of the right to use and associated municipal management software services in SaaS mode, destined for the local entities of the Balearic Islands. Submission deadline (source local time): 2026-10-16 14:00:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Establecimiento de un Acuerdo marco para el suministro del derecho de uso y servicios asociados de software de gestión municipal en modalidad SaaS, con destino a las entidades locales de las Illes Balears. Submission deadline (source local time): 2026-10-16 14:00:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "c92bd36608b80ac969cadaa4b0a9a3ee15ac53cdcb35b8b3698fdd408b67a9fe": {
       "parts": [
         {
@@ -103655,6 +105397,29 @@
       "purpose": "passage",
       "retry_profile": "english-coverage-and-organisation-names-2"
     },
+    "cc6b6cb0bab98536815fe665a5f9022ed0254dd5f0a248905ecf5bc50fa0ec0f": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:14.199171+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Aplicaciones Atlassian Submission deadline (source local time): 2026-09-28 14:00:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Aplicaciones Atlassian Submission deadline (source local time): 2026-09-28 14:00:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "cc6b7c2444e75c058a49f7e04af97b79b79f7181f245f712c612d685478783a7": {
       "parts": [
         {
@@ -103990,6 +105755,29 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "cd27d0610550f12eff84fd826998c52f26f14c752bf20a0a84f24fb2bd7531dd": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:29.244207+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "MANAGEMENT SERVICE FOR THE DIGITAL INNOVATION CENTRE OF THE COMMUNITY OF MADRID, DIGITALIZA MADRID."
+          },
+          "source": "SERVICIO DE GESTIÓN DEL CENTRO DE INNOVACIÓN DIGITAL DE LA COMUNIDAD DE MADRID, DIGITALIZA MADRID."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "cd445a77ab49cca473f3187ee0e1f343589421d27905f90e0f2660b12ef15b36": {
@@ -109908,6 +111696,37 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "d882a163663f02f24dc8120d49ee207b804d5c086ee04837444d4b3fbd4ec5ea": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "rejected": {
+            "id": "d882a163663f02f24dc8120d49ee207b804d5c086ee04837444d4b3fbd4ec5ea:0",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Suministro de licencias VMware, incluyendo soporte, mantenimiento y migración de los entornos críticos virtualizados Submission deadline (source local time): 2026-09-28 14:00:00. Time zone not supplied; check the source notice."
+          },
+          "result": {
+            "at": "2026-09-15T12:21:24.442181+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Supply of VMware licences, including support, maintenance and migration of critical virtualised environments Submission deadline (source local time): 2026-09-28 14:00:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Suministro de licencias VMware, incluyendo soporte, mantenimiento y migración de los entornos críticos virtualizados Submission deadline (source local time): 2026-09-28 14:00:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "d88b7e561121f841a8082bde8e7c1b2c0fd5245977b78833f1223cb1942e514a": {
       "parts": [
         {
@@ -113694,6 +115513,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "df1501544aa3fa74016a27ac6c2c7df58e1d526a56485265cff882c6f8f3f0b7": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:24.456060+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "This contract will enable the centralised and efficient management of INGESA's economic-financial, logistics and procurement processes. The service will cover the necessary phases, including system definition, analysis, design, development, migration, installation, integration, implementation and deployment, in addition to corresponding documentation, change management, and user assistance and support, ensuring continuous improvement and system administration."
+          },
+          "source": "La presente contratación permitirá gestionar, de manera centralizada y eficiente, los procesos económico-financieros, logísticos y de contratación del INGESA. El servicio abarcará las fases necesarias, incluyendo la definición, análisis, diseño, desarrollo, migración, instalación, integración, implantación y despliegue del sistema, además de la documentación correspondiente, la gestión del cambio, así como la asistencia y atención al usuario, garantizando la mejora continua y la administración del sistema."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "df1722526391b8b6d7347cb1f4fb8fc89ff7102402b14bb52ee71a37047b489e": {
       "parts": [
         {
@@ -114033,6 +115875,29 @@
             "text": "The Norwegian Tax Administration is planning to announce a framework agreement for the delivery of software. Prior to the announcement, the supplier market is invited to provide input on the draft competition documents. The purpose of the consultation is to ensure that the tender documentation is clear, relevant, and adapted to the market's conditions, so that both the Tax Administration and suppliers are given the best possible framework for the upcoming competition. For more information, see the attached documents."
           },
           "source": "The Norwegian Tax Administration is planning to announce a framework agreement for the delivery of software. Prior to the announcement, the supplier market is invited to provide input on the draft competition documents. The purpose of the consultation is to ensure that the tender documentation is clear, relevant, and adapted to the market's conditions, so that both the Tax Administration and suppliers are given the best possible framework for the upcoming competition. For more information, see the attached documents."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "e064166dbca4aedf2cdc60d0efa0bd563195647a26d9791d250570618e4041a6": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:24.455701+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Comprehensive implementation of an economic-financial and logistics information system for the centres of the National Institute of Health Management (INGESA)"
+          },
+          "source": "Implementación integral de un sistema de información económico-financiera y logística con destino a los centros del Instituto Nacional de Gestión Sanitaria (INGESA)"
         }
       ],
       "protected_names": [],
@@ -115027,6 +116892,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "e2aa8d39f79d496236484ef8ff55777ef3680dac3a8555a2f38a83f3e7c9046a": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:29.244587+00:00",
+            "language": "it",
+            "model": "gemini-3.5-flash-lite",
+            "text": "supply of a new software for managing the purchase, sales and general accounting cycles, and the budgeting function (Enterprise Resource Planning software system)"
+          },
+          "source": "fornitura di un nuovo software per la gestione del ciclo passivo, attivo, contabilità generale, e funzione di budgeting (sistema di software di Enterprise Resource Planning)"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "e2adbc9d5afe4c8c3ee1955bf36658babb498884ed8a972bc0969e6ba894e497": {
       "parts": [
         {
@@ -115172,6 +117060,29 @@
       "protected_names": [
         "Leijona Catering Oy"
       ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "e2ff8d0ddeafb651c455fdd0719bf3fa9f1d7b86c1c86647efd5396bbf96ab01": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:14.200915+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Supply of photographic editing software licences for the photography workshop of the Popular University of Torremolinos"
+          },
+          "source": "Suministro licencias software edición fotográfica para taller de fotografía de la Universidad Popular de Torremolinos"
+        }
+      ],
+      "protected_names": [],
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
@@ -116495,6 +118406,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "e57fe774964abf58441035ffd43ad21eda54ce69bc5c26ecf87168946c68c712": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:14.181056+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The Land Training Advisory Capability (LTAC) (formerly Land Training Test & Reference Centre (LTT&RC)) will provide independent testing, analysis and assurance to support confidence in the Army Collective Training Service (ACTS). It will ensure that the Land Warfare Centre (LWC) remains an intelligent customer, able to maintain technical coherence and keep services focused on training outcomes, underpinned by secure information and data. Drawing upon reference architecture, technical standards and a test-bed for evaluating integration compatibility, the LTAC will provide independent support to the acceptance of digital products and provide assurance support that solutions meet the Defence Modelling and Simulation Coherence and Secure by Design principles. The LTAC will maintain the ACTS architecture baseline and act as the architecture custodian, ensuring coherence, traceability and alignment with approved Defence standards. Lot 1: . None"
+          },
+          "source": "The Land Training Advisory Capability (LTAC) (formerly Land Training Test & Reference Centre (LTT&RC)) will provide independent testing, analysis and assurance to support confidence in the Army Collective Training Service (ACTS). It will ensure that the Land Warfare Centre (LWC) remains an intelligent customer, able to maintain technical coherence and keep services focused on training outcomes, underpinned by secure information and data. Drawing upon reference architecture, technical standards and a test-bed for evaluating integration compatibility, the LTAC will provide independent support to the acceptance of digital products and provide assurance support that solutions meet the Defence Modelling and Simulation Coherence and Secure by Design principles. The LTAC will maintain the ACTS architecture baseline and act as the architecture custodian, ensuring coherence, traceability and alignment with approved Defence standards. Lot 1: . None"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "e58160f1c3f3594cdadf772a855b8f97efbe7f831b1d41f094ff72e4f86309cf": {
       "parts": [
         {
@@ -116729,6 +118663,29 @@
             "text": "Yleisradio Oy"
           },
           "source": "Yleisradio Oy"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "e5c3f82ada1c4e49db900d4664717d80a5a2f46cfdd41ba2e46110926f6da1f2": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:34.923661+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Governing Board of the Municipality of Benidorm"
+          },
+          "source": "Junta de Gobierno del Ayuntamiento de Benidorm"
         }
       ],
       "protected_names": [],
@@ -117271,6 +119228,29 @@
       ],
       "protected_names": [],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "e69e3a0371f40b7d38e62657b71f5eacdd81d36f7aaa17711ccbd54bb257bf3a": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:34.922736+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "National Employment Savings Trust (NEST) Corporation"
+          },
+          "source": "National Employment Savings Trust (NEST) Corporation"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "e6a2e14cf14fda22260a7a1e00bb8806fd42852329636c76d663b6c26c21e36b": {
@@ -118285,6 +120265,31 @@
       ],
       "protected_names": [
         "Neuruppiner Wohnungsbaugesellschaft mbH"
+      ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "e8d02e7927b0a326f0d40ca797f172813af891e53b4e404e95f8639aea88c711": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:20:56.626114+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "CA18460 - DN Colleges Group - ITT for the Provision of Brand Strategy and Rebranding Services"
+          },
+          "source": "CA18460 - DN Colleges Group - ITT for the Provision of Brand Strategy and Rebranding Services"
+        }
+      ],
+      "protected_names": [
+        "DN Colleges Group"
       ],
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
@@ -120102,6 +122107,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "ec4fc5a4ac3019eabfa44f4bbbc41b9a63c2601dd40c74039b622f9905179b34": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:24.453645+00:00",
+            "language": "it",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Hardware acquisition for Italian Air Force requirements"
+          },
+          "source": "Acquisizione hardware per esigenze Aeronautica Militare"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "ec55421bcf37c0cf2be21b409b8fe523e3fe71048aac419ba5151af9907eac90": {
       "parts": [
         {
@@ -120118,6 +122146,29 @@
       ],
       "protected_names": [],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "ec5a8f8dbcc7e2143b5f19d15f0ecbacbc48ff98d6c25e5d349a2e7cb1ce2f03": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:34.926941+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Provincial Council of Bizkaia - Department of Transport, Mobility and Tourism"
+          },
+          "source": "Diputación Foral de Bizkaia - Departamento de Transportes, Movilidad y Turismo"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "ec601e88b4501dfdb9932acb1ffc64197d6e2a15b5ca9824330aa893170bb983": {
@@ -120925,6 +122976,29 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "edb9aafc0fe55aa6b16dd2974fb6643c7b34cf150971cfbab29bcc41221a04f9": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:14.178765+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "​​Independent review of ORR's approach to cost assessment and efficiency target setting for National Highways​"
+          },
+          "source": "​​Independent review of ORR's approach to cost assessment and efficiency target setting for National Highways​"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "edba4602ab5a789aef5c90565e0c42eca9ea225c38e3ede5d5b1b007a947a3c3": {
@@ -128511,6 +130585,29 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "fc490d1ae74417589556d1f32ae34c09d4cc8bdcd4ab01ca631bfa275fda6692": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T12:21:29.244087+00:00",
+            "language": "sv",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Procurement created for grouping agreements during agreement import. The following competencies may be included in upcoming assignments: Management support IT; Interim management/manager IT; Team manager; The following competencies may be included in upcoming assignments: Business strategists; Method developers; Programme managers/Change managers; Business developers within IT; Data analysts; The following competencies may be included in upcoming assignments: Requirement analysts; IT developers / Programmers; Project managers; Programme managers; The following competencies may be included in upcoming assignments: Web developers; UX designers; Service designers; Communicator / communications strategist; The following competencies may be included in upcoming assignments: IT architect; IT technicians; IT support technicians; The following competencies may be included in upcoming assignments: ITIL - SOC"
+          },
+          "source": "Upphandling skapad för gruppering av avtal vid avtalsimport Följande kompetenser kan komma att ingå i kommande uppdrag: Ledningsstöd IT Interims ledning/chef IT Gruppchef; Följande kompetenser kan komma att ingå i kommande uppdrag: Affärsstrateger Metodutvecklare Programledare/Förändringsledare Verksamhetsutvecklare inom IT Dataanalytiker; Följande kompetenser kan komma att ingå i kommande uppdrag Kravanalytiker IT -utvecklare / Programmerare Projektledare Programledare; Följande kompetenser kan komma att ingå i kommande uppdrag Web utvecklare UX-designer Tjänstedesigner Kommunikatör / kommunikationsstrateg; Följande kompetenser kan komma att ingå i kommande uppdrag IT-Arkitekt IT-tekniker IT-supporttekniker; Följande kompetenser kan komma att ingå i kommande uppdrag ITIL - SOC"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "fc4dd35ac8918ed3e110b41de310a60b32ddd589deff81da3f43a9b6638f2fd0": {
