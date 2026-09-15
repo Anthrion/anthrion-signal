@@ -170,6 +170,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "0074ff5d7352a53820ae1a05a2af6d3100a55242b1006fece832df02b7fd76fa": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:09.271953+00:00",
+            "language": "pt",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Supply of usage licences and associated software support from various manufacturers for umivale Activa Submission deadline (source local time): 2026-10-01 14:00:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Suministro de licencias de uso y soporte asociado de software de distintos fabricantes para umivale Activa Submission deadline (source local time): 2026-10-01 14:00:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "008159d6635af648ee31c91a38785953e4617c95175181138544d789d8f26f83": {
       "parts": [
         {
@@ -1032,6 +1055,29 @@
             "text": "Support, maintenance, and enhancement services for the information systems of the Port Authority of Tarragona, which form the technological foundation supporting the organization's ICT."
           },
           "source": "Servicio de soporte, mantenimiento y mejora de los sistemas de información de la Autoridad Portuaria de Tarragona que suponen la base tecnológica sobre la que se sustentan las TIC de la organización."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "023a1c78cd771f00d52e37365f9b05f2c52997d97244928cabaff92dec74893d": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:09.272140+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Procurement of support services for the monitoring and coordination of work related to the technical office service for consultancy and technical support to the Directorate of ICT Projects of the CAPN."
+          },
+          "source": "Contratación de servicios de apoyo al seguimiento y coordinación de los trabajos relacionados con el servicio de oficina técnica para la asesoría y soporte técnico a la Dirección de los Proyectos TIC del CAPN."
         }
       ],
       "protected_names": [],
@@ -2767,6 +2813,31 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "04fddcc1eb0cb624c6459b7473835fa01bb838a931dc4583f153d38d4956dc9b": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:21.200582+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "This Expression of Interest (EOI) outlines Macmillan Cancer Support's request for agencies to collaborate on designing, testing and delivering a new cancer information and support offer(s). The project is part of Macmillan's 2025 strategy commitment to reach more people living with cancer and to improve the support we offer for people who experience inequitable access to cancer care and treatment. The design challenge for this project is \"How Might We develop a scalable solution that helps people understand their rights, choices and influence in decisions about their care, irrespective of their confidence, self-advocacy skills or system knowledge?\" This is an end-to-end Innovation project that we require to be delivered in its entirety by the supplier(s), with input and guidance from Macmillan. This includes insight development and analysis, solution development, prototyping and testing of a Minimum Viable Product (MVP). The solution should be scalable and likely be digital or include digital elements. The supplier must have extensive experience designing with communities and individuals that are marginalised. The supplier should be an expert in approaches including designing from the margins and embed meaningful and equitable participatory approaches into every phase of the project. Given the nature of the requirements, we are open to working with 2 suppliers who can deliver different elements or phases of the project. The agency must be able to recruit participants who reflect Macmillan's priority cancer support audiences to take part in user research, co-design and testing of solutions; people who have been diagnosed with cancer in the past 5 years. This includes people who are currently undergoing anti-cancer treatment (more details in attachment). Timelines • Expression of interest response deadline by 10/03/2026. • Selected agencies will receive the full RFP pack in March / April. • The anticipated project duration is 4-6 months from kick-off. The final timeline will be agreed with Macmillan during the tender process. Supplier Response Instructions Via email, interested suppliers should provide: (1) A brief outline of their research, design and innovation approach, including how they will use design from the margin approaches (see examples here); (2) evidence of prior engagement and participatory work with marginalised communities (3) evidence of developing and delivering scalable products and/or services (especially digital) (4) identification of gaps in their ability to meet the full requirements and if there are gaps (5) willingness to partner with another agency. Responses at this stage do not need to be extensive. Responses should be sent to procurement@macmillan.org.uk with the subject line EOI - Innovation Advocacy/Empowerment."
+          },
+          "source": "This Expression of Interest (EOI) outlines Macmillan Cancer Support's request for agencies to collaborate on designing, testing and delivering a new cancer information and support offer(s). The project is part of Macmillan's 2025 strategy commitment to reach more people living with cancer and to improve the support we offer for people who experience inequitable access to cancer care and treatment. The design challenge for this project is \"How Might We develop a scalable solution that helps people understand their rights, choices and influence in decisions about their care, irrespective of their confidence, self-advocacy skills or system knowledge?\" This is an end-to-end Innovation project that we require to be delivered in its entirety by the supplier(s), with input and guidance from Macmillan. This includes insight development and analysis, solution development, prototyping and testing of a Minimum Viable Product (MVP). The solution should be scalable and likely be digital or include digital elements. The supplier must have extensive experience designing with communities and individuals that are marginalised. The supplier should be an expert in approaches including designing from the margins and embed meaningful and equitable participatory approaches into every phase of the project. Given the nature of the requirements, we are open to working with 2 suppliers who can deliver different elements or phases of the project. The agency must be able to recruit participants who reflect Macmillan's priority cancer support audiences to take part in user research, co-design and testing of solutions; people who have been diagnosed with cancer in the past 5 years. This includes people who are currently undergoing anti-cancer treatment (more details in attachment). Timelines • Expression of interest response deadline by 10/03/2026. • Selected agencies will receive the full RFP pack in March / April. • The anticipated project duration is 4-6 months from kick-off. The final timeline will be agreed with Macmillan during the tender process. Supplier Response Instructions Via email, interested suppliers should provide: (1) A brief outline of their research, design and innovation approach, including how they will use design from the margin approaches (see examples here); (2) evidence of prior engagement and participatory work with marginalised communities (3) evidence of developing and delivering scalable products and/or services (especially digital) (4) identification of gaps in their ability to meet the full requirements and if there are gaps (5) willingness to partner with another agency. Responses at this stage do not need to be extensive. Responses should be sent to procurement@macmillan.org.uk with the subject line EOI - Innovation Advocacy/Empowerment."
+        }
+      ],
+      "protected_names": [
+        "MACMILLAN CANCER SUPPORT"
+      ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "0509a7d7e5ece341c5d01d282987c8a1785b09add61959ceb9532fd3c10d4c50": {
       "parts": [
         {
@@ -3835,6 +3906,29 @@
             "text": "ESG-Datenmanagementsystem (SaaS)"
           },
           "source": "ESG-Datenmanagementsystem (SaaS)"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "0675fdbf40711ed2c8e795c19d09ce517b2cb7c9fc8e2d0e06311d69966e8bf5": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:21.200847+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Provision of Design and Build Services Local Gov Drupal - Sports Microsite in our Local Gov Drupal Environment"
+          },
+          "source": "Provision of Design and Build Services Local Gov Drupal - Sports Microsite in our Local Gov Drupal Environment"
         }
       ],
       "protected_names": [],
@@ -7326,6 +7420,38 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "0d999b0565205260e40fbde073f4e8200b968542974adddfa021306b0321253d": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.1-flash-lite": 1,
+            "gemini-3.5-flash-lite": 2
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "rejected": {
+            "id": "0d999b0565205260e40fbde073f4e8200b968542974adddfa021306b0321253d:0",
+            "language": "mul",
+            "model": "gemini-3.1-flash-lite",
+            "text": "Servicio de renovación y gestión de dominios. Submission deadline (source local time): 2026-09-30 13:00:00. Time zone not supplied; check the source notice."
+          },
+          "result": {
+            "at": "2026-09-15T23:20:00.301430+00:00",
+            "language": "mul",
+            "model": "gemini-3.1-flash-lite",
+            "text": "Domain renewal and management service. Submission deadline (source local time): 2026-09-30 13:00:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Servicio de renovación y gestión de dominios. Submission deadline (source local time): 2026-09-30 13:00:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "0db16f32289891f6414ad49cfb42e1f2509681f6442834420d9e6fc5473f9725": {
       "parts": [
         {
@@ -8037,6 +8163,29 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "0ec940c8d10c871c47adae3cd677d403cfceef743daeb22495f873f08dc51e02": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:31.628176+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The theatre will upgrade its machinery installation. The upgrade aims to ensure compliance to NS-EN 17206 and includes:Replacement of the control system for both stages. Assessment and potential reuse of existing components. Potential upgrade or addition of new axes to the existing system."
+          },
+          "source": "The theatre will upgrade its machinery installation. The upgrade aims to ensure compliance to NS-EN 17206 and includes:Replacement of the control system for both stages. Assessment and potential reuse of existing components. Potential upgrade or addition of new axes to the existing system."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "0ed2795183bd507458f6d5598d810d0d7310714b15dedabd44701991d7b8eb92": {
@@ -10888,6 +11037,31 @@
         }
       ],
       "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "13442e1804a498bc56f3e1aa370af91b4b64e70efac886e78f41a993f3243518": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:21.198464+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Expression of Interest for a Macmillan Cancer Support Innovation project"
+          },
+          "source": "Expression of Interest for a Macmillan Cancer Support Innovation project"
+        }
+      ],
+      "protected_names": [
+        "MACMILLAN CANCER SUPPORT"
+      ],
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
@@ -13878,6 +14052,31 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "195752529047315c64cfe037a77473f36fb02692d32e2e159c433f67a0a9f954": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:31.634374+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Service for the maintenance, monitoring and improvement of the process management system of Patronato de la Alhambra y Generalife"
+          },
+          "source": "Servicio para el mantenimiento, seguimiento y mejora del sistema de gestión por procesos del Patronato de la Alhambra y Generalife"
+        }
+      ],
+      "protected_names": [
+        "PATRONATO DE LA ALHAMBRA Y GENERALIFE"
+      ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "1958ccba0b22977c77cc1c1d3dbdd7d136731808da6a779e8729c075bbfb2275": {
       "parts": [
         {
@@ -13973,6 +14172,29 @@
       ],
       "protected_names": [],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "1989a3e8e1123ac2a83761e20676e43e99f8b8109d3170c8d27c31092290772f": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:50.383191+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "MACMILLAN CANCER SUPPORT"
+          },
+          "source": "MACMILLAN CANCER SUPPORT"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "19964b0b5a42faaa02d3dfd0cf2816160b6d373b1da5fb3a2c4ed0d5291bffe1": {
@@ -14843,6 +15065,29 @@
       "purpose": "passage",
       "retry_profile": "english-coverage-and-organisation-names-2"
     },
+    "1abcec00d14ddf8e09bb57cb81696241bea3dbb2c5bf0c78c6fa762c11e271f9": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:09.270708+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Development and Maintenance of Commercial, Communication and Innovation Applications Submission deadline (source local time): 2026-09-25 12:00:00. Time zone not supplied; check the source notice. Peninsula time"
+          },
+          "source": "Desarrollo Y Mantenimiento De Aplicaciones Comerciales, Comunicación E Innovación Submission deadline (source local time): 2026-09-25 12:00:00. Time zone not supplied; check the source notice. Hora peninsular"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "1ac71ee323454d1247b58b2589e64b83d9aff497a94e4e558b099328112bbbd8": {
       "parts": [
         {
@@ -14961,6 +15206,29 @@
       ],
       "protected_names": [],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "1b018ac4c5f9575ac37e8a44ed526978be0fa92dfef7911b5fe0f96dd956285d": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:50.381042+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Presidency of the Provincial Council of Salamanca"
+          },
+          "source": "Presidencia de la Diputación Provincial de Salamanca"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "1b027d4edafe099658050c6dd2b27acefb7828b13f332657f3a1e30fa99a5ce8": {
@@ -16802,6 +17070,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "1e72f2e23b6ba8a3e4a05aa21de0859118c2b347a9f0c5ba6c5067667b217c03": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:50.386668+00:00",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Helsinki Regional Transport Authority"
+          },
+          "source": "Helsingin seudun liikenne -kuntayhtymä"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "1e799c85e8ea243ff2fad94cbbe791a9a19e48f77ffb2261397f5f5ce0413c45": {
       "parts": [
         {
@@ -17156,6 +17447,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "1f00fdd0679e4a3c5df5cb4eac6a87550b8dbed642420903f62b46949fa7c1f9": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:50.386961+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Management of Mutua Navarra, Mutual Insurance Company for Accidents at Work and Occupational Diseases of Social Security 21"
+          },
+          "source": "Gerencia de Mutua Navarra, Mutua de Accidentes de Trabajo y Enfermedades Profesionales de la Seguridad Social 21"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "1f085cc0318328c8fb541c948ac4577c69b05666da54e0fb27b386b6f3dac5f5": {
       "parts": [
         {
@@ -17464,6 +17778,29 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "1fc0b7dc9fbbdb1acd9e452773406a6a79f1e591369b52911b14ddd944c01516": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:31.637020+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "REQUEST FOR INFORMATION: Invitation to Participate in a Market Dialogue on Optimizely Licenses"
+          },
+          "source": "REQUEST FOR INFORMATION: Invitation to Participate in a Market Dialogue on Optimizely Licenses"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "1fc4c1d3957f5261507de76e7a534670193219f14bb9e51c9489812d0947708d": {
@@ -18023,6 +18360,29 @@
         "Scottish Government"
       ],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "20dff4675f16359dff4b9875f583833d1747df00e26f5adea2fef288a350afec": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:50.380613+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Presidency of the Provincial Tourism Board of Costa Blanca"
+          },
+          "source": "Presidencia del Patronato Provincial de Turismo de la Costa Blanca"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "20e6223127f8df47d408a627227254e5098a794b44ffab813e18e57b8700bfe2": {
@@ -18641,6 +19001,37 @@
       ],
       "protected_names": [],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "224a6e0d6b3487fcca8f97f20b2a0ff2615d779f39a3d7cde6b044711851d448": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "rejected": {
+            "id": "224a6e0d6b3487fcca8f97f20b2a0ff2615d779f39a3d7cde6b044711851d448:0",
+            "language": "sv",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Eskilstuna Kommunfastigheter Aktiebolag"
+          },
+          "result": {
+            "at": "2026-09-15T23:19:51.633472+00:00",
+            "language": "sv",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Eskilstuna Municipal Real Estate Public Limited Company"
+          },
+          "source": "Eskilstuna Kommunfastigheter Aktiebolag"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "224d979ca26d9c62ee202aca951b01efaccf3c016621b49cb0203b4b49d8563b": {
@@ -20846,6 +21237,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "266537460e564c7e636dd6b2c9099e3e8f6afe085b07b84217424893cdb8637f": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:09.276464+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Sistema HUB TDL dentro de la red JRE nacional (JRE-N) en DLMC Submission deadline (source local time): 2026-09-30 12:00:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Sistema HUB TDL dentro de la red JRE nacional (JRE-N) en DLMC Submission deadline (source local time): 2026-09-30 12:00:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "2666f36d20aade1635c4929090dbafc66e4b6a6461f3c512b1812c2f38ec6134": {
       "parts": [
         {
@@ -20917,6 +21331,29 @@
             "text": "Sustainable mini desktop computers (product-neutral) for the Federal Police and additional services"
           },
           "source": "Nachhaltige Mini Arbeitsplatzcomputer (produktneutral) für die Bundespolizei und Zusatzleistungen"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "26aa7540a1f6571cf37b9bec24e34c456727f7e27212f5f1815d793a0433ae5f": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:09.274403+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Nodo NATO SECRET WAN (NS WAN) del Centro de Excelencia en Contra-Artefactos Explosivos Improvisados (CoE-CIED) Submission deadline (source local time): 2026-09-30 12:00:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Nodo NATO SECRET WAN (NS WAN) del Centro de Excelencia en Contra-Artefactos Explosivos Improvisados (CoE-CIED) Submission deadline (source local time): 2026-09-30 12:00:00. Time zone not supplied; check the source notice."
         }
       ],
       "protected_names": [],
@@ -30151,6 +30588,37 @@
       "purpose": "organisation",
       "retry_profile": "english-coverage-and-organisation-names-2"
     },
+    "3873e6a1424ebe2d7f097c698a16667ced50debf8385cdcc82e77a17204c86b9": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "rejected": {
+            "id": "3873e6a1424ebe2d7f097c698a16667ced50debf8385cdcc82e77a17204c86b9:0",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Servicios de verificación sobre el terreno de proyectos de formación para el empleo cofinanciados por el Fondo Social Europeo Plus (FSE+) en el periodo 2021-2027"
+          },
+          "result": {
+            "at": "2026-09-15T23:19:31.617472+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "On-site verification services for employment training projects co-financed by the European Social Fund Plus (ESF+) in the period 2021-2027"
+          },
+          "source": "Servicios de verificación sobre el terreno de proyectos de formación para el empleo cofinanciados por el Fondo Social Europeo Plus (FSE+) en el periodo 2021-2027"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "387e3057e26b9040c502aac2f07f52546acd40b2ca1c94241434d041b32c046c": {
       "parts": [
         {
@@ -31265,6 +31733,37 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "3a0fd966bc7eaffebaab4abb084c37317d303acd5d8d6321628fbcd1db74bdc8": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 2
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "rejected": {
+            "id": "3a0fd966bc7eaffebaab4abb084c37317d303acd5d8d6321628fbcd1db74bdc8:0",
+            "language": "sv",
+            "model": "gemini-3.5-flash-lite",
+            "text": "RFI- Ramavtal Programlicenser"
+          },
+          "result": {
+            "at": "2026-09-15T23:19:57.254675+00:00",
+            "language": "sv",
+            "model": "gemini-3.1-flash-lite",
+            "text": "RFI - Framework agreement for software licences"
+          },
+          "source": "RFI- Ramavtal Programlicenser"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "3a105aeb599c942e5cde78ba5170616175a50280bf58c7d6541913d308bbd3a3": {
       "parts": [
         {
@@ -31736,6 +32235,37 @@
             "text": "Digital collection system for waste collection"
           },
           "source": "Digitalt insamlingssystem för avfallinsamlingen"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "3b1a7ddabb3720ebe2d62332cefcc18a52bea246f5e740d3dc90a1d06d2c2695": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "rejected": {
+            "id": "3b1a7ddabb3720ebe2d62332cefcc18a52bea246f5e740d3dc90a1d06d2c2695:0",
+            "language": "it",
+            "model": "gemini-3.5-flash-lite",
+            "text": "ACCORDO QUADRO SUDDIVISO IN DUE LOTTI PER L’AFFIDAMENTO DEI LAVORI E DEI SERVIZI PLURIENNALI DI GESTIONE E MANUTENZIONE DEL PATRIMONIO COMUNALE Lotto 1 - Spazi pubblici e infrastrutture. Manutenzione ordinaria e straordinaria degli spazi pubblici e delle infrastrutture urbane e relativa attività di gestione informatica e sistema di reporting; Lotto 2 - Patrimonio edilizio. Manutenzione ordinaria e straordinaria edilizia e impiantistica degli edifici scolastici, sportivi, istituzionali e vincolati e relativa attività di gestione informatica e sistema di reporting"
+          },
+          "result": {
+            "at": "2026-09-15T23:19:31.627848+00:00",
+            "language": "it",
+            "model": "gemini-3.5-flash-lite",
+            "text": "FRAMEWORK AGREEMENT DIVIDED INTO TWO LOTS FOR THE AWARD OF MULTI-YEAR WORKS AND SERVICES CONTRACTS FOR THE MANAGEMENT AND MAINTENANCE OF MUNICIPAL ASSETS Lot 1 - Public spaces and infrastructure. Ordinary and extraordinary maintenance of public spaces and urban infrastructure and related IT management activity and reporting system; Lot 2 - Building assets. Ordinary and extraordinary building and plant engineering maintenance of school, sports, institutional and listed buildings and related IT management activity and reporting system"
+          },
+          "source": "ACCORDO QUADRO SUDDIVISO IN DUE LOTTI PER L’AFFIDAMENTO DEI LAVORI E DEI SERVIZI PLURIENNALI DI GESTIONE E MANUTENZIONE DEL PATRIMONIO COMUNALE Lotto 1 - Spazi pubblici e infrastrutture. Manutenzione ordinaria e straordinaria degli spazi pubblici e delle infrastrutture urbane e relativa attività di gestione informatica e sistema di reporting; Lotto 2 - Patrimonio edilizio. Manutenzione ordinaria e straordinaria edilizia e impiantistica degli edifici scolastici, sportivi, istituzionali e vincolati e relativa attività di gestione informatica e sistema di reporting"
         }
       ],
       "protected_names": [],
@@ -32386,6 +32916,29 @@
       ],
       "protected_names": [],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "3c558100076bcb16f192d3097e38f552da2d9087c84f8dd84e6641c5fce759b8": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:50.380765+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Governing Board of the Municipality of Almería"
+          },
+          "source": "Junta de Gobierno del Ayuntamiento de Almería"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "3c5646281a727d8f59a5a4ef2a140700f5cf1f0b6d03eb3cdf18273ab42520e7": {
@@ -33742,6 +34295,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "3f637337526e548e01d146224eb45157fba0b114e3ff83f54d434756955f9390": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:50.389244+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Humberside Fire and Rescue Service"
+          },
+          "source": "Humberside Fire and Rescue Service"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "3f6b0df222cb8c3f038fb19806663e1119f3e2d9352b1d49e116380bb1dd9cc8": {
       "parts": [
         {
@@ -34563,6 +35139,37 @@
             "text": "Health services, environment, health, medicine, nutrition Lot LOT-0000: Installation of an HVAC IT system. Health services, environment, health, medicine, nutrition"
           },
           "source": "Gesundheitsdienstleistungen, Umwelt, Gesundheit, Medizin, Ernährung Lot LOT-0000: Errichtung eines HKL EDV. Gesundheitsdienstleistungen, Umwelt, Gesundheit, Medizin, Ernährung"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "40fbd23cb4551e32af141fd09a216ca0e2ceb790f802113279aeb66ce54c64bc": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "rejected": {
+            "id": "40fbd23cb4551e32af141fd09a216ca0e2ceb790f802113279aeb66ce54c64bc:0",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "\"Asistencia técnica para la redacción del Plan Director de la Alhambra e implementación de un modelo de evaluación y seguimiento\""
+          },
+          "result": {
+            "at": "2026-09-15T23:19:45.499021+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "\"Technical assistance for the drafting of the Alhambra Master Plan and implementation of an evaluation and monitoring model\""
+          },
+          "source": "\"Asistencia técnica para la redacción del Plan Director de la Alhambra e implementación de un modelo de evaluación y seguimiento\""
         }
       ],
       "protected_names": [],
@@ -35538,6 +36145,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "42cf95acafc57f40833178152601aa97e0540f16b726f5f8674a557f2f2de7a5": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:39.041119+00:00",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Market consultation: Construction management software for public administration in state building construction and federal building construction 1. Aim of the market consultation: As part of the modernisation of our construction-related IT infrastructure, we are conducting a market consultation. The aim is to identify potential solutions that offer user-friendly and secure support for state- and federal-specific requirements for kameralistic and construction-related IT-supported processing of the state and federal construction programme for the Federal State of Saxony-Anhalt. The construction management software must ensure the uniform, efficient processing of all necessary procedures for this and map a complete adoption of the business processes corresponding to the state standard for Saxony-Anhalt in state and federal construction, including interfaces and specific reporting. The solution approaches must be seamlessly integrable into the existing IT landscape, including cooperation with the IT service provider Dataport AöR and its requirements, as well as meeting the requirements for data protection and IT security in the KRITIS sector. This market consultation serves exclusively to gather information and runs until 17.03.2026. 2. Target group: The market consultation is aimed at suppliers who have experience in creating state-specific construction management software for state building construction and federal building construction within the framework of administrative assistance (Organleihe), including the applicable regulations and standards of the state and the federal government, as well as their seamless integration into existing hybrid and complex IT system landscapes in the KRITIS environment."
+          },
+          "source": "Markerkundung: Baumanagementsoftware für die öffentliche Verwaltung im Staatlichen Hochbau und Bundesbau 1. Ziel der Markterkundung: Im Rahmen der Modernisierung unserer baufachlichen IT-Infrastruktur führen wir eine Markterkundung durch. Ziel ist es, mögliche Lösungen zu identifizieren, die eine benutzerfreundliche und sichere Begleitung der landes- und bundesspezifischen Anforderungen an die kameralistische und baufachliche IT-gestützte Bearbeitung des Landes- und Bundesbauprogrammes für das Land Sachsen-Anhalt bieten. Die Baumanagementsoftware soll die einheitliche, effiziente Bearbeitung aller dafür notwendigen Vorgänge sicherstellen und eine vollständige Übernahme der nach der Landesnorm für Sachsen-Anhalt im Landes- und Bundesbau entsprechenden Geschäftsprozesse inkl. Schnittstellen, das spezifischen Berichtswesen abbilden. Die Lösungsansätze müssen nahtlos in die bestehende IT-Landschaft inkl. der Zusammenarbeit mit dem IT-Dienstleister Dataport AöR und dessen Anforderungen integrierbar sein, sowie den Anforderungen an Datenschutz und IT-Sicherheit im KRITIS-Sektor entsprechen. Diese Markterkundung dient ausschließlich der Informationsgewinnung und läuft bis zum 17.03.2026. 2. Zielgruppe: Die Markterkundung richtet sich an Anbieter, die Erfahrungen in der Erstellung einer landesspezifischen Baumanagementsoftware für den Staatlichen Landesbau und Bun-desbau im Rahmen der Organleihe inkl. der gelten Regularien und Normen des Landes und des Bundes sowie deren nahtlose Integration in bestehende hybride und komplexe IT-Systemlandschaften im KRITIS-Umfeld haben."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "42dc6942d891c549e2ac1a5a9d44bb3192788706ce01212fee2ede376f1efba4": {
       "parts": [
         {
@@ -36008,6 +36638,29 @@
             "text": "Maternal and Child Health Encounters Networks (MCHEK)"
           },
           "source": "Maternal and Child Health Encounters Networks (MCHEK)"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "4377f3f881648bf0adf9be153ce1d9022ef9d43c0d8fbb7a2e7a50761bfe02eb": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:39.046412+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "RFI - Procurement and hire of software and licences for Trøndelag county and associated municipalities."
+          },
+          "source": "RFI - Procurement and hire of software and licences for Trøndelag county and associated municipalities."
         }
       ],
       "protected_names": [],
@@ -37298,6 +37951,29 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "4603b7f4858f77afc942a8f07ae7e54a224ce5c0124b7bf2ff40e7cda48ae9e3": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:09.269766+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Development and Maintenance of Commercial, Communication and Innovation Applications"
+          },
+          "source": "Desarrollo Y Mantenimiento De Aplicaciones Comerciales, Comunicación E Innovación"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "4608c692850ef581ba80f8ff18d0313efdf84451610be2453e83b97682b2f65b": {
@@ -39166,6 +39842,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "498357a7f99eef3bc4fe66ffc2fc9480943ca7a226a9895d124ded8ba43554f0": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:09.279131+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Service for carrying out a technical study for inventories of facilities and sites with the presence of asbestos in municipalities with fewer than 20.000 inhabitants in the province of Salamanca. Submission deadline (source local time): 2026-09-30 23:59:00. Time zone not supplied; check the source notice. See clause 10a of the PCAP"
+          },
+          "source": "Servicio para la realización de un estudio técnico para inventarios de instalaciones y emplazamientos con presencia de amianto en en los municipios de menos de 20.000 habitantes de la provincia de Salamanca. Submission deadline (source local time): 2026-09-30 23:59:00. Time zone not supplied; check the source notice. Ver clausula 10a del PCAP"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "498bf69bd2b19c5f2411209a95721aca31381e20d755b5cb998cefc12e8b43eb": {
       "parts": [
         {
@@ -40121,6 +40820,37 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "4b1b9d13a4b3dffa14d0d54da4379e4833fcb4e45ad09736df2d4eacd54e8aef": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "rejected": {
+            "id": "4b1b9d13a4b3dffa14d0d54da4379e4833fcb4e45ad09736df2d4eacd54e8aef:0",
+            "language": "it",
+            "model": "gemini-3.5-flash-lite",
+            "text": "PROCEDURA APERTA PER LA CONCLUSIONE DI ACCORDO QUADRO SUDDIVISO IN DUE LOTTI PER L’AFFIDAMENTO DEI LAVORI E DEI SERVIZI PLURIENNALI DI GESTIONE E MANUTENZIONE DEL PATRIMONIO COMUNALE. Lotto 1: CIG BC9"
+          },
+          "result": {
+            "at": "2026-09-15T23:19:31.626910+00:00",
+            "language": "it",
+            "model": "gemini-3.5-flash-lite",
+            "text": "OPEN PROCEDURE FOR THE CONCLUSION OF A FRAMEWORK AGREEMENT DIVIDED INTO TWO LOTS FOR THE AWARD OF MULTI-YEAR WORKS AND SERVICES CONTRACTS FOR THE MANAGEMENT AND MAINTENANCE OF MUNICIPAL ASSETS. Lot 1: CIG BC9"
+          },
+          "source": "PROCEDURA APERTA PER LA CONCLUSIONE DI ACCORDO QUADRO SUDDIVISO IN DUE LOTTI PER L’AFFIDAMENTO DEI LAVORI E DEI SERVIZI PLURIENNALI DI GESTIONE E MANUTENZIONE DEL PATRIMONIO COMUNALE. Lotto 1: CIG BC9"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "4b232ee8a9efee8d66c2bd39f91c72821bcd99d9e2b165f95c326468e9ecc553": {
       "parts": [
         {
@@ -40938,6 +41668,37 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "4c41f52d410879b46cf9f7e0eb4ca6a7b3b3c6ed63a9af8851874c4d27db189b": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "rejected": {
+            "id": "4c41f52d410879b46cf9f7e0eb4ca6a7b3b3c6ed63a9af8851874c4d27db189b:0",
+            "language": "mul",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Servicios de asistencia técnica integral para la gestión del Proyecto Europeo Edil \"Catarroja Avança\" Submission deadline (source local time): 2026-10-13 23:59:00. Time zone not supplied; check the source notice. Sujeto a regulación armonizada"
+          },
+          "result": {
+            "at": "2026-09-15T23:19:31.623075+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Comprehensive technical assistance services for the management of the European Edil Project \"Catarroja Avança\" Submission deadline (source local time): 2026-10-13 23:59:00. Time zone not supplied; check the source notice. Subject to harmonised regulation"
+          },
+          "source": "Servicios de asistencia técnica integral para la gestión del Proyecto Europeo Edil \"Catarroja Avança\" Submission deadline (source local time): 2026-10-13 23:59:00. Time zone not supplied; check the source notice. Sujeto a regulación armonizada"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "4c421de069f116e62093e791d296bedd28869250e43bbfc00ce03baae7987d0c": {
       "parts": [
         {
@@ -41649,6 +42410,29 @@
             "text": "UNtangling our SEAs (UNSEA) – A holistic solution approach to avoid the pollution of the marine environment with fishing gear"
           },
           "source": "UNtangling our SEAs (UNSEA) – Ein holistischer Lösungsansatz zur Vermeidung der Belastung der Meeresumwelt mit Fischfanggeräten"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "4e054a38fbcd5cb1985ab7c3288206d5c06dccd4fc97ae920f97100635f448f3": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:21.200716+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Provision of Design and Build Services Local Gov Drupal - Sports Microsite"
+          },
+          "source": "Provision of Design and Build Services Local Gov Drupal - Sports Microsite"
         }
       ],
       "protected_names": [],
@@ -46012,6 +46796,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "575fa50918fe4852c877e8b083e8c340adc566750747182ef859170f30281f09": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:09.277600+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Service for carrying out a technical study for inventories of facilities and sites with the presence of asbestos in municipalities with fewer than 20.000 inhabitants in the province of Salamanca."
+          },
+          "source": "Servicio para la realización de un estudio técnico para inventarios de instalaciones y emplazamientos con presencia de amianto en en los municipios de menos de 20.000 habitantes de la provincia de Salamanca."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "5760054b25d235933d3348d59cbd73ab60bcdd0a4ba064196024703b02861f53": {
       "parts": [
         {
@@ -48916,6 +49723,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "5cb6ec32d324fbf836c2217e4fef17f0bd14d567627ee3faa6df6bc968feddd1": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:39.047373+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Trøndelag county, with associated municipalities, procures and hires a large number of software and licences annually. We are now striving to create an even better and more predictable agreement than in the past. We are now sharing a draft of the requirement specifications and price form with the market. We want feedback on this. The aim is that the feedback from the market shall make us, as the Contracting Authority, in a better position to make relevant and clear requirements. See the attached RFI - Enquiry for information, the Draft Requirement Specifications and the Draft Price Form for further information."
+          },
+          "source": "Trøndelag county, with associated municipalities, procures and hires a large number of software and licences annually. We are now striving to create an even better and more predictable agreement than in the past. We are now sharing a draft of the requirement specifications and price form with the market. We want feedback on this. The aim is that the feedback from the market shall make us, as the Contracting Authority, in a better position to make relevant and clear requirements. See the attached RFI - Enquiry for information, the Draft Requirement Specifications and the Draft Price Form for further information."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "5cc161739c4dc671b7c22bb07f067fbe321d4b432ae53eacbbf87b00681ab33c": {
       "parts": [
         {
@@ -50332,6 +51162,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "5f66837d3b4f26157ab39ad95703ec1cd452c689c98b0b91a6fb903120cd9320": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:09.267303+00:00",
+            "language": "pt",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Various supplies related to the IT requirements of the Provincial Tourism Board of Costa Blanca. Submission deadline (source local time): 2026-10-01 13:00:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Diversos suministros relacionados con las necesidades informáticas del Patronato Provincial de Turismo de la Costa Blanca. Submission deadline (source local time): 2026-10-01 13:00:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "5f6c001bdc1e46c9ffbb3eaaf9ba759fda63a63135ea41365f513ae4a52e3e63": {
       "parts": [
         {
@@ -50690,6 +51543,29 @@
             "text": "Invitation to a market dialogue regarding the new ERP system in Drammen municipality."
           },
           "source": "Invitation to a market dialogue regarding the new ERP system in Drammen municipality."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "6041a30bf57082711dd8b555a2e8f48bad788cebac0341d281a6c7402bef330a": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:39.048655+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Prior information notice - New contract IT operational services"
+          },
+          "source": "Prior information notice - New contract IT operational services"
         }
       ],
       "protected_names": [],
@@ -51502,6 +52378,37 @@
             "text": "Trondheim municipality, hereafter called the contracting authority, is preparing new competitions for the delivery of printed and digital teaching aids. The contracting authority would like input before the preparation of the tender documentation, so that the municipality is updated on the developments in the market and makes sensible, appropriate and future orientated requirements and criteria for the competition. The contracting authority invites suppliers of digital teaching aids to a market dialogue 24 October 2025 between 08:00 and 16:00. We set up digital one-to-one meetings, which will take place on Google Meet, with a maximum length of two hours per meeting. The deadline for registering for one-to-one meetings is Friday 17 October 2025, 12:00. Answers are to be sent in the communication module in Mercell by Tuesday 28 October 2025, 12.00. Feedback received after this cannot be expected to be taken into account in the work on the new competition. The invitation with questions and the tender documentation including requirements, award criteria and tender form from 2021 are attached."
           },
           "source": "Trondheim municipality, hereafter called the contracting authority, is preparing new competitions for the delivery of printed and digital teaching aids. The contracting authority would like input before the preparation of the tender documentation, so that the municipality is updated on the developments in the market and makes sensible, appropriate and future orientated requirements and criteria for the competition. The contracting authority invites suppliers of digital teaching aids to a market dialogue 24 October 2025 between 08:00 and 16:00. We set up digital one-to-one meetings, which will take place on Google Meet, with a maximum length of two hours per meeting. The deadline for registering for one-to-one meetings is Friday 17 October 2025, 12:00. Answers are to be sent in the communication module in Mercell by Tuesday 28 October 2025, 12.00. Feedback received after this cannot be expected to be taken into account in the work on the new competition. The invitation with questions and the tender documentation including requirements, award criteria and tender form from 2021 are attached."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "61b328817e7796d58e10dff4ec6161a94758e25e493833055c7cf31d403a49aa": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "rejected": {
+            "id": "61b328817e7796d58e10dff4ec6161a94758e25e493833055c7cf31d403a49aa:0",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Las denominadas Tecnologías de la Información y la Comunicación (TIC) se desarrollaron a finales del siglo pasado y son herramientas de amplia utilización desde 1995. En el entorno universitario puede afirmarse que son herramientas de utilización global (por todos los universitarios) desde finales de la década de los 90 del siglo pasado. Desde esas fechas ya no se entiende, ni puede desarrollarse normalmente, la actividad de ningún universitario (ya sea PDI, estudiante o PTGAS) sin utilizar el correo electrónico o el acceso a información a través de web, o la docencia sin las utilidades del campus virtual, etc. Y día a día van incorporándose nuevas aplicaciones que mejoran y facilitan el trabajo cotidiano de los universitarios (videoconferencia, herramientas de trabajo colaborativo, etc.) Consecuencia directa de este cambio en las condiciones de trabajo de los universitarios es que una (si no la primera) de las herramientas básicas del puesto de trabajo de cualquier universitario es su ordenador personal y sus dispositivos móviles; máquinas a través de las cuales pueden utilizarse esas herramientas de trabajo sin las que no puede desarrollarse la actividad cotidiana. La Universidad de Zaragoza precisa, por tanto, adquirir ordenadores personales y dispositivos móviles para su uso en todos sus ámbitos de actuación: docencia, investigación y gestión universitaria. Dentro de cada uno de estos ámbitos (en especial en docencia e investigación) las necesidades no son uniformes puesto que los entornos de trabajo son muy diferentes (filosofía, derecho, informática, etc.). Por otro lado, es muy difícil (por no decir imposible) planificar con suficiente antelación las necesidades de cada grupo puesto que las fuentes de financiación son diversas y no predecibles con antelación. El acuerdo marco es la forma idónea para cubrir las necesidades de la universidad puesto que permite homogeneizar las compras permitiendo que cada unidad las realice cuando sea necesario. El procedimiento está subdividido en 2 lotes: 1. Lote 1 dedicado a la adquisición de ordenadores personales con sistema operativo macOS, sus periféricos y accesorios. 2. Lote 2 incluye las tabletas (tablets en terminología inglesa) con sistema operativo IOS, cada vez de más utilización por su transportabilidad Lote 1: ordenadores personales con sistema operativo macOS; Lote 2: tabletas con sistema operativo IOS."
+          },
+          "result": {
+            "at": "2026-09-15T23:19:31.626708+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Information and Communication Technologies (ICT) were developed at the end of the last century and have been widely used tools since 1995. In the university environment, it can be stated that they have been tools of global use (by all university members) since the late 90s of the last century. Since those dates, the activity of any university member (whether PDI, student or PTGAS) is no longer understood, nor can it be carried out normally, without using electronic mail or web-based information access, or teaching without the utilities of the virtual campus, etc. Day by day, new applications are incorporated that improve and facilitate the daily work of university members (videoconferencing, collaborative work tools, etc.). A direct consequence of this change in the working conditions of university members is that one of the basic tools (if not the first) of the workplace of any university member is their personal computer and mobile devices; machines through which these work tools can be used without which daily activity cannot be carried out. The University of Zaragoza therefore requires the acquisition of personal computers and mobile devices for use in all its areas of activity: teaching, research and university management. Within each of these areas (especially in teaching and research) needs are not uniform since working environments are very different (philosophy, law, computer science, etc.). On the other hand, it is very difficult (not to say impossible) to plan the needs of each group sufficiently in advance since funding sources are diverse and cannot be predicted in advance. The framework agreement is the ideal way to cover the university's needs since it allows purchases to be standardised, enabling each unit to make them when necessary. The procedure is subdivided into 2 lots: 1. Lot 1 dedicated to the acquisition of personal computers with macOS operating system, their peripherals and accessories. 2. Lot 2 includes tablets (tablets in English terminology) with IOS operating system, increasingly used due to their portability Lot 1: personal computers with macOS operating system; Lot 2: tablets with IOS operating system."
+          },
+          "source": "Las denominadas Tecnologías de la Información y la Comunicación (TIC) se desarrollaron a finales del siglo pasado y son herramientas de amplia utilización desde 1995. En el entorno universitario puede afirmarse que son herramientas de utilización global (por todos los universitarios) desde finales de la década de los 90 del siglo pasado. Desde esas fechas ya no se entiende, ni puede desarrollarse normalmente, la actividad de ningún universitario (ya sea PDI, estudiante o PTGAS) sin utilizar el correo electrónico o el acceso a información a través de web, o la docencia sin las utilidades del campus virtual, etc. Y día a día van incorporándose nuevas aplicaciones que mejoran y facilitan el trabajo cotidiano de los universitarios (videoconferencia, herramientas de trabajo colaborativo, etc.) Consecuencia directa de este cambio en las condiciones de trabajo de los universitarios es que una (si no la primera) de las herramientas básicas del puesto de trabajo de cualquier universitario es su ordenador personal y sus dispositivos móviles; máquinas a través de las cuales pueden utilizarse esas herramientas de trabajo sin las que no puede desarrollarse la actividad cotidiana. La Universidad de Zaragoza precisa, por tanto, adquirir ordenadores personales y dispositivos móviles para su uso en todos sus ámbitos de actuación: docencia, investigación y gestión universitaria. Dentro de cada uno de estos ámbitos (en especial en docencia e investigación) las necesidades no son uniformes puesto que los entornos de trabajo son muy diferentes (filosofía, derecho, informática, etc.). Por otro lado, es muy difícil (por no decir imposible) planificar con suficiente antelación las necesidades de cada grupo puesto que las fuentes de financiación son diversas y no predecibles con antelación. El acuerdo marco es la forma idónea para cubrir las necesidades de la universidad puesto que permite homogeneizar las compras permitiendo que cada unidad las realice cuando sea necesario. El procedimiento está subdividido en 2 lotes: 1. Lote 1 dedicado a la adquisición de ordenadores personales con sistema operativo macOS, sus periféricos y accesorios. 2. Lote 2 incluye las tabletas (tablets en terminología inglesa) con sistema operativo IOS, cada vez de más utilización por su transportabilidad Lote 1: ordenadores personales con sistema operativo macOS; Lote 2: tabletas con sistema operativo IOS."
         }
       ],
       "protected_names": [],
@@ -53615,6 +54522,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "666c25ba0101491c48c78a413994348ad51433dae7c05245e08919c40c75dc35": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:21.205106+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Theatre machinery installation, upgrade and additions"
+          },
+          "source": "Theatre machinery installation, upgrade and additions"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "667a227b0583d5d0906ebdf6d30217c0eb0215a7f2cbcfe2e55b65d9a53fc7fa": {
       "parts": [
         {
@@ -53714,6 +54644,29 @@
             "text": "Emergency Response Centre Agency"
           },
           "source": "Hätäkeskuslaitos"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "669b37dd33986838905cdfa16fa4c11cba63c6727f67abf08f702e64925debd0": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:50.383748+00:00",
+            "language": "sv",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Municipality of Lomma"
+          },
+          "source": "Lomma kommun"
         }
       ],
       "protected_names": [],
@@ -56438,6 +57391,29 @@
             "text": "The aim is to cover the Contracting Authority's need for a Treasury system. The system is used to support the company's financial management with registration, follow-up, bookkeeping and reporting of the group's loans, liquidity and security and guarantee portfolio."
           },
           "source": "The aim is to cover the Contracting Authority's need for a Treasury system. The system is used to support the company's financial management with registration, follow-up, bookkeeping and reporting of the group's loans, liquidity and security and guarantee portfolio."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "6bfe44d6674faba9c1010344a323efb5d529df6605dbbea2a60d98f4787fa800": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:09.271389+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Supply of usage licences and associated software support from various manufacturers for umivale Activa"
+          },
+          "source": "Suministro de licencias de uso y soporte asociado de software de distintos fabricantes para umivale Activa"
         }
       ],
       "protected_names": [],
@@ -59853,6 +60829,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "720b66842ec4c8616d46f03a0afd959c037795301de8057a00de470f9448cb32": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:50.388290+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Bradford Teaching Hospitals NHS Foundation Trust"
+          },
+          "source": "Bradford Teaching Hospitals NHS Foundation Trust"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "723dc892ea3e5b821d2330c736f638b6ee46ddb7f819fd2a6dcae153d9d9e831": {
       "parts": [
         {
@@ -63136,6 +64135,37 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "7948755228990beedde4bd9f5622f934b2983e74b3ba59b78893e8d3d78fd464": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "rejected": {
+            "id": "7948755228990beedde4bd9f5622f934b2983e74b3ba59b78893e8d3d78fd464:0",
+            "language": "sv",
+            "model": "gemini-3.5-flash-lite",
+            "text": "RFI avseende nytt ekonomisystem inför kommande upphandling för beställaren Eskilstuna Kommunfastigheter AB"
+          },
+          "result": {
+            "at": "2026-09-15T23:19:39.039828+00:00",
+            "language": "sv",
+            "model": "gemini-3.5-flash-lite",
+            "text": "RFI regarding a new financial system ahead of an upcoming procurement for the contracting authority Eskilstuna Kommunfastigheter AB"
+          },
+          "source": "RFI avseende nytt ekonomisystem inför kommande upphandling för beställaren Eskilstuna Kommunfastigheter AB"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "79547b8867d1567547609a640756ad817c3b2d7cdf39ae7926b99eebdb2a329a": {
       "parts": [
         {
@@ -63743,6 +64773,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "7aaf32901257cc31f32a75854cebe19e9e05b62b6b3b1391d155ddb028716347": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:31.637566+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "This is a REQUEST FOR INFORMATION, which is preparing for possible procuring. Helsinki Region Transport (HSL) is looking for suppliers interested in participating in a market dialogue on Helsinki Region Transport’s distribution service for Optimizely licenses. At this stage HSL is interested in gaining market understanding and familiarizing with possible providers. Should we decide it’s necessary, procurement process will take place later. HSL is considering the procurement of the following Optimizely solutions to support its digital content management and marketing operations: Optimizely Campaign ODP (Optimizely Data Platform) Optimizely Content Management System (On-Premise)"
+          },
+          "source": "This is a REQUEST FOR INFORMATION, which is preparing for possible procuring. Helsinki Region Transport (HSL) is looking for suppliers interested in participating in a market dialogue on Helsinki Region Transport’s distribution service for Optimizely licenses. At this stage HSL is interested in gaining market understanding and familiarizing with possible providers. Should we decide it’s necessary, procurement process will take place later. HSL is considering the procurement of the following Optimizely solutions to support its digital content management and marketing operations: Optimizely Campaign ODP (Optimizely Data Platform) Optimizely Content Management System (On-Premise)"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "7adfd1712586355ca5af5c5d02a1afb5de319772db18ccabc1aba691f0661053": {
       "parts": [
         {
@@ -64300,6 +65353,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "7c0ace8d16f1fa86f9f1496874703d8ec794085a030543f7c2e057806c0a64be": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:09.268299+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Technical assistance for drafting the Operational Plan for Beach Season Services and other authorisations and concessions of the Public Maritime-Terrestrial Domain (DPMT) and Maritime Terrestrial Zone (ZSP), systems consultancy, and inspection, surveillance and monitoring of the services, elements and infrastructures provided for in the Municipal Beach Plan Submission deadline (source local time): 2026-09-17 23:59:00. Time zone not supplied; check the source notice."
+          },
+          "source": "CS Asistencia Técnica redacción Plan de Explotación de los Servicios de Temporada de Playas y otras autorizaciones y concesiones de DPMT y ZSP, consultoría de sistemas e inspección, vigilancia y seguimiento de los servicios, elementos e infraestructuras previstas en el Plan Mpal. de Playas Submission deadline (source local time): 2026-09-17 23:59:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "7c1a8039a91d003a1fd7a9506d9bc39d6270eac86e5cee52c7256c5391678fe1": {
       "parts": [
         {
@@ -64439,6 +65515,29 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "7c5642e560ccc70759e8c74b0c90ac84f6103ff6d4e083982f9b41510d19a18f": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:09.272762+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Procurement of support services for the monitoring and coordination of work related to the technical office service for consultancy and technical support to the Directorate of ICT Projects of the CAPN. Submission deadline (source local time): 2026-10-01 14:00:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Contratación de servicios de apoyo al seguimiento y coordinación de los trabajos relacionados con el servicio de oficina técnica para la asesoría y soporte técnico a la Dirección de los Proyectos TIC del CAPN. Submission deadline (source local time): 2026-10-01 14:00:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "7c6081f28c46d9e728db855fd81892dd642dd9a548c3965aade6e89cd6765684": {
@@ -65513,6 +66612,37 @@
             "text": "Strategic consulting, development and operation of network services."
           },
           "source": "Strategic consulting, development and operation of network services."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "7e1f5df03503592a7fd293126407cd6f3fbe1c3402e9f22f4e4cec8842f4b3b1": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "rejected": {
+            "id": "7e1f5df03503592a7fd293126407cd6f3fbe1c3402e9f22f4e4cec8842f4b3b1:0",
+            "language": "mul",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Servicios de verificación sobre el terreno de proyectos de formación para el empleo cofinanciados por el Fondo Social Europeo Plus (FSE+) en el periodo 2021-2027 Submission deadline (source local time): 2026-10-01 14:00:00. Time zone not supplied; check the source notice."
+          },
+          "result": {
+            "at": "2026-09-15T23:19:31.618518+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "On-site verification services for employment training projects co-financed by the European Social Fund Plus (ESF+) in the period 2021-2027 Submission deadline (source local time): 2026-10-01 14:00:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Servicios de verificación sobre el terreno de proyectos de formación para el empleo cofinanciados por el Fondo Social Europeo Plus (FSE+) en el periodo 2021-2027 Submission deadline (source local time): 2026-10-01 14:00:00. Time zone not supplied; check the source notice."
         }
       ],
       "protected_names": [],
@@ -67404,6 +68534,37 @@
       "protected_names": [],
       "retry_profile": "verbatim-english-and-spelled-numbers-1"
     },
+    "81c74fc9d0ff46baacfac6ef3df71ca360e95079f719ddb840ed02095c8f64e7": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "rejected": {
+            "id": "81c74fc9d0ff46baacfac6ef3df71ca360e95079f719ddb840ed02095c8f64e7:0",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Selección de suministradores y establecimiento de las bases que regirán en los contratos de suministro de ordenadores y tabletas que realice la UZ derivados de este Acuerdo Marco, en 2 lotes: Lote 1: ordenadores personales con sistema operativo macOS y Lote 2: tabletas con sistema operativo IOS."
+          },
+          "result": {
+            "at": "2026-09-15T23:19:31.624277+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Selection of suppliers and establishment of the rules governing contracts for the supply of computers and tablets carried out by the UZ resulting from this Framework Agreement, in 2 lots: Lot 1: personal computers with macOS operating system and Lot 2: tablets with IOS operating system."
+          },
+          "source": "Selección de suministradores y establecimiento de las bases que regirán en los contratos de suministro de ordenadores y tabletas que realice la UZ derivados de este Acuerdo Marco, en 2 lotes: Lote 1: ordenadores personales con sistema operativo macOS y Lote 2: tabletas con sistema operativo IOS."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "81c7665c2e20df3ee2f4bee3ea8ccdf86643fe331a61eee361a6c2776576b9bd": {
       "parts": [
         {
@@ -68988,6 +70149,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "840c68d4829ea9b46c57169350f950c13227a6bed9958ac14b75a733a7146859": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:50.381331+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Rectorate of the University of Zaragoza"
+          },
+          "source": "Rectorado de la Universidad de Zaragoza"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "840fe4464240ccfaeb2c8e08dae09c30d9e6ab7e25caef51406004eafe3be0f0": {
       "parts": [
         {
@@ -69843,6 +71027,31 @@
       "protected_names": [],
       "purpose": "passage",
       "retry_profile": "english-coverage-and-organisation-names-2"
+    },
+    "85577467847cdabe2bde0d0bceea96836e65028113aa427056f82b3c6fa62e64": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:39.052809+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "IVAR IKS would like to consolidate several outgoing IT operations agreements into a new operations agreement. The contract will include the operation and maintenance of all \"office IT\" at the contracting authority. Service towers that are expected to be included: * Digital workplace * End-user support (service desk and onsite support) * Hybrid network * Hybrid infrastructure * Application operation and management * 24x7 operation and security services The aim of this prior information notice is to inform the market about the planned procurement, get input for the design of the service and facilitate a structured market dialogue before the competition. Therefore encourages interested parties to contact.........."
+          },
+          "source": "IVAR IKS would like to consolidate several outgoing IT operations agreements into a new operations agreement. The contract will include the operation and maintenance of all \"office IT\" at the contracting authority. Service towers that are expected to be included: * Digital workplace * End-user support (service desk and onsite support) * Hybrid network * Hybrid infrastructure * Application operation and management * 24x7 operation and security services The aim of this prior information notice is to inform the market about the planned procurement, get input for the design of the service and facilitate a structured market dialogue before the competition. Therefore encourages interested parties to contact.........."
+        }
+      ],
+      "protected_names": [
+        "IVAR IKS"
+      ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "855e3b223ae65ffe084f82e64129e9491ace656f3d774294309b376582ac7cee": {
       "parts": [
@@ -71905,6 +73114,29 @@
       ],
       "protected_names": [],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "88fdfca515b9771d57fa1482e50a3f1ee4f6fae74acf9ee5d21dae41daa3e8cb": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:50.383962+00:00",
+            "language": "no",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Hålogaland Theatre"
+          },
+          "source": "Hålogaland Teater"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "890f77891505641f6c7a093a8e9f8c832c7ae0f700a125a78988500c01602973": {
@@ -76093,6 +77325,29 @@
       "purpose": "organisation",
       "retry_profile": "english-coverage-and-organisation-names-2"
     },
+    "905f9b01c1e205df59608e79d48f38eef94e41522deea952a7969aed0edc9629": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:09.269088+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Supply and maintenance of a centralised intelligent queue management, diary management and prior appointment management system at the Municipality of San Pedro del Pinatar (Murcia) Submission deadline (source local time): 2026-09-30 23:59:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Suministro y mantenimiento de un sistema inteligente centralizado en gestión de espera, gestión de agendas y gestión de citas previas en el Ayuntamiento de San Pedro del Pinatar (Murcia) Submission deadline (source local time): 2026-09-30 23:59:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "906c2fea73a0876f53f61d6a682a6706d980c3544b8b0d23f2a104e6af7087e1": {
       "parts": [
         {
@@ -77991,6 +79246,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "92fe64ab11a57f040fc8e895db90a8dd5076d6bb3d6fffb5040ddfbc047b7fae": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:09.280115+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Domain renewal and management service."
+          },
+          "source": "Servicio de renovación y gestión de dominios."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "9308ed0215034937b42a140fab9233518a934b6a97a9046c2fd92e8dc575254f": {
       "parts": [
         {
@@ -78031,6 +79309,29 @@
       "protected_names": [
         "Aberdeenshire Council"
       ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "931b42ffc768558ffd27950611233022de332b090e8b6ce44f920933521db8ed": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:09.276730+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Support to public authorities in Uruguay for the design, implementation, commissioning and initial support of the Natural Grassland Livestock Observatory (OCN), within the framework of the Sustainable Livestock Strengthening Project in Uruguay, part of the EUROCLIMA LAC Programme"
+          },
+          "source": "Apoyo a los poderes públicos de Uruguay para el diseño, implementación, puesta en marcha y soporte inicial del Observatorio de Ganadería sobre Campo Natural (OCN), en el marco del Proyecto de Fortalecimiento de la Ganadería Sostenible en Uruguay parte del Programa EUROCLIMA LAC"
+        }
+      ],
+      "protected_names": [],
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
@@ -78339,6 +79640,29 @@
             "text": "Henneberg Clinics - Mobile Laboratory Automation and Robotics The subject matter is the planning, delivery, integration, conformity assessment, commissioning, acceptance and service of a fully mobile robotics/automation solution for barcode-supported sample flow between intake, pre-analytics, analysis systems, special dispensing, cooling and archiving. The solution must function as an overall system with laboratory equipment, LIS/middleware, building infrastructure and operator processes. Not the subject matter of this lot are medical laboratory services, the permanent provision of laboratory personnel, or the immediate procurement of transport or cleaning robots. Laboratory equipment and laboratory IT are procured separately. However, the robotics contractor remains responsible for the complete mechanical, electrical, software, control and safety engineering integration of the overall system they offer. Target image and functional equivalence: • Permanent robotics-supported in-house laboratory operations at the Hildburghausen site from 01.01.2027; no transitional supply. The first expansion stage is the mobile laboratory robotics system. • Documented peak intake: maximum approx. 30 samples per hour. The solution must not be unnecessarily oversized for this, but must demonstrate a comprehensible operational reserve. • Fully mobile, autonomously navigating robotics systems (AMR) or functionally equivalent mobile automation solutions are permitted. Stationary robot cells, linearly guided systems and permanently installed tracks do not meet the target image. • The solution offered is not an isolated robotics island: it is seamlessly integrated into order, sample, equipment, result, priority and error management and networked via a centrally provided orchestration and fleet management software. The software and platform architecture must be provably scalable for subsequent transport and cleaning robotics at two sites of the clinic association. A common or interoperable traffic logic, building and elevator interfaces, identity and certificate management, as well as a uniform operating and service concept must be provided. The initial procurement must not create unnecessary binding to proprietary laboratory equipment or closed building interfaces. Open, documented interface specifications that can be handed over to the contracting authority are a minimum requirement; a device-side extension to SiLA 2 or a functionally equivalent open standard must be presented. The contractor must describe the entry with a robust core workflow and the subsequent expansion with additional tasks, grippers, equipment, rooms and robotics domains in a technically and commercially comprehensible manner."
           },
           "source": "Henneberg-Kliniken - Mobile Laborautomation und Robotik Gegenstand ist Planung, Lieferung, Integration, Konformitätsbewertung, Inbetriebnahme, Abnahme und Service einer vollständig mobilen Robotik-/Automationslösung für den barcodegestützten Probenfluss zwischen Eingang, Präanalytik, Analysesystemen, Sonderausgabe, Kühlung und Archiv. Die Lösung muss als Gesamtsystem mit Laborgeräten, LIS/Middleware, Gebäudeinfrastruktur und Betreiberprozessen funktionieren. Nicht Gegenstand dieses Loses sind die medizinische Laborleistung, die dauerhafte Gestellung des Laborpersonals sowie die sofortige Beschaffung von Transport- oder Reinigungsrobotern. Laborgeräte und Labor-IT werden gesondert beschafft. Der Auftragnehmer Robotik bleibt jedoch für die vollständige mechanische, elektrische, softwareseitige, steuerungs- und sicherheitstechnische Integration seines angebotenen Gesamtsystems verantwortlich. Zielbild und funktionale Gleichwertigkeit: • Dauerhafter robotikgestützter Eigenlaborbetrieb am Standort Hildburghausen ab 01.01.2027; keine Übergangsversorgung. Die erste Ausbaustufe ist das mobile Laborrobotiksystem. • Dokumentierte Spitzenannahme: maximal ca. 30 Proben je Stunde. Die Lösung darf dafür nicht unnötig überdimensioniert sein, muss aber eine nachvollziehbare Betriebsreserve ausweisen. • Zulässig sind vollständig mobile, autonom navigierende Robotiksysteme (AMR) oder funktional gleichwertige mobile Automationslösungen. Stationäre Roboterzellen, lineargeführte Systeme und fest installierte Fahrbahnen erfüllen das Zielbild nicht. • Die angebotene Lösung ist keine isolierte Robotikinsel: Sie wird durchgängig in Auftrags-, Proben-, Geräte-, Ergebnis-, Prioritäts- und Fehlermanagement integriert und über eine zentral bereitgestellte Orchestrierungs- und Flottenmanagementsoftware vernetzt. Die Software- und Plattformarchitektur muss nachweisbar für spätere Transport- und Reinigungsrobotik an zwei Standorten des Klinikverbunds skalierbar sein. Gemeinsame oder interoperable Verkehrslogik, Gebäude- und Aufzugsschnittstellen, Identitäts- und Zertifikatsverwaltung sowie ein einheitliches Betriebs- und Servicekonzept sind vorzusehen. Die Erstbeschaffung darf keine unnötige Bindung an proprietäre Laborgeräte oder geschlossene Gebäudeschnittstellen erzeugen. Offene, dokumentierte und an den Auftraggeber übergebbare Schnittstellenspezifikationen sind Mindestanforderung; eine geräteseitige Erweiterung auf SiLA 2 oder einen funktional gleichwertigen offenen Standard ist darzustellen. Der Auftragnehmer hat den Einstieg mit einem belastbaren Kernworkflow und die spätere Erweiterung um zusätzliche Aufgaben, Greifer, Geräte, Räume und Robotikdomänen technisch und kaufmännisch nachvollziehbar zu beschreiben."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "93e44378e1c7f354f0d97da30d8a97afd84fbe6cc2326cffaf63a6082322d1cd": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:39.041196+00:00",
+            "language": "fr",
+            "model": "gemini-3.5-flash-lite",
+            "text": "CONTR 2025 712146"
+          },
+          "source": "CONTR 2025 712146"
         }
       ],
       "protected_names": [],
@@ -80021,6 +81345,29 @@
       "protected_names": [
         "Subdirección General de Planificación y Gestión Económica"
       ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "9754ceb0eb3479078c346025190eeed2a723b7bffe85e6be2f385cdf53779080": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:09.265371+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Various supplies related to the IT requirements of the Provincial Tourism Board of Costa Blanca."
+          },
+          "source": "Diversos suministros relacionados con las necesidades informáticas del Patronato Provincial de Turismo de la Costa Blanca."
+        }
+      ],
+      "protected_names": [],
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
@@ -82369,6 +83716,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "9b57d5660a684c3ef08926f928626737849311ab013780d881f7bde41683cdab": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:45.509194+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "What is HUP? Born in Bradford’s Healthy Urban Places (HUP) is carrying out research to help understand what makes the places we live, work and socialise healthier places. HUP research is taking place in Bradford and Liverpool. In each city four areas have been chosen (8 in total) as centres for carrying out community-led research. In Bradford these 4 areas are: 1. Keighley Central (BD20, BD21, BD22) 2. Bolton Woods (BD2, BD18) 3. Barkerend and Bradford Moor (BD3) 4. Parkside (BD5) This tender only relates to the Parkside area of Bradford The focus of the research The research is about what makes a healthy urban place. We want to design research questions with the community in order to answer the following overarching themes: • What urban and environmental factors have an impact on wellbeing and which of these does the community prioritise? • How do healthy places develop over time? • How do different communities experience and benefit from different features of urban places over time? • How can we measure and track changes in urban places that are important for health and wellbeing? How will it work? By bringing together community members who live in and are impacted by changes in urban areas, and those responsible for decisions about them, we want to produce relevant and impactful research that can reduce unfair and avoidable differences in health (health inequalities) and improve health and wellbeing long-term. In order to do this HUP wants to work with community organisations with expertise in engagement of often marginalised groups and an underlying ethos of working in partnership. Together we will create a ‘Community Collaborative’ – a community-based research partnership – which will involve the HUP team, community organisations, and other stakeholders (such as residents, schools, places of faith, clubs, policy makers, council members and more). The Community Collaborative will work together to produce evidence on what makes a healthy urban place and explore how we can achieve healthier cities. We will share the findings and learning from the research within communities in creative ways, and develop community-led reports for policy makers and government to influence future positive changes in urban areas. What will a Community Collaborative involve? The HUP team are looking for community organisations in each site to join us in partnership over the lifetime of the HUP programme until spring 2027. As a partnership, we’ll all bring something to the table: • HUP will bring research skills, provide training for those in the local community (staff or service users), support local communities to get involved in and/or lead research, and help create opportunities for community members to meet with policy makers and implementors. • Community organisations will bring local knowledge and lived experiences, skills in community & participatory engagement, introductions to community members, and access to physical assets, such as rooms and buildings. Community organisations can apply to be a HUP partner to Bradford Teaching Hospitals Foundation Trust. Funding will be provided for core costs (e.g. staff time, use of building and for carrying out specific research projects. Organisations within one area can apply alone or in partnership, and at more than one site if they have required links to the community. What the research process will look like At each site, the organisations involved in the Community Collaborative will jointly organise some 'inception' workshops with the HUP team. Together, we'll decide how we want our partnership to run (e.g. our ways of working, etc). We’ll start to explore factors that have impacted on wellbeing in the local urban area over time. Jointly we’ll prioritise what we want to explore first and will decide how we want to learn about it. We might, for example, decide together to develop a series of fun, creative and engaging mini-projects in which community members can be trained as community researchers to find out about healthy urban places. The findings and learnings from these projects will be shared with our communities, the wider public and those involved in policy making locally, regionally and nationally. The allocation of funds for this will be jointly decided. The Collaboratives will run for 2 years, with most of the work being conducted in 2025 and 2026, and finalising the process in 2027. Funding will reflect this, with the bulk of funding being provided in 2025 and 2026. However, during the process, we’d hope to be able to identify further opportunities and funding to work together on research in the future. What is expected of a collaborative partner? Community organisations will have a range of responsibilities that are noted in more detail in the procurement specification. Briefly, they will be co-partners in the Community Collaborative, and over the length of the funded period will: • Contribute to the set up and development of the Community Collaborative • Attend and assist in organising, facilitating and hosting meetings & workshops in the local area • Connect the HUP team to community members and service users • Co-design community-based research with the HUP team and wider stakeholders • Co-design creative ways of engaging community members in finding out about healthy urban places • Co-design engaging ways of sharing the learning and findings of research • Distribute payments to community participants in the research – for example, any community researchers who get involved in finding out about healthy urban places • Attend city-wide Collaborative meetings in Bradford and with partners in Liverpool Lot 1: ."
+          },
+          "source": "What is HUP? Born in Bradford’s Healthy Urban Places (HUP) is carrying out research to help understand what makes the places we live, work and socialise healthier places. HUP research is taking place in Bradford and Liverpool. In each city four areas have been chosen (8 in total) as centres for carrying out community-led research. In Bradford these 4 areas are: 1. Keighley Central (BD20, BD21, BD22) 2. Bolton Woods (BD2, BD18) 3. Barkerend and Bradford Moor (BD3) 4. Parkside (BD5) This tender only relates to the Parkside area of Bradford The focus of the research The research is about what makes a healthy urban place. We want to design research questions with the community in order to answer the following overarching themes: • What urban and environmental factors have an impact on wellbeing and which of these does the community prioritise? • How do healthy places develop over time? • How do different communities experience and benefit from different features of urban places over time? • How can we measure and track changes in urban places that are important for health and wellbeing? How will it work? By bringing together community members who live in and are impacted by changes in urban areas, and those responsible for decisions about them, we want to produce relevant and impactful research that can reduce unfair and avoidable differences in health (health inequalities) and improve health and wellbeing long-term. In order to do this HUP wants to work with community organisations with expertise in engagement of often marginalised groups and an underlying ethos of working in partnership. Together we will create a ‘Community Collaborative’ – a community-based research partnership – which will involve the HUP team, community organisations, and other stakeholders (such as residents, schools, places of faith, clubs, policy makers, council members and more). The Community Collaborative will work together to produce evidence on what makes a healthy urban place and explore how we can achieve healthier cities. We will share the findings and learning from the research within communities in creative ways, and develop community-led reports for policy makers and government to influence future positive changes in urban areas. What will a Community Collaborative involve? The HUP team are looking for community organisations in each site to join us in partnership over the lifetime of the HUP programme until spring 2027. As a partnership, we’ll all bring something to the table: • HUP will bring research skills, provide training for those in the local community (staff or service users), support local communities to get involved in and/or lead research, and help create opportunities for community members to meet with policy makers and implementors. • Community organisations will bring local knowledge and lived experiences, skills in community & participatory engagement, introductions to community members, and access to physical assets, such as rooms and buildings. Community organisations can apply to be a HUP partner to Bradford Teaching Hospitals Foundation Trust. Funding will be provided for core costs (e.g. staff time, use of building and for carrying out specific research projects. Organisations within one area can apply alone or in partnership, and at more than one site if they have required links to the community. What the research process will look like At each site, the organisations involved in the Community Collaborative will jointly organise some 'inception' workshops with the HUP team. Together, we'll decide how we want our partnership to run (e.g. our ways of working, etc). We’ll start to explore factors that have impacted on wellbeing in the local urban area over time. Jointly we’ll prioritise what we want to explore first and will decide how we want to learn about it. We might, for example, decide together to develop a series of fun, creative and engaging mini-projects in which community members can be trained as community researchers to find out about healthy urban places. The findings and learnings from these projects will be shared with our communities, the wider public and those involved in policy making locally, regionally and nationally. The allocation of funds for this will be jointly decided. The Collaboratives will run for 2 years, with most of the work being conducted in 2025 and 2026, and finalising the process in 2027. Funding will reflect this, with the bulk of funding being provided in 2025 and 2026. However, during the process, we’d hope to be able to identify further opportunities and funding to work together on research in the future. What is expected of a collaborative partner? Community organisations will have a range of responsibilities that are noted in more detail in the procurement specification. Briefly, they will be co-partners in the Community Collaborative, and over the length of the funded period will: • Contribute to the set up and development of the Community Collaborative • Attend and assist in organising, facilitating and hosting meetings & workshops in the local area • Connect the HUP team to community members and service users • Co-design community-based research with the HUP team and wider stakeholders • Co-design creative ways of engaging community members in finding out about healthy urban places • Co-design engaging ways of sharing the learning and findings of research • Distribute payments to community participants in the research – for example, any community researchers who get involved in finding out about healthy urban places • Attend city-wide Collaborative meetings in Bradford and with partners in Liverpool Lot 1: ."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "9b69d172bea20362212a985cddcb8025f25a38cab45250d50bef25c802ce0275": {
       "parts": [
         {
@@ -82431,6 +83801,60 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "9ba80b4e950ac903855b7359e957965b2d1b13fe7bba6ad1e99cbbf3c2768c82": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:50.385502+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "BOARD OF TRUSTEES OF THE ALHAMBRA AND GENERALIFE"
+          },
+          "source": "PATRONATO DE LA ALHAMBRA Y GENERALIFE"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "9baedcd9a4739fae0abe8cecc1d17a2e93f0498dc2ecf84ab842fd080d5d18f6": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 2
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "rejected": {
+            "id": "9baedcd9a4739fae0abe8cecc1d17a2e93f0498dc2ecf84ab842fd080d5d18f6:0",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "BSBG und BSVG - Nachfolge ERP- und HCM-System - Markterkundung"
+          },
+          "result": {
+            "at": "2026-09-15T23:19:57.251061+00:00",
+            "language": "de",
+            "model": "gemini-3.1-flash-lite",
+            "text": "BSBG and BSVG - Successor ERP and HCM system - Market consultation"
+          },
+          "source": "BSBG und BSVG - Nachfolge ERP- und HCM-System - Markterkundung"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "9bc75fdc99b218cb1fc726469434f717d23f2a672cb363ded5370e97d90908ea": {
@@ -83121,6 +84545,29 @@
             "text": "Subscription renewal and extension for Clearswift Secure Email Gateway plus Structural Sanitization and Encryption Feature Lot LOT-0000: Subscription renewal and extension for Clearswift Secure Email Gateway plus Structural Sanitization and Encryption Feature. Subscription renewal and extension for Clearswift Secure Email Gateway plus Structural Sanitization and Encryption Feature"
           },
           "source": "Subscription Verlaengerung und Erweiterung fuer Clearswift Secure Email Gateway zzgl. Structural Sanitization und Encryption Feature Lot LOT-0000: Subscription Verlaengerung und Erweiterung fuer Clearswift Secure Email Gateway zzgl. Structural Sanitization und Encryption Feature. Subscription Verlaengerung und Erweiterung fuer Clearswift Secure Email Gateway zzgl. Structural Sanitization und Encryption Feature"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "9cacae3128bec2a8099daf41a7277a2b3887bd73948c622c822611a698aa5478": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:39.046054+00:00",
+            "language": "sv",
+            "model": "gemini-3.5-flash-lite",
+            "text": "IT 2025-1144 RFI VAN service provider"
+          },
+          "source": "TI 2025-1144 RFI VAN-tjänsteleverantör"
         }
       ],
       "protected_names": [],
@@ -85692,6 +87139,37 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "a121491215dad16a7ec6c92309123fc134b3d46bb6db57057433e4a2181af3e2": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 2
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "rejected": {
+            "id": "a121491215dad16a7ec6c92309123fc134b3d46bb6db57057433e4a2181af3e2:0",
+            "language": "sv",
+            "model": "gemini-3.5-flash-lite",
+            "text": "RFI for financial system Eskilstuna Kommunfastigheter AB"
+          },
+          "result": {
+            "at": "2026-09-15T23:19:57.256065+00:00",
+            "language": "sv",
+            "model": "gemini-3.1-flash-lite",
+            "text": "RFI Financial system Eskilstuna Municipal Real Estate Ltd"
+          },
+          "source": "RFI Ekonomisystem Eskilstuna Kommunfastigheter AB"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "a14ead1f82583de81c6371781af918dc84da63d03ec09300c0c4ae18aef95341": {
       "parts": [
         {
@@ -88142,6 +89620,29 @@
       "purpose": "passage",
       "retry_profile": "english-coverage-and-organisation-names-2"
     },
+    "a5858ba346d211dbeef849b2191ee2b68398ba2a090be894064c79dc01e35c08": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:09.269654+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Consultancy service for activities within the framework of the Digital Shield.es programme Submission deadline (source local time): 2026-09-28 23:59:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Servicio de consultoría para actuaciones en el marco del programa Escudo digital.es Submission deadline (source local time): 2026-09-28 23:59:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "a590d45102abfb648d1c6f1ac7ad523eb1a6f674001915aad92d7430203d5f67": {
       "parts": [
         {
@@ -89172,6 +90673,29 @@
       "protected_names": [
         "Salzlandkreis"
       ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "a76a37109a23ccbd5623ca966cda8799a7fa3c4371cf0a523a3d9ac302b331f5": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:31.634969+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Helse Nord RHF would like to enter into a regional agreement for the procurement of an electronic patient monitoring system with notification and check list for nursing personnel. The system must ensure patient safety and efficient work flow connected to the registration of vital patient data. Herein a functionality that safeguards the offline mode and which gives nursing personnel reduced manual and duplicate activity in connection with registration of the electronic curve and medication. The need shall be taken care of via a mobile application with integration possibilities with the electronic patient journal system (EPJ) which is Dips."
+          },
+          "source": "Helse Nord RHF would like to enter into a regional agreement for the procurement of an electronic patient monitoring system with notification and check list for nursing personnel. The system must ensure patient safety and efficient work flow connected to the registration of vital patient data. Herein a functionality that safeguards the offline mode and which gives nursing personnel reduced manual and duplicate activity in connection with registration of the electronic curve and medication. The need shall be taken care of via a mobile application with integration possibilities with the electronic patient journal system (EPJ) which is Dips."
+        }
+      ],
+      "protected_names": [],
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
@@ -91764,6 +93288,29 @@
             "text": "Mixed supply and service contract for the acquisition, installation and commissioning of an information system at the Madrid Centre for Genomic Analysis for the fulfilment of the commitments of the SIGENES Project, charged against the Recovery, Transformation and Resilience Plan of the Government of Spain - financed by the European Union – Nextgenerationeu (C18.I05.P10.S02)"
           },
           "source": "Contrato mixto de suministros y servicios para la adquisición, instalación y puesta en marcha de un sistema de información en el Centro Madrileño de Análisis Genómico para el cumplimiento de los compromisos del Proyecto SIGENES”, con cargo al Plan de Recuperación, Transformación y Resiliencia del Gobierno de España - financiado por la Unión Europea – Nextgenerationeu (C18.I05.P10.S02)"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "ac430dc9406326bbdb926b1eb2096d6f80636e5bf6bc4644e82a82727d161c9d": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:31.634494+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Market dialogue: Electronic patient monitoring system with notification and check list for nursing personnel."
+          },
+          "source": "Market dialogue: Electronic patient monitoring system with notification and check list for nursing personnel."
         }
       ],
       "protected_names": [],
@@ -94940,6 +96487,37 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "b2737d353a49a5134f71f8d3538da77f5c56230f80ca978a55fc28f0d845652b": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 2
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "rejected": {
+            "id": "b2737d353a49a5134f71f8d3538da77f5c56230f80ca978a55fc28f0d845652b:0",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Diese Markterkundung erfolgt gemäß § 26 SektVO. Sie dient ausschließlich der Vorbereitung einer europaweiten Ausschreibung. Die Braunschweig Beteiligungen GmbH (BSBG) ist eine hundertprozentige Tochtergesellschaft der Stadt Braunschweig. Gleichzeitig ist sie Obergesellschaft eines Konzerns und hält eine Reihe von Tochtergesellschaften, die im Bereich der Daseinsvorsorge tätig sind. Mit aktuell zwölf Mitarbeitenden erbringt die BSBG im Wesentlichen kaufmännische Dienstleistungen für ihre Tochtergesellschaft, die Braunschweiger Verkehrs-GmbH (BSVG). Die Braunschweiger Verkehrs-GmbH (BSVG) ist eine hundertprozentige Tochter der BSBG, die mit rund 780 Mitarbeitenden (davon rund 520 im Fahrdienst) ÖPNV-Leistungen in Braunschweig erbringt. Die BSVG verfügt über den Busbetriebshof \"Lindenberg\" sowie den Betriebshof \"Am Hauptgüterbahnhof\" für die Stadtbahn samt Verwaltungssitz. Jährlich werden 37,6 Mio. Fahrgäste transportiert. Die BSVG betreibt ein eigenes Streckennetz für die Stadtbahn mit einer Länge von 39,62 km. Das Verkehrsunternehmen hat 51 Stadtbahnen und 165 Busse. Die gesamte IT inkl. des Hostings von SAP (ERP und HR), die Anwendungsbetreuung und die erweiterte Anwendungsbetreuung ist auf einen externen Dienstleister ausgelagert."
+          },
+          "result": {
+            "at": "2026-09-15T23:19:57.254507+00:00",
+            "language": "de",
+            "model": "gemini-3.1-flash-lite",
+            "text": "This market consultation is being conducted in accordance with § 26 SektVO. It serves exclusively to prepare for a Europe-wide tender. Braunschweig Beteiligungen GmbH (BSBG) is a wholly owned subsidiary of the City of Braunschweig. At the same time, it is the parent company of a group and holds a number of subsidiaries that are active in the field of services of general interest. With currently twelve employees, BSBG essentially provides commercial services for its subsidiary, Braunschweiger Verkehrs-GmbH (BSVG). Braunschweiger Verkehrs-GmbH (BSVG) is a wholly owned subsidiary of BSBG, which provides public transport services in Braunschweig with around 780 employees (of which around 520 are in driving service). BSVG has the \"Lindenberg\" bus depot as well as the \"Am Hauptgüterbahnhof\" depot for the light rail system, including the administrative headquarters. Every year, 37,6 million passengers are transported. BSVG operates its own route network for the light rail system with a length of 39,62 km. The transport company has 51 light rail vehicles and 165 buses. The entire IT, including the hosting of SAP (ERP and HR), application support and extended application support, is outsourced to an external service provider."
+          },
+          "source": "Diese Markterkundung erfolgt gemäß § 26 SektVO. Sie dient ausschließlich der Vorbereitung einer europaweiten Ausschreibung. Die Braunschweig Beteiligungen GmbH (BSBG) ist eine hundertprozentige Tochtergesellschaft der Stadt Braunschweig. Gleichzeitig ist sie Obergesellschaft eines Konzerns und hält eine Reihe von Tochtergesellschaften, die im Bereich der Daseinsvorsorge tätig sind. Mit aktuell zwölf Mitarbeitenden erbringt die BSBG im Wesentlichen kaufmännische Dienstleistungen für ihre Tochtergesellschaft, die Braunschweiger Verkehrs-GmbH (BSVG). Die Braunschweiger Verkehrs-GmbH (BSVG) ist eine hundertprozentige Tochter der BSBG, die mit rund 780 Mitarbeitenden (davon rund 520 im Fahrdienst) ÖPNV-Leistungen in Braunschweig erbringt. Die BSVG verfügt über den Busbetriebshof \"Lindenberg\" sowie den Betriebshof \"Am Hauptgüterbahnhof\" für die Stadtbahn samt Verwaltungssitz. Jährlich werden 37,6 Mio. Fahrgäste transportiert. Die BSVG betreibt ein eigenes Streckennetz für die Stadtbahn mit einer Länge von 39,62 km. Das Verkehrsunternehmen hat 51 Stadtbahnen und 165 Busse. Die gesamte IT inkl. des Hostings von SAP (ERP und HR), die Anwendungsbetreuung und die erweiterte Anwendungsbetreuung ist auf einen externen Dienstleister ausgelagert."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "b28102d42c8395b138fa8115e5161801d15016590a64699fd64fd1654e5cfa73": {
       "parts": [
         {
@@ -95294,6 +96872,29 @@
             "text": "RFI Personnel Case Management System"
           },
           "source": "RFI Personärendehanteringssystem"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "b3185a53ec8f96c2aa56815592653b832a79771535aa44876f12954ca8fbb608": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:45.510296+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "A procurement exercise to source, implement, and support a comprehensive financial management system covering core finance functions, reporting, integration, compliance, stock management and a procure-to-pay function To view this notice, please click here: https://www.delta-esourcing.com/delta/viewNotice.html?noticeId=980862122 Lot 1: ."
+          },
+          "source": "A procurement exercise to source, implement, and support a comprehensive financial management system covering core finance functions, reporting, integration, compliance, stock management and a procure-to-pay function To view this notice, please click here: https://www.delta-esourcing.com/delta/viewNotice.html?noticeId=980862122 Lot 1: ."
         }
       ],
       "protected_names": [],
@@ -96829,6 +98430,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "b58b7c763831315c3dbba1b20af38dbf211985dc80adbdc8eeca3374f52f553e": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:39.062678+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Technology Products and Associated Services 3"
+          },
+          "source": "Technology Products and Associated Services 3"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "b58bf0faa1c2b114a4ae44792e6136ea5a85d37caa7bd2d2540b8e837d55fec3": {
       "parts": [
         {
@@ -97337,6 +98961,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "b6cea36f8b15f1e576a48c3afdfc10f384ca789e3e283f2327ab8e1e97854c2f": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:39.046290+00:00",
+            "language": "sv",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The RFI covers a VAN operator for the distribution and receipt of paper, PDF and electronic invoices, as well as e-commerce messages (orders, order responses, delivery notifications, catalogues and price lists); formats may include Edifact, the Sve family and PEPPOL."
+          },
+          "source": "RFI omfattar VAN-operatör för distribution och mottagande av papper, PDF och elektroniska fakturor samt E-handelsmeddelanden (order, ordersvar, leveransavisering, kataloger och prislistor), format kan vara Edifact, Sve familjen och PEPPOL."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "b6f736961ae43453e5b0dce8bf11cff1080905ce3ef9314695886c619514d287": {
       "parts": [
         {
@@ -97729,6 +99376,29 @@
             "text": "The Joint Maritime Security Centre (JMSC) is seeking a capability that can provide clear Vessel or Area of Interest Assessment Reports to provide a clear operational picture, support sanctions teams across government and strengthen intelligence assessment by providing a strong evidential basis for analysing vessel behaviour and patterns of life, support reporting at an appropriate classification where relevant data sources may sit at different classification levels. Lot 1: . None"
           },
           "source": "The Joint Maritime Security Centre (JMSC) is seeking a capability that can provide clear Vessel or Area of Interest Assessment Reports to provide a clear operational picture, support sanctions teams across government and strengthen intelligence assessment by providing a strong evidential basis for analysing vessel behaviour and patterns of life, support reporting at an appropriate classification where relevant data sources may sit at different classification levels. Lot 1: . None"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "b747e9136ccb5a9bd76b8658993a5783c16d37f1903d6ce0d1a73c3d7c483a26": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:45.510036+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Financial Management System"
+          },
+          "source": "Financial Management System"
         }
       ],
       "protected_names": [],
@@ -100062,6 +101732,37 @@
             "text": "The purpose of this program is to improve maternal and infant outcomes by preventing contact with harmful materials before, during, and after pregnancy. This program aims to improve maternal and infant health outcomes by preventing harmful exposures before, during, and after pregnancy. It supports a national expert-staffed call center that provides timely, evidence-based information and personalized counseling on medications, nutrition, foods, household products, and environmental exposures. By translating complex scientific evidence into clear, accessible guidance and leveraging emerging technologies, including artificial intelligence (AI), the program empowers women, families, and healthcare providers to make informed decisions that promote healthy pregnancies and improve maternal and infant outcomes."
           },
           "source": "The purpose of this program is to improve maternal and infant outcomes by preventing contact with harmful materials before, during, and after pregnancy. This program aims to improve maternal and infant health outcomes by preventing harmful exposures before, during, and after pregnancy. It supports a national expert-staffed call center that provides timely, evidence-based information and personalized counseling on medications, nutrition, foods, household products, and environmental exposures. By translating complex scientific evidence into clear, accessible guidance and leveraging emerging technologies, including artificial intelligence (AI), the program empowers women, families, and healthcare providers to make informed decisions that promote healthy pregnancies and improve maternal and infant outcomes."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "bbcbcbe345446c6133c33758ffa3d4d57913eaa067dff1396bc82313a52f8546": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 2
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "rejected": {
+            "id": "bbcbcbe345446c6133c33758ffa3d4d57913eaa067dff1396bc82313a52f8546:0",
+            "language": "sv",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Syftet med denna RFI är att inhämta marknadsinformation"
+          },
+          "result": {
+            "at": "2026-09-15T23:19:57.254767+00:00",
+            "language": "sv",
+            "model": "gemini-3.1-flash-lite",
+            "text": "The purpose of this RFI is to gather market information"
+          },
+          "source": "Syftet med denna RFI är att inhämta marknadsinformation"
         }
       ],
       "protected_names": [],
@@ -103513,6 +105214,29 @@
       "purpose": "passage",
       "retry_profile": "english-coverage-and-organisation-names-2"
     },
+    "c1b4d677a4767e72d5029e39e6f9dd143275692814ca70221502b050f2e74979": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:09.267575+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Technical assistance for drafting the Operational Plan for Beach Season Services and other authorisations and concessions of the Public Maritime-Terrestrial Domain (DPMT) and Maritime Terrestrial Zone (ZSP), systems consultancy, and inspection, surveillance and monitoring of the services, elements and infrastructures provided for in the Municipal Beach Plan"
+          },
+          "source": "CS Asistencia Técnica redacción Plan de Explotación de los Servicios de Temporada de Playas y otras autorizaciones y concesiones de DPMT y ZSP, consultoría de sistemas e inspección, vigilancia y seguimiento de los servicios, elementos e infraestructuras previstas en el Plan Mpal. de Playas"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "c1b56bbe49d271b29bbdded3bd3d6b86ded95a8bfb3cb4522e631fef4225d790": {
       "parts": [
         {
@@ -105385,6 +107109,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "c51657e4ed5bb2648c10ce1de092da3e38df77bc13ba791eda00e67c321d2b38": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:09.271271+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "IT development services applied to the improvement of the logistical processes of the National Police Uniform Service Submission deadline (source local time): 2026-10-13 14:00:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Servicios de Desarrollos Informáticos aplicados a la mejora de los Procesos Logísticos del Servicio de Vestuario de la Policía Nacional Submission deadline (source local time): 2026-10-13 14:00:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "c51de48aba7caf33988b6320f81f99f70e9b31b9c0ac637f10eb2cb6a10e7c0f": {
       "parts": [
         {
@@ -106096,6 +107843,37 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "c66567859d4f64a0463088ede1e04977e54ae3455c5914ccc3d23086723edfc4": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "rejected": {
+            "id": "c66567859d4f64a0463088ede1e04977e54ae3455c5914ccc3d23086723edfc4:0",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Nueva herramienta Gestión Personas"
+          },
+          "result": {
+            "at": "2026-09-15T23:19:45.498881+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "New People Management tool"
+          },
+          "source": "Nueva herramienta Gestión Personas"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "c66d34afd1d69859ac29dc0221e4daacb63150101a9bba347fa4272a3012eb96": {
       "parts": [
         {
@@ -106532,6 +108310,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "c77cdaaec8c55e8bafb43926ca06bf1e4b24a8db0ad9555dc54439fd394d906d": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:39.069893+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "BTH25-204 HUP Parkside Community Partner"
+          },
+          "source": "BTH25-204 HUP Parkside Community Partner"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "c77ee494e701af0c9f326cb06d25df8bfeabea84f3dae2cf39cc4035d9b02a03": {
       "parts": [
         {
@@ -106594,6 +108395,29 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "c7a05b45bd4f43545db19d0188f6c49026c15913608d9acd2ed65ffecfec4f2d": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:09.268473+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Supply and maintenance of a centralised intelligent queue management, diary management and prior appointment management system at the Municipality of San Pedro del Pinatar (Murcia)"
+          },
+          "source": "Suministro y mantenimiento de un sistema inteligente centralizado en gestión de espera, gestión de agendas y gestión de citas previas en el Ayuntamiento de San Pedro del Pinatar (Murcia)"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "c7a09ee13023a829ffc3932c4417f6356ace07b7f82bd6869e2bdad687f3b9c0": {
@@ -107729,6 +109553,37 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "c9b1c811896056459bfb7a2fe24590d78421ce644b2f2bce7def313a1a8309b7": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "rejected": {
+            "id": "c9b1c811896056459bfb7a2fe24590d78421ce644b2f2bce7def313a1a8309b7:0",
+            "language": "mul",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Contrato mixto de suministro y servicio de puesta en marcha y mantenimiento de una herramienta de gestión de referencias bibliográficas para las Universidades miembro de pleno derecho del Consorcio Madroño. Submission deadline (source local time): 2026-09-30 23:59:00. Time zone not supplied; check the source notice."
+          },
+          "result": {
+            "at": "2026-09-15T23:19:31.621357+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Mixed supply and service contract for the commissioning and maintenance of a bibliographic reference management tool for the universities that are full members of the Consorcio Madroño. Submission deadline (source local time): 2026-09-30 23:59:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Contrato mixto de suministro y servicio de puesta en marcha y mantenimiento de una herramienta de gestión de referencias bibliográficas para las Universidades miembro de pleno derecho del Consorcio Madroño. Submission deadline (source local time): 2026-09-30 23:59:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "c9b57b3555d717c7b3cb967d39567ff561d31d6114a559683b82baf110f5def9": {
       "parts": [
         {
@@ -107868,6 +109723,29 @@
             "text": "Open procedure above the European threshold for the procurement of architecture and engineering services relating to Executive Design, Construction Management and safety coordination (CSP-CSE) for the renovation works of Palazzo Accademia Delia owned by INAF-OAPd"
           },
           "source": "Procedura aperta sopra soglia europea per l'appalto di servizi di architettura e ingegneria relativi alla Progettazione Esecutiva, Direzione Lavori e coordinamento in materia di sicurezza (CSP-CSE) per i lavori di ristrutturazione di Palazzo Accademia Delia di proprietà dell'INAF-OAPd"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "c9ed0185d473cd42170b1d0eeab03cb02731c63b184ce030123b9a5ef2f61598": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:09.277404+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Support to public authorities in Uruguay for the design, implementation, commissioning and initial support of the Natural Grassland Livestock Observatory (OCN), within the framework of the Sustainable Livestock Strengthening Project in Uruguay, part of the EUROCLIMA LAC Programme Submission deadline (source local time): 2026-09-30 23:59:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Apoyo a los poderes públicos de Uruguay para el diseño, implementación, puesta en marcha y soporte inicial del Observatorio de Ganadería sobre Campo Natural (OCN), en el marco del Proyecto de Fortalecimiento de la Ganadería Sostenible en Uruguay parte del Programa EUROCLIMA LAC Submission deadline (source local time): 2026-09-30 23:59:00. Time zone not supplied; check the source notice."
         }
       ],
       "protected_names": [],
@@ -108259,6 +110137,29 @@
       ],
       "protected_names": [],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "ca8511a4fd9faa85218ab69a79b080a833038000733d48261e487372f5b22892": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:50.381162+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Madroño Consortium, Consortium of Universities of the Community of Madrid and the UNED for Library Cooperation"
+          },
+          "source": "Consorcio Madroño, Consorcio de Universidades de la Comunidad de Madrid y de la UNED para la Cooperación Bibliotecaria"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "ca8b6ad6d2da71c5d129e14b446db040eaabbe4afc1eba16e3e22f326d56fa18": {
@@ -110280,6 +112181,37 @@
             "text": "The objective of the procurement is to procure a system for service management, including handling enquiries from external entities and customers."
           },
           "source": "The objective of the procurement is to procure a system for service management, including handling enquiries from external entities and customers."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "cec1534ae9dc6496783821892b92dac6b1a0f0324eb0230758ef89fb89683ce4": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "rejected": {
+            "id": "cec1534ae9dc6496783821892b92dac6b1a0f0324eb0230758ef89fb89683ce4:0",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "“Asistencia técnica para la redacción del Plan Director de la Alhambra e implementación de un modelo de evaluación y seguimiento” Asistencia técnica para la redacción del Plan Director de la Alhambra e implementación de un modelo de evaluación y seguimiento"
+          },
+          "result": {
+            "at": "2026-09-15T23:19:45.499257+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "“Technical assistance for the drafting of the Alhambra Master Plan and implementation of an evaluation and monitoring model” Technical assistance for the drafting of the Alhambra Master Plan and implementation of an evaluation and monitoring model"
+          },
+          "source": "“Asistencia técnica para la redacción del Plan Director de la Alhambra e implementación de un modelo de evaluación y seguimiento” Asistencia técnica para la redacción del Plan Director de la Alhambra e implementación de un modelo de evaluación y seguimiento"
         }
       ],
       "protected_names": [],
@@ -118350,6 +120282,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "dd1d58680b706c9ac649e8f84052cd385180869ffe055884970fee911be196ae": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:39.039965+00:00",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Market consultation: Construction management software for public administration in state building construction and federal building construction"
+          },
+          "source": "Markterkundung: Baumanagementsoftware für die öffentliche Verwaltung im Staatlichen Hochbau und Bundesbau"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "dd20e399c26aa0364874bd0d6b7f43a5cd3090d500d5756d8b06aac8dece7498": {
       "parts": [
         {
@@ -119926,6 +121881,37 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "e004b21183ef96313a9b2593d783913b96d3a2c28c75570e36f65933a5fd56c0": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "rejected": {
+            "id": "e004b21183ef96313a9b2593d783913b96d3a2c28c75570e36f65933a5fd56c0:0",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Despliegue de operaciones de media y/o gran altitud mediante sistemas aéreos no tripulados MALE y/o HAPS y desarrollo de las aplicaciones de gestión de datos en el marco del proyecto AGAMENON"
+          },
+          "result": {
+            "at": "2026-09-15T23:19:31.623255+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Deployment of medium and/or high-altitude operations using MALE and/or HAPS unmanned aerial systems and development of data management applications within the framework of the AGAMENON project"
+          },
+          "source": "Despliegue de operaciones de media y/o gran altitud mediante sistemas aéreos no tripulados MALE y/o HAPS y desarrollo de las aplicaciones de gestión de datos en el marco del proyecto AGAMENON"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "e02d5ce5cb0c729ad77a141e4665621fcbb2dd9feabafb655a4bc2834a9bd669": {
       "parts": [
         {
@@ -120495,6 +122481,29 @@
             "text": "Avinor AS"
           },
           "source": "Avinor AS"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "e15d11b389253f349050a25fa826399f73988ccc6d15c9bcbebf8f536b38aa0c": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:50.381261+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Board of Directors of the Technological Park of Fuerteventura S.A., M.P."
+          },
+          "source": "Consejo de Administración del Parque Tecnológico de Fuerteventura S.A., M.P."
         }
       ],
       "protected_names": [],
@@ -121684,6 +123693,29 @@
             "text": "Governing Board of the Las Rozas City Council"
           },
           "source": "Junta de Gobierno del Ayuntamiento Las Rozas"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "e387d5f1f2281824e14362783d1abb16a950317d600f1b01c3b57bc634bb58c8": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:50.386785+00:00",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "State of Saxony-Anhalt, represented by the Ministry of Finance of the State of Saxony-Anhalt"
+          },
+          "source": "Land Sachsen-Anhalt, vertreten durch das Ministerium der Finanzen des Landes Sachsen-Anhalt"
         }
       ],
       "protected_names": [],
@@ -123005,6 +125037,37 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "e5bbb667300df53110354e34a9c847dd5da2f6b1e5ceec933d745f641ca56e61": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "rejected": {
+            "id": "e5bbb667300df53110354e34a9c847dd5da2f6b1e5ceec933d745f641ca56e61:0",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Servicio de Apoyo al Desarrollo Normativo relativo al la Ciberseguridad 5G y la Seguridad Digital"
+          },
+          "result": {
+            "at": "2026-09-15T23:19:31.621475+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Regulatory Development Support Service relating to 5G Cybersecurity and Digital Security"
+          },
+          "source": "Servicio de Apoyo al Desarrollo Normativo relativo al la Ciberseguridad 5G y la Seguridad Digital"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "e5c3f82ada1c4e49db900d4664717d80a5a2f46cfdd41ba2e46110926f6da1f2": {
       "parts": [
         {
@@ -123184,6 +125247,60 @@
       "protected_names": [
         "The Education Training Collective"
       ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "e607bb1b7e56b2281d02f3a92fef3934c7b6b599b9029a06afcc0063766d0cee": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:31.634139+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Services for the re-engineering of procedures associated with the management of teaching staff of the Generalitat."
+          },
+          "source": "Servicios para la reingeniería de los procedimientos asociados con la gestión del personal docente de la Generalitat."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "e60eea0c4875be63943d45d3117e8e764f87041489939c02471f2a3bf2b9e68a": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "rejected": {
+            "id": "e60eea0c4875be63943d45d3117e8e764f87041489939c02471f2a3bf2b9e68a:0",
+            "language": "mul",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Contratación de la renovación de las licencias EDR y plataforma de análisis, detección y respuesta. Submission deadline (source local time): 2026-10-13 19:00:00. Time zone not supplied; check the source notice."
+          },
+          "result": {
+            "at": "2026-09-15T23:19:31.620527+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Procurement of the renewal of EDR licences and the analysis, detection and response platform. Submission deadline (source local time): 2026-10-13 19:00:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Contratación de la renovación de las licencias EDR y plataforma de análisis, detección y respuesta. Submission deadline (source local time): 2026-10-13 19:00:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
@@ -123801,6 +125918,37 @@
             "text": "Treasury system"
           },
           "source": "Treasury system"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "e7105ddab67d6b6533279fe7ecd6a7a340aa08acba777f92ed122204ee6d7ed9": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "rejected": {
+            "id": "e7105ddab67d6b6533279fe7ecd6a7a340aa08acba777f92ed122204ee6d7ed9:0",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "CONTRATACIÓN DE INFRAESTRUCTURA Y SERVICIOS PARA PROTECCIÓN DEL CORREO CORPORATIVO DE LA JUNTA DE ANDALUCÍA"
+          },
+          "result": {
+            "at": "2026-09-15T23:19:45.496534+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "PROCUREMENT OF INFRASTRUCTURE AND SERVICES FOR THE PROTECTION OF CORPORATE EMAIL OF THE REGIONAL GOVERNMENT OF ANDALUSIA"
+          },
+          "source": "CONTRATACIÓN DE INFRAESTRUCTURA Y SERVICIOS PARA PROTECCIÓN DEL CORREO CORPORATIVO DE LA JUNTA DE ANDALUCÍA"
         }
       ],
       "protected_names": [],
@@ -125258,6 +127406,29 @@
       ],
       "protected_names": [],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "e9b38a0e98415df7a0c7514b595fede2559af9833341160f4c9c350cb74c5d03": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:50.380963+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Directorate of the Foundation for the Internationalisation of Public Administrations"
+          },
+          "source": "Dirección de la Fundación para la Internacionalización de las Administraciones Públicas"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "e9b49f28c5e7ce6267a3c2df4525c2778cde5ac41001286e813e24c2dfc7dd15": {
@@ -126834,6 +129005,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "ec9465f30a2b347422dbcd2e969512fa38526fc19a57094a9c7e76833a0e5deb": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:50.380859+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Governing Board of the Municipality of San Pedro del Pinatar"
+          },
+          "source": "Junta de Gobierno del Ayuntamiento de San Pedro del Pinatar"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "ec9632e4c382499686eb18358539ffe8d96da52a3d7c17e3635db427d36986c0": {
       "parts": [
         {
@@ -127097,6 +129291,29 @@
       ],
       "protected_names": [],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "ed05d2be3f151f7bf943656f869bc5dc16bf9f6904d1349d9d92256e202ab11a": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:50.386836+00:00",
+            "language": "no",
+            "model": "gemini-3.5-flash-lite",
+            "text": "IVAR IKS"
+          },
+          "source": "IVAR IKS"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "ed0cd2755b65627cd6db8457fb4c548ad5c3e6f5350d29b87ca0da4a5f7c543e": {
@@ -127890,6 +130107,37 @@
             "text": "The subject of the tender is consulting and support services for authorities and organisations of the federal administration in establishing IPv6 capability. The goal of the award is the conclusion of two framework agreements for 1 + (5x 1) years each. For this purpose, a total of two lots are being tendered. For system-technical reasons, the lots are being tendered in the following two procurement procedures (VV): Lot 1: Technical project management, network, enterprise and software architecture, testing - Ipv6 experts (Lot 1) ZIB 14.16 - 99152/25/VV : 1 Lot 2: Network and information technology, external hardware, IT security - IPv6 experts (Lot 2) ZIB 14.16 - 99152/25/VV : 2 There is no limitation on lots and/or awards. The subject of this procurement procedure is Lot 2. For the services to be provided under this lot (Lot 2), an estimated value of 60.522.300,00 Euro net, based on the maximum contract period of 6 years, has been determined. The maximum value corresponds to the estimated value."
           },
           "source": "Gegenstand der Ausschreibung sind Beratungs- und Unterstützungleistungen für Behörden und Organisationen der Bundesverwaltung bei der Herstellung der IPv6-Fähigkeit. Ziel der Vergabe ist der Abschluss von zwei Rahmenvereinbarungen über jeweils 1 + (5x 1) Jahr. Hierzu werden insgesamt zwei Lose ausgeschrieben. Die Lose werden aus systemtechnischen Gründen in den zwei folgenden Vergabeverfahren (VV) ausgeschrieben: Los 1: Technische Projektleitung, Netzwerk-, Enterprise- und Software-Architektur, Testing - Ipv6-Experten (Los 1) ZIB 14.16 - 99152/25/VV : 1 Los 2: Netzwerk- und Informationstechnik, Externe Hardware, IT-Security - IPv6-Experten (Los 2) ZIB 14.16 - 99152/25/VV : 2 Es erfolgt keine Los-und/oder Zuschlagslimitierung. Gegenstand des vorliegenden Vergabeverfahrens ist Los 2. Für die unter diesem Los (Los 2) zu erbringenden vertragsgegenständlichen Leistungen wurde ein Schätzwert in Höhe von 60.522.300,00 Euro netto, bezogen auf den maximalen Vertragszeitraum von 6 Jahren, ermittelt. Der Höchstwert entspricht dem Schätzwert."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "ee839db3e7f928ae11f2b087c936db6fe49eb8099787a5569d5d7c61efcabfb4": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "rejected": {
+            "id": "ee839db3e7f928ae11f2b087c936db6fe49eb8099787a5569d5d7c61efcabfb4:0",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Contrato mixto de suministro y servicio de puesta en marcha y mantenimiento de una herramienta de gestión de referencias bibliográficas para las Universidades miembro de pleno derecho del Consorcio Madroño."
+          },
+          "result": {
+            "at": "2026-09-15T23:19:31.620737+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Mixed supply and service contract for the commissioning and maintenance of a bibliographic reference management tool for the universities that are full members of the Consorcio Madroño."
+          },
+          "source": "Contrato mixto de suministro y servicio de puesta en marcha y mantenimiento de una herramienta de gestión de referencias bibliográficas para las Universidades miembro de pleno derecho del Consorcio Madroño."
         }
       ],
       "protected_names": [],
@@ -129813,6 +132061,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "f2183817d0d4f3ce0585ec36bd4ec5f370215d1ec910d8987d2f78cc99f62a0e": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:21.183566+00:00",
+            "language": "mul",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Servicio de Apoyo al Desarrollo Normativo relativo al la Ciberseguridad 5G y la Seguridad Digital Submission deadline (source local time): 2026-10-01 14:00:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Servicio de Apoyo al Desarrollo Normativo relativo al la Ciberseguridad 5G y la Seguridad Digital Submission deadline (source local time): 2026-10-01 14:00:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "f21ab8e95f5417bd4bf60fd6e9e460de0f97d91306ba49eb44e47b7f1c6deae4": {
       "parts": [
         {
@@ -130614,6 +132885,37 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "f33aecb61496c082b1e1e7981ece5bbc2033a6cdb69e4672fda2b02830980947": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "rejected": {
+            "id": "f33aecb61496c082b1e1e7981ece5bbc2033a6cdb69e4672fda2b02830980947:0",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Con este contrato se pretende desarrollar la actividad 2.2 Licitación de las operaciones de vuelo, de los desarrollos de las aplicaciones de procesamiento de datos y de la gestión del proyecto AGAMENON, por lo que su objeto es la contratación de un servicio integral de operaciones de vuelo de plataformas UAS de media y/o gran altitud y vuelo persistente, con sensores embarcados, así como el desarrollo de aplicaciones de procesamiento de datos, necesario para llevar a cabo parte de las actividades comprometidas por PTFSA en el proyecto de Apoyo a la Gestión de la inmigrAción de MEnores No acompañados mediante sistemas de detecciON temprana. La ejecución de las prestaciones objeto del contrato se vincula asimismo con la actividad 2.3 Desarrollo de las aplicaciones de procesamiento de datos, ejecución de los planes de vuelo y análisis de resultados. En concreto se pretende la ejecución por PTFSA de parte de los compromisos adquiridos por dicha entidad, contando con las infraestructuras de PTFSA Canarias Stratoport for HAPS&UAS ubicado en Fuerteventura. Además, la recogida y volcado de datos se dispondrá de centro ISSEC."
+          },
+          "result": {
+            "at": "2026-09-15T23:19:31.624040+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "This contract aims to develop activity 2.2 Tendering of flight operations, data processing application developments and AGAMENON project management; its purpose is therefore the procurement of an integrated flight operations service for medium and/or high-altitude and persistent-flight UAS platforms with onboard sensors, as well as the development of data processing applications necessary to carry out part of the activities committed to by PTFSA in the project to Support the Management of Immigration of Unaccompanied Minors through Early Detection Systems. The performance of the services forming the object of the contract is also linked to activity 2.3 Development of data processing applications, execution of flight plans and analysis of results. Specifically, it is intended for PTFSA to execute part of the commitments acquired by said entity, utilising the infrastructure of the PTFSA Canarias Stratoport for HAPS&UAS located in Fuerteventura. In addition, data collection and uploading will be arranged through the ISSEC centre."
+          },
+          "source": "Con este contrato se pretende desarrollar la actividad 2.2 Licitación de las operaciones de vuelo, de los desarrollos de las aplicaciones de procesamiento de datos y de la gestión del proyecto AGAMENON, por lo que su objeto es la contratación de un servicio integral de operaciones de vuelo de plataformas UAS de media y/o gran altitud y vuelo persistente, con sensores embarcados, así como el desarrollo de aplicaciones de procesamiento de datos, necesario para llevar a cabo parte de las actividades comprometidas por PTFSA en el proyecto de Apoyo a la Gestión de la inmigrAción de MEnores No acompañados mediante sistemas de detecciON temprana. La ejecución de las prestaciones objeto del contrato se vincula asimismo con la actividad 2.3 Desarrollo de las aplicaciones de procesamiento de datos, ejecución de los planes de vuelo y análisis de resultados. En concreto se pretende la ejecución por PTFSA de parte de los compromisos adquiridos por dicha entidad, contando con las infraestructuras de PTFSA Canarias Stratoport for HAPS&UAS ubicado en Fuerteventura. Además, la recogida y volcado de datos se dispondrá de centro ISSEC."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "f346ac5b8621bb22523c6ab3c8e2bb80016cfea69076be1fcc7ee31f8a17e12b": {
       "parts": [
         {
@@ -131163,6 +133465,29 @@
             "text": "Investment Strategy Consultancy"
           },
           "source": "Investment Strategy Consultancy"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "f43ea01e4d81f7db50c09f46943e09a8324cf14d9ab46d4a2b70f790d5499361": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:39.069063+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "This framework will allow the purchase of off the Shelf (CotS) Hardware (Technology Products), Software, and the required Associated Services: For Hardware this may be: Laptops, Mobiles, Tablets, desktop computers,smartphones, all peripherals, monitors, printers, scanners, radio frequency identification equipment and human interface devices, etc collectively broadly described as End User Computing; Servers, storage, switches, hubs, routers, back up devices, high performance computing, cloud linkage infrastructure, networking or security related hardware etc broadly described as Infrastructure Hardware Multifunction devices (MFD) such as print devices, as well as mobile devices such as smartphones, tablets, dongles and Wireless Routers (MiFi) and accessories. Tactical Communication Systems: Specialised military grade tactical communication and information systems, including Hardware, software and services. Assistive Technology or Technology Enabled Care: These products leverage various technologies to enhance safety, convenience, communication, and health management within a home environment. Hardware can be purchased in combination, outright, delivered as a service, leased, or as a utility model but will all be considered physical devices. The hardware offering will align to Carbon Net Zero, Sustainability and Circular IT objectives with the framework providing the ability to provide new or refurbished devices. For Software this may be: Software including but not limited to; commercial off the shelf software (COTS), open source software software licences. Software can be purchased full box or under subscription. Associated Services Are typically in conjunction with or in the support of hardware and software and could be; design,implementation, end user support, continuation of associated services, support and maintenance, build, imaging, warranty, service desk, installation, project management, training, leasing, security management, asset management, network infrastructure management, device as a service, recycling, disposal, data cleansing etc. Recycling services and extended / non OEM support will be available as part of this to extend life or ensure optimal disposal aligned to CNZ, Sustainability and circular IT objectives. Scope will be finalised after market engagement. Lot 1: ."
+          },
+          "source": "This framework will allow the purchase of off the Shelf (CotS) Hardware (Technology Products), Software, and the required Associated Services: For Hardware this may be: Laptops, Mobiles, Tablets, desktop computers,smartphones, all peripherals, monitors, printers, scanners, radio frequency identification equipment and human interface devices, etc collectively broadly described as End User Computing; Servers, storage, switches, hubs, routers, back up devices, high performance computing, cloud linkage infrastructure, networking or security related hardware etc broadly described as Infrastructure Hardware Multifunction devices (MFD) such as print devices, as well as mobile devices such as smartphones, tablets, dongles and Wireless Routers (MiFi) and accessories. Tactical Communication Systems: Specialised military grade tactical communication and information systems, including Hardware, software and services. Assistive Technology or Technology Enabled Care: These products leverage various technologies to enhance safety, convenience, communication, and health management within a home environment. Hardware can be purchased in combination, outright, delivered as a service, leased, or as a utility model but will all be considered physical devices. The hardware offering will align to Carbon Net Zero, Sustainability and Circular IT objectives with the framework providing the ability to provide new or refurbished devices. For Software this may be: Software including but not limited to; commercial off the shelf software (COTS), open source software software licences. Software can be purchased full box or under subscription. Associated Services Are typically in conjunction with or in the support of hardware and software and could be; design,implementation, end user support, continuation of associated services, support and maintenance, build, imaging, warranty, service desk, installation, project management, training, leasing, security management, asset management, network infrastructure management, device as a service, recycling, disposal, data cleansing etc. Recycling services and extended / non OEM support will be available as part of this to extend life or ensure optimal disposal aligned to CNZ, Sustainability and circular IT objectives. Scope will be finalised after market engagement. Lot 1: ."
         }
       ],
       "protected_names": [],
@@ -136982,6 +139307,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "feebce3255e3e2b613b8ea414facf1d95678e2ccc90c48d973aa05362f6418f8": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-15T23:19:50.382346+00:00",
+            "language": "it",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Municipality of Modena"
+          },
+          "source": "COMUNE DI MODENA"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "fefc7fd012e9700871092b4f55f45ee6864164feb16b444285e1ea8b933cee3f": {
       "parts": [
         {
@@ -137017,6 +139365,37 @@
       "protected_names": [
         "Agència de Ciberseguretat de Catalunya"
       ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "ff00af182970eb0b44bd5ddf4c682e93674fa1c812f0c84052be8096a3f55d88": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-15",
+            "round": 0
+          },
+          "rejected": {
+            "id": "ff00af182970eb0b44bd5ddf4c682e93674fa1c812f0c84052be8096a3f55d88:0",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Servicio de tratamiento de imágenes de radar procedentes de satélite"
+          },
+          "result": {
+            "at": "2026-09-15T23:19:45.498106+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Satellite radar image processing service"
+          },
+          "source": "Servicio de tratamiento de imágenes de radar procedentes de satélite"
+        }
+      ],
+      "protected_names": [],
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
