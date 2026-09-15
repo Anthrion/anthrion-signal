@@ -79,7 +79,7 @@ All six failed runs returned by the repository's failure history were inspected.
 | [11 Sep, 34629908155](https://github.com/stevostar1234/anthrion-signal/actions/runs/34629908155) | Browser focus assertion. | Existing later UI/test fixes are covered by the current full regression. |
 | [11 Sep, 34628644927](https://github.com/stevostar1234/anthrion-signal/actions/runs/34628644927) | Animation-distance assertion missed the observed movement. | Existing animation observer tests capture the whole departure rather than a late sample. |
 | [11 Sep, 34627149045](https://github.com/stevostar1234/anthrion-signal/actions/runs/34627149045) | Desktop/mobile animation predicates timed out after 500 ms. | Covered by the same existing observer-based regression. |
-| [9 Sep, 34345994827](https://github.com/stevostar1234/anthrion-signal/actions/runs/34345994827) | Mobile comparison checkbox interaction timed out. | Older dashboard interaction failure; current comparison tests remain in the full suite. |
+| [9 Sep, 34345994827](https://github.com/stevostar1234/anthrion-signal/actions/runs/34345994827) | Mobile comparison checkbox interaction timed out. | That feature was subsequently removed. Current tests verify CSV export and that comparison controls stay absent. |
 
 The next run after the 15 September failure [succeeded](https://github.com/stevostar1234/anthrion-signal/actions/runs/34915433778); subsequent runs inspected before this release also succeeded. The failure email did not mean that a broken build replaced the working site.
 
@@ -117,4 +117,8 @@ Local verification passed: **646 Python tests**, **32 frontend tests**, TypeScri
 
 An isolated check fetched and normalised all 85 records in one German daily export and verified that compressed rejected records reload successfully. Its stored evidence is in `artifacts/relevance-audit-2026-09-15/national-source-check/`. No new current opportunity was established from that sample. A separate one-page Germany/Spain run yielded no records and does not establish Spanish collection coverage.
 
-The approved production deployment is verified separately below once GitHub finishes its required checks.
+The approved release, code commit `0cbb556`, passed both [GitHub Tests](https://github.com/stevostar1234/anthrion-signal/actions/runs/35031532640) and [the full build/deploy workflow](https://github.com/stevostar1234/anthrion-signal/actions/runs/35031532586). The production browser run passed 107 tests with one intentional skip; Pages deployment and publication recording both succeeded.
+
+The live dataset was independently fetched at **22:49 UTC on 15 September**. Its rule fingerprint matched the tested code. **All 126 reviewed scope/lifecycle removals were absent and all four recovered candidates were present.** The live feed contained **2,148 notices**, all with complete, exact-source, validated English titles and descriptions. The read-only live translation audit passed with no outstanding notice pairs.
+
+Nine supplementary organisation-name renderings remain for review; the original source organisation names are retained. These are separate from notice-title/description coverage. Live verification evidence is in `artifacts/relevance-audit-2026-09-15/live-verification.json` and `live-after.json`.
