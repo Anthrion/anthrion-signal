@@ -205,6 +205,8 @@ def collect_german_notices(source, state, frozen, http, settings, terms):
                     enriched = enrich_release(release, eforms[stem], stem)
                     if relevant_release(enriched, terms, tracked):
                         day_records.append(RawRecord(enriched, source, frozen.isoformat(), "german_ocds"))
+                    else:
+                        result.rejected_records.append(RawRecord(enriched, source, frozen.isoformat(), "german_ocds"))
             # A failed or incomplete format pair never advances that day's checkpoint.
             result.records.extend(day_records)
             tracked.update(raw.data["ocid"] for raw in day_records if raw.data.get("ocid") and

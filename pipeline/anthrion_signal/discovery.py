@@ -1,7 +1,9 @@
 """High-recall candidate discovery. These signals are not technical fit scores."""
 import re
+from pathlib import Path
 
 from .capability_matching import capability_hits, evidence_excerpt, paper_application, unrelated_supply
+from .procurement_scope import addressable_delivery, generic_digital_scope, scope_exclusion
 from .utils import digest, parse_date, unique
 from .vocabulary import phrase_hits, search_text
 
@@ -11,6 +13,14 @@ PLATFORM_FAMILIES = {"salesforce", "crm", "relationships", "service", "contact_c
     "sales_revenue", "marketing", "data", "integration", "analytics", "field_service", "transformation",
     "workflow", "managed", "industry", "external_integration", "collaboration"}
 AI_FAMILIES = {"ai", "genai", "automation", "knowledge"}
+
+
+def discovery_signature(config):
+    """Replay after policy or engine changes, even without a manual version bump."""
+    directory = Path(__file__).parent
+    modules = ("discovery.py", "capability_matching.py", "procurement_scope.py", "vocabulary.py", "translation.py")
+    return digest({"policy": {key: config[key] for key in ("company_profile", "search_terms", "capabilities")},
+                   "engine": {name: (directory / name).read_text(encoding="utf-8") for name in modules}})
 
 
 def is_award_intelligence(signal):
@@ -55,6 +65,15 @@ def lifecycle(signal, now):
     deadlines = [parse_date(value) for value in signal.response_deadlines]
     deadlines = [value for value in deadlines if value]
     deadline = max(deadlines) if deadlines else parse_date(signal.deadline_at)
+    # Explicit source headings can contradict an incorrectly selected notice
+    # category. These are status labels, not words anywhere in the description.
+    if re.match(r"^(?:CANCELLED|CANCELED|AVLYST|KESKEYTETTY|PERUTTU)\b", signal.title.strip()):
+        return "CLOSED", "The source title explicitly marks this procurement as cancelled or discontinued."
+    if re.match(r"^Bekanntmachung\s+Vergebener\s+Auftrag\b", signal.title.strip(), re.IGNORECASE):
+        return "AWARDED", "The source title explicitly announces an awarded contract."
+    if (re.match(r"^Transparenzbekanntmachung\b", signal.title.strip(), re.IGNORECASE)
+            and re.search(r"135.*(?:Abs\.?\s*3|absatz\s*3)", signal.title, re.IGNORECASE)):
+        return "CLOSED", "Prior transparency announcement of a direct award, not an open supplier competition."
     if (signal.notice_type or "").casefold() in ("veat", "dir-awa-pre"):
         return "CLOSED", "Direct-award transparency notice, not an open supplier competition."
     if status in ("cancelled", "canceled", "unsuccessful"):
@@ -151,11 +170,14 @@ def prefilter(signals, profile, terms, charter=None, translations=None):
         segments = [{"basis": basis, "field": field, "quote": part, "text": discovery_text(part)}
                     for basis, heading, description in documents
                     for field, value in (("title", heading), ("description", description))
-                    for part in re.split(r"(?<=[.!?;])\s+|\n+", value) if part.strip()]
-        families, hits, strengths, primary_families, evidence = [], [], [], [], []
+                    for part in ([value] if field == "title" else re.split(r"(?<!\b[A-Z]\.)(?<=[.!?;])\s+|\n+", value)) if part.strip()]
+        addressable = addressable_delivery(segments)
+        families, hits, strengths, primary_families, evidence, discovery_hints = [], [], [], [], [], []
         software_cpv = any(code.startswith(("48", "72")) for code in signal.cpv_codes)
         for cap in caps:
             matches = capability_hits(cap, segments, software_cpv, signal.signal_type == "FUNDING")
+            discovery_hints.extend(e["phrase"] for e in matches if e["strength"] == "hint")
+            matches = [e for e in matches if e["strength"] != "hint"]
             explicit = [e["phrase"] for e in matches if e["strength"] == "explicit"]
             needs = [e["phrase"] for e in matches if e["strength"] == "needs"]
             contextual = [e["phrase"] for e in matches if e["strength"] == "contextual"]
@@ -174,9 +196,10 @@ def prefilter(signals, profile, terms, charter=None, translations=None):
             "software development", "website development", "software engineering", "digital telephony",
             "open banking", "application development", "information systems development", "software implementation"))
             if p != "application development" or not paper_application(segment["text"]))
+        digital_scope = unique(digital_scope + generic_digital_scope(segments))
         score = min(100, max(strengths, default=0) + min(24, max(0, len(families) - 1) * 6) + (12 if cpv else 0))
         # Unclassified digital delivery remains a reviewable candidate, not an invented capability.
-        if digital_scope:
+        if digital_scope or discovery_hints:
             score = max(score, 12)
         # Pipeline/consulting vocabulary alone identifies buying stage, not our scope.
         if families and set(families) <= {"pipeline", "staffing", "external_integration"} and not cpv:
@@ -190,11 +213,15 @@ def prefilter(signals, profile, terms, charter=None, translations=None):
         signal.matched_capabilities = families
         signal.discovery_version = charter["version"] if charter else None
         meaningful = set(primary_families) - {"staffing", "managed", "transformation"}
-        signal.exclusion_reasons = hard_exclusions(signal, charter, bool(meaningful)) if charter else []
+        signal.exclusion_reasons = hard_exclusions(signal, charter, bool(meaningful) or bool(addressable)) if charter else []
         for _, heading, description in documents:
-            reason = unrelated_supply(discovery_text(heading), discovery_text(description), evidence, signal.cpv_codes)
+            reason = None if addressable else unrelated_supply(discovery_text(heading), discovery_text(description), evidence, signal.cpv_codes)
             if reason:
                 signal.exclusion_reasons = unique([*signal.exclusion_reasons, reason])
+        scope = scope_exclusion(segments, signal.cpv_codes)
+        signal.scope_evidence = [scope] if scope else []
+        if scope:
+            signal.exclusion_reasons = unique([*signal.exclusion_reasons, scope["reason"]])
         signal.capability_evidence = [{**e, "quote": evidence_excerpt(e["quote"], e["phrase"])} for e in evidence]
         if signal.exclusion_reasons:
             signal.prefilter_score = 0

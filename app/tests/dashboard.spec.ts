@@ -93,8 +93,11 @@ const discoveryCard = (page: Page, label: string) =>
 const selectDiscovery = async (page: Page, label: string) => {
   const card = discoveryCard(page, label)
   const position = page.getByRole('button', { name: `Show ${label}`, exact: true })
-  await expect.poll(async () => (await position.isVisible()) || (await card.isVisible())).toBe(true)
-  if (await position.isVisible()) await position.click()
+  // A resize can remove pagination between isVisible() and click(). Keep both
+  // responsive controls in one retried locator so it resolves the current DOM.
+  // Pagination follows the cards in DOM order and safely brings clipped cards
+  // into view. When resize removes it, the same locator resolves to the card.
+  await position.or(card).filter({ visible: true }).last().click({ timeout: 10000 })
   await card.click({ timeout: 10000 })
   await expect(card).toHaveAttribute('aria-pressed', 'true')
   return card
@@ -271,8 +274,10 @@ test('optical glass refiners and source links preserve the selected record edge'
   await link.focus()
   await page.keyboard.press('Enter')
   const popup = await popupPromise
-  await popup.waitForLoadState('domcontentloaded')
-  expect(popup.url()).toBe(href)
+  // The popup event can precede its first navigation. Initial load state is not
+  // evidence that the source URL has committed or the intercepted page loaded.
+  await expect(popup).toHaveURL(href!)
+  await expect(popup.locator('body')).toHaveText('Source notice test')
   await popup.close()
 })
 

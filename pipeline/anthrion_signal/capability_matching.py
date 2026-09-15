@@ -3,8 +3,8 @@ import re
 
 from .vocabulary import phrase_hits, search_text
 
-SOFTWARE = ("software", "platform", "application", "system", "systems", "implementation", "development",
-            "automation", "digital", "workflow", "api", "crm", "saas", "logiciel", "sistema", "sistemi",
+SOFTWARE = ("software", "platform", "application", "information system", "information systems",
+            "automation", "workflow", "api", "crm", "saas", "database", "logiciel", "sistema", "sistemi",
             "applicazioni", "applicazione", "applikationen", "anwendungen", "virtualisierbar", "softwarewartung",
             "plataforma", "piattaforma", "softwareentwicklung", "systeme", "jarjestelma", "jarjestelman",
             "ohjelmisto", "logismiko", "λογισμικο", "συστημα", "συστηματος", "συστηματων", "πλατφορμα",
@@ -14,7 +14,8 @@ INTEGRATION = ("integration", "integrate", "integrated", "integrating", "interfa
                "integrazione", "interoperabilita", "integracion", "interoperabilidad", "διασυνδεση",
                "διασυνδεσης", "διαλειτουργικοτητα", "integraatio", "integrasjon")
 NEGATED_BEFORE = re.compile(r"\b(?:no|without|excluding|exclude|excludes|not include|not including|does not require|"
-                            r"not required|sans|ohne|kein|keine|keinen|sin|senza|χωρις|δεν περιλαμβανει)\s+(?:\w+\s+){0,4}$")
+                            r"not required(?: to)?|not responsible for|no requirement (?:to|for)|does not include|"
+                            r"sans|ohne|kein|keine|keinen|sin|senza|χωρις|δεν περιλαμβανει)\s+(?:\w+\s+){0,4}$")
 NEGATED_AFTER = re.compile(r"^\s*(?:\w+\s+){0,3}(?:is |are |will be )?(?:not included|not required|excluded|out of scope|"
                            r"δεν περιλαμβανεται|δεν περιλαμβανονται)")
 AMBIGUOUS_NEEDS = {"account management", "client management", "contact management", "application processing",
@@ -80,6 +81,7 @@ def capability_hits(cap, segments, software_cpv=False, funding=False):
     for segment in segments:
         text = segment["text"]
         technical = has_software(text)
+        weak_technical = bool(phrase_hits(text, ("system", "systems", "implementation", "development", "digital")))
         if cap["id"] in {"ai", "genai"} and phrase_hits(text, (
                 "computer system for running", "computing system for training", "laptop for processing",
                 "υπολογιστικο συστημα", "φορητος υπολογιστης")):
@@ -88,8 +90,16 @@ def capability_hits(cap, segments, software_cpv=False, funding=False):
                                ("needs", cap.get("needs", []) + cap.get("aliases", [])),
                                ("contextual", cap.get("contextual", []))):
             for phrase in phrase_hits(text, phrases):
+                hint_only = False
                 if not affirmed(text, phrase):
                     continue
+                if cap["id"] == "ai" and phrase in ("claude", "gemini"):
+                    if not phrase_hits(text, ("ai", "artificial intelligence", "llm", "anthropic", "google ai",
+                                              "chatbot", "language model", "generative", "api", "licence", "license",
+                                              "subscription", "implementation", "sonnet", "opus", "haiku", "gemini pro", "gemini flash")):
+                        if re.search(r"\bClaude\s+(?:[A-Z]\.\s+)?[A-Z][a-z]+\b", segment["quote"]) or phrase_hits(text, ("observatory", "telescope")):
+                            continue
+                        hint_only = True
                 if phrase == "application development" and paper_application(text):
                     continue
                 if funding and phrase in ("data integration", "data harmonisation", "data harmonization"):
@@ -99,14 +109,25 @@ def capability_hits(cap, segments, software_cpv=False, funding=False):
                 # A foreign-language alias may describe a human service. Software CPV
                 # supports a functional phrase, but never proves a tag by itself.
                 if level == "needs" and phrase in AMBIGUOUS_NEEDS and not (technical or software_cpv):
-                    continue
-                if level == "contextual":
-                    if not technical or not phrase_hits(text, CONTEXT_GUARDS.get(cap["id"], SOFTWARE)):
+                    if not weak_technical:
                         continue
+                    hint_only = True
+                # Generic data quality/governance also occurs in fieldwork and
+                # administrative reporting, including its translated aliases.
+                if cap["id"] == "data" and level == "needs" and not (technical or software_cpv):
+                    if not phrase_hits(text, ("customer", "client", "master data", "data platform", "data warehouse")):
+                        hint_only = True
+                if level == "contextual":
+                    if not (technical or weak_technical):
+                        continue
+                    guard = CONTEXT_GUARDS.get(cap["id"])
+                    if guard and not phrase_hits(text, guard):
+                        continue
+                    hint_only |= not technical
                     if cap["id"] in ("ai", "genai") and phrase in ("ai", "mcp", "rag"):
                         if not re.search(r"\b" + phrase.upper() + r"\b", segment["quote"]):
                             continue
-                evidence.append({"capability": cap["id"], "phrase": phrase, "strength": level,
+                evidence.append({"capability": cap["id"], "phrase": phrase, "strength": "hint" if hint_only else level,
                                  "basis": segment["basis"], "field": segment["field"], "quote": segment["quote"]})
         if cap["id"] == "relationships" and re.search(
                 r"\b(?:stakeholder|constituent|member|donor|volunteer|customer|client|coalition|tenant|resident)s?\b"

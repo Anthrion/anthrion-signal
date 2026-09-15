@@ -243,7 +243,10 @@ def _retain_records(result, page, lane, source, frozen, terms):
     versions, active = result.state["versions"], result.state["active_records"]
     for record in sorted(page["records"], key=lambda item: (item["updated"], item["state"] in TERMINAL)):
         updated = _aware(record["updated"])
-        if not after <= updated <= through or not relevant_placsp_record(record, terms):
+        if not after <= updated <= through:
+            continue
+        if not relevant_placsp_record(record, terms):
+            result.rejected_records.append(RawRecord(record, source, frozen.isoformat(), "spain_placsp"))
             continue
         ident = record["id"]
         previous = versions.get(ident)

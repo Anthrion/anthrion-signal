@@ -136,6 +136,7 @@ class Collection:
     complete: bool = True
     message: str | None = None
     pages: int = 0
+    rejected_records: list[RawRecord] = field(default_factory=list)
 
 
 def defer_collection(result, exc):
@@ -946,6 +947,7 @@ def collect_with_backfill(source, state, frozen, http, settings, terms, charter)
             for raw in backfill.records:
                 raw.retrieved_at = frozen.isoformat()
             result.records.extend(backfill.records)
+            result.rejected_records.extend(backfill.rejected_records)
             result.pages += backfill.pages
             remaining -= max(1, backfill.pages)
             historical = {**historical, "checkpoint": backfill.state}

@@ -62,7 +62,12 @@ def main():
                 queue.add(entry["source"], [buyers.get(entry["id"])])
         else:
             now = datetime.now(UTC)
-            records = [signal for signal in Dataset.model_validate(read_json(root / "data/current.json", {})).signals
+            if (root / "config/capabilities.yaml").exists():
+                from anthrion_signal.cli import export
+                candidates = export(root).signals
+            else:
+                candidates = Dataset.model_validate(read_json(root / "data/current.json", {})).signals
+            records = [signal for signal in candidates
                        if is_public_opportunity(signal, now)]
             queue.prepare(records)
         characters = sum(sum(len(part["source"]) for part in queue.state["fields"][key]["parts"])

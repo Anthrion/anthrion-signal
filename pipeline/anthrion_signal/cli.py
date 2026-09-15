@@ -7,7 +7,8 @@ from pathlib import Path
 
 from .collectors import Http, collect_with_backfill, hydrate_sparse
 from .config import capability_catalog, evidence_catalog, load_config
-from .discovery import is_public_opportunity, lifecycle, prefilter, ranking_key
+from .discovery import discovery_signature, is_public_opportunity, lifecycle, prefilter, ranking_key
+from .discovery_retention import read_rejected, retain_rejected
 from .dedupe import reconcile
 from .models import Dataset, EnglishText, Signal, SourceHealth
 from .normalise import NORMALISERS, set_hashes
@@ -27,8 +28,8 @@ def _collect(source, previous_state, now, config, previous_signals=None):
     try:
         result = collect_with_backfill(source, state, now, http, config["runtime"], config["search_terms"], config["capabilities"])
         hydrate_sparse(result, source, now, http, config["runtime"])
-        health.records = len(result.records)
-        health.status = "healthy" if result.complete else "partial" if result.records else "failed"
+        health.records = len(result.records) + len(result.rejected_records)
+        health.status = "healthy" if result.complete else "partial" if health.records else "failed"
         health.message = result.message
         next_state = result.state
         if result.complete:
@@ -36,7 +37,9 @@ def _collect(source, previous_state, now, config, previous_signals=None):
             next_state["last_success"] = now.isoformat()
         normalised, rejected = [], 0
         families = {s.ocid: s for s in previous_signals or [] if s.ocid}
-        for raw in sorted(result.records, key=lambda r: r.data.get("date") or ""):
+        # National pre-gates are hints, not irreversible deletions. The common
+        # classifier gets their rejected scope too and retains its decision.
+        for raw in sorted(result.records + result.rejected_records, key=lambda r: r.data.get("date") or ""):
             try:
                 signal = (NORMALISERS[raw.kind](raw, prior=families.get(raw.data.get("ocid")))
                           if raw.kind in ("ocds", "german_ocds") else NORMALISERS[raw.kind](raw))
@@ -52,7 +55,7 @@ def _collect(source, previous_state, now, config, previous_signals=None):
             health.message = f"{rejected} records could not be normalised; retrieval checkpoint retained."
             next_state = state
             health.last_success = state.get("last_success")
-        return source["id"], normalised, next_state, health, len(result.records)
+        return source["id"], normalised, next_state, health, len(result.records) + len(result.rejected_records)
     except Exception as exc:
         health.status = "failed"
         health.message = "Source temporarily unavailable; previous records retained."
@@ -86,6 +89,12 @@ def derive_renewals(signals, now, config):
 def export(root):
     data = Dataset.model_validate(read_json(root / "data/current.json", {}))
     config = load_config(root)
+    signature = discovery_signature(config)
+    canonical = root / "data/signals.jsonl"
+    if data.run.get("discovery_signature") != signature and canonical.exists():
+        # A rule release must be able to restore previously suppressed candidates
+        # even on an existing-data deployment. Availability is still checked below.
+        data.signals = [Signal.model_validate_json(line) for line in canonical.read_text(encoding="utf-8").splitlines() if line]
     translations = available_translations(root, data.signals)
     prefilter(data.signals, config["company_profile"], config["search_terms"], config["capabilities"], translations)
     data.signals = [s for s in data.signals if is_public_opportunity(s, datetime.now(UTC)) and
@@ -98,6 +107,7 @@ def export(root):
         for c in config["capabilities"]["capabilities"] if c["id"] != "pipeline"]
     data.run.update(scheduled_timezone="Europe/London", scheduled_times=SCHEDULED_TIMES)
     data.run["discovery_version"] = config["capabilities"]["version"]
+    data.run["discovery_signature"] = signature
     data.run["public_signals"] = len(data.signals)
     target = root / "app/public/data"
     target.mkdir(parents=True, exist_ok=True)
@@ -109,7 +119,7 @@ def public_data(dataset):
     return dataset.model_dump(exclude={"signals": {"__all__": {
         "analysis", "analysis_cache_key", "ai_status", "ai_model", "ai_scored_at", "fit_score",
         "confidence_score", "known_weight", "score_components", "score_explanation", "recommendation",
-        "prefilter_score", "capability_evidence"}}, "run": {"gemini_calls", "cache_hits", "ai_failures", "candidates_shortlisted", "high_fit_signals"}})
+        "prefilter_score", "capability_evidence", "scope_evidence"}}, "run": {"gemini_calls", "cache_hits", "ai_failures", "candidates_shortlisted", "high_fit_signals"}})
 
 
 def run(root, args):
@@ -156,7 +166,17 @@ def run(root, args):
             state[sid], health[sid] = new_state, status
             raw_count += count
             print(f"{status.name}: {status.status}, {count} records", flush=True)
-    prefilter(incoming, config["company_profile"], config["search_terms"], config["capabilities"])
+    discovery_state = read_json(root / "data/discovery/state.json", {})
+    signature = discovery_signature(config)
+    replay = discovery_state.get("signature") != signature or getattr(args, "command", "ingest") == "rescore"
+    replayed = read_rejected(root) if replay else []
+    # Current retrieval follows replay so newer status updates remain authoritative.
+    incoming = replayed + incoming
+    prefilter(incoming, config["company_profile"], config["search_terms"], config["capabilities"],
+              available_translations(root, incoming))
+    # Replayed source versions already have durable evidence; do not duplicate
+    # the entire rejection history into a new date partition on every release.
+    rejected_count = retain_rejected(root, incoming[len(replayed):], now, config["capabilities"]["discovery"]["minimum_candidate_score"])
     known_ids, known_ocids = {s.id for s in previous}, {s.ocid for s in previous if s.ocid}
     known_aliases = {alias for s in previous for alias in s.external_ids}
     # Sparse awards and cancellations must still retire a previously collected lead.
@@ -187,6 +207,8 @@ def run(root, args):
     same_content = (previous_data or {}).get("run", {}).get("content_digest") == content_digest
     metadata = {"started_at": now.isoformat(), "finished_at": datetime.now(UTC).isoformat(), "operation": getattr(args, "command", "ingest"),
         "discovery_version": config["capabilities"]["version"],
+        "discovery_signature": signature,
+        "rejected_records_retained": rejected_count, "rejected_records_replayed": len(replayed),
         "sources_attempted": len(selected), "sources_succeeded": sum(health[s["id"]].status == "healthy" for s in selected),
         "raw_records": raw_count, "canonical_signals": len(signals), "candidates_shortlisted": sum(s.prefilter_score >= runtime["ai_min_score"] and not s.related_signal_id for s in current),
         "public_signals": len(current), "suppressed_unavailable_signals": len(signals) - len(available),
@@ -213,6 +235,8 @@ def run(root, args):
     atomic_json(root / "data/current.json", public)
     atomic_json(root / "data/dedupe_index.json", index)
     atomic_json(root / "data/run_metadata.json", metadata)
+    atomic_json(root / "data/discovery/state.json", {"version": config["capabilities"]["version"],
+                                                   "signature": signature, "evaluated_at": now.isoformat()})
     history = root / "data/history.jsonl"
     if not same_content:
         with history.open("a", encoding="utf-8") as stream:

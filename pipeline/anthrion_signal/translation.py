@@ -13,6 +13,7 @@ from email.utils import parsedate_to_datetime
 from functools import lru_cache
 from html import unescape
 from pathlib import Path
+from types import SimpleNamespace
 from zoneinfo import ZoneInfo
 
 import httpx
@@ -589,29 +590,55 @@ def source_key(signal):
 
 
 def available_translations(root, signals):
-    """Only publish complete translations of the exact text in this snapshot."""
+    """Reuse exact-source English independently of which notices are published.
+
+    Cache validation is in memory only: no quota, API calls or queue writes.
+    """
+    sources = [s if isinstance(s, dict) else s.model_dump() for s in signals]
     try:
         overlay = read_json(Path(root) / "data/translation/translations.en.json", {})
     except (OSError, ValueError):
-        return {}
+        overlay = {}
     if not isinstance(overlay, dict) or overlay.get("version") != 1 or overlay.get("target") != "en":
-        return {}
+        overlay = {}
     entries = overlay.get("signals", {})
     if not isinstance(entries, dict):
-        return {}
+        entries = {}
+    # The display sidecar contains only current candidates. Completed cache fields
+    # must remain available for relevance replay after an exclusion, otherwise the
+    # loss of an English overlay can make the same irrelevant notice reappear.
+    cache_path = Path(root) / "data/translation/cache.json"
+    def valid(source, entry):
+        return (isinstance(entry, dict) and entry.get("version") == VERSION
+                and entry.get("source_hash") == digest([source["title"], source.get("description", "")])
+                and all(isinstance(entry.get(field), str)
+                        and (not source.get(field, "").strip() or entry[field].strip())
+                        and not untranslated_prose(entry[field], [source.get("buyer_name")], source.get(field, ""))
+                        for field in ("title", "description")))
+
+    missing = [s for s in sources if not valid(s, entries.get(s["id"]))]
+    if missing and cache_path.exists():
+        try:
+            queue = TranslationQueue(cache_path)
+        except (OSError, ValueError, TypeError):
+            queue = None
+        entries = dict(entries)
+        for source in missing if queue else []:
+            record = SimpleNamespace(id=source["id"], title=source["title"],
+                                     description=source.get("description", ""), buyer_name=source.get("buyer_name"))
+            try:
+                for field in ("title", "description", "buyer_name"):
+                    text = getattr(record, field)
+                    purpose = "organisation" if field == "buyer_name" else "passage"
+                    if text and field_key(text, purpose) in queue.state["fields"]:
+                        queue.add(text, [] if field == "buyer_name" else [record.buyer_name], purpose)
+                entries.update(queue.overlay([record])["signals"])
+            except (KeyError, ValueError, TypeError, AttributeError):
+                continue  # A malformed saved field cannot invalidate other notices.
     result = {}
-    for signal in signals:
-        source = signal if isinstance(signal, dict) else signal.model_dump()
+    for source in sources:
         entry = entries.get(source["id"])
-        if not isinstance(entry, dict) or entry.get("version") != VERSION:
-            continue
-        if entry.get("source_hash") != digest([source["title"], source.get("description", "")]):
-            continue
-        if any(not isinstance(entry.get(field), str) or (source.get(field, "").strip() and not entry[field].strip())
-               for field in ("title", "description")):
-            continue
-        if any(untranslated_prose(entry[field], [source.get("buyer_name")], source.get(field, ""))
-               for field in ("title", "description")):
+        if not valid(source, entry):
             continue
         result[source["id"]] = {field: entry[field] for field in ("source_hash", "version", "title", "description")}
         if (source.get("buyer_name") and entry.get("buyer_original") == source["buyer_name"]
@@ -640,7 +667,7 @@ class TranslationQueue:
     def __init__(self, path, clock=time.time):
         self.path, self.clock = Path(path), clock
         self.state = read_json(self.path, {"version": 1, "fields": {}})
-        if self.state.get("version") != 1 or not isinstance(self.state.get("fields"), dict):
+        if not isinstance(self.state, dict) or self.state.get("version") != 1 or not isinstance(self.state.get("fields"), dict):
             raise ValueError("Invalid translation cache; refusing to discard saved progress")
         self.active = []
         self.active_keys = set()

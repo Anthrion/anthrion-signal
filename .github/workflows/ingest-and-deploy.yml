@@ -98,7 +98,7 @@ jobs:
         if: steps.plan.outputs.collect == 'true' || steps.changed.outputs.deploy == 'true' || steps.plan.outputs.full_tests == 'true'
         run: |
           python -m pytest -q
-          python -m ruff check pipeline scripts/refresh_plan.py scripts/translate_records.py scripts/publication_state.py scripts/reconcile_release_data.py scripts/audit_translations.py
+          python -m ruff check pipeline scripts/refresh_plan.py scripts/translate_records.py scripts/publication_state.py scripts/reconcile_release_data.py scripts/audit_translations.py scripts/audit_relevance.py
       - uses: actions/setup-node@v4
         if: steps.changed.outputs.deploy == 'true' || steps.plan.outputs.full_tests == 'true'
         with:
@@ -136,6 +136,7 @@ jobs:
         if: steps.plan.outputs.full_tests == 'true'
         run: python scripts/refresh_plan.py passed
       - name: Persist canonical state
+        # Publication is still gated on every required check above.
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
@@ -157,6 +158,14 @@ jobs:
           COLLECTION_OUTCOME: ${{ steps.collect.outcome }}
           TRANSLATION_OUTCOME: ${{ steps.translate.outcome }}
         run: python scripts/run_summary.py
+      - name: Preserve failed browser diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-failure-${{ github.run_id }}
+          path: app/test-results/
+          if-no-files-found: ignore
+          retention-days: 14
 
   deploy:
     needs: build
