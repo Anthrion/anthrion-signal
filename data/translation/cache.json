@@ -46920,7 +46920,8 @@
             "id": "4d1e9e7066b13bb425e4d15b2a253cb6927973044aa88a744c8496bffe483348:0",
             "language": "es",
             "model": "gemini-3.5-flash-lite",
-            "text": "Local Governing Board of the Municipality of Alcal&aacute; de Guada&iacute;ra"
+            "normalization": "html-character-references-1",
+            "text": "Local Governing Board of the Municipality of Alcalá de Guadaíra"
           },
           "result": {
             "at": "2026-09-16T20:37:34.327202+00:00",
@@ -48463,7 +48464,8 @@
             "id": "50040f21086c66525e2f3426b48ff62c31e25f7142ade8d997e672ae1a6f0a77:0",
             "language": "es",
             "model": "gemini-3.5-flash-lite",
-            "text": "Procurement Department of the Municipality of Gand&iacute;a"
+            "normalization": "html-character-references-1",
+            "text": "Procurement Department of the Municipality of Gandía"
           },
           "result": {
             "at": "2026-09-16T20:37:34.327009+00:00",
@@ -79772,7 +79774,8 @@
             "id": "860509d89cf3b98681cfabb0851ebfe150987f1fe7c13a25e978add27ea4303f:0",
             "language": "es",
             "model": "gemini-3.5-flash-lite",
-            "text": "Mayoral Office of the Municipality of Mog&aacute;n"
+            "normalization": "html-character-references-1",
+            "text": "Mayoral Office of the Municipality of Mogán"
           },
           "result": {
             "at": "2026-09-16T20:37:34.326864+00:00",
@@ -104308,7 +104311,8 @@
             "id": "ad1aef6985a54f25cc2a89ab49407cdc5dcdfe63fd5f62c66c154fcdca7e3b8b:0",
             "language": "es",
             "model": "gemini-3.5-flash-lite",
-            "text": "Treasury Department of the Municipality of Gij&oacute;n"
+            "normalization": "html-character-references-1",
+            "text": "Treasury Department of the Municipality of Gijón"
           },
           "result": {
             "at": "2026-09-16T20:37:34.327111+00:00",
@@ -115573,9 +115577,9 @@
             "gemini-3.5-flash-lite": 2
           },
           "quality_retry": {
-            "after": 1789594724.4333107,
+            "after": 1789599896.513869,
             "day": "2026-09-16",
-            "round": 0
+            "round": 1
           },
           "rejected": {
             "id": "becabb2d6b541db14599a0c7f70d0da15cae6318f1d483014dd5809c8f360903:0",
@@ -127229,7 +127233,8 @@
             "id": "d130482a014068682514d1eca7bbfd8762a7657f26fc94fc0a212e0d6916789f:0",
             "language": "es",
             "model": "gemini-3.5-flash-lite",
-            "text": "Municipal Directorate of Urban Planning of the Municipality of M&oacute;stoles"
+            "normalization": "html-character-references-1",
+            "text": "Municipal Directorate of Urban Planning of the Municipality of Móstoles"
           },
           "result": {
             "at": "2026-09-16T20:37:34.327294+00:00",
