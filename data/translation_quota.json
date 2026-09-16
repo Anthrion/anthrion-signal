@@ -451,31 +451,52 @@
       }
     },
     "35130182266-1": {
-      "closed": false,
+      "closed": true,
       "day": "2026-09-16",
       "limits": {
         "gemini-3.1-flash-lite": 75,
         "gemini-3.5-flash-lite": 75
       },
-      "used": {}
+      "started": true,
+      "used": {
+        "gemini-3.1-flash-lite": 8,
+        "gemini-3.5-flash-lite": 22
+      }
     }
   },
   "models": {
     "gemini-3.1-flash-lite": {
       "blocked_reason": "transient",
-      "blocked_until": 1789501215.2407615,
+      "blocked_until": 1789581584.4398906,
       "consecutive_errors": 0,
       "days": {
         "2026-09-12": 9,
         "2026-09-13": 420,
         "2026-09-14": 54,
         "2026-09-15": 47,
-        "2026-09-16": 85
+        "2026-09-16": 18
       },
-      "recent": [],
+      "recent": [
+        {
+          "at": 1789581584.4404836,
+          "tokens": 5874
+        },
+        {
+          "at": 1789581584.536828,
+          "tokens": 1308
+        },
+        {
+          "at": 1789581586.0793023,
+          "tokens": 5519
+        },
+        {
+          "at": 1789581586.1643453,
+          "tokens": 1134
+        }
+      ],
       "usage": {
-        "candidatesTokenCount": 820002,
-        "promptTokenCount": 955448,
+        "candidatesTokenCount": 820337,
+        "promptTokenCount": 957202,
         "thoughtsTokenCount": 0
       }
     },
@@ -488,12 +509,69 @@
         "2026-09-13": 500,
         "2026-09-14": 172,
         "2026-09-15": 109,
-        "2026-09-16": 110
+        "2026-09-16": 57
       },
-      "recent": [],
+      "recent": [
+        {
+          "at": 1789581365.0298073,
+          "tokens": 15799
+        },
+        {
+          "at": 1789581365.1315298,
+          "tokens": 5080
+        },
+        {
+          "at": 1789581373.693065,
+          "tokens": 13153
+        },
+        {
+          "at": 1789581373.7933767,
+          "tokens": 4391
+        },
+        {
+          "at": 1789581381.7683163,
+          "tokens": 19678
+        },
+        {
+          "at": 1789581381.872549,
+          "tokens": 5800
+        },
+        {
+          "at": 1789581395.1778474,
+          "tokens": 17780
+        },
+        {
+          "at": 1789581395.2652276,
+          "tokens": 4840
+        },
+        {
+          "at": 1789581403.2024138,
+          "tokens": 14673
+        },
+        {
+          "at": 1789581403.29727,
+          "tokens": 4364
+        },
+        {
+          "at": 1789581409.678829,
+          "tokens": 9468
+        },
+        {
+          "at": 1789581409.7728183,
+          "tokens": 3196
+        },
+        {
+          "at": 1789581416.064247,
+          "tokens": 5519
+        },
+        {
+          "at": 1789581416.1405568,
+          "tokens": 1134
+        }
+      ],
       "usage": {
-        "candidatesTokenCount": 1327103,
-        "promptTokenCount": 1557078,
+        "candidatesTokenCount": 1358105,
+        "promptTokenCount": 1597034,
         "thoughtsTokenCount": 0
       }
     }
