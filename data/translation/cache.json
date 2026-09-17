@@ -140207,14 +140207,11 @@
       "parts": [
         {
           "blocked": false,
-          "failures": {
-            "gemini-3.1-flash-lite": 2,
-            "gemini-3.5-flash-lite": 2
-          },
+          "failures": {},
           "quality_retry": {
-            "after": 1789613874.7663429,
+            "after": 0,
             "day": "2026-09-16",
-            "round": 0
+            "round": 1
           },
           "rejected": {
             "id": "dbec0fe5583951fc003ffdbfecb95cacd4d884bc9152dcc96af76daf4fe94223:0",
@@ -140222,7 +140219,12 @@
             "model": "gemini-3.1-flash-lite",
             "text": "The Enforcement Authority, would hereby like to invite you to take part of this request for information (RFI) regarding an Auction system. The Enforcement Authority, would hereby like to invite you to take part of this request for information (RFI) regarding an Auction system."
           },
-          "result": null,
+          "result": {
+            "at": "2026-09-17T05:13:39.647696+00:00",
+            "language": "mul",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The Enforcement Authority hereby invites you to take part in this request for information (RFI) regarding an auction system."
+          },
           "source": "Kronofogden, bjuder härmed in till RFI avseende auktionsystem. The Enforcement Authority, would hereby like to invite you to take part of this request for information (RFI) regarding an Auction system."
         }
       ],
@@ -156499,9 +156501,9 @@
             "gemini-3.5-flash-lite": 2
           },
           "quality_retry": {
-            "after": 1789613855.1087687,
+            "after": 1789625633.8994427,
             "day": "2026-09-16",
-            "round": 0
+            "round": 1
           },
           "rejected": {
             "id": "f3c2dc5804553f030f1fdde5b03b83d92ebcfe09cfb6131c9f8b898dd3afa286:0",
