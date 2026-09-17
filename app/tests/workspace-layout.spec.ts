@@ -125,7 +125,9 @@ test('the slim action dock increases reading space while keeping both controls u
     await expect(panel.locator('.inspector-summary')).toHaveCSS('padding-left', '24px')
     await expect(panel.locator('.inspector-summary p').first()).toHaveCSS('font-size', '18px')
   }
-  await expect(panel.locator('.inspector-facts')).toHaveCSS('margin-top', '12px')
+  const heading = (await panel.locator('.inspector-heading').boundingBox())!
+  const overview = (await panel.locator('.inspector-overview').boundingBox())!
+  expect(overview.y - (heading.y + heading.height)).toBeCloseTo(12, 0)
   for (const button of [dock.getByRole('button'), dock.getByRole('link')]) {
     expect((await contained(button, dock)).height).toBeGreaterThanOrEqual(44)
   }
