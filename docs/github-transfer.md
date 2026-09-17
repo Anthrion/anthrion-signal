@@ -4,7 +4,7 @@ Updated 17 September 2026. Signal is now public at
 [`Anthrion/anthrion-signal`](https://github.com/Anthrion/anthrion-signal); timestamp
 evidence is stored separately in private `Anthrion/Timestamps`.
 
-**Live configuration is complete. Production and timestamp acceptance runs are pending.**
+**Configuration, App data saves, tested deployment and private timestamp verification are complete.**
 The three approved company changes are applied: the Signal-only exception to the older
 combined rule, the Steven-only team, and the App installed only on Signal. Other projects'
 protections, company billing, archive secret scope and other people's notifications were
@@ -12,7 +12,7 @@ not changed. AI reviews remain deferred.
 
 Local verification before rollout: 659 Python tests passed, Ruff passed, workflow YAML
 parsed and whitespace checks passed. Tests use an offline timestamp authority; a live
-receipt and real App writes are checked separately before calling the setup complete.
+receipt and real App writes also passed the live checks linked below.
 
 ## Agreed behaviour
 
@@ -93,8 +93,8 @@ Sources: [Actions billing](https://docs.github.com/en/billing/concepts/product-b
 | Pages / deployment environment | Complete | **Settings → Pages → GitHub Actions**; **Environments → github-pages** permits only main, no reviewers. |
 | Gemini and Sectigo decisions | Confirmed by Steven | Free-tier confirmation enabled; approved endpoint and independently verified root configured. |
 | Windows personal signing | Configured; local signing check passed | PC signing public key registered. Mac configuration is not verified. |
-| First App deployment | Pending acceptance run | Check both writer jobs, required tests and public site. |
-| First private timestamp | Pending acceptance run | Check modern runner verification and archive write, then repeat to verify safe reuse. |
+| First App deployment | Passed | Both App writer jobs succeeded and Pages deployed after validation. See verification links below. |
+| First private timestamp | Passed | Receipt verified against the pinned root and archived privately; rerun verified and reused it without another TSA request. |
 
 The App is an identity for the existing Actions jobs: it needs no extra server, paid human
 bot account or personal SSH key. The downloaded `.pem` is a valid local private key; a
@@ -117,12 +117,12 @@ available only to the selected source repositories that genuinely need it.
 | `ANTHRION_APP_PRIVATE_KEY` | Actions **Secrets**; the downloaded App private key | Configured |
 | `GEMINI_API_KEY` | Existing Actions **Secret**, from the verified free-tier Google project | To create new English translations |
 | `SIGNAL_GEMINI_FREE_TIER_CONFIRMED` | Actions **Variable**; `true` only after checking the Google project | Otherwise new translation calls are skipped after transfer; existing cached translations remain |
-| `TIMESTAMPS_WRITE_TOKEN` | Existing scoped Actions **Secret**; Contents read/write to private `Anthrion/Timestamps` | Before enabling timestamping |
+| `TIMESTAMPS_WRITE_TOKEN` | Existing organization Actions **Secret**; Contents read/write to private `Anthrion/Timestamps` | Configured and verified live |
 | `TIMESTAMP_TSA_URL` | Actions **Variable**; default `https://timestamp.sectigo.com/qualified` | Change only for the agreed provider |
-| `TIMESTAMP_TSA_ROOT_PEM` | Actions **Variable**; exactly one approved public root certificate in PEM text | Before enabling timestamping |
-| `TIMESTAMP_TSA_ROOT_SHA256` | Actions **Variable**; independently approved SHA-256 fingerprint of that certificate's DER encoding | Before enabling timestamping |
+| `TIMESTAMP_TSA_ROOT_PEM` | Actions **Variable**; exactly one approved public root certificate in PEM text | Configured and verified live |
+| `TIMESTAMP_TSA_ROOT_SHA256` | Actions **Variable**; independently approved SHA-256 fingerprint of that certificate's DER encoding | Configured and verified live |
 | `TIMESTAMP_TSA_CHAIN_PEM` | Optional Actions **Variable**; supporting intermediate certificates if absent from the response | Only if verification needs them; these are not trust anchors |
-| `SIGNAL_TIMESTAMPING_ENABLED` | Actions **Variable**; `true` after the preceding checks | Defaults to disabled; no authority calls until enabled |
+| `SIGNAL_TIMESTAMPING_ENABLED` | Actions **Variable**; `true` after the preceding checks | Set to true; baseline and rerun verified |
 
 The free-tier confirmation is an operational switch, not a billing API or guaranteed
 spending cap. Recheck it if the Google project's billing tier changes. Keep the
@@ -136,8 +136,7 @@ the sole proof that it is trustworthy. Public certificate bytes are not private 
 
 ### Signal-only rules
 
-At **Signal → Settings → Rulesets → New branch ruleset**, target **main** and configure
-these three active rules. Organization-level equivalents restricted to Signal also work.
+At **Signal → Settings → Rules → Rulesets**, the following three active rules target **main**. Organization-level equivalents restricted to Signal also work.
 All other applicable rules still apply; a permissive repository rule cannot override them.
 
 | Rule | Requirements | Bypass |
@@ -172,8 +171,12 @@ accepts its other supported signing methods.
 Normal merges preserve original signed commit objects. Squash and rebase create new
 commit objects, so the original signatures do not carry over. Timestamping still records
 the resulting accepted main version. GitHub may block a particular merge operation if
-it cannot produce commits satisfying the signed-commit rule; keeping the menu option
-enabled does not bypass that requirement. Other company repositories keep zero required
+it cannot produce commits satisfying the signed-commit rule. In particular, GitHub's
+web **Rebase and merge** does not sign the rewritten commits. Steven can instead rebase
+and sign locally before a permitted push; other contributors can rebase/sign their feature
+branch and use an approved normal merge. Keeping the menu option enabled does not bypass
+signing. See [GitHub's explanation](https://docs.github.com/en/authentication/managing-commit-signature-verification/about-commit-signature-verification#signature-verification-for-rebase-and-merge).
+Other company repositories keep zero required
 approvals until the team chooses to change them.
 
 `timestamp-manifest.yml` contains the automation instructions; `manifest.json` is the
@@ -263,8 +266,22 @@ per-source email alerts would be an optional separate addition.
 
 ## Remaining responsibilities
 
-**Codex:** finish the first App data-save/deployment and private timestamp runs, verify
-their results and update this status. No automatic AI reviews are enabled.
+**Codex setup complete:** signed direct push, App data saves, production deployment,
+private timestamping and safe rerun are verified. No automatic AI reviews are enabled.
+
+### Live verification, 17 September 2026
+
+- [Signed setup commit](https://github.com/Anthrion/anthrion-signal/commit/1fa88b41c1c9b3f7a9af2d230710891306b71ffa): GitHub reports Verified; Steven's direct push used only the review/check bypass.
+- [Required tests](https://github.com/Anthrion/anthrion-signal/actions/runs/35237337536): 659 Python tests and 32 frontend tests passed, plus Ruff and the frontend build.
+- [Production deployment](https://github.com/Anthrion/anthrion-signal/actions/runs/35237337608): App authentication, data checkpoint, 107 passing browser checks, Pages deployment and publication record succeeded.
+- [Private baseline timestamp](https://github.com/Anthrion/anthrion-signal/actions/runs/35237388066): verified against the approved root and archived as six files. Repository, source SHA and tree SHA were independently compared with the saved manifest.
+- [Safe rerun](https://github.com/Anthrion/anthrion-signal/actions/runs/35237694891): existing private receipt verified and reused; no replacement record or new TSA request.
+- [Private evidence folder](https://github.com/Anthrion/Timestamps/tree/main/records/Anthrion_anthrion-signal/1fa88b41c1c9b3f7a9af2d230710891306b71ffa): requires archive access. Data-only App commits did not create automatic timestamp runs.
+
+The verification runs use GitHub's current Ubuntu/OpenSSL. This PC's older bundled
+OpenSSL 1.1.1 could not verify the real provider's signing-certificate attributes; use
+current OpenSSL when verifying downloaded evidence locally. No trust check was disabled.
+
 
 **Steven/team:** set up the Mac's personal signing key when needed; other developers add
 their own public signing keys. A passphrase is optional but recommended, and separate
@@ -285,9 +302,9 @@ chosen human workflow uses SSH, but the built-in rule does not enforce SSH exclu
 
 | Setting / file | Link | Change made |
 | --- | --- | --- |
-| Signal review rule | [signal-review](https://github.com/Anthrion/anthrion-signal/settings/rules/23605431) | One approval, CODEOWNER and test; Steven/team and App bypass |
-| Signal signing rule | [signal-signatures](https://github.com/Anthrion/anthrion-signal/settings/rules/23605432) | Human signatures required; App bypass only |
-| Signal history rule | [signal-history](https://github.com/Anthrion/anthrion-signal/settings/rules/23605434) | No force pushes/deletion; no bypass |
+| Signal review rule | [signal-review](https://github.com/Anthrion/anthrion-signal/rules/23605431) | One approval, CODEOWNER and test; Steven/team and App bypass |
+| Signal signing rule | [signal-signatures](https://github.com/Anthrion/anthrion-signal/rules/23605432) | Human signatures required; App bypass only |
+| Signal history rule | [signal-history](https://github.com/Anthrion/anthrion-signal/rules/23605434) | No force pushes/deletion; no bypass |
 | Combined company rule | [default-branch-protection](https://github.com/organizations/Anthrion/settings/rules/22175216) | Only added Signal to exclusions; other projects' approval counts unchanged |
 | Steven's team | [Signal maintainer](https://github.com/orgs/Anthrion/teams/signal-maintainer) | Created with Steven only; Write access to Signal |
 | App registration | [Anthrion Signal automation](https://github.com/organizations/Anthrion/settings/apps/anthrion-signal-automation) | Created company App, Contents write, no webhook |
