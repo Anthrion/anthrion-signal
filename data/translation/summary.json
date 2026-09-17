@@ -1,12 +1,12 @@
 {
-  "api_calls": 8,
-  "completed_fields": 6440,
+  "api_calls": 14,
+  "completed_fields": 6499,
   "disabled_models": [],
   "failures": {
-    "validation": 4
+    "validation": 15
   },
-  "finished_at": "2026-09-17T05:13:54.210923+00:00",
-  "input_characters": 3299837,
+  "finished_at": "2026-09-17T06:56:05.828349+00:00",
+  "input_characters": 3338974,
   "models": [
     "gemini-3.5-flash-lite",
     "gemini-3.1-flash-lite"
