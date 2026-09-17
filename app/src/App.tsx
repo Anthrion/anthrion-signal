@@ -43,13 +43,14 @@ import { VirtualSignalList } from './VirtualSignalList'
 import { DismissDust } from './DismissDust'
 import {
   amount,
-  calendar,
   csv,
   currencyOptions,
   date,
   defaults,
   download,
   filterSignals,
+  gmailDraftURL,
+  googleCalendarURL,
   isAvailableOpportunity,
   isUpdated,
   lifecycleLabels,
@@ -755,11 +756,6 @@ export default function App() {
                     <ConsoleDetail
                       signal={selectedSignal}
                       data={data}
-                      saved={saved.includes(selectedSignal.id)}
-                      hidden={hiddenIds.has(selectedSignal.id)}
-                      departing={!!departing[selectedSignal.id]}
-                      onSave={() => toggleSave(selectedSignal.id)}
-                      onHide={() => dismiss(selectedSignal.id)}
                       onInspect={(tab) => {
                         setSelected(selectedSignal.id)
                         setDetailTab(tab)
@@ -806,24 +802,13 @@ export default function App() {
         {detailOpen && selectedSignal && data && (
           <Modal title="Opportunity intelligence" onClose={() => setDetailOpen(false)} wide drawer>
             {detailTab === 'preview' ? (
-              <ConsoleDetail
-                signal={selectedSignal}
-                data={data}
-                saved={saved.includes(selectedSignal.id)}
-                hidden={hiddenIds.has(selectedSignal.id)}
-                departing={!!departing[selectedSignal.id]}
-                onSave={() => toggleSave(selectedSignal.id)}
-                onHide={() => dismiss(selectedSignal.id)}
-                onInspect={setDetailTab}
-              />
+              <ConsoleDetail signal={selectedSignal} data={data} onInspect={setDetailTab} />
             ) : (
               <SignalDetail
                 signal={selectedSignal}
                 data={data}
                 tab={detailTab}
                 setTab={setDetailTab}
-                saved={saved.includes(selectedSignal.id)}
-                onSave={() => toggleSave(selectedSignal.id)}
                 onShare={() => void share()}
                 onBack={() => {
                   if (window.matchMedia('(max-width: 900px)').matches) setDetailTab('preview')
@@ -946,23 +931,83 @@ function SourceNoticeLink({ href }: { href: string }) {
   )
 }
 
+function RecordIntegrations({ signal }: { signal: Signal }) {
+  const text = useSignalText(signal)
+  const assetRoot = `${import.meta.env.BASE_URL}assets/integrations/`
+  const gmailURL = gmailDraftURL(
+    signal,
+    new URL(import.meta.env.BASE_URL, window.location.origin).href,
+    text,
+  )
+  return (
+    <div className="record-integrations" role="group" aria-label="Record integrations">
+      <button
+        type="button"
+        className="record-integration"
+        disabled
+        aria-label="Salesforce (coming soon)"
+        title="Salesforce — coming soon"
+      >
+        <img src={`${assetRoot}salesforce.svg`} alt="" width="34" height="24" />
+      </button>
+      <a
+        className="record-integration record-integration-gmail"
+        href={gmailURL}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Share this opportunity in Gmail (opens a new tab)"
+        title="Share in Gmail"
+      >
+        <img src={`${assetRoot}gmail.svg`} alt="" width="28" height="28" />
+      </a>
+      <button
+        type="button"
+        className="record-integration"
+        disabled
+        aria-label="Slack (coming soon)"
+        title="Slack — coming soon"
+      >
+        <img
+          className="record-integration-slack"
+          src={`${assetRoot}slack.png`}
+          alt=""
+          width="28"
+          height="28"
+        />
+      </button>
+    </div>
+  )
+}
+
+function DeadlineCalendarButton({ signal }: { signal: Signal }) {
+  const text = useSignalText(signal)
+  const href = googleCalendarURL(
+    signal,
+    new URL(import.meta.env.BASE_URL, window.location.origin).href,
+    text,
+  )
+  if (!href) return null
+  return (
+    <a
+      className="deadline-calendar-button"
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Add deadline to Google Calendar (opens a new tab)"
+      title="Add deadline to Google Calendar"
+    >
+      <CalendarPlus size={20} />
+    </a>
+  )
+}
+
 function ConsoleDetail({
   signal: s,
   data,
-  saved,
-  hidden,
-  departing,
-  onSave,
-  onHide,
   onInspect,
 }: {
   signal: Signal
   data: Dataset
-  saved: boolean
-  hidden: boolean
-  departing: boolean
-  onSave: () => void
-  onHide: () => void
   onInspect: (tab: string) => void
 }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -996,69 +1041,51 @@ function ConsoleDetail({
                 <p className="inspector-buyer">
                   <span>{text.buyerName}</span>
                 </p>
-                <div className="inspector-utilities">
-                  <IconButton
-                    label={saved ? 'Unsave selected opportunity' : 'Save selected opportunity'}
-                    onClick={onSave}
-                  >
-                    {saved ? <BookmarkCheck size={18} /> : <Bookmark size={18} />}
-                  </IconButton>
-                  <label className="hide-control">
-                    <input
-                      type="checkbox"
-                      checked={departing ? !hidden : hidden}
-                      disabled={departing}
-                      onChange={onHide}
-                      aria-label={`${hidden ? 'Unhide' : 'Hide'} selected opportunity`}
-                    />
-                    <span>{hidden ? 'Unhide' : 'Hide'}</span>
-                  </label>
-                </div>
               </div>
             </div>
           </div>
-          <dl className="inspector-facts">
-            <div>
-              <dt>Notice type</dt>
-              <dd>
-                <FileText size={20} />
-                <span>{typeLabels[s.signal_type]}</span>
-              </dd>
-            </div>
-            <div>
-              <dt>Value</dt>
-              <dd>
-                <Layers3 size={20} />
-                <span>{amount(s.value_max, s.currency)}</span>
-              </dd>
-            </div>
-            <div>
-              <dt>Deadline</dt>
-              <dd>
-                <CalendarClock size={20} />
-                <span>
-                  {responseDeadline(s) ? date(responseDeadline(s)) : 'Deadline not published'}
-                </span>
-                {responseDeadline(s) && (
-                  <IconButton label="Add deadline to calendar" onClick={() => calendar(s)}>
-                    <CalendarPlus size={16} />
-                  </IconButton>
+          <div className="inspector-overview">
+            <div className="inspector-overview-content">
+              <dl className="inspector-facts">
+                <div>
+                  <dt>Notice type</dt>
+                  <dd>
+                    <FileText size={20} />
+                    <span>{typeLabels[s.signal_type]}</span>
+                  </dd>
+                </div>
+                <div>
+                  <dt>Value</dt>
+                  <dd>
+                    <Layers3 size={20} />
+                    <span>{amount(s.value_max, s.currency)}</span>
+                  </dd>
+                </div>
+                <div>
+                  <dt>Deadline</dt>
+                  <dd className="inspector-deadline">
+                    <DeadlineCalendarButton signal={s} />
+                    <span>
+                      {responseDeadline(s) ? date(responseDeadline(s)) : 'Deadline not published'}
+                    </span>
+                  </dd>
+                </div>
+              </dl>
+              <section className="inspector-capabilities">
+                <h3>Capabilities</h3>
+                {capabilities.length > 0 ? (
+                  <ul className="capability-line">
+                    {capabilities.map((capability) => (
+                      <li key={capability}>{capability}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="muted">Not specified</p>
                 )}
-              </dd>
+              </section>
             </div>
-          </dl>
-          <section className="inspector-capabilities">
-            <h3>Capabilities</h3>
-            {capabilities.length > 0 ? (
-              <ul className="capability-line">
-                {capabilities.map((capability) => (
-                  <li key={capability}>{capability}</li>
-                ))}
-              </ul>
-            ) : (
-              <p className="muted">Not specified</p>
-            )}
-          </section>
+            <RecordIntegrations signal={s} />
+          </div>
           {(!['OPEN', 'EARLY_ENGAGEMENT'].includes(lifecycleState(s)) ||
             !!s.exclusion_reasons?.length) && (
             <p className="lifecycle-note">
@@ -1230,8 +1257,6 @@ function SignalDetail({
   data,
   tab,
   setTab,
-  saved,
-  onSave,
   onShare,
   onBack,
 }: {
@@ -1239,8 +1264,6 @@ function SignalDetail({
   data: Dataset
   tab: string
   setTab: (tab: string) => void
-  saved: boolean
-  onSave: () => void
   onShare: () => void
   onBack: () => void
 }) {
@@ -1281,15 +1304,7 @@ function SignalDetail({
           <span>{text.buyerName}</span>
         </div>
         <div className="detail-actions">
-          <button className="button secondary" onClick={onSave}>
-            {saved ? <BookmarkCheck size={15} /> : <Bookmark size={15} />}
-            {saved ? 'Saved' : 'Save opportunity'}
-          </button>
-          {responseDeadline(s) && (
-            <IconButton label="Add deadline to calendar" onClick={() => calendar(s)}>
-              <CalendarPlus size={17} />
-            </IconButton>
-          )}
+          <DeadlineCalendarButton signal={s} />
           <IconButton label="Copy opportunity link" onClick={onShare}>
             <Copy size={16} />
           </IconButton>

@@ -444,6 +444,88 @@ export function safeURL(value: string) {
     return '#'
   }
 }
+function recordShareText(
+  signal: Signal,
+  appURL: string,
+  text = { title: signal.title, buyerName: signal.buyer_name },
+) {
+  const recordURL = new URL(appURL)
+  recordURL.search = ''
+  recordURL.hash = ''
+  recordURL.searchParams.set('view', 'all')
+  recordURL.searchParams.set(
+    'market',
+    markets.find((market) => matchesMarket(signal, market.id))?.id || '',
+  )
+  recordURL.searchParams.set('signal', signal.id)
+  const deadline = responseDeadline(signal)
+  const sourceURL = safeURL(signal.primary_source_url)
+  return [
+    text.title,
+    '',
+    `Buyer: ${text.buyerName || 'Not published'}`,
+    `Notice type: ${typeLabels[signal.signal_type] || signal.signal_type}`,
+    `Value: ${amount(signal.value_max, signal.currency, false)}`,
+    `Deadline: ${
+      deadline
+        ? date(deadline, {
+            day: 'numeric',
+            month: 'short',
+            year: 'numeric',
+            timeZone: 'UTC',
+            ...(/^\d{4}-\d{2}-\d{2}$/.test(deadline)
+              ? {}
+              : { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' }),
+          })
+        : 'Not published'
+    }`,
+    '',
+    `View in Anthrion Signal: ${recordURL.href}`,
+    ...(sourceURL === '#' ? [] : [`Source notice: ${sourceURL}`]),
+  ].join('\n')
+}
+export function gmailDraftURL(
+  signal: Signal,
+  appURL: string,
+  text = { title: signal.title, buyerName: signal.buyer_name },
+) {
+  const gmailURL = new URL('https://mail.google.com/mail/')
+  gmailURL.search = new URLSearchParams({
+    view: 'cm',
+    fs: '1',
+    su: `Anthrion Signal: ${text.title}`,
+    body: recordShareText(signal, appURL, text),
+  }).toString()
+  return gmailURL.href
+}
+export function googleCalendarURL(
+  signal: Signal,
+  appURL: string,
+  text = { title: signal.title, buyerName: signal.buyer_name },
+) {
+  const deadline = responseDeadline(signal)
+  if (!deadline || !Number.isFinite(Date.parse(deadline))) return null
+  const start = new Date(deadline)
+  const allDay = /^\d{4}-\d{2}-\d{2}$/.test(deadline)
+  if (allDay && start.toISOString().slice(0, 10) !== deadline) return null
+  if (!allDay && !/(?:Z|[+-]\d{2}:?\d{2})$/i.test(deadline)) return null
+  const end = new Date(start.getTime() + (allDay ? 86400000 : 15 * 60000))
+  const format = (value: Date) =>
+    allDay
+      ? value.toISOString().slice(0, 10).replaceAll('-', '')
+      : value
+          .toISOString()
+          .replace(/[-:]/g, '')
+          .replace(/\.\d{3}/, '')
+  const url = new URL('https://calendar.google.com/calendar/r/eventedit')
+  url.search = new URLSearchParams({
+    action: 'TEMPLATE',
+    text: `Deadline for tender: ${text.title}`,
+    dates: `${format(start)}/${format(end)}`,
+    details: recordShareText(signal, appURL, text),
+  }).toString()
+  return url.href
+}
 export function csv(signals: Signal[]) {
   const escape = (value: unknown) =>
     '"' +
@@ -474,32 +556,4 @@ export function download(name: string, body: string, mime: string) {
   a.download = name
   a.click()
   setTimeout(() => URL.revokeObjectURL(url), 1000)
-}
-export function calendar(s: Signal) {
-  const deadline = responseDeadline(s)
-  if (!deadline) return
-  const escape = (v: string) =>
-    v.replace(/\\/g, '\\\\').replace(/\n/g, '\\n').replace(/,/g, '\\,').replace(/;/g, '\\;')
-  const dt = new Date(deadline)
-    .toISOString()
-    .replace(/[-:]/g, '')
-    .replace(/\.\d{3}/, '')
-  const content = [
-    'BEGIN:VCALENDAR',
-    'VERSION:2.0',
-    'PRODID:-//Anthrion//Signal//EN',
-    'BEGIN:VEVENT',
-    `UID:${s.id}@anthrion-signal`,
-    `DTSTAMP:${new Date()
-      .toISOString()
-      .replace(/[-:]/g, '')
-      .replace(/\.\d{3}/, '')}`,
-    `DTSTART:${dt}`,
-    `SUMMARY:${escape(s.title)}`,
-    `DESCRIPTION:${escape(s.buyer_name || '')}\\n${s.primary_source_url}`,
-    `URL:${s.primary_source_url}`,
-    'END:VEVENT',
-    'END:VCALENDAR',
-  ].join('\r\n')
-  download('anthrion-deadline.ics', content, 'text/calendar')
 }

@@ -1205,25 +1205,13 @@
   gap: 8px 16px;
   margin-top: 12px;
 }
-.inspector-utilities {
-  display: flex;
-  align-items: center;
-  gap: 13px;
-  margin-left: auto;
-}
-.inspector-utilities .icon-button {
-  width: 27px;
-  height: 29px;
-}
-.inspector-utilities .hide-control {
-  border-left: 1px solid var(--line-strong);
-  padding-left: 13px;
-}
 .inspector-heading {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 16px;
   align-items: start;
+}
+.inspector-heading > div:first-child {
+  min-width: 0;
 }
 .inspector-heading h2 {
   font-size: 28px;
@@ -1354,13 +1342,64 @@
 .inspector-summary p + p {
   margin-top: 22px;
 }
+.inspector-overview {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 44px;
+  gap: 20px;
+  margin-top: 12px;
+  padding-block: 16px;
+  border-block: 1px solid var(--line-strong);
+}
+.inspector-overview-content {
+  min-width: 0;
+}
+.record-integrations {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+  gap: 6px;
+}
+.record-integration {
+  display: grid;
+  place-items: center;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: 9px;
+  background: color-mix(in srgb, var(--surface), transparent 25%);
+  transition:
+    background 150ms,
+    border-color 150ms;
+}
+.record-integration img {
+  display: block;
+  object-fit: contain;
+}
+.record-integration:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+.record-integration-gmail:hover {
+  border-color: var(--muted);
+  background: var(--surface-hover);
+}
+.record-integration-gmail:focus-visible,
+.deadline-calendar-button:focus-visible {
+  outline: 2px solid var(--ice);
+  outline-offset: 3px;
+}
+.record-integration-slack {
+  border-radius: 6px;
+}
 .inspector-facts {
   display: grid;
   grid-template-columns: 0.9fr 1.15fr 1fr;
   gap: 16px;
-  margin: 12px 0 0;
-  padding: 14px 0 16px;
-  border-top: 1px solid var(--line-strong);
+  margin: 0;
+  padding: 0 0 16px;
 }
 .inspector-facts > div {
   min-width: 0;
@@ -1389,11 +1428,34 @@
   margin-top: 1px;
   color: var(--muted);
 }
-.inspector-facts .icon-button {
-  flex: 0 0 24px;
-  width: 24px;
-  height: 26px;
-  margin-left: auto;
+.deadline-calendar-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+}
+.deadline-calendar-button::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+}
+.deadline-calendar-button svg {
+  width: 100%;
+  height: 100%;
+}
+.deadline-calendar-button:hover {
+  color: var(--ice);
+}
+.detail-actions .deadline-calendar-button {
+  margin: 0;
 }
 .glass-source-button {
   position: relative;
@@ -1492,8 +1554,7 @@
   line-height: 1.4;
 }
 .inspector-capabilities {
-  padding: 0 0 20px;
-  border-bottom: 1px solid var(--line-strong);
+  padding: 0;
 }
 .inspector-capabilities h3 {
   font-size: 13px;
@@ -1537,17 +1598,6 @@
   .inspector-buyer {
     font-size: 18px;
   }
-  .inspector-utilities .hide-control {
-    font-size: 13px;
-  }
-  .inspector-utilities .hide-control input {
-    width: 16px;
-    height: 16px;
-  }
-  .inspector-utilities .icon-button svg {
-    width: 21px;
-    height: 21px;
-  }
   .inspector-facts {
     grid-template-columns: 1fr 1fr 0.95fr;
     padding-bottom: 22px;
@@ -1585,6 +1635,9 @@
   }
 }
 @container record (max-width: 560px) {
+  .inspector-overview {
+    gap: 14px;
+  }
   .inspector-heading h2 {
     font-size: 24px;
   }
@@ -1592,7 +1645,11 @@
     font-size: 13px;
   }
   .inspector-facts {
+    grid-template-columns: 1fr 1fr;
     gap: 12px;
+  }
+  .inspector-facts > div:last-child {
+    grid-column: 1 / -1;
   }
   .inspector-facts dd {
     font-size: 13px;
@@ -1603,6 +1660,11 @@
     flex: 1;
   }
   .inspector-facts dd > svg {
+    width: 17px;
+    height: 17px;
+  }
+  .deadline-calendar-button {
+    flex-basis: 17px;
     width: 17px;
     height: 17px;
   }
@@ -1803,10 +1865,6 @@
   }
   .console-detail {
     --record-padding: 20px;
-  }
-  .inspector-heading {
-    display: flex;
-    flex-direction: column;
   }
   .inspector-metrics {
     align-items: center;

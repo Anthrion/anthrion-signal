@@ -20,6 +20,8 @@ import {
   priorityTier,
   responseDeadline,
   displayBuyer,
+  gmailDraftURL,
+  googleCalendarURL,
 } from './lib'
 const now = Date.parse('2026-09-09T12:00:00Z')
 const signal = {
@@ -55,6 +57,90 @@ const signal = {
   last_material_update: '2026-09-08T14:00:00Z',
 } as unknown as Signal
 describe('team workflows', () => {
+  test('Google Calendar drafts preserve the deadline instant and selected record, without inviting anyone', () => {
+    const record = { ...signal, deadline_at: '2026-09-20T12:00:00+01:00' }
+    const title = 'CRM & service / café + €'
+    const url = new URL(
+      googleCalendarURL(record, 'https://anthrion.github.io/anthrion-signal/?q=other&signal=old', {
+        title,
+        buyerName: 'Public buyer',
+      })!,
+    )
+    expect(url.origin + url.pathname).toBe('https://calendar.google.com/calendar/r/eventedit')
+    expect(url.searchParams.get('text')).toBe(`Deadline for tender: ${title}`)
+    expect(url.searchParams.get('dates')).toBe('20260920T110000Z/20260920T111500Z')
+    expect(url.searchParams.get('details')).toContain('20 Sept 2026, 11:00 UTC')
+    expect(url.searchParams.get('details')).toContain('signal=one')
+    expect(url.searchParams.get('details')).toContain(`Source notice: ${record.primary_source_url}`)
+    expect(url.searchParams.get('details')).not.toContain('signal=old')
+    expect(url.searchParams.has('add')).toBe(false)
+  })
+
+  test('date-only deadlines make one all-day entry, while missing or uncertain deadlines have no calendar link', () => {
+    const appURL = 'https://anthrion.github.io/anthrion-signal/'
+    const url = new URL(googleCalendarURL({ ...signal, deadline_at: '2026-12-31' }, appURL)!)
+    expect(url.searchParams.get('dates')).toBe('20261231/20270101')
+    expect(url.searchParams.get('details')).toContain('Deadline: 31 Dec 2026\n')
+    for (const deadline of [null, 'invalid', '2026-02-30', '2026-09-20T12:00:00']) {
+      expect(googleCalendarURL({ ...signal, deadline_at: deadline }, appURL)).toBeNull()
+    }
+  })
+
+  test('Gmail drafts preserve displayed text and link to the selected record without unrelated filters', () => {
+    const record = { ...signal, id: 'nordic & 2', countries: ['FI'] }
+    const title = 'CRM & service / Henkilöstö + €'
+    const url = new URL(
+      gmailDraftURL(
+        record,
+        'https://anthrion.github.io/anthrion-signal/?q=other&signal=old&view=closing#old',
+        { title, buyerName: 'Kunta (Municipality)' },
+      ),
+    )
+    expect(url.origin + url.pathname).toBe('https://mail.google.com/mail/')
+    expect(url.searchParams.get('su')).toBe(`Anthrion Signal: ${title}`)
+    expect(url.searchParams.has('to')).toBe(false)
+    const body = url.searchParams.get('body')!
+    expect(body).toContain('Buyer: Kunta (Municipality)')
+    expect(body).toContain('Value: £400,000')
+    expect(body).toContain('Deadline: 20 Sept 2026')
+    expect(body).toContain(`Source notice: ${record.primary_source_url}`)
+    const link = new URL(
+      body
+        .split('\n')
+        .find((line) => line.startsWith('View in Anthrion Signal: '))!
+        .slice('View in Anthrion Signal: '.length),
+    )
+    expect(link.origin + link.pathname).toBe('https://anthrion.github.io/anthrion-signal/')
+    expect(Object.fromEntries(link.searchParams)).toEqual({
+      view: 'all',
+      market: 'NORDICS',
+      signal: record.id,
+    })
+    expect(link.hash).toBe('')
+    expect(body).not.toContain(record.description)
+  })
+
+  test('Gmail drafts retain missing facts without including unsafe source links', () => {
+    const url = new URL(
+      gmailDraftURL(
+        {
+          ...signal,
+          deadline_at: null,
+          value_max: null,
+          buyer_name: '',
+          primary_source_url: 'javascript:alert(1)',
+        },
+        'https://anthrion.github.io/anthrion-signal/',
+      ),
+    )
+    const body = url.searchParams.get('body')!
+    expect(body).toContain('Buyer: Not published')
+    expect(body).toContain('Value: Value not published')
+    expect(body).toContain('Deadline: Not published')
+    expect(body).not.toContain('Source notice:')
+    expect(body).not.toContain('javascript:')
+  })
+
   test('English buyer renderings supplement the exact official name without stale or duplicate aliases', () => {
     const original = { ...signal, buyer_name: 'Stadtverwaltung Berlin' }
     const english = {
