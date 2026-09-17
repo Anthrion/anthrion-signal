@@ -1349,6 +1349,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "024f2b8407778cc8b0eca769e66eb874a16c023dd50db178d56b66b24ae0f392": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:40.623105+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Security Operation Centre"
+          },
+          "source": "Security Operation Centre"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "02546ae67b17556a1097382fd07c5daf0715c29c76812c7c1708a70364d90d6c": {
       "parts": [
         {
@@ -5970,6 +5993,31 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "0872a994bba80bcc6907aeb1033ce9f723bf1469810fe73477e903c95c8ed691": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:17:07.705565+00:00",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "1 INTRODUCTION We kindly ask you to submit your response to this Request for Information concerning the planning of the procurement for a questionnaire and event management system. We greatly appreciate all responses received, and each of them will be taken into account in the preparation of any potential tendering process. With this Request for Information, we aim to map supplier offerings regarding systems that support and provide a smooth and appropriate user experience for the end user. More detailed information on the subject of the procurement can be found in appendix 1 \"Request for Information Questions\" of this Request for Information. The end user of the procurement is Istekki and its owner-customers. At the same time, we aim to familiarise ourselves with the market situation, products potentially related to the use of the system, and contractual and commercial terms, such as pricing. 2 ORGANISING MARKET DIALOGUE Based on the responses to the Request for Information, market dialogue sessions will be organised where suppliers can present their own services, products and options for implementing the subject of the procurement. Based on the responses to this Request for Information, Istekki will select an estimated approximately 3–5 tenderers for the market dialogue. Any market dialogue sessions will be organised at a time specified by 24.3.2025 the contracting authority. If market dialogue sessions are organised, they will be conducted in the Finnish language. Istekki will provide the companies selected for the sessions with more detailed schedules and a Teams meeting link at a later date. Additional information questions may also be posed to suppliers. Please note that the information, descriptions and estimates of the publication date of the actual tendering process presented in this Request for Information are preliminary and indicative. Final schedules will be refined as the preparation progresses. 3 RESPONDING TO THE REQUEST FOR INFORMATION We kindly ask you to submit your response by email to hankinnat@istekki.fi no later than 18.3.2026 at 12.00. The Request for Information is to be answered using the form \"Request for Information Questions\" attached to this Request for Information (appendix 1). Send the completed form to the specified email address by the deadline. All responses received to the Request for Information will be taken into account in the preparation of the invitation to tender, and they form an important part of understanding the overall picture. It is worth noting that this Request for Information does not oblige Istekki Oy to carry out the procurement in the manner presented in this document or its appendices. A potential tendering process may also be left unorganised. No separate compensation will be paid for responding to the Request for Information or participating in any presentation sessions. We would like to emphasise once again that this is a Request for Information, not a prior information notice, contract notice or invitation to tender. The purpose of the Request for Information is to familiarise with the market situation and gather information related to the subject of the procurement to support the planning of the future tendering process. Responding to the Request for Information is voluntary and is not a prerequisite for participating in a potential tendering process, nor does it bind Istekki to publish a tendering process. At the same time, we greatly appreciate the information provided by suppliers, as it helps us build the future tendering process into as functional and clear a whole as possible."
+          },
+          "source": "1 JOHDANTO Pyydämme teitä toimittamaan vastauksenne tähän kysely‐ ja tapahtumahallintajärjestelmän hankinnan suunnittelua koskevaan tietopyyntöön. Arvostamme suuresti kaikkia saamiamme vastauksia, ja jokainen niistä huomioidaan mahdollisen kilpailutuksen valmistelussa. Tällä tietopyynnöllä haluamme kartoittaa toimittajien tarjontaa järjestelmistä, jotka tukevat ja tarjoavat sujuvan sekä tarkoituksenmukaisen käyttökokemuksen loppukäyttäjälle. Tarkemmat tiedot hankinnna kohteesta löytyvät tämän tietopyynnön liitteestä 1 ”Tietopyynnön kysymykset”. Hankinnan loppukäyttäjänä toimii Istekki ja sen omistaja‐asiakkaat. Samalla pyrimme tutustumaan markkinatilanteeseen, järjestelmän käyttöön mahdollisesti liittyviin tuotteisiin sekä sopimus- ja kaupallisiin ehtoihin, kuten hinnoitteluun. 2 MARKKINAVUOROPUHELUN JÄRJESTÄMINEN Tietopyynnön vastauksien perusteella järjestään markkinavuoropuhelutilaisuuksia, joissa toimittajat voivat esitellä omia palveluitaan, tuotteitaan ja vaihtoehtojaan kilpailutuksen kohteen toteuttamiselle. Tämän tietopyynnön vastauksien perusteella Istekki valitsee arviolta noin 3–5 tarjoajaa markkinavuoropuheluun. Mahdolliset markkinavuoropuhelutilaisuudet järjestetään 24.3.2025 tilaajan ilmoittamana ajankohtana. Jos markkinavuoropuhelutilaisuuksia järjestetään, ne toteutetaan suomen kielellä. Istekki toimittaa tilaisuuksiin valituille yrityksille tarkemmat aikataulut sekä Teams‐kokouslinkin myöhemmin. Toimittajille voidaan esittää myös lisätietokysymyksiä. Huomioittehan, että tässä tietopyynnössä esitetyt tiedot, kuvaukset ja arviot varsinaisen kilpailutuksen julkaisuajankohdasta ovat alustavia ja suuntaa antavia. Lopulliset aikataulut tarkentuvat valmistelun edetessä. 3 TIETOPYYNTÖÖN VASTAAMINEN Pyydämme toimittamaan vastauksenne sähköpostitse osoitteeseen hankinnat@istekki.fi viimeistään 18.3.2026 klo 12.00. Tietopyyntöön vastataan tämän tietopyynnön liiteenä (liite 1) olevalla lomakkeella \"Tietopyynnön kysymykset\". Lähetä lomake täytettynä ilmoitettuun sähköpostiosoitteeseen määrä-aikaan mennessä. Kaikki tietopyyntöön saapuneet vastaukset otetaan huomioon tarjouspyynnön valmistelussa, ja ne ovat tärkeä osa kokonaisuuden hahmottamista. On hyvä huomioida, että tämä tietopyyntö ei velvoita Istekki Oy:tä toteuttamaan hankintaa tässä asiakirjassa tai sen liitteissä esitetyllä tavalla. Mahdollinen tarjouskilpailu voidaan myös jättää järjestämättä. Tietopyyntöön vastaamisesta tai mahdollisiin esittelytilaisuuksiin osallistumisesta ei makseta erillistä korvausta. Haluamme vielä korostaa, että kyseessä on tietopyyntö, ei ennakkoilmoitus, hankintailmoitus tai tarjouspyyntö. Tietopyynnön tarkoituksena on tutustua markkinatilanteeseen ja kerätä hankinnan kohteeseen liittyvää tietoa tulevan kilpailutuksen suunnittelun tueksi. Tietopyyntöön vastaaminen on vapaaehtoista, eikä se ole edellytys mahdolliseen tarjouskilpailuun osallistumiselle tai sido Istekkiä julkaisemaan tarjouskilpailua. Samalla arvostamme suuresti toimittajien tarjoamaa tietoa, sillä se auttaa meitä rakentamaan tulevasta kilpailutuksesta mahdollisimman toimivan ja selkeän kokonaisuuden."
+        }
+      ],
+      "protected_names": [
+        "Istekki Oy"
+      ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "087569acd14b8ff7287e1a2e7b81af38d4b1b44d7a032f02a068dfa272b4d36c": {
       "parts": [
         {
@@ -6260,6 +6308,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "08d16d655131128fe19baaf0f8bec4d416bf0b1aefc535c65bb60d3426d450d9": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:59.543918+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Kristiansand municipality plans to announce a new competition for the procurement of a quality system during 2026. A market dialogue will be held in connection with the preparation of this competition. Kristiansand municipality invites interested suppliers to digital 1:1 meetings in weeks 16 to 18. Two hours will be put aside per supplier. Before the meeting, tenderers are asked in writing to respond to the questions and requirements in annexes points 3.2 and 3.3. The following times are set aside for the market dialogue: 15 April ( 15:00). 9-1120 April, 12-1422. The deadline for registering and submitting written replies is 19.03.2026, 12:00. Registration and replies are to be sent via the communication module in Mercell.Se annex for further information."
+          },
+          "source": "Kristiansand municipality plans to announce a new competition for the procurement of a quality system during 2026. A market dialogue will be held in connection with the preparation of this competition. Kristiansand municipality invites interested suppliers to digital 1:1 meetings in weeks 16 to 18. Two hours will be put aside per supplier. Before the meeting, tenderers are asked in writing to respond to the questions and requirements in annexes points 3.2 and 3.3. The following times are set aside for the market dialogue: 15 April ( 15:00). 9-1120 April, 12-1422. The deadline for registering and submitting written replies is 19.03.2026, 12:00. Registration and replies are to be sent via the communication module in Mercell.Se annex for further information."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "08ea95c302d33e76f2e8d69f76086033be68dfd01665390863a38a48e286b8cf": {
       "parts": [
         {
@@ -6456,6 +6527,29 @@
             "text": "Framework agreement - Consulting services for the implementation of measures for economic performance improvement"
           },
           "source": "RV - Beratungsleistung zur Implementierung von Maßnahmen zur wirtschaftlichen Ergebnisverbesserung"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "092f3349aaddbfff8cd78572b91ec0d74b51e267a14ef60b4a27c2eb4175e845": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:40.631371+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Supply of software for the issuance and sale of online tickets as well as loyalty, analysis and interpretation tools for spectator usage and consumption data in cultural activities programmed by the House of Culture and the Municipality of Puçol 2026-2027. Submission deadline (source local time): 2026-09-25 23:59:00. Time zone not supplied; check the source notice. Deadline for submission of tenders"
+          },
+          "source": "Suministro de software para la emisión y venta de entradas online así como de herramientas de fidelización, análisis e interpretación de los datos de uso y consumo de los espectadores en las actividades culturales programadas por la Casa de Cultura y el Ayuntamiento de Puçol 2026-2027. Submission deadline (source local time): 2026-09-25 23:59:00. Time zone not supplied; check the source notice. Plazo presentación de ofertas"
         }
       ],
       "protected_names": [],
@@ -7695,6 +7789,29 @@
             "text": "Nord University needs a media monitoring service that provides a quick and total overview of reviews of the University in editorial media and relevant social media. The service shall contribute to efficient monitoring of the media picture and give employees access to relevant media reports where Nord University is discussed. The aim is to reduce the time spent relating to manual monitoring of media, as well as ensure better insight into the extent, thematic and development in the media coverage of the university."
           },
           "source": "Nord University needs a media monitoring service that provides a quick and total overview of reviews of the University in editorial media and relevant social media. The service shall contribute to efficient monitoring of the media picture and give employees access to relevant media reports where Nord University is discussed. The aim is to reduce the time spent relating to manual monitoring of media, as well as ensure better insight into the extent, thematic and development in the media coverage of the university."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "0b53be52ae828d0b11f1b3b76433661512e6de71bc6df89d1fc06d6a0bd2b6b0": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:17:07.705667+00:00",
+            "language": "fr",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Procurement of a reconciliation system"
+          },
+          "source": "Procurement of a system for reconciliation"
         }
       ],
       "protected_names": [],
@@ -9383,6 +9500,29 @@
       ],
       "protected_names": [],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "0db28a5a91d8c9a6879dbe0449b4ad2854ab36c3085a3b278116f764ab05a8bc": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:17:29.613346+00:00",
+            "language": "sv",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Luleå University of Technology"
+          },
+          "source": "Luleå tekniska universitet"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "0db65bf39e93a52b20bdaf8bb42ba12c3a9759a126d0dbe90ab16d786ce4a555": {
@@ -12534,6 +12674,29 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "11a6a1d1ef87224bfb2ad9ba979278f559ba4cbb01d2154c923f298f409af9bc": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:59.549382+00:00",
+            "language": "da",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Initial market consultation ahead of an upcoming tender for a PSIM system - 26/03889"
+          },
+          "source": "Indledende markedsafdækning forud for et kommende udbud på et PSIM-system - 26/03889"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "11b2d4be5eaf6f46a50ea604b8991932d829bed2205f77b85cdb1545361c8d43": {
@@ -16000,6 +16163,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "16a17ac9e2259735c115f4813da8bd1710875ab4d062a8b143f1b2b82a26932a": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:17:07.697076+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Books and teaching aids for Troms County - RFI"
+          },
+          "source": "Books and teaching aids for Troms County - RFI"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "16a8eab897fc7d6be6789c97f2fee557e4523ce4b26efd6479b89f5d60288c12": {
       "parts": [
         {
@@ -17257,6 +17443,33 @@
       ],
       "protected_names": [],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "191229c79e498c6d06c0f36b2eb5a6c14675f0759786fba49223137029ef3c3f": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.1-flash-lite": 2,
+            "gemini-3.5-flash-lite": 2
+          },
+          "quality_retry": {
+            "after": 1789690655.9939327,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "rejected": {
+            "id": "191229c79e498c6d06c0f36b2eb5a6c14675f0759786fba49223137029ef3c3f:0",
+            "language": "en",
+            "model": "gemini-3.1-flash-lite",
+            "text": "Oslo Municipality c/o Agency for finance and administration"
+          },
+          "result": null,
+          "source": "Oslo Kommune v/Agency for finance and administration"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "1927fdab685a14655cde3a43ed50febc380fdbea6708f46787118cfb9c7591a2": {
@@ -23416,6 +23629,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "22603703fc6151df0086e5a5ad193356864c0be9633a4afce4a30dabe5e70c77": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:40.630643+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Supply of software for the issuance and sale of online tickets as well as loyalty, analysis and interpretation tools for spectator usage and consumption data in cultural activities programmed by the House of Culture and the Municipality of Puçol 2026-2027."
+          },
+          "source": "Suministro de software para la emisión y venta de entradas online así como de herramientas de fidelización, análisis e interpretación de los datos de uso y consumo de los espectadores en las actividades culturales programadas por la Casa de Cultura y el Ayuntamiento de Puçol 2026-2027."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "22643445b1d4142a5e15c157e0cd8db9f64a83bfac024acf070ef9caab3eb122": {
       "parts": [
         {
@@ -25130,6 +25366,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "24b7259034b9087db48b0c77a8374e79e21ca724a3de345f96cd9c923bc55d9e": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:40.633531+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Data management office services for the \"Puntos Vuela de Andalucía\" project"
+          },
+          "source": "Servicios de oficina de gestión del dato del proyecto \"Puntos Vuela de Andalucía”"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "24bcb93d136ed71d26ba6a1f61a76ed2e976fbeeacf6a2b9d0ebdf99ade4e33d": {
       "parts": [
         {
@@ -25907,6 +26166,29 @@
             "text": "There is a need for a detailed analysis of international electricity prices, their components and their changes over time, as well as the influencing factors on developments. Proposals for possible further reductions in electricity costs for all or individual consumer groups are to be derived from the results, which are robust against uncertainties, guarantee security of supply and strengthen the competitiveness of German energy-intensive companies in an international comparison. Lot LOT-0000: Study on the competitiveness of German electricity prices in an international comparison with a focus on the electricity costs of energy-intensive industries. There is a need for a detailed analysis of international electricity prices, their components and their changes over time, as well as the influencing factors on developments. Proposals for possible further reductions in electricity costs for all or individual consumer groups are to be derived from the results, which are robust against uncertainties, guarantee security of supply and strengthen the competitiveness of German energy-intensive companies in an international comparison."
           },
           "source": "Es besteht Bedarf für eine detaillierte Analyse internationaler Strompreise, ihrer Komponenten und ihrer Veränderungen über die Zeit, sowie der Einflussfaktoren auf die Entwicklungen. Aus den Ergebnissen sollen Vorschläge für mögliche weitere Senkungen von Stromkosten für alle oder einzelne Verbrauchergruppen abgeleitet werden, die robust gegenüber Unsicherheiten sind, Versorgungssicherheit gewährleisten und die Wettbewerbsfähigkeit deutscher energieintensiver Unternehmen im internationalen Vergleich stärken. Lot LOT-0000: Studie zur Wettbewerbsfähigkeit deutscher Strompreise im internationalen Vergleich mit Fokus auf Stromkosten energieintensiver Branchen. Es besteht Bedarf für eine detaillierte Analyse internationaler Strompreise, ihrer Komponenten und ihrer Veränderungen über die Zeit, sowie der Einflussfaktoren auf die Entwicklungen. Aus den Ergebnissen sollen Vorschläge für mögliche weitere Senkungen von Stromkosten für alle oder einzelne Verbrauchergruppen abgeleitet werden, die robust gegenüber Unsicherheiten sind, Versorgungssicherheit gewährleisten und die Wettbewerbsfähigkeit deutscher energieintensiver Unternehmen im internationalen Vergleich stärken."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "25e37c9e91947fa359bafa5d8af74e87d932b2abeb20ced2115ad70e27a8c719": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:17:07.699409+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Troms County (hereafter called the Contracting Authority) shall enter into a new framework agreement for books and teaching aids. The procurement is now in a preparatory phase and needs mapping is currently being carried out, as well as examining the possibility that the contracting authority ́s total need for all types of books and teaching aids can be covered through a joint agreement. The contracting authority ́s need primarily includes access to teaching materials, textbooks and concretising materials connected to all disciplines and subjects in sixth form education and the vocational college. Furthermore, the contracting authority would like to be able to use digital books and teaching aids, as a supplement to printed books and teaching aids, as well as books available through NDLA. The contracting authority also sees the need for a contract for other types of printed books than teaching aids, such as entertainment and fiction books. Emphasis is put on the fact that the contracting authority has already entered into a separate framework agreement for e-books and e-audiobooks, and that such products are therefore exempt from this hearing. Question 1: As the first part of the market mapping, the contracting authority would therefore like to know whether there are actors in the market who can offer all types of products as mentioned above, including both printed and digital teaching aids for sixth form college and vocational college, as well as a wide range of fiction and entertainment books. The contracting authority envisages the following alternative options to cover the need: Through a joint framework agreement, by dividing the procurement into two sub-contracts; one for all types of teaching aids (printed and digital) and a separate sub-contract for fiction. By dividing the procurement into three sub-contracts; one for printed teaching aids, one for digital teaching aids and one for fiction. Question 2: We would like further market input on which of these three alternatives are feasible and which is best suited to safeguard the contracting authority ́s needs as described above. How should the hearing be answered? Response deadline Thursday 05 March 2026 (12:00). The hearing will be answered through the communication tab in Mercell. The inputs will be treated confidentially and not visualised for other suppliers. Please note that Troms County does not reimburse any costs for participation in the hearing. Once the hearing deadline has expired, we will carefully review all received inputs and assess what input it might be appropriate to include in the final documents. Emphasis is put on the contracting authority not be obliged to comply with the inputs. Tenderers who respond to this hearing may be contacted afterwards if needed for clarification or further questions. Furthermore, it may be necessary to send a draft of the competition documents for a hearing. We therefore recommend all interested suppliers to provide input for this hearing."
+          },
+          "source": "Troms County (hereafter called the Contracting Authority) shall enter into a new framework agreement for books and teaching aids. The procurement is now in a preparatory phase and needs mapping is currently being carried out, as well as examining the possibility that the contracting authority ́s total need for all types of books and teaching aids can be covered through a joint agreement. The contracting authority ́s need primarily includes access to teaching materials, textbooks and concretising materials connected to all disciplines and subjects in sixth form education and the vocational college. Furthermore, the contracting authority would like to be able to use digital books and teaching aids, as a supplement to printed books and teaching aids, as well as books available through NDLA. The contracting authority also sees the need for a contract for other types of printed books than teaching aids, such as entertainment and fiction books. Emphasis is put on the fact that the contracting authority has already entered into a separate framework agreement for e-books and e-audiobooks, and that such products are therefore exempt from this hearing. Question 1: As the first part of the market mapping, the contracting authority would therefore like to know whether there are actors in the market who can offer all types of products as mentioned above, including both printed and digital teaching aids for sixth form college and vocational college, as well as a wide range of fiction and entertainment books. The contracting authority envisages the following alternative options to cover the need: Through a joint framework agreement, by dividing the procurement into two sub-contracts; one for all types of teaching aids (printed and digital) and a separate sub-contract for fiction. By dividing the procurement into three sub-contracts; one for printed teaching aids, one for digital teaching aids and one for fiction. Question 2: We would like further market input on which of these three alternatives are feasible and which is best suited to safeguard the contracting authority ́s needs as described above. How should the hearing be answered? Response deadline Thursday 05 March 2026 (12:00). The hearing will be answered through the communication tab in Mercell. The inputs will be treated confidentially and not visualised for other suppliers. Please note that Troms County does not reimburse any costs for participation in the hearing. Once the hearing deadline has expired, we will carefully review all received inputs and assess what input it might be appropriate to include in the final documents. Emphasis is put on the contracting authority not be obliged to comply with the inputs. Tenderers who respond to this hearing may be contacted afterwards if needed for clarification or further questions. Furthermore, it may be necessary to send a draft of the competition documents for a hearing. We therefore recommend all interested suppliers to provide input for this hearing."
         }
       ],
       "protected_names": [],
@@ -31176,6 +31458,37 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "2d65f157e3df83d726f483869711a0e1156e7b0d403a3418ca6ce20876a89320": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "rejected": {
+            "id": "2d65f157e3df83d726f483869711a0e1156e7b0d403a3418ca6ce20876a89320:0",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "REQUEST FOR INFORMATION / MARKET CONSULTATION Procurement Lifecycle Management Solution Senate Properties (“Senate”) is a state enterprise responsible for managing the Finnish government’s real estate assets and providing workplace and facility services. As part of the development of its procurement function, Senate initiates a market consultation to explore system solutions supporting procurement lifecycle management. The objective is to develop the overall procurement framework and improve its governance, transparency and data-driven management. The preliminary review will focus on the following areas: • Supplier Management • Procurement Management (Sourcing Pipeline) • Tender and eTendering Management • Procure-to-Pay (P2P), including invoice automation • Contract Lifecycle Management The solution is reviewed as a modular entity. Suppliers may respond to the RFI for the entire scope or for one or more individual modules. A potential future procurement may be conducted as an EU-threshold public procurement. This RFI does not constitute a contract notice or an invitation to tender. Responses are non-binding and will not be used for supplier selection. Senate will not compensate suppliers for any costs incurred in responding to this RFI or participating in the market consultation. Senate reserves the right to suspend, modify or discontinue any potential procurement in whole or in part. This market consultation is conducted in accordance with the Finnish Act on Public Procurement and Concession Contracts and Article 40 of Directive 2014/24/EU. Further details, questions and response instructions are provided in the attached RFI document. Responses must be submitted by 11.03.2026 at 16:00 (EET) to antti@zealsourcing.fi. Senate may publish anonymised questions and answers to all parties that have reviewed the RFI and may organise supplier-specific discussions or system demonstrations based on the responses received. Please see attachments 1 and 2."
+          },
+          "result": {
+            "at": "2026-09-17T23:17:13.093348+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "REQUEST FOR INFORMATION / MARKET CONSULTATION Procurement Lifecycle Management Solution Senate Properties (“Senate”) is a state enterprise responsible for managing the Finnish government’s real estate assets and providing workplace and facility services. As part of the development of its procurement function, Senate initiates a market consultation to explore system solutions supporting procurement lifecycle management. The objective is to develop the overall procurement framework and improve its governance, transparency and data-driven management. The preliminary review will focus on the following areas: • Supplier Management • Procurement Management (Sourcing Pipeline) • Tender and eTendering Management • Procure-to-Pay (P2P), including invoice automation • Contract Lifecycle Management The solution is reviewed as a modular entity. Suppliers may respond to the RFI for the entire scope or for one or more individual modules. A potential future procurement may be conducted as an EU-threshold public procurement. This RFI does not constitute a contract notice or an invitation to tender. Responses are nonbinding and will not be used for supplier selection. Senate will not compensate suppliers for any costs incurred in responding to this RFI or participating in the market consultation. Senate reserves the right to suspend, modify or discontinue any potential procurement inr whole or in part. This market consultation is conducted in accordance with the Finnish Act on Public Procurement and Concession Contracts and Article 40 of Directive 2014/24/EU. Further details, questions and response instructions are provided in the attached RFI document. Responses must be submitted by 11.03.2026 at 16:00 (EET) to antti@zealsourcing.fi. Senate may publish anonymised questions and answers to all parties that have reviewed the RFI and may organise supplier-specific discussions or system demonstrations based on the responses received. Please see attachments 1 and 2."
+          },
+          "source": "REQUEST FOR INFORMATION / MARKET CONSULTATION Procurement Lifecycle Management Solution Senate Properties (“Senate”) is a state enterprise responsible for managing the Finnish government’s real estate assets and providing workplace and facility services. As part of the development of its procurement function, Senate initiates a market consultation to explore system solutions supporting procurement lifecycle management. The objective is to develop the overall procurement framework and improve its governance, transparency and data-driven management. The preliminary review will focus on the following areas: • Supplier Management • Procurement Management (Sourcing Pipeline) • Tender and eTendering Management • Procure-to-Pay (P2P), including invoice automation • Contract Lifecycle Management The solution is reviewed as a modular entity. Suppliers may respond to the RFI for the entire scope or for one or more individual modules. A potential future procurement may be conducted as an EU-threshold public procurement. This RFI does not constitute a contract notice or an invitation to tender. Responses are nonbinding and will not be used for supplier selection. Senate will not compensate suppliers for any costs incurred in responding to this RFI or participating in the market consultation. Senate reserves the right to suspend, modify or discontinue any potential procurement inr whole or in part. This market consultation is conducted in accordance with the Finnish Act on Public Procurement and Concession Contracts and Article 40 of Directive 2014/24/EU. Further details, questions and response instructions are provided in the attached RFI document. Responses must be submitted by 11.03.2026 at 16:00 (EET) to antti@zealsourcing.fi. Senate may publish anonymised questions and answers to all parties that have reviewed the RFI and may organise supplier-specific discussions or system demonstrations based on the responses received. Please see attachments 1 and 2."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "2d71be43639616d430f7c07d457b7a010e473706c616248d2892031b20d28511": {
       "parts": [
         {
@@ -31865,6 +32178,29 @@
             "text": "Future Ready Pathway – Market Research Questionnaire"
           },
           "source": "Future Ready Pathway – Market Research Questionnaire"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "2e82fbde6f52cc14313bad5513282705890678ff2f50568ad5e0746347c44b01": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:40.616934+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Maintenance and new development service for the search platform of the Judicial Documentation Centre and the supply and support of Opentext Knowledge Discovery (Idol Ultimate) licences. Submission deadline (source local time): 2026-10-02 09:00:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Servicio de mantenimiento y nuevos desarrollos de la plataforma de búsqueda del Centro de Documentación Judicial y el suministro y soporte de licencias de Opentext Knowledge Discovery (Idol Ultimate). Submission deadline (source local time): 2026-10-02 09:00:00. Time zone not supplied; check the source notice."
         }
       ],
       "protected_names": [],
@@ -33406,6 +33742,31 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "3152ecd40bb9951e8b52d366a38ca813a5cab923c4b0e2bba87a63532c2b6819": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:40.627818+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Bournemouth University (\"BU\" or the \"University\") is exploring options for the provision of a co-managed Security Operations Centre (SOC) service to enhance and future-proof its cyber security operations capability. The University is seeking market feedback from experienced Managed Security Service Providers to better understand available service models, implementation approaches, commercial arrangements and indicative costs. BU has invested significantly in its internal cyber security capability and Microsoft security technologies, including Microsoft Sentinel, Microsoft Defender XDR, Entra ID Protection, Security Copilot and related services. The University is now considering how external specialist support could complement its in-house team through a co-managed SOC operating model. The key objectives of a future service are expected to include: - Enhancing monitoring, detection and response capabilities through either 24/7 or out-of-hours SOC coverage. - Improving threat detection, triage, false-positive reduction and incident response effectiveness. - Providing additional specialist expertise, operational resilience and surge capacity during major incidents or periods of heightened risk. - Maintaining and continuously improving detection rules, playbooks, automation and security monitoring capabilities. - Leveraging threat intelligence, sector insight, automation and AI-enabled capabilities to strengthen cyber resilience and operational effectiveness. - Establishing a robust governance, reporting and service management framework with clear responsibilities between BU and the supplier. - Maximising the value of the University's existing Microsoft security investments while minimising the need for additional tooling wherever appropriate. The University wishes to understand how the market can support these objectives, together with the costs, benefits, risks and implementation considerations associated with different service models. Supplier feedback received through this Preliminary Market Engagement exercise will help inform the University's future requirements, budget planning and procurement strategy. Lot 1: ."
+          },
+          "source": "Bournemouth University (\"BU\" or the \"University\") is exploring options for the provision of a co-managed Security Operations Centre (SOC) service to enhance and future-proof its cyber security operations capability. The University is seeking market feedback from experienced Managed Security Service Providers to better understand available service models, implementation approaches, commercial arrangements and indicative costs. BU has invested significantly in its internal cyber security capability and Microsoft security technologies, including Microsoft Sentinel, Microsoft Defender XDR, Entra ID Protection, Security Copilot and related services. The University is now considering how external specialist support could complement its in-house team through a co-managed SOC operating model. The key objectives of a future service are expected to include: - Enhancing monitoring, detection and response capabilities through either 24/7 or out-of-hours SOC coverage. - Improving threat detection, triage, false-positive reduction and incident response effectiveness. - Providing additional specialist expertise, operational resilience and surge capacity during major incidents or periods of heightened risk. - Maintaining and continuously improving detection rules, playbooks, automation and security monitoring capabilities. - Leveraging threat intelligence, sector insight, automation and AI-enabled capabilities to strengthen cyber resilience and operational effectiveness. - Establishing a robust governance, reporting and service management framework with clear responsibilities between BU and the supplier. - Maximising the value of the University's existing Microsoft security investments while minimising the need for additional tooling wherever appropriate. The University wishes to understand how the market can support these objectives, together with the costs, benefits, risks and implementation considerations associated with different service models. Supplier feedback received through this Preliminary Market Engagement exercise will help inform the University's future requirements, budget planning and procurement strategy. Lot 1: ."
+        }
+      ],
+      "protected_names": [
+        "Bournemouth University"
+      ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "317c5ccbe3f4685944318332c364ea2bb2afcdda220479b1458cef46da8756a8": {
       "parts": [
         {
@@ -33888,6 +34249,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "3243cf0e8632685eb43ef0058e742d5e46012eb315baf521307da4cfd4ff34e0": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:40.633419+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Establish the technical conditions that must govern the open procedure for the procurement of the evolutionary maintenance of the unified access system to social services Submission deadline (source local time): 2026-10-19 19:00:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Establecer las condiciones técnicas que han de regir en el procedimiento abierto para la contratación del mantenimiento evolutivo del sistema de acceso unificado a los servicios sociales Submission deadline (source local time): 2026-10-19 19:00:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "3245f25f1d20ba3f4aacc094dc0d06a85c9b41287ddcc4254e8ce075d38670b4": {
       "parts": [
         {
@@ -34131,6 +34515,29 @@
       ],
       "purpose": "passage",
       "retry_profile": "english-coverage-and-organisation-names-2"
+    },
+    "3280b5737213359a451441234f43ac82bdf7c86cc3aa4d553597bdd3a2715cc7": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:40.620839+00:00",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "This notice (PIN) announces a public market consultation and provides information on a planned pre-commercial procurement (PCP) on the subject of the \"Low-Voltage Toolkit\". The project responds to the need for a cost-effective, scalable, platform-independent and user-friendly toolkit for active distribution network management in low-voltage networks – particularly for small and medium-sized distribution network operators and municipal utilities. The toolkit is intended to include the following core functions: (1) Visualisation of the low-voltage network through automated data integration, processing and modelling, which brings together measurement data, network documentation and external information (e.g. weather and market data). (2) Reliable low-voltage state estimation (LV DSSE), which delivers robust statements on voltages, currents and loads even with low measurement density and in near real time. (3) Automated topology detection, which detects and corrects erroneous or incomplete network diagrams and also correctly maps complex urban structures. (4) Forecasting models that identify bottlenecks and voltage violations at an early stage and incorporate external information (e.g. weather and market data). (5) Comprehensible decision support for network operators, including via user-friendly visualisations, recommendations for action and warnings that can be integrated into existing workflows. (6) Semi-automated congestion management with transparent workflows (\"Suggest – Evaluate – Confirm – Execute\") instead of fully automated network operation. (7) Plug-and-play approach for integration into a large proportion of existing infrastructures at distribution network operators; the tools are intended to be modularly introduceable (e.g. initially only a topology detection module or state estimator), in contrast to current solutions which often require extensive hardware conversions and high investments. Those addressed are in particular small and medium-sized distribution network operators, municipal utilities, manufacturers of network control and planning software, data platform providers as well as research institutions with relevant expertise. Further information on the upcoming public market consultation and the planned PCP can be found here http://go.fzj.de/2eVf9 in the German language."
+          },
+          "source": "Diese Bekanntmachung (PIN) kündigt eine öffentliche Marktkonsultation an und gibt Informationen zu einem geplanten vorkommerziellen Auftragsvergabe (PCP) zum Thema \"Toolkit Niederspannung\". Das Projekt reagiert auf den Bedarf nach einem kostengünstigen, skalierbaren, plattformunabhängigen und benutzerfreundlichen Werkzeugkasten für ein aktives Verteilnetzmanagement in Niederspannungsnetzen – insbesondere für kleine und mittlere Verteilnetzbetreiber und Stadtwerke. Das Toolkit soll folgende Kernfunktionen beinhalten: (1) Sichtbarmachung des Niederspannungsnetzes durch automatisierte Datenintegration, aufbereitung und modellierung, die Messdaten, Netzdokumentation und externe Informationen (z. B. Wetter und Marktdaten) zusammenführt. (2) Zuverlässige Niederspannung Zustandsschätzung (LV DSSE), die auch bei geringer Messdichte und in nahezu Echtzeit belastbare Aussagen zu Spannungen, Strömen und Auslastungen liefert. (3) Automatisierte Topologie Erkennung, die fehlerhafte oder lückenhafte Netzpläne erkennt und korrigiert und auch komplexe städtische Strukturen korrekt abbildet. (4) Prognosemodelle, die Engpässe und Spannungsverletzungen frühzeitig identifizieren und externe Informationen (z. B. Wetter und Marktdaten) einbeziehen. (5) Nachvollziehbare Entscheidungsunterstützung für Netzbetreiberinnen und Netzbetreiber, u. a. über benutzerfreundliche Visualisierungen, Handlungsempfehlungen und Warnungen, die sich in bestehende Arbeitsabläufe integrieren lassen. (6) Teilautomatisiertes Engpassmanagement mit transparenten Workflows („Vorschlagen – Bewerten – Bestätigen – Ausführen“) statt vollautomatischem Netzbetrieb. (7) Plug and Play Ansatz zur Integration in einen Großteil der bestehenden Infrastrukturen bei Verteilnetzbetreibern; die Werkzeuge sollen modular einführbar sein (z. B. zunächst nur Topologie Erkennungsmodul oder Zustandsschätzer), im Gegensatz zu heutigen Lösungen, die häufig umfangreiche Hardware Umstellungen und hohe Investitionen erfordern. Adressiert werden insbesondere kleine und mittlere Verteilnetzbetreiber, Stadtwerke, Hersteller von Netzführungsund Planungssoftware, Datenplattformanbieter sowie Forschungseinrichtungen mit einschlägiger Expertise. Weitere Informationen zur anstehenden öffentlichen Marktkonsultation und zum geplanten PCP finden Sie hier http://go.fzj.de/2eVf9 in deutscher Sprache."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "3280f40313e1497618506db1b28f44298c28013edcf7bf81f257e4c05d6bdcd2": {
       "parts": [
@@ -35806,6 +36213,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "34f5a516c978ef23f05610f27ae7078b11d567a44d03328b132a3d288cde68bb": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:59.534309+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Bærum municipality would like to invite the market to a dialogue in connection with a coming procurement in order to cover the municipality ́s need for digital joint user equipment/AV equipment (DFB) with the accompanying services. This market dialogue is a replacement/update of previously completed market dialogues. See previously completed market dialogue: https://doffin.no/notices/2023-653193 Invitation to market dialogue - Framework agreement for the procurement of digital joint user equipment/AV equipment and the accompanying services Bærum municipality invites tenderers to a market dialogue with suppliers for a framework agreement for the procurement of digital joint user equipment/AV equipment and accompanying services. The aim of the procurement is to replace the current framework agreement for the procurement of \"Digital joint user equipment - meeting room equipment and infotainment\". The new agreement will cover an equivalent area and the need for digital joint user equipment (DFB) for all entities and buildings where Bærum municipality is responsible for such joint equipment. The municipality has separate agreements for client control and user-related equipment. Bærum municipality would like to invite the market to a dialogue in connection with a coming procurement in order to cover the municipality ́s need for digital joint user equipment/AV with the accompanying services. The intention is that the agreement shall cover Bærum municipality ́s total need for digital joint user equipment/AV equipment, entertainment, meeting room equipment, accessories and accompanying services in the contract period. The contract shall ensure that digital joint user equipment/AV equipment for Bærum municipality ́s entities and buildings always has access to updated equipment/products and services with modern and good quality. The aim is not to replace the existing equipment that covers the current user need. In addition to the delivery and operation of new equipment, we would like a new supplier to provide support and service for the current equipment. The consultancy services will be strengthened in the contract and the tenderer must reckon on assisting the Contracting Authority as needed, both as regards assessment/supplementation of equipment, support and maintenance. Expanded support and assistance can be required at major events and video conferences. The aim of the market dialogue is to gain insight into the market now and forward, establish increased knowledge on the supplier market, inform about the coming planned procurement and get any feedback on the planned procurement before the announcement. Bærum municipality is one of Norway's largest municipalities. Both inhabitants and employees have high expectations for the municipality ́s IT systems, both in regard to response, availability, information security, cost efficiency as well as the ability to implement new functions quickly and efficiently. According to Bærum municipality ́s digitalisation strategy, the municipality ́s employees and inhabitants shall experience \"One Bærum - digital first choice\" via, among other things, access to best and correct practices in service deliveries, access to process support and technology to simplify our own everyday lives and get a better tool for interaction, case processing and service production. The procurement is planned to be carried out as a tender contest with notice before summer 2026. Tenderers are invited to a joint card information meeting in Kommunegården in Sandvika for orientation of the upcoming planned procurement friday 13.03.2026, 09:00 – 10.00. Tenderers who are interested in a short 1:1 meeting with Bærum municipality if the procurement can register their interest.1:1 meetings will be held on the same day (13.03.2026) (up to 30 minutes for each tenderer) – if there are more registered participants than we have set aside, an extra day will be set aside for 1:1 meetings. Tenderers can inform and/or ask questions to the Customer at the 1:1 meeting. Tenderers who register for the market dialogue will be sent parts of the tender documentation draft for a planned competition, so that they can provide input on the tender documentation before the competition is announced. The aim of the written input is to get a general description of the tenderer ́s system and feedback sent out documentation and a planned procurement. The meetings will be confidential and only for internal use by the work group in the municipality. Input from the dialogue can be used in the subsequent competition. Written input shall only be relevant for the competition. A template will be sent out to provide feedback to suppliers who register for the dialogue conference. The deadline for registering for the Dialogue conference and 1:1 meetings is 09.03.2026, 16:00. Enrolments are to be sent as a notification on the case in Mercell. The Contracting Authority would like feedback from tenderers for the planned procurement and draft of competition documents by: Thursday 09.04.2026, 16:00. Emphasis is put on the fact that participation in the dialogue meetings is neither necessary nor required to participate in the subsequent competition. Communication will take place through Mercell.For further information about Bærum municipality, see www.baerum.kommune.no The meetings will be held in Kommunegården in SandvikaAdresse: Arnold Haukelands plass 10, 1338 Sandvika"
+          },
+          "source": "Bærum municipality would like to invite the market to a dialogue in connection with a coming procurement in order to cover the municipality ́s need for digital joint user equipment/AV equipment (DFB) with the accompanying services. This market dialogue is a replacement/update of previously completed market dialogues. See previously completed market dialogue: https://doffin.no/notices/2023-653193 Invitation to market dialogue - Framework agreement for the procurement of digital joint user equipment/AV equipment and the accompanying services Bærum municipality invites tenderers to a market dialogue with suppliers for a framework agreement for the procurement of digital joint user equipment/AV equipment and accompanying services. The aim of the procurement is to replace the current framework agreement for the procurement of \"Digital joint user equipment - meeting room equipment and infotainment\". The new agreement will cover an equivalent area and the need for digital joint user equipment (DFB) for all entities and buildings where Bærum municipality is responsible for such joint equipment. The municipality has separate agreements for client control and user-related equipment. Bærum municipality would like to invite the market to a dialogue in connection with a coming procurement in order to cover the municipality ́s need for digital joint user equipment/AV with the accompanying services. The intention is that the agreement shall cover Bærum municipality ́s total need for digital joint user equipment/AV equipment, entertainment, meeting room equipment, accessories and accompanying services in the contract period. The contract shall ensure that digital joint user equipment/AV equipment for Bærum municipality ́s entities and buildings always has access to updated equipment/products and services with modern and good quality. The aim is not to replace the existing equipment that covers the current user need. In addition to the delivery and operation of new equipment, we would like a new supplier to provide support and service for the current equipment. The consultancy services will be strengthened in the contract and the tenderer must reckon on assisting the Contracting Authority as needed, both as regards assessment/supplementation of equipment, support and maintenance. Expanded support and assistance can be required at major events and video conferences. The aim of the market dialogue is to gain insight into the market now and forward, establish increased knowledge on the supplier market, inform about the coming planned procurement and get any feedback on the planned procurement before the announcement. Bærum municipality is one of Norway's largest municipalities. Both inhabitants and employees have high expectations for the municipality ́s IT systems, both in regard to response, availability, information security, cost efficiency as well as the ability to implement new functions quickly and efficiently. According to Bærum municipality ́s digitalisation strategy, the municipality ́s employees and inhabitants shall experience \"One Bærum - digital first choice\" via, among other things, access to best and correct practices in service deliveries, access to process support and technology to simplify our own everyday lives and get a better tool for interaction, case processing and service production. The procurement is planned to be carried out as a tender contest with notice before summer 2026. Tenderers are invited to a joint card information meeting in Kommunegården in Sandvika for orientation of the upcoming planned procurement friday 13.03.2026, 09:00 – 10.00. Tenderers who are interested in a short 1:1 meeting with Bærum municipality if the procurement can register their interest.1:1 meetings will be held on the same day (13.03.2026) (up to 30 minutes for each tenderer) – if there are more registered participants than we have set aside, an extra day will be set aside for 1:1 meetings. Tenderers can inform and/or ask questions to the Customer at the 1:1 meeting. Tenderers who register for the market dialogue will be sent parts of the tender documentation draft for a planned competition, so that they can provide input on the tender documentation before the competition is announced. The aim of the written input is to get a general description of the tenderer ́s system and feedback sent out documentation and a planned procurement. The meetings will be confidential and only for internal use by the work group in the municipality. Input from the dialogue can be used in the subsequent competition. Written input shall only be relevant for the competition. A template will be sent out to provide feedback to suppliers who register for the dialogue conference. The deadline for registering for the Dialogue conference and 1:1 meetings is 09.03.2026, 16:00. Enrolments are to be sent as a notification on the case in Mercell. The Contracting Authority would like feedback from tenderers for the planned procurement and draft of competition documents by: Thursday 09.04.2026, 16:00. Emphasis is put on the fact that participation in the dialogue meetings is neither necessary nor required to participate in the subsequent competition. Communication will take place through Mercell.For further information about Bærum municipality, see www.baerum.kommune.no The meetings will be held in Kommunegården in SandvikaAdresse: Arnold Haukelands plass 10, 1338 Sandvika"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "351a1dcebc091fb91b6599937c88287acaf35c62f49c87f83eaddab9328726b3": {
       "parts": [
         {
@@ -36724,6 +37154,29 @@
             "text": "RFI - Auction system"
           },
           "source": "RFI - Auktionssystem"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "3627ab6ad178c18ad0d05a3676b22b6cf69226916c491892d42265be668731e6": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:49.637559+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Request for information (RFI)- System for improved and automated rota planning."
+          },
+          "source": "Request for information (RFI)- System for improved and automated rota planning."
         }
       ],
       "protected_names": [],
@@ -38054,6 +38507,37 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "389cefff01a7a9d4d26e13e0a166ab6a0024c5f1f9794cb45d72c3e68b7eaa69": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "rejected": {
+            "id": "389cefff01a7a9d4d26e13e0a166ab6a0024c5f1f9794cb45d72c3e68b7eaa69:0",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Oslo municipality c/o the Agency for Finance and Administration (OKF) invites tenderers to a written market dialogue on a reconciliation system. Responses to the market dialogue are requested to be submitted as a completed form in Artifik. OKF is considering whether it is appropriate to invite suppliers to individual meetings or any follow-up questions in writing."
+          },
+          "result": {
+            "at": "2026-09-17T23:17:13.089917+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Oslo municipality c/o the Agency for finance and administration (OKF) invites tenderers to a written market dialogue on a system for reconciliation. Responses to the market dialogue are requested to be received as a completed form in Artifik. OKF considers whether it is appropriate to invite suppliers to one-to-one meetings or any follow-up questions in writing."
+          },
+          "source": "Oslo municipality c/o the Agency for finance and administration (OKF) invites tenderers to a written market dialogue on a system for reconciliation. Responses to the market dialogue are requested to be received as a completed form in Artifik. OKF considers whether it is appropriate to invite suppliers to one-to-one meetings or any follow-up questions in writing."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "389d0ef348179dc9db33e1dbfb318e4b2e8b6db788566e4ad93bd59a8aefe41c": {
       "parts": [
         {
@@ -38300,6 +38784,31 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "38eae379a79be6a67e8f3a26260bc3c0a2f2f416c90b3339e9342117361c8815": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:59.549239+00:00",
+            "language": "sv",
+            "model": "gemini-3.5-flash-lite",
+            "text": "As a project owner, Luleå tekniska universitet has a recurring need to procure evaluators for externally funded projects, e.g. various EU projects. The assignments vary depending on the scope and character of the projects. As a project owner, Luleå tekniska universitet has a recurring need to procure evaluators for externally funded projects, e.g. various EU projects. The assignments vary depending on the scope and character of the projects."
+          },
+          "source": "I egenskap av projektägare har Luleå tekniska universitet återkommande behov av att upphandla utvärderare till externfinansierade projekt, t.ex. olika EU-projekt. Uppdragen varierar beroende på projektens omfattning och karaktär I egenskap av projektägare har Luleå tekniska universitet återkommande behov av att upphandla utvärderare till externfinansierade projekt, t.ex. olika EU-projekt. Uppdragen varierar beroende på projektens omfattning och karaktär."
+        }
+      ],
+      "protected_names": [
+        "Luleå tekniska universitet"
+      ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "38f07a8077adba7b52fed4d84b2dcfbacf6f8215219f13d775947afad500a328": {
       "parts": [
         {
@@ -38400,6 +38909,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "393f8db298da45a5e3c61a7b92a9335ecbc7ed7b6c377f2ec5f90e5f2ad5a8ff": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:40.633932+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Specialised technical assistance services for the maintenance, evolutionary development and consultancy actions relating to the Data Office (data management, operating environment and Business Intelligence) of the \"Puntos Vuela de Andalucía\" project. Specialised technical assistance services for the maintenance, evolutionary development and consultancy actions relating to the Data Office (data management, operating environment and Business Intelligence) of the “Puntos Vuela de Andalucía” project"
+          },
+          "source": "Servicios de asistencia técnica especializada para el mantenimiento, desarrollo evolutivo y acciones de consultoría relativas a la Oficina del Dato (gestión del dato, entorno de explotación y Business Intelligence) del proyecto “Puntos Vuela de Andalucía”. Servicios de asistencia técnica especializada para el mantenimiento, desarrollo evolutivo y acciones de consultoría relativas a la Oficina del Dato (gestión del dato, entorno de explotación y Business Intelligence) del proyecto “Puntos Vuela de Andalucía”"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "3947246fd79509d71a0a9c74a4c3c38c072a75ed5fe3557158afc78cce104723": {
       "parts": [
         {
@@ -38412,6 +38944,29 @@
             "text": "Oslo School of Architecture and Design (AHO) intends to procure services for user administration, standard office support, set-up and operation of clients, network operation, server operation and security services."
           },
           "source": "Oslo School of Architecture and Design (AHO) intends to procure services for user administration, standard office support, set-up and operation of clients, network operation, server operation and security services."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "39490e97e09a73f5296905d95d01456e07caca633109237c80b5fcb1ccb7ec6e": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:49.637972+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Helse Sør-Øst c/o Sykehuspartner HF would like to have a dialogue with suppliers of KI based work plan generators to map possibilities and systems that can streamline and improve the work with rota and work planning at the hospitals in our health region. The market dialogue is a part of the preliminary work and will be carried out as the contracting authority would like input for any possible procurement from potential suppliers who can cover all or parts of the need. The reply deadline is Monday 23 March (10:00) Further information is attached."
+          },
+          "source": "Helse Sør-Øst c/o Sykehuspartner HF would like to have a dialogue with suppliers of KI based work plan generators to map possibilities and systems that can streamline and improve the work with rota and work planning at the hospitals in our health region. The market dialogue is a part of the preliminary work and will be carried out as the contracting authority would like input for any possible procurement from potential suppliers who can cover all or parts of the need. The reply deadline is Monday 23 March (10:00) Further information is attached."
         }
       ],
       "protected_names": [],
@@ -43832,6 +44387,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "4185e69d2e494176d314575f2f564a0578e93be77e233c4b3a96d86e7ab51b7c": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:40.634569+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Provision of the professional services necessary for the design and development, commissioning, maintenance and technological evolution of the Virtual Assistant that will be integrated into the Citizen Participation portal of the City Council of Madrid, Decide Madrid. The solution must be offered in SaaS (Software as Service) mode, such that the adjudicator will be responsible for the management and operation of all elements of the offered solution, except those basic elements that are part of the corporate MultiCloud infrastructure that the City Council will make available to the adjudicator (currently Google Cloud Platform, Microsoft Azure and Amazon AWS), described in the Specifications of Technical Requirements (PPTP)."
+          },
+          "source": "Prestación de los servicios profesionales necesarios para el diseño y desarrollo, puesta en servicio, mantenimiento y evolución tecnológica del Asistente Virtual que se integrará en el portal de Participación Ciudadana del Ayuntamiento de Madrid, Decide Madrid. La solución deberá ofertarse en modo SaaS (Software como Servicio), de manera que el adjudicatario será responsable de la gestión y operación de todos los elementos de la solución ofertada, salvo aquellos elementos básicos que son parte de la infraestructura MultiCloud corporativa que el Ayuntamiento pondrá a disposición del adjudicatario (actualmente Google Cloud Platform, Microsoft Azure y Amazon AWS), descrita en el Pliego de Prescripciones Técnicas (PPTP)."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "41928a0ef0a1d77516b354ac572c03334a453c1f8fad9150a7d1a500dd88fda1": {
       "parts": [
         {
@@ -45304,6 +45882,45 @@
             "text": "Deratisation, disinfestation and disinfection service for the buildings of the Provincial Council of Córdoba"
           },
           "source": "Servicio de desratización, desinsectación y desinfección de los edificios de la Diputación Provincial de Córdoba"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "43c1aeda708ff7af266b016fd4867f94ead9793d9282254cb237c13c5a3787a7": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:17:13.101668+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "UCLH wishes to procure a transformation partner to improve efficiency and productivity of the radiotherapy department, challenging current ways of working and offering new insights. Lot 1: . University College London Hospitals NHS Foundation Trust, \"UCLH\", is one of the largest NHS trusts in the United Kingdom and provides first-class acute and specialist services. UCLH comprises of the following hospitals: University College Hospital, Elizabeth Garrett Anderson Wing, MacMillan Cancer Centre, University College Hospital Grafton Way Building, University College Hospital at Westmoreland Street, Royal National ENT and Eastman Dental Hospitals, National Hospital for Neurology and Neurosurgery, Hospital for Tropical Diseases, Royal London Hospital for Integrated Medicine, and the Institute of Sport, Exercise and Health. UCLH delivers world class cancer care to patients from across the country. Cancer at UCLH spans across multiple sites and departments within the Trust and has included the opening of the Grafton Way Building one of two national Proton Beam Therapy services in December 2021. UCLH is a lead provider within the North Central London Cancer Alliance, as well as providing tertiary services for wider patient populations in specialist services, such as sarcoma for patients from across South East England. In early 2020, UCLH was selected by NHS England as the preferred tertiary cancer provider to take over management of the Mount Vernon Cancer Centre. This transition is subject to a due diligence process during which UCLH are providing transitional support to the Mount Vernon Cancer Centre team, building upon a number of years of collaborative working between the two services. Our Radiotherapy department offers cutting edge and specialised therapy to adult and paediatric patients treating over 2400 new patients a year. UCLH Radiotherapy is a national leader in complex/highly technical radiotherapy in: • Brain and was recently designated a Tessa Jowell Brain Cancer Centre of Excellence • Paediatrics, with the largest paediatric radiotherapy unit in the UK • Sarcomas - one of Europe’s largest service • Head and Neck – (ENT) third largest in the UK • Stereotactic Ablative Radiotherapy (SABR) • Haematological including total body radiation • Brachytherapy • Molecular Radiotherapy - National Referral centre (Paediatric, TYA and adult). The department works closely with a number of specialist hospitals to support cancer pathways which span multiple centres including Great Ormond Street, St. Mary's, Oxford, Southampton and the Royal National Orthopaedic Hospital. The UCH radiotherapy department contains six bunkers with four Varian TrueBeams and one Varian Halcyon. There is a large difference between the national and UCLH complexity profile, 92% of the UCH workload is classed as complex and approximately 8% of the workload is paediatric. The radiotherapy service is delivered by a team of staff including clinical oncologists, radiotherapy physics and engineers, therapeutic radiographers, healthcare play specialists, admin and clerical staff and dedicated nurses. UCLH is also one of two national Proton Beam Therapy centres, providing services to patients from the south of the UK. The departments run an integrated workforce model, with physicists, dosimetrists and radiographers rotating across Radiotherapy and PBT. In total there are around 300 WT across both services. UCLH wishes to procure a transformation partner to improve efficiency and productivity of the radiotherapy department, challenging current ways of working and offering new insights. This could include but is not limited to: • Delivering Cancer Waiting Time Access standards. • Scheduling of patients. • Machine downtime. • Patient pathway and organisation of workflow. • Radiotherapy physics pathways. • Process for commissioning of new linacs. • Use of automation and AI. Expression of Interest The purpose of this preliminary market engagement is to engage with potential partners to gather information and insights from the market to aid the development of the requirements and scope of opportunities for efficiencies to inform the procurement of a transformation partner. Suppliers are requested to provide expressions of interest, including responses to the below questions by e-mail to steviejay.cavanagh@nhs.net by 15:00 on 26th September 2025. 1. What innovative or new ways of working are you currently seeing in the market that may benefit the NHS, and more specifically UCLH, including those that have been included in procurements over the past 12 months? 2. Please describe how you think this contract should be best structured to deliver an efficient Radiotherapy service? 3. Is there anything you think that the Trust should consider before going out to market for these services? 4. What would be your expectations from a partnership with an NHS organisation? This notice does not constitute a formal call for competition. Additional information: University College London Hospitals NHS Foundation Trust, \"UCLH\", is one of the largest NHS trusts in the United Kingdom and provides first-class acute and specialist services. UCLH comprises of the following hospitals: University College Hospital, Elizabeth Garrett Anderson Wing, MacMillan Cancer Centre, University College Hospital Grafton Way Building, University College Hospital at Westmoreland Street, Royal National ENT and Eastman Dental Hospitals, National Hospital for Neurology and Neurosurgery, Hospital for Tropical Diseases, Royal London Hospital for Integrated Medicine, and the Institute of Sport, Exercise and Health. UCLH delivers world class cancer care to patients from across the country. Cancer at UCLH spans across multiple sites and departments within the Trust and has included the opening of the Grafton Way Building one of two national Proton Beam Therapy services in December 2021. "
+          },
+          "source": "UCLH wishes to procure a transformation partner to improve efficiency and productivity of the radiotherapy department, challenging current ways of working and offering new insights. Lot 1: . University College London Hospitals NHS Foundation Trust, \"UCLH\", is one of the largest NHS trusts in the United Kingdom and provides first-class acute and specialist services. UCLH comprises of the following hospitals: University College Hospital, Elizabeth Garrett Anderson Wing, MacMillan Cancer Centre, University College Hospital Grafton Way Building, University College Hospital at Westmoreland Street, Royal National ENT and Eastman Dental Hospitals, National Hospital for Neurology and Neurosurgery, Hospital for Tropical Diseases, Royal London Hospital for Integrated Medicine, and the Institute of Sport, Exercise and Health. UCLH delivers world class cancer care to patients from across the country. Cancer at UCLH spans across multiple sites and departments within the Trust and has included the opening of the Grafton Way Building one of two national Proton Beam Therapy services in December 2021. UCLH is a lead provider within the North Central London Cancer Alliance, as well as providing tertiary services for wider patient populations in specialist services, such as sarcoma for patients from across South East England. In early 2020, UCLH was selected by NHS England as the preferred tertiary cancer provider to take over management of the Mount Vernon Cancer Centre. This transition is subject to a due diligence process during which UCLH are providing transitional support to the Mount Vernon Cancer Centre team, building upon a number of years of collaborative working between the two services. Our Radiotherapy department offers cutting edge and specialised therapy to adult and paediatric patients treating over 2400 new patients a year. UCLH Radiotherapy is a national leader in complex/highly technical radiotherapy in: • Brain and was recently designated a Tessa Jowell Brain Cancer Centre of Excellence • Paediatrics, with the largest paediatric radiotherapy unit in the UK • Sarcomas - one of Europe’s largest service • Head and Neck – (ENT) third largest in the UK • Stereotactic Ablative Radiotherapy (SABR) • Haematological including total body radiation • Brachytherapy • Molecular Radiotherapy - National Referral centre (Paediatric, TYA and adult). The department works closely with a number of specialist hospitals to support cancer pathways which span multiple centres including Great Ormond Street, St. Mary's, Oxford, Southampton and the Royal National Orthopaedic Hospital. The UCH radiotherapy department contains six bunkers with four Varian TrueBeams and one Varian Halcyon. There is a large difference between the national and UCLH complexity profile, 92% of the UCH workload is classed as complex and approximately 8% of the workload is paediatric. The radiotherapy service is delivered by a team of staff including clinical oncologists, radiotherapy physics and engineers, therapeutic radiographers, healthcare play specialists, admin and clerical staff and dedicated nurses. UCLH is also one of two national Proton Beam Therapy centres, providing services to patients from the south of the UK. The departments run an integrated workforce model, with physicists, dosimetrists and radiographers rotating across Radiotherapy and PBT. In total there are around 300 WT across both services. UCLH wishes to procure a transformation partner to improve efficiency and productivity of the radiotherapy department, challenging current ways of working and offering new insights. This could include but is not limited to: • Delivering Cancer Waiting Time Access standards. • Scheduling of patients. • Machine downtime. • Patient pathway and organisation of workflow. • Radiotherapy physics pathways. • Process for commissioning of new linacs. • Use of automation and AI. Expression of Interest The purpose of this preliminary market engagement is to engage with potential partners to gather information and insights from the market to aid the development of the requirements and scope of opportunities for efficiencies to inform the procurement of a transformation partner. Suppliers are requested to provide expressions of interest, including responses to the below questions by e-mail to steviejay.cavanagh@nhs.net by 15:00 on 26th September 2025. 1. What innovative or new ways of working are you currently seeing in the market that may benefit the NHS, and more specifically UCLH, including those that have been included in procurements over the past 12 months? 2. Please describe how you think this contract should be best structured to deliver an efficient Radiotherapy service? 3. Is there anything you think that the Trust should consider before going out to market for these services? 4. What would be your expectations from a partnership with an NHS organisation? This notice does not constitute a formal call for competition. Additional information: University College London Hospitals NHS Foundation Trust, \"UCLH\", is one of the largest NHS trusts in the United Kingdom and provides first-class acute and specialist services. UCLH comprises of the following hospitals: University College Hospital, Elizabeth Garrett Anderson Wing, MacMillan Cancer Centre, University College Hospital Grafton Way Building, University College Hospital at Westmoreland Street, Royal National ENT and Eastman Dental Hospitals, National Hospital for Neurology and Neurosurgery, Hospital for Tropical Diseases, Royal London Hospital for Integrated Medicine, and the Institute of Sport, Exercise and Health. UCLH delivers world class cancer care to patients from across the country. Cancer at UCLH spans across multiple sites and departments within the Trust and has included the opening of the Grafton Way Building one of two national Proton Beam Therapy services in December 2021. "
+        },
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:17:25.639056+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "UCLH is a lead provider within the North Central London Cancer Alliance, as well as providing tertiary services for wider patient populations in specialist services, such as sarcoma for patients from across South East England. In early 2020, UCLH was selected by NHS England as the preferred tertiary cancer provider to take over management of the Mount Vernon Cancer Centre. This transition is subject to a due diligence process during which UCLH are providing transitional support to the Mount Vernon Cancer Centre team, building upon a number of years of collaborative working between the two services. Our Radiotherapy department offers cutting edge and specialised therapy to adult and paediatric patients treating over 2400 new patients a year. UCLH Radiotherapy is a national leader in complex/highly technical radiotherapy in: • Brain and was recently designated a Tessa Jowell Brain Cancer Centre of Excellence • Paediatrics, with the largest paediatric radiotherapy unit in the UK • Sarcomas - one of Europe’s largest service • Head and Neck – (ENT) third largest in the UK • Stereotactic Ablative Radiotherapy (SABR) • Haematological including total body radiation • Brachytherapy • Molecular Radiotherapy - National Referral centre (Paediatric, TYA and adult). The department works closely with a number of specialist hospitals to support cancer pathways which span multiple centres including Great Ormond Street, St. Mary's, Oxford, Southampton and the Royal National Orthopaedic Hospital. The UCH radiotherapy department contains six bunkers with four Varian TrueBeams and one Varian Halcyon. There is a large difference between the national and UCLH complexity profile, 92% of the UCH workload is classed as complex and approximately 8% of the workload is paediatric. The radiotherapy service is delivered by a team of staff including clinical oncologists, radiotherapy physics and engineers, therapeutic radiographers, healthcare play specialists, admin and clerical staff and dedicated nurses. UCLH is also one of two national Proton Beam Therapy centres, providing services to patients from the south of the UK. The departments run an integrated workforce model, with physicists, dosimetrists and radiographers rotating across Radiotherapy and PBT. In total there are around 300 WT across both services. UCLH wishes to procure a transformation partner to improve efficiency and productivity of the radiotherapy department, challenging current ways of working and offering new insights. This could include but is not limited to: • Delivering Cancer Waiting Time Access standards. • Scheduling of patients. • Machine downtime. • Patient pathway and organisation of workflow. • Radiotherapy physics pathways. • Process for commissioning of new linacs. • Use of automation and AI. Expression of Interest The purpose of this preliminary market engagement is to engage with potential partners to gather information and insights from the market to aid the development of the requirements and scope of opportunities for efficiencies to inform the procurement of a transformation partner. Suppliers are requested to provide expressions of interest, including responses to the below questions by e-mail to steviejay.cavanagh@nhs.net by 15:00 on 26th September 2025. 1. What innovative or new ways of working are you currently seeing in the market that may benefit the NHS, and more specifically UCLH, including those that have been included in procurements over the past 12 months? 2. Please describe how you think this contract should be best structured to deliver an efficient Radiotherapy service? 3. Is there anything you think that the Trust should consider before going out to market for these services? 4. What would be your expectations from a partnership with an NHS organisation? This notice does not constitute a formal call for competition."
+          },
+          "source": "UCLH is a lead provider within the North Central London Cancer Alliance, as well as providing tertiary services for wider patient populations in specialist services, such as sarcoma for patients from across South East England. In early 2020, UCLH was selected by NHS England as the preferred tertiary cancer provider to take over management of the Mount Vernon Cancer Centre. This transition is subject to a due diligence process during which UCLH are providing transitional support to the Mount Vernon Cancer Centre team, building upon a number of years of collaborative working between the two services. Our Radiotherapy department offers cutting edge and specialised therapy to adult and paediatric patients treating over 2400 new patients a year. UCLH Radiotherapy is a national leader in complex/highly technical radiotherapy in: • Brain and was recently designated a Tessa Jowell Brain Cancer Centre of Excellence • Paediatrics, with the largest paediatric radiotherapy unit in the UK • Sarcomas - one of Europe’s largest service • Head and Neck – (ENT) third largest in the UK • Stereotactic Ablative Radiotherapy (SABR) • Haematological including total body radiation • Brachytherapy • Molecular Radiotherapy - National Referral centre (Paediatric, TYA and adult). The department works closely with a number of specialist hospitals to support cancer pathways which span multiple centres including Great Ormond Street, St. Mary's, Oxford, Southampton and the Royal National Orthopaedic Hospital. The UCH radiotherapy department contains six bunkers with four Varian TrueBeams and one Varian Halcyon. There is a large difference between the national and UCLH complexity profile, 92% of the UCH workload is classed as complex and approximately 8% of the workload is paediatric. The radiotherapy service is delivered by a team of staff including clinical oncologists, radiotherapy physics and engineers, therapeutic radiographers, healthcare play specialists, admin and clerical staff and dedicated nurses. UCLH is also one of two national Proton Beam Therapy centres, providing services to patients from the south of the UK. The departments run an integrated workforce model, with physicists, dosimetrists and radiographers rotating across Radiotherapy and PBT. In total there are around 300 WT across both services. UCLH wishes to procure a transformation partner to improve efficiency and productivity of the radiotherapy department, challenging current ways of working and offering new insights. This could include but is not limited to: • Delivering Cancer Waiting Time Access standards. • Scheduling of patients. • Machine downtime. • Patient pathway and organisation of workflow. • Radiotherapy physics pathways. • Process for commissioning of new linacs. • Use of automation and AI. Expression of Interest The purpose of this preliminary market engagement is to engage with potential partners to gather information and insights from the market to aid the development of the requirements and scope of opportunities for efficiencies to inform the procurement of a transformation partner. Suppliers are requested to provide expressions of interest, including responses to the below questions by e-mail to steviejay.cavanagh@nhs.net by 15:00 on 26th September 2025. 1. What innovative or new ways of working are you currently seeing in the market that may benefit the NHS, and more specifically UCLH, including those that have been included in procurements over the past 12 months? 2. Please describe how you think this contract should be best structured to deliver an efficient Radiotherapy service? 3. Is there anything you think that the Trust should consider before going out to market for these services? 4. What would be your expectations from a partnership with an NHS organisation? This notice does not constitute a formal call for competition."
         }
       ],
       "protected_names": [],
@@ -48783,6 +49400,29 @@
             "text": "Opentext maintenance contract service extension (Micro Focus)"
           },
           "source": "Opentext Wartungsvertrag Service Verlängerung (Micro Focus)"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "491e8d2a40c64f60bbf37a94235106f0b3f8a44e184ba635e02de4ec9f974733": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:49.633090+00:00",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Request for information: Expert services for licence management"
+          },
+          "source": "Tietopyyntö: Lisenssienhallinnan asiantuntijapalvelut"
         }
       ],
       "protected_names": [],
@@ -53021,6 +53661,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "4f9e3d7675adcbd363a9401e5b1cd95324fed5ac86ab7000628b2423f5ec35ae": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:40.628084+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Management office and support services for the light intermediate body of the ERDF financial path for the Integrated Action Plan of San Martín de la Vega (Madrid) within the framework of sustainable urban development funded by the European Regional Development Fund in the programming period 2021-2027."
+          },
+          "source": "Servicios de oficina de gestión y apoyo al organismo intermedio ligero de la senda financiera FEDER para el Plan de Actuación Integrado de San Martín de la Vega (Madrid) en el marco del desarrollo urbano sostenible con cargo al Fondo Europeo de Desarrollo Regional en el periodo de programación 2021-2027."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "4fa15199ff98c8d49386335e78afb3a3c41eda6025e6f703f27e03d0214e784e": {
       "parts": [
         {
@@ -53241,6 +53904,54 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "4fe2d04e0d2f73e268efc7c5afd87919b4cec5b45ddd643be56e6faad3b2006a": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:17:29.610718+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Mayor's Office of the Municipality of Rascafría"
+          },
+          "source": "Alcaldía del Ayuntamiento de Rascafría"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "4fe541c93f1a076b7de9743911536f285beb6591caee59b297ae74424a21c9f1": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:49.637446+00:00",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "THIS IS NOT A CONTRACT NOTICE OR A CALL FOR COMPETITION BUT A REQUEST FOR INFORMATION FOR MARKET RESEARCH AND TECHNICAL DIALOGUE. This request for information is used to survey the market and obtain information regarding the procurement. The contracting authority is not initiating a tendering procedure by publishing the request for information; instead, any procurement notice and call for competition will be published later. The request for information does not oblige the contracting authority to carry out the actual procurement. Responding to the request for information is not a prerequisite for participation in a possible later tendering procedure. Suppliers will not be paid compensation for responding to the request for information or participating in market dialogue. Responses given to this request for information will be used in planning the procurement of expert services to support the management of software assets (licence management). Expert assistance is needed flexibly across several different areas. The main user of HUS's centralised licence management system and product responsible persons for different areas maintain information on the most important software rights in a centralised system (Matrix42, SAM tool). In addition, supplier-specific portals are in use. In the planned procurement, the licence experts of the supplier to be procured would analyse and report quarterly on the current situation regarding agreed software rights (e.g. Microsoft, Oracle, Adobe and IBM manufacturers). They would compare information from different supplier portals with information in the centralised SAM tool, observe deficiencies and provide HUS with recommendations related to optimisation and compliance. The supplier should provide SAM Manager expertise, helping to manage valid software contracts. The supplier should advise on products, contract models, software lifecycles and usage rights. In addition, the supplier is hoped to provide support in building the management model for licence management. It is planned to include as an option in the procurement the entry of licence, cost and contract information into the SAM tool by the supplier instead of HUS personnel. HUS-yhtymä is renewing its ITSM system. In connection with this, the integration of licence management as part of this entity will also be evaluated. External expertise will also be needed for this. The purpose of the request for information is to survey suppliers available on the market and their service range. The purpose is to clarify service solutions, pricing principles and the cost level for the budget. HUS-yhtymä requests suppliers interested in the procurement described above to notify the contracting authority of their interest and attach to the response a general description/brochure of the service solution you offer for the need described above. Please note that all material is intended solely for conducting this market dialogue. The contracting authority will treat your response confidentially. Based on the responses to the request for information, clarifying questions may be presented to the supplier and/or an opportunity offered to present their solutions in a manner to be notified later. Suppliers that have responded to the request for information may possibly receive preliminary call for competition documents for comment. Responding or failing to respond to the request for information does not affect the supplier's position in a potential tendering procedure. We ask that responses to the request for information and notifications of interest be submitted no later than 20.3.2026 at 12:00 to the address kilpailutus.ict@hus.fi. The subject of the message should state \"HUS 090-2026 - Lisenssienhallinnan asiantuntijapalvelut\"."
+          },
+          "source": "TÄMÄ EI OLE HANKINTAILMOITUS TAI TARJOUSPYYNTÖ VAAN TIETOPYYNTÖ MARKKINAKARTOITUSTA JA TEKNISTÄ VUOROPUHELUA VARTEN. Tämän tietopyynnön avulla kartoitetaan markkinoita ja saadaan hankintaa koskevaa tietoa. Hankintayksikkö ei aloita tietopyynnön julkaisulla tarjouskilpailua, vaan mahdollinen hankintailmoitus ja tarjouspyyntö julkaistaan myöhemmin. Tietopyyntö ei velvoita hankintayksikköä toteuttamaan varsinaista hankintaa. Tietopyyntöön vastaaminen ei ole edellytys myöhempään mahdollisesti järjestettävään tarjouskilpailuun osallistumiselle. Toimittajille ei makseta korvausta tietopyyntöön vastaamisesta tai markkinavuoropuheluun osallistumisesta. Tähän tietopyyntöön annettuja vastauksia käytetään suunniteltaessa asiantuntijapalvelun hankintaa ohjelmisto-omaisuuden (lisenssienhallinta) hallinnan tueksi. Asiantuntija-apua tarvitaan joustavasti usealla eri osa-alueella. HUSin keskitetyn lisenssienhallinnan järjestelmän pääkäyttäjä ja eri osa-alueiden tuotevastaavat ylläpitävät tärkeimpien ohjelmisto-oikeuksien tietoja keskitetyssä järjestelmässä (Matrix42, SAM-työkalu). Lisäksi käytössä on toimittajakohtaisia portaaleja. Suunnitellussa hankinnassa kilpailutettavan toimittajan lisenssiasiantuntijat tulisivat analysoimaan ja raportoimaan kvartaaleittain nykytilanteen sovittujen ohjelmisto-oikeuksien osalta (esim. Microsoft, Oracle, Adobe ja IBM –valmistajat). He vertailisivat eri toimittajaportaalien tietoja keskitetyn SAM-työkalun tietoihin, havainnoisivat puutteita ja toimittaisivat HUSille optimointiin ja vaatimuksenmukaisuuteen liittyviä suosituksia. Toimittajan tulisi antaa SAM Manager -osaamista auttaen hallitsemaan voimassa olevia ohjelmistosopimuksia. Toimittajan tulisi neuvoa tuotteissa, sopimusmalleissa, ohjelmistojen elinkaarissa ja käyttöoikeuksissa. Lisäksi toimittajan toivotaan antavan tukeaan lisenssienhallinnan hallintamallin rakentamisessa. Hankintaan on suunniteltu sisällytettävän optiona myös lisenssitietojen lisenssi-, kustannus- ja sopimustietojen syöttö SAM-työkaluun HUSlaisten sijasta. HUS-yhtymä on uusimassa ITSM-järjestelmäänsä. Siihen liittyen tulee arvioitavaksi myös lisenssienhallinnan liittäminen osaksi tätä kokonaisuutta. Tähän tullaan tarvitsemaan myös ulkopuolista asiantuntemusta. Tietopyynnön tarkoituksena on kartoittaa markkinoilla olevia toimittajia sekä heidän palveluvalikoimaansa. Tarkoituksena on selvittää palveluratkaisuja, hinnoitteluperiaatteita ja kustannustasoa budjettia varten. HUS-yhtymä pyytää edellä kuvatusta hankinnasta kiinnostuneita toimittajia ilmoittamaan kiinnostuksensa hankintayksikölle sekä liittämään vastaukseen yleisluontoisen kuvauksen/esitteen tarjoamastanne palveluratkaisusta edellä kuvattuun tarpeeseen. Pyydämme huomioimaan, että kaikki materiaali on tarkoitettu ainoastaan tämän markkinavuoropuhelun käymiseen. Hankintayksikkö käsittelee vastauksenne luottamuksellisesti. Tietopyynnön vastausten perusteella saatetaan toimittajalle esittää tarkentavia kysymyksiä ja/tai tarjota mahdollisuus esitellä ratkaisujaan myöhemmin ilmoitettavalla tavalla. Tietopyyntöön vastanneet toimittajat saavat mahdollisesti kommentoitavakseen alustavat tarjouspyyntöasiakirjat. Tietopyyntöön vastaaminen tai vastaamatta jättäminen ei vaikuta toimittajan asemaan mahdollisessa tarjouskilpailussa. Pyydämme toimittamaan vastaukset tietopyyntöön ja ilmoittamaan kiinnostuksestanne viimeistään 20.3.2026 klo 12:00 mennessä osoitteeseen kilpailutus.ict@hus.fi. Viestin aiheeksi maininta \"HUS 090-2026 - Lisenssienhallinnan asiantuntijapalvelut\"."
+        }
+      ],
+      "protected_names": [
+        "HUS-yhtymä"
+      ],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "4fe62e117bab52a3b176434ed96eb83ad25852e36e5d6e49580a74981516861e": {
@@ -59263,6 +59974,29 @@
       "purpose": "passage",
       "retry_profile": "english-coverage-and-organisation-names-2"
     },
+    "59312905c6c3ee5d4eb70a875cb15a31481e8f82d9c7b9ea15e42a14d276c310": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:17:07.705905+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "REQUEST FOR INFORMATION / MARKET CONSULTATION - Procurement Lifecycle Management Solution"
+          },
+          "source": "REQUEST FOR INFORMATION / MARKET CONSULTATION - Procurement Lifecycle Management Solution"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "594aa4250b1ca8f4eb9f3e783682dccfcff9760fb0233080adff8c193d3880a7": {
       "parts": [
         {
@@ -60058,6 +60792,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "5af5af715cde522cf2c953d501f78e08b9249acd8cc68eee386906c0ab61c7de": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:59.534896+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The purpose of this contract is the provision of User Support Centre services, operation and support of the IT systems of the ICO Group, hereinafter ICO, including the Official Credit Institute, State-Owned Enterprise (ICO), Axis Participaciones Empresariales, S.G.E.I.C., S. A., S.M.E. (Axis) and the ICO Foundation, F.S.P. (Fundación ICO). Through the User Support Centre (hereinafter, USC), any need or incident that ICO users may present will be addressed. In addition, the operation service for ICO computer equipment and infrastructure will be provided)"
+          },
+          "source": "El presente contrato tiene por objeto la prestación de los servicios del Centro de Atención al usuario, operación y soporte de los sistemas informáticos del Grupo ICO, en adelante ICO, incluyendo al Instituto de Crédito Oficial, Entidad Pública Empresarial (ICO), Axis Participaciones Empresariales, S.G.E.I.C., S. A., S.M.E. (Axis) y la Fundación ICO, F.S.P. (Fundación ICO). A través del Centro de Atención al Usuario (en adelante, CAU) se atenderá cualquier necesidad o incidencia que los usuarios del ICO puedan presentar. Por otra parte, se prestará el servicio de operación sobre los equipos e infraestructura informática del ICO)"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "5affd43623824793e47c686090f79bb8fa0b011eafb168c41a3ba2b11b2cb9d8": {
       "parts": [
         {
@@ -60571,6 +61328,29 @@
             "text": "Supply, implementation and operation of the maritime traffic management system of the Port of Seville"
           },
           "source": "Suministro, implementación y operación del sistema gestión de tráfico marítimo del Puerto de Sevilla"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "5bcfc8228c7e97f8f566e051168429b3a45a33e3d98bc7b8f74a8c1885ecd2ca": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:40.622352+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "THIS IS NOT A TENDERING EXERCISE, AND DOES NOT RELATE TO A SINGLE SPECIFIC CONTRACT (CURRENT OR FUTURE) Date: Wednesday, 16th October 2025 Time: 10:00 AM - 2:00 PM Are you a small or medium-sized business interested in bidding for future procurement opportunities? Join us for Shared Services for Housing's upcoming virtual Supplier Day on Wednesday, 16th October 2025, from 10:00 AM to 2:00 PM-designed specifically to support businesses like yours. This interactive webinar aims to provide: Practical guidance on how to get procurement-ready Insights into different tendering routes, including frameworks and Dynamic Purchasing Systems (DPS) Advice on compliance, tender documentation, and aligning with our partners' values and expectations Whether you're an existing supplier or new to working with Housing Associations, we welcome your participation. Register using the below link https://www.eventbrite.co.uk/e/shared-service-for-housing-presents-preparing-for-procurement-success-tickets-1686647621439?aff=oddtdtcreator Lot 1: ."
+          },
+          "source": "THIS IS NOT A TENDERING EXERCISE, AND DOES NOT RELATE TO A SINGLE SPECIFIC CONTRACT (CURRENT OR FUTURE) Date: Wednesday, 16th October 2025 Time: 10:00 AM - 2:00 PM Are you a small or medium-sized business interested in bidding for future procurement opportunities? Join us for Shared Services for Housing's upcoming virtual Supplier Day on Wednesday, 16th October 2025, from 10:00 AM to 2:00 PM-designed specifically to support businesses like yours. This interactive webinar aims to provide: Practical guidance on how to get procurement-ready Insights into different tendering routes, including frameworks and Dynamic Purchasing Systems (DPS) Advice on compliance, tender documentation, and aligning with our partners' values and expectations Whether you're an existing supplier or new to working with Housing Associations, we welcome your participation. Register using the below link https://www.eventbrite.co.uk/e/shared-service-for-housing-presents-preparing-for-procurement-success-tickets-1686647621439?aff=oddtdtcreator Lot 1: ."
         }
       ],
       "protected_names": [],
@@ -63337,6 +64117,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "6016e051ee6a7169e31744f6d62d5f61fa86c463c54bc21f9760d5c784eb54d2": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:17:29.613404+00:00",
+            "language": "is",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Sigma2 AS"
+          },
+          "source": "Sigma2 AS"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "6019a11cea453def017b5d929b9b784cde1c0a68f4ad45c7d8fc554893ce8af9": {
       "parts": [
         {
@@ -65653,6 +66456,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "63c7956b869ec2e28b06d579e1e241d97775056fdc7ecc2d5cc3eb2ec168e2d1": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:40.632784+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Technical assistance service for the extension of the Rural Agenda of Palencia through the preparation of Local Action Plans in the service-providing municipalities and their integration with the Rural Agenda of Palencia Submission deadline (source local time): 2026-10-16 23:59:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Servicio de asistencia técnica para la extensión de la Agenda Rural de Palencia mediante la elaboración de Planes de Acción Local en los municipios prestadores de servicios y su integración con la Agenda Rural de Palencia Submission deadline (source local time): 2026-10-16 23:59:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "63e4e8a958a2077b97749b07390dc0c74656f11e549928bbbc3ec8dade532d7e": {
       "parts": [
         {
@@ -67179,6 +68005,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "6672d951276e261c54a0f669db3fe3c04a16da4b94ff33438b230fa3f92b7b35": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:17:29.610555+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Management of the University Consortium of the UNED Associated Centre in Huelva"
+          },
+          "source": "Dirección del Consorcio Universitario del Centro Asociado a la UNED en Huelva"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "667a227b0583d5d0906ebdf6d30217c0eb0215a7f2cbcfe2e55b65d9a53fc7fa": {
       "parts": [
         {
@@ -68613,6 +69462,31 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "689de18f8a8d8da4e27d73994cc4a5af9a9e476684974ff3c3828df2e7ee59ab": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:59.550598+00:00",
+            "language": "da",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Energinet is carrying out an initial market consultation ahead of an upcoming tender for a Physical Security Information Management (PSIM) system and associated services. The primary purpose of the written consultation is to determine whether the software offered can support the described use case and overall needs. The response is non-binding. If Energinet invites to a follow-up market dialogue, the supplier may be asked to demonstrate specifically how the solution supports the use case. Energinet thanks you for your contribution."
+          },
+          "source": "Energinet gennemfører en indledende markedsafdækning forud for et kommende udbud af et Physical Security Information Management (PSIM)-system samt tilhørende tjenesteydelser. Den skriftlige høring har primært til formål at afdække, om den tilbudte software kan understøtte den beskrevne use case og de overordnede behov. Besvarelsen er ikke bindende. Såfremt Energinet inviterer til opfølgende markedsdialog, kan leverandøren blive bedt om at demonstrere, hvordan løsningen konkret understøtter use casen. Energinet takker for jeres bidrag."
+        }
+      ],
+      "protected_names": [
+        "Energinet"
+      ],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "68a20ea208ca7ec7436a7d1a15ba3b7bfb956eb3c35f40f5a2124a84d7612a8b": {
@@ -70794,6 +71668,31 @@
       "protected_names": [],
       "purpose": "passage",
       "retry_profile": "english-coverage-and-organisation-names-2"
+    },
+    "6c15b3c5fec4299dca4591fbe9c379cfb730a5ee337bd55a6e438e6ba8822733": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:59.541395+00:00",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "This is not a prior information notice, contract notice or call for tenders, but a notice on the initiation of a market dialogue as part of procurement planning and an invitation to participate in the market dialogue. Vantaan kaupunki and other municipalities are jointly planning a tender contest for a low-carbon assessment tool for detailed local planning, so the procurement will likely be carried out as a joint procurement group of several contracting authorities. The contracting authorities are surveying suppliers' interest in participating in the market dialogue for the low-carbon assessment tool for detailed local planning. The subject matter of the procurement is a browser-based software service delivered via the data network for assessing the climate impacts of land use plans, with which the contracting authority can assess and compare the climate impacts of detailed local plan level land use plans based on the carbon footprint and carbon handprint calculated by the tool. The subject matter of the procurement includes implementation projects for the low-carbon tool, rights of use, support and maintenance services, supplementary expert services ordered separately, and additional procurement opportunities. The aim is to obtain a solution that is suitable for the Finnish land use and construction context and for the evaluation of detailed local plan level land use plans. The solution is also intended to be further developed to improve the assessment of the climate impacts of urban land use planning. Commercial use of the low-carbon assessment tool for detailed local planning will start according to municipality-specific schedules estimated during Q2/2026-Q1/2027. The solution to be procured must preliminarily include the following key functionalities and features: - The solution is map- and GIS-based. - The evaluation method of the solution must take into account the entire life cycle of the land use plans being evaluated, including the climate impacts of the project before use, during use and after use, as well as impacts outside the life cycle and potential climate benefits. - The solution must be able to utilise national and city-specific parameters and data. - The evaluation method must comprehensively take into account the climate impacts of detailed local plan level land use projects, also considering climate impacts other than those produced by buildings, such as the climate impacts of transport or energy consumption. - The solution takes into account the Finnish Green Building Council's definition of a carbon-neutral built area. Operators participating in the market dialogue are requested to register for the market dialogue and provide answers to the preliminary questions presented in the market consultation notice by Friday 13.3.2026 by 12 to the following address: jonna.hirvonen@vantaa.fi. Registrations must be headed as follows: \"Registration for market dialogue: Procurement of a low-carbon assessment tool for detailed local planning\". Registrations must contain the following information: - Name of the participating company - Name, telephone number and email address of the contact person - Name of the solution offered by the company - Answers to preliminary questions"
+          },
+          "source": "Tämä ei ole ennakkoilmoitus, hankintailmoitus tai tarjouspyyntö vaan ilmoitus markkinavuoropuhelun käynnistämisestä osana hankinnan suunnittelua ja kutsu osallistua markkinavuoropuheluun. Vantaan kaupunki sekä muut kunnat suunnittelevat yhdessä asemakaavoituksen vähähiilisyyden arviointityökalun kilpailutusta, joten hankinta tullaan todennäköisesti toteuttamaan useamman hankintayksikön hankintarenkaana. Hankintayksiköt kartoittavat toimittajien kiinnostusta osallistua asemakaavoituksen vähähiilisyyden arviointityökalun markkinavuoropuheluun. Hankinnan kohteena on tietoverkon välityksellä toimitettava selainkäyttöinen ohjelmistopalvelu maankäytön suunnitelmien ilmastovaikutusten arviointia varten, jolla tilaaja voi arvioida ja vertailla asemakaavatason maankäyttösuunnitelmien ilmastovaikutuksia työkalun laskemaan hiilijalanjälkeen ja -kädenjälkeen perustuen. Hankinnan kohteeseen sisältyvät vähähiilisyystyökalun käyttöönottoprojektit, käyttöoikeudet, tuki- ja ylläpitopalvelut, erikseen tilattavat täydentävät asiantuntijapalvelut ja lisähankintamahdollisuudet. Tavoitteena on saada käyttöön ratkaisu, joka soveltuu Suomen maankäytön ja rakentamisen kontekstiin sekä asemakaavatasoisten maankäytön suunnitelmien arviointiin. Ratkaisua on myös tarkoitus jatkokehittää kaupunkien maankäytön suunnittelun ilmastovaikutusten arvioinnin parantamiseen. Asemakaavoituksen vähähiilisyyden arviointityökalun tuotantokäyttö aloitetaan kuntakohtaisten aikataulujen mukaisesti arviolta Q2/2026-Q1/2027 aikana. Hankittavan ratkaisun tulee sisältää alustavasti seuraavat keskeiset toiminnallisuudet ja ominaisuudet: - Ratkaisu on kartta- ja paikkatietopohjainen. - Ratkaisun arviointimenetelmän tulee huomioida arvioitavien maankäytön suunnitelmien koko elinkaari, sisältäen hankkeen ilmastovaikutukset ennen käyttöä, käytön aikana ja käytön jälkeen sekä elinkaaren ulkopuoliset vaikutukset ja mahdolliset ilmastohyödyt. - Ratkaisussa tulee voida hyödyntää valtakunnallisia ja kaupunkikohtaisia parametrejä ja aineistoa. - Arviointimenetelmän tulee huomioida asemakaavatasoisten maankäytön hankkeiden ilmastovaikutukset kokonaisvaltaisesti, huomioiden myös muut kuin rakennusten tuottamat ilmastovaikutukset, kuten mm. liikenteen tai energian kulutuksen ilmastovaikutukset. - Ratkaisu huomioi Finnish Green Building Councilin hiilineutraalin rakennetun alueen määritelmän. Markkinavuoropuheluun osallistuvia toimijoita pyydetään ilmoittautumaan markkinavuoropuheluun ja antamaan vastaukset markkinakartoitusilmoituksessa esitettyihin ennakkokysymyksiin perjantaihin 13.3.2026 klo 12 mennessä osoitteeseen: jonna.hirvonen@vantaa.fi. Ilmoittautuminen tulee otsikoida seuraavasti: “Ilmoittautuminen markkinavuoropuheluun: Asemakaavoituksen vähähiilisyyden arviointityökalun hankinta”. Ilmoittautumisessa tulee olla seuraavat tiedot: - Osallistuvan yrityksen nimi - Yhteyshenkilön nimi, puhelinnumero ja sähköpostiosoite - Yrityksen tarjoaman ratkaisun nimi - Vastaukset ennakkokysymyksiin"
+        }
+      ],
+      "protected_names": [
+        "Vantaan kaupunki"
+      ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "6c19b4a4b4cbec1782879ee7b5c5cd59b2580ae12e1aed544a604e581bb2c4b7": {
       "parts": [
@@ -73742,6 +74641,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "6ff11ce146f5be0103e483caceb53bdf32dd585785bae775f9add613cb2d7136": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:17:29.613253+00:00",
+            "language": "nb",
+            "model": "gemini-3.5-flash-lite",
+            "text": "KRISTIANSAND MUNICIPALITY"
+          },
+          "source": "KRISTIANSAND KOMMUNE"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "701fdaca4636df2f6b432f7a9e841baf0e5e67354e6166ce8fa831081a67c9d4": {
       "parts": [
         {
@@ -76152,6 +77074,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "73f43d95729ab206bb2de9c14b2e319627df1edf480cc3d9205b6854a08b867a": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:59.539000+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The Agency for Urban Environment is now planning the procurement of a new administration system for resident parking for Oslo. The objective of the market dialogue (RFI) is to receive feedback from potential suppliers if you have or can develop functionality that covers the attached requirement specifications. We would also like recommendations on changes to the current requirements. The procurement will include a standard system for administration and follow-up of the resident parking scheme and a separate contract for the operation of the system."
+          },
+          "source": "The Agency for Urban Environment is now planning the procurement of a new administration system for resident parking for Oslo. The objective of the market dialogue (RFI) is to receive feedback from potential suppliers if you have or can develop functionality that covers the attached requirement specifications. We would also like recommendations on changes to the current requirements. The procurement will include a standard system for administration and follow-up of the resident parking scheme and a separate contract for the operation of the system."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "7402c1859f48d246b0b969d8f118c857fa628f31e3c5dc57c221e23d4aa207b5": {
       "parts": [
         {
@@ -77242,6 +78187,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "75ddd456f32396deb02bed017d97b042a17f7e69b63d5676391ecc6116171a1f": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:17:29.609457+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Wandle Housing Association Limited"
+          },
+          "source": "Wandle Housing Association Limited"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "75f030588d337b8fcad9b7ad1c15035ad47bd2e6bf13e3c86de850da5dade35f": {
       "parts": [
         {
@@ -77827,6 +78795,29 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "77182cc3048b2a4df649065ffebf7e2d2ad99d8e821c7c4bb5fea5c821b5bb86": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:59.552178+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Comprehensive diagnosis of small-scale retail trade in Madrid 2026"
+          },
+          "source": "Diagnóstico global del pequeño comercio minorista de Madrid 2026"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "772b37aa82c580e470afb36c6a33b12040d21cc244260816030e5f256f1becfc": {
@@ -81500,6 +82491,29 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "7d162f938fdec87f5fb7ef48a72b4f5ea9fc4f1be67c4e138a7b2ee33dd1e81c": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:59.552547+00:00",
+            "language": "pl",
+            "model": "gemini-3.5-flash-lite",
+            "text": "RFI - ERP system"
+          },
+          "source": "RFI - ERP system"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "7d269dcf1d2a672a8ee2dfa71191b730245bf226f1fbeae91468d699557f9d0f": {
@@ -97878,6 +98892,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "93c05ebc3d104872051d59ef4ba27649de058d873eece21741367f0731b8b422": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:40.617520+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Telephony, internet access and communications security services for the Municipality of Estepona Submission deadline (source local time): 2026-10-16 23:59:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Servicios de telefonía, acceso a Internet y seguridad de las comunicaciones para el Ayuntamiento de Estepona Submission deadline (source local time): 2026-10-16 23:59:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "93d247f53a08b56eca3c275f60e089c6e076d9f5824a8c316a5e5832c5194ce6": {
       "parts": [
         {
@@ -99193,6 +100230,31 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "95b481036cdfd0ec6ec3c94c0b7842e6be164e74fb105a9e6d1150a7bbb40b27": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:40.614877+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Maintenance and development service for the legal information management application (CMS) of the Judicial Documentation Centre of Consejo General del Poder Judicial. Submission deadline (source local time): 2026-10-19 09:00:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Servicio de mantenimiento y desarrollo de la aplicación de gestión de información jurídica (CMS) del Centro de Documentación Judicial del Consejo General del Poder Judicial. Submission deadline (source local time): 2026-10-19 09:00:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [
+        "Consejo General del Poder Judicial"
+      ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "95c0b4164c1de0b606b0aeb0ba0175be4b686478c529c68d2594811b5dad975d": {
       "parts": [
         {
@@ -99477,6 +100539,29 @@
       ],
       "protected_names": [],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "9658344c2e66b292285c84795f75581a9ed212b95f3e354344182ec75a21e59b": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:17:29.610243+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Bournemouth University"
+          },
+          "source": "Bournemouth University"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "9661951b264ba9b29ca09f036a49a501e677db15e4f250c04a8fdfba9c4273d1": {
@@ -99769,6 +100854,29 @@
             "text": "Interface modelling system for RESQON"
           },
           "source": "Schnittstellenmodelierungssystem für RESQON"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "96e94584124499045b49dacd83def704c46caee99f03816fd64b5ff86da19f08": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:40.630187+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Management office and support services for the light intermediate body of the ERDF financial path for the Integrated Action Plan of San Martín de la Vega (Madrid) within the framework of sustainable urban development funded by the European Regional Development Fund in the programming period 2021-2027. Submission deadline (source local time): 2026-10-02 23:59:00. Time zone not supplied; check the source notice. Tenders shall be submitted exclusively electronically via PLACSP in accordance with clause 11 of the published PCAP and the link in the contracting profile (www.ayto-smv.es). Enquiries relating to the tendering procedure shall be made exclusively via PLACSP in accordance with clause 11.5 of the PCAP. For potential PLACSP incidents, you must contact via licitacionE@hacienda.gob.es, and it is recommended to take into account the PLACSP support hours (Monday-Thursday 8:30h to 18h; Friday 8:30h to 15h)."
+          },
+          "source": "Servicios de oficina de gestión y apoyo al organismo intermedio ligero de la senda financiera FEDER para el Plan de Actuación Integrado de San Martín de la Vega (Madrid) en el marco del desarrollo urbano sostenible con cargo al Fondo Europeo de Desarrollo Regional en el periodo de programación 2021-2027. Submission deadline (source local time): 2026-10-02 23:59:00. Time zone not supplied; check the source notice. Las ofertas se presentarán exclusivamente de forma electrónica a través de PLACSP conforme a la cláusula 11 del PCAP publicado y link en perfil del contratante (www.ayto-smv.es). Las consultas relativas a la licitación se realizarán exclusivamente a través de PLACSP conforme a la cláusula 11.5 del PCAP. Para posibles incidencias de PLACSP deben contactar a través de licitacionE@hacienda.gob.es, recomendándose tener en cuenta el horario de soporte de PLACSP (L-J 8:30h a 18h; V 8:30h a 15h)."
         }
       ],
       "protected_names": [],
@@ -100730,6 +101838,37 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "9851c13463612fc96ffb6f8bcb2464183e4922e2b73b7aeb7fcc3bf2fd66f1df": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "rejected": {
+            "id": "9851c13463612fc96ffb6f8bcb2464183e4922e2b73b7aeb7fcc3bf2fd66f1df:0",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "TIETOPYYNTÖ MARKKINAKARTOITUSTA JA -VUOROPUHELUA VARTEN / Rakennushankkeiden kustannussimulointiohjelmistopalvelu"
+          },
+          "result": {
+            "at": "2026-09-17T23:16:49.625901+00:00",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "REQUEST FOR INFORMATION FOR MARKET RESEARCH AND DIALOGUE / Cost simulation software service for construction projects"
+          },
+          "source": "TIETOPYYNTÖ MARKKINAKARTOITUSTA JA -VUOROPUHELUA VARTEN / Rakennushankkeiden kustannussimulointiohjelmistopalvelu"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "9860b8d20cb02e41c0be1b60c22322485355b7a389d93fa59a7e14ec1596eb10": {
       "parts": [
         {
@@ -101066,6 +102205,29 @@
             "text": "Service contract for the content management and portal platform of the Madrid City Council"
           },
           "source": "Contrato de servicios para la plataforma de gestión de contenidos y portales del Ayuntamiento de Madrid"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "98eaff890b79528cf7b5c5462a3c9514e35bc615950c7b557c7a653b006d6099": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:59.543341+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Invitation to market dialogue - Quality system - Kristiansand municipality"
+          },
+          "source": "Invitation to market dialogue - Quality system - Kristiansand municipality"
         }
       ],
       "protected_names": [],
@@ -109439,6 +110601,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "a45ec4cd20ff79b2b2aa00ab36a5b9b048264cd7361f2dcd94675eefa3e3dfef": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:17:07.699539+00:00",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Request for Information regarding the procurement of a questionnaire and event management system 2026"
+          },
+          "source": "TIETOPYYNTÖ / Kysely- ja tapahtumahallintajärjestelmän hankinta 2026"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "a45f4a0249a5136fbf8a545241a7c58458be60a9299da1982d3069eb9e46b7b8": {
       "parts": [
         {
@@ -110377,6 +111562,29 @@
             "text": "Argyll & Bute Council wish to appoint an appropriately qualified and experienced design team to develop the Tarbert to Whitehouse Active Travel Path project from the current concept design through Developed (RIBA Stage 3) and Technical (RIBA Stage 4) Design, and to be Principal Designer during construction (RIBA Stage 5). Lot 1: . Argyll & Bute Council wish to appoint an appropriately qualified and experienced design team to develop the Tarbert to Whitehouse Active Travel Path project from the current concept design through Developed (RIBA Stage 3) and Technical (RIBA Stage 4) Design, and to be Principal Designer during construction (RIBA Stage 5)."
           },
           "source": "Argyll & Bute Council wish to appoint an appropriately qualified and experienced design team to develop the Tarbert to Whitehouse Active Travel Path project from the current concept design through Developed (RIBA Stage 3) and Technical (RIBA Stage 4) Design, and to be Principal Designer during construction (RIBA Stage 5). Lot 1: . Argyll & Bute Council wish to appoint an appropriately qualified and experienced design team to develop the Tarbert to Whitehouse Active Travel Path project from the current concept design through Developed (RIBA Stage 3) and Technical (RIBA Stage 4) Design, and to be Principal Designer during construction (RIBA Stage 5)."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "a5d0b0e2873d283a05b995a86366aaf7ebcdfa2a7bf4b8483bd1df7c006fad4d": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:49.631691+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Procurement of Cloud DRaaS Services"
+          },
+          "source": "Contratación de servicios Cloud Draas"
         }
       ],
       "protected_names": [],
@@ -112157,6 +113365,29 @@
       ],
       "protected_names": [],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "a85e567d391931b1a16d6f3293703ccb77f4806b3fad5e6544cab51e07cccc91": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:17:29.608255+00:00",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Purchaser: Federal Ministry for Economic Affairs and Energy (BMWE); Procurement service provider: Forschungszentrum Jülich GmbH, Project Management Jülich (PtJ)"
+          },
+          "source": "Beschaffer: Bundesministerium für Wirtschaft und Energie (BMWE); Beschafftungsdienstleister: Forschungszentrum Jülich GmbH, Projektträger Jülich (PtJ)"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "a864716e572acc43b23cfc6be4179b77d00105c867860aaebc5cb36039f5ea00": {
@@ -117096,6 +118327,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "affa583cdff78205e502de811f2f6759ccf21772c6e78a232ba1ae7d1b11fb6e": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:17:29.610387+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Governing Board of the Municipality of San Martín de la Vega"
+          },
+          "source": "Junta de Gobierno del Ayuntamiento de San Martín de la Vega"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "b002b03ef370c53cb413194e29aff98aa68240aaa6521079077e7dfe5bd2a5d3": {
       "parts": [
         {
@@ -120106,6 +121360,29 @@
             "text": "Procurement of cloud-based accounting and controlling software"
           },
           "source": "Beschaffung einer cloudbasierten Buchhaltungs- und Controlling-Software"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "b42ae3767baa0d65e97529c941281119026b4aaee13db5e8320e80d00dd8a290": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:40.617689+00:00",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Pre-commercial procurement (PCP) of research and development services for a toolkit for active low-voltage distribution network management."
+          },
+          "source": "Vorkommerzielle Auftragsvergabe PreCommercial Procurement (PCP) von Forschungsund Entwicklungsleistungen für ein Toolkit zum aktiven Verteilnetzmanagement in der Niederspannung."
         }
       ],
       "protected_names": [],
@@ -125628,6 +126905,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "bca69efe7795caf33c0da63d6387ee02c2af1ce141f33d591338d422d7531707": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:49.631599+00:00",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "THIS IS NOT A CONTRACT NOTICE OR A CALL FOR COMPETITION BUT A REQUEST FOR INFORMATION FOR MARKET RESEARCH AND DIALOGUE. The City of Pori has a need for a tool that covers the entire lifecycle of construction and premises projects and supports early-stage design of projects, simulation of alternatives and the reporting required to support decision-making. The aim is to improve the design quality, cost control and comparability of alternatives of projects and to support the preparation of investment decisions qualitatively and economically. The purpose of the request for information is to survey cost simulation software services available on the market that support the design and decision-making of construction and premises projects. The market research clarifies suppliers' solutions, pricing models, service content, integration possibilities and technical requirements before the preparation of the actual procurement. The aim is to survey solutions available on the market that enable: • the simulation of project cost, lifecycle and environmental/carbon footprint impacts • calculations based on premises sizing and requirements • the creation and comparison of alternatives and scenarios • the steering of design using target values (cost, CO2, quality) Scope: The market research does not cover: • cost calculation software based on input, construction part or bill of quantities • software that does not support alternative simulation • solutions lacking lifecycle and environmental impact calculations REQUEST FOR INFORMATION We ask suppliers to provide informal responses to the items listed below by Friday 13.3.2026 at 12.00. Responses should be submitted by email: tarjous@pori.fi. The subject field of the email must be marked with the following identifier: “PRIDno-2026-1620 – Tietopyyntö kustannussimulointiohjelmistosta” Information requested from suppliers - supplier contact details and contact person email address - software functionalities, technical implementation and possible integrations - references (max. three most suitable) - commercial model (e.g. licensing, pricing and service delivery method) - presentation material (video demo or other similar material) - contract terms (acceptability of JIT 2025 terms, possible change needs or other terms) - personal data processing Suppliers may clearly mark sections containing business secrets. The contracting authority will treat responses confidentially. NEXT STEPS The purpose of the request for information is to survey operators and solutions available on the market. Responses received may serve as the basis for the preparation of a possible call for competition. Responding to the request for information is not a prerequisite for participation in the procurement procedure and does not affect the tenderer's position therein. The matters presented in the request for information are preliminary and may change as the preparation of the procurement progresses. Based on the responses to the request for information, the contracting authority may continue market research in a manner of its choosing and contact respondents to obtain additional information. ADDITIONAL INFORMATION OF THE NOTICE This notice is a request for information for market research and dialogues. This notice does not request tenders. Descriptions presented in this notice are preliminary and indicative prior information of the procurement. The request for information does not oblige the implementation of the procurement in the manner described in the request for information. The contracting authority is not obliged to take into account responses received to the request for information in the drafting of the call for competition. Please note that all material is intended solely for the request for information and the conducting of market dialogues. Market dialogues do not bind the City of Pori to implement the procurement nor do they bind the supplier to participate in a potential tendering procedure. Participating companies will not be paid compensation for responding or participating. Responding or failing to respond to the request for information does not affect the tenderer's position in the actual tendering procedure."
+          },
+          "source": "TÄMÄ EI OLE HANKINTAILMOITUS TAI TARJOUSPYYNTÖ VAAN TIETOPYYNTÖ MARKKINAKARTOITUSTA JA -VUOROPUHELUA VARTEN. Porin kaupungilla on tarve työkalulle, joka kattaa rakennus- ja tilahankkeiden koko elinkaaren sekä tukee hankkeiden varhaisen vaiheen suunnittelua, vaihtoehtojen simulointia ja päätöksenteon tueksi tarvittavaa raportointia. Tavoitteena on parantaa hankkeiden suunnittelun laatua, kustannusohjausta ja vaihtoehtojen vertailtavuutta sekä tukea investointipäätösten valmistelua laadullisesti ja taloudellisesti. Tietopyynnön tarkoituksena on kartoittaa markkinoilla olevia kustannussimulointiohjelmistopalveluja, jotka tukevat rakennus- ja tilahankkeiden suunnittelua ja päätöksentekoa. Markkinakartoituksella selvitetään palveluntarjoajien ratkaisuja, hinnoittelumalleja, palvelun sisältöä, integraatiomahdollisuuksia sekä teknisiä vaatimuksia ennen varsinaisen kilpailutuksen valmistelua. Tavoitteena on kartoittaa markkinoilla olevia ratkaisuja, jotka mahdollistavat: • hankkeiden kustannus-, elinkaari- ja ympäristö/hiilijalanjälkivaikutusten simuloinnin • tilamitoituksen ja tarpeen pohjalta tehtävän laskennan • vaihtoehtojen ja skenaarioiden luonnin ja vertailun • suunnittelun ohjaamisen tavoitearvoilla (kustannus, CO2, laatu) Rajaus: Markkinakartoitus ei koske: • panos-, rakennusosa- tai määräluetteloon perustuvia kustannuslaskentaohjelmistoja • ohjelmistoja, jotka eivät tue vaihtoehtosimulointia • ratkaisuja, joista puuttuu elinkaari- ja ympäristövaikutusten laskenta TIETOPYYNTÖ Pyydämme toimittajilta vapaamuotoisia vastauksia alla mainittuihin kohtiin perjantaihin 13.3.2026 klo 12.00 mennessä. Vastaukset pyydetään toimittamaan sähköpostitse: tarjous@pori.fi. Sähköpostin otsikkokenttään tulee merkitä seuraava tunniste: “PRIDno-2026-1620 – Tietopyyntö kustannussimulointiohjelmistosta” Toimittajilta pyydettävä tieto - toimittajan yhteystiedot ja yhteyshenkilön sähköpostiosoite - ohjelmiston toiminnallisuudet, tekninen toteutus ja mahdolliset integraatiot - referenssit (max. kolme sopivinta) - kaupallinen malli (esim. lisensointi, hinnoittelu ja palvelun toimitustapa) - esittelymateriaali (videodemo tai muu vastaava materiaali) - sopimusehdot (JIT 2025 -ehtojen hyväksyttävyys, mahdolliset muutostarpeet tai muut ehdot) - henkilötietojen käsittely Toimittajat voivat merkitä selkeästi ne kohdat, jotka sisältävät liikesalaisuuksia. Hankintayksikkö käsittelee vastaukset luottamuksellisesti. JATKOTOIMET Tietopyynnön tarkoituksena on kartoittaa markkinoilla olevia toimijoita ja ratkaisuja. Saadut vastaukset voivat toimia perustana mahdollisen tarjouspyynnön valmistelulle. Tietopyyntöön vastaaminen ei ole edellytys kilpailutukseen osallistumiselle eikä vaikuta tarjoajan asemaan siinä. Tietopyynnössä esitetyt seikat ovat alustavia ja saattavat muuttua hankinnan valmistelun edetessä. Tietopyynnön vastausten perusteella tilaaja voi jatkaa markkinakartoitusta valitsemallaan tavalla ja olla yhteydessä vastaajiin lisätiedon saamiseksi. ILMOITUKSEN LISÄTIEDOT Tämä ilmoitus on tietopyyntö markkinakartoitusta ja -vuoropuheluja varten. Tällä ilmoituksella ei pyydetä tarjouksia. Tässä ilmoituksessa esitetyt kuvaukset ovat alustavia ja suuntaa antavia hankinnan ennakkotietoja. Tietopyyntö ei velvoita toteuttamaan hankintaa tietopyynnössä kuvatulla tavalla. Hankintayksikkö ei ole velvollinen ottamaan huomioon tietopyyntöön saatuja vastauksia tarjouspyynnön laadinnassa. Pyydämme huomioimaan, että kaikki materiaali on tarkoitettu ainoastaan tietopyyntöä ja markkinavuoropuhelujen käymistä varten. Markkinavuoropuhelut eivät sido Porin kaupunkia toteuttamaan hankintaa eikä myöskään sido toimittajaa mahdolliseen tarjouskilpailuun osallistumiseen. Osallistuneille yrityksille ei makseta korvausta vastaamisesta tai osallistumisesta. Tietopyyntöön vastaaminen tai vastaamatta jättäminen ei vaikuta tarjoajan asemaan varsinaisessa tarjouskilpailussa."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "bcbb08464da89ef098afdb18be717d85770a760778ae6baece2905dc2cb81a99": {
       "parts": [
         {
@@ -126057,6 +127357,31 @@
       ],
       "protected_names": [
         "Staatsbetrieb Sächsische Informatik Dienste"
+      ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "bd34f06a2485eb020828ed803301ef90d551989806b21223bbeeffeef8d7bead": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:49.639369+00:00",
+            "language": "sv",
+            "model": "gemini-3.5-flash-lite",
+            "text": "This is an RFI (request for information prior to procurement) regarding VAN services / invoice exchange, invoice distribution services for Västra Mälardalens Kommunalförbund and its cooperating organisations. For further information see the attached documents."
+          },
+          "source": "Detta är en RFI (förfrågan om information inför upphandling) avseende AN-tjänster / fakturaväxel, fakturadistributionstjänster för Västra Mälardalens Kommunalförbund och dess samverkande organisationer. För ytterligare information se bifogade underlag."
+        }
+      ],
+      "protected_names": [
+        "Västra Mälardalens Kommunalförbund"
       ],
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
@@ -129217,6 +130542,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "c16759ecf8d3ca2efa990b0c63d02d633a5fa17c87f45c3db0c3a83776c71ba4": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:40.634031+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Virtual Citizen Participation Assistant of the City Council of Madrid"
+          },
+          "source": "Asistente Virtual de Participación Ciudadana del Ayuntamiento de Madrid"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "c17329c8d97f8401b908bd95caaef1c8e6352f69e92da9d20537f30bf12c19a0": {
       "parts": [
         {
@@ -130203,6 +131551,29 @@
             "text": "Establishment of a dynamic purchasing system for the procurement of small, commonly used services for FGV in Valencia and Alicante"
           },
           "source": "Establecimiento de un sistema dinámico de adquisiciones para la contratación de pequeños servicios de uso corriente de FGV en Valencia y Alicante"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "c31ed89f2ed7cf5fdba4e0a03c9c192eee5a9f516ace99e81240a22e4e80d684": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:49.639488+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Invitation to dialogue meetings - Digital Joint User Equipment/AV equipment with the accompanying services."
+          },
+          "source": "Invitation to dialogue meetings - Digital Joint User Equipment/AV equipment with the accompanying services."
         }
       ],
       "protected_names": [],
@@ -132329,6 +133700,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "c60d5ee753035ad9a3c745a0cbbee75fd3eda7dab24b2954c2ee4268aa061683": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:17:29.613963+00:00",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Senate Properties"
+          },
+          "source": "Senaatti-kiinteistöt"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "c60db749ab99e80c8a99a20c1dc5ce130cceda91ba3d4c9c907cde70cf9a2167": {
       "parts": [
         {
@@ -134166,6 +135560,29 @@
             "text": "Provision, integration and operation of a conversational AI platform Provision, integration and operation of a conversational AI platform Lot LOT-0000: Provision, integration and operation of a conversational AI platform. Provision, integration and operation of a conversational AI platform Provision, integration and operation of a conversational AI platform"
           },
           "source": "Bereitstellung, Anbindung und Betrieb einer Conversational-AI-Plattform Bereitstellung, Anbindung und Betrieb einer Conversational-AI-Plattform Lot LOT-0000: Bereitstellung, Anbindung und Betrieb einer Conversational-AI-Plattform. Bereitstellung, Anbindung und Betrieb einer Conversational-AI-Plattform Bereitstellung, Anbindung und Betrieb einer Conversational-AI-Plattform"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "c912a8581a3762326a735bc913f6f4d8140f7dff5bfb8f52ca2de29c764a8296": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:17:07.707452+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Radiotherapy Efficiency Transformation Partner"
+          },
+          "source": "Radiotherapy Efficiency Transformation Partner"
         }
       ],
       "protected_names": [],
@@ -139019,6 +140436,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "cfbc9834386130c2fbf7ab4d270cc66354d02f0ea79ea4e2302f7d1a7e2ab5c4": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:40.620947+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "SSfH Ltd Presents .... Preparing for Procurement Success"
+          },
+          "source": "SSfH Ltd Presents .... Preparing for Procurement Success"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "cfc63a7d2d9e2948bc7e879b1575dd39aedb0608b167cf7b6f4ffe83db48698f": {
       "parts": [
         {
@@ -141483,6 +142923,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "d3446c631874ca3f630ab0aea7959dd0ee747f567ea321605d2aec15fc69b059": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:59.536778+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Administration system for resident parking permits"
+          },
+          "source": "Administration system for resident parking permits"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "d34de9e83b27dd67aa304dc7e0a6771fc02945cd056cea663f6c3339f778b97e": {
       "parts": [
         {
@@ -143424,6 +144887,37 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "d66cb50dcff0954e6277ba493478e18f1033481ca32a91f43f3fa3bbe0b22b8c": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 2
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "rejected": {
+            "id": "d66cb50dcff0954e6277ba493478e18f1033481ca32a91f43f3fa3bbe0b22b8c:0",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Servicio externo de asesoría y consultoría en materia de protección de datos(RGPD y LOPD-GDD) del Centro Asociado a la UNED en Huelva Submission deadline (source local time): 2026-10-08 14:00:00. Time zone not supplied; check the source notice."
+          },
+          "result": {
+            "at": "2026-09-17T23:17:33.472879+00:00",
+            "language": "mul",
+            "model": "gemini-3.1-flash-lite",
+            "text": "External advisory and consultancy service regarding data protection (GDPR and LOPD-GDD) for the UNED Associated Centre in Huelva Submission deadline (source local time): 2026-10-08 14:00:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Servicio externo de asesoría y consultoría en materia de protección de datos(RGPD y LOPD-GDD) del Centro Asociado a la UNED en Huelva Submission deadline (source local time): 2026-10-08 14:00:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "d6712fa48a3634a8e324dcfa28a1fa9f533ab23a6e47632d01dca560781c0c3c": {
@@ -147910,6 +149404,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "dd13699a6d11ac25039bb980062e3d4ce28dfc4ac8ea535152ba77c65f664858": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:17:29.610641+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Mayor's Office of the Municipality of Puçol"
+          },
+          "source": "Alcaldía del Ayuntamiento de Puçol"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "dd1a478cb5f10004414f6defeeafd36dae450cfcb618c8fe07becd59276094c0": {
       "parts": [
         {
@@ -150276,6 +151793,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "e0ba4428240d11a6df4b158f1c21c71bf810373693b6fa7af0c811617eabb69b": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:59.534453+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "User Support Services, operation and support of IT systems of the ICO Group"
+          },
+          "source": "Servicios de Atención al usuario, operación y soporte de sistemas informáticos del Grupo ICO"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "e0d07b690e195e1eca943426e915be14af2674ad7e8584c4466a037c46785952": {
       "parts": [
         {
@@ -150807,6 +152347,29 @@
             "text": "The aim of the Dynamic Purchasing System (DPS) is to establish a flexible and efficient procurement scheme that covers the needs for production of archive extracts for long term preservation. For more information, see the invitation."
           },
           "source": "The aim of the Dynamic Purchasing System (DPS) is to establish a flexible and efficient procurement scheme that covers the needs for production of archive extracts for long term preservation. For more information, see the invitation."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "e1807c98d10840bfcc54043834f27c466efabcc305637894012484c42c317d48": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:17:07.705800+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Supply for network segmentation, open procedure, subject to harmonised regulation"
+          },
+          "source": "Suministro para la segmentación de red, procedimiento abierto, sujeto a regulación armonizada"
         }
       ],
       "protected_names": [],
@@ -151836,6 +153399,31 @@
         }
       ],
       "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "e302d0973ce1f2629e0443c3b9bf2433d952ceb38be9521522b698e6113ef900": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:17:07.696972+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "RFI regarding Sigma2 AS ́ coming procurement of an ERP system. See the accompanying documents for further details on the content of the RFI."
+          },
+          "source": "RFI regarding Sigma2 AS ́ coming procurement of an ERP system. See the accompanying documents for further details on the content of the RFI."
+        }
+      ],
+      "protected_names": [
+        "Sigma2 AS"
+      ],
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
@@ -157706,6 +159294,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "eb10a153ee696cd26081806435e4b34437c5a4ad90d65a42f7ff0ec04c61601e": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:59.545870+00:00",
+            "language": "sv",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Evaluators for externally funded projects via dynamic purchasing system"
+          },
+          "source": "Utvärderare externfinansierade projekt via dynamiskt inköpssystem"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "eb145d620ef50cfd89e505f3a591b7ed94c061bc9cd4113b0c6cde668346af94": {
       "parts": [
         {
@@ -159169,6 +160780,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "ed070d2d41774bd8cfa4ee62f0aff0833609d78555d6338f9b00e869b917f999": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:40.632126+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Institutional communication, citizen information and municipal services dissemination services of the municipality of the village of Rascafría Oteruelo del valle Submission deadline (source local time): 2026-10-02 00:00:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Servicios de comunicación institucional, información ciudadana y difusión de servicios municipales del ayuntamiento de la villa de Rascafría Oteruelo del valle Submission deadline (source local time): 2026-10-02 00:00:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "ed0cd2755b65627cd6db8457fb4c548ad5c3e6f5350d29b87ca0da4a5f7c543e": {
       "parts": [
         {
@@ -159516,6 +161150,29 @@
             "text": "THIS IS A ROUND OF HEARINGS - NO TENDERS SHALL BE SUBMITTED. The aim is to obtain input from the supplier market for a draft of competition documents. We would like feedback on requirements, uncertainties, scope and proposals for improvements. Input from the market is requested to be sent by 12.01.2026.Summary of the procurementfylkeskommunene plans to enter into a framework agreement for a modern, cloud based competition tool (KGV) and contract administration tool (KAV). The system shall contribute to making the procurement work more efficient, reduce complexity and support digitalisation of procurement processes. The aim is that the tool shall be user friendly, robust and developed in line with the market, with integrations with the existing infrastructure and open APIs for data sharing. The agreement will give counties the possibility to make call-offs on ongoing service contracts (SSA-L) with the chosen tenderer. As a minimum the system shall include KGV and KAV with archive needs safeguarded, as well as an option for migration of historical data. Options such as a procurement analysis tool (Spend) with integration with source data can also be included. The procurement shall ensure: Efficiency of the procurement work and improved use of resources. Automation and improved work flow for competitions and contract follow-up. Reduced complexity so that several parts of the organisation can use the tool. Better compliance with the rules and support for future legislative changes. Future integration of artificial intelligence, in particular with Microsoft 365 and Azure. Standard delivery: KGV and KAV with integration with Doffin, TED and the current announcement form. Options: Migration of historical data from KAV. Procurement analysis tool (Spend) with integration with source systems. Options can be made when the contract is signed or later in the contract period. It shall be possible to get out of options without terminating the main contract."
           },
           "source": "THIS IS A ROUND OF HEARINGS - NO TENDERS SHALL BE SUBMITTED. The aim is to obtain input from the supplier market for a draft of competition documents. We would like feedback on requirements, uncertainties, scope and proposals for improvements. Input from the market is requested to be sent by 12.01.2026.Summary of the procurementfylkeskommunene plans to enter into a framework agreement for a modern, cloud based competition tool (KGV) and contract administration tool (KAV). The system shall contribute to making the procurement work more efficient, reduce complexity and support digitalisation of procurement processes. The aim is that the tool shall be user friendly, robust and developed in line with the market, with integrations with the existing infrastructure and open APIs for data sharing. The agreement will give counties the possibility to make call-offs on ongoing service contracts (SSA-L) with the chosen tenderer. As a minimum the system shall include KGV and KAV with archive needs safeguarded, as well as an option for migration of historical data. Options such as a procurement analysis tool (Spend) with integration with source data can also be included. The procurement shall ensure: Efficiency of the procurement work and improved use of resources. Automation and improved work flow for competitions and contract follow-up. Reduced complexity so that several parts of the organisation can use the tool. Better compliance with the rules and support for future legislative changes. Future integration of artificial intelligence, in particular with Microsoft 365 and Azure. Standard delivery: KGV and KAV with integration with Doffin, TED and the current announcement form. Options: Migration of historical data from KAV. Procurement analysis tool (Spend) with integration with source systems. Options can be made when the contract is signed or later in the contract period. It shall be possible to get out of options without terminating the main contract."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "ed8884a24616f9fc6721a214b226eb702aa322da5d7040c9315fdcf25d7ba522": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:40.631538+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Institutional communication, citizen information and municipal services dissemination services of the municipality of the village of Rascafría Oteruelo del valle"
+          },
+          "source": "Servicios de comunicación institucional, información ciudadana y difusión de servicios municipales del ayuntamiento de la villa de Rascafría Oteruelo del valle"
         }
       ],
       "protected_names": [],
@@ -159997,6 +161654,29 @@
             "text": "Introduction of digital examination creation and examination evaluation"
           },
           "source": "Einführung digitaler Prüfungserstellung und Prüfungsauswertung"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "ee6a456ec98b19ffda5a98f86077b501e34fb06140b44e76822ac625ada05aca": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:59.539138+00:00",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Information request and invitation to market dialogue: Procurement of a low-carbon assessment tool for detailed local planning"
+          },
+          "source": "Tietopyyntö ja kutsu markkinavuoropuheluun: Asemakaavoituksen vähähiilisyyden arviointityökalun hankinta"
         }
       ],
       "protected_names": [],
@@ -163516,6 +165196,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "f38489de3a13dfa0b46681e6b6db6aa1fcf8d913581bfecd97405d170b748840": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:17:29.615069+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "University College London Hospitals NHS FT"
+          },
+          "source": "University College London Hospitals NHS FT"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "f38ceeb35a4f4b33e7ae74e7765d368a02492d4dc32e1dbc43fa61e1d5e06129": {
       "parts": [
         {
@@ -166589,6 +168292,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "f81f29c650f8b66c7fe381781cfbc232274ce2e07bcc00d487818844e3a80302": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:49.639125+00:00",
+            "language": "sv",
+            "model": "gemini-3.5-flash-lite",
+            "text": "RFI VAN services / invoice exchange, invoice distribution services"
+          },
+          "source": "RFI VAN-tjänster / fakturaväxel, fakturadistributionstjänster"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "f825a2eb6018fd9103f72e247d8c6632dac7e1976a1a970569013a1bd47090b8": {
       "parts": [
         {
@@ -166964,6 +168690,29 @@
       ],
       "protected_names": [],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "f8a7fb48122e11e5ca19c37401ce2b4f0056f4df52e726730cd1a501590a69cf": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:17:29.611228+00:00",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "City of Pori / IT Management"
+          },
+          "source": "Porin kaupunki / Tietohallinto"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "f8a872759732ac38197628a238e410da01f2d07ba1483b8dcd84135543adfc88": {
@@ -167377,6 +169126,29 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "f90e90f2326698dd4e5a6817b812eab56bb660df5e7b81ae8edee38c1be4798e": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:16:40.630371+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "External advisory and consultancy service on data protection (GDPR and LOPD-GDD) for the UNED Associated Centre in Huelva"
+          },
+          "source": "Servicio externo de asesoría y consultoría en materia de protección de datos(RGPD y LOPD-GDD) del Centro Asociado a la UNED en Huelva"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "f911909f8966311b9fe5afb1dc9767d62cbe5dccc1023bf8130ba7632ad05d33": {
@@ -168934,6 +170706,29 @@
         "MHRA"
       ],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "fb85a5209b4fd234853b7dd551c1cd807a9f8f9dcef95c3ca39d26cab37acbe8": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-17",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-17T23:17:29.612348+00:00",
+            "language": "nb",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Sykehuspartner HF; Sykehuspartner HF"
+          },
+          "source": "Sykehuspartner HF; Sykehuspartner HF"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "fb89fc7bb79efdc6354487e387d3f5ec956b6bcfde1cbfe7495c8105236a1238": {
