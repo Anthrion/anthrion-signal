@@ -7,6 +7,7 @@ import argparse
 import json
 import os
 import subprocess
+import sys
 from datetime import UTC, datetime
 from pathlib import Path
 
@@ -93,10 +94,13 @@ def main():
                 print(json.dumps({"stop_reason": exc.reason, "api_calls": 0}), flush=True)
                 return
             for command in (
-                ["git", "config", "user.name", "github-actions[bot]"],
-                ["git", "config", "user.email", "41898282+github-actions[bot]@users.noreply.github.com"],
+                ["git", "config", "user.name", os.getenv("SIGNAL_GIT_NAME", "github-actions[bot]")],
+                ["git", "config", "user.email", os.getenv(
+                    "SIGNAL_GIT_EMAIL", "41898282+github-actions[bot]@users.noreply.github.com")],
                 ["git", "add", "data/translation_quota.json"],
+                [sys.executable, str(Path(__file__).with_name("automation_git_guard.py")), "staged"],
                 ["git", "commit", "-m", "Reserve private translation quota [skip ci]"],
+                [sys.executable, str(Path(__file__).with_name("automation_git_guard.py")), "unpushed"],
                 ["git", "push", "origin", "HEAD:main"],
             ):
                 subprocess.run(command, cwd=root, check=True)

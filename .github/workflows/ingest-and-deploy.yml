@@ -39,10 +39,34 @@ jobs:
       deploy: ${{ steps.changed.outputs.deploy }}
       signature: ${{ steps.changed.outputs.signature }}
     steps:
+      - name: Create company automation token
+        if: github.repository == 'Anthrion/anthrion-signal'
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.ANTHRION_APP_CLIENT_ID }}
+          private-key: ${{ secrets.ANTHRION_APP_PRIVATE_KEY }}
+          owner: Anthrion
+          repositories: anthrion-signal
+          permission-contents: write
       - uses: actions/checkout@v4
         with:
           ref: main
           fetch-depth: 0
+          token: ${{ steps.app-token.outputs.token || github.token }}
+      - name: Set automation commit identity
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token || github.token }}
+          APP_SLUG: ${{ steps.app-token.outputs.app-slug }}
+        run: |
+          name='github-actions[bot]'
+          id='41898282'
+          if [ -n "$APP_SLUG" ]; then
+            name="$APP_SLUG[bot]"
+            id=$(gh api "users/$name" --jq '.id')
+          fi
+          echo "SIGNAL_GIT_NAME=$name" >> "$GITHUB_ENV"
+          echo "SIGNAL_GIT_EMAIL=$id+$name@users.noreply.github.com" >> "$GITHUB_ENV"
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -67,6 +91,9 @@ jobs:
         run: python -m anthrion_signal.cli ingest
       - name: Translate new and outstanding records
         id: translate
+        # A free model can still be billed when the Google project is on a paid tier.
+        # Confirm the existing project's free tier before enabling calls after transfer.
+        if: github.repository != 'Anthrion/anthrion-signal' || vars.SIGNAL_GEMINI_FREE_TIER_CONFIRMED == 'true'
         continue-on-error: true
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -76,11 +103,13 @@ jobs:
         if: always() && steps.translate.outcome != 'skipped'
         continue-on-error: true
         run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git config user.name "$SIGNAL_GIT_NAME"
+          git config user.email "$SIGNAL_GIT_EMAIL"
           git add -- data/translation data/translation_quota.json
           if ! git diff --cached --quiet; then
+            python scripts/automation_git_guard.py staged
             git commit -m 'Checkpoint static English translations [skip ci]'
+            python scripts/automation_git_guard.py unpushed
             git push origin HEAD:main
           fi
       - name: Validate pipeline and public dataset
@@ -98,7 +127,7 @@ jobs:
         if: steps.plan.outputs.collect == 'true' || steps.changed.outputs.deploy == 'true' || steps.plan.outputs.full_tests == 'true'
         run: |
           python -m pytest -q
-          python -m ruff check pipeline scripts/refresh_plan.py scripts/translate_records.py scripts/publication_state.py scripts/reconcile_release_data.py scripts/audit_translations.py scripts/audit_relevance.py
+          python -m ruff check pipeline scripts/refresh_plan.py scripts/translate_records.py scripts/publication_state.py scripts/reconcile_release_data.py scripts/audit_translations.py scripts/audit_relevance.py scripts/automation_git_guard.py scripts/timestamp_source.py
       - uses: actions/setup-node@v4
         if: steps.changed.outputs.deploy == 'true' || steps.plan.outputs.full_tests == 'true'
         with:
@@ -138,12 +167,14 @@ jobs:
       - name: Persist canonical state
         # Publication is still gated on every required check above.
         run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git config user.name "$SIGNAL_GIT_NAME"
+          git config user.email "$SIGNAL_GIT_EMAIL"
           git add data
           if ! git diff --cached --quiet; then
+            python scripts/automation_git_guard.py staged
             git commit -m 'Update public opportunity intelligence [skip ci]'
             git pull --rebase origin main
+            python scripts/automation_git_guard.py unpushed
             git push origin HEAD:main
           fi
       - name: Upload Pages build
@@ -188,20 +219,46 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: Create company automation token
+        id: app-token
+        if: github.repository == 'Anthrion/anthrion-signal'
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.ANTHRION_APP_CLIENT_ID }}
+          private-key: ${{ secrets.ANTHRION_APP_PRIVATE_KEY }}
+          owner: Anthrion
+          repositories: anthrion-signal
+          permission-contents: write
       - uses: actions/checkout@v4
         with:
           ref: main
           fetch-depth: 0
+          token: ${{ steps.app-token.outputs.token || github.token }}
+      - name: Set automation commit identity
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token || github.token }}
+          APP_SLUG: ${{ steps.app-token.outputs.app-slug }}
+        run: |
+          name='github-actions[bot]'
+          id='41898282'
+          if [ -n "$APP_SLUG" ]; then
+            name="$APP_SLUG[bot]"
+            id=$(gh api "users/$name" --jq '.id')
+          fi
+          echo "SIGNAL_GIT_NAME=$name" >> "$GITHUB_ENV"
+          echo "SIGNAL_GIT_EMAIL=$id+$name@users.noreply.github.com" >> "$GITHUB_ENV"
       - name: Record successful publication
         env:
           DEPLOYED_SIGNATURE: ${{ needs.build.outputs.signature }}
         run: |
           python scripts/publication_state.py deployed
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git config user.name "$SIGNAL_GIT_NAME"
+          git config user.email "$SIGNAL_GIT_EMAIL"
           git add data/publication_state.json
           if ! git diff --cached --quiet; then
+            python scripts/automation_git_guard.py staged
             git commit -m 'Record successful intelligence publication [skip ci]'
             git pull --rebase origin main
+            python scripts/automation_git_guard.py unpushed
             git push origin HEAD:main
           fi

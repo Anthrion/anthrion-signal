@@ -1,0 +1,50 @@
+name: Timestamp accepted source
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: ['data/**']
+  workflow_dispatch:
+    inputs:
+      commit_sha:
+        description: Optional full SHA from main history for a baseline or retry
+        type: string
+        required: false
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: signal-source-timestamps
+  cancel-in-progress: false
+  queue: max
+
+jobs:
+  timestamp:
+    # Enable only after confirming provider terms, archive access and independent root trust.
+    if: >-
+      github.repository == 'Anthrion/anthrion-signal' &&
+      github.ref == 'refs/heads/main' &&
+      vars.SIGNAL_TIMESTAMPING_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Timestamp and archive privately
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TIMESTAMPS_WRITE_TOKEN: ${{ secrets.TIMESTAMPS_WRITE_TOKEN }}
+          TIMESTAMP_COMMIT_SHA: ${{ inputs.commit_sha }}
+          TIMESTAMP_TSA_URL: ${{ vars.TIMESTAMP_TSA_URL || 'https://timestamp.sectigo.com/qualified' }}
+          TIMESTAMP_TSA_ROOT_PEM: ${{ vars.TIMESTAMP_TSA_ROOT_PEM }}
+          TIMESTAMP_TSA_ROOT_SHA256: ${{ vars.TIMESTAMP_TSA_ROOT_SHA256 }}
+          TIMESTAMP_TSA_CHAIN_PEM: ${{ vars.TIMESTAMP_TSA_CHAIN_PEM }}
+        run: python scripts/timestamp_source.py

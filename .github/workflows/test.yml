@@ -23,7 +23,7 @@ jobs:
           cache-dependency-path: app/package-lock.json
       - run: pip install -e '.[test]'
       - run: python -m pytest -q
-      - run: python -m ruff check pipeline
+      - run: python -m ruff check pipeline scripts/automation_git_guard.py scripts/timestamp_source.py scripts/translate_records.py
       - run: python -m anthrion_signal.cli export
       - run: python scripts/check_public_output.py
       - run: npm ci && npm test && npm run build
