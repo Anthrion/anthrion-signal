@@ -1,11 +1,11 @@
 {
   "code": "7ca021aff29c5bfc53d1315bca925d7167c2daca70ce03e160d7db655f378008",
-  "content": "a71d55227b9386b27aa266451e204bf3f781b167c12a5410b495d54937866f04",
-  "translations": "2779a38bdf34b65df138f76bea75f31db6c65a4bf635120194a88913afade4d1",
+  "content": "8fa25c48ebcb137c5751cca2352272696d567494d01b9545dc7b22d2ffdaa5a8",
+  "translations": "1bec5cc7af2b39992b0ead34c9ae404a4e9c52f9b5b2b64b60d350171a74cb70",
   "health": [
     [
       "find_tender",
-      "partial"
+      "healthy"
     ],
     [
       "contracts_finder",
@@ -57,7 +57,7 @@
     ],
     [
       "grants",
-      "partial"
+      "healthy"
     ],
     [
       "etenders_ni",
