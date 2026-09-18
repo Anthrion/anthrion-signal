@@ -13,6 +13,7 @@ import httpx
 from bs4 import BeautifulSoup
 
 from .source_tls import DEVOLVED_API_HOSTS, devolved_tls_context
+from .notice_dates import digital_deadline
 from .utils import clean, digest, iso, parse_date
 
 
@@ -426,14 +427,6 @@ def public_detail(http, url):
     return main
 
 
-def digital_deadline(text):
-    date = r"(\d{1,2})(?:st|nd|rd|th)?\s+([A-Za-z]+)\s+(\d{4})"
-    match = re.search(r"(?:application closing date|tender submission deadline|closing date|deadline for (?:applications|responses|tenders))[^.!?]{0,90}?" + date, text, re.I)
-    if not match:
-        match = re.search(date + r"\s+Application closing date", text, re.I)
-    return iso(" ".join(match.groups())) if match else None
-
-
 def collect_digital(source, state, frozen, http, settings, terms):
     result = Collection(state=dict(state))
     listing_url = state.get("listing_next_url") or source["url"]
@@ -524,6 +517,8 @@ def collect_digital(source, state, frozen, http, settings, terms):
                 result.complete = False
                 result.message = "Some opportunity details unavailable; listing facts retained."
                 first_pending = first_pending if first_pending is not None else (position + index) % len(links)
+        # Reparse cached source facts when date handling improves, without another request.
+        data["deadline"] = digital_deadline(data["description"]) or data.get("deadline")
         result.records.append(RawRecord(data, source, frozen.isoformat(), "html"))
     if result.state.get("listing_next_url"):
         result.state["listing_cycle_ids"] = sorted(active_ids)

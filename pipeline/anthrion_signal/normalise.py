@@ -11,7 +11,7 @@ from .utils import canonical_url, clean, digest, iso, parse_date, unique
 MATERIAL_FIELDS = ["title", "description", "buyer_name", "deadline_at", "contract_start", "contract_end",
                    "extension_end", "value_min", "value_max", "currency", "procurement_stage", "signal_type",
                    "status", "framework", "eligibility_text", "incumbent_supplier", "cpv_codes", "lot_ids", "lot_id",
-                   "countries", "regions", "response_deadlines", "notice_type"]
+                   "countries", "regions", "response_deadlines", "notice_type", "award_statuses"]
 
 
 def material_payload(signal):
@@ -172,7 +172,7 @@ def normalise_ocds(raw, prior=None):
         eligibility = eligibility.get("description") or " ".join(clean(c.get("description")) for c in eligibility.get("criteria", []))
     elif isinstance(eligibility, list):
         eligibility = " ".join(clean(x.get("description")) for x in eligibility if isinstance(x, dict))
-    suppliers = unique([s.get("name") for a in awards for s in a.get("suppliers", [])])
+    suppliers = unique([s.get("name") for a in awards if a.get("status", "active") == "active" for s in a.get("suppliers", [])])
     buyer_reference = clean(tender.get("id"))
     if len(buyer_reference) < 6 or buyer_reference.lower() in ("tender", "notice", "contract", "unknown"):
         buyer_reference = ""
@@ -190,7 +190,9 @@ def normalise_ocds(raw, prior=None):
         value_max=money(value.get("amount")), currency=value.get("currency") or min_value.get("currency"),
         cpv_codes=unique([str(c["id"]) for c in classification if c.get("id") and c.get("scheme", "CPV") == "CPV"]),
         regions=unique([clean(x) for x in regions]), countries=unique(countries), framework=framework,
-        incumbent_supplier=", ".join(suppliers) or None, eligibility_text=clean(eligibility) or None, documents=docs)
+        incumbent_supplier=", ".join(suppliers) or None,
+        award_statuses=unique([a.get("status") for a in awards if a.get("status")]),
+        eligibility_text=clean(eligibility) or None, documents=docs)
 
 
 def normalise_govuk(raw):

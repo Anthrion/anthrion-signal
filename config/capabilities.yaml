@@ -1,4 +1,4 @@
-version: '2026-09-15.1'
+version: '2026-09-18.1'
 charter: >-
   Anthrion provides Salesforce platform and ecosystem development, administration,
   architecture, implementation, integration, migration, managed support and technical
@@ -57,7 +57,7 @@ capabilities:
     family: Service transformation
     explicit: [Service Cloud, Salesforce Public Sector, Salesforce Public Sector Solutions]
     aliases: [case and matter management, matter management system, licensing system, licensing platform, permit application system, benefits management system, eligibility management system, social housing allocation system, housing allocation system, inspection management system, appointment booking platform, customer appointment scheduling, citizen request management]
-    needs: [case management, casework, case working, case handling, case processing, case workflow, case tracking, case allocation, case triage, complaints management, complaint handling, enquiry management, inquiry management, FOI management, freedom of information management, subject access request management, information rights management, incident management platform, request management system, referral management, claims management, application processing, licensing applications, permit management, investigation management, enforcement cases, appeals management, grievance management, ombudsman case management, support tickets, workflow driven case system]
+    needs: [case management, case management system, incident management system, clinical patient management system, casework, case working, case handling, case processing, case workflow, case tracking, case allocation, case triage, complaints management, complaint handling, enquiry management, inquiry management, FOI management, freedom of information management, subject access request management, information rights management, incident management platform, request management system, referral management, claims management, application processing, licensing applications, permit management, investigation management, enforcement cases, appeals management, grievance management, ombudsman case management, support tickets, workflow driven case system]
     products: [Service Cloud, Public Sector Solutions, Experience Cloud, Flow, Agentforce]
     patterns: [Case intake, triage, ownership, evidence, audit history and external self-service]
     queries: [case management procurement, complaints management tender, regulatory casework system, Salesforce Public Sector, benefits management system, housing allocation system, Salesforce Scheduler]
@@ -74,7 +74,7 @@ capabilities:
     label: Portals & self-service
     family: CRM & platforms
     explicit: [Experience Cloud, Community Cloud]
-    needs: [customer portal, citizen portal, member portal, partner portal, supplier portal, dealer portal, student portal, patient portal, resident portal, tenant portal, applicant portal, grant portal, self service website, digital self service, secure portal, digital front door, external user platform, online service portal, digital services platform, application portal, web forms platform, digital application process, customer identity and access management, customer identity platform, citizen identity platform, customer single sign on, employee self service, manager self service, employee portal]
+    needs: [customer portal, citizen portal, member portal, partner portal, supplier portal, dealer portal, student portal, patient portal, resident portal, tenant portal, applicant portal, grant portal, self service website, online booking system, administration portal, appointment booking system, digital self service, secure portal, digital front door, external user platform, online service portal, digital services platform, application portal, web forms platform, digital application process, customer identity and access management, customer identity platform, citizen identity platform, customer single sign on, employee self service, manager self service, employee portal]
     products: [Experience Cloud, Salesforce Platform, Service Cloud, Heroku]
     patterns: [Authenticated external access to records, cases, applications and workflow]
     queries: [customer portal supplier, citizen portal tender]
@@ -134,7 +134,7 @@ capabilities:
   - id: transformation
     label: Digital implementation
     family: Advisory & delivery
-    needs: [digital transformation, service transformation, business transformation, application modernisation, application modernization, legacy modernisation, legacy modernization, system consolidation, application consolidation, cloud application platform, managed runtime, application hosting platform, software engineering quality, application development]
+    needs: [digital transformation, service transformation, business transformation, application modernisation, application modernization, digital service design, digital service development, digital delivery capability, digital delivery services, digital service lifecycle, digital portfolio planning, digital portfolio delivery, legacy modernisation, legacy modernization, system consolidation, application consolidation, cloud application platform, managed runtime, application hosting platform, software engineering quality, application development]
     explicit: [Heroku]
     contextual: [PaaS, application support, cloud hosting]
     products: [Salesforce Platform, Heroku, MuleSoft, customer-selected hosting]
@@ -143,8 +143,8 @@ capabilities:
   - id: workflow
     label: Workflow & low-code
     family: AI & automation
-    aliases: [enterprise document management, document management system, records management system, business rules engine, document generation platform, document assembly software, correspondence automation, OmniStudio Document Generation, digitisation of procedures, digitisation of simplified procedures, digitization of procedures]
-    needs: [workflow automation, business process automation, approval workflow, business process management, low code, no code, paperless process, replace spreadsheets, replace email based workflow, replace spreadsheets and emails, manual process automation, digital forms, electronic forms, internal business application, workflow platform, process orchestration]
+    aliases: [enterprise document management, electronic document and records management, document and records management, document management system, records management system, business rules engine, document generation platform, document assembly software, correspondence automation, OmniStudio Document Generation, digitisation of procedures, digitisation of simplified procedures, digitization of procedures]
+    needs: [workflow automation, business process automation, process automations, approval workflow, business process management, low code, no code, paperless process, replace spreadsheets, replace email based workflow, replace spreadsheets and emails, manual process automation, digital forms, electronic forms, internal business application, workflow platform, process orchestration]
     products: [Salesforce Platform, Flow, Service Cloud, Heroku]
     patterns: [Structured business records and approvals replacing disconnected manual work]
     queries: [workflow automation procurement, replace spreadsheets workflow supplier, OmniStudio, Salesforce document generation, business rules engine procurement]
@@ -152,7 +152,7 @@ capabilities:
     label: AI agents & assistants
     family: AI & automation
     explicit: [Agentforce, Einstein GPT, Salesforce AI, OpenAI, ChatGPT, Claude, Anthropic, Gemini, Vertex AI, Azure OpenAI, Model Context Protocol]
-    needs: [artificial intelligence, AI agent, AI agents, enterprise AI, AI implementation, AI integration, AI assistant, intelligent assistant, digital assistant, virtual assistant, virtual agent, agentic AI, agentic workflow, autonomous agents, multi agent, agent orchestration, agent platform, AI customer service, enterprise agents, intelligent chatbot, chatbot, chatbots]
+    needs: [artificial intelligence, AI agent, AI agents, enterprise AI, AI implementation, AI integration, AI-enabled software, AI-enabled platform, AI-enabled solution, ambient voice technology, ambient scribe, AI assistant, intelligent assistant, digital assistant, virtual assistant, virtual agent, agentic AI, agentic workflow, autonomous agents, multi agent, agent orchestration, agent platform, AI customer service, enterprise agents, intelligent chatbot, chatbot, chatbots]
     contextual: [AI, Einstein, copilot, MCP, Bedrock, agents SDK]
     products: [Agentforce, OpenAI, Claude, Gemini, suitable LLM and agent stacks]
     patterns: [Standalone or CRM-connected AI with retrieval, governed tools and deterministic business actions]
@@ -193,7 +193,7 @@ capabilities:
     aliases: [electronic applications for admission, school admissions platform, school admission system]
     family: Service transformation
     explicit: [Salesforce Government Cloud, Salesforce Public Sector, Nonprofit Cloud, Education Cloud, Health Cloud, Financial Services Cloud, Manufacturing Cloud, Automotive Cloud, Consumer Goods Cloud, Communications Cloud, Energy and Utilities Cloud, Media Cloud, Salesforce Loyalty Management]
-    needs: [fundraising platform, donor management, supporter management, volunteer management, beneficiary management, grant management system, grants management system, grantmaking platform, student lifecycle, student success platform, student recruitment system, admissions platform, admissions system, alumni management, learner engagement, citizen services platform, resident services platform, regulatory casework, patient engagement platform, care coordination platform, patient CRM, benefits management system, housing allocation system]
+    needs: [fundraising platform, donor management, supporter management, volunteer management, beneficiary management, grant management system, grants management system, grants administration platform, grantmaking platform, student lifecycle, student success platform, student recruitment system, admissions platform, admissions system, alumni management, learner engagement, citizen services platform, resident services platform, regulatory casework, patient engagement platform, care coordination platform, patient CRM, benefits management system, housing allocation system]
     products: [Salesforce industry solutions, Experience Cloud, Agentforce]
     patterns: [Domain workflows and relationships, subject to actual specialist and eligibility requirements]
     queries: [grant management system procurement, student services platform tender, patient engagement platform]

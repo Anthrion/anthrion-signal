@@ -41,6 +41,7 @@ import {
 import { DiscoveryCarousel } from './DiscoveryCarousel'
 import { VirtualSignalList } from './VirtualSignalList'
 import { DismissDust } from './DismissDust'
+import { useAwardHistory } from './useAwardHistory'
 import {
   amount,
   csv,
@@ -52,6 +53,7 @@ import {
   gmailDraftURL,
   googleCalendarURL,
   isAvailableOpportunity,
+  isHistoricalAward,
   isUpdated,
   lifecycleLabels,
   lifecycleState,
@@ -263,6 +265,24 @@ export default function App() {
   const [detailTab, setDetailTab] = useState('preview')
   const [toast, setToast] = useState('')
   const [time, setTime] = useState(Date.now())
+  const viewingAwards = filters.view === 'awards'
+  const viewingSaved = filters.view === 'saved'
+  const needsSavedHistory =
+    viewingSaved && saved.some((id) => !data?.signals.some((s) => s.id === id))
+  const awards = useAwardHistory(data, viewingAwards || needsSavedHistory, filters.market)
+  const activeSignals = useMemo(
+    () =>
+      viewingAwards
+        ? awards.signals
+        : viewingSaved
+          ? [...(data?.signals || []), ...awards.signals]
+          : data?.signals || [],
+    [viewingAwards, viewingSaved, data, awards.signals],
+  )
+  const translations = useMemo(
+    () => ({ ...data?.translations, ...awards.translations }),
+    [data?.translations, awards.translations],
+  )
   const searchRef = useRef<HTMLInputElement>(null)
   const feedRef = useRef<HTMLDivElement>(null)
   const abortRef = useRef<AbortController | null>(null)
@@ -366,29 +386,42 @@ export default function App() {
   }
   const hiddenIds = useMemo(() => new Set(hidden), [hidden])
   const visibleSignals = useMemo(
-    () => (data?.signals || []).filter((s) => hiddenIds.has(s.id) === showHidden),
-    [data, hiddenIds, showHidden],
+    () => activeSignals.filter((s) => hiddenIds.has(s.id) === showHidden),
+    [activeSignals, hiddenIds, showHidden],
   )
   const filtered = useMemo(
-    () =>
-      filterSignals(visibleSignals, filters, saved, time, data?.capabilities, data?.translations),
-    [data, visibleSignals, filters, saved, time],
+    () => filterSignals(visibleSignals, filters, saved, time, data?.capabilities, translations),
+    [data, visibleSignals, filters, saved, time, translations],
   )
   // Outgoing rows are visual only; counts, selection and export use saved intent immediately.
   const renderedFiltered = useMemo(() => {
     if (!Object.keys(departing).length) return filtered
-    const visual = (data?.signals || []).filter((s) => {
+    const visual = activeSignals.filter((s) => {
       const phase = departing[s.id]
       return (phase ? phase === 'unhide' : hiddenIds.has(s.id)) === showHidden
     })
-    return filterSignals(visual, filters, saved, time, data?.capabilities, data?.translations)
-  }, [data, departing, filtered, filters, hiddenIds, saved, showHidden, time])
+    return filterSignals(visual, filters, saved, time, data?.capabilities, translations)
+  }, [
+    data,
+    activeSignals,
+    departing,
+    filtered,
+    filters,
+    hiddenIds,
+    saved,
+    showHidden,
+    time,
+    translations,
+  ])
   const marketSignals = useMemo(
     () =>
-      visibleSignals.filter(
-        (s) => isAvailableOpportunity(s, time) && matchesMarket(s, filters.market),
+      (data?.signals || []).filter(
+        (s) =>
+          hiddenIds.has(s.id) === showHidden &&
+          isAvailableOpportunity(s, time) &&
+          matchesMarket(s, filters.market),
       ),
-    [visibleSignals, filters.market, time],
+    [data, hiddenIds, showHidden, filters.market, time],
   )
   const marketName =
     markets.find((m) => m.id === filters.market)?.name ||
@@ -402,18 +435,24 @@ export default function App() {
     ([k, v]) => !['q', 'view', 'sort', 'market'].includes(k) && v !== '',
   ).length
   const selectedSignal = selected
-    ? visibleSignals.find((s) => s.id === selected && isAvailableOpportunity(s, time))
+    ? visibleSignals.find(
+        (s) =>
+          s.id === selected &&
+          (viewingAwards
+            ? isHistoricalAward(s, time)
+            : isAvailableOpportunity(s, time) || (viewingSaved && isHistoricalAward(s, time))),
+      )
     : filtered[0]
   useEffect(() => {
     if (
       selected &&
-      data?.signals.some((s) => s.id === selected) &&
+      activeSignals.some((s) => s.id === selected) &&
       hiddenIds.has(selected) !== showHidden
     ) {
       setSelected(null)
       setDetailOpen(false)
     }
-  }, [selected, data, hiddenIds, showHidden])
+  }, [selected, activeSignals, hiddenIds, showHidden])
   useEffect(() => {
     if (pendingRowFocus.current === null) return
     const next = filtered[Math.min(pendingRowFocus.current, filtered.length - 1)]
@@ -474,12 +513,12 @@ export default function App() {
     setFilters({
       ...defaults,
       market: market?.id || selectedSignal.countries[0] || 'GB',
-      view: 'all',
+      view: isHistoricalAward(selectedSignal) ? 'awards' : 'all',
     })
   }, [selected, selectedSignal, filters.market])
   const listTitle =
     navItems.find((n) => n.id === filters.view)?.label ||
-    { saved: 'Saved opportunities' }[filters.view] ||
+    { saved: 'Saved opportunities', awards: 'Awarded contracts' }[filters.view] ||
     'All signals'
   const share = async () => {
     try {
@@ -509,7 +548,7 @@ export default function App() {
   }
 
   return (
-    <WorkspaceProviders language={language} translations={data?.translations}>
+    <WorkspaceProviders language={language} translations={translations}>
       <div className="app-shell console-shell">
         <AmbientGlass />
         <a className="skip-link" href="#main">
@@ -546,8 +585,14 @@ export default function App() {
                 {activeFilterCount > 0 && <span className="filter-count">{activeFilterCount}</span>}
               </button>
               <SortMenu
-                value={filters.sort}
-                onChange={(sort) => update({ sort })}
+                value={viewingAwards ? 'awarded' : filters.sort}
+                onChange={(sort) =>
+                  update(
+                    sort === 'awarded'
+                      ? { view: 'awards', sort: 'recent', type: '', deadline: '', change: '' }
+                      : { sort, ...(viewingAwards ? { view: 'all' } : {}) },
+                  )
+                }
                 showHidden={showHidden}
                 onShowHidden={(value) => {
                   setShowHidden(value)
@@ -564,7 +609,20 @@ export default function App() {
               >
                 <Bookmark size={17} />
                 <span className="workspace-nav-label">Saved opportunities</span>
-                <small>{saved.filter((id) => marketSignals.some((s) => s.id === id)).length}</small>
+                <small>
+                  {
+                    saved.filter(
+                      (id) =>
+                        marketSignals.some((s) => s.id === id) ||
+                        awards.knownSignals.some(
+                          (s) =>
+                            s.id === id &&
+                            matchesMarket(s, filters.market) &&
+                            hiddenIds.has(id) === showHidden,
+                        ),
+                    ).length
+                  }
+                </small>
               </button>
             </nav>
             <div className="workspace-tools">
@@ -670,7 +728,7 @@ export default function App() {
                   aria-label="Opportunity records"
                   tabIndex={0}
                 >
-                  {loading && !data ? (
+                  {(loading && !data) || awards.loading ? (
                     <div className="loading-feed" aria-label="Loading opportunities">
                       {[1, 2, 3, 4, 5].map((i) => (
                         <div key={i} className="skeleton signal-skeleton" />
@@ -705,46 +763,63 @@ export default function App() {
                       )}
                     />
                   )}
-                  {!loading && renderedFiltered.length === 0 && (
-                    <div className="empty-state">
-                      {marketEnabled ? <FileSearch size={30} /> : <Globe2 size={30} />}
-                      <h3>
-                        {!marketEnabled
-                          ? `No signals for ${marketName}`
-                          : showHidden
-                            ? 'No hidden signals'
-                            : filters.view === 'saved'
-                              ? 'No saved opportunities'
-                              : 'No matching signals'}
-                      </h3>
-                      <p>
-                        {!marketEnabled
-                          ? 'There are no monitored sources in this market yet.'
-                          : showHidden
-                            ? 'No hidden signals match this market and these filters.'
-                            : filters.view === 'saved'
-                              ? 'Your saved opportunities will appear here.'
-                              : 'Try a broader search or adjust your filters.'}
-                      </p>
+                  {awards.error && (
+                    <div className="empty-state" role="alert">
+                      <h3>{awards.error}</h3>
                       <button
                         className="button secondary"
-                        onClick={() =>
-                          showHidden
-                            ? setShowHidden(false)
-                            : !marketEnabled
-                              ? switchMarket('GB')
-                              : update({ ...defaults, market: filters.market, view: 'all' })
-                        }
+                        onClick={() => {
+                          awards.retry()
+                          void load()
+                        }}
                       >
-                        {showHidden
-                          ? 'Return to signals'
-                          : marketEnabled
-                            ? 'Explore all signals'
-                            : 'Explore United Kingdom'}
-                        <ArrowRight size={14} />
+                        Try again
                       </button>
                     </div>
                   )}
+                  {!loading &&
+                    !awards.loading &&
+                    !awards.error &&
+                    renderedFiltered.length === 0 && (
+                      <div className="empty-state">
+                        {marketEnabled ? <FileSearch size={30} /> : <Globe2 size={30} />}
+                        <h3>
+                          {!marketEnabled
+                            ? `No signals for ${marketName}`
+                            : showHidden
+                              ? 'No hidden signals'
+                              : filters.view === 'saved'
+                                ? 'No saved opportunities'
+                                : 'No matching signals'}
+                        </h3>
+                        <p>
+                          {!marketEnabled
+                            ? 'There are no monitored sources in this market yet.'
+                            : showHidden
+                              ? 'No hidden signals match this market and these filters.'
+                              : filters.view === 'saved'
+                                ? 'Your saved opportunities will appear here.'
+                                : 'Try a broader search or adjust your filters.'}
+                        </p>
+                        <button
+                          className="button secondary"
+                          onClick={() =>
+                            showHidden
+                              ? setShowHidden(false)
+                              : !marketEnabled
+                                ? switchMarket('GB')
+                                : update({ ...defaults, market: filters.market, view: 'all' })
+                          }
+                        >
+                          {showHidden
+                            ? 'Return to signals'
+                            : marketEnabled
+                              ? 'Explore all signals'
+                              : 'Explore United Kingdom'}
+                          <ArrowRight size={14} />
+                        </button>
+                      </div>
+                    )}
                 </div>
                 <aside
                   className="console-inspector"
@@ -792,7 +867,7 @@ export default function App() {
             <FilterPanel
               filters={filters}
               update={update}
-              data={data}
+              data={viewingAwards || viewingSaved ? { ...data, signals: activeSignals } : data}
               count={filtered.length}
               onClose={() => setShowFilters(false)}
               onReset={() => update({ ...defaults, view: filters.view, market: filters.market })}
@@ -818,20 +893,32 @@ export default function App() {
             )}
           </Modal>
         )}
-        {selected && data && !selectedSignal && !data.signals.some((s) => s.id === selected) && (
-          <Modal title="Opportunity unavailable" onClose={() => setSelected(null)}>
-            <div className="empty-state">
-              <FileSearch size={30} />
-              <h3>This signal is no longer in the current feed</h3>
-              <button className="button primary" onClick={() => setSelected(null)}>
-                Back to opportunities
-              </button>
-            </div>
-          </Modal>
-        )}
+        {selected &&
+          data &&
+          !awards.loading &&
+          !awards.error &&
+          !selectedSignal &&
+          !activeSignals.some((s) => s.id === selected) && (
+            <Modal title="Opportunity unavailable" onClose={() => setSelected(null)}>
+              <div className="empty-state">
+                <FileSearch size={30} />
+                <h3>This signal is no longer in the current feed</h3>
+                <button className="button primary" onClick={() => setSelected(null)}>
+                  Back to opportunities
+                </button>
+              </div>
+            </Modal>
+          )}
       </div>
     </WorkspaceProviders>
   )
+}
+
+function recordTypeLabel(signal: Signal) {
+  if (isHistoricalAward(signal)) return 'Contract award'
+  if (signal.source === 'digital_outcomes' && lifecycleState(signal) === 'UNKNOWN')
+    return 'Application window unconfirmed'
+  return typeLabels[signal.signal_type]
 }
 
 function SignalRow({
@@ -880,7 +967,7 @@ function SignalRow({
         >
           <span className="row-copy">
             <span className="row-meta">
-              <span>{typeLabels[s.signal_type]}</span>
+              <span>{recordTypeLabel(s)}</span>
               {isUpdated(s, now) && <span className="row-updated">Updated</span>}
             </span>
             <span className="row-title">{text.title}</span>
@@ -891,7 +978,11 @@ function SignalRow({
           </span>
           <span className="row-numbers">
             {s.value_max !== null && <strong>{amount(s.value_max, s.currency)}</strong>}
-            {responseDeadline(s) && <span>{date(responseDeadline(s))}</span>}
+            {isHistoricalAward(s) ? (
+              <span>{date(s.updated_at || s.published_at)}</span>
+            ) : (
+              responseDeadline(s) && <span>{date(responseDeadline(s))}</span>
+            )}
           </span>
         </button>
         <div className="row-utilities">
@@ -1051,7 +1142,7 @@ function ConsoleDetail({
                   <dt>Notice type</dt>
                   <dd>
                     <FileText size={20} />
-                    <span>{typeLabels[s.signal_type]}</span>
+                    <span>{recordTypeLabel(s)}</span>
                   </dd>
                 </div>
                 <div>
@@ -1062,11 +1153,15 @@ function ConsoleDetail({
                   </dd>
                 </div>
                 <div>
-                  <dt>Deadline</dt>
+                  <dt>{isHistoricalAward(s) ? 'Award notice' : 'Deadline'}</dt>
                   <dd className="inspector-deadline">
                     <DeadlineCalendarButton signal={s} />
                     <span>
-                      {responseDeadline(s) ? date(responseDeadline(s)) : 'Deadline not published'}
+                      {isHistoricalAward(s)
+                        ? date(s.updated_at || s.published_at)
+                        : responseDeadline(s)
+                          ? date(responseDeadline(s))
+                          : 'Deadline not published'}
                     </span>
                   </dd>
                 </div>
@@ -1083,6 +1178,12 @@ function ConsoleDetail({
                   <p className="muted">Not specified</p>
                 )}
               </section>
+              {isHistoricalAward(s) && (
+                <section className="inspector-capabilities">
+                  <h3>Awarded supplier</h3>
+                  <p>{s.incumbent_supplier || 'Not published'}</p>
+                </section>
+              )}
             </div>
             <RecordIntegrations signal={s} />
           </div>
@@ -1155,17 +1256,20 @@ function FilterPanel({
   return (
     <>
       <div className="filter-grid">
-        {select(
-          'Opportunity type',
-          'type',
-          Object.entries(typeLabels)
-            .filter(([value]) => !['AWARD', 'RENEWAL_SIGNAL'].includes(value))
-            .map(([value, label]) => ({ value, label })),
-        )}
+        {f.view !== 'awards' &&
+          select(
+            'Opportunity type',
+            'type',
+            Object.entries(typeLabels)
+              .filter(([value]) => !['AWARD', 'RENEWAL_SIGNAL'].includes(value))
+              .map(([value, label]) => ({ value, label })),
+          )}
         {select(
           'Source',
           'source',
-          data.sources.filter((s) => s.enabled).map((s) => ({ value: s.id, label: s.name })),
+          data.sources
+            .filter((s) => s.enabled || data.signals.some((record) => record.source === s.id))
+            .map((s) => ({ value: s.id, label: s.name })),
         )}
         {select(
           'Capability',
@@ -1179,16 +1283,18 @@ function FilterPanel({
             .sort()
             .map((s) => ({ value: s, label: s })),
         )}
-        {select('Deadline', 'deadline', [
-          { value: '7', label: 'Next 7 days' },
-          { value: '14', label: 'Next 14 days' },
-          { value: '30', label: 'Next 30 days' },
-          { value: '90', label: 'Next 90 days' },
-        ])}
-        {select('Freshness', 'change', [
-          { value: 'new', label: 'New in 24 hours' },
-          { value: 'updated', label: 'Updated in 24 hours' },
-        ])}
+        {f.view !== 'awards' &&
+          select('Deadline', 'deadline', [
+            { value: '7', label: 'Next 7 days' },
+            { value: '14', label: 'Next 14 days' },
+            { value: '30', label: 'Next 30 days' },
+            { value: '90', label: 'Next 90 days' },
+          ])}
+        {f.view !== 'awards' &&
+          select('Freshness', 'change', [
+            { value: 'new', label: 'New in 24 hours' },
+            { value: 'updated', label: 'Updated in 24 hours' },
+          ])}
         <label>
           Buyer
           <input
@@ -1277,6 +1383,12 @@ function SignalDetail({
   const facts = [
     ['Published value', amount(s.value_max, s.currency, false)],
     ['Closing date', date(responseDeadline(s))],
+    ...(isHistoricalAward(s)
+      ? [
+          ['Awarded supplier', s.incumbent_supplier || 'Not published'],
+          ['Award notice updated', date(s.updated_at || s.published_at)],
+        ]
+      : []),
     ['Published', date(s.published_at)],
     [
       'Contract period',
@@ -1296,7 +1408,7 @@ function SignalDetail({
     <>
       <div className="detail-heading" tabIndex={0} role="region" aria-label="Opportunity heading">
         <div className="detail-eyebrow">
-          <span className="type-label">{typeLabels[s.signal_type]}</span>
+          <span className="type-label">{recordTypeLabel(s)}</span>
         </div>
         <h2>{text.title}</h2>
         <div className="buyer">

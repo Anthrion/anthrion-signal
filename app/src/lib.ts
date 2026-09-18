@@ -109,36 +109,64 @@ export function responseDeadline(s: Signal, now = Date.now()) {
   const dates = (s.response_deadlines || [])
     .filter((value) => Number.isFinite(Date.parse(value)))
     .sort((a, b) => Date.parse(a) - Date.parse(b))
-  return dates.find((value) => Date.parse(value) > now) || dates.at(-1) || s.deadline_at
+  return (
+    dates.find((value) => deadlineInstant(value, s.source) > now) || dates.at(-1) || s.deadline_at
+  )
+}
+function deadlineInstant(value: string, source: string) {
+  const instant = Date.parse(value)
+  if (
+    source !== 'digital_outcomes' ||
+    !/^\d{4}-\d{2}-\d{2}$/.test(value) ||
+    !Number.isFinite(instant)
+  )
+    return instant
+  const londonNoon = Number(
+    new Intl.DateTimeFormat('en-GB', {
+      hour: 'numeric',
+      hourCycle: 'h23',
+      timeZone: 'Europe/London',
+    }).format(new Date(instant + 12 * 3600000)),
+  )
+  return instant + 86400000 - 1 - (londonNoon - 12) * 3600000
 }
 export const daysLeft = (s: Signal, now = Date.now()) => {
   const deadline = responseDeadline(s, now)
-  return deadline ? Math.ceil((Date.parse(deadline) - now) / 86400000) : null
+  return deadline ? Math.ceil((deadlineInstant(deadline, s.source) - now) / 86400000) : null
 }
 export function deadlineCaption(s: Signal, now = Date.now()) {
   const deadline = responseDeadline(s, now)
   if (!deadline)
     return s.procurement_stage === 'planning' ? 'Early-stage opportunity' : 'Deadline not published'
-  const remaining = Date.parse(deadline) - now
+  const remaining = deadlineInstant(deadline, s.source) - now
   const label = date(deadline, { day: 'numeric', month: 'short' })
+  if (s.source === 'digital_outcomes' && /^\d{4}-\d{2}-\d{2}$/.test(deadline) && remaining > 0)
+    return label
   if (remaining <= 0) return `Closed ${label}`
   if (remaining < 3600000) return `${label} · ${Math.ceil(remaining / 60000)}m left`
   if (remaining < 86400000) return `${label} · ${Math.ceil(remaining / 3600000)}h left`
   return `${label}${remaining <= 14 * 86400000 ? ` · ${Math.ceil(remaining / 86400000)}d left` : ''}`
 }
 export function lifecycleState(s: Signal, now = Date.now()) {
+  if (/^(CANCELLED|CANCELED|AVLYST|KESKEYTETTY|PERUTTU)\b/.test(s.title.trim())) return 'CLOSED'
   if (['veat', 'dir-awa-pre'].includes(s.notice_type?.toLowerCase() || '')) return 'CLOSED'
   if (['cancelled', 'canceled', 'unsuccessful'].includes(s.status)) return 'CANCELLED'
   if (s.status === 'withdrawn') return 'WITHDRAWN'
-  if (s.signal_type === 'AWARD' || s.status === 'awarded') return 'AWARDED'
+  if (s.signal_type === 'AWARD' || s.status === 'awarded' || s.lifecycle_state === 'AWARDED')
+    return 'AWARDED'
   if (
     ['closed', 'complete', 'completed', 'terminated', 'not_listed', 'restricted'].includes(s.status)
   )
     return 'CLOSED'
   if (s.status === 'postponed') return 'UNKNOWN'
-  const deadlines = (s.response_deadlines || []).map(Date.parse).filter(Number.isFinite)
-  const finalDeadline = deadlines.length ? Math.max(...deadlines) : Date.parse(s.deadline_at || '')
+  const deadlines = (s.response_deadlines || [])
+    .map((value) => deadlineInstant(value, s.source))
+    .filter(Number.isFinite)
+  const finalDeadline = deadlines.length
+    ? Math.max(...deadlines)
+    : deadlineInstant(s.deadline_at || '', s.source)
   if (s.status === 'expired' || finalDeadline <= now) return 'EXPIRED'
+  if (s.source === 'digital_outcomes' && s.lifecycle_state === 'UNKNOWN') return 'UNKNOWN'
   if (s.signal_type === 'RENEWAL_SIGNAL') return 'FUTURE'
   if (['EARLY_MARKET_ENGAGEMENT', 'RFI'].includes(s.signal_type)) {
     return s.deadline_at ||
@@ -186,6 +214,13 @@ export function isAvailableOpportunity(s: Signal, now = Date.now()) {
 }
 export const isLive = (s: Signal, now = Date.now()) =>
   !s.exclusion_reasons?.length && lifecycleState(s, now) === 'OPEN'
+export const isHistoricalAward = (s: Signal, now = Date.now()) =>
+  s.signal_type !== 'RENEWAL_SIGNAL' &&
+  !s.related_signal_id &&
+  (!s.award_statuses?.length || s.award_statuses.includes('active')) &&
+  s.notice_type?.toUpperCase() !== 'UK5' &&
+  !s.exclusion_reasons?.length &&
+  lifecycleState(s, now) === 'AWARDED'
 export const isEarly = (s: Signal, now = Date.now()) =>
   !s.exclusion_reasons?.length && lifecycleState(s, now) === 'EARLY_ENGAGEMENT'
 
@@ -265,7 +300,11 @@ export function normaliseFilters(value: Partial<Filters>): Filters {
       value[key as keyof Filters] ?? fallback,
     ]),
   ) as unknown as Filters
-  if (['top', 'awards', 'renewals', 'sources'].includes(result.view)) result.view = 'all'
+  if (['top', 'renewals', 'sources'].includes(result.view)) result.view = 'all'
+  if (result.sort === 'awarded') {
+    result.view = 'awards'
+    result.sort = 'recent'
+  }
   if (result.view === 'pipeline') result.view = 'early'
   if (result.view === 'updates') result.view = 'today'
   if (result.view === 'frameworks') {
@@ -275,6 +314,7 @@ export function normaliseFilters(value: Partial<Filters>): Filters {
   if (result.view === 'funding') result.view = 'all'
   if (['recommended', 'fit', 'confidence'].includes(result.sort)) result.sort = 'recent'
   if (['AWARD', 'RENEWAL_SIGNAL'].includes(result.type)) result.type = ''
+  if (result.view === 'awards') result.type = result.deadline = result.change = ''
   result.score = result.confidence = result.recommendation = ''
   return result
 }
@@ -319,7 +359,12 @@ export function filterSignals(
 ) {
   const currentViews = ['live', 'closing', 'early', 'pipeline', 'frameworks', 'funding']
   const result = signals.filter((s) => {
-    if (!isAvailableOpportunity(s, now)) return false
+    if (
+      f.view === 'awards'
+        ? !isHistoricalAward(s, now)
+        : !isAvailableOpportunity(s, now) && !(f.view === 'saved' && isHistoricalAward(s, now))
+    )
+      return false
     if (!matchesMarket(s, f.market)) return false
     const state = lifecycleState(s, now)
     if (
@@ -388,6 +433,13 @@ export function filterSignals(
   const capabilityKeys =
     f.sort === 'capability' ? new Map(result.map((s) => [s.id, capabilityKey(s)])) : null
   return result.sort((a, b) => {
+    if (f.view === 'awards')
+      return (
+        priorityTier(a) - priorityTier(b) ||
+        Date.parse(b.updated_at || b.published_at || b.first_seen_at) -
+          Date.parse(a.updated_at || a.published_at || a.first_seen_at) ||
+        a.id.localeCompare(b.id)
+      )
     // An explicit value/capability sort takes precedence over the default delivery tiers.
     if (f.sort === 'value' || f.sort === 'value-low') {
       if (a.value_max === null) return b.value_max === null ? compareRecommended(a, b, now) : 1
@@ -452,7 +504,7 @@ function recordShareText(
   const recordURL = new URL(appURL)
   recordURL.search = ''
   recordURL.hash = ''
-  recordURL.searchParams.set('view', 'all')
+  recordURL.searchParams.set('view', isHistoricalAward(signal) ? 'awards' : 'all')
   recordURL.searchParams.set(
     'market',
     markets.find((market) => matchesMarket(signal, market.id))?.id || '',
@@ -503,6 +555,7 @@ export function googleCalendarURL(
   appURL: string,
   text = { title: signal.title, buyerName: signal.buyer_name },
 ) {
+  if (isAwardIntelligence(signal)) return null
   const deadline = responseDeadline(signal)
   if (!deadline || !Number.isFinite(Date.parse(deadline))) return null
   const start = new Date(deadline)

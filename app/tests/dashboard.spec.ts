@@ -504,6 +504,10 @@ test('reduced-motion glass stays still and the source dock stays anchored during
 test('all market tabs have real, correctly scoped records and opportunity counts', async ({
   page,
 }, info) => {
+  // This assertion compares a published snapshot; real deadlines can expire
+  // during a release run. Expiry behaviour is covered separately in lib tests.
+  const snapshot = await (await page.request.get('./data/current.json')).json()
+  await page.clock.setFixedTime(new Date(snapshot.generated_at))
   await page.goto('./?view=all')
   await ready(page)
   const dataset = await page.evaluate(async () => (await fetch('./data/current.json')).json())
@@ -1192,7 +1196,9 @@ test('old award and renewal links cannot expose unavailable records from a stale
     await expect(page.getByText('Unavailable incumbent award', { exact: true })).toHaveCount(0)
     await page.getByRole('button', { name: 'Back to opportunities' }).click()
     await ready(page)
-    await expect(page.locator('.feed-heading h1')).toHaveText('All Signals')
+    await expect(page.locator('.feed-heading h1')).toHaveText(
+      view === 'awards' ? 'Awarded contracts' : 'All Signals',
+    )
     await expect(page).not.toHaveURL(/signal=removed-award/)
   }
   await page.goto('./?view=saved')

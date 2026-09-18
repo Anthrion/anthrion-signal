@@ -13,6 +13,7 @@ from anthrion_signal.translation import TranslationQueue, available_translations
 from anthrion_signal.utils import atomic_json
 
 CORPUS = json.loads((Path(__file__).parent / "fixtures/relevance_review.json").read_text(encoding="utf-8"))
+CORPUS += json.loads((Path(__file__).parent / "fixtures/relevance_review_2026_09_18.json").read_text(encoding="utf-8"))
 
 
 @pytest.mark.parametrize("case", CORPUS, ids=lambda case: case["signal"]["id"])
@@ -39,6 +40,15 @@ def test_reviewed_real_notices(case, config):
     ("Supply of Microsoft licences", "Lote 2: Desarrollo e integración de aplicaciones empresariales."),
     ("Field survey software", "Build software for collecting and validating observations."),
     ("Digitale Modernisierung", "Lieferung von Gegenständen: NW-Server. Los 2: Entwicklung von Anwendungen für das Kundenportal."),
+    ("Occupational safety specialist", "Workplace risk assessment. Lot 2: Develop a staff case management platform."),
+    ("Occupational coding service", "Develop an AI assistant to classify the survey responses."),
+    ("Business development consultancy", "Implement Salesforce to track industry partners and investor relationships."),
+    ("Audio visual equipment", "Supply room screens. Lot 2: Build software to manage appointments and room bookings."),
+    ("Mechanical systems integration", "Provide ventilation and integrate its alerts with a CRM platform via APIs."),
+    ("Supplier portal implementation", "Design and implement a portal where suppliers log in and submit bids."),
+    ("Cashless parking machines", "Supply parking meters. Lot 2: Develop a CRM platform for digital payment support."),
+    ("Clinical simulation manikins", "Supply training equipment. Lot 2: Implement an AI assistant for clinical enquiries."),
+    ("Food inspection services", "Record inspection results in the council system. Lot 2: Develop a new case management system."),
 ])
 def test_mixed_scope_protection(signal, config, title, description):
     signal.title, signal.description = title, description
@@ -46,6 +56,43 @@ def test_mixed_scope_protection(signal, config, title, description):
     prefilter([signal], config["company_profile"], config["search_terms"], config["capabilities"])
     assert not signal.exclusion_reasons
     assert signal.prefilter_score >= 12
+
+
+@pytest.mark.parametrize('title, description', [
+    ('Digital delivery partner', 'Design, deliver and operate digital products and services.'),
+    ('Digital delivery partner', 'Deliver digital, data and technology services throughout the digital service lifecycle.'),
+    ('Care services modernisation', 'Implement a clinical patient management system.'),
+    ('Employee service', 'Implement a case management system for complaints and enquiries.'),
+    ('Cashless parking', 'Provide digital parking payments for on-street and off-street parking.'),
+    ('Citizen services', 'Build an incident management system for municipal services.'),
+])
+def test_explicit_digital_delivery_without_cpv_or_brand_survives(signal, config, title, description):
+    signal.title, signal.description, signal.cpv_codes = title, description, []
+    prefilter([signal], config['company_profile'], config['search_terms'], config['capabilities'])
+    assert signal.prefilter_score >= 12 and not signal.exclusion_reasons
+
+
+@pytest.mark.parametrize('service', ['complaint handling', 'stakeholder management', 'workforce scheduling'])
+def test_human_services_do_not_gain_software_tags_from_administration(signal, config, service):
+    signal.title = 'Housing staff training'
+    signal.description = f'Train staff in {service}. Log in to the supplier portal to submit bids.'
+    signal.cpv_codes = ['80500000']
+    prefilter([signal], config['company_profile'], config['search_terms'], config['capabilities'])
+    assert not signal.matched_capabilities
+    assert signal.prefilter_score < 12
+
+
+@pytest.mark.parametrize('title,description,cpv', [
+    ('Paper records storage', 'Store paper files using the Records and Digital Solutions framework.', []),
+    ('Multi Functional Devices & Digital Solutions', 'Printer framework call-off.', []),
+    ('Cashless Parking Machines', 'Refurbishment of Parking Meters and purchase of new units.', ['38730000']),
+    ('Clinical Simulation Manikins', 'Supply manikins with control software configuration and an online learning platform subscription.', ['33000000']),
+    ('Food inspection services', 'Post inspection actions include updating the council computerised case management system.', ['90700000']),
+])
+def test_tools_or_framework_names_do_not_establish_software_delivery(signal, config, title, description, cpv):
+    signal.title, signal.description, signal.cpv_codes = title, description, cpv
+    prefilter([signal], config['company_profile'], config['search_terms'], config['capabilities'])
+    assert signal.prefilter_score < 12 or signal.exclusion_reasons
 
 
 def test_rejected_notice_is_losslessly_replayable_after_rule_change(tmp_path, signal, config, now):

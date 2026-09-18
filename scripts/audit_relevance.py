@@ -7,7 +7,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 from anthrion_signal.config import load_config
-from anthrion_signal.discovery import is_public_opportunity, lifecycle, prefilter
+from anthrion_signal.discovery import discovery_signature, is_public_opportunity, lifecycle, prefilter
 from anthrion_signal.models import Signal
 from anthrion_signal.translation import available_translations
 from anthrion_signal.utils import atomic_json, parse_date, read_json
@@ -63,7 +63,7 @@ def audit(root, at=None, snapshot=None):
                          "score": s.prefilter_score, "tags": s.matched_capabilities,
                          "evidence": s.capability_evidence, "scope_evidence": s.scope_evidence, "reasons": s.exclusion_reasons})
         print(f"Audited {min(start + 1000, len(signals))}/{len(signals)} retained records", flush=True)
-    return {"at": now.isoformat(), "version": config["capabilities"]["version"], "partitions": locations,
+    return {"at": now.isoformat(), "version": config["capabilities"]["version"], "signature": discovery_signature(config), "partitions": locations,
             "counts": {"retained": len(rows), "published_before": len(public_ids),
                        "relevance": dict(Counter(r["relevance"] for r in rows)),
                        "published_excluded": sum(r["published_before"] and r["relevance"] != "candidate" for r in rows),

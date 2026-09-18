@@ -6,7 +6,7 @@ scope remains a candidate. Original and exact-hash English evidence use the same
 """
 import re
 
-from .capability_matching import affirmed
+from .capability_matching import affirmed, operational_software_use, physical_integration
 from .vocabulary import phrase_hits
 
 BUSINESS_OBJECTS = (
@@ -22,6 +22,7 @@ BUSINESS_OBJECTS = (
     "systems integration", "system integration", "api integration", "software development", "application development",
     "website development", "web platform", "software engineering", "digital transformation", "it consultancy",
     "it consultants", "digital and it professional services", "remote patient monitoring",
+    "cashless parking", "digital payment services", "online booking system", "incident management system",
 )
 DELIVERY = re.compile(r"\b(?:develop\w*|implement\w*|build\w*|creat\w*|design\w*|deliver\w*|provi\w*|"
                       r"procur\w*|purchas\w*|suppl\w*|configur\w*|integrat\w*|migrat\w*|replac\w*|"
@@ -30,6 +31,10 @@ DELIVERY = re.compile(r"\b(?:develop\w*|implement\w*|build\w*|creat\w*|design\w*
 INCIDENTAL = re.compile(r"\b(?:already (?:use|uses|using|have)|existing (?:supplier|contractor) portal|"
                         r"submit\w* (?:your |the |a )?(?:bid|tender|proposal)|using (?:our|the authority s)|"
                         r"must use (?:our|the authority s))\b")
+
+
+def physical_payment_equipment(text, phrase):
+    return phrase == "cashless parking" and bool(phrase_hits(text, ("parking machines", "parking meters")))
 
 
 def addressable_delivery(segments):
@@ -51,7 +56,9 @@ def addressable_delivery(segments):
         ai_service = re.search(r"\b(?:ai|artificial intelligence)\b.{0,60}\b(?:service|software|platform|assistant|solution|tool)\b", text)
         if ai_service and affirmed(text, ai_service.group()) and segment["field"] == "title" and not re.search(r"\b(?:server|hardware|equipment|appliance)\b", text):
             return segment
-        hits = [p for p in phrase_hits(text, BUSINESS_OBJECTS) if affirmed(text, p)]
+        hits = [p for p in phrase_hits(text, BUSINESS_OBJECTS)
+                if affirmed(text, p) and not physical_integration(text, p)
+                and not operational_software_use(text, p) and not physical_payment_equipment(text, p)]
         if set(hits) <= {"language model"} and re.search(r"\b(?:server|hardware|computer|gpu)\b", text):
             hits = []
         if not hits:
@@ -66,6 +73,18 @@ def addressable_delivery(segments):
 # Title, corroborating description, CPV support. Neither a CPV nor a word in an
 # unrelated paragraph can trigger exclusion by itself. This is a taxonomy of work.
 RULES = (
+    ("parking_equipment", r"\b(?:cashless parking machines|parking meters)\b",
+     r"\b(?:refurbishment|purchase|units|supply|hardware|equipment)\b", ("3873",),
+     "Physical parking payment equipment"),
+    ("occupational_safety", r"\b(?:occupational safety specialist|occupational health (?:physician|services)|health and safety adviser|safety officer)\b",
+     r"\b(?:physician|workplace|hazards?|safety|inspections|risk assessment)\b", ("71317", "851", "79417"),
+     "Occupational health or workplace safety services"),
+    ("survey_coding", r"\b(?:(?:sic(?: and soc)?|soc|occupational|industrial) coding|coding of.*survey)\b",
+     r"\b(?:classification|survey responses|occupational information|coding)\b", ("7233", "7931"),
+     "Coding or classification of survey responses as a service"),
+    ("business_promotion", r"\b(?:business engagement consultancy|business development consultancy|investment promotion services)\b",
+     r"\b(?:industry partners|industry funding|value propositions|promote|investors|marketing)\b", ("7941", "7999"),
+     "Business promotion or partnership development consultancy"),
     ("physical_it_installation", r"\b(?:digital modernisation|digital modernization|digitale modernisierung)\b",
      r"\b(?:supply of items|lieferung von gegenstanden)\b.{0,120}\b(?:servers?|nw server|wlan|access points)\b",
      (), "Supply and installation of physical IT infrastructure"),
@@ -84,8 +103,8 @@ RULES = (
      "Maintenance of physical equipment"),
     ("hardware", r"\b(?:ai server|server appliances|server and storage|server hardware|hardware acquisition|"
      r"hardware framework|notebooks|printers|workplace computers|pcs and equipment|thinpro|"
-     r"supply of led panels|bandwidth management equipment|hydrological monitoring stations)\b",
-     r"\b(?:hardware|equipment|server|servers|computers|licences|licenses|supply|purchase|stations)\b",
+     r"supply of led panels|audio visual equipment|bandwidth management equipment|hydrological monitoring stations|clinical simulation manikins)\b",
+     r"\b(?:hardware|equipment|server|servers|computers|licences|licenses|supply|purchase|stations|manikins)\b",
      ("30", "32", "38", "48"), "Physical computing, network or measurement equipment"),
     ("licence_resale", r"\b(?:microsoft|adobe|acrobat|vmware|citrix|autodesk|veeam|commvault|red hat|"
      r"windows|oracle|sap|sophos|arcsight|fortinet|trellix|trend ai)\b.*\b(?:licen[cs]\w*|subscription\w*|renewal|extension|verlangerung)\b|"
@@ -151,5 +170,12 @@ def generic_digital_scope(segments):
     """Recall route for sparse but explicit digital delivery, without fabricated tags."""
     phrases = ("digital and it professional services", "it consultancy", "it consultants", "ict consultants",
                "it systems", "software testing", "software engineering",
-               "ai adoption", "ai pilots", "remote patient monitoring")
-    return list(dict.fromkeys(p for s in segments for p in phrase_hits(s["text"], phrases) if affirmed(s["text"], p)))
+               "ai adoption", "ai pilots", "remote patient monitoring", "digital delivery capability",
+               "digital and technology delivery services", "digital data and technology",
+               "digital service lifecycle", "digital products and services",
+               "software configuration", "software customisation", "software customization",
+               "cashless parking", "digital payment services", "digital delivery services",
+               "online learning platform", "incident management system", "clinical patient management system")
+    return list(dict.fromkeys(p for s in segments for p in phrase_hits(s["text"], phrases)
+                             if affirmed(s["text"], p) and not physical_payment_equipment(s["text"], p)
+                             and not operational_software_use(s["text"], p)))

@@ -4,6 +4,7 @@ from pathlib import Path
 
 from .capability_matching import capability_hits, evidence_excerpt, paper_application, unrelated_supply
 from .procurement_scope import addressable_delivery, generic_digital_scope, scope_exclusion
+from .notice_dates import digital_deadline, digital_deadline_instant, digital_window_uncertain
 from .utils import digest, parse_date, unique
 from .vocabulary import phrase_hits, search_text
 
@@ -18,7 +19,7 @@ AI_FAMILIES = {"ai", "genai", "automation", "knowledge"}
 def discovery_signature(config):
     """Replay after policy or engine changes, even without a manual version bump."""
     directory = Path(__file__).parent
-    modules = ("discovery.py", "capability_matching.py", "procurement_scope.py", "vocabulary.py", "translation.py")
+    modules = ("discovery.py", "capability_matching.py", "procurement_scope.py", "vocabulary.py", "translation.py", "notice_dates.py")
     return digest({"policy": {key: config[key] for key in ("company_profile", "search_terms", "capabilities")},
                    "engine": {name: (directory / name).read_text(encoding="utf-8") for name in modules}})
 
@@ -37,22 +38,27 @@ def discovery_text(value):
     value = re.sub(r"\b(?:[a-z0-9-]+\.)+[a-z]{2,24}/[^\s<>]*", " ", value, flags=re.IGNORECASE)
     sentences = re.split(r"(?<=[.!?])\s+|\n+", value)
     registration = re.compile(
-        r"\b(?:to register with|register (?:here|your (?:organisation|organization|interest))|"
+        r"\b(?:log\s?in|logging in|sign in|user guide|guidance for suppliers|"
+        r"procurement responses|advertises? procurement|upload\w*|download\w*|"
+        r"to register with|register (?:here|your (?:organisation|organization|interest))|"
         r"submit (?:your |the |a )?(?:bid|tender|proposal|response)|"
         r"(?:register|apply) (?:and apply )?(?:via|on|through)|"
         r"(?:responses?|bids?|proposals?|applications?|submissions?)\b[^.!?]{0,120}\bsubmitted|being released through|"
         r"to access the solicitation|this will take you to the public portal|"
         r"(?:visit|check)\b[^.!?]{0,60}\bportal|contact\b[^.!?]{0,60}\bservice desk|"
-        r"available (?:online )?through)\b", re.IGNORECASE)
-    build_scope = re.compile(r"\b(?:develop|implement|build|replace|upgrade|procure)\w*\b[^.!?]{0,90}"
+        r"available (?:online )?through|will be using)\b", re.IGNORECASE)
+    build_scope = re.compile(r"\b(?:(?:develop|implement|build|replace|upgrade|design|configure)\w*|procur(?:e[ds]?|ing))\b[^.!?]{0,90}"
                              r"\b(?:portal|software|platform|application)\b", re.IGNORECASE)
     # This published administrative boilerplate describes an existing submission
     # service, not the work being funded by the surrounding opportunity.
     submission_platform = re.compile(r"\b(?:EDA is excited to announce the launch of its new grants management platform|"
         r"EDGE was developed to streamline the application and grants management process)\b", re.IGNORECASE)
+    bidding_context = re.compile(r"\b(?:suppliers?|procurement|tender\w*|bids?|proposals?|applications?|submissions?|quotations?|e-sourcing|"
+                                 r"e-tendering|atamis|passport|isupplier)\b", re.IGNORECASE)
     return search_text(" ".join(sentence for sentence in sentences
                                if not submission_platform.search(sentence) and not (registration.search(sentence)
-                                       and re.search(r"\b(?:portal|atamis|e-sourcing|passport|isupplier|service desk)\b", sentence, re.IGNORECASE)
+                                       and bidding_context.search(sentence)
+                                       and re.search(r"\b(?:portal|atamis|e-sourcing|e-tendering|passport|isupplier|service desk)\b", sentence, re.IGNORECASE)
                                        and not build_scope.search(sentence))))
 
 
@@ -65,6 +71,10 @@ def lifecycle(signal, now):
     deadlines = [parse_date(value) for value in signal.response_deadlines]
     deadlines = [value for value in deadlines if value]
     deadline = max(deadlines) if deadlines else parse_date(signal.deadline_at)
+    if signal.source == "digital_outcomes":
+        # An initial application deadline takes precedence over a later,
+        # invitation-only stage. Re-evaluate retained detail after parser releases.
+        deadline = digital_deadline_instant(digital_deadline(signal.description) or signal.deadline_at) or deadline
     # Explicit source headings can contradict an incorrectly selected notice
     # category. These are status labels, not words anywhere in the description.
     if re.match(r"^(?:CANCELLED|CANCELED|AVLYST|KESKEYTETTY|PERUTTU)\b", signal.title.strip()):
@@ -92,6 +102,8 @@ def lifecycle(signal, now):
         return "UNKNOWN", "The source postpones bidding without a confirmed replacement response window."
     if status == "expired" or (deadline and deadline <= now):
         return "EXPIRED", "The published response deadline has passed."
+    if signal.source == "digital_outcomes" and digital_window_uncertain(signal.description, deadline, now):
+        return "UNKNOWN", "The published planned start has passed without a confirmed current application window."
     if signal.signal_type == "RENEWAL_SIGNAL":
         return "FUTURE", "Inferred from a published contract end; replacement procurement is unconfirmed."
     if signal.signal_type in ("EARLY_MARKET_ENGAGEMENT", "RFI"):
@@ -112,6 +124,14 @@ def is_public_opportunity(signal, now):
         return False
     checks = getattr(signal.analysis, "eligibility_checks", [])
     return not any(check.status == "CONFIRMED_BLOCKER" for check in checks)
+
+
+def is_public_award(signal, now):
+    """Confirmed historical awards only; never inferred renewals or failed awards."""
+    return (signal.signal_type != "RENEWAL_SIGNAL" and not signal.related_signal_id
+            and (not signal.award_statuses or "active" in signal.award_statuses)
+            and (signal.notice_type or "").upper() != "UK5"
+            and lifecycle(signal, now)[0] == "AWARDED" and not signal.exclusion_reasons)
 
 
 def hard_exclusions(signal, charter, scope_evidence=False):
@@ -159,6 +179,11 @@ def prefilter(signals, profile, terms, charter=None, translations=None):
     # Compatibility for external callers; production always supplies the expanded charter.
     caps = charter["capabilities"] if charter else [dict(c, needs=c["terms"]) for c in profile["capabilities"]]
     for signal in signals:
+        if signal.source == "digital_outcomes":
+            deadline = digital_deadline(signal.description)
+            if deadline:
+                signal.deadline_at = deadline
+                signal.response_deadlines = [deadline]
         text = discovery_text(signal.title + " " + signal.description)
         title = discovery_text(signal.title)
         documents = [("original", signal.title, signal.description)]
