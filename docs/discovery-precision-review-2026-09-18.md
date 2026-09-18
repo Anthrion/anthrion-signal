@@ -152,10 +152,13 @@ this change reverses and it should be confirmed.
    is one that no longer needs the CPV catch-all.
 2. **Then enable `cpv_requires_corroboration`** and re-measure. Rejections stay replayable, so this
    is reversible.
-3. **Localise the scope-exclusion rules.** `procurement_scope.RULES` match English title patterns.
-   A German workplace-safety notice ("Fachkraft für Arbeitssicherheit") is not caught by the
-   `occupational_safety` rule that catches its English equivalent. Translations arrive at the same
-   time as matching, so the rules should run against translated titles too.
+3. **Loosen the scope-exclusion rules' dependence on exact translated wording.**
+   `scope_exclusion` already receives the `english_translation` segments and tests every title
+   segment, so the rules do reach non-English notices — that part works. What they depend on is the
+   exact English phrasing a machine translation happens to produce: `occupational_safety` matches
+   "occupational safety specialist" but not "specialist for occupational safety", and the
+   translation of a given notice is not guaranteed to land on the listed form. The title patterns
+   should be phrased as unordered term requirements rather than fixed word sequences.
 4. **Derive TED's collection CPV filter from configuration.** `collectors.py` hardcodes
    `classification-cpv IN (48* 72* 7931* 7941*)`, so the policy now lives in two places. Collecting
    more broadly than you admit is correct, but it should say so deliberately. Note that TED supplies
