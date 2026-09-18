@@ -70,6 +70,20 @@ def digest(value) -> str:
     return hashlib.sha256(json.dumps(value, sort_keys=True, ensure_ascii=False, default=str).encode()).hexdigest()
 
 
+def official_notice_url(url: str) -> str:
+    """CCS/GCA related notices must actually belong to Find a Tender, not mention it."""
+    try:
+        link = canonical_url(url)
+        parsed = urlparse(link)
+        if (parsed.hostname == "www.find-tender.service.gov.uk"
+                and parsed.port in (None, 80 if parsed.scheme == "http" else 443)
+                and re.fullmatch(r"/Notice/\d+-\d{4}", parsed.path)):
+            return link
+    except ValueError:
+        pass
+    return ""
+
+
 def read_json(path: Path, default):
     if not path.exists():
         return default

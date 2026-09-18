@@ -5,7 +5,7 @@ from html import unescape
 from urllib.parse import urljoin
 
 from .models import Document, Provenance, Signal
-from .utils import canonical_url, clean, digest, iso, parse_date, unique
+from .utils import canonical_url, clean, digest, iso, official_notice_url, parse_date, unique
 
 
 MATERIAL_FIELDS = ["title", "description", "buyer_name", "deadline_at", "contract_start", "contract_end",
@@ -209,16 +209,18 @@ def normalise_govuk(raw):
 
 def normalise_html(raw):
     r = raw.data
+    links = unique(official_notice_url(u) for u in r.get("source_links", []))
     signal = base(raw, title=r["title"], description=r["description"], url=r["url"],
         buyer_name=r.get("buyer"), signal_type=r["signal_type"], procurement_stage=r["stage"],
         status=r.get("status", "unknown"), countries=[raw.source["country"]],
         external_ids=[raw.source["id"] + ":" + r["id"]], deadline_at=iso(r.get("deadline")),
         contract_start=iso(r.get("contract_start")), contract_end=iso(r.get("contract_end")),
         value_max=money(r.get("value")), currency="GBP" if r.get("value") is not None else None,
-        framework=r.get("framework"), documents=[Document(title="Official procurement notice", url=u, kind="tenderNotice")
-                                                 for u in r.get("source_links", []) if canonical_url(u)])
+        framework=r.get("framework"), documents=[Document(title="Official procurement notice", url=link, kind="tenderNotice")
+                                                 for link in links])
     if signal:
-        signal.source_urls = unique([signal.primary_source_url, *r.get("source_links", [])])
+        # Every published link is canonicalised here, never trusted as collected.
+        signal.source_urls = unique([signal.primary_source_url, *links])
     return signal
 
 
