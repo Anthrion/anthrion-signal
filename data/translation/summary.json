@@ -1,15 +1,18 @@
 {
-  "api_calls": 0,
-  "completed_fields": 7036,
+  "api_calls": 32,
+  "completed_fields": 7156,
   "disabled_models": [],
-  "failures": {},
-  "finished_at": "2026-09-18T17:21:59.055433+00:00",
-  "input_characters": 3670200,
+  "failures": {
+    "too_large": 2,
+    "validation": 14
+  },
+  "finished_at": "2026-09-18T18:13:51.370115+00:00",
+  "input_characters": 3764224,
   "models": [
     "gemini-3.5-flash-lite",
     "gemini-3.1-flash-lite"
   ],
-  "pending_fields": 14,
-  "split_events": 0,
-  "stop_reason": "needs_review"
+  "pending_fields": 41,
+  "split_events": 2,
+  "stop_reason": "run_budget"
 }
