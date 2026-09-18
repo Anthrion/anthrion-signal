@@ -13,7 +13,12 @@ import httpx
 from bs4 import BeautifulSoup
 
 from .source_tls import DEVOLVED_API_HOSTS, devolved_tls_context
-from .utils import clean, digest, iso, parse_date
+from .utils import canonical_url, clean, digest, iso, parse_date, unique
+
+# A notice link is only official when its own host and path say so. An href
+# merely containing this text can still point anywhere.
+NOTICE_HOST = "www.find-tender.service.gov.uk"
+NOTICE_PATH = "/Notice/"
 
 
 class SourceUnavailable(Exception):
@@ -83,8 +88,12 @@ class Http:
         raise SourceUnavailable("Source unavailable")
 
     def json(self, url, **kwargs):
+        response = self.request("GET", url, **kwargs)
+        # An API answering from another host is a configuration change, not source data.
+        if urlparse(str(response.url)).netloc != urlparse(url).netloc:
+            raise SourceUnavailable("Source API redirected to another host; review source configuration")
         try:
-            return self.request("GET", url, **kwargs).json()
+            return response.json()
         except ValueError:
             raise SourceUnavailable("Source did not return JSON") from None
 
@@ -536,6 +545,17 @@ def collect_digital(source, state, frozen, http, settings, terms):
     return result
 
 
+def official_notice_links(detail, page_url):
+    """Published tender notices only, resolved and host-checked like every other listing."""
+    links = []
+    for anchor in detail.select("a[href]"):
+        link = canonical_url(urljoin(page_url, anchor["href"]))
+        parsed = urlparse(link)
+        if link and parsed.netloc == NOTICE_HOST and parsed.path.startswith(NOTICE_PATH):
+            links.append(link)
+    return unique(links)
+
+
 def collect_upcoming(source, state, frozen, http, settings, terms):
     result = Collection(state=dict(state))
     main = public_detail(http, source["url"])
@@ -573,7 +593,7 @@ def collect_upcoming(source, state, frozen, http, settings, terms):
                 for node in detail.select("nav, footer, script, style"):
                     node.decompose()
                 data["description"] = clean(detail.get_text(" ", strip=True), 20000)
-                data["source_links"] = [a["href"] for a in detail.select('a[href*="find-tender.service.gov.uk/Notice/"]')]
+                data["source_links"] = official_notice_links(detail, url)
                 result.pages += 1
             except SourceUnavailable:
                 result.complete = False

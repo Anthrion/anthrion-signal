@@ -213,10 +213,12 @@ def normalise_html(raw):
         external_ids=[raw.source["id"] + ":" + r["id"]], deadline_at=iso(r.get("deadline")),
         contract_start=iso(r.get("contract_start")), contract_end=iso(r.get("contract_end")),
         value_max=money(r.get("value")), currency="GBP" if r.get("value") is not None else None,
-        framework=r.get("framework"), documents=[Document(title="Official procurement notice", url=u, kind="tenderNotice")
-                                                 for u in r.get("source_links", []) if canonical_url(u)])
+        framework=r.get("framework"), documents=[Document(title="Official procurement notice", url=link, kind="tenderNotice")
+                                                 for u in r.get("source_links", []) if (link := canonical_url(u))])
     if signal:
-        signal.source_urls = unique([signal.primary_source_url, *r.get("source_links", [])])
+        # Every published link is canonicalised here, never trusted as collected.
+        signal.source_urls = unique([signal.primary_source_url,
+                                     *(canonical_url(u) for u in r.get("source_links", []))])
     return signal
 
 
