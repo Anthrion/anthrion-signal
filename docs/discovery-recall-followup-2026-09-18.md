@@ -18,8 +18,8 @@ that end in *-system* (`Verwaltungssystem`, `järjestelmä`) through a suffix ru
 "information system" explicitly, but English names its systems as two words. "Content Management
 System", "Learning Management System", "Enterprise Architecture Management System", "Resource
 management system" and 29 others were therefore invisible. Added: `management system`, `IT system`,
-`digital system`, `web application`, `IT solution`, `software solution`, `web portal`,
-`online portal`, `internet portal`.
+`digital system`, `web application`, `IT solution`, `software solution`, `web portal` and
+`internet portal`.
 
 `digital solutions` and `computer system` were deliberately **not** added — reviewed decisions
 already hold that neither establishes a technology scope on its own, and the second is how the
