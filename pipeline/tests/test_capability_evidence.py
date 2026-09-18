@@ -242,3 +242,44 @@ def test_corroboration_policy_never_suppresses_capability_evidence(signal, confi
     prefilter([signal], config["company_profile"], config["search_terms"], corroboration_policy(config))
     assert "crm" in signal.matched_capabilities
     assert signal.prefilter_score >= 12
+
+
+@pytest.mark.parametrize("title,description", [
+    ("Content Management System (CMS)", "Procurement of a content management system."),
+    ("Learning management system", "Operation and hosting of a learning management system."),
+    ("Property Asset Management Solution", "Supply of an asset management system for the estate."),
+    ("Website relaunch", "Relaunch and ongoing website maintenance for the university."),
+    ("Patient and Colleague Notification System", "Prequalification for a notification system."),
+    ("RFI Digital workplace", "Market dialogue for a digital workplace."),
+])
+def test_named_business_systems_are_published_digital_scope(signal, config, title, description):
+    """English names its systems in two words; the suffix rule only catches the rest."""
+    classify(signal, config, title, description)
+    assert signal.prefilter_score >= 12
+    assert any(m.startswith("Published digital scope:") for m in signal.prefilter_matches)
+
+
+@pytest.mark.parametrize("title,description", [
+    ("Rebate agreement under SGB V", "Offers are submitted through the online portal of the authority."),
+    ("Open tender procedure", "Responses are submitted via the SINTEL electronic procurement system."),
+    ("Evaluation of communication measures", "Findings will be published on the intranet."),
+])
+def test_bidding_and_publication_routes_are_not_a_deliverable(signal, config, title, description):
+    classify(signal, config, title, description)
+    assert not any(m.startswith("Published digital scope:") for m in signal.prefilter_matches)
+
+
+@pytest.mark.parametrize("title", [
+    "Procurement of GPU computing resources for AI-based climate modelling",
+    "Server system for AI inference workloads",
+])
+def test_capacity_to_run_a_model_is_not_an_ai_deliverable(signal, config, title):
+    classify(signal, config, title, "Supply of the hardware described above.")
+    assert "ai" not in signal.matched_capabilities
+
+
+def test_short_ai_title_is_still_recognised(signal, config):
+    """A three-word notice has no surrounding technical vocabulary to lean on."""
+    classify(signal, config, "RFI AI Interpreter",
+             "Migrationsverket needs an AI interpreter for recording, transcription and translation.")
+    assert "ai" in signal.matched_capabilities

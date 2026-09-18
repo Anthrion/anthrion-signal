@@ -37,6 +37,25 @@ which a three-word title does not have. A title-position acronym now counts on i
 all-capitals case test still separates it from Italian legal prose, and the research-funding guard
 still applies.
 
+Reviewing the 18 records this promoted showed three were GPU and inference-server procurements, so
+the existing hardware guard — which already covers "computer system for running" and "laptop for
+processing" — was extended with `gpu computing resources`, `gpu cluster`, `inference workloads` and
+`compute resources`. Capacity to run a model is a different purchased object from the model.
+
+### What had to come back out
+
+Checking what the additions actually recovered caught three terms matching bidding boilerplate
+rather than a deliverable, and they were removed:
+
+| Term | What it matched |
+| --- | --- |
+| `procurement system` | "the SINTEL ELECTRONIC PROCUREMENT SYSTEM" — the e-tendering platform |
+| `online portal` | German pharma rebate notices' submission instructions |
+| `intranet` | publication channels ("published on the intranet") |
+
+`web portal` and `internet portal` stay, being specific to a built thing. This is the reason to look
+at what a vocabulary change recovers rather than only at how much it recovers.
+
 ### Measured
 
 Re-scoring the same 2,833 baseline records through the real `prefilter`:

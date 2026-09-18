@@ -187,7 +187,7 @@ def generic_digital_scope(segments):
                # digital deliverable; a generic "digital" or "solution" still does not.
                "website development", "website design", "website relaunch", "website redesign",
                "website maintenance", "website hosting", "web development", "web portal",
-               "internet portal", "online portal", "open data portal", "transparency portal",
+               "internet portal", "open data portal", "transparency portal",
                "content management system", "learning management system", "document management system",
                "records management system", "record management system", "records management solution",
                "record management solution", "patient record management", "asset management system",
