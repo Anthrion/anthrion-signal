@@ -13,12 +13,8 @@ import httpx
 from bs4 import BeautifulSoup
 
 from .source_tls import DEVOLVED_API_HOSTS, devolved_tls_context
-from .utils import canonical_url, clean, digest, iso, parse_date, unique
-
-# A notice link is only official when its own host and path say so. An href
-# merely containing this text can still point anywhere.
-NOTICE_HOST = "www.find-tender.service.gov.uk"
-NOTICE_PATH = "/Notice/"
+from .notice_dates import digital_deadline
+from .utils import clean, digest, iso, official_notice_url, parse_date, unique
 
 
 class SourceUnavailable(Exception):
@@ -88,10 +84,33 @@ class Http:
         raise SourceUnavailable("Source unavailable")
 
     def json(self, url, **kwargs):
-        response = self.request("GET", url, **kwargs)
-        # An API answering from another host is a configuration change, not source data.
-        if urlparse(str(response.url)).netloc != urlparse(url).netloc:
-            raise SourceUnavailable("Source API redirected to another host; review source configuration")
+        # Validate every Location before contacting it, including intermediate hops.
+        # A final-response check alone would already have sent an off-host request.
+        kwargs = {**kwargs, "follow_redirects": False}
+        for _ in range(6):
+            response = self.request("GET", url, **kwargs)
+            if response.status_code not in (301, 302, 303, 307, 308):
+                break
+            location = response.headers.get("Location")
+            if not location:
+                raise SourceUnavailable("Source API redirect has no destination")
+            try:
+                redirected = urljoin(str(response.url), location)
+                before, after = urlparse(str(response.url)), urlparse(redirected)
+                same_origin = (before.scheme == after.scheme and before.hostname == after.hostname
+                               and (before.port or (443 if before.scheme == "https" else 80))
+                               == (after.port or (443 if after.scheme == "https" else 80)))
+                upgrade = (before.scheme == "http" and after.scheme == "https" and before.hostname == after.hostname
+                           and (before.port or 80) == 80 and (after.port or 443) == 443)
+                allowed = (same_origin or upgrade) and after.scheme in ("http", "https") and not (after.username or after.password)
+            except ValueError:
+                allowed = False
+            if not allowed:
+                raise SourceUnavailable("Source API redirected outside its origin; review source configuration")
+            url = redirected
+            kwargs.pop("params", None)  # The Location owns the next request's query.
+        else:
+            raise SourceUnavailable("Source API exceeded the redirect limit")
         try:
             return response.json()
         except ValueError:
@@ -435,14 +454,6 @@ def public_detail(http, url):
     return main
 
 
-def digital_deadline(text):
-    date = r"(\d{1,2})(?:st|nd|rd|th)?\s+([A-Za-z]+)\s+(\d{4})"
-    match = re.search(r"(?:application closing date|tender submission deadline|closing date|deadline for (?:applications|responses|tenders))[^.!?]{0,90}?" + date, text, re.I)
-    if not match:
-        match = re.search(date + r"\s+Application closing date", text, re.I)
-    return iso(" ".join(match.groups())) if match else None
-
-
 def collect_digital(source, state, frozen, http, settings, terms):
     result = Collection(state=dict(state))
     listing_url = state.get("listing_next_url") or source["url"]
@@ -533,6 +544,8 @@ def collect_digital(source, state, frozen, http, settings, terms):
                 result.complete = False
                 result.message = "Some opportunity details unavailable; listing facts retained."
                 first_pending = first_pending if first_pending is not None else (position + index) % len(links)
+        # Reparse cached source facts when date handling improves, without another request.
+        data["deadline"] = digital_deadline(data["description"]) or data.get("deadline")
         result.records.append(RawRecord(data, source, frozen.isoformat(), "html"))
     if result.state.get("listing_next_url"):
         result.state["listing_cycle_ids"] = sorted(active_ids)
@@ -549,9 +562,11 @@ def official_notice_links(detail, page_url):
     """Published tender notices only, resolved and host-checked like every other listing."""
     links = []
     for anchor in detail.select("a[href]"):
-        link = canonical_url(urljoin(page_url, anchor["href"]))
-        parsed = urlparse(link)
-        if link and parsed.netloc == NOTICE_HOST and parsed.path.startswith(NOTICE_PATH):
+        try:
+            link = official_notice_url(urljoin(page_url, anchor["href"]))
+        except ValueError:
+            continue
+        if link:
             links.append(link)
     return unique(links)
 

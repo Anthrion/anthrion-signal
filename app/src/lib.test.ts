@@ -15,6 +15,7 @@ import {
   lifecycleState,
   isAwardIntelligence,
   isAvailableOpportunity,
+  isHistoricalAward,
   isAddedToday,
   normaliseFilters,
   priorityTier,
@@ -612,7 +613,7 @@ describe('team workflows', () => {
     expect(filterSignals(rows, { ...defaults, sort: 'recent' }, [], now)[0].id).toBe('published')
     expect(filterSignals(rows, { ...defaults, sort: 'updated' }, [], now)[0].id).toBe('updated')
   })
-  test('awards and inferred renewals stay out of every view, including saved and search', () => {
+  test('awards and inferred renewals stay out of opportunity views, including saved and search', () => {
     const excluded = [
       { ...signal, id: 'type', signal_type: 'AWARD' },
       { ...signal, id: 'status', status: 'awarded' },
@@ -633,9 +634,7 @@ describe('team workflows', () => {
       'renewals',
       'frameworks',
       'funding',
-      'saved',
       'updates',
-      'awards',
     ]) {
       expect(
         filterSignals(
@@ -649,6 +648,94 @@ describe('team workflows', () => {
     expect(filterSignals(excluded, { ...defaults, view: 'all', q: 'Salesforce' }, [], now)).toEqual(
       [],
     )
+    expect(
+      filterSignals(excluded, { ...defaults, view: 'awards' }, [], now)
+        .map((s) => s.id)
+        .sort(),
+    ).toEqual(['state', 'status', 'type'])
+    expect(
+      filterSignals(excluded, { ...defaults, view: 'saved' }, ['type', 'renewal'], now).map(
+        (s) => s.id,
+      ),
+    ).toEqual(['type'])
+  })
+  test('Awarded uses platform then standalone AI ordering and supports historical search', () => {
+    const award = {
+      ...signal,
+      signal_type: 'AWARD',
+      status: 'complete',
+      deadline_at: '2020-01-01',
+      updated_at: '2026-09-01T12:00:00Z',
+    }
+    const records: Signal[] = [
+      { ...award, id: 'other', delivery_priority: 'other', matched_capabilities: [] },
+      {
+        ...award,
+        id: 'ai',
+        delivery_priority: 'ai',
+        matched_capabilities: ['ai'],
+        updated_at: '2026-09-08T12:00:00Z',
+      },
+      { ...award, id: 'crm', delivery_priority: 'platform' },
+      {
+        ...award,
+        id: 'new-crm',
+        delivery_priority: 'platform',
+        updated_at: '2026-09-02T12:00:00Z',
+      },
+      signal,
+    ]
+    const filters = { ...defaults, view: 'awards' }
+    expect(filterSignals(records, filters, [], now).map((s) => s.id)).toEqual([
+      'new-crm',
+      'crm',
+      'ai',
+      'other',
+    ])
+    expect(filterSignals(records, { ...filters, q: 'missing' }, [], now)).toEqual([])
+    expect(
+      filterSignals(records, { ...filters, capability: 'ai' }, [], now).map((s) => s.id),
+    ).toEqual(['ai'])
+    expect(normaliseFilters({ sort: 'awarded', type: 'LIVE_TENDER', deadline: '7' })).toMatchObject(
+      { view: 'awards', sort: 'recent', type: '', deadline: '' },
+    )
+    expect(normaliseFilters({ view: 'awards' }).view).toBe('awards')
+    expect(googleCalendarURL(award, 'https://example.org/')).toBe(null)
+    expect(
+      new URL(gmailDraftURL(award, 'https://example.org/')).searchParams.get('body'),
+    ).toContain('view=awards')
+  })
+  test('uncertain digital call-offs stay reviewable without being presented as live', () => {
+    const uncertain = {
+      ...signal,
+      source: 'digital_outcomes',
+      lifecycle_state: 'UNKNOWN',
+      deadline_at: null,
+    }
+    expect(filterSignals([uncertain], { ...defaults, view: 'all' }, [], now)).toEqual([uncertain])
+    expect(filterSignals([uncertain], { ...defaults, view: 'live' }, [], now)).toEqual([])
+  })
+  test('a date-only UK call-off remains live throughout its stated closing day', () => {
+    const dated = { ...signal, source: 'digital_outcomes', deadline_at: '2026-09-24' }
+    expect(isLive(dated, Date.parse('2026-09-24T21:00:00Z'))).toBe(true)
+    expect(isLive(dated, Date.parse('2026-09-24T23:00:00Z'))).toBe(false)
+    expect(dated.deadline_at).toBe('2026-09-24')
+  })
+  test('cancelled, unsuccessful, pending and inferred awards cannot enter history', () => {
+    const award = { ...signal, signal_type: 'AWARD' }
+    for (const patch of [
+      { status: 'cancelled' },
+      { status: 'unsuccessful' },
+      { status: 'withdrawn' },
+      { award_statuses: ['pending'] },
+      { award_statuses: ['cancelled'] },
+      { signal_type: 'RENEWAL_SIGNAL' },
+      { title: 'CANCELLED CRM procurement' },
+      { notice_type: 'UK5' },
+      { notice_type: 'veat' },
+      { exclusion_reasons: ['Physical supplies'] },
+    ])
+      expect(isHistoricalAward({ ...award, ...patch }, now)).toBe(false)
   })
   test('unavailable records never return through saved, search or other views', () => {
     const blocked = [

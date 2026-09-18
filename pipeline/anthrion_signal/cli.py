@@ -6,6 +6,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 from .collectors import Http, collect_with_backfill, hydrate_sparse
+from .award_history import PUBLIC_EXCLUDE, export_awards
 from .config import capability_catalog, evidence_catalog, load_config
 from .discovery import discovery_signature, is_public_opportunity, lifecycle, prefilter, ranking_key
 from .discovery_retention import read_rejected, retain_rejected
@@ -91,10 +92,17 @@ def export(root):
     config = load_config(root)
     signature = discovery_signature(config)
     canonical = root / "data/signals.jsonl"
+    canonical_signals = [Signal.model_validate_json(line) for line in canonical.read_text(encoding="utf-8").splitlines() if line] if canonical.exists() else data.signals
     if data.run.get("discovery_signature") != signature and canonical.exists():
         # A rule release must be able to restore previously suppressed candidates
         # even on an existing-data deployment. Availability is still checked below.
-        data.signals = [Signal.model_validate_json(line) for line in canonical.read_text(encoding="utf-8").splitlines() if line]
+        known = {s.id for s in canonical_signals}
+        recovered = [s for s in read_rejected(root)
+            if s.id not in known and is_public_opportunity(s.model_copy(update={"exclusion_reasons": []}), datetime.now(UTC))]
+        # Reuse collection's identity/status reconciliation: an old rejected tender
+        # must not resurrect a subsequently awarded/cancelled archived procurement.
+        restored = restore_matching(root, recovered, known)
+        data.signals, _, _ = reconcile(canonical_signals + restored, recovered)
     translations = available_translations(root, data.signals)
     prefilter(data.signals, config["company_profile"], config["search_terms"], config["capabilities"], translations)
     data.signals = [s for s in data.signals if is_public_opportunity(s, datetime.now(UTC)) and
@@ -109,6 +117,9 @@ def export(root):
     data.run["discovery_version"] = config["capabilities"]["version"]
     data.run["discovery_signature"] = signature
     data.run["public_signals"] = len(data.signals)
+    for signal in data.signals:
+        signal.lifecycle_state, signal.lifecycle_reason = lifecycle(signal, datetime.now(UTC))
+    data.award_history = export_awards(root, canonical_signals, config, datetime.now(UTC))
     target = root / "app/public/data"
     target.mkdir(parents=True, exist_ok=True)
     atomic_json(target / "current.json", public_data(data))
@@ -116,10 +127,8 @@ def export(root):
 
 
 def public_data(dataset):
-    return dataset.model_dump(exclude={"signals": {"__all__": {
-        "analysis", "analysis_cache_key", "ai_status", "ai_model", "ai_scored_at", "fit_score",
-        "confidence_score", "known_weight", "score_components", "score_explanation", "recommendation",
-        "prefilter_score", "capability_evidence", "scope_evidence"}}, "run": {"gemini_calls", "cache_hits", "ai_failures", "candidates_shortlisted", "high_fit_signals"}})
+    return dataset.model_dump(exclude={"signals": {"__all__": PUBLIC_EXCLUDE},
+        "run": {"gemini_calls", "cache_hits", "ai_failures", "candidates_shortlisted", "high_fit_signals"}})
 
 
 def run(root, args):

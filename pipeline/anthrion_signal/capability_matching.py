@@ -26,7 +26,46 @@ AMBIGUOUS_NEEDS = {"account management", "client management", "contact managemen
                    "call center", "digital transformation", "service transformation", "business transformation",
                    "data quality", "data governance", "master data", "data cleansing", "data visualisation",
                    "data visualization", "business intelligence", "schnittstellenmanagement", "stakeholdermanagement",
-                   "kundenmanagement", "kundhantering", "asiakashallinta", "gestion de donantes", "gestione dei donatori"}
+                   "kundenmanagement", "kundhantering", "asiakashallinta", "gestion de donantes", "gestione dei donatori",
+                   "stakeholder management", "constituent management", "member management", "membership management",
+                   "supporter management", "fundraising management", "service user management", "alumni management",
+                   "partner management", "grantee management", "applicant management", "tenant management",
+                   "resident management", "customer lifecycle", "complaint handling", "complaints management",
+                   "case tracking", "case allocation", "case triage", "referral management", "permit management",
+                   "investigation management", "appeals management", "grievance management", "enquiry management",
+                   "inquiry management", "workforce scheduling", "mobile workforce", "field service management"}
+GENERIC_INTEGRATION = {"systems integration", "system integration", "integration with existing systems",
+                       "integrate with existing systems", "systemintegration", "schnittstellenmanagement"}
+PHYSICAL_SYSTEMS = ("pipework", "ventilation", "air handling", "compressed air", "heating", "boilers",
+                    "high voltage", "switchgear", "electrical installations", "building management system",
+                    "building management systems", "mechanical systems", "tiefengeothermie", "gas systems")
+DIGITAL_SYSTEMS = ("software", "application", "database", "crm", "salesforce", "api", "middleware",
+                   "information system", "information systems", "data platform", "customer portal", "ai agent")
+
+
+def physical_integration(text, phrase):
+    """A mechanical connection is not application integration; mixed digital lots survive."""
+    return (phrase in GENERIC_INTEGRATION and bool(phrase_hits(text, PHYSICAL_SYSTEMS))
+            and not phrase_hits(text, DIGITAL_SYSTEMS))
+
+
+def operational_software_use(text, phrase):
+    """Recording fieldwork in a buyer's tool is not delivery of that tool.
+
+    Require both a data-entry action and operational records. Updating software
+    itself, or a separate implementation sentence, remains positive evidence.
+    """
+    if not phrase_hits(text, ("inspection actions", "inspection results", "visit records", "case notes", "inspection records")):
+        return False
+    if phrase_hits(text, ("software development", "software upgrade", "implement", "develop", "configure", "migrate")):
+        return False
+    for hit in re.finditer(r"(?<!\w)" + re.escape(phrase) + r"(?!\w)", text):
+        before = text[max(0, hit.start() - 100):hit.start()]
+        if re.search(r"\b(?:updating|recording (?:in|on)|entering (?:in|into)|logging (?:in|into))\s+(?:\w+\s+){0,8}$", before):
+            return True
+    return False
+
+
 SOFTWARE_CPV = ("48", "72")
 CONTEXT_GUARDS = {
     "salesforce": ("salesforce", "force com", "visualforce", "omnistudio"),
@@ -64,6 +103,28 @@ def paper_application(text):
         ("software", "digital", "crm", "database", "web application", "application platform"))
 
 
+def business_application_development(text):
+    """Disambiguate each occurrence; scientific computing is not a business app.
+
+    A programme name can contain 'application development' while referring to
+    quantum algorithms and scientific discovery. Require both that computing
+    context and a scientific objective locally; never exclude a sector wholesale.
+    A separate business application occurrence remains usable evidence.
+    """
+    if paper_application(text):
+        return False
+    for hit in re.finditer(r"\bapplication development\b", text):
+        local = text[max(0, hit.start() - 110):hit.end() + 110]
+        quantum = re.search(r"\bquantum (?:computers?|computing|algorithms?)\b", local)
+        scientific = phrase_hits(local, ("discovery science", "scientific discovery", "scientific workflows",
+                                        "quantum algorithms", "quantum algorithm", "logical qubits", "fault tolerant"))
+        business = phrase_hits(local, ("crm", "salesforce", "customer", "business application", "business software",
+                                      "enterprise application", "portal", "case management", "workflow automation"))
+        if not (quantum and scientific) or business:
+            return True
+    return False
+
+
 def evidence_excerpt(quote, phrase):
     tokens = list(re.finditer(r"\w+", quote))
     words = [search_text(token.group()).strip() for token in tokens]
@@ -91,7 +152,9 @@ def capability_hits(cap, segments, software_cpv=False, funding=False):
                                ("contextual", cap.get("contextual", []))):
             for phrase in phrase_hits(text, phrases):
                 hint_only = False
-                if not affirmed(text, phrase):
+                if not affirmed(text, phrase) or operational_software_use(text, phrase):
+                    continue
+                if cap["id"] in ("integration", "external_integration") and physical_integration(text, phrase):
                     continue
                 if cap["id"] == "ai" and phrase in ("claude", "gemini"):
                     if not phrase_hits(text, ("ai", "artificial intelligence", "llm", "anthropic", "google ai",
@@ -100,7 +163,7 @@ def capability_hits(cap, segments, software_cpv=False, funding=False):
                         if re.search(r"\bClaude\s+(?:[A-Z]\.\s+)?[A-Z][a-z]+\b", segment["quote"]) or phrase_hits(text, ("observatory", "telescope")):
                             continue
                         hint_only = True
-                if phrase == "application development" and paper_application(text):
+                if phrase == "application development" and not business_application_development(text):
                     continue
                 if funding and phrase in ("data integration", "data harmonisation", "data harmonization"):
                     if not software_cpv and not phrase_hits(text, ("software", "database", "api", "crm", "platform",

@@ -1556,6 +1556,9 @@
 .inspector-capabilities {
   padding: 0;
 }
+.inspector-capabilities + .inspector-capabilities {
+  margin-top: 14px;
+}
 .inspector-capabilities h3 {
   font-size: 13px;
   font-weight: 450;

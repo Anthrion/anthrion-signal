@@ -227,6 +227,7 @@ class Signal(StrictModel):
     countries: list[str] = Field(default_factory=list)
     framework: str | None = None
     incumbent_supplier: str | None = None
+    award_statuses: list[str] = Field(default_factory=list)
     eligibility_text: str | None = None
     documents: list[Document] = Field(default_factory=list)
     first_seen_at: str
@@ -294,3 +295,4 @@ class Dataset(StrictModel):
     evidence_catalog: dict[str, Any]
     signals: list[Signal]
     translations: dict[str, EnglishText] = Field(default_factory=dict)
+    award_history: dict[str, dict[str, Any]] = Field(default_factory=dict)

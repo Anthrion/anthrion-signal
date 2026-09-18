@@ -60,6 +60,7 @@ export interface Signal {
   framework: string | null
   lot_ids: string[]
   incumbent_supplier: string | null
+  award_statuses?: string[]
   first_seen_at: string
   last_seen_at: string
   last_material_update: string
@@ -147,6 +148,7 @@ export interface Dataset {
   markets: Record<string, { name: string; enabled: boolean; coverage?: string }>
   signals: Signal[]
   translations?: Record<string, EnglishText>
+  award_history?: Record<string, { url: string; count: number }>
   run: {
     sources_attempted: number
     sources_succeeded: number

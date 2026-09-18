@@ -382,6 +382,7 @@ const sortOptions = [
   ['value', 'Highest value'],
   ['value-low', 'Lowest value'],
   ['capability', 'Capability A-Z'],
+  ['awarded', 'Awarded'],
 ] as const
 
 export function SortMenu({

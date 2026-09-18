@@ -12,9 +12,11 @@ def signature_for(root):
     from anthrion_signal.utils import digest
 
     data = json.loads((root / "data/current.json").read_text(encoding="utf-8"))
+    exported = root / "app/public/data/current.json"
+    public = json.loads(exported.read_text(encoding="utf-8")) if exported.exists() else data
     return {
         "code": os.getenv("BUILD_CODE_DIGEST") or code_digest(root),
-        "content": data["run"]["content_digest"],
+        "content": digest([data["run"]["content_digest"], public.get("award_history", {})]),
         "translations": digest(available_translations(root, data.get("signals", []))),
         "health": [[s["id"], s["status"]] for s in data["sources"]],
         "day": datetime.now(UTC).date().isoformat(),
