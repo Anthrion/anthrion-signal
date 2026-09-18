@@ -41,6 +41,33 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "0017a31e73018075fe9850cc3637527c49cb7a6412d33d3fdac48a68cad50a69": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:40.730238+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Service for the updating, replacement, maintenance and management of building automation and control systems (BMS/BACS) of several buildings of the Diputación de Barcelona"
+          },
+          "source": "Servicio de actualización, reposición, mantenimiento y conducción de los sistemas de automatización y control de edificios (BMS/BACS) de varios edificios de la Diputación de Barcelona"
+        }
+      ],
+      "protected_names": [
+        "DIPUTACIÓN DE BARCELONA"
+      ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "001f7d8e5618d9cfdacf389b5dbcf80b36f7f44547139adb33dc2d4cfc1c9d02": {
       "parts": [
         {
@@ -228,6 +255,31 @@
             "text": "Conception, design and implementation of a new, responsive and accessible website for Stadtwerke Potsdam and its affiliated companies. This call for tenders is aimed at digital agencies to submit a tender to Stadtwerke Potsdam and its affiliated companies for the creation of a new accessible website (website, landing pages and magazine). The awarded services comprise the conception and a revised design of the website, as well as its technical creation using a content management system (CMS) and subsequent application operation including support and demand-oriented further development."
           },
           "source": "Konzeption, Gestaltung und Umsetzung einer neuen, responsiven und barrierefreien Webseite für die Stadtwerke Potsdam und ihre Verbundunternehmen. Diese Ausschreibung richtet sich an Online-Agenturen, um für die Stadtwerke Potsdam und deren Verbundunternehmen ein Angebot zur Erstellung einer neuen barrierefreien Webseite (Webseite, Landingpages und Magazin) abzugeben. Die vergebenen Leistungen umfassen die Konzeption und eine zu überarbeitende Gestaltung der Webseite, als auch deren technische Erstellung mit einem Content-Management-System (CMS) sowie einen anschließenden Applikationsbetrieb inkl. Support und bedarfsorientierter Weiterentwicklung."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "00a2c5112e38c285409b98003ebff0b2d8ba05623fa1d0c8550f2d69e4f6a951": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:40.744111+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The purpose of this FOA is to develop and maintain Rapid Response Teams (RRTs) to facilitate long-term improvements and innovation to the national integrated food safety system by unifying and coordinating federal/state/local human and animal food (HAF) emergency response efforts including: 1) Strengthening the link among epidemiology, lab and environmental health/regulatory components; 2) Improving States' regulatory and surveillance HAF protection programs to include using Incident Command System (ICS)/National Incident Management System (NIMS) principles and a Unified Command structure to conduct integrated responses to all-hazards HAF emergencies, rapidly identifying and removing tainted food from commerce, and conducting root cause investigations to inform future prevention efforts; and 3) Addressing supporting components, such as training, data sharing, data analysis, communications, continuous process improvement, and development of best practices and other resources to support national response capacity/capability development."
+          },
+          "source": "The purpose of this FOA is to develop and maintain Rapid Response Teams (RRTs) to facilitate long-term improvements and innovation to the national integrated food safety system by unifying and coordinating federal/state/local human and animal food (HAF) emergency response efforts including: 1) Strengthening the link among epidemiology, lab and environmental health/regulatory components; 2) Improving States' regulatory and surveillance HAF protection programs to include using Incident Command System (ICS)/National Incident Management System (NIMS) principles and a Unified Command structure to conduct integrated responses to all-hazards HAF emergencies, rapidly identifying and removing tainted food from commerce, and conducting root cause investigations to inform future prevention efforts; and 3) Addressing supporting components, such as training, data sharing, data analysis, communications, continuous process improvement, and development of best practices and other resources to support national response capacity/capability development."
         }
       ],
       "protected_names": [],
@@ -7272,6 +7324,31 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "09d364994404f753a328fffe750904f1758a7b16f48bdd23a0682ae1cb53efb8": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:40.730068+00:00",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Request for information Valtori is asking market operators for answers to questions concerning the procurement of a framework agreement for cloud experts related to Valtori's services. This notice is not a call for tenders, procurement notice or prior information notice, but a request for information intended to conduct a preliminary market survey and initiate a technical dialogue with potential supplier partners. The request for information is not binding on any participating party. The contracting authority shall independently decide on how to proceed and any subsequent actions based on the responses received. See further details in the attached document."
+          },
+          "source": "Tietopyyntö Valtori pyytää markkinatoimijoilta vastauksia kysymyksiin, jotka koskevat Valtorin palveluihin liittyvien pilviasiantuntijoiden puitejärjestelyn kilpailuttamista. Tämä ilmoitus ei ole tarjouspyyntö, hankintailmoitus tai ennakkoilmoitus, vaan tietopyyntö, jonka tarkoituksena on tehdä alustava markkinakartoitus ja käynnistää tekninen vuoropuhelu mahdollisten toimittajakumppanien kanssa. Tietopyyntö ei sido ketään siihen osallistuvaa tahoa. Hankintayksikkö päättää itsenäisesti etenemisestä ja mahdollisista jatkotoimista saamiensa vastausten perusteella. Ks. lisätiedot liitteenä olevasta dokumentista."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "09d42e893f38ea0c1097ab3667c9167439bd2f18648d981988a1843c1b264e12": {
       "parts": [
         {
@@ -7959,6 +8036,33 @@
       "protected_names": [],
       "purpose": "passage",
       "retry_profile": "english-coverage-and-organisation-names-2"
+    },
+    "0af4d03b2ac378e96fe15d91fb70c235cebd72959d0f37d20e3f42f6c8a945b3": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:40.724684+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Banedanmark expects to publish a tender for acquiring a Possession Planning System in 2Q-3Q 2026. To be sure that the process for tender and the contract is aligned with the capabilities of the market, Banedanmark wishes to invite potential vendors for a written market dialogue and potentially a subsequent verbal hearing, if deemed necessary, regarding the upcoming tender. The purpose of the market dialogue is to get the markets feedback on the scope and if it is aligned with the market regarding the composition of the products/services and the commercial conditions. In that way Banedanmark will be able to optimize the tender material accordingly to how the market is today before announcing the tender. The market dialogue process is the following: Banedanmark has attached an appendix to this document, which Banedanmark request the potential vendors to answer and return via EU-Supply. ● Appendix 1 Questionnaire and answers (Potential vendors is requested fill out this document). The potential vendors is requested to return their answers through EU-Supply not later than 06.04.2026, but preferably before if possible. The topics in Appendix 1 will provide the questions for the market dialogue. Depending on the answers, Banedanmark will have the option to invite potential vendors to a digital meeting via Microsoft Teams. The selection of potential vendors for such a meeting will be based on criteria to secure a representative sample of the market, and the purpose will be to discuss the answers and possible implications."
+          },
+          "source": "Banedanmark expects to publish a tender for acquiring a Possession Planning System in 2Q-3Q 2026. To be sure that the process for tender and the contract is aligned with the capabilities of the market, Banedanmark wishes to invite potential vendors for a written market dialogue and potentially a subsequent verbal hearing, if deemed necessary, regarding the upcoming tender. The purpose of the market dialogue is to get the markets feedback on the scope and if it is aligned with the market regarding the composition of the products/services and the commercial conditions. In that way Banedanmark will be able to optimize the tender material accordingly to how the market is today before announcing the tender. The market dialogue process is the following: Banedanmark has attached an appendix to this document, which Banedanmark request the potential vendors to answer and return via EU-Supply. ● Appendix 1 Questionnaire and answers (Potential vendors is requested fill out this document). The potential vendors is requested to return their answers through EU-Supply not later than 06.04.2026, but preferably before if possible. The topics in Appendix 1 will provide the questions for the market dialogue. Depending on the answers, Banedanmark will have the option to invite potential vendors to a digital meeting via Microsoft Teams. The selection of potential vendors for such a meeting will be based on criteria to secure a representative sample of the market, and the purpose will be to discuss the answers and possible implications."
+        }
+      ],
+      "protected_names": [
+        "Banedanmark"
+      ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "0affcd488d53c5bde1348812aba56aedb371a966026da76a406802bfc34c73a2": {
       "parts": [
@@ -9555,6 +9659,31 @@
             "text": "Market consultation for the procurement of an online whiteboard system"
           },
           "source": "Markterkundung zur Beschaffung eines Online‐Whiteboard-Systems"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "0d00b9db7f5ac9ed7e9f387a6bc94048eecf211ebf4471ef3f976b866fcbaefa": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:40.739938+00:00",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Request for information: Payment transaction, archiving and liquidity management system"
+          },
+          "source": "Tietopyyntö: Maksuliikenne-, arkistointi- ja likviditeetinhallintajärjestelmä"
         }
       ],
       "protected_names": [],
@@ -13016,6 +13145,31 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "113e52a6a82d3a3298c7469ce0ab45f352aadb7aebc38e16d5d56c1c6ec3faa7": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:40.720581+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Service contract for the provision of a managed platform for the exchange of financial information."
+          },
+          "source": "Contrato de servicios para la provisión de una plataforma gestionada para el intercambio de información financiera."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "11410c7dae11bed0fb9e77eab589297645749f6b0d9e84a29f6fbe66dccabe43": {
@@ -17241,6 +17395,31 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "17156bba4d943f9cae2aedbe7a37d7876a035b352b6a9c012df49c55aeb5468d": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:40.739720+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Anska, procurements in Akershus, Buskerud and Østfold municipal task partnership invites to inputs for Akershus public transport terminals FKF ́s pending procurement of a digital interaction and management platform."
+          },
+          "source": "Anska, procurements in Akershus, Buskerud and Østfold municipal task partnership invites to inputs for Akershus public transport terminals FKF ́s pending procurement of a digital interaction and management platform."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "171c74412c69416091ec836b41e3ebade4977fd30c49ef8adcf39d810625b82c": {
       "parts": [
         {
@@ -17279,6 +17458,31 @@
         }
       ],
       "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "1740cc9f2afdf57f37416905128e6b7eb9ad6e819ab381e8e1a08035c2a46c1b": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:17.043606+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Services of a cybersecurity partner to conduct comprehensive penetration testing and security assessment engagement across Cairn Housing Association's digital infrastructure, applications and operational processes, in support of our information security programme and its obligations under regulatory frameworks including GDPR, ISO27001, PCI DSS, NIS and Cyber Essentials Plus Lot 1: . As per appended Invitation to Tender"
+          },
+          "source": "Services of a cybersecurity partner to conduct comprehensive penetration testing and security assessment engagement across Cairn Housing Association's digital infrastructure, applications and operational processes, in support of our information security programme and its obligations under regulatory frameworks including GDPR, ISO27001, PCI DSS, NIS and Cyber Essentials Plus Lot 1: . As per appended Invitation to Tender"
+        }
+      ],
+      "protected_names": [
+        "Cairn Housing Association"
+      ],
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
@@ -21948,6 +22152,31 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "1e1da5ddd1ca8876ca892ce8a5417b8f3fc84ac455756f3de2d93b495155a5bc": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:40.745177+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Rapid Response Team (RRT) Cooperative Agreement"
+          },
+          "source": "Rapid Response Team (RRT) Cooperative Agreement"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "1e20c7a08d760125a82264f711743a1bfdd959e4f03e4ab92ec2f99b88b12d9d": {
       "parts": [
         {
@@ -22040,6 +22269,29 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "1e5be51bcba1cc3adb37f716e4e4eafe8364c5378b3e4f21312f5941513a6f30": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:17.040682+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Kent Fire and Rescue Service (KFRS) is exploring options for a Project Portfolio Management (PPM) solution to support the planning, management, oversight and reporting of projects and programmes across the organisation. KFRS is open to different solution and delivery models, including established Software as a Service (SaaS) products and Microsoft/Power Platform-based solutions. Please note: For the purposes of this market engagement, KFRS is only seeking responses in respect of solutions which are currently available for procurement through an existing Government Commercial Agency (GCA) framework (formerly CCS). Suppliers should identify the relevant framework, Lot (where applicable) and service/solution listing within their response. The purpose of this exercise is to undertake a short and proportionate test of the market before KFRS determines its procurement strategy and route to market. In particular, KFRS wishes to understand: •what potentially suitable solutions are available within or around the stated affordability envelope; •the broad alignment of available products with KFRS's functional and technical requirements; •the different solution and service models available and the respective responsibilities of KFRS and the supplier; •indicative licensing/subscription, implementation, support and ongoing configuration/development costs; •the extent to which solutions allow KFRS to retain appropriate control and portability of its organisational data; •any observations from the market which may help KFRS refine its requirements; and •the specific GCA/CCS framework, Lot and/or service listing through which the proposed solution can be procured. Nature of this Exercise This is a preliminary market engagement exercise and not a competitive procurement or invitation to tender. The functional and technical requirements provided with this brief represent KFRS's current understanding of its needs. They are being provided to give suppliers sufficient information to determine whether they have a product or solution that could potentially meet the requirement. Suppliers are not required to provide a detailed response against each individual requirement or complete the requirements schedules on a line-by-line basis. Responses will not be evaluated or scored as tender submissions. Instead, KFRS is seeking a brief, high-level response that will enable us to understand whether a proposed solution appears sufficiently aligned with our needs to warrant further exploration. KFRS would also welcome constructive feedback on the requirements themselves. This may include identifying areas which would benefit from clarification, or alternative approaches or current market capabilities which KFRS should consider. Please respond via the Kent Business Portal. Additional information: The contracting authority considers that this contract may be suitable for economic operators that are small or medium enterprises (SMEs). However, any selection of tenderers will be based solely on the criteria set out for the procurement."
+          },
+          "source": "Kent Fire and Rescue Service (KFRS) is exploring options for a Project Portfolio Management (PPM) solution to support the planning, management, oversight and reporting of projects and programmes across the organisation. KFRS is open to different solution and delivery models, including established Software as a Service (SaaS) products and Microsoft/Power Platform-based solutions. Please note: For the purposes of this market engagement, KFRS is only seeking responses in respect of solutions which are currently available for procurement through an existing Government Commercial Agency (GCA) framework (formerly CCS). Suppliers should identify the relevant framework, Lot (where applicable) and service/solution listing within their response. The purpose of this exercise is to undertake a short and proportionate test of the market before KFRS determines its procurement strategy and route to market. In particular, KFRS wishes to understand: •what potentially suitable solutions are available within or around the stated affordability envelope; •the broad alignment of available products with KFRS's functional and technical requirements; •the different solution and service models available and the respective responsibilities of KFRS and the supplier; •indicative licensing/subscription, implementation, support and ongoing configuration/development costs; •the extent to which solutions allow KFRS to retain appropriate control and portability of its organisational data; •any observations from the market which may help KFRS refine its requirements; and •the specific GCA/CCS framework, Lot and/or service listing through which the proposed solution can be procured. Nature of this Exercise This is a preliminary market engagement exercise and not a competitive procurement or invitation to tender. The functional and technical requirements provided with this brief represent KFRS's current understanding of its needs. They are being provided to give suppliers sufficient information to determine whether they have a product or solution that could potentially meet the requirement. Suppliers are not required to provide a detailed response against each individual requirement or complete the requirements schedules on a line-by-line basis. Responses will not be evaluated or scored as tender submissions. Instead, KFRS is seeking a brief, high-level response that will enable us to understand whether a proposed solution appears sufficiently aligned with our needs to warrant further exploration. KFRS would also welcome constructive feedback on the requirements themselves. This may include identifying areas which would benefit from clarification, or alternative approaches or current market capabilities which KFRS should consider. Please respond via the Kent Business Portal. Additional information: The contracting authority considers that this contract may be suitable for economic operators that are small or medium enterprises (SMEs). However, any selection of tenderers will be based solely on the criteria set out for the procurement."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "1e5e3d11ead5c1479be7f584820322eb24b590d8f3a7260072f2718c5317bda8": {
@@ -33566,6 +33818,31 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "2e67743880b819f0ed537d519b2b922fc40d692f1c9c55757cb2ca62223d9eae": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:17.028051+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "PROVISION OF PAYMENT PLATFORM - UNIVERSITY OF ABERDEEN"
+          },
+          "source": "PROVISION OF PAYMENT PLATFORM - UNIVERSITY OF ABERDEEN"
+        }
+      ],
+      "protected_names": [
+        "University of Aberdeen"
+      ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "2e6e98d9a286d469145c49760b0be5fde05337f01a23f8060e0979152af4b64c": {
       "parts": [
         {
@@ -33881,6 +34158,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "2ef3166fddf9054bc1f5108914738b038a17cbc45c3185330f7f144f5f1e7dc1": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:17.041356+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Viability Assessment"
+          },
+          "source": "Viability Assessment"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "2f0feff5557e54c2c0cfaa2f5d0fb2df326cc6d6186aee0f76d2c6154c853b28": {
       "parts": [
         {
@@ -34022,6 +34322,31 @@
             "text": "Cybersecurity office service in the Ministry of Culture, within the scope of the information systems managed by the Information Technology Division"
           },
           "source": "Servicio de oficina de ciberseguridad en el ministerio de cultura, en el ámbito de los sistemas de información gestionados por la División de Tecnologías de la Información"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "2f520280d4e16df24a45aa72c711a356721c1535523de55a387104a175287638": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:40.732234+00:00",
+            "language": "sv",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Property technical consultancy services - Dynamic Purchasing System (DPS)"
+          },
+          "source": "Fastighetstekniska konsulttjänster - Dynamiskt inköpssystem (DIS)"
         }
       ],
       "protected_names": [],
@@ -36690,6 +37015,31 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "33411083b311210372ca26df1c190795332081f4d1a2e0d00592a9afefa67b5c": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:40.725742+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Studies on strategic tourism planning"
+          },
+          "source": "Estudios de planificación estratégica turística"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "3349840d40e0a7307e4d1cae1233b69a5730fefdd675e31a6fb7b23305c9e01b": {
       "parts": [
         {
@@ -38412,6 +38762,31 @@
             "text": "Dynamic Purchasing System (DPS): Expert services for rail traffic management product development 2026-2041"
           },
           "source": "Dynaaminen hankintajärjestelmä (DPS): Raideliikenteenohjauksen tuotekehityksen asiantuntijapalvelut 2026-2041"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "35c8424d5a5230002e090d4e4231a84ae77a182d6883a949e51e3c68a9ce8b7c": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:40.730431+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Services for the consolidation and evolution of digital transformation in the local entities of the province of A Coruña and functional and technological evolution of platforms, within the framework of the CONCELLO DIXITAL project"
+          },
+          "source": "Servicios de consolidación y evolución de la transformación digital en las entidades locales de la provincia de A Coruña y evolución funcional y tecnológica de plataformas, en el marco del proyecto CONCELLO DIXITAL"
         }
       ],
       "protected_names": [],
@@ -42500,6 +42875,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "3b794eb8733f85c77407c5c0f9cab9537aa283c52ad105eeac8cc6447846b0bd": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:17.047944+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "A national programme is being established to encourage increased levels of physical activity and sustained participation in movement across England. The programme comprises a number of complementary workstreams, including marketing and communications, partnerships and engagement, rewards and recognition, educational content, and a digital component intended to support participation, engagement and long-term habit formation. The contracting authority is considering the future procurement of a supplier to design, build, operate and support the digital elements of the programme. A digital discovery exercise is currently underway and will provide an evidence-based recommendation for the future digital service, including user needs, service design, delivery approach and implementation roadmap. Whilst the final solution has not yet been determined, the discovery is expected to narrow the scope significantly and provide sufficient detail to support rapid delivery. The digital service may comprise a digital product, web-based service, social and community capability, AI-enabled engagement service, integration with existing consumer platforms, or a combination of these approaches. The successful supplier will be expected to take the outputs of the discovery phase through detailed design, build, deployment and live operation. The appointed supplier will work alongside other specialist partners responsible for marketing, communications, partnerships, rewards and wider programme delivery. The role of the digital supplier will be to translate programme objectives into effective digital services and experiences rather than duplicate functions delivered elsewhere within the programme. The programme is operating to ambitious timescales, with an initial digital capability expected to be launched before the end of 2026 and subsequently enhanced through live operation. The authority is therefore interested in engaging with suppliers who can demonstrate experience of delivering, operating and evolving user-centred digital services at pace. Additional information: HI NENC would like to invite potential providers of Digital services to apply to our Dynamic Purchasing System (DPS) DN670401 as a supplier. If your company is not registered with the Proactis (ProContract) Due North Portal, click on this link Supplier registration (due-north.com) and complete your organisation name and email address and continue your registration. If you are already registered on the portal, log in as normal. In the \"search\" box in upper right-hand corner, type in DN670401 (this is the HI NENC DPS reference number). This opportunity will be developed as a further competition under Lot 5 of our DPS. You should therefore ensure you apply to Lot 5 to be able to bid to provide this service. You are also welcome to apply for any other Lots on our DPS that you feel are relevant to your organisation. Should we decide to proceed to procurement, we are expecting to publish the Invitation to Quote to our Lot 5 suppliers towards the end of July 2026. This timeline is subject to change. Interested suppliers are advised to apply to the DPS promptly to ensure they have been accepted to the framework and receive the competition notification. This notice is for information and engaging with the supply market only. It is not a binding statement of intent or call for competition. HI NENC reserves the right not to enter a formal procurement process and not award a contract. The information contained in this notice, including information relating to the nature and scope of the requirements, the service classification of this requirement from the list of CPV codes, is only indicative of the HI NENC's current thinking and is neither exhaustive nor binding. HI NENC reserves the right at its absolute discretion to amend it at the time of issue of any further notices or at any other time. HI NENC will not be liable for any bid cost, expenditure, work or effort incurred by a potential supplier in acting on the basis of this PIN"
+          },
+          "source": "A national programme is being established to encourage increased levels of physical activity and sustained participation in movement across England. The programme comprises a number of complementary workstreams, including marketing and communications, partnerships and engagement, rewards and recognition, educational content, and a digital component intended to support participation, engagement and long-term habit formation. The contracting authority is considering the future procurement of a supplier to design, build, operate and support the digital elements of the programme. A digital discovery exercise is currently underway and will provide an evidence-based recommendation for the future digital service, including user needs, service design, delivery approach and implementation roadmap. Whilst the final solution has not yet been determined, the discovery is expected to narrow the scope significantly and provide sufficient detail to support rapid delivery. The digital service may comprise a digital product, web-based service, social and community capability, AI-enabled engagement service, integration with existing consumer platforms, or a combination of these approaches. The successful supplier will be expected to take the outputs of the discovery phase through detailed design, build, deployment and live operation. The appointed supplier will work alongside other specialist partners responsible for marketing, communications, partnerships, rewards and wider programme delivery. The role of the digital supplier will be to translate programme objectives into effective digital services and experiences rather than duplicate functions delivered elsewhere within the programme. The programme is operating to ambitious timescales, with an initial digital capability expected to be launched before the end of 2026 and subsequently enhanced through live operation. The authority is therefore interested in engaging with suppliers who can demonstrate experience of delivering, operating and evolving user-centred digital services at pace. Additional information: HI NENC would like to invite potential providers of Digital services to apply to our Dynamic Purchasing System (DPS) DN670401 as a supplier. If your company is not registered with the Proactis (ProContract) Due North Portal, click on this link Supplier registration (due-north.com) and complete your organisation name and email address and continue your registration. If you are already registered on the portal, log in as normal. In the \"search\" box in upper right-hand corner, type in DN670401 (this is the HI NENC DPS reference number). This opportunity will be developed as a further competition under Lot 5 of our DPS. You should therefore ensure you apply to Lot 5 to be able to bid to provide this service. You are also welcome to apply for any other Lots on our DPS that you feel are relevant to your organisation. Should we decide to proceed to procurement, we are expecting to publish the Invitation to Quote to our Lot 5 suppliers towards the end of July 2026. This timeline is subject to change. Interested suppliers are advised to apply to the DPS promptly to ensure they have been accepted to the framework and receive the competition notification. This notice is for information and engaging with the supply market only. It is not a binding statement of intent or call for competition. HI NENC reserves the right not to enter a formal procurement process and not award a contract. The information contained in this notice, including information relating to the nature and scope of the requirements, the service classification of this requirement from the list of CPV codes, is only indicative of the HI NENC's current thinking and is neither exhaustive nor binding. HI NENC reserves the right at its absolute discretion to amend it at the time of issue of any further notices or at any other time. HI NENC will not be liable for any bid cost, expenditure, work or effort incurred by a potential supplier in acting on the basis of this PIN"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "3b8c111b94ec65d6873821c58c352eb92efddbb542062a0f890f8ee0652ae6ce": {
       "parts": [
         {
@@ -43915,6 +44313,31 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "3d7395c8c0ac6c7bbbf048dd757f0d998b35159546e24df412ac0db9d4ebbcc1": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:40.727473+00:00",
+            "language": "da",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Prior information notice regarding upcoming retendering of eIndkomst"
+          },
+          "source": "Forhåndsmeddelelse om kommende genudbud af eIndkomst"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "3d80a8de9d4e63b3f6dc019b0d007cf515d51ad918f1d5789f451f097cf6881f": {
@@ -47721,6 +48144,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "43123206481d1526065c8dafed03ffcafe24620a021eee956cf084e2e90b0b65": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:42.727634+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Borough Council of Kings Lynn and West Norfolk"
+          },
+          "source": "Borough Council of Kings Lynn and West Norfolk"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "43124889666a0f2e2d34ef0e2b8eebc58ccc9d3f2b271fa1edbe81d02d790208": {
       "parts": [
         {
@@ -50313,6 +50759,31 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "46f483af3cbf70332684440997c7ecaa371b42f4e0455f1d30e37f60ed6bb25b": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:40.739811+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Implementation and Maintenance of the CMS and News Website"
+          },
+          "source": "Implementación y Mantenimiento del CMS y Sitio Web Noticias"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "46f643c3786c10e1a38a7660f81ce90113354d850e58a893ff48693f3899ab8c": {
       "parts": [
         {
@@ -51156,6 +51627,33 @@
         }
       ],
       "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "4839470fb0d458a09b131bae506438de306c7dc2c747315a7ab1acbe9e1c8b7b": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:40.721288+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Service for the administration, maintenance and evolution of the Fiware-based Smart Region platform of the Diputación de Barcelona"
+          },
+          "source": "Servicio para la administración, mantenimiento y evolución de la plataforma Smart Region basada en Fiware de la Diputación de Barcelona"
+        }
+      ],
+      "protected_names": [
+        "DIPUTACIÓN DE BARCELONA"
+      ],
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
@@ -62478,6 +62976,31 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "5892403831444065d8e521cc22f7561ccdab01582a254587caef3f34f8853759": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:40.723503+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Request for Information (RFI) for market dialogue for Possession Planning System"
+          },
+          "source": "Request for Information (RFI) for market dialogue for Possession Planning System"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "58b469c1134d7d7d6db004c901103af81a006650017c7316cf5e9db03eaf9b16": {
       "parts": [
         {
@@ -63522,6 +64045,29 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "59ef08ceb051f6f34368059b897dc3312a4974c59b2b11a9d87eda1fc9fb641a": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:17.028644+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Independent Evaluation of the Better Security, Better Care Programme (October 2025 to October 2028)"
+          },
+          "source": "Independent Evaluation of the Better Security, Better Care Programme (October 2025 to October 2028)"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "5a136aec4d764dcc7268e7899cccdd0fe524569852f87913d4a5b3c2e318e455": {
@@ -67470,6 +68016,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "6065c418df81f9afcbd1d667630da012f631a4c79bbbc1aa77e0753757b00531": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:42.728346+00:00",
+            "language": "da",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Tax Administration"
+          },
+          "source": "Skatteforvaltningen"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "6075892c2aa2cbfc9f173d74153ae16d72a69dc95e8d7205d11fb5f1db8f3051": {
       "parts": [
         {
@@ -68134,6 +68703,29 @@
       ],
       "protected_names": [],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "614ebac45467b5cf7ba8bfb70b3be7fd56ab5e639f2a96a792a9af28f59f622b": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:42.727546+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Kent & Medway Town Fire Authority"
+          },
+          "source": "Kent & Medway Town Fire Authority"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "61509530789c7bf645900bd645e2cedf22071e3eb8ff378b63719c9a171913f0": {
@@ -70328,6 +70920,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "64b272884558d1ce1d145e7f3e1c84c93bf60ee2d6fdcc628a67037c3bcd3021": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:17.041923+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "In June 2026, the Borough Council began the process of producing the next Local Plan, which will cover the period 2026-2044. To support the Local Plan preparation, the Council will need to renew or update its current evidence base. As part of updating the evidence base, a new “whole plan” Viability Assessment is required, to provide a policy-by-policy assessment of Local Plan policy obligations and site-specific proposals. For more information about this opportunity, please visit the eSourcing portal at: https://www.delta-esourcing.com/tenders/UK-UK-King%27s-Lynn:-Quantity-surveying-services./4C273E8949 To respond to this opportunity, please click here: https://www.delta-esourcing.com/respond/4C273E8949 Lot 1: . None"
+          },
+          "source": "In June 2026, the Borough Council began the process of producing the next Local Plan, which will cover the period 2026-2044. To support the Local Plan preparation, the Council will need to renew or update its current evidence base. As part of updating the evidence base, a new “whole plan” Viability Assessment is required, to provide a policy-by-policy assessment of Local Plan policy obligations and site-specific proposals. For more information about this opportunity, please visit the eSourcing portal at: https://www.delta-esourcing.com/tenders/UK-UK-King%27s-Lynn:-Quantity-surveying-services./4C273E8949 To respond to this opportunity, please click here: https://www.delta-esourcing.com/respond/4C273E8949 Lot 1: . None"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "64bc16b1ef9d20f49dcaea496df6e66db7db0bea3211d17c6104feb5356c557c": {
       "parts": [
         {
@@ -72078,6 +72693,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "67632731fa47d4bb2d11b7ce240ceadb58706d28977b59ce3c6bb67923a4398e": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:42.726599+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Better Security Better Care"
+          },
+          "source": "Better Security Better Care"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "67728498edfa9c7721a8644003f53b22ac6c3424a0600a9b66f96ccb7bb09912": {
       "parts": [
         {
@@ -73085,6 +73723,31 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "68d7eecc5303dcc12fdfc16658790e7b096bf44e3fbef829cc2d47cb37877ebd": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:40.721138+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The purpose of the contract is the provision of services for supplying a financial information exchange platform based on the Editran product, with the following scope: a. Corrective and adaptive maintenance of the platform. b. Management and operation of the platform, including the resolution of incidents that may occur in its operation. c. Support for the resolution of incidents that have occurred, both in data transfer and in data entry or exit processes in/from the platform in its relationship with the systems of the City Council of Madrid. d. Documentation and training regarding the operation and troubleshooting of the offered solution."
+          },
+          "source": "El objeto del contrato consiste en la prestación de servicios de provisión de una plataforma de intercambio de información financiera que se apoya en el producto Editran, con el siguiente alcance: a. Mantenimiento correctivo y adaptativo de la plataforma. b. Gestión y operación de la plataforma, incluyendo la resolución de las incidencias que puedan producirse en su operativa. c. Soporte para la resolución de incidencias ocurridas, tanto en la transferencia de datos como en los procesos de entrada o salida de los datos en/desde la plataforma en su relación con los sistemas del Ayuntamiento de Madrid. d. Documentación y formación acerca de la operación y resolución de problemas sobre la solución ofertada."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "68dc890f8b6a5a3f693022b10aa348f18e03cac55d2e1ca6c99b2f0442067090": {
@@ -75107,6 +75770,29 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "6bf95559c7447a5c1bf06bc172e96729b2ef5d888c4a9eaac3615608083d2178": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:17.028514+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Provision of an enterprise online payment platform and associated payment processing services, including software-as-a-service (SaaS), merchant services, payment gateway functionality, online store capability, implementation, integration, support, maintenance and associated professional services Lot 1: . Provision of an enterprise online payment platform and associated payment processing services, including software-as-a-service (SaaS), merchant services, payment gateway functionality, online store capability, implementation, integration, support, maintenance and associated professional services"
+          },
+          "source": "Provision of an enterprise online payment platform and associated payment processing services, including software-as-a-service (SaaS), merchant services, payment gateway functionality, online store capability, implementation, integration, support, maintenance and associated professional services Lot 1: . Provision of an enterprise online payment platform and associated payment processing services, including software-as-a-service (SaaS), merchant services, payment gateway functionality, online store capability, implementation, integration, support, maintenance and associated professional services"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "6bfa28dcb79b2df9d6fc540155a1124ed62d65c4ccf635ce37dc24460a870588": {
@@ -81766,6 +82452,31 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "7512adee9d83f1b8e2165b91341c8e5938bc42c45416fc39bffc10a935bbd5ca": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:40.739518+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "RFI - procurement of a digital interaction and management platform."
+          },
+          "source": "RFI - procurement of a digital interaction and management platform."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "75139cbd9d6cddaef09af965d37e9a0691f2be224cb6b7c67614a99581940507": {
       "parts": [
         {
@@ -87466,6 +88177,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "7e0b823fb0ef063c5628047ef554bcf456bdf840ccfae88f04fefcc91b4746b6": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:42.728433+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Presidency of the Provincial Council of A Coru\u0011a"
+          },
+          "source": "Presidencia de la Diputación Provincial de A Coruña"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "7e1347bfe7c955f90a035c35b1d02461c274c5ae304670548e4e6902675ef8e9": {
       "parts": [
         {
@@ -90481,6 +91215,31 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "821bb5798c634d86e135510f91a83626cce68726c4c4d87a4e861392a086dcba": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:40.745887+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The purpose of the NOFO is to facilitate long-term improvements and innovation to the national integrated food safety system by unifying and coordinating federal/state/local human and animal food (HAF) emergency response efforts including: 1) Strengthening the link among epidemiology, lab, and environmental health/regulatory components; 2) Improving States' regulatory and surveillance HAF protection programs to include using Incident Command System (ICS)/National Incident Management System (NIMS) principles and a Unified Command structure to conduct integrated responses to all-hazards HAF emergencies, rapidly identifying and removing tainted food from commerce, and conducting root cause investigations to inform future prevention efforts; and 3) Addressing supporting components, such as training, data sharing, data analysis, communications, continuous process improvement, and development of best practices and other resources to support national capacity/capability development.."
+          },
+          "source": "The purpose of the NOFO is to facilitate long-term improvements and innovation to the national integrated food safety system by unifying and coordinating federal/state/local human and animal food (HAF) emergency response efforts including: 1) Strengthening the link among epidemiology, lab, and environmental health/regulatory components; 2) Improving States' regulatory and surveillance HAF protection programs to include using Incident Command System (ICS)/National Incident Management System (NIMS) principles and a Unified Command structure to conduct integrated responses to all-hazards HAF emergencies, rapidly identifying and removing tainted food from commerce, and conducting root cause investigations to inform future prevention efforts; and 3) Addressing supporting components, such as training, data sharing, data analysis, communications, continuous process improvement, and development of best practices and other resources to support national capacity/capability development.."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "821e76e4ac923c23af12166fcc3f6b901a0e3df070005e7fd958540d862540a5": {
       "parts": [
         {
@@ -92270,6 +93029,33 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "845c0951903de525964b9f180c9dd2931807377d1e4bbea13f211957d17353ae": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:40.728594+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Comprehensive management solution for the sectoral libraries of the Diputación de Barcelona using the KOHA open-source software platform"
+          },
+          "source": "Solución integral de gestión de las bibliotecas sectoriales de la Diputación de Barcelona de la plataforma de software libre KOHA"
+        }
+      ],
+      "protected_names": [
+        "DIPUTACIÓN DE BARCELONA"
+      ],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "846228e9c7fdc9cc2477ce3c07670120fd9103d9bf3b1f30620ae996c8763bba": {
@@ -105559,6 +106345,31 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "96778e9d62848149b5ac12aa0cebb4cd5a89ec2e0adfd14dc98df9c26cea2507": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:40.743374+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Development and Maintenance of Human and Animal Food Rapid Response Teams (U2F) Clinical Trials Not Allowed"
+          },
+          "source": "Development and Maintenance of Human and Animal Food Rapid Response Teams (U2F) Clinical Trials Not Allowed"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "968b4a3df45d36619db7e35340b27b6aa10c1bcb07ba5534157253cdce2e2ee0": {
       "parts": [
         {
@@ -107450,6 +108261,29 @@
             "text": "Invitation to market dialogue regarding SAP RISE"
           },
           "source": "Invitation til markedsdialog vedrørende SAP RISE"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "992caef5a82ffe3aab57617116284a07843ef02b9f86225e79e722bc94dfcbd0": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:17.043177+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Penetration Testing and Cybersecurity Assessment"
+          },
+          "source": "Penetration Testing and Cybersecurity Assessment"
         }
       ],
       "protected_names": [],
@@ -110347,6 +111181,33 @@
       ],
       "protected_names": [
         "Ministry of Defence"
+      ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "9d3001f7479d0a841ec7605619b102a4a81382b0ec8dededfb555de852cd4fe4": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:40.743240+00:00",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "THIS IS NOT A PROCUREMENT NOTICE OR A CALL FOR TENDERS BUT A REQUEST FOR INFORMATION FOR MARKET SURVEY AND TECHNICAL DIALOGUE. HUS-yhtymä (hereinafter also the contracting authority) is surveying the market with this request for information to support the planning of a potential procurement of a payment transaction, archiving and liquidity management system. The purpose of the request for information is to survey the suppliers on the market and their product and service range. The objective is to obtain information on, among other things, various technical solutions, functionalities and pricing models. The subject of the procurement is described in more detail in the attached document (available on the Tarjouspalvelu.fi portal via the adjacent link). We ask suppliers interested in the procurement to familiarise themselves with the preliminary requirements presented in the attached document and to describe your offered solutions taking the said requirements into account. You may, if you wish, also attach brochures or other information about your offered products and services to your response. We ask that responses to the request for information be submitted by 26.3.2026 to kilpailutus.ict@hus.fi. The subject line of the message should state \"HUS 166-2026: Payment transaction, archiving and liquidity management system\". The responses given to this request for information may be used in the planning of the procurement. The contracting authority may, at its discretion, suggest clarifying market dialogue discussions with those who have responded to this request for information. Please note that all material is intended solely for conducting this market dialogue. The contracting authority will treat your response confidentially. The contracting authority does not initiate a tendering procedure by publishing the request for information, but a potential procurement notice and call for tenders will be published later. The request for information does not oblige the contracting authority to carry out the actual procurement. Responding to the request for information is not a prerequisite for participation in a later tendering procedure that may be organised. Suppliers are not paid compensation for responding to the request for information or participating in the market dialogue."
+          },
+          "source": "TÄMÄ EI OLE HANKINTAILMOITUS TAI TARJOUSPYYNTÖ VAAN TIETOPYYNTÖ MARKKINAKARTOITUSTA JA TEKNISTÄ VUOROPUHELUA VARTEN. HUS-yhtymä (jäljempänä myös hankintayksikkö) kartoittaa tämän tietopyynnön avulla markkinoita mahdollisen maksuliikenne-, arkistointi- ja likviditeetinhallintajärjestelmän hankinnan suunnittelun tueksi. Tietopyynnön tarkoituksena on kartoittaa markkinoilla olevia toimittajia sekä heidän tuote- ja palveluvalikoimaansa. Tavoitteena on saada tietoa mm. erilaisista teknisistä ratkaisuista, toiminnallisuuksista ja hinnoittelumalleista. Hankinnan kohdetta on kuvattu tarkemmin liitteenä olevassa asiakirjassa (saatavilla Tarjouspalvelu.fi-portaalista oheisen linkin kautta). Pyydämme hankinnasta kiinnostuneita toimittajia tutustumaan oheisessa liitteessä esitettyihin alustaviin vaatimuksiin ja kertomaan tarjoamistanne ratkaisuista mainitut vaatimukset huomioiden. Voitte halutessanne liittää vastaukseenne myös esitteitä tai muuta tietoa tarjoamistanne tuotteista ja palveluista. Pyydämme toimittamaan vastaukset tietopyyntöön 26.3.2026 mennessä osoitteeseen kilpailutus.ict@hus.fi. Viestin aiheeksi maininta \"HUS 166-2026: Maksuliikenne-, arkistointi- ja likviditeetinhallintajärjestelmä\". Tähän tietopyyntöön annettuja vastauksia voidaan käyttää hankinnan suunnittelussa. Hankintayksikkö voi harkintansa mukaan ehdottaa tarkentavia markkinavuoropuhelukeskusteluja tähän tietopyyntöön vastanneiden kanssa. Pyydämme huomioimaan, että kaikki materiaali on tarkoitettu ainoastaan tämän markkinavuoropuhelun käymiseen. Hankintayksikkö käsittelee vastauksenne luottamuksellisesti. Hankintayksikkö ei aloita tietopyynnön julkaisulla tarjouskilpailua, vaan mahdollinen hankintailmoitus ja tarjouspyyntö julkaistaan myöhemmin. Tietopyyntö ei velvoita hankintayksikköä toteuttamaan varsinaista hankintaa. Tietopyyntöön vastaaminen ei ole edellytys myöhempään mahdollisesti järjestettävään tarjouskilpailuun osallistumiselle. Toimittajille ei makseta korvausta tietopyyntöön vastaamisesta tai markkinavuoropuheluun osallistumisesta."
+        }
+      ],
+      "protected_names": [
+        "HUS-yhtymä"
       ],
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
@@ -131280,6 +132141,31 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "ba81b779f1707da0d3722cf64deed8ef0fc88f300add34952f508a423b8b11f0": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:40.728451+00:00",
+            "language": "da",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The Danish Agency for Data Supply and Efficiency (UFST) expects to publish a tender for eIndkomst in late April 2026. To attract as many qualified tenderers as possible, this prior information notice is published, among other things, with the aim of addressing technical barriers, including legacy technology, the risk allocation during the transition, and the balance between stable operations and modern further development."
+          },
+          "source": "Udviklings- og Forenklingsstyrelsen (UFST) forventer at offentliggøre udbud af eIndkomst ultimo april 2026. For at tiltrække flest mulige kvalificerede tilbudsgivere offentliggøres denne forhåndsmeddelelse bl.a. med henblik på at adressere de tekniske barrierer, herunder legacy-teknologi, risikofordelingen ved transitionen og balancen mellem stabil drift og moderne videreudvikling."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "ba8ac12c1ffc6bfd23055fc1c6f6728adcc5cc4d3bc69d550a52abbbfb4db666": {
       "parts": [
         {
@@ -139606,6 +140492,31 @@
             "text": "Survey - The Three-Year Panel"
           },
           "source": "Enkätundersökning - Treårspanelen"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "c59d44b1674f164bf699d3cf6b8c75f1ef13d09cf85356f40c31ebe88835df0d": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:40.739414+00:00",
+            "language": "sv",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Trafikverket's property department manages approx. 630 buildings owned by Trafikverket and technical buildings/premises numbering approx. 1500. The majority of this is connected to railways with buildings such as engine sheds, signal towers, staff buildings and offices rented by track maintenance contractors or other railway-related companies. The property portfolio is divided according to Trafikverket's regional division and each region is managed by a property manager. In addition to Trafikverket's property department, Trafikverket Investering carries out measures on properties not owned by Trafikverket. The majority of these consist of noise-reducing measures, such as window replacements, local screens or similar. 1. Control officer 2. Architect/Accessibility 3. Installation consultant 4. Fire consultant 5. Structural engineer 6. Project manager 7. Construction manager 8. Building structural engineer 9. Acoustician 10. Energy consultant/Environmental consultant 11. Project engineer 12. Cost engineer 13. Design manager 14. Moisture expert; 15. Building inspector 16. Building inspector - Certified; 17. AFF specialist; 18. Client representative 19. Specialist installation consultant electrical power 20. Specialist installation consultant cooling 21. Specialist structural engineer 22. Specialist construction manager"
+          },
+          "source": "Trafikverkets fastighetsavdelning förvaltar ca 630 byggnader som ägs av Trafikverket samt teknikbyggnader/lokaler om ca 1500 stycken. Merparten av detta är kopplat till järnväg med byggnader som lokstall, rangertorn, personalbyggnader och kontor som hyrs av bandriftsentreprenörer eller andra järnvägsanknutna företag. Byggnadsbeståndet är uppdelat efter Trafikverkets regionindelning och varje region förvaltas av en förvaltare. Utöver Trafikverkets fastighetsavdelning så utför Trafikverket Investering åtgärder på fastigheter som inte ägs av Trafikverket. Merparten av dessa utgörs av bullerdämpande åtgärder, exempelvis fönsterbyten, lokala skärmar eller liknande. 1. Kontrollansvarig 2. Arkitekt/Tillgänglighet 3. Installationskonsult 4. Brandkonsult 5. Byggnadsingenjör 6. Projektledare 7. Byggledare 8. Byggnadskonstruktör 9. Akustiker 10. Energikonsult/Miljökonsult 11. Projektingenjör 12. Kalkylingenjör 13. Projekteringsledare 14. Fuktsakkunnig; 15. Besiktningsman Hus 16. Besiktningsman Hus - Cerifierad; 17. AFF-specialist; 18. Byggherreombud 19. Specialist Installationskonsult Elkraft 20. Specialist Installationskonsult Kyla 21. Specialist Byggnadsingenjör 22. Specialist Byggledare"
         }
       ],
       "protected_names": [],
@@ -153613,6 +154524,31 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "d98833eaf42208d9ce1ab931524aa3096f786b186d01d964d2aed8eb775a3cd3": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:40.728686+00:00",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Request for information – Cloud experts framework agreement"
+          },
+          "source": "Tietopyyntö - Pilviasiantuntijat -puitejärjestely"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "d98a6921d9bd829dd3aeb17bfb14aeb1f6d424294c942b75ddafb4d78c5b2438": {
       "parts": [
         {
@@ -154812,6 +155748,29 @@
             "text": "Rothesay Active Travel Route: Developed & Technical Design Lot 1: . Rothesay Active Travel Route: Developed & Technical Design"
           },
           "source": "Rothesay Active Travel Route: Developed & Technical Design Lot 1: . Rothesay Active Travel Route: Developed & Technical Design"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "db91386fd921d1fd2b8bd7ffd2211eb73d2f5c1ef6518e1cc7b02c6dd210def9": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:17.033569+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Digital Care Hub is seeking an independent evaluation partner to assess the delivery, impact, sustainability and value for money of the Better Security, Better Care (BSBC) programme. Funded by the Department of Health and Social Care, BSBC supports approximately 28,000 CQC-registered adult social care locations in England to improve cyber security, data protection and information governance, including compliance with the Data Security and Protection Toolkit (DSPT). Delivery is led nationally by Digital Care Hub through more than 30 Local Support Organisations, combining central leadership, guidance, training, communications, data analysis and performance management with trusted local support. The supplier will design and deliver a proportionate mixed-method evaluation covering programme governance and delivery, stakeholder engagement, partner effectiveness, reach, changes in awareness and behaviour, adoption of good practice, DSPT outcomes, organisational resilience, wider benefits, cost effectiveness, return on investment and social and economic value. The work should identify lessons, good practice and evidence-based recommendations while providing ongoing insight to support continuous improvement. Key deliverables are an evaluation framework and inception report within three months; ongoing data collection, analysis and stakeholder engagement; monthly progress meetings; an interim report by September 2027; and a final evaluation report, shorter executive report, presentation and dissemination-ready outputs by October 2028. Close-down and dissemination support will continue to March 2029. The proposed contract runs from October 2026 to March 2029, with a maximum budget of £125,000 inclusive of VAT. Bidders must demonstrate strong experience in programme and economic evaluation, publicly funded programmes, mixed-method research, stakeholder engagement and report writing. Knowledge of adult social care, health and care systems, cyber security, digital transformation or information governance is required. Tender responses must include organisation and personnel details, methodology, data collection and analysis plans, delivery timetable, resourcing, quality assurance, risk management, up to three relevant examples, a full pricing schedule, assumptions and proposed social value. Evaluation weightings are: understanding 15%, methodology 35%, experience 20%, project management 10%, social value 10% and price 10%. The supplier must comply with UK GDPR, the Data Protection Act 2018, confidentiality, insurance, procurement, equality and safeguarding requirements. Clarification questions are due by 14 October 2026 and tenders by 18 October 2026. Please see attachment for full specifications."
+          },
+          "source": "Digital Care Hub is seeking an independent evaluation partner to assess the delivery, impact, sustainability and value for money of the Better Security, Better Care (BSBC) programme. Funded by the Department of Health and Social Care, BSBC supports approximately 28,000 CQC-registered adult social care locations in England to improve cyber security, data protection and information governance, including compliance with the Data Security and Protection Toolkit (DSPT). Delivery is led nationally by Digital Care Hub through more than 30 Local Support Organisations, combining central leadership, guidance, training, communications, data analysis and performance management with trusted local support. The supplier will design and deliver a proportionate mixed-method evaluation covering programme governance and delivery, stakeholder engagement, partner effectiveness, reach, changes in awareness and behaviour, adoption of good practice, DSPT outcomes, organisational resilience, wider benefits, cost effectiveness, return on investment and social and economic value. The work should identify lessons, good practice and evidence-based recommendations while providing ongoing insight to support continuous improvement. Key deliverables are an evaluation framework and inception report within three months; ongoing data collection, analysis and stakeholder engagement; monthly progress meetings; an interim report by September 2027; and a final evaluation report, shorter executive report, presentation and dissemination-ready outputs by October 2028. Close-down and dissemination support will continue to March 2029. The proposed contract runs from October 2026 to March 2029, with a maximum budget of £125,000 inclusive of VAT. Bidders must demonstrate strong experience in programme and economic evaluation, publicly funded programmes, mixed-method research, stakeholder engagement and report writing. Knowledge of adult social care, health and care systems, cyber security, digital transformation or information governance is required. Tender responses must include organisation and personnel details, methodology, data collection and analysis plans, delivery timetable, resourcing, quality assurance, risk management, up to three relevant examples, a full pricing schedule, assumptions and proposed social value. Evaluation weightings are: understanding 15%, methodology 35%, experience 20%, project management 10%, social value 10% and price 10%. The supplier must comply with UK GDPR, the Data Protection Act 2018, confidentiality, insurance, procurement, equality and safeguarding requirements. Clarification questions are due by 14 October 2026 and tenders by 18 October 2026. Please see attachment for full specifications."
         }
       ],
       "protected_names": [],
@@ -178230,6 +179189,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "fafe97e97ad7f8944056651594c6713d06493ef8d16c9299b9f5c29a3a0779ec": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:17.036013+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "GB-Maidstone: Preliminary Market Engagement via GCA Framework - Brief Project Portfolio Management Solution"
+          },
+          "source": "GB-Maidstone: Preliminary Market Engagement via GCA Framework - Brief Project Portfolio Management Solution"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "faff84291a1bc1f2332e8394a4b71d58c0178d900310e4932cbe8e929efcb77b": {
       "parts": [
         {
@@ -179649,6 +180631,29 @@
       "protected_names": [
         "Defence Infrastructure Organisation"
       ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "fd22b358cd7fdeb13739e49473041eaad2f80c9570508a73affc0a789de114c2": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T12:09:17.044326+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Digital Service Provision"
+          },
+          "source": "Digital Service Provision"
+        }
+      ],
+      "protected_names": [],
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
