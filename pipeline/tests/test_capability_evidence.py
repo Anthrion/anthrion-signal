@@ -289,6 +289,13 @@ def test_named_e_tendering_client_is_not_ai_scope(signal, config):
     """"AI Bietercockpit" is the bidding software, not the buyer's requirement."""
     classify(signal, config, "Gewaesserunterhaltung Fliessgewaesser II. Ordnung",
              "Address for electronic tenders (URL): https://www.evergabe.de using the software "
-             "AI Bietercockpit. Address for written tenders: not applicable.")
+             "AI_Bietercockpit. Address for written tenders: not applicable.")
     assert "ai" not in signal.matched_capabilities
     assert signal.delivery_priority != "ai"
+
+
+@pytest.mark.parametrize("spelling", ["AI Bietercockpit", "AI_Bietercockpit", "AI-Bietercockpit"])
+def test_e_tendering_client_is_suppressed_in_every_spelling(signal, config, spelling):
+    classify(signal, config, "Masterplan Talsperre Bautzen",
+             f'List of documents to submit: completed offer letter (via AI software "{spelling}").')
+    assert "ai" not in signal.matched_capabilities
