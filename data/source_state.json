@@ -1,14 +1,21 @@
 {
   "contracts_finder": {
     "discovery_backfill": {
-      "checkpoint": {},
+      "checkpoint": {
+        "cursor_window": {
+          "cursor": "cHVibGlzaGVkRnJvbT0yMDI2LTA3LTE0VDA4OjIyOjM3WnxwdWJsaXNoZWRUbz0yMDI2LTA3LTE1VDA4OjIyOjM3WnxsaW1pdD0xMDB8bmV4dEN1cnNvcj03NzY2MzQ=",
+          "from": "2026-07-14T08:22:37+00:00",
+          "to": "2026-07-15T08:22:37+00:00"
+        },
+        "watermark": "2026-07-14T09:22:37+00:00"
+      },
       "complete": false,
-      "cursor": "2026-07-07T09:22:37+00:00",
+      "cursor": "2026-07-14T09:22:37+00:00",
       "until": "2026-08-29T09:22:37+00:00",
       "version": "2026-09-11.1"
     },
-    "last_success": "2026-09-18T17:53:22+00:00",
-    "watermark": "2026-09-18T17:53:22+00:00"
+    "last_success": "2026-09-18T19:14:50+00:00",
+    "watermark": "2026-09-18T19:14:50+00:00"
   },
   "digital_outcomes": {
     "digital_details": {
@@ -325,37 +332,28 @@
         "signature": "a01847b6592e0feb1b526f7e8efec9d740d3b6c103a1b91ad4ea106839bb85fe"
       }
     },
-    "last_success": "2026-09-18T17:53:22+00:00",
+    "last_success": "2026-09-18T19:14:50+00:00",
     "next_detail": 0,
-    "watermark": "2026-09-18T17:53:22+00:00"
+    "watermark": "2026-09-18T19:14:50+00:00"
   },
   "find_tender": {
-    "cursor_window": {
-      "cursor": "dXBkYXRlZEZyb209MjAyNi0wOS0xOFQxMToyMzo1Nnx1cGRhdGVkVG89MjAyNi0wOS0xOFQxNzoyMzo1NnxuZXh0Q3Vyc29yPTc0MTE0Mg==",
-      "from": "2026-09-18T11:23:56+00:00",
-      "to": "2026-09-18T17:23:56+00:00"
-    },
     "discovery_backfill": {
       "checkpoint": {
-        "retry_at": "2026-09-18T11:56:28.125737+00:00",
-        "watermark": "2025-09-20T17:18:39+00:00"
+        "retry_at": "2026-09-18T19:17:23.178978+00:00",
+        "watermark": "2025-09-20T18:48:39+00:00"
       },
       "complete": false,
-      "cursor": "2025-09-19T18:48:39+00:00",
+      "cursor": "2025-09-20T18:48:39+00:00",
       "until": "2026-08-29T18:48:39+00:00",
       "version": "2026-09-11.1"
     },
-    "last_success": "2026-09-18T11:53:56+00:00",
-    "retry_at": "2026-09-18T17:55:55.014314+00:00",
-    "watermark": "2026-09-18T11:53:56+00:00"
+    "last_success": "2026-09-18T19:14:50+00:00",
+    "watermark": "2026-09-18T19:14:50+00:00"
   },
   "germany": {
     "discovery_vocabulary": "f289f291cee9ad260e24df827842e27edee4bab1f877c6fe694676f64edcefef",
     "last_success": "2026-09-18T06:43:47+00:00",
     "pending_days": [
-      "2026-09-11",
-      "2026-09-10",
-      "2026-09-09",
       "2026-09-08",
       "2026-09-07",
       "2026-09-06",
@@ -924,7 +922,7 @@
   "govuk": {
     "discovery_backfill": {
       "checkpoint": {
-        "next_query": 8,
+        "next_query": 28,
         "queries": {
           "AI agent procurement": {
             "from": "2025-10-11T09:22:37+00:00",
@@ -933,7 +931,7 @@
           },
           "AI agents": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "AI assistant tender": {
@@ -962,9 +960,9 @@
             "to": "2025-11-11T09:22:37+00:00"
           },
           "CRM procurement": {
-            "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
-            "to": "2025-11-11T09:22:37+00:00"
+            "from": "2025-11-10T09:22:37+00:00",
+            "offset": 0,
+            "through": "2025-11-11T09:22:37+00:00"
           },
           "CRM support tender": {
             "from": "2025-10-11T09:22:37+00:00",
@@ -993,12 +991,12 @@
           },
           "Salesforce Public Sector": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "Salesforce Scheduler": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "Salesforce consulting tender": {
@@ -1018,7 +1016,7 @@
           },
           "Salesforce implementation": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "Salesforce managed services": {
@@ -1028,7 +1026,7 @@
           },
           "Salesforce professional services": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "application modernisation tender": {
@@ -1038,7 +1036,7 @@
           },
           "artificial intelligence procurement": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "automated triage tender": {
@@ -1048,12 +1046,12 @@
           },
           "automation integration": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "benefits management system": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "business intelligence procurement": {
@@ -1073,7 +1071,7 @@
           },
           "case management procurement": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "citizen portal tender": {
@@ -1098,7 +1096,7 @@
           },
           "complaints management tender": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "contact centre": {
@@ -1108,7 +1106,7 @@
           },
           "contact centre implementation": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "customer journey platform procurement": {
@@ -1123,17 +1121,17 @@
           },
           "customer relationship management tender": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "customer service platform procurement": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "data platform": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "data quality implementation": {
@@ -1153,7 +1151,7 @@
           },
           "donor management tender": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "ecommerce platform tender": {
@@ -1178,7 +1176,7 @@
           },
           "generative AI": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "generative AI tender": {
@@ -1193,7 +1191,7 @@
           },
           "housing allocation system": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "intelligent automation procurement": {
@@ -1238,7 +1236,7 @@
           },
           "regulatory casework system": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "replace spreadsheets workflow supplier": {
@@ -1258,7 +1256,7 @@
           },
           "stakeholder management procurement": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "student services platform tender": {
@@ -1434,7 +1432,7 @@
       },
       "case management": {
         "from": "2026-06-10T10:57:03+00:00",
-        "offset": 6000,
+        "offset": 6100,
         "to": "2026-09-09T10:57:03+00:00"
       },
       "case management procurement": {
@@ -1449,7 +1447,7 @@
       },
       "citizen services": {
         "from": "2026-06-10T10:57:03+00:00",
-        "offset": 6000,
+        "offset": 6100,
         "to": "2026-09-09T10:57:03+00:00"
       },
       "collaboration workflow platform tender": {
@@ -1469,7 +1467,7 @@
       },
       "contact centre": {
         "from": "2026-06-10T10:57:03+00:00",
-        "offset": 6000,
+        "offset": 6100,
         "to": "2026-09-09T10:57:03+00:00"
       },
       "contact centre implementation": {
@@ -1982,6 +1980,7 @@
       "363379",
       "363390",
       "363412",
+      "363423",
       "363446",
       "363455",
       "363466",
@@ -15148,7 +15147,7 @@
         "signature": "fd379cd77a9650daea35f71c1a77a60b21dedc6785962fb2a9d478d646fa2e25"
       },
       "362186": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "11/12/2026",
@@ -15178,7 +15177,7 @@
         "signature": "2f743f2a20ccee91fdc8b8ba0e0f3efa21c4413edd70171cee5d5a87d38127d5"
       },
       "362187": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "10/15/2026",
@@ -15208,7 +15207,7 @@
         "signature": "4c51876461330133c6ca309966f23f720ba23efafaf0266dfea0dc6466d72f2e"
       },
       "362190": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "10/07/2026",
@@ -15238,7 +15237,7 @@
         "signature": "c106099e04cb2369d2d9cb0229d41c490192372b23e89875df6a40d9f3e43774"
       },
       "362191": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "10/07/2026",
@@ -15268,7 +15267,7 @@
         "signature": "0278d0b05d50d6c7dd1a0ea258a75513f6ab752b93673eb0d55e277c41a67871"
       },
       "362193": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "10/07/2026",
@@ -15418,7 +15417,7 @@
         "signature": "0eda3314d1b2acb9752f59df57f440611c2487f1a235669f792a369fe7c07167"
       },
       "362200": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "10/01/2026",
@@ -15448,7 +15447,7 @@
         "signature": "0eb8f740b4a7d1ac81e17bc8bcd3b9bddbb72f260ee0f9a9b816b2007a61a82c"
       },
       "362202": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "10/01/2026",
@@ -15478,7 +15477,7 @@
         "signature": "8cd2a19dae0cf6a7b5effbc6d2011850d343d3ca7e98f96f783b4c3ec56c444a"
       },
       "362203": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "09/30/2026",
@@ -15508,7 +15507,7 @@
         "signature": "0adcb24707c4ffcad2f76a6ba0570214dc397704596f948362afc6d7a391f74b"
       },
       "362204": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "10/01/2026",
@@ -15538,7 +15537,7 @@
         "signature": "77da51fd7cd20063b40e31e0c6a95533a435da00957d9fac124a29633b627a8a"
       },
       "362205": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "09/30/2026",
@@ -15568,7 +15567,7 @@
         "signature": "2b333b83157d1e010ef2c445041b1568146685a52f12ee37180062ea75b80c77"
       },
       "362207": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "10/01/2026",
@@ -15598,7 +15597,7 @@
         "signature": "fe61183fe62f153e3f08b52abd498748d7787d72c2ff994ef1a9d1863877e868"
       },
       "362209": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "10/01/2026",
@@ -15628,7 +15627,7 @@
         "signature": "3db48213f2b5236b9dad9923b116a8f0b1b7b3bd4b533d252e7e0b5dd6235018"
       },
       "362210": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "09/30/2026",
@@ -15658,7 +15657,7 @@
         "signature": "699608a57158b0321c580ecd942765b0fc003ea5c08f504fda44b723bf695215"
       },
       "362222": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "11/12/2026",
@@ -15688,7 +15687,7 @@
         "signature": "954a5a2928bbd560aecaf78ba2d149cee6d98bf2591fe839aae058ac0cd7ac5a"
       },
       "362224": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "11/12/2026",
@@ -15718,7 +15717,7 @@
         "signature": "b3616d3bfd1a96c96ec4116097b2935e9b76fd1beb3f14ff248534af274d64b6"
       },
       "362225": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "11/12/2026",
@@ -15748,7 +15747,7 @@
         "signature": "be284f40bf613238b54b0e3f20cdd1b451edbe6578a8da7b93e60b368446c7be"
       },
       "362226": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "11/12/2026",
@@ -15778,7 +15777,7 @@
         "signature": "44c55d80eca3003e74952f6252c6b23a4440aab1ad468be75fd3ae1dbd2e21ff"
       },
       "362240": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "10/14/2026",
@@ -15838,7 +15837,7 @@
         "signature": "bb3f899c4ce5a080a066b833e75250037ddb0fd21f4760e803ca742b91952f4a"
       },
       "362244": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "10/14/2026",
@@ -15868,7 +15867,7 @@
         "signature": "2ab0f5350a7729ba555d2650e20816b28e6fd6ee5405762d791c4f93753eeb88"
       },
       "362245": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "10/14/2026",
@@ -15898,7 +15897,7 @@
         "signature": "1fb55d84ad577d068c4b67df45f38ee2a9388aea83d741ac339d1bd661f2e6e5"
       },
       "362246": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "10/14/2026",
@@ -15928,7 +15927,7 @@
         "signature": "8e7e5fddc765b77d7bc87aba9c8d981ab859355a234e40105588244f167cb416"
       },
       "362248": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "10/21/2026",
@@ -15958,7 +15957,7 @@
         "signature": "1316855d4d878c8e3f8aa067cf818333803a55be26a77ad19cecba13955bf571"
       },
       "362252": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "10/21/2026",
@@ -15988,7 +15987,7 @@
         "signature": "89918f8fdf7b6917f0f92124ba9fc3663c1c32259ccaf9c597d5554fcb81ac42"
       },
       "362254": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "10/21/2026",
@@ -16108,7 +16107,7 @@
         "signature": "14c0df2ce8eed319f82f0be653a939bacc5ccd0adeb12f2201a8b64b007f579d"
       },
       "362271": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "10/15/2026",
@@ -16138,7 +16137,7 @@
         "signature": "fef5421977e9eaddcaf64b2668282d8f3b411ffcf4bd370b560f4f4e155f650e"
       },
       "362272": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "10/15/2026",
@@ -16168,7 +16167,7 @@
         "signature": "2244d4382d2cebeb33797274a624d6b2fde074f0f2e232540c0017f1118b11b8"
       },
       "362302": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "11/19/2026",
@@ -16198,7 +16197,7 @@
         "signature": "aa726884bab6128fc76db24c6a169a082274d32b07e84acdcbf536fc9acf6d59"
       },
       "362303": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Fish and Wildlife Service",
           "closeDate": "12/31/2026",
@@ -16207,12 +16206,12 @@
             "applicantEligibilityDesc": "We are seeking applications from tribal natural resource agencies/organizations in the Great Lakes Basin. However, a tribal agency may designate an entity (of any type) to apply for the award on their behalf.",
             "applicantTypes": [
               {
-                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
-                "id": "25"
-              },
-              {
                 "description": "Unrestricted (i.e., open to any type of entity above), subject to any clarification in text field entitled \"Additional Information on Eligibility\"",
                 "id": "99"
+              },
+              {
+                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
+                "id": "25"
               }
             ],
             "awardCeiling": "100000",
@@ -16232,7 +16231,7 @@
         "signature": "12eb0613bed9bdbc5fd9df76e7333df78966cdadddc1b528f5e8d2f8409f9b4f"
       },
       "362304": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "11/19/2026",
@@ -16262,7 +16261,7 @@
         "signature": "b08a38c71ce2bc78d4a3043b1ea60550407bf69ed149ed369ee139c37db27ad5"
       },
       "362305": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "11/19/2026",
@@ -16292,7 +16291,7 @@
         "signature": "4b63b7a01c9be97fd3508f0a599458d85ab0e92081da92b7edae2fb2afaf7f73"
       },
       "362321": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "09/22/2026",
@@ -16322,7 +16321,7 @@
         "signature": "c2254b1f447d5497ebdf95c12381546ecc57eef83f98b19d424fe53247fb2359"
       },
       "362325": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Employment and Training Administration",
           "closeDate": "12/31/2028",
@@ -16352,7 +16351,7 @@
         "signature": "d44dcb47265c6562dfcd9e27d458dd66bce450312266f26fceb1b9acc883a134"
       },
       "362329": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "09/22/2026",
@@ -16412,7 +16411,7 @@
         "signature": "9d2369b9a3a5338bfc0333db244e3ccbd8cebb9eca3e8f5a82dd801931323ddf"
       },
       "362364": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Department of Housing and Urban Development",
           "closeDate": "06/09/2027",
@@ -16615,7 +16614,7 @@
         "signature": "dec99d75fac849443ccd27578010eb433a3b74986e2a9a64c78784de054ae644"
       },
       "362470": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Fish and Wildlife Service",
           "closeDate": "09/30/2026",
@@ -16624,68 +16623,68 @@
             "applicantEligibilityDesc": "The Coastal Program reserves the right to reject projects that do not align with the regional strategic implementation plans or program priorities. We do not support projects that generate compensatory mitigation credits under a Federal or state regulatory program or accept mitigation or in-lieu funds as non-Federal cost share for a project. The Coastal Program does not fund land acquisition, although it can support title searches and real estate appraisals. We require that all interested applicants contact their local Coastal Program office before submitting an application.",
             "applicantTypes": [
               {
-                "description": "State governments",
-                "id": "00"
-              },
-              {
-                "description": "County governments",
-                "id": "01"
-              },
-              {
-                "description": "Public housing authorities/Indian housing authorities",
-                "id": "08"
-              },
-              {
-                "description": "Public and State controlled institutions of higher education",
-                "id": "06"
-              },
-              {
-                "description": "Individuals",
-                "id": "21"
-              },
-              {
-                "description": "Unrestricted (i.e., open to any type of entity above), subject to any clarification in text field entitled \"Additional Information on Eligibility\"",
-                "id": "99"
+                "description": "For profit organizations other than small businesses",
+                "id": "22"
               },
               {
                 "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
                 "id": "11"
               },
               {
-                "description": "City or township governments",
-                "id": "02"
+                "description": "Small businesses",
+                "id": "23"
               },
               {
-                "description": "For profit organizations other than small businesses",
-                "id": "22"
+                "description": "Public and State controlled institutions of higher education",
+                "id": "06"
               },
               {
-                "description": "Independent school districts",
-                "id": "05"
-              },
-              {
-                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "12"
-              },
-              {
-                "description": "Special district governments",
-                "id": "04"
-              },
-              {
-                "description": "Native American tribal governments (Federally recognized)",
-                "id": "07"
+                "description": "Public housing authorities/Indian housing authorities",
+                "id": "08"
               },
               {
                 "description": "Private institutions of higher education",
                 "id": "20"
               },
               {
-                "description": "Small businesses",
-                "id": "23"
+                "description": "Special district governments",
+                "id": "04"
+              },
+              {
+                "description": "Unrestricted (i.e., open to any type of entity above), subject to any clarification in text field entitled \"Additional Information on Eligibility\"",
+                "id": "99"
+              },
+              {
+                "description": "State governments",
+                "id": "00"
+              },
+              {
+                "description": "Independent school districts",
+                "id": "05"
               },
               {
                 "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
                 "id": "13"
+              },
+              {
+                "description": "Individuals",
+                "id": "21"
+              },
+              {
+                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "12"
+              },
+              {
+                "description": "County governments",
+                "id": "01"
+              },
+              {
+                "description": "Native American tribal governments (Federally recognized)",
+                "id": "07"
+              },
+              {
+                "description": "City or township governments",
+                "id": "02"
               }
             ],
             "awardCeiling": "500000",
@@ -16765,7 +16764,7 @@
         "signature": "07abdfd497af402d742b5d1c5a90549c74902acca78e327cefa704d3f69aadc9"
       },
       "362520": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "11/18/2026",
@@ -16795,7 +16794,7 @@
         "signature": "d8d7af3c399cc20005f0ebf32f431984ec15cdf59d6581b0cef6a33b3bf9b2f9"
       },
       "362524": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "11/18/2026",
@@ -16825,7 +16824,7 @@
         "signature": "c1c4435e92a2df86081de01e2fdd3ac9f4039e2509ad6c0703140f6270c2b7c3"
       },
       "362529": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "10/22/2026",
@@ -16855,7 +16854,7 @@
         "signature": "0882932f45484b60204f17812499d9695b1de1418a772ea2a324e0b5e19b8938"
       },
       "362530": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "10/22/2026",
@@ -16885,7 +16884,7 @@
         "signature": "06195f9dbbdf8a4c2b5b9c4bdda576ce9de0076b1fd3372ed29ce8459598f15a"
       },
       "362531": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "10/22/2026",
@@ -16915,7 +16914,7 @@
         "signature": "fcb1dbc95e62d5fe587a74a398d719799bff529534d6a3d064e9281c9e691c1a"
       },
       "362581": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "National Institutes of Health",
           "closeDate": "07/12/2029",
@@ -16924,64 +16923,64 @@
             "applicantEligibilityDesc": "Refer to Section III. Eligibility Information in the NOFO for additional information on eligibility.Foreign Organizations/International Collaborations:Non-domestic (non-U.S.) Entities (Foreign Organizations) are not eligible to apply.Non-domestic (non-U.S.) components of U.S. Organizations are not eligible to apply.Foreign components, as defined in the NIH Grants Policy Statement, are allowed.",
             "applicantTypes": [
               {
-                "description": "Special district governments",
-                "id": "04"
-              },
-              {
-                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "12"
-              },
-              {
-                "description": "Public and State controlled institutions of higher education",
-                "id": "06"
-              },
-              {
-                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
-                "id": "25"
-              },
-              {
-                "description": "Native American tribal governments (Federally recognized)",
-                "id": "07"
-              },
-              {
-                "description": "State governments",
-                "id": "00"
-              },
-              {
                 "description": "Public housing authorities/Indian housing authorities",
                 "id": "08"
               },
               {
-                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
-                "id": "11"
+                "description": "Private institutions of higher education",
+                "id": "20"
               },
               {
                 "description": "Small businesses",
                 "id": "23"
               },
               {
-                "description": "County governments",
-                "id": "01"
-              },
-              {
-                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "13"
-              },
-              {
                 "description": "For profit organizations other than small businesses",
                 "id": "22"
               },
               {
-                "description": "City or township governments",
-                "id": "02"
+                "description": "Native American tribal governments (Federally recognized)",
+                "id": "07"
+              },
+              {
+                "description": "County governments",
+                "id": "01"
               },
               {
                 "description": "Independent school districts",
                 "id": "05"
               },
               {
-                "description": "Private institutions of higher education",
-                "id": "20"
+                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "13"
+              },
+              {
+                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "12"
+              },
+              {
+                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
+                "id": "11"
+              },
+              {
+                "description": "State governments",
+                "id": "00"
+              },
+              {
+                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
+                "id": "25"
+              },
+              {
+                "description": "City or township governments",
+                "id": "02"
+              },
+              {
+                "description": "Special district governments",
+                "id": "04"
+              },
+              {
+                "description": "Public and State controlled institutions of higher education",
+                "id": "06"
               }
             ],
             "awardCeiling": "none",
@@ -17000,7 +16999,7 @@
         "signature": "9586b00cef9315358141848211d6c23a9fc5aa4c3b54c08a45000a7dfdb8877b"
       },
       "362607": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "11/04/2026",
@@ -17064,7 +17063,7 @@
         "signature": "0332b50328c757551b733e231a5e7c2109e1d9af42c27609369bdc5e488581de"
       },
       "362672": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "National Institutes of Health",
           "closeDate": "02/09/2029",
@@ -17073,44 +17072,32 @@
             "applicantEligibilityDesc": "Refer to Section III. Eligibility Information in the NOFO for additional information on eligibility.Foreign Organizations/International Collaborations:Non-domestic (non-U.S.) Entities (Foreign Organizations) are not eligible to apply.Non-domestic (non-U.S.) components of U.S. Organizations are not eligible to apply.Foreign components, as defined in the NIH Grants Policy Statement, are allowed.",
             "applicantTypes": [
               {
-                "description": "State governments",
-                "id": "00"
+                "description": "Special district governments",
+                "id": "04"
               },
               {
                 "description": "Small businesses",
                 "id": "23"
               },
               {
-                "description": "Special district governments",
-                "id": "04"
-              },
-              {
-                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
-                "id": "25"
+                "description": "Public housing authorities/Indian housing authorities",
+                "id": "08"
               },
               {
                 "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
                 "id": "11"
               },
               {
-                "description": "Independent school districts",
-                "id": "05"
-              },
-              {
-                "description": "For profit organizations other than small businesses",
-                "id": "22"
-              },
-              {
                 "description": "County governments",
                 "id": "01"
               },
               {
-                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "12"
-              },
-              {
                 "description": "Native American tribal governments (Federally recognized)",
                 "id": "07"
+              },
+              {
+                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
+                "id": "25"
               },
               {
                 "description": "City or township governments",
@@ -17121,16 +17108,28 @@
                 "id": "13"
               },
               {
-                "description": "Private institutions of higher education",
-                "id": "20"
-              },
-              {
-                "description": "Public housing authorities/Indian housing authorities",
-                "id": "08"
-              },
-              {
                 "description": "Public and State controlled institutions of higher education",
                 "id": "06"
+              },
+              {
+                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "12"
+              },
+              {
+                "description": "For profit organizations other than small businesses",
+                "id": "22"
+              },
+              {
+                "description": "Independent school districts",
+                "id": "05"
+              },
+              {
+                "description": "State governments",
+                "id": "00"
+              },
+              {
+                "description": "Private institutions of higher education",
+                "id": "20"
               }
             ],
             "awardCeiling": "none",
@@ -17178,7 +17177,7 @@
         "signature": "8fc80489f66349f8ad3089b93897f5904a390a1ca247352d140438432f0045c1"
       },
       "362749": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Fish and Wildlife Service",
           "closeDate": "12/31/2026",
@@ -17242,7 +17241,7 @@
         "signature": "00e9adaf92e3ae8bc06e66f68070d471c01dd33fe22d79b2f250b26c49475425"
       },
       "362827": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Department of Housing and Urban Development",
           "closeDate": "11/02/2026",
@@ -17274,7 +17273,7 @@
         "signature": "9f37d762542a059cb73c409b2d5746c51b9c18fc3956a0bfcf96eae6499718da"
       },
       "362842": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "DOC NIST ERA",
           "closeDate": "11/17/2026",
@@ -17304,7 +17303,7 @@
         "signature": "f775a66c4f7a458ba160622d56fca4491b4254c80eee9c60553fdf21a4dd93af"
       },
       "362843": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "DOC NIST ERA",
           "closeDate": "11/17/2026",
@@ -17364,7 +17363,7 @@
         "signature": "bf6cadb784d3a3e8f4037c80ae10fb631bdcb5836fb911b5befbdb30fd54027e"
       },
       "362848": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "09/18/2026",
@@ -17454,7 +17453,7 @@
         "signature": "6973a670395b2755aba1df295c2dd21a1549241973f13eec5f118b73a274014c"
       },
       "362851": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "09/18/2026",
@@ -17484,7 +17483,7 @@
         "signature": "c11f3349b7f171af75eb83ac82268300a15e6efaa87a1dabc0d6123cfdf6d062"
       },
       "362853": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "09/28/2026",
@@ -17514,7 +17513,7 @@
         "signature": "3374fa23700f311bae642b60eac08a8fc9aaa882373cf0f027e1368e87b3c6da"
       },
       "362854": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "11/04/2026",
@@ -17544,7 +17543,7 @@
         "signature": "cf9cf6514d75896bc5cfaa2f48b3a56c3484552366dd6605752539dc86d210a4"
       },
       "362855": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "11/04/2026",
@@ -17574,7 +17573,7 @@
         "signature": "f574278453fce8ff8227513355690a8d24e8700694336883c13d490a8833501c"
       },
       "362856": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "11/04/2026",
@@ -17604,7 +17603,7 @@
         "signature": "d58f38abb0626ef8c7f63886caf69b792f5eca277c36804cac9a43ec25c51e95"
       },
       "362857": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "11/16/2026",
@@ -17666,7 +17665,7 @@
         "signature": "291d3fbb6a2737034e98c6a2fa133ee5460a5cbd8b8ffeb3fbf416c33b7663e6"
       },
       "362865": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "09/28/2026",
@@ -17696,7 +17695,7 @@
         "signature": "29505b412fb6774bbf1eb8972b0b49e130b7baf054ece8082d85e85c6486c9c8"
       },
       "362866": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "11/06/2026",
@@ -17726,7 +17725,7 @@
         "signature": "bc15aea08871b15ad6c9726d0be99bf8e4f94f12b3827aebe70df23c225be9e4"
       },
       "362868": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "11/06/2026",
@@ -17788,7 +17787,7 @@
         "signature": "20f79c1ed0c732b09dc3528d2f298899bc0575c514b746193b8d081f0fc31faf"
       },
       "362893": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Fish and Wildlife Service",
           "closeDate": "12/16/2026",
@@ -17935,7 +17934,7 @@
         "signature": "726186ff74ab6093ef99f791dfd465e069ccfbd02b453db6da49d15f2d3de9de"
       },
       "362961": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "11/18/2026",
@@ -17965,7 +17964,7 @@
         "signature": "89b0eed47c0f673e6ae642633ff820f94f24513e892391374d0e08c205097d6a"
       },
       "362973": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "09/22/2026",
@@ -19386,6 +19385,67 @@
           "title": "Maternal and Child Health Encounters Networks (MCHEK)"
         },
         "signature": "59e42e5125f918352942e1360d436555304fbd395ae429bb36bc02a6b271a60b"
+      },
+      "363423": {
+        "fetched_at": "2026-09-18T19:14:50+00:00",
+        "record": {
+          "agency": "Health Resources and Services Administration",
+          "closeDate": "10/19/2026",
+          "facts": {
+            "agencyName": "Health Resources and Services Administration",
+            "applicantTypes": [
+              {
+                "description": "State governments",
+                "id": "00"
+              },
+              {
+                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
+                "id": "11"
+              },
+              {
+                "description": "City or township governments",
+                "id": "02"
+              },
+              {
+                "description": "Public housing authorities/Indian housing authorities",
+                "id": "08"
+              },
+              {
+                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "13"
+              },
+              {
+                "description": "County governments",
+                "id": "01"
+              },
+              {
+                "description": "Special district governments",
+                "id": "04"
+              },
+              {
+                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "12"
+              },
+              {
+                "description": "Native American tribal governments (Federally recognized)",
+                "id": "07"
+              }
+            ],
+            "awardCeiling": "10116100",
+            "awardFloor": "650000",
+            "createTimeStampStr": "2026-09-18-14-11-20",
+            "postingDateStr": "2026-09-18-00-00-00",
+            "responseDateDesc": "Electronically submitted applications must be submitted no later than 11:59 p.m., ET, on the listed application due date.",
+            "responseDateStr": "2026-10-19-00-00-00",
+            "synopsisDesc": "The FY 2027 Health Center Program Service Area Competition (SAC) funding improves the health of medically underserved communities and populations by providing grants to support the delivery of comprehensive, high-quality preventive and primary health care services in the United States and its territories. For each SAC Notice of Funding Opportunity (NOFO), service areas available for competition are announced in the Service Area Announcement Table (SAAT). Throughout the year, we may announce additional service areas in a Service Area Competition-Additional Area (SAC-AA) if an awarded health center cannot continue to provide services in the funded service area."
+          },
+          "id": "363423",
+          "number": "HRSA-27-005",
+          "openDate": "09/18/2026",
+          "status": "posted",
+          "title": "Fiscal Year (FY) 2027 Service Area Competition (SAC)"
+        },
+        "signature": "45e825b5d547c2003e6c0eeb6938b6a8313306dde7dfe5a8d85ab16f35141e5f"
       },
       "363446": {
         "fetched_at": "2026-09-18T06:43:47+00:00",
@@ -22128,7 +22188,7 @@
         "signature": "92ea6923821d536905054b1c3ab20d8586133b9cb290157fe7f8c483b036c0c4"
       },
       "363880": {
-        "fetched_at": "2026-09-17T17:18:23+00:00",
+        "fetched_at": "2026-09-18T19:14:50+00:00",
         "record": {
           "agency": "National Endowment for the Humanities",
           "closeDate": "12/09/2026",
@@ -22136,26 +22196,6 @@
             "agencyName": "National Endowment for the Humanities",
             "applicantEligibilityDesc": "See C. Eligibility Information in the Notice of Funding Opportunity.",
             "applicantTypes": [
-              {
-                "description": "Private institutions of higher education",
-                "id": "20"
-              },
-              {
-                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "12"
-              },
-              {
-                "description": "City or township governments",
-                "id": "02"
-              },
-              {
-                "description": "County governments",
-                "id": "01"
-              },
-              {
-                "description": "State governments",
-                "id": "00"
-              },
               {
                 "description": "Native American tribal governments (Federally recognized)",
                 "id": "07"
@@ -22165,8 +22205,28 @@
                 "id": "04"
               },
               {
+                "description": "County governments",
+                "id": "01"
+              },
+              {
+                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "12"
+              },
+              {
                 "description": "Public and State controlled institutions of higher education",
                 "id": "06"
+              },
+              {
+                "description": "State governments",
+                "id": "00"
+              },
+              {
+                "description": "Private institutions of higher education",
+                "id": "20"
+              },
+              {
+                "description": "City or township governments",
+                "id": "02"
               }
             ],
             "awardCeiling": "460000",
@@ -22187,11 +22247,11 @@
         "signature": "d86f2ade648a14c219f6d901793f8909ca970fd3ad39fb5ab6966e4ccb0eb48a"
       }
     },
-    "last_success": "2026-09-18T11:53:56+00:00",
-    "watermark": "2026-09-18T11:53:56+00:00"
+    "last_success": "2026-09-18T19:14:50+00:00",
+    "watermark": "2026-09-18T19:14:50+00:00"
   },
   "la_ramp": {
-    "last_success": "2026-09-18T17:53:22+00:00",
+    "last_success": "2026-09-18T19:14:50+00:00",
     "missing": {
       "222114": 1789731002,
       "229261": 1789731002,
@@ -28008,7 +28068,7 @@
     "watermark": "2026-09-18T11:53:56+00:00"
   },
   "nyc_city_record": {
-    "last_success": "2026-09-18T17:53:22+00:00",
+    "last_success": "2026-09-18T19:14:50+00:00",
     "query_version": "nyc-procurement-v1",
     "watermark": "2026-09-18T01:37:13+00:00"
   },
@@ -28020,8 +28080,8 @@
       "until": "2026-08-29T09:22:37+00:00",
       "version": "2026-09-11.1"
     },
-    "last_success": "2026-09-18T17:53:22+00:00",
-    "watermark": "2026-09-18T17:53:22+00:00"
+    "last_success": "2026-09-18T19:14:50+00:00",
+    "watermark": "2026-09-18T19:14:50+00:00"
   },
   "spain": {
     "active_records": {
@@ -41448,10 +41508,12 @@
           "/sindicacion/sindicacion_643/licitacionesPerfilesContratanteCompleto3_20260917_202233.atom",
           "/sindicacion/sindicacion_643/licitacionesPerfilesContratanteCompleto3_20260917_202233_1.atom",
           "/sindicacion/sindicacion_643/licitacionesPerfilesContratanteCompleto3_20260917_202233_2.atom",
-          "/sindicacion/sindicacion_643/licitacionesPerfilesContratanteCompleto3_20260917_202233_3.atom"
+          "/sindicacion/sindicacion_643/licitacionesPerfilesContratanteCompleto3_20260917_202233_3.atom",
+          "/sindicacion/sindicacion_643/licitacionesPerfilesContratanteCompleto3_20260917_202233_4.atom",
+          "/sindicacion/sindicacion_643/licitacionesPerfilesContratanteCompleto3_20260916_202342.atom"
         ],
         "through": "2026-09-17T18:22:33.237000+00:00",
-        "url": "https://contrataciondelestado.es/sindicacion/sindicacion_643/licitacionesPerfilesContratanteCompleto3_20260917_202233_4.atom"
+        "url": "https://contrataciondelestado.es/sindicacion/sindicacion_643/licitacionesPerfilesContratanteCompleto3_20260916_202342_1.atom"
       },
       {
         "after": "2026-08-30T17:38:50+00:00",
@@ -131899,8 +131961,8 @@
         true
       ],
       "20435215": [
-        "2026-09-16T08:35:21.540000+00:00",
-        "50698ca39a0d57566891966e486cfc7beffb006886eec834bc01539ecba94052",
+        "2026-09-16T18:16:37.019000+00:00",
+        "c319e7c81ccf4ba26afbd8bb2b01440852b9e07e4d5f002d088cfc3810fc4f20",
         true
       ],
       "20435217": [
@@ -134273,6 +134335,11 @@
         "4dd904510951fd5368cd4ea4163c55a64909b1cc3dd3a080f44ca23ed883782b",
         true
       ],
+      "20447459": [
+        "2026-09-16T18:13:20.015000+00:00",
+        "a8eb5e0fc19554e39ce5971b8ed5412dd3adcde382cc7a0bfbf5c809aceb9ced",
+        true
+      ],
       "2318068": [
         "2026-09-09T07:12:32.101000+00:00",
         "67b525ea82e60f0ad7f93e539d9683c5e4dce97f6187ed63b32aa30916cff648",
@@ -135006,15 +135073,14 @@
       "checkpoint": {
         "query_version": "17f39a916251985f06623cfefe55453a709aeb10fdb2339cad86b7b5fd1b240c",
         "ted_pending": {
-          "from": "2026-03-18T09:22:37+00:00",
-          "through": "2026-03-19T09:22:37+00:00",
-          "token": "AAABoLWpFfMATQLCNqTAZfCi2eSa2QtXDVmMqwhGPe6ZIvBPWQYyq7HXDVON0m43oHH11DYf8QdFESWFwIu+NOrrUqajsYISCbNdHkE8bevCr00mfQVHWw==",
-          "until": "2026-03-19T09:22:37+00:00"
+          "from": "2026-03-23T09:22:37+00:00",
+          "through": "2026-03-24T09:22:37+00:00",
+          "until": "2026-03-24T09:22:37+00:00"
         },
-        "watermark": "2026-03-18T09:22:37+00:00"
+        "watermark": "2026-03-23T09:22:37+00:00"
       },
       "complete": false,
-      "cursor": "2026-03-18T09:22:37+00:00",
+      "cursor": "2026-03-23T09:22:37+00:00",
       "until": "2026-08-29T09:22:37+00:00",
       "version": "2026-09-11.1"
     },
@@ -135026,174 +135092,185 @@
         "04ea750b292bf5ad7c3729617a1f821c2ec72fb80c8d039cdc8f3e2f427a9ce2": {
           "query_version": "49fec6a4e86a16418a83f12b922daadb51c2a00848b9791f2342c0a0481dd533",
           "ted_pending": {
-            "from": "2026-09-05T11:53:56+00:00",
-            "through": "2026-09-18T11:53:56+00:00",
-            "until": "2026-09-06T11:53:56+00:00"
-          },
-          "watermark": "2026-09-05T11:53:56+00:00"
-        },
-        "2f03b833b10efddc5a116049a50f221d50b5234636aa5e1a51fe198418b4d1da": {
-          "query_version": "3459f9aaaf050e8f7da17d6ef65360a408af89ecd4938265dca0f3c70ce61d26",
-          "ted_pending": {
-            "from": "2026-09-04T11:53:56+00:00",
-            "through": "2026-09-18T17:53:22+00:00",
-            "until": "2026-09-05T11:53:56+00:00"
-          },
-          "watermark": "2026-09-04T11:53:56+00:00"
-        },
-        "5861ca8839715c105985a0c787070388abfd2536f884343ad6397b56304e9ed2": {
-          "query_version": "f392c58f720f66d8a02c0f2a2749ac157a7f9b458517a6fcb76c13b510ae7677",
-          "ted_pending": {
             "from": "2026-09-06T11:53:56+00:00",
             "through": "2026-09-18T11:53:56+00:00",
-            "token": "AAABoLWoVNQATQJcJhAm7kkspgFUZCVV2DYo8vde4wSdS6o3IgUVVq3ynFcpdfQQQPHvTTPYpJ+iYjL2pn+BJ9xtxPcGY4dx58k+xawelsbNqrert892Tw==",
+            "token": "AAABoLXysBQATXzF8Lz0FWNFzBU/k/HxCacTHL2uBOxdpFt8FpM7H2ZbxHn6sFRtbr0Mhca28D0/W//I0VJRXxctosnEg0hu59eWpfizo1XrZ77Ynw3emA==",
             "until": "2026-09-07T11:53:56+00:00"
           },
           "watermark": "2026-09-06T11:53:56+00:00"
         },
+        "5861ca8839715c105985a0c787070388abfd2536f884343ad6397b56304e9ed2": {
+          "query_version": "f392c58f720f66d8a02c0f2a2749ac157a7f9b458517a6fcb76c13b510ae7677",
+          "ted_pending": {
+            "from": "2026-09-07T11:53:56+00:00",
+            "through": "2026-09-18T11:53:56+00:00",
+            "token": "AAABoLXynCYATXy2AMo5Nbq7dot5vla/mNgj4Hfhnzo1wQHWG620u+U1eLkhW3jHreg9P3ll9DJxbVAAX0qhVI3G68HdwpBuYEuD87ahaT2iI1mBBD9TQQ==",
+            "until": "2026-09-08T11:53:56+00:00"
+          },
+          "watermark": "2026-09-07T11:53:56+00:00"
+        },
         "62ffa15a47d48f7c34aece1a88c8d9da6132e3c4d54cd2fefc5d24ce9f32b02f": {
           "query_version": "c424e15a306195ffd5c14a84dc9a6fccfa9d9dcbf9c45fe512de71a9323c2110",
           "ted_pending": {
-            "from": "2026-09-05T11:53:56+00:00",
+            "from": "2026-09-06T11:53:56+00:00",
             "through": "2026-09-18T11:53:56+00:00",
-            "until": "2026-09-06T11:53:56+00:00"
+            "token": "AAABoLXyjCIATTNDiG5pO5AgG47ZRTPNnqTLLjY81D+6Zlh+QFVd8J8+KhR6vxK8rA6eirLMWPmBbe79Fj8Y3CifI2CbzafkOnAPwVlmZJ2cybHC5AI0pA==",
+            "until": "2026-09-07T11:53:56+00:00"
           },
-          "watermark": "2026-09-05T11:53:56+00:00"
+          "watermark": "2026-09-06T11:53:56+00:00"
         },
         "6d034afd5915cb2071ca55fc25b853491de22585e8659d00e6f1377fbfed4853": {
           "query_version": "20d7c9897a45087440ff28b9c572fe5c8a5ba5cbc8dd50319d959d8aff58880c",
           "ted_pending": {
-            "from": "2026-09-05T11:53:56+00:00",
+            "from": "2026-09-06T11:53:56+00:00",
             "through": "2026-09-18T11:53:56+00:00",
-            "until": "2026-09-06T11:53:56+00:00"
+            "token": "AAABoLXys7kATXzI5pJMf5QkhGMUJ9uVHaAkmYAEZ/fXr8RBTisdKkvwdl4q6/HcqwcAEkoP4BKPQDcPf90sNS7xo3GJ0Szzdd7U4pox+7CYxERskYmPEA==",
+            "until": "2026-09-07T11:53:56+00:00"
           },
-          "watermark": "2026-09-05T11:53:56+00:00"
+          "watermark": "2026-09-06T11:53:56+00:00"
         },
         "7dd11b93ce2e4f26843ed525314521f8193ede4e334de28f70ca0add342bf74d": {
           "query_version": "393fc655fed070666fc320f41013d217e28873f4f0fda1f7859dbea6cf8278b1",
           "ted_pending": {
-            "from": "2026-09-05T11:53:56+00:00",
+            "from": "2026-09-06T11:53:56+00:00",
             "through": "2026-09-18T11:53:56+00:00",
-            "until": "2026-09-06T11:53:56+00:00"
+            "token": "AAABoLXymB4ATTNMWsX2ntHRv2Rc/K5WG86f2LZSNpf2/aXRjwB2KXID/flJZb+FegbbLpzL/d6EHFXWh8UhORP+wPWBS4xjGAwInT7IeHGKs8qFWimcrg==",
+            "until": "2026-09-07T11:53:56+00:00"
           },
-          "watermark": "2026-09-05T11:53:56+00:00"
+          "watermark": "2026-09-06T11:53:56+00:00"
         },
         "8606aec172024425c9490a42282a4e6a387f9f50e5dde3389075becbe5b2822a": {
           "query_version": "c1ebbae76539106fc053391197892bb8c3978b3307a6ec380d61f445c224edf5",
           "ted_pending": {
-            "from": "2026-09-05T11:53:56+00:00",
+            "from": "2026-09-06T11:53:56+00:00",
             "through": "2026-09-18T11:53:56+00:00",
-            "until": "2026-09-06T11:53:56+00:00"
+            "token": "AAABoLXyoUoATTNUBRlIhaOc9sYD/bA6jLIVcd+kQ+c3bRSZtI/JhKurbpShkCNsOGvsKPp6tIBjlvDuZ0/KTubLMnRnVXMCDTVPng7eb7tO8gPKsGqLHw==",
+            "until": "2026-09-07T11:53:56+00:00"
           },
-          "watermark": "2026-09-05T11:53:56+00:00"
+          "watermark": "2026-09-06T11:53:56+00:00"
         },
         "8907dcc6f0cf9fa15561229b3c71508d9ea0f6ba094a7cf80d51dca4255e0c0c": {
           "query_version": "9977f64d519bd5695585a9bdc9eb3efc70bf9b82e3630f2294094568a99afb7b",
           "ted_pending": {
-            "from": "2026-09-05T11:53:56+00:00",
+            "from": "2026-09-06T11:53:56+00:00",
             "through": "2026-09-18T11:53:56+00:00",
-            "until": "2026-09-06T11:53:56+00:00"
+            "token": "AAABoLXygSkATXygvjkHVZylYwjvwSmROpl5TDyF4DjX9FYN9Oxg3gG6kkif8Eu7+n0fro6nQguGUVSVI04hbxfta34R+sri8Muls8X6TzekYWpIN5jjbg==",
+            "until": "2026-09-07T11:53:56+00:00"
           },
-          "watermark": "2026-09-05T11:53:56+00:00"
+          "watermark": "2026-09-06T11:53:56+00:00"
         },
         "8a4647271e2bcd926bef4774a87dc9beb2dd25d5c924c708898c5f8176e0221d": {
           "query_version": "0160888086a76bfb321e660b31453734560b781f9a2b64e7d683611183699423",
           "ted_pending": {
-            "from": "2026-09-05T11:53:56+00:00",
+            "from": "2026-09-06T11:53:56+00:00",
             "through": "2026-09-18T11:53:56+00:00",
-            "until": "2026-09-06T11:53:56+00:00"
+            "token": "AAABoLXyRk4ATTMLB8EWkL+bGlQsCu7Dub/Y9QWr8BgbLuzS5yIzFIMiEOnl0RTQagFEnuqsJWllnNu54jRoQWbsZWfHdtrHtOtLOsHsOZvTFkiVYdpDgA==",
+            "until": "2026-09-07T11:53:56+00:00"
           },
-          "watermark": "2026-09-05T11:53:56+00:00"
+          "watermark": "2026-09-06T11:53:56+00:00"
         },
         "8c81d58f0c09e4a80ae7f5dcef56ffb62f626b9b001d04083e010946e4f474e5": {
           "query_version": "de276287a8ddc1e6275b4673e3eb262582076c16a0224b664ada1a9187b902ec",
           "ted_pending": {
-            "from": "2026-09-04T11:53:56+00:00",
+            "from": "2026-09-06T11:53:56+00:00",
             "through": "2026-09-18T11:53:56+00:00",
-            "token": "AAABoLWoIE0ATUuBTxE3/lAeQUqILTI5Y50aKHb6FoMEtB+mMatqDwcQluigl1riO2UlQ3KEcX6c8WjsrALQWfc/vqftEJWIoUHjPYdkKmd12EIQX4OaEQ==",
-            "until": "2026-09-05T11:53:56+00:00"
+            "until": "2026-09-07T11:53:56+00:00"
           },
-          "watermark": "2026-09-04T11:53:56+00:00"
+          "watermark": "2026-09-06T11:53:56+00:00"
         },
         "9bff76a205f04292975b19c0c257696d7905898a13453ff4b2ee5887769d19cf": {
           "query_version": "073b32233b32c3e5489657b554adaad8c34991c7c0ee00e81ffc3c04c8c82ba1",
           "ted_pending": {
-            "from": "2026-09-05T11:53:56+00:00",
+            "from": "2026-09-06T11:53:56+00:00",
             "through": "2026-09-18T11:53:56+00:00",
-            "until": "2026-09-06T11:53:56+00:00"
+            "token": "AAABoLXyTnwATTMQJq4z4Zv8eu/ftteIR3V6u7xBVJ3EVqdb2iuGy5tjhNLnHdSxGSzsPD9FIH9AJgQC8g2+PNdWk4eyvX9co5lbrDcSFolKRQs94YiJ5Q==",
+            "until": "2026-09-07T11:53:56+00:00"
           },
-          "watermark": "2026-09-05T11:53:56+00:00"
-        },
-        "b094d565377e8db37f7ed75a7f9f3414ff7f1b4c1db9b3fc13e66866e048be01": {
-          "query_version": "e740290d729e935b03c72e2d024a7c2c00cf3612f32e881a380fcc6dbdd9bc66",
-          "ted_pending": {
-            "from": "2026-09-04T11:53:56+00:00",
-            "through": "2026-09-18T17:53:22+00:00",
-            "until": "2026-09-05T11:53:56+00:00"
-          },
-          "watermark": "2026-09-04T11:53:56+00:00"
+          "watermark": "2026-09-06T11:53:56+00:00"
         },
         "b6a9b427fd1e80c0733134847cd4ce7fc741d7c18289c74ff9537dd2404a2678": {
           "query_version": "846be7b5de5998b175df4ebbd3d4a53be1e1a9e50a7ac47ff1ee5c92a98b5a8b",
           "ted_pending": {
-            "from": "2026-09-05T11:53:56+00:00",
+            "from": "2026-09-06T11:53:56+00:00",
             "through": "2026-09-18T11:53:56+00:00",
-            "until": "2026-09-06T11:53:56+00:00"
+            "token": "AAABoLXycw8ATTMsF3ghqXk8X6lDjmz7jOLMUnxPEluSayRjS2Cnt2rlPRPSUV9F+Z/VsSzsb/FFpWUbEL770cLM2rxQE0mISiPoUDflCbRiLoiRcbcalg==",
+            "until": "2026-09-07T11:53:56+00:00"
           },
-          "watermark": "2026-09-05T11:53:56+00:00"
+          "watermark": "2026-09-06T11:53:56+00:00"
+        },
+        "b9c53ea8c56deb7ba561badc3606d7661dfbf23d2274aced7e82c7987fb051aa": {
+          "query_version": "79116827b1b965c8c4f03dfc0df3efe09782a53ede1b7d9265229c57a09e6475",
+          "ted_pending": {
+            "from": "2026-09-04T19:14:50+00:00",
+            "through": "2026-09-18T19:14:50+00:00",
+            "until": "2026-09-05T19:14:50+00:00"
+          },
+          "watermark": "2026-09-04T19:14:50+00:00"
+        },
+        "bec897a5904780289ed1e211f8f10503c89832bf4511a11bb458ae4f04bfdb5f": {
+          "query_version": "c8e716b87e682ccdcfe349f928f74f7aa383b7274817d44be96a976c53325cde",
+          "ted_pending": {
+            "from": "2026-09-04T19:14:50+00:00",
+            "through": "2026-09-18T19:14:50+00:00",
+            "until": "2026-09-05T19:14:50+00:00"
+          },
+          "watermark": "2026-09-04T19:14:50+00:00"
         },
         "c6ed0e88bacc627f912552101621f2aa0c840f646c15c14325bdab55d2989893": {
           "query_version": "106e7796b5e84e233739a9694ff2ef3b4fcb4a479f5e62647297bbc47934b751",
           "ted_pending": {
-            "from": "2026-09-05T11:53:56+00:00",
+            "from": "2026-09-06T11:53:56+00:00",
             "through": "2026-09-18T11:53:56+00:00",
-            "until": "2026-09-06T11:53:56+00:00"
+            "token": "AAABoLXyqygATXy/j0URRBDy55hMpodJ8FbLAqCYHdkb3n+R8QHz+jwARsdwx4bVHnuM94tQXAfg6mf4zIL+J/jUqCzUZtmXjYCJVR3AA3qbJrJDJT2nKQ==",
+            "until": "2026-09-07T11:53:56+00:00"
           },
-          "watermark": "2026-09-05T11:53:56+00:00"
+          "watermark": "2026-09-06T11:53:56+00:00"
         },
         "c713dee638184fdec8b1746d3fa6e816f04f426bdcdc47b78780b4d6f9b75a15": {
           "query_version": "c7044ffafd473502118da9301133a0ecdc03676011f457c7c180fd859a45d2e7",
           "ted_pending": {
-            "from": "2026-09-04T11:53:56+00:00",
+            "from": "2026-09-05T11:53:56+00:00",
             "through": "2026-09-18T17:53:22+00:00",
-            "until": "2026-09-05T11:53:56+00:00"
+            "until": "2026-09-06T11:53:56+00:00"
           },
-          "watermark": "2026-09-04T11:53:56+00:00"
+          "watermark": "2026-09-05T11:53:56+00:00"
         },
         "e4c11de344c8713f18b4917d9c982eaaa5bae53b24d2a2e7bb178d09ee1c19cf": {
           "query_version": "5d17fae8c77dca95c7fc1deace6d9c94c2f7789f75fa734700ba513921b81651",
           "ted_pending": {
-            "from": "2026-09-05T11:53:56+00:00",
+            "from": "2026-09-06T11:53:56+00:00",
             "through": "2026-09-18T11:53:56+00:00",
-            "until": "2026-09-06T11:53:56+00:00"
+            "token": "AAABoLXyV0UATXyCKNnHxDa3v2ohYc9K1lwzgInJm9/ZGsBZnKt4vM9uBrzTeOLesAN2jzvQi3/MPG/uAalXUppfEJLDo4nKvKqCJ99gwEalqm+kIVULLg==",
+            "until": "2026-09-07T11:53:56+00:00"
           },
-          "watermark": "2026-09-05T11:53:56+00:00"
+          "watermark": "2026-09-06T11:53:56+00:00"
         },
-        "ee6a9eedcec6bc30da92bbdb3434b6c7049c3ff73344bff90950291d82de8ff7": {
-          "query_version": "c1a3414ac0af2af70c19e2d0ff6110fc1cb3c131d0d80000d2ffd954d048c9b8",
+        "e7db3ae87f203840ad271bf5ea009121c6e6522d1fc3acc8aa65f1bc1693966a": {
+          "query_version": "88a2ad2cc49671a59bde2edca18d88aee7223c77fd7b45179e3f9fa1af1b7eca",
           "ted_pending": {
-            "from": "2026-09-04T11:53:56+00:00",
-            "through": "2026-09-18T17:53:22+00:00",
-            "until": "2026-09-05T11:53:56+00:00"
+            "from": "2026-09-04T19:14:50+00:00",
+            "through": "2026-09-18T19:14:50+00:00",
+            "until": "2026-09-05T19:14:50+00:00"
           },
-          "watermark": "2026-09-04T11:53:56+00:00"
+          "watermark": "2026-09-04T19:14:50+00:00"
         },
         "f3be88ef68c48e27cfa4a23a64e9b02a85f6d766ea76abfebed0afbef3aeb2f8": {
           "query_version": "168c7131004e783133b1f8a31a1e0c4c42b6c992f047e31dfd36ce237b0a0aaf",
           "ted_pending": {
-            "from": "2026-09-05T11:53:56+00:00",
+            "from": "2026-09-06T11:53:56+00:00",
             "through": "2026-09-18T11:53:56+00:00",
-            "until": "2026-09-06T11:53:56+00:00"
+            "token": "AAABoLXykrEATXyu7VcXVsmjJNi3g4pu6XZxOAarb8Tnk1sEQQB9kMxK3Zii20d4AUpxoqiqolsT2wxAr6lL9TGsKug9O+pM53rfzxZ5XQT1mty7cCKHJw==",
+            "until": "2026-09-07T11:53:56+00:00"
           },
-          "watermark": "2026-09-05T11:53:56+00:00"
+          "watermark": "2026-09-06T11:53:56+00:00"
         }
       }
     },
-    "watermark": "2026-09-18T17:53:22+00:00"
+    "watermark": "2026-09-18T19:14:50+00:00"
   },
   "upcoming_agreements": {
-    "last_success": "2026-09-18T17:53:22+00:00",
-    "watermark": "2026-09-18T17:53:22+00:00"
+    "last_success": "2026-09-18T19:14:50+00:00",
+    "watermark": "2026-09-18T19:14:50+00:00"
   },
   "usaspending": {
     "last_success": "2026-09-09T23:17:56+00:00",
@@ -135265,10 +135342,6 @@
       "pending": [
         {
           "month": "08-2026",
-          "type": 5
-        },
-        {
-          "month": "08-2026",
           "type": 6
         },
         {
@@ -135358,10 +135431,14 @@
         {
           "month": "08-2026",
           "type": 4
+        },
+        {
+          "month": "08-2026",
+          "type": 5
         }
       ],
       "through": "2026-09-11T13:29:55+00:00"
     },
-    "retry_at": "2026-09-18T18:53:47.550380+00:00"
+    "retry_at": "2026-09-18T20:15:17.316877+00:00"
   }
 }
