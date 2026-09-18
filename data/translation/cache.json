@@ -3494,9 +3494,9 @@
             "gemini-3.5-flash-lite": 2
           },
           "quality_retry": {
-            "after": 1789726340.0875146,
+            "after": 1789730534.120445,
             "day": "2026-09-18",
-            "round": 0
+            "round": 1
           },
           "rejected": {
             "id": "0500263a32452f4373677a2b8a1ee200d4f6c9c5d3a1db1f53ebbd7824ec9432:0",
@@ -3514,9 +3514,9 @@
             "gemini-3.5-flash-lite": 2
           },
           "quality_retry": {
-            "after": 1789726340.0876782,
+            "after": 1789730534.1206102,
             "day": "2026-09-18",
-            "round": 0
+            "round": 1
           },
           "rejected": {
             "id": "0500263a32452f4373677a2b8a1ee200d4f6c9c5d3a1db1f53ebbd7824ec9432:1",
@@ -6798,6 +6798,29 @@
             "text": "Communication support service for the dissemination of activities and results of LIFE-PYRENEES4CLIMA projects (WP9) and complementary projects WP1"
           },
           "source": "Servicio de apoyo a la Comunicación para la difusión de las actividades y resultados de proyectos LIFE-PYRENEES4CLIMA (WP9) y proyectos complementarios WP1"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "0919c5e2fc32b3cfad99e88031fcdf703c1a679bf1c862bfeb1e30d62757f531": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T10:20:59.189991+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "C002201 Provision of a radiology online learning platform for all Radiology Doctors in Training in Scotland."
+          },
+          "source": "C002201 Provision of a radiology online learning platform for all Radiology Doctors in Training in Scotland."
         }
       ],
       "protected_names": [],
@@ -17555,9 +17578,9 @@
             "gemini-3.5-flash-lite": 2
           },
           "quality_retry": {
-            "after": 1789726353.50077,
+            "after": 1789730551.1305847,
             "day": "2026-09-18",
-            "round": 0
+            "round": 1
           },
           "rejected": {
             "id": "17b934c61b3a1041e8c35e44657cd55e7ed7191d2646ecc706de79c8846ee041:0",
@@ -20696,6 +20719,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "1c39c4ac2af3bfc6de8d71b9c8df601dd50eae7ed8773a4fc1b3fb457a9205e6": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T10:20:59.190209+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Provision of a radiology online learning platform for all Radiology Doctors in Training in Scotland. Lot 1: . C002201 Provision of a radiology online learning platform for all Radiology Doctors in Training in Scotland."
+          },
+          "source": "Provision of a radiology online learning platform for all Radiology Doctors in Training in Scotland. Lot 1: . C002201 Provision of a radiology online learning platform for all Radiology Doctors in Training in Scotland."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "1c3a713753acd1d2bb68eb6d47cbcf3a5cd7062a7cbad185cc83b89ba6077e14": {
       "parts": [
         {
@@ -23536,9 +23582,9 @@
             "gemini-3.5-flash-lite": 2
           },
           "quality_retry": {
-            "after": 1789726353.5009928,
+            "after": 1789730551.1308544,
             "day": "2026-09-18",
-            "round": 0
+            "round": 1
           },
           "rejected": {
             "id": "20b9e4851a90baf78c10e3674569b157138e9af1aa399851ec33d1de6db96b1d:0",
@@ -32113,6 +32159,29 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "2c8cacd6b1c7c6be465fd6fa3a18ac917726ac9af9c63410eb691bb43ebae24e": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T10:20:51.415972+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Prj_17622 Technology Operations Digital and Technology Delivery Services"
+          },
+          "source": "Prj_17622 Technology Operations Digital and Technology Delivery Services"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "2c9005fd51fd90504456a6fa8a93d8396d7a8692ecfdc256f3c9b82b55a9bffc": {
@@ -42709,6 +42778,29 @@
             "text": "The objective of the procurement is to ensure that Telemark county fulfils its statutory obligations relating to company health services. The Company Health Service shall contribute to systematic, preventive and risk based HSE work, prevent work-related illness and injury and promote a health promoting working environment. The service shall support the managers and the organisation in the HSE work, contribute to the early identification and management of working environment challenges and ensure access to relevant multi-disciplinary competence."
           },
           "source": "The objective of the procurement is to ensure that Telemark county fulfils its statutory obligations relating to company health services. The Company Health Service shall contribute to systematic, preventive and risk based HSE work, prevent work-related illness and injury and promote a health promoting working environment. The service shall support the managers and the organisation in the HSE work, contribute to the early identification and management of working environment challenges and ensure access to relevant multi-disciplinary competence."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "3bda958f6fd027ce138e97f70e19c157fbcfd1977c57c085a2cb9f9c19f0d4dc": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T10:20:51.404417+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Digital Multi-Capability Services for Children & Families, Regions and wider DfE Services"
+          },
+          "source": "Digital Multi-Capability Services for Children & Families, Regions and wider DfE Services"
         }
       ],
       "protected_names": [],
@@ -73666,6 +73758,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "6a02c4b31b6bf43ac59610e3c8a28796f81c9d169727eae8b63c212ebff03fac": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T10:20:51.409260+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "prj_17226 Prisons Digital Priorities and OMU Transformation"
+          },
+          "source": "prj_17226 Prisons Digital Priorities and OMU Transformation"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "6a0ca4e3afc2d3a3ac44e652542a1c7a2f21e9e790e4f903da8c97009ab14058": {
       "parts": [
         {
@@ -76516,9 +76631,9 @@
             "gemini-3.5-flash-lite": 2
           },
           "quality_retry": {
-            "after": 1789726312.2815835,
+            "after": 1789730509.3052652,
             "day": "2026-09-18",
-            "round": 0
+            "round": 1
           },
           "rejected": {
             "id": "6ddd157281935350d524c60bb9eeb476f06daf82033a9e48a56096a1e64408bd:0",
@@ -76632,9 +76747,9 @@
             "gemini-3.5-flash-lite": 2
           },
           "quality_retry": {
-            "after": 1789726312.2818625,
+            "after": 1789730509.305533,
             "day": "2026-09-18",
-            "round": 0
+            "round": 1
           },
           "rejected": {
             "id": "6e0ae9045b024b0214db24bb5793afc86a78b10be3eb141f060993539d527656:0",
@@ -106670,9 +106785,9 @@
             "gemini-3.5-flash-lite": 2
           },
           "quality_retry": {
-            "after": 1789726353.501162,
+            "after": 1789730551.131073,
             "day": "2026-09-18",
-            "round": 0
+            "round": 1
           },
           "rejected": {
             "id": "984720aa0631a8157e49446825926d634cce3577dc85224dc50528d836754116:0",
@@ -107534,15 +107649,15 @@
             "gemini-3.5-flash-lite": 2
           },
           "quality_retry": {
-            "after": 1789726353.500257,
+            "after": 1789730551.130665,
             "day": "2026-09-18",
-            "round": 0
+            "round": 1
           },
           "rejected": {
             "id": "99750f3b5801779cd6452c3ff6f313604a17c998b7f8a515daf267f21fa7a6da:0",
             "language": "fi",
             "model": "gemini-3.1-flash-lite",
-            "text": "Numera Palvelut Oy; Hattula Municipality; Hämeenlinna City; Janakkala Municipality; Kanta-Kanta-Häme Wellbeing Services County; Tavastia Education Consortium"
+            "text": "Numera Palvelut Oy; Hattula Municipality; Hämeenlinna City; Janakkala Municipality; Kanta-Häme Wellbeing Services County; Tavastia Education Joint Authority"
           },
           "result": null,
           "source": "Numera Palvelut Oy; Hattulan kunta; Hämeenlinnan kaupunki; Janakkalan kunta; Kanta-Hämeen hyvinvointialue; Koulutuskuntayhtymä Tavastia"
@@ -115923,6 +116038,31 @@
         }
       ],
       "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "a467ee5c8d0823d0b7cc9cd0b1cc6816dc8496978aab66bcaa73029ec6385d03": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T10:20:51.415847+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Beta This is a new service – your feedback will help us to improve it. Home Digital Outcomes opportunities Procurement details Ministry Of Justice prj_17226 Prisons Digital Priorities and OMU Transformation Multi stage Call-off procedure Outside scope Off-payroll (IR35) status Value 1. Project name prj_17226 Prisons Digital Priorities and Offender Management Unit (OMU) Transformation 2. Summary of work MoJ is seeking services from a third-party Supplier to provide digital delivery capability to support Prisons Digital priorities and Offender Management Unit Transformation including five main delivery areas; Public Protection in Prisons, Personalised DPS inc. task management and standard document management, Safer Custody, Prison Staff Rostering and other new or emerging critical priorities. The Contract will be 3+1 years, and is likely to be awarded early August 2026. 3. Latest start date 2026-08-03 4. Expected contract length 3 Years 0 months 5. Estimated contract value (excl VAT) 4.0E7 6. Incumbent supplier (optional) N/A 7. Security clearance Baseline Personnel Security Standard (BPSS),Security Check (SC) 8. Competition type Multi stage competitive selection process 9. Timeline - Start date (Tender documents published) 10th June - Deadline for receipt of clarification questions 19th June 23:59 - Buyer responses to clarification questions published 22nd June 23:59 - Tender submission deadline 29th June 13:00 10. Contracted out service or supply of resource Contracted out service: the off-payroll rules do not apply 11. How to apply The Ministry of Justice (MoJ) intends to use the MoJ e‐Sourcing portal to run Invitations to Tender (ITT) for relevant DOS7 competitions, (subject to use of the DOS7 filtering tool). Suppliers who wish to be considered for potential procurements advertised by MoJ should ensure they are registered on the portal. All ITT activity and communications between MoJ and suppliers will usually be conducted through the MoJ e‐Sourcing portal. Suppliers will be required to access the ITT documentation, submit clarification questions, and upload their tender responses via the portal. To facilitate participation, suppliers must create an account on the MoJ e‐Sourcing portal, which can be accessed via the link below: https://ministryofjusticecommercial.bravosolution.co.uk/web/login.html Further details, including ITT documentation, event timelines and instructions for submitting responses for any future procurement activity, will be shared with the relevant DOS7 Suppliers in due course. Help You can contact us by email, phone or using the enquiry form (opens in a new tab) . Email: info@gca.gov.uk Telephone: 0345 410 2222 GCA customer services team is available Monday to Friday, 9am to 5pm."
+          },
+          "source": "Beta This is a new service – your feedback will help us to improve it. Home Digital Outcomes opportunities Procurement details Ministry Of Justice prj_17226 Prisons Digital Priorities and OMU Transformation Multi stage Call-off procedure Outside scope Off-payroll (IR35) status Value 1. Project name prj_17226 Prisons Digital Priorities and Offender Management Unit (OMU) Transformation 2. Summary of work MoJ is seeking services from a third-party Supplier to provide digital delivery capability to support Prisons Digital priorities and Offender Management Unit Transformation including five main delivery areas; Public Protection in Prisons, Personalised DPS inc. task management and standard document management, Safer Custody, Prison Staff Rostering and other new or emerging critical priorities. The Contract will be 3+1 years, and is likely to be awarded early August 2026. 3. Latest start date 2026-08-03 4. Expected contract length 3 Years 0 months 5. Estimated contract value (excl VAT) 4.0E7 6. Incumbent supplier (optional) N/A 7. Security clearance Baseline Personnel Security Standard (BPSS),Security Check (SC) 8. Competition type Multi stage competitive selection process 9. Timeline - Start date (Tender documents published) 10th June - Deadline for receipt of clarification questions 19th June 23:59 - Buyer responses to clarification questions published 22nd June 23:59 - Tender submission deadline 29th June 13:00 10. Contracted out service or supply of resource Contracted out service: the off-payroll rules do not apply 11. How to apply The Ministry of Justice (MoJ) intends to use the MoJ e‐Sourcing portal to run Invitations to Tender (ITT) for relevant DOS7 competitions, (subject to use of the DOS7 filtering tool). Suppliers who wish to be considered for potential procurements advertised by MoJ should ensure they are registered on the portal. All ITT activity and communications between MoJ and suppliers will usually be conducted through the MoJ e‐Sourcing portal. Suppliers will be required to access the ITT documentation, submit clarification questions, and upload their tender responses via the portal. To facilitate participation, suppliers must create an account on the MoJ e‐Sourcing portal, which can be accessed via the link below: https://ministryofjusticecommercial.bravosolution.co.uk/web/login.html Further details, including ITT documentation, event timelines and instructions for submitting responses for any future procurement activity, will be shared with the relevant DOS7 Suppliers in due course. Help You can contact us by email, phone or using the enquiry form (opens in a new tab) . Email: info@gca.gov.uk Telephone: 0345 410 2222 GCA customer services team is available Monday to Friday, 9am to 5pm."
+        }
+      ],
+      "protected_names": [
+        "Ministry Of Justice"
+      ],
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
@@ -134351,9 +134491,9 @@
             "gemini-3.5-flash-lite": 2
           },
           "quality_retry": {
-            "after": 1789726340.0881371,
+            "after": 1789730534.1210895,
             "day": "2026-09-18",
-            "round": 0
+            "round": 1
           },
           "rejected": {
             "id": "becabb2d6b541db14599a0c7f70d0da15cae6318f1d483014dd5809c8f360903:0",
@@ -138141,6 +138281,31 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "c43bfe73a8dd126b5c397176ff503647ec6e6d9a68fa3b9dc30152d8e46654d2": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T10:20:59.189851+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Beta This is a new service – your feedback will help us to improve it. Home Digital Outcomes opportunities Procurement details Ministry Of Justice Prj_17622 Technology Operations Digital and Technology Delivery Services Single stage Call-off procedure Potentially in scope Off-payroll (IR35) status £7,500,000 Value 1. Project name Prj_17622 Technology Operations Digital and Technology Delivery Services 2. Summary of work This requirement is to address the needs of Technology Operations for Justice Digital, which will enable MoJ Tech Ops to mobilise change specialists at pace and improve the quality of services. 3. Latest start date 2026-08-03 4. Expected contract length 2 Years 6 months 5. Estimated contract value (excl VAT) 7500000.0 6. Incumbent supplier (optional) 7. Security clearance Baseline Personnel Security Standard (BPSS) 8. Competition type Single stage competitive selection process 9. Timeline Indicative Timeline: ITT Publication date: 08/06/2026 Estimated Award date: 14/07/2026 10. Contracted out service or supply of resource Supply of resource: the off-payroll rules may apply 11. How to apply The Ministry of Justice (MoJ) intends to use the MoJ e‐Sourcing portal to run Invitations to Tender (ITT) for relevant DOS7 competitions, (subject to use of the DOS7 filtering tool). Suppliers who wish to be considered for potential procurements advertised by MoJ should ensure they are registered on the portal. All ITT activity and communications between MoJ and suppliers will usually be conducted through the MoJ e‐Sourcing portal. Suppliers will be required to access the ITT documentation, submit clarification questions, and upload their tender responses via the portal. To facilitate participation, suppliers must create an account on the MoJ e‐Sourcing portal, which can be accessed via the link below: https://ministryofjusticecommercial.bravosolution.co.uk/web/login.html Further details, including ITT documentation, event timelines and instructions for submitting responses for any future procurement activity, will be shared with the relevant DOS7 Suppliers in due course. Help You can contact us by email, phone or using the enquiry form (opens in a new tab) . Email: info@gca.gov.uk Telephone: 0345 410 2222 GCA customer services team is available Monday to Friday, 9am to 5pm."
+          },
+          "source": "Beta This is a new service – your feedback will help us to improve it. Home Digital Outcomes opportunities Procurement details Ministry Of Justice Prj_17622 Technology Operations Digital and Technology Delivery Services Single stage Call-off procedure Potentially in scope Off-payroll (IR35) status £7,500,000 Value 1. Project name Prj_17622 Technology Operations Digital and Technology Delivery Services 2. Summary of work This requirement is to address the needs of Technology Operations for Justice Digital, which will enable MoJ Tech Ops to mobilise change specialists at pace and improve the quality of services. 3. Latest start date 2026-08-03 4. Expected contract length 2 Years 6 months 5. Estimated contract value (excl VAT) 7500000.0 6. Incumbent supplier (optional) 7. Security clearance Baseline Personnel Security Standard (BPSS) 8. Competition type Single stage competitive selection process 9. Timeline Indicative Timeline: ITT Publication date: 08/06/2026 Estimated Award date: 14/07/2026 10. Contracted out service or supply of resource Supply of resource: the off-payroll rules may apply 11. How to apply The Ministry of Justice (MoJ) intends to use the MoJ e‐Sourcing portal to run Invitations to Tender (ITT) for relevant DOS7 competitions, (subject to use of the DOS7 filtering tool). Suppliers who wish to be considered for potential procurements advertised by MoJ should ensure they are registered on the portal. All ITT activity and communications between MoJ and suppliers will usually be conducted through the MoJ e‐Sourcing portal. Suppliers will be required to access the ITT documentation, submit clarification questions, and upload their tender responses via the portal. To facilitate participation, suppliers must create an account on the MoJ e‐Sourcing portal, which can be accessed via the link below: https://ministryofjusticecommercial.bravosolution.co.uk/web/login.html Further details, including ITT documentation, event timelines and instructions for submitting responses for any future procurement activity, will be shared with the relevant DOS7 Suppliers in due course. Help You can contact us by email, phone or using the enquiry form (opens in a new tab) . Email: info@gca.gov.uk Telephone: 0345 410 2222 GCA customer services team is available Monday to Friday, 9am to 5pm."
+        }
+      ],
+      "protected_names": [
+        "Ministry Of Justice"
+      ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "c43c622c12a1690a818ec99112304ccbf5959d6f055e88edb03a96bf1120b905": {
       "parts": [
         {
@@ -138708,9 +138873,9 @@
             "gemini-3.5-flash-lite": 2
           },
           "quality_retry": {
-            "after": 1789726353.501225,
+            "after": 1789730551.131143,
             "day": "2026-09-18",
-            "round": 0
+            "round": 1
           },
           "rejected": {
             "id": "c4e209ec2bb297e80a8b02c0e0aca557e7ee149d18b27681075ca1cfaf64062c:0",
@@ -149022,9 +149187,9 @@
             "gemini-3.5-flash-lite": 2
           },
           "quality_retry": {
-            "after": 1789726353.5011442,
+            "after": 1789730551.131037,
             "day": "2026-09-18",
-            "round": 0
+            "round": 1
           },
           "rejected": {
             "id": "d28445168230d3f1ecb8104d67cf20d0ae7fd7f8b8781bff60d1d3240731d4f6:0",
@@ -159456,9 +159621,9 @@
             "gemini-3.5-flash-lite": 2
           },
           "quality_retry": {
-            "after": 1789726353.501184,
+            "after": 1789730551.1310973,
             "day": "2026-09-18",
-            "round": 0
+            "round": 1
           },
           "rejected": {
             "id": "e1e5aafb2d19e097e2ecbe2ec5757d1c905b9123c84312b84b2ac0dd34868e24:0",
@@ -160716,6 +160881,31 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "e37d5305248712b24c95e0b993f41b0b4c63426a8947dc26680fbcb84929703f": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T10:20:51.406420+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Beta This is a new service – your feedback will help us to improve it. Home Digital Outcomes opportunities Procurement details Department For Education Digital Multi-Capability Services for Children & Families, Regions and wider DfE Services Single stage Call-off procedure Potentially in scope Off-payroll (IR35) status £105,400,000 Value Search criteria used: 229 results found in Lot 2: Digital capability and delivery partner 1. Project name Digital Multi-Capability Services for Children & Families, Regions and wider DfE Services 2. Summary of work DfE is seeking a strategic delivery partner to provide multidisciplinary Digital, Data and Technology (DDaT) services across the Children and Families Portfolio, Regions Group and other business areas as required. The supplier will work collaboratively with DfE teams and stakeholders to design, deliver, operate and continuously improve digital products and services. The contract covers flexible, scalable and outcome-focused DDaT capabilities across the full digital service lifecycle 3. Latest start date 2026-11-01 4. Expected contract length 4 Years 0 months 5. Estimated contract value (excl VAT) 105400000.00 6. Incumbent supplier (optional) 7. Security clearance Baseline Personnel Security Standard (BPSS) 8. Competition type Single stage competitive selection process 9. Timeline Invitation to Tender documents published: 02/09/2026 Deadline for submission of supplier clarification questions: 16/09/2026 at 10:00am Responses to clarification questions published by DfE: 19/09/2026 Tender submission deadline: 05/10/2026 at 10:00am Commencement of evaluation process: 06/10/2026 Notification of Contract award and feedback issued: 06/11/2026 Contract award notice published:06/11/2026 Anticipated Contract start date: 30/11/2026 These timelines are indicative only 10. Contracted out service or supply of resource Supply of resource: the off-payroll rules may apply 11. How to apply To bid for this Department for Education opportunity, you must be registered on the GCA e-Sourcing portal: Questions must only be asked via the e-Sourcing portal, and you must use the e-Sourcing portal to submit your bid. DfE can only accept bids that are received through the e-Sourcing Portal. If you are unsure, ask questions through before the Clarification Questions Deadline. Help You can contact us by email, phone or using the enquiry form (opens in a new tab) . Email: info@gca.gov.uk Telephone: 0345 410 2222 GCA customer services team is available Monday to Friday, 9am to 5pm."
+          },
+          "source": "Beta This is a new service – your feedback will help us to improve it. Home Digital Outcomes opportunities Procurement details Department For Education Digital Multi-Capability Services for Children & Families, Regions and wider DfE Services Single stage Call-off procedure Potentially in scope Off-payroll (IR35) status £105,400,000 Value Search criteria used: 229 results found in Lot 2: Digital capability and delivery partner 1. Project name Digital Multi-Capability Services for Children & Families, Regions and wider DfE Services 2. Summary of work DfE is seeking a strategic delivery partner to provide multidisciplinary Digital, Data and Technology (DDaT) services across the Children and Families Portfolio, Regions Group and other business areas as required. The supplier will work collaboratively with DfE teams and stakeholders to design, deliver, operate and continuously improve digital products and services. The contract covers flexible, scalable and outcome-focused DDaT capabilities across the full digital service lifecycle 3. Latest start date 2026-11-01 4. Expected contract length 4 Years 0 months 5. Estimated contract value (excl VAT) 105400000.00 6. Incumbent supplier (optional) 7. Security clearance Baseline Personnel Security Standard (BPSS) 8. Competition type Single stage competitive selection process 9. Timeline Invitation to Tender documents published: 02/09/2026 Deadline for submission of supplier clarification questions: 16/09/2026 at 10:00am Responses to clarification questions published by DfE: 19/09/2026 Tender submission deadline: 05/10/2026 at 10:00am Commencement of evaluation process: 06/10/2026 Notification of Contract award and feedback issued: 06/11/2026 Contract award notice published:06/11/2026 Anticipated Contract start date: 30/11/2026 These timelines are indicative only 10. Contracted out service or supply of resource Supply of resource: the off-payroll rules may apply 11. How to apply To bid for this Department for Education opportunity, you must be registered on the GCA e-Sourcing portal: Questions must only be asked via the e-Sourcing portal, and you must use the e-Sourcing portal to submit your bid. DfE can only accept bids that are received through the e-Sourcing Portal. If you are unsure, ask questions through before the Clarification Questions Deadline. Help You can contact us by email, phone or using the enquiry form (opens in a new tab) . Email: info@gca.gov.uk Telephone: 0345 410 2222 GCA customer services team is available Monday to Friday, 9am to 5pm."
+        }
+      ],
+      "protected_names": [
+        "Department For Education"
+      ],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "e383c915b0e97cc889cb0158846614c14e1b053904be2c855a819e5dfcbc5ae9": {
@@ -172895,9 +173085,9 @@
             "gemini-3.5-flash-lite": 2
           },
           "quality_retry": {
-            "after": 1789726312.2815654,
+            "after": 1789730509.3052485,
             "day": "2026-09-18",
-            "round": 0
+            "round": 1
           },
           "rejected": {
             "id": "f3c2dc5804553f030f1fdde5b03b83d92ebcfe09cfb6131c9f8b898dd3afa286:0",
@@ -173506,9 +173696,9 @@
             "gemini-3.5-flash-lite": 2
           },
           "quality_retry": {
-            "after": 1789726353.5012085,
+            "after": 1789730551.1311255,
             "day": "2026-09-18",
-            "round": 0
+            "round": 1
           },
           "rejected": {
             "id": "f499c81f86c58d817f70b39cc6b28256b46455d503a913c6990b485417682357:0",
@@ -177689,9 +177879,9 @@
             "gemini-3.5-flash-lite": 2
           },
           "quality_retry": {
-            "after": 1789726353.500804,
+            "after": 1789730551.1306143,
             "day": "2026-09-18",
-            "round": 0
+            "round": 1
           },
           "rejected": {
             "id": "fa9234aa3ae0eb5c65870be97a2f0ac5b99b35be30732e45527d2efa4c6a07aa:0",
