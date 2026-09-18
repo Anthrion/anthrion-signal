@@ -11,7 +11,7 @@ SOFTWARE = ("software", "platform", "application", "information system", "inform
             "management system", "management systems", "it system", "it systems", "digital system",
             "digital systems", "web application", "web applications",
             "it solution", "it solutions", "software solution", "software solutions",
-            "web portal", "online portal", "internet portal",
+            "web portal", "internet portal",
             "automation", "workflow", "api", "crm", "saas", "database", "logiciel", "sistema", "sistemi",
             "applicazioni", "applicazione", "applikationen", "anwendungen", "virtualisierbar", "softwarewartung",
             "plataforma", "piattaforma", "softwareentwicklung", "systeme", "jarjestelma", "jarjestelman",

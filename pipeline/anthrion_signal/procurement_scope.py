@@ -192,13 +192,16 @@ def generic_digital_scope(segments):
                "records management system", "record management system", "records management solution",
                "record management solution", "patient record management", "asset management system",
                "quality management system", "enterprise architecture management system",
-               "digital workplace", "intranet", "epos system", "point of sale system",
+               "digital workplace", "epos system", "point of sale system",
                # Named business systems that are bought as software rather than as a
-               # service. Industrial control (SCADA, telemetry) is deliberately absent.
+               # service. Industrial control (SCADA, telemetry) is deliberately absent,
+               # and so are "procurement system", "online portal" and "intranet": those
+               # name the e-tendering platform or a publication channel far more often
+               # than a purchased deliverable.
                "notification system", "ordering system", "booking system", "scheduling system",
                "reporting system", "registration system", "ticketing system", "archive system",
-               "contract management system", "procurement system", "e-procurement system",
-               "invoicing system", "billing system", "rostering system", "referral tool",
+               "contract management system", "invoicing system", "billing system",
+               "rostering system", "referral tool",
                "self service portal", "customer portal", "citizen portal", "tenant portal")
     return list(dict.fromkeys(p for s in segments for p in phrase_hits(s["text"], phrases)
                              if affirmed(s["text"], p) and not physical_payment_equipment(s["text"], p)
