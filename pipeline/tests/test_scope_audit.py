@@ -181,3 +181,47 @@ def test_explicit_multi_category_procurement_retains_software_categories(signal,
 def test_explicit_digital_scope_overrides_nontechnical_cpv(signal, config):
     assert classify(signal, config, "Inventory update",
                     "Transfer asset records to a computer application with comprehensive search and reporting.", ["71356200"])
+
+
+@pytest.mark.parametrize("title,description,cpv", [
+    ("PR Agency Services", "Public relations campaigns and copywriting. Lot 2: Website maintenance, hosting and support.",
+     ["79341000", "72200000"]),
+    ("PR Agency Services", "Public relations campaigns. Lot 2: Website hosting.", ["79341000", "72200000"]),
+    ("Security and reception services",
+     "Security guards at council offices. Lot 2: Maintain a customer identity and access management platform.",
+     ["79710000", "72200000"]),
+    ("Legal Services", "Legal advice and support. Lot 2: Software testing and maintenance.", ["79100000", "72200000"]),
+])
+def test_mixed_maintenance_and_testing_lots_survive(signal, config, title, description, cpv):
+    assert classify(signal, config, title, description, cpv)
+
+
+@pytest.mark.parametrize("description", [
+    "Unlike previous reports, this contract includes Salesforce implementation.",
+    "In contrast to previous reports which studied youth services, this contract includes Salesforce implementation.",
+    "Unlike previous reports this contract includes Salesforce implementation.",
+])
+def test_current_delivery_after_historical_contrast_survives(signal, config, description):
+    assert classify(signal, config, "Service redesign", description)
+    assert "salesforce" in signal.matched_capabilities
+
+
+def test_software_integration_compatibility_retains_platform_evidence(signal, config):
+    assert classify(signal, config, "Platform integration",
+                    "Deliver software integration ensuring compatibility with Salesforce.")
+    assert "salesforce" in signal.matched_capabilities
+
+
+@pytest.mark.parametrize("title,description,cpv", [
+    ("PR Agency Services", "Public relations campaigns. Website maintenance is out of scope.", ["79341000"]),
+    ("Legal Services", "Legal advice. Work is performed using a software testing framework.", ["79100000"]),
+    ("Supply of desktop computers", "Hardware must ensure compatibility with Salesforce.", ["30200000"]),
+    ("Supply of desktop computers",
+     "No requirement to implement software integration, but ensure hardware compatibility with Salesforce.", ["30200000"]),
+    ("Microsoft software licence renewal", "Renew licences which support an existing software platform.", ["48000000"]),
+    ("VMware Cloud Foundation Licences", "Procure subscription licences to support the existing private cloud platform.", ["48000000"]),
+    ("Oracle Licences", "Oracle licences and support. Supplied by an existing software reseller.", ["48000000"]),
+    ("SAP platform licences", "Maintenance and support of SAP platform licences for the years 2027 to 2030.", ["48000000"]),
+])
+def test_incidental_or_excluded_software_still_does_not_protect_physical_scope(signal, config, title, description, cpv):
+    assert not classify(signal, config, title, description, cpv)

@@ -74,7 +74,11 @@ def operational_software_use(text, phrase):
         return True
     if hits and all(re.search(r"\bcompatibility with\s+(?:\w+\s+){0,8}$",
                              text[max(0, hit.start() - 100):hit.start()]) for hit in hits):
-        return True
+        # Compatibility is actionable scope when the purchased work is software
+        # integration; a hardware compatibility requirement alone still is not.
+        integration = re.search(r"\b(?:deliver|provide|develop|build|implement|configure|maintain)\w*\s+"
+                                r"(?:\w+\s+){0,4}(?:software|application|api) integration\b", text)
+        return not (integration and affirmed(text, integration.group()))
     if not phrase_hits(text, ("inspection actions", "inspection results", "visit records", "case notes", "inspection records",
                               "patient records", "clinical records")):
         return False
@@ -133,11 +137,18 @@ def procedural_system(text, phrase):
             and not phrase_hits(text, ("software", "application", "platform", "database", "api", "saas")))
 
 
-def historical_topic(text, phrase):
+def historical_topic(text, phrase, quote=""):
     """A topic of an explicitly contrasted previous report is not current scope."""
-    hits = list(re.finditer(r"(?<!\w)" + re.escape(phrase) + r"(?!\w)", text))
-    past_report = r"\b(?:in contrast to previous reports|unlike previous reports|im gegensatz zu bisherigen berichten)\b"
-    return bool(hits) and all(re.search(past_report, text[max(0, hit.start() - 200):hit.start()]) for hit in hits)
+    # Keep clause boundaries from the quote: in "unlike previous reports, this
+    # contract includes Salesforce", Salesforce belongs to the current contract.
+    clauses = [search_text(part) for part in re.split(r"[,;:]", quote)] if quote else [text]
+    past_report = (r"\b(?:in contrast to previous reports|unlike previous reports|im gegensatz zu bisherigen berichten)"
+                   r"\s+(?:which|that|on|about|covering|die|welche|zu|uber)\b")
+    current = r"\b(?:this|current|new) (?:report|contract|procurement|study)\b"
+    contexts = [clause[max(0, hit.start() - 200):hit.start()] for clause in clauses
+                for hit in re.finditer(r"(?<!\w)" + re.escape(phrase) + r"(?!\w)", clause)]
+    return bool(contexts) and all(re.search(past_report, before) and not re.search(current, before)
+                                  for before in contexts)
 
 
 def acronym_case_evidence(quote, phrase):
@@ -244,7 +255,7 @@ def capability_hits(cap, segments, software_cpv=False, funding=False):
             for phrase in phrase_hits(text, phrases):
                 hint_only = False
                 if (not named_vendor(text, segment["quote"], phrase) or procedural_system(text, phrase)
-                        or historical_topic(text, phrase)):
+                        or historical_topic(text, phrase, segment["quote"])):
                     continue
                 if phrase == "platform support" and "platform support hours" in text:
                     continue

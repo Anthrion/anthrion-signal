@@ -10,6 +10,7 @@ from .capability_matching import (GENERIC_INTEGRATION, affirmed, ai_software_del
                                   physical_integration, procedural_system)
 from .vocabulary import phrase_hits
 
+DIGITAL_SERVICE_OBJECTS = ("website maintenance", "website hosting", "software testing")
 BUSINESS_OBJECTS = (
     "salesforce", "mulesoft", "agentforce", "tableau", "customer relationship", "crm software",
     "crm platform", "crm system", "customer portal", "citizen portal", "patient portal", "employee portal",
@@ -30,7 +31,7 @@ BUSINESS_OBJECTS = (
     "it platform", "saas based platform", "software platform", "digital platform",
     "technology support services", "it support services", "computer systems", "reporting system",
     "data space", "data spaces", "software components",
-)
+) + DIGITAL_SERVICE_OBJECTS
 DELIVERY = re.compile(r"\b(?:develop\w*|deploy\w*|moderni[sz]\w*|consolidat\w*|implement\w*|build\w*|creat\w*|design\w*|deliver\w*|provi\w*|"
                       r"procur\w*|purchas\w*|suppl\w*|configur\w*|integrat\w*|migrat\w*|replac\w*|"
                       r"maintain\w*|maintenance|support|evolution|requires?|seeking|commission\w*|"
@@ -60,9 +61,10 @@ def addressable_delivery(segments):
             return segment
         # Purchasing/developing software is positive scope even for an unfamiliar
         # domain. Merely requiring a contractor to use software is not.
-        delivered_software = re.search(r"\b(?:develop|build|implement|create)\w*\s+(?:\w+\s+){0,7}"
-                                      r"(?:software|platform|web application|information system)\b", text)
-        if delivered_software and affirmed(text, delivered_software.group()) and not INCIDENTAL.search(text):
+        delivered_software = re.search(r"\b(?:develop|build|implement|create|maintain)\w*\s+(?:\w+\s+){0,7}"
+                                      r"(?P<object>software|platform|web application|information system)\b", text)
+        if (delivered_software and affirmed(text, delivered_software.group()) and not INCIDENTAL.search(text)
+                and not operational_software_use(text, delivered_software.group("object"))):
             return segment
         native_delivery = re.search(r"\b(?:desarrollo|implantacion|implementacion|integracion|entwicklung|implementierung|sviluppo|implementazione|integrazione)"
                                     r"\s+(?:\w+\s+){0,6}(?:software|plataforma|aplicaciones|applikationen|anwendungen|piattaforma|applicazioni)\b", text)
@@ -78,7 +80,7 @@ def addressable_delivery(segments):
                 and (p != "application development" or business_application_development(text))
                 and not operational_software_use(text, p) and not physical_payment_equipment(text, p)
                 and not procedural_system(text, p)
-                and (p != "computer systems" or business_system_scope(text, p))]
+                and (p not in ("computer systems", *DIGITAL_SERVICE_OBJECTS) or business_system_scope(text, p))]
         if set(hits) <= {"language model"} and re.search(r"\b(?:server|hardware|computer|gpu)\b", text):
             hits = []
         if not hits:
@@ -88,7 +90,10 @@ def addressable_delivery(segments):
         # "Integration" inside the matched noun cannot be its own delivery verb:
         # an event aimed at companies offering system integration buys an event.
         delivered = any(p not in GENERIC_INTEGRATION or DELIVERY.search(text.replace(p, " ")) for p in hits)
-        if delivered and DELIVERY.search(text) and not INCIDENTAL.search(text):
+        # These phrases name purchased technical work themselves, including
+        # support/testing lots that do not commission a new implementation.
+        service = any(p in DIGITAL_SERVICE_OBJECTS for p in hits)
+        if delivered and (DELIVERY.search(text) or service) and not INCIDENTAL.search(text):
             return segment
     return None
 
