@@ -76,6 +76,15 @@ def read_json(path: Path, default):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def jsonl_lines(body: str):
+    """JSON Lines uses LF, not Unicode separators that may occur inside strings.
+
+    CRLF also works: the JSON parser accepts the trailing CR as whitespace.
+    Leave each record untouched and let malformed JSON fail validation.
+    """
+    return (line for line in body.split("\n") if line.strip())
+
+
 def atomic_bytes(path: Path, body: bytes) -> bool:
     path.parent.mkdir(parents=True, exist_ok=True)
     if path.exists() and path.read_bytes() == body:

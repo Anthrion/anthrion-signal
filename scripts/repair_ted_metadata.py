@@ -11,7 +11,7 @@ from anthrion_signal.dedupe import merge
 from anthrion_signal.discovery import is_public_opportunity, lifecycle, prefilter
 from anthrion_signal.models import Signal
 from anthrion_signal.normalise import normalise_ted
-from anthrion_signal.utils import atomic_bytes, atomic_json, digest, parse_date, read_json
+from anthrion_signal.utils import atomic_bytes, atomic_json, digest, jsonl_lines, parse_date, read_json
 
 
 def main():
@@ -27,7 +27,7 @@ def main():
     public_ids = {s["id"] for s in public["signals"]}
     path = root / "data/signals.jsonl"
     original = path.read_bytes()
-    previous = [Signal.model_validate_json(line) for line in original.decode("utf-8").splitlines() if line]
+    previous = [Signal.model_validate_json(line) for line in jsonl_lines(original.decode("utf-8"))]
     targets = {alias[4:]: s for s in previous if s.id in public_ids and s.source == "ted"
                for alias in s.external_ids if alias.startswith("ted:")}
     artifact = root / "artifacts/ted-metadata-repair"

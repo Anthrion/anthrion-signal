@@ -14,7 +14,7 @@ from pathlib import Path
 from anthrion_signal.dedupe import exact_keys
 from anthrion_signal.models import Signal
 from anthrion_signal.normalise import set_hashes
-from anthrion_signal.utils import atomic_bytes, atomic_json
+from anthrion_signal.utils import atomic_bytes, atomic_json, jsonl_lines
 
 
 def unique(values):
@@ -60,7 +60,7 @@ def records(body, compressed=False):
     if not body:
         return {}
     text = gzip.decompress(body).decode() if compressed else body.decode()
-    return {record["id"]: record for line in text.splitlines() if (record := json.loads(line))}
+    return {record["id"]: record for line in jsonl_lines(text) if (record := json.loads(line))}
 
 
 def main():
@@ -130,7 +130,7 @@ def main():
             health[item["id"]] = item
     current["sources"] = list(health.values())
     history = unique([json.loads(line) for body in (blob(args.remote, "data/history.jsonl"), local_blob("data/history.jsonl"))
-                      for line in body.decode().splitlines() if line])
+                      for line in jsonl_lines(body.decode())])
     print(json.dumps({"base": base_ref, "remote": git("rev-parse", args.remote).decode().strip(),
                       "local_current": len(local_current), "remote_current": len(remote_current),
                       "merged_candidates": len(merged), "archive_partitions": len(archives),

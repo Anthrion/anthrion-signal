@@ -5,7 +5,7 @@ from datetime import timedelta
 from .dedupe import exact_keys
 from .discovery import lifecycle
 from .models import Signal
-from .utils import atomic_bytes, atomic_json, parse_date, read_json
+from .utils import atomic_bytes, atomic_json, jsonl_lines, parse_date, read_json
 
 
 def is_current(signal, now, retention_days):
@@ -22,7 +22,7 @@ def read_archive(root, month):
     path = root / "data/archive" / f"{month}.jsonl.gz"
     if not path.exists():
         return {}
-    return {s.id: s for line in gzip.decompress(path.read_bytes()).decode("utf-8").splitlines()
+    return {s.id: s for line in jsonl_lines(gzip.decompress(path.read_bytes()).decode("utf-8"))
             if line for s in [Signal.model_validate_json(line)]}
 
 

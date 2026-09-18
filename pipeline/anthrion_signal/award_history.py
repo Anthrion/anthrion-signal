@@ -11,7 +11,7 @@ from .discovery import discovery_signature, is_public_award, lifecycle, prefilte
 from .discovery_retention import read_rejected
 from .models import Signal
 from .translation import available_translations
-from .utils import atomic_bytes, atomic_json, digest, parse_date
+from .utils import atomic_bytes, atomic_json, digest, jsonl_lines, parse_date
 
 MARKETS = {"GB": ["GB"], "US": ["US"], "IT": ["IT"], "NORDICS": ["SE", "FI", "DK", "NO", "IS"],
            "DE": ["DE"], "ES": ["ES"], "GR": ["GR"]}
@@ -27,7 +27,7 @@ def retained_history(root, canonical):
     # including cancellations that supersede a former award.
     latest = {s.id: s for s in read_rejected(root)}
     for path in sorted((root / "data/archive").glob("*.jsonl.gz")):
-        for line in gzip.decompress(path.read_bytes()).decode("utf-8").splitlines():
+        for line in jsonl_lines(gzip.decompress(path.read_bytes()).decode("utf-8")):
             if line:
                 signal = Signal.model_validate_json(line)
                 previous = latest.get(signal.id)
