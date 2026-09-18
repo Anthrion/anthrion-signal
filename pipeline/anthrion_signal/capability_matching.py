@@ -183,6 +183,8 @@ def capability_hits(cap, segments, software_cpv=False, funding=False):
         weak_technical = bool(phrase_hits(text, ("system", "systems", "implementation", "development", "digital")))
         if cap["id"] in {"ai", "genai"} and phrase_hits(text, (
                 "computer system for running", "computing system for training", "laptop for processing",
+                # Capacity to run a model is a different purchased object from the model.
+                "gpu computing resources", "gpu cluster", "inference workloads", "compute resources",
                 "υπολογιστικο συστημα", "φορητος υπολογιστης")):
             continue
         for level, phrases in (("explicit", cap.get("explicit", [])),
