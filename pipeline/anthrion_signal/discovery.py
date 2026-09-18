@@ -2,7 +2,8 @@
 import re
 from pathlib import Path
 
-from .capability_matching import business_application_development, capability_hits, evidence_excerpt, unrelated_supply
+from .capability_matching import (business_application_development, capability_hits, evidence_excerpt,
+                                  has_software, unrelated_supply)
 from .procurement_scope import addressable_delivery, generic_digital_scope, scope_exclusion
 from .notice_dates import digital_deadline, digital_deadline_instant, digital_window_uncertain
 from .utils import digest, parse_date, unique
@@ -35,6 +36,7 @@ def is_award_intelligence(signal):
 def discovery_text(value):
     # Submission instructions and portal hostnames are not buyer technology requirements.
     value = re.sub(r"https?://\S+", " ", value, flags=re.IGNORECASE)
+    value = re.sub(r"\b(?:AI\s+software\s+[\"']?)?(?:AI[ _-]*)?Bietercockpit\b", "bidding client", value, flags=re.IGNORECASE)
     value = re.sub(r"\b(?:[a-z0-9-]+\.)+[a-z]{2,24}/[^\s<>]*", " ", value, flags=re.IGNORECASE)
     sentences = re.split(r"(?<=[.!?])\s+|\n+", value)
     registration = re.compile(
@@ -46,13 +48,14 @@ def discovery_text(value):
         r"(?:responses?|bids?|proposals?|applications?|submissions?)\b[^.!?]{0,120}\bsubmitted|being released through|"
         r"to access the solicitation|this will take you to the public portal|"
         r"(?:visit|check)\b[^.!?]{0,60}\bportal|contact\b[^.!?]{0,60}\bservice desk|"
-        r"available (?:online )?through|will be using)\b", re.IGNORECASE)
+        r"available (?:online )?(?:through|on|via)|will be using)\b", re.IGNORECASE)
     build_scope = re.compile(r"\b(?:(?:develop|implement|build|replace|upgrade|design|configure)\w*|procur(?:e[ds]?|ing))\b[^.!?]{0,90}"
                              r"\b(?:portal|software|platform|application)\b", re.IGNORECASE)
     # This published administrative boilerplate describes an existing submission
     # service, not the work being funded by the surrounding opportunity.
-    submission_platform = re.compile(r"\b(?:EDA is excited to announce the launch of its new grants management platform|"
-        r"EDGE was developed to streamline the application and grants management process)\b", re.IGNORECASE)
+    # The named bidding client is masked above, preserving other scope in its sentence.
+    submission_platform = re.compile(r"EDA is excited to announce the launch of its new grants management platform|"
+        r"EDGE was developed to streamline the application and grants management process", re.IGNORECASE)
     bidding_context = re.compile(r"\b(?:suppliers?|procurement|tender\w*|bids?|proposals?|applications?|submissions?|quotations?|e-sourcing|"
                                  r"e-tendering|atamis|passport|isupplier)\b", re.IGNORECASE)
     return search_text(" ".join(sentence for sentence in sentences
@@ -226,6 +229,12 @@ def prefilter(signals, profile, terms, charter=None, translations=None):
         # Unclassified digital delivery remains a reviewable candidate, not an invented capability.
         if digital_scope or discovery_hints:
             score = max(score, 12)
+        # A classification code corroborates evidence read from the notice. Alone it
+        # records the buyer's purchasing category, not a requirement anyone can deliver.
+        if (charter and charter["discovery"].get("cpv_requires_corroboration")
+                and cpv and not (families or digital_scope or discovery_hints)
+                and not (addressable or any(has_software(segment["text"]) for segment in segments))):
+            score = 0
         # Pipeline/consulting vocabulary alone identifies buying stage, not our scope.
         if families and set(families) <= {"pipeline", "staffing", "external_integration"} and not cpv:
             score = min(score, 10)

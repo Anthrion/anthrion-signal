@@ -12,6 +12,10 @@ discovery:
   backfill_days: 365
   backfill_page_fraction: 0.25
   minimum_candidate_score: 12
+  # When true, a notice whose only relevance signal is its CPV classification must
+  # also state software, platform or delivery scope in its own text. Rejections stay
+  # replayable, so this can be turned on and off without losing notice history.
+  cpv_requires_corroboration: false
   delivery_evidence_terms: [implementation, implement, development, develop, configuration, configure, integration, integrate, migration, migrate, enhancement, build, implementierung, entwicklung, konfiguration, systemintegration, implementazione, sviluppo, configurazione, integrazione, migrazione, implantación, implementación, desarrollo, integración, migración, mise en oeuvre, développement, intégration, migration, implementatie, ontwikkeling, implementering, utveckling, utvikling, udvikling, kehittäminen, toteutus, υλοποίηση, ανάπτυξη, διασύνδεση, implementação, desenvolvimento]
   commercial_intent: [procurement, tender, rfp, rfq, rfi, itt, eoi, request for proposal, request for information, request for quotation, supplier required, seeking supplier, implementation partner, delivery partner, planned procurement, market engagement, contract opportunity, call for suppliers, framework, dynamic purchasing system]
   publication_intent: [planned procurement, procurement pipeline, market engagement, supplier engagement, seeking suppliers, seeking a supplier, seeking partners, call for suppliers, invitation to tender, invitations to tender, tender opportunity, contract opportunity, request for proposals, request for information, call for proposals, funding competition, apply for funding, expression of interest, expressions of interest]

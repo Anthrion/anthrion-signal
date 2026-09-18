@@ -4,6 +4,14 @@ import re
 from .vocabulary import phrase_hits, search_text
 
 SOFTWARE = ("software", "platform", "application", "information system", "information systems",
+            # An English compound names the system without ending in "-system" the way
+            # the German and Nordic single words do, so it needs listing separately.
+            # "digital solutions" and "computer system" stay out: reviewed decisions
+            # already hold that neither establishes a technology scope on its own.
+            "management system", "management systems", "it system", "it systems", "digital system",
+            "digital systems", "web application", "web applications",
+            "it solution", "it solutions", "software solution", "software solutions",
+            "web portal", "internet portal",
             "automation", "workflow", "api", "crm", "saas", "database", "logiciel", "sistema", "sistemi",
             "applicazioni", "applicazione", "applikationen", "anwendungen", "virtualisierbar", "softwarewartung",
             "plataforma", "piattaforma", "softwareentwicklung", "systeme", "jarjestelma", "jarjestelman",
@@ -80,6 +88,24 @@ CONTEXT_GUARDS = {
     "contact_centre": ("customer", "citizen", "patient", "patients", "omnichannel", "contact centre", "contact center", "crm",
                        "helpdesk software", "helpdesk platform", "service desk platform"),
 }
+# A funding programme that studies AI is not a buyer implementing it. Named
+# products stay explicit evidence; a topical mention needs delivery framing.
+AI_DELIVERY = ("implementation", "implement", "implementing", "deploy", "deployment", "deploying",
+               "procure", "procurement", "purchase", "acquire", "acquisition", "supplier", "vendor",
+               "contractor", "licence", "license", "subscription", "chatbot", "ai assistant",
+               "ai agent", "virtual assistant", "integrate", "integration", "configure", "configuration")
+MANAGEMENT_PROCESS = re.compile(r"\b(?:quality|information security|environmental|health and safety) management systems?\b")
+
+
+def acronym_case_evidence(quote, phrase):
+    """Disambiguate occurrences, without penalising all-capitals procurement titles."""
+    for hit in re.finditer(r"(?<!\w)" + re.escape(phrase.upper()) + r"(?!\w)", quote):
+        after = search_text(quote[hit.end():hit.end() + 50]).strip()
+        # Italian prepositional clauses and the named bidding client are not AI.
+        if phrase == "ai" and re.match(r"(?:sensi|fini|cittadini|concorrenti|partecipanti|soggetti|bietercockpit)\b", after):
+            continue
+        return True
+    return False
 
 
 def affirmed(text, phrase):
@@ -93,8 +119,26 @@ def affirmed(text, phrase):
 
 
 def has_software(text):
+    # A quality-management process/certification is not itself a software system.
+    text = MANAGEMENT_PROCESS.sub("management process", text)
     return bool(phrase_hits(text, SOFTWARE)) or bool(re.search(
         r"\b\w+(?:system|systeme|systemen|systemet|systemer|systema|jarjestelma|jarjestelman|plattform|plattformen)\b", text))
+
+
+def ai_software_delivery(text):
+    """Affirmative delivery of an AI application, including a mixed hardware lot."""
+    ai_object = r"(?:ai|artificial intelligence|machine learning|generative ai)\s+(?:\w+\s+){0,3}(?:software|application|platform|assistant|agent|chatbot|service)"
+    patterns = (r"\b(?:build|develop|implement|deploy|configure|integrate|procure)\w*\s+(?:\w+\s+){0,6}" + ai_object + r"\b",
+                r"\b" + ai_object + r"\s+(?:development|implementation|deployment)\b")
+    return any(affirmed(text, hit.group()) for pattern in patterns for hit in re.finditer(pattern, text))
+
+
+def funded_ai_build(text):
+    """Research funding can commission real AI tools/models as well as study a topic."""
+    pattern = (r"\b(?:build|develop|implement|deploy)\w*\s+(?:\w+\s+){0,12}"
+               r"(?:ai|artificial intelligence|machine learning)\s+(?:\w+\s+){0,8}"
+               r"(?:tools?|models?|algorithms?|software|applications?|platforms?)\b")
+    return any(affirmed(text, hit.group()) for hit in re.finditer(pattern, text))
 
 
 def paper_application(text):
@@ -141,11 +185,14 @@ def capability_hits(cap, segments, software_cpv=False, funding=False):
     evidence = []
     for segment in segments:
         text = segment["text"]
-        technical = has_software(text)
-        weak_technical = bool(phrase_hits(text, ("system", "systems", "implementation", "development", "digital")))
+        technical = has_software(text) or (funding and cap["id"] in ("ai", "genai") and funded_ai_build(text))
+        weak_text = MANAGEMENT_PROCESS.sub("management process", text)
+        weak_technical = bool(phrase_hits(weak_text, ("system", "systems", "implementation", "development", "digital")))
         if cap["id"] in {"ai", "genai"} and phrase_hits(text, (
                 "computer system for running", "computing system for training", "laptop for processing",
-                "υπολογιστικο συστημα", "φορητος υπολογιστης")):
+                # Capacity to run a model is a different purchased object from the model.
+                "gpu computing resources", "gpu cluster", "inference workloads", "compute resources",
+                "υπολογιστικο συστημα", "φορητος υπολογιστης")) and not ai_software_delivery(text):
             continue
         for level, phrases in (("explicit", cap.get("explicit", [])),
                                ("needs", cap.get("needs", []) + cap.get("aliases", [])),
@@ -181,15 +228,29 @@ def capability_hits(cap, segments, software_cpv=False, funding=False):
                     if not phrase_hits(text, ("customer", "client", "master data", "data platform", "data warehouse")):
                         hint_only = True
                 if level == "contextual":
-                    if not (technical or weak_technical):
+                    # A short notice can name AI in its title and nothing else: "RFI AI
+                    # Interpreter" has no surrounding technical vocabulary to lean on, and
+                    # the case test above already separates the acronym from foreign prose.
+                    titled_acronym = (cap["id"] == "ai" and phrase == "ai"
+                                      and segment["field"] == "title"
+                                      and bool(phrase_hits(text, ("interpreter", "assistant", "agent", "adoption", "pilot",
+                                          "services", "service", "platform", "software", "solution", "tool", "implementation")))
+                                      and acronym_case_evidence(segment["quote"], phrase))
+                    if not (technical or weak_technical or titled_acronym):
                         continue
                     guard = CONTEXT_GUARDS.get(cap["id"])
                     if guard and not phrase_hits(text, guard):
                         continue
-                    hint_only |= not technical
+                    hint_only |= not technical and not titled_acronym
                     if cap["id"] in ("ai", "genai") and phrase in ("ai", "mcp", "rag"):
-                        if not re.search(r"\b" + phrase.upper() + r"\b", segment["quote"]):
+                        if not acronym_case_evidence(segment["quote"], phrase):
                             continue
+                # A research programme about AI is a lead, not an implementation
+                # requirement; keep it reviewable without promoting its priority.
+                if (funding and cap["id"] in ("ai", "genai") and level != "explicit"
+                        and not ai_software_delivery(text) and not funded_ai_build(text)
+                        and not any(affirmed(text, p) for p in phrase_hits(text, AI_DELIVERY))):
+                    hint_only = True
                 evidence.append({"capability": cap["id"], "phrase": phrase, "strength": "hint" if hint_only else level,
                                  "basis": segment["basis"], "field": segment["field"], "quote": segment["quote"]})
         if cap["id"] == "relationships" and re.search(

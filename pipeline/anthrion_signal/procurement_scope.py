@@ -175,6 +175,7 @@ def scope_exclusion(segments, cpv_codes):
 
 def generic_digital_scope(segments):
     """Recall route for sparse but explicit digital delivery, without fabricated tags."""
+    scope_text = " ".join(s["text"] for s in segments)
     phrases = ("digital and it professional services", "it consultancy", "it consultants", "ict consultants",
                "it systems", "software testing", "software engineering",
                "ai adoption", "ai pilots", "remote patient monitoring", "digital delivery capability",
@@ -182,7 +183,64 @@ def generic_digital_scope(segments):
                "digital service lifecycle", "digital products and services",
                "software configuration", "software customisation", "software customization",
                "cashless parking", "digital payment services", "digital delivery services",
-               "online learning platform", "incident management system", "clinical patient management system")
+               "online learning platform", "incident management system", "clinical patient management system",
+               # Web estate and named business systems. Each states a built or maintained
+               # digital deliverable; a generic "digital" or "solution" still does not.
+               "website development", "website design", "website relaunch", "website redesign",
+               "website maintenance", "website hosting", "web development", "web portal",
+               "internet portal", "open data portal", "transparency portal",
+               "content management system", "learning management system", "document management system",
+               "records management system", "record management system", "records management solution",
+               "record management solution", "patient record management", "asset management system",
+               "quality management system", "enterprise architecture management system",
+               "digital workplace", "epos system", "point of sale system",
+               # Named business systems that are bought as software rather than as a
+               # service. Industrial control (SCADA, telemetry) is deliberately absent,
+               # and so are "procurement system", "online portal" and "intranet": those
+               # name the e-tendering platform or a publication channel far more often
+               # than a purchased deliverable.
+               "notification system", "ordering system", "booking system", "scheduling system",
+               "reporting system", "registration system", "ticketing system", "archive system",
+               "contract management system", "invoicing system", "billing system",
+               "rostering system", "referral tool",
+               "self service portal", "customer portal", "citizen portal", "tenant portal")
     return list(dict.fromkeys(p for s in segments for p in phrase_hits(s["text"], phrases)
                              if affirmed(s["text"], p) and not physical_payment_equipment(s["text"], p)
+                             and business_system_scope(s["text"], p, scope_text)
                              and not operational_software_use(s["text"], p)))
+
+
+def business_system_scope(text, phrase, scope_text=""):
+    """Ambiguous system names need digital context; concrete software remains eligible."""
+    # Ordering goods through the supplier's tool does not buy that tool. Check each
+    # occurrence so a separate implementation in the same sentence still counts.
+    uses = list(re.finditer(r"(?<!\w)" + re.escape(phrase) + r"(?!\w)", text))
+    def incidental_use(hit):
+        before = text[max(0, hit.start() - 120):hit.start()]
+        route = re.search(r"\b(?:via|through|using|on|under|from|must use)\s+(?:\w+\s+){0,8}$", before)
+        if not route:
+            return False
+        if re.match(r"\s+(?:solutions?\s+)?framework\b", text[hit.end():]):
+            return True
+        # Work on a CMS or a new service built using one is still software work.
+        # A preposition alone cannot turn affirmative delivery into mere use.
+        delivered = re.search(r"\b(?:(?:develop|implement|configure|migrate|maintain|upgrade|design|build)\w*|maintenance)\b.*$", before)
+        return not (delivered and affirmed(text, delivered.group() + phrase))
+    if uses and all(incidental_use(hit) for hit in uses):
+        return False
+    digital = bool(phrase_hits(text, ("software", "saas", "application", "platform", "web based", "cloud based")))
+    # A title or sentence can name a process whose purchased scope is explained
+    # elsewhere. Corroborate that ambiguity, while keeping mixed software lots.
+    context = scope_text or text
+    context_digital = digital or bool(phrase_hits(context, ("software", "saas", "application", "platform", "web based", "cloud based")))
+    if ("management system" in phrase and not context_digital
+            and phrase_hits(context, ("certification", "recertification", "iso 55001", "iso 9001", "iso 27001"))):
+        return False
+    if (phrase == "booking system" and not context_digital
+            and phrase_hits(context, ("venue hire", "hire of venues", "room hire"))):
+        return False
+    if phrase == "quality management system" and not digital:
+        return False
+    if phrase == "notification system" and phrase_hits(text, ("sirens", "loudspeakers", "beacons")) and not digital:
+        return False
+    return True

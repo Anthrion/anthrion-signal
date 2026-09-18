@@ -157,3 +157,146 @@ def test_german_vocabulary_replays_recent_days_once_without_losing_old_pending(c
     result.state["pending_days"] = []
     second = collect_german_notices(source, result.state, now, None, settings, config["search_terms"])
     assert second.state["pending_days"] == []
+
+
+@pytest.mark.parametrize("title", [
+    "GARA APERTA AI SENSI DELL'ART.71 DEL D.LGS. 36/2023 PER UNA PIATTAFORMA SOFTWARE",
+    "AVVISO DI CONSULTAZIONE PRELIMINARE DEL MERCATO AI FINI DELL'AFFIDAMENTO DI UN SISTEMA",
+])
+def test_italian_preposition_is_not_the_ai_acronym(signal, config, title):
+    """Case cannot separate an acronym from prose when every word is capitalised."""
+    classify(signal, config, title, "Piattaforma software per la gestione delle segnalazioni.")
+    assert "ai" not in signal.matched_capabilities
+    assert signal.delivery_priority != "ai"
+
+
+def test_all_capitals_ai_scope_is_still_matched(signal, config):
+    classify(signal, config, "SUPPLY OF AN AI CHATBOT", "IMPLEMENTATION OF A VIRTUAL ASSISTANT FOR CITIZENS.")
+    assert "ai" in signal.matched_capabilities
+
+
+def test_mixed_case_ai_acronym_is_unaffected(signal, config):
+    classify(signal, config, "Procurement of an AI platform",
+             "The authority requires an AI platform to triage enquiries.")
+    assert "ai" in signal.matched_capabilities
+
+
+def test_research_funding_ai_topic_does_not_claim_an_ai_delivery_tier(signal, config):
+    """A programme studying AI is a lead; it is not a buyer implementing AI."""
+    signal.signal_type = "FUNDING"
+    classify(signal, config, "Unlocking Dataset Value for AI-Enabled Scientific Discovery",
+             "This programme funds research using artificial intelligence for scientific discovery.")
+    assert signal.delivery_priority != "ai"
+    assert "ai" not in signal.matched_capabilities
+
+
+def test_funding_for_an_actual_ai_implementation_is_retained(signal, config):
+    signal.signal_type = "FUNDING"
+    classify(signal, config, "Grant for an AI assistant",
+             "Funding to procure and implement an artificial intelligence chatbot for residents.")
+    assert "ai" in signal.matched_capabilities
+
+
+@pytest.mark.parametrize("cpv", ["79310000", "79410000", "75120000", "75130000"])
+def test_broad_classification_keeps_sparse_notices_without_inventing_tags(signal, config, cpv):
+    """Unexpected buyer codes must not hide software work that needs further review."""
+    classify(signal, config, "HR, payroll and employee screening services and software", "Details in documents.", [cpv])
+    assert signal.prefilter_score >= 12
+    assert not signal.matched_capabilities
+
+
+def corroboration_policy(config):
+    policy = copy.deepcopy(config["capabilities"])
+    policy["discovery"]["cpv_requires_corroboration"] = True
+    return policy
+
+
+def test_cpv_alone_admits_a_notice_while_the_policy_is_off(signal, config):
+    classify(signal, config, "Beschaffung von Gartenmoebeln", "Lieferung von Sitzbaenken.", ["72000000"])
+    assert signal.prefilter_score == 12
+
+
+@pytest.mark.parametrize("title,description", [
+    ("Beschaffung von Gartenmoebeln", "Lieferung von Sitzbaenken fuer den Stadtpark."),
+    ("Standard Eurobarometer Surveys", "Fieldwork and reporting for public opinion surveys."),
+])
+def test_cpv_alone_does_not_admit_under_the_corroboration_policy(signal, config, title, description):
+    signal.title, signal.description, signal.cpv_codes = title, description, ["72000000"]
+    prefilter([signal], config["company_profile"], config["search_terms"], corroboration_policy(config))
+    assert signal.prefilter_score == 0
+
+
+@pytest.mark.parametrize("title,description", [
+    ("Anskaffelse", "Development of a new software platform for the municipality."),
+    ("Kulttuuriperintojarjestelma", "Procurement of a collection management information system."),
+    ("Radiology information system", "Supply and maintenance of the radiology information system."),
+])
+def test_corroboration_policy_keeps_stated_delivery_scope(signal, config, title, description):
+    signal.title, signal.description, signal.cpv_codes = title, description, ["72000000"]
+    prefilter([signal], config["company_profile"], config["search_terms"], corroboration_policy(config))
+    assert signal.prefilter_score >= 12
+
+
+def test_corroboration_policy_never_suppresses_capability_evidence(signal, config):
+    signal.title, signal.description, signal.cpv_codes = (
+        "CRM replacement", "Replace the legacy customer relationship management system.", ["72000000"])
+    prefilter([signal], config["company_profile"], config["search_terms"], corroboration_policy(config))
+    assert "crm" in signal.matched_capabilities
+    assert signal.prefilter_score >= 12
+
+
+@pytest.mark.parametrize("title,description", [
+    ("Content Management System (CMS)", "Procurement of a content management system."),
+    ("Learning management system", "Operation and hosting of a learning management system."),
+    ("Property Asset Management Solution", "Supply of an asset management system for the estate."),
+    ("Website relaunch", "Relaunch and ongoing website maintenance for the university."),
+    ("Patient and Colleague Notification System", "Prequalification for a notification system."),
+    ("RFI Digital workplace", "Market dialogue for a digital workplace."),
+])
+def test_named_business_systems_are_published_digital_scope(signal, config, title, description):
+    """English names its systems in two words; the suffix rule only catches the rest."""
+    classify(signal, config, title, description)
+    assert signal.prefilter_score >= 12
+    assert any(m.startswith("Published digital scope:") for m in signal.prefilter_matches)
+
+
+@pytest.mark.parametrize("title,description", [
+    ("Rebate agreement under SGB V", "Offers are submitted through the online portal of the authority."),
+    ("Open tender procedure", "Responses are submitted via the SINTEL electronic procurement system."),
+    ("Evaluation of communication measures", "Findings will be published on the intranet."),
+])
+def test_bidding_and_publication_routes_are_not_a_deliverable(signal, config, title, description):
+    classify(signal, config, title, description)
+    assert not any(m.startswith("Published digital scope:") for m in signal.prefilter_matches)
+
+
+@pytest.mark.parametrize("title", [
+    "Procurement of GPU computing resources for AI-based climate modelling",
+    "Server system for AI inference workloads",
+])
+def test_capacity_to_run_a_model_is_not_an_ai_deliverable(signal, config, title):
+    classify(signal, config, title, "Supply of the hardware described above.")
+    assert "ai" not in signal.matched_capabilities
+
+
+def test_short_ai_title_is_still_recognised(signal, config):
+    """A three-word notice has no surrounding technical vocabulary to lean on."""
+    classify(signal, config, "RFI AI Interpreter",
+             "Migrationsverket needs an AI interpreter for recording, transcription and translation.")
+    assert "ai" in signal.matched_capabilities
+
+
+def test_named_e_tendering_client_is_not_ai_scope(signal, config):
+    """"AI Bietercockpit" is the bidding software, not the buyer's requirement."""
+    classify(signal, config, "Gewaesserunterhaltung Fliessgewaesser II. Ordnung",
+             "Address for electronic tenders (URL): https://www.evergabe.de using the software "
+             "AI_Bietercockpit. Address for written tenders: not applicable.")
+    assert "ai" not in signal.matched_capabilities
+    assert signal.delivery_priority != "ai"
+
+
+@pytest.mark.parametrize("spelling", ["AI Bietercockpit", "AI_Bietercockpit", "AI-Bietercockpit"])
+def test_e_tendering_client_is_suppressed_in_every_spelling(signal, config, spelling):
+    classify(signal, config, "Masterplan Talsperre Bautzen",
+             f'List of documents to submit: completed offer letter (via AI software "{spelling}").')
+    assert "ai" not in signal.matched_capabilities
