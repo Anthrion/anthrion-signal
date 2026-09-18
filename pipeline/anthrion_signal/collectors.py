@@ -14,7 +14,7 @@ from bs4 import BeautifulSoup
 
 from .source_tls import DEVOLVED_API_HOSTS, devolved_tls_context
 from .notice_dates import digital_deadline
-from .utils import clean, digest, iso, parse_date
+from .utils import clean, digest, iso, official_notice_url, parse_date, unique
 
 
 class SourceUnavailable(Exception):
@@ -84,8 +84,35 @@ class Http:
         raise SourceUnavailable("Source unavailable")
 
     def json(self, url, **kwargs):
+        # Validate every Location before contacting it, including intermediate hops.
+        # A final-response check alone would already have sent an off-host request.
+        kwargs = {**kwargs, "follow_redirects": False}
+        for _ in range(6):
+            response = self.request("GET", url, **kwargs)
+            if response.status_code not in (301, 302, 303, 307, 308):
+                break
+            location = response.headers.get("Location")
+            if not location:
+                raise SourceUnavailable("Source API redirect has no destination")
+            try:
+                redirected = urljoin(str(response.url), location)
+                before, after = urlparse(str(response.url)), urlparse(redirected)
+                same_origin = (before.scheme == after.scheme and before.hostname == after.hostname
+                               and (before.port or (443 if before.scheme == "https" else 80))
+                               == (after.port or (443 if after.scheme == "https" else 80)))
+                upgrade = (before.scheme == "http" and after.scheme == "https" and before.hostname == after.hostname
+                           and (before.port or 80) == 80 and (after.port or 443) == 443)
+                allowed = (same_origin or upgrade) and after.scheme in ("http", "https") and not (after.username or after.password)
+            except ValueError:
+                allowed = False
+            if not allowed:
+                raise SourceUnavailable("Source API redirected outside its origin; review source configuration")
+            url = redirected
+            kwargs.pop("params", None)  # The Location owns the next request's query.
+        else:
+            raise SourceUnavailable("Source API exceeded the redirect limit")
         try:
-            return self.request("GET", url, **kwargs).json()
+            return response.json()
         except ValueError:
             raise SourceUnavailable("Source did not return JSON") from None
 
@@ -531,6 +558,19 @@ def collect_digital(source, state, frozen, http, settings, terms):
     return result
 
 
+def official_notice_links(detail, page_url):
+    """Published tender notices only, resolved and host-checked like every other listing."""
+    links = []
+    for anchor in detail.select("a[href]"):
+        try:
+            link = official_notice_url(urljoin(page_url, anchor["href"]))
+        except ValueError:
+            continue
+        if link:
+            links.append(link)
+    return unique(links)
+
+
 def collect_upcoming(source, state, frozen, http, settings, terms):
     result = Collection(state=dict(state))
     main = public_detail(http, source["url"])
@@ -568,7 +608,7 @@ def collect_upcoming(source, state, frozen, http, settings, terms):
                 for node in detail.select("nav, footer, script, style"):
                     node.decompose()
                 data["description"] = clean(detail.get_text(" ", strip=True), 20000)
-                data["source_links"] = [a["href"] for a in detail.select('a[href*="find-tender.service.gov.uk/Notice/"]')]
+                data["source_links"] = official_notice_links(detail, url)
                 result.pages += 1
             except SourceUnavailable:
                 result.complete = False

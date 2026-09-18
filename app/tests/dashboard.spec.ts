@@ -595,6 +595,7 @@ test('every refiner keeps default priority and explicit values sort across group
         last_material_update: new Date(now - (1 - older) * 3600000).toISOString(),
         first_seen_at: new Date(now).toISOString(),
         deadline_at: new Date(now + (3 - older) * 86400000).toISOString(),
+        response_deadlines: [new Date(now + (3 - older) * 86400000).toISOString()],
         value_min: null,
         value_max: (older + 1) * 100000,
         currency: 'GBP',
