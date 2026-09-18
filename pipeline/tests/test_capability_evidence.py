@@ -157,3 +157,88 @@ def test_german_vocabulary_replays_recent_days_once_without_losing_old_pending(c
     result.state["pending_days"] = []
     second = collect_german_notices(source, result.state, now, None, settings, config["search_terms"])
     assert second.state["pending_days"] == []
+
+
+@pytest.mark.parametrize("title", [
+    "GARA APERTA AI SENSI DELL'ART.71 DEL D.LGS. 36/2023 PER UNA PIATTAFORMA SOFTWARE",
+    "AVVISO DI CONSULTAZIONE PRELIMINARE DEL MERCATO AI FINI DELL'AFFIDAMENTO DI UN SISTEMA",
+])
+def test_italian_preposition_is_not_the_ai_acronym(signal, config, title):
+    """Case cannot separate an acronym from prose when every word is capitalised."""
+    classify(signal, config, title, "Piattaforma software per la gestione delle segnalazioni.")
+    assert "ai" not in signal.matched_capabilities
+    assert signal.delivery_priority != "ai"
+
+
+def test_all_capitals_ai_scope_is_still_matched(signal, config):
+    classify(signal, config, "SUPPLY OF AN AI CHATBOT", "IMPLEMENTATION OF A VIRTUAL ASSISTANT FOR CITIZENS.")
+    assert "ai" in signal.matched_capabilities
+
+
+def test_mixed_case_ai_acronym_is_unaffected(signal, config):
+    classify(signal, config, "Procurement of an AI platform",
+             "The authority requires an AI platform to triage enquiries.")
+    assert "ai" in signal.matched_capabilities
+
+
+def test_research_funding_ai_topic_does_not_claim_an_ai_delivery_tier(signal, config):
+    """A programme studying AI is a lead; it is not a buyer implementing AI."""
+    signal.signal_type = "FUNDING"
+    classify(signal, config, "Unlocking Dataset Value for AI-Enabled Scientific Discovery",
+             "This programme funds research using artificial intelligence for scientific discovery.")
+    assert signal.delivery_priority != "ai"
+    assert "ai" not in signal.matched_capabilities
+
+
+def test_funding_for_an_actual_ai_implementation_is_retained(signal, config):
+    signal.signal_type = "FUNDING"
+    classify(signal, config, "Grant for an AI assistant",
+             "Funding to procure and implement an artificial intelligence chatbot for residents.")
+    assert "ai" in signal.matched_capabilities
+
+
+@pytest.mark.parametrize("cpv", ["79310000", "79410000", "75120000", "75130000"])
+def test_non_technology_classifications_do_not_grant_relevance(signal, config, cpv):
+    """These prefixes corroborate procurement_scope exclusions; they cannot also admit."""
+    classify(signal, config, "Employee Assistance Programme", "Counselling and wellbeing support for staff.", [cpv])
+    assert signal.prefilter_score < 12
+
+
+def corroboration_policy(config):
+    policy = copy.deepcopy(config["capabilities"])
+    policy["discovery"]["cpv_requires_corroboration"] = True
+    return policy
+
+
+def test_cpv_alone_admits_a_notice_while_the_policy_is_off(signal, config):
+    classify(signal, config, "Beschaffung von Gartenmoebeln", "Lieferung von Sitzbaenken.", ["72000000"])
+    assert signal.prefilter_score == 12
+
+
+@pytest.mark.parametrize("title,description", [
+    ("Beschaffung von Gartenmoebeln", "Lieferung von Sitzbaenken fuer den Stadtpark."),
+    ("Standard Eurobarometer Surveys", "Fieldwork and reporting for public opinion surveys."),
+])
+def test_cpv_alone_does_not_admit_under_the_corroboration_policy(signal, config, title, description):
+    signal.title, signal.description, signal.cpv_codes = title, description, ["72000000"]
+    prefilter([signal], config["company_profile"], config["search_terms"], corroboration_policy(config))
+    assert signal.prefilter_score == 0
+
+
+@pytest.mark.parametrize("title,description", [
+    ("Anskaffelse", "Development of a new software platform for the municipality."),
+    ("Kulttuuriperintojarjestelma", "Procurement of a collection management information system."),
+    ("Radiology information system", "Supply and maintenance of the radiology information system."),
+])
+def test_corroboration_policy_keeps_stated_delivery_scope(signal, config, title, description):
+    signal.title, signal.description, signal.cpv_codes = title, description, ["72000000"]
+    prefilter([signal], config["company_profile"], config["search_terms"], corroboration_policy(config))
+    assert signal.prefilter_score >= 12
+
+
+def test_corroboration_policy_never_suppresses_capability_evidence(signal, config):
+    signal.title, signal.description, signal.cpv_codes = (
+        "CRM replacement", "Replace the legacy customer relationship management system.", ["72000000"])
+    prefilter([signal], config["company_profile"], config["search_terms"], corroboration_policy(config))
+    assert "crm" in signal.matched_capabilities
+    assert signal.prefilter_score >= 12

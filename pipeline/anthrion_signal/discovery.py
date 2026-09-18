@@ -2,7 +2,8 @@
 import re
 from pathlib import Path
 
-from .capability_matching import business_application_development, capability_hits, evidence_excerpt, unrelated_supply
+from .capability_matching import (business_application_development, capability_hits, evidence_excerpt,
+                                  has_software, unrelated_supply)
 from .procurement_scope import addressable_delivery, generic_digital_scope, scope_exclusion
 from .notice_dates import digital_deadline, digital_deadline_instant, digital_window_uncertain
 from .utils import digest, parse_date, unique
@@ -226,6 +227,12 @@ def prefilter(signals, profile, terms, charter=None, translations=None):
         # Unclassified digital delivery remains a reviewable candidate, not an invented capability.
         if digital_scope or discovery_hints:
             score = max(score, 12)
+        # A classification code corroborates evidence read from the notice. Alone it
+        # records the buyer's purchasing category, not a requirement anyone can deliver.
+        if (charter and charter["discovery"].get("cpv_requires_corroboration")
+                and cpv and not (families or digital_scope or discovery_hints)
+                and not (addressable or any(has_software(segment["text"]) for segment in segments))):
+            score = 0
         # Pipeline/consulting vocabulary alone identifies buying stage, not our scope.
         if families and set(families) <= {"pipeline", "staffing", "external_integration"} and not cpv:
             score = min(score, 10)

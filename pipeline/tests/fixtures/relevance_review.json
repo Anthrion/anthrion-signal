@@ -3753,8 +3753,8 @@
     }
   },
   {
-    "expected": "retain",
-    "review_basis": "Purchased deliverable and mixed-scope review, 2026-09-15",
+    "expected": "reject",
+    "review_basis": "Purchased deliverable and mixed-scope review, 2026-09-15; relabelled 2026-09-18 because retention rested only on CPV 79315000 (social research services), which the survey_execution scope rule uses as exclusion evidence. The five lots are roadside speed measurement and non-participatory observation fieldwork; the lot 1 dashboard is a reporting output, not a business-application or AI deliverable.",
     "signal": {
       "id": "sig_1ee047eb41c952cf8874",
       "source": "ted",

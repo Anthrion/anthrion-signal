@@ -151,7 +151,9 @@ def relevant_release(release, terms, tracked):
     if release.get("ocid") in tracked:
         return True
     tender = release.get("tender") or {}
-    prefixes = tuple(str(value) for value in terms.get("cpv_prefixes", ("48", "72")))
+    # Retrieval stays broader than admission; relevance is decided later, on the text.
+    prefixes = tuple(str(value) for value in
+                     terms.get("collection_cpv_prefixes") or terms.get("cpv_prefixes", ("48", "72")))
     classes = [tender.get("classification") or {}]
     for item in tender.get("items") or []:
         classes.extend([item.get("classification") or {}, *(item.get("additionalClassifications") or [])])

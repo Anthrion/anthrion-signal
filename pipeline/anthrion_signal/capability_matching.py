@@ -80,6 +80,36 @@ CONTEXT_GUARDS = {
     "contact_centre": ("customer", "citizen", "patient", "patients", "omnichannel", "contact centre", "contact center", "crm",
                        "helpdesk software", "helpdesk platform", "service desk platform"),
 }
+# Case separates the acronym from an ordinary word, so an all-capitals passage
+# carries no such evidence: "GARA APERTA AI SENSI" is Italian prose, not AI scope.
+AI_ACRONYM_SUPPORT = ("artificial intelligence", "machine learning", "generative", "chatbot", "chatbots",
+                      "assistant", "agent", "agents", "llm", "large language model", "copilot",
+                      "intelligenza artificiale", "inteligencia artificial", "kunstliche intelligenz")
+# A funding programme that studies AI is not a buyer implementing it. Named
+# products stay explicit evidence; a topical mention needs delivery framing.
+AI_DELIVERY = ("implementation", "implement", "implementing", "deploy", "deployment", "deploying",
+               "procure", "procurement", "purchase", "acquire", "acquisition", "supplier", "vendor",
+               "contractor", "licence", "license", "subscription", "chatbot", "ai assistant",
+               "ai agent", "virtual assistant", "integrate", "integration", "configure", "configuration")
+
+
+def predominantly_uppercase(quote):
+    letters = [character for character in quote if character.isalpha()]
+    return bool(letters) and sum(character.isupper() for character in letters) / len(letters) > 0.7
+
+
+def acronym_case_evidence(quote, phrase):
+    """An uppercase acronym only distinguishes itself inside mixed-case prose.
+
+    Judge each occurrence locally: a capitalised legal preamble often precedes an
+    ordinary mixed-case scope sentence in the same title.
+    """
+    hits = list(re.finditer(r"(?<!\w)" + phrase.upper() + r"(?!\w)", quote))
+    if not hits:
+        return False
+    if any(not predominantly_uppercase(quote[max(0, hit.start() - 60):hit.end() + 60]) for hit in hits):
+        return True
+    return bool(phrase_hits(search_text(quote), AI_ACRONYM_SUPPORT))
 
 
 def affirmed(text, phrase):
@@ -188,8 +218,12 @@ def capability_hits(cap, segments, software_cpv=False, funding=False):
                         continue
                     hint_only |= not technical
                     if cap["id"] in ("ai", "genai") and phrase in ("ai", "mcp", "rag"):
-                        if not re.search(r"\b" + phrase.upper() + r"\b", segment["quote"]):
+                        if not acronym_case_evidence(segment["quote"], phrase):
                             continue
+                # A research programme about AI is a lead, not an implementation
+                # requirement; keep it reviewable without promoting its priority.
+                if funding and cap["id"] in ("ai", "genai") and level != "explicit" and not phrase_hits(text, AI_DELIVERY):
+                    hint_only = True
                 evidence.append({"capability": cap["id"], "phrase": phrase, "strength": "hint" if hint_only else level,
                                  "basis": segment["basis"], "field": segment["field"], "quote": segment["quote"]})
         if cap["id"] == "relationships" and re.search(

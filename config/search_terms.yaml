@@ -1,4 +1,12 @@
-cpv_prefixes: ['48', '72', '7931', '7941', '722', '723', '724', '725', '726', '7512', '7513']
+# Relevance evidence: technology classifications only. Market research (7931),
+# management consultancy (7941) and public-administration services (7512/7513) are
+# corroborating evidence for the procurement_scope exclusions, so they cannot also
+# grant relevance.
+cpv_prefixes: ['48', '72', '722', '723', '724', '725', '726']
+# Collection breadth, deliberately wider than admission: a notice retrieved under a
+# non-technology code can still be admitted on its own text, and one never collected
+# cannot be replayed at all. Keep this list in step with the TED scope filter.
+collection_cpv_prefixes: ['48', '72', '7931', '7941', '722', '723', '724', '725', '726', '7512', '7513']
 high_intent: [salesforce, mulesoft, agentforce, tableau, customer relationship management, crm, case management, generative ai, ai agent, data cloud, service cloud]
 supplementary: [commercial pipeline, procurement pipeline, upcoming procurement, digital transformation, service transformation, contact centre, citizen services, data platform, artificial intelligence, automation, systems integration, rfi, request for information, market engagement]
 exclusions: [road resurfacing, building construction, catering services, grounds maintenance, office furniture, medical consumables, refuse collection, asbestos removal, boiler replacement, security guarding]
