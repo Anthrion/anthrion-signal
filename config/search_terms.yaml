@@ -15,3 +15,9 @@ markets:
   DE: {name: Germany, enabled: true, ted_codes: [DEU], coverage: 'TED notices; national-only procurement is not included.'}
   ES: {name: Spain, enabled: true, ted_codes: [ESP], coverage: 'TED notices; national-only procurement is not included.'}
   GR: {name: Greece, enabled: true, ted_codes: [GRC], coverage: 'TED notices; national-only procurement is not included.'}
+  FR: {name: France, enabled: true, ted_codes: [FRA], coverage: 'TED notices; national-only procurement below EU thresholds is not included.'}
+  BE: {name: Belgium, enabled: true, ted_codes: [BEL], coverage: 'TED notices; national-only procurement below EU thresholds is not included.'}
+  NL: {name: Netherlands, enabled: true, ted_codes: [NLD], coverage: 'TED notices; national-only procurement below EU thresholds is not included.'}
+  LU: {name: Luxembourg, enabled: true, ted_codes: [LUX], coverage: 'TED notices; national-only procurement below EU thresholds is not included.'}
+  AT: {name: Austria, enabled: true, ted_codes: [AUT], coverage: 'TED notices; national-only procurement below EU thresholds is not included.'}
+  CH: {name: Switzerland, enabled: true, ted_codes: [CHE], coverage: 'TED notices published under the EU-Switzerland procurement agreement; below-threshold invitation and direct-award procedures are published on simap.ch and are not included.'}

@@ -105,7 +105,7 @@ sources:
     docs: https://docs.ted.europa.eu/ODS/latest/reuse/search-api.html
     limit: 200
     country: EU
-    countries: [IT, SE, FI, DK, 'NO', IS, DE, ES, GR]
+    countries: [IT, SE, FI, DK, 'NO', IS, DE, ES, GR, FR, BE, NL, LU, AT, CH]
     coverage: European public notices published on TED; national-only notices are not included.
   - id: usaspending
     name: USAspending

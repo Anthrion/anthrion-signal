@@ -32,9 +32,23 @@ export const markets = [
     countries: ['SE', 'FI', 'DK', 'NO', 'IS'],
     region: 'Northern Europe',
   },
-  { id: 'DE', name: 'Germany', short: 'DE', countries: ['DE'], region: 'Europe' },
+  {
+    id: 'DACH',
+    name: 'DACH',
+    short: 'DE',
+    countries: ['DE', 'AT', 'CH'],
+    region: 'Europe',
+  },
   { id: 'ES', name: 'Spain', short: 'ES', countries: ['ES'], region: 'Europe' },
   { id: 'GR', name: 'Greece', short: 'GR', countries: ['GR'], region: 'Europe' },
+  { id: 'FR', name: 'France', short: 'FR', countries: ['FR'], region: 'Europe' },
+  {
+    id: 'BENELUX',
+    name: 'Benelux',
+    short: 'BX',
+    countries: ['BE', 'NL', 'LU'],
+    region: 'Europe',
+  },
 ] as const
 
 export function matchesMarket(signal: Signal, market: string) {
@@ -307,6 +321,8 @@ export function normaliseFilters(value: Partial<Filters>): Filters {
   }
   if (result.view === 'pipeline') result.view = 'early'
   if (result.view === 'updates') result.view = 'today'
+  // Germany kept its own selector until Austria and Switzerland joined it.
+  if (result.market === 'DE') result.market = 'DACH'
   if (result.view === 'frameworks') {
     result.view = 'all'
     result.type ||= 'FRAMEWORK'

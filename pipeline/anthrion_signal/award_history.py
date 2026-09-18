@@ -14,7 +14,8 @@ from .translation import available_translations
 from .utils import atomic_bytes, atomic_json, digest, parse_date
 
 MARKETS = {"GB": ["GB"], "US": ["US"], "IT": ["IT"], "NORDICS": ["SE", "FI", "DK", "NO", "IS"],
-           "DE": ["DE"], "ES": ["ES"], "GR": ["GR"]}
+           "DACH": ["DE", "AT", "CH"], "ES": ["ES"], "GR": ["GR"], "FR": ["FR"],
+           "BENELUX": ["BE", "NL", "LU"]}
 DECISION_FIELDS = ("prefilter_score", "prefilter_matches", "discovery_families", "delivery_priority",
                    "matched_capabilities", "discovery_version", "exclusion_reasons", "capability_evidence", "scope_evidence", "categories")
 PUBLIC_EXCLUDE = {"analysis", "analysis_cache_key", "ai_status", "ai_model", "ai_scored_at", "fit_score",

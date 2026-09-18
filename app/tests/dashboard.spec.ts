@@ -516,9 +516,11 @@ test('all market tabs have real, correctly scoped records and opportunity counts
     ['US', 'United States', ['US']],
     ['IT', 'Italy', ['IT']],
     ['NORDICS', 'Nordics', ['SE', 'FI', 'DK', 'NO', 'IS']],
-    ['DE', 'Germany', ['DE']],
+    ['DACH', 'DACH', ['DE', 'AT', 'CH']],
     ['ES', 'Spain', ['ES']],
     ['GR', 'Greece', ['GR']],
+    ['FR', 'France', ['FR']],
+    ['BENELUX', 'Benelux', ['BE', 'NL', 'LU']],
   ] as const) {
     await page
       .getByRole('navigation', { name: 'Markets' })

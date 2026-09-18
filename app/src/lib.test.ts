@@ -758,3 +758,20 @@ describe('team workflows', () => {
     expect(isAvailableOpportunity({ ...signal, signal_type: 'PIPELINE' }, now)).toBe(true)
   })
 })
+
+describe('market grouping', () => {
+  const inCountry = (country: string) => ({ ...signal, countries: [country] }) as Signal
+  test('routes a saved Germany link to the DACH selector', () => {
+    expect(normaliseFilters({ market: 'DE' }).market).toBe('DACH')
+  })
+  test('matches every DACH and Benelux country without crossing between them', () => {
+    for (const c of ['DE', 'AT', 'CH']) expect(matchesMarket(inCountry(c), 'DACH')).toBe(true)
+    for (const c of ['BE', 'NL', 'LU']) expect(matchesMarket(inCountry(c), 'BENELUX')).toBe(true)
+    expect(matchesMarket(inCountry('NL'), 'DACH')).toBe(false)
+    expect(matchesMarket(inCountry('FR'), 'BENELUX')).toBe(false)
+  })
+  test('enables a group when any of its countries is configured', () => {
+    expect(marketIsEnabled('DACH', { CH: { enabled: true } })).toBe(true)
+    expect(marketIsEnabled('BENELUX', { LU: { enabled: false } })).toBe(false)
+  })
+})
