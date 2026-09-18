@@ -1,11 +1,11 @@
 {
-  "code": "9f0b1c8f40ff0c8bb943982d67599031c9ed50b1ba30dce794de4bb3ebb5d5a5",
-  "content": "a2059bfc8ff6ac5fc7c96b6cdff1acf50f5a5e0f87606d33814655a06b343db7",
-  "translations": "135511e02a10d7a90a65ce4843ec425d727cf905f8205dfa26a631981b39d605",
+  "code": "7ca021aff29c5bfc53d1315bca925d7167c2daca70ce03e160d7db655f378008",
+  "content": "a71d55227b9386b27aa266451e204bf3f781b167c12a5410b495d54937866f04",
+  "translations": "2779a38bdf34b65df138f76bea75f31db6c65a4bf635120194a88913afade4d1",
   "health": [
     [
       "find_tender",
-      "healthy"
+      "partial"
     ],
     [
       "contracts_finder",
@@ -57,7 +57,7 @@
     ],
     [
       "grants",
-      "healthy"
+      "partial"
     ],
     [
       "etenders_ni",
