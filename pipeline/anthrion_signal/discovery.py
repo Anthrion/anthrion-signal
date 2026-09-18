@@ -2,7 +2,7 @@
 import re
 from pathlib import Path
 
-from .capability_matching import (business_application_development, capability_hits, evidence_excerpt,
+from .capability_matching import (affirmed, business_application_development, capability_hits, evidence_excerpt,
                                   has_software, unrelated_supply)
 from .procurement_scope import addressable_delivery, generic_digital_scope, scope_exclusion
 from .notice_dates import digital_deadline, digital_deadline_instant, digital_window_uncertain
@@ -36,7 +36,7 @@ def is_award_intelligence(signal):
 def discovery_text(value):
     # Submission instructions and portal hostnames are not buyer technology requirements.
     value = re.sub(r"https?://\S+", " ", value, flags=re.IGNORECASE)
-    value = re.sub(r"\b(?:AI\s+software\s+[\"']?)?(?:AI[ _-]*)?Bietercockpit\b", "bidding client", value, flags=re.IGNORECASE)
+    value = re.sub(r"\b(?:AI\s+software\s+[\"']?)?(?:AI[ _-]*)?(?:Bietercockpit|Vergabemanager)\b", "bidding client", value, flags=re.IGNORECASE)
     value = re.sub(r"\b(?:[a-z0-9-]+\.)+[a-z]{2,24}/[^\s<>]*", " ", value, flags=re.IGNORECASE)
     sentences = re.split(r"(?<=[.!?])\s+|\n+", value)
     registration = re.compile(
@@ -46,22 +46,24 @@ def discovery_text(value):
         r"submit (?:your |the |a )?(?:bid|tender|proposal|response)|"
         r"(?:register|apply) (?:and apply )?(?:via|on|through)|"
         r"(?:responses?|bids?|proposals?|applications?|submissions?)\b[^.!?]{0,120}\bsubmitted|being released through|"
+        r"(?:supplier portal|platform) (?:help|support hours)|registering for an account|email subscriptions|"
+        r"(?:ofertas|proposiciones)\b[^.!?]{0,80}\b(?:presentaran|presentarán)|"
         r"to access the solicitation|this will take you to the public portal|"
         r"(?:visit|check)\b[^.!?]{0,60}\bportal|contact\b[^.!?]{0,60}\bservice desk|"
         r"available (?:online )?(?:through|on|via)|will be using)\b", re.IGNORECASE)
     build_scope = re.compile(r"\b(?:(?:develop|implement|build|replace|upgrade|design|configure)\w*|procur(?:e[ds]?|ing))\b[^.!?]{0,90}"
-                             r"\b(?:portal|software|platform|application)\b", re.IGNORECASE)
+                             r"\b(?:portal|software|platform|application|database)\b", re.IGNORECASE)
     # This published administrative boilerplate describes an existing submission
     # service, not the work being funded by the surrounding opportunity.
     # The named bidding client is masked above, preserving other scope in its sentence.
     submission_platform = re.compile(r"EDA is excited to announce the launch of its new grants management platform|"
         r"EDGE was developed to streamline the application and grants management process", re.IGNORECASE)
-    bidding_context = re.compile(r"\b(?:suppliers?|procurement|tender\w*|bids?|proposals?|applications?|submissions?|quotations?|e-sourcing|"
+    bidding_context = re.compile(r"\b(?:suppliers?|procurement|tender\w*|bids?|proposals?|proposers?|email subscriptions|applications?|submissions?|quotations?|ofertas|proposiciones|licitadores|e-sourcing|"
                                  r"e-tendering|atamis|passport|isupplier)\b", re.IGNORECASE)
     return search_text(" ".join(sentence for sentence in sentences
                                if not submission_platform.search(sentence) and not (registration.search(sentence)
                                        and bidding_context.search(sentence)
-                                       and re.search(r"\b(?:portal|atamis|e-sourcing|e-tendering|passport|isupplier|service desk)\b", sentence, re.IGNORECASE)
+                                       and re.search(r"\b(?:portal|platform|database system|sede electr[oó]nica|atamis|e-sourcing|e-tendering|passport|isupplier|service desk)\b", sentence, re.IGNORECASE)
                                        and not build_scope.search(sentence))))
 
 
@@ -142,6 +144,10 @@ def hard_exclusions(signal, charter, scope_evidence=False):
     text = discovery_text(signal.title + " " + signal.description)
     title = discovery_text(signal.title)
     reasons = []
+    placeholder_fields = re.findall(r"\b(summary of work|description|how to apply|timeline)\s+(?:test|dummy|placeholder)\b", text)
+    if (re.match(r"^\s*(?:test|dummy|placeholder)\s*(?:[-:]|$)", signal.title, re.IGNORECASE)
+            and len(set(placeholder_fields)) >= 2):
+        reasons.append("The source explicitly marks the notice and multiple procurement fields as test placeholders.")
     if signal.source == "govuk":
         directory_or_retrospective = signal.notice_type in policy.get("non_opportunity_formats", [])
         buying_intent = any(contains(text, p) for p in policy.get("publication_intent", policy["commercial_intent"]))
@@ -199,6 +205,18 @@ def prefilter(signals, profile, terms, charter=None, translations=None):
                     for basis, heading, description in documents
                     for field, value in (("title", heading), ("description", description))
                     for part in ([value] if field == "title" else re.split(r"(?<!\b[A-Z]\.)(?<=[.!?;])\s+|\n+", value)) if part.strip()]
+        # An authority's name can contain "Digital Transformation", "AI", etc.
+        # Mask only the complete multiword identity in matching text, never the
+        # source quote or a separate statement of the work being commissioned.
+        buyers = [signal.buyer_name]
+        if translated and translated.get("source_hash") == digest([signal.title, signal.description]):
+            buyers.append(translated.get("buyer_name", ""))
+        for buyer in buyers:
+            identity = search_text(buyer).strip()
+            if len(identity.split()) >= 2 and len(identity) >= 12:
+                for segment in segments:
+                    segment["text"] = re.sub(r"(?<!\w)" + re.escape(identity) + r"(?!\w)",
+                                             "contracting authority", segment["text"])
         addressable = addressable_delivery(segments)
         families, hits, strengths, primary_families, evidence, discovery_hints = [], [], [], [], [], []
         software_cpv = any(code.startswith(("48", "72")) for code in signal.cpv_codes)
@@ -223,7 +241,8 @@ def prefilter(signals, profile, terms, charter=None, translations=None):
         digital_scope = unique(p for segment in segments for p in phrase_hits(segment["text"], (
             "software development", "website development", "software engineering", "digital telephony",
             "open banking", "application development", "information systems development", "software implementation"))
-            if p != "application development" or business_application_development(segment["text"]))
+            if affirmed(segment["text"], p)
+            and (p != "application development" or business_application_development(segment["text"])))
         digital_scope = unique(digital_scope + generic_digital_scope(segments))
         score = min(100, max(strengths, default=0) + min(24, max(0, len(families) - 1) * 6) + (12 if cpv else 0))
         # Unclassified digital delivery remains a reviewable candidate, not an invented capability.
@@ -247,7 +266,8 @@ def prefilter(signals, profile, terms, charter=None, translations=None):
         signal.matched_capabilities = families
         signal.discovery_version = charter["version"] if charter else None
         meaningful = set(primary_families) - {"staffing", "managed", "transformation"}
-        signal.exclusion_reasons = hard_exclusions(signal, charter, bool(meaningful) or bool(addressable)) if charter else []
+        signal.exclusion_reasons = hard_exclusions(signal, charter,
+            bool(meaningful) or bool(addressable) or bool(digital_scope)) if charter else []
         for _, heading, description in documents:
             reason = None if addressable else unrelated_supply(discovery_text(heading), discovery_text(description), evidence, signal.cpv_codes)
             if reason:

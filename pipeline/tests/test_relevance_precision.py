@@ -14,6 +14,7 @@ from anthrion_signal.utils import atomic_json
 
 CORPUS = json.loads((Path(__file__).parent / "fixtures/relevance_review.json").read_text(encoding="utf-8"))
 CORPUS += json.loads((Path(__file__).parent / "fixtures/relevance_review_2026_09_18.json").read_text(encoding="utf-8"))
+CORPUS += json.loads((Path(__file__).parent / "fixtures/purchased_scope_review_2026_09_18.json").read_text(encoding="utf-8"))
 
 
 @pytest.mark.parametrize("case", CORPUS, ids=lambda case: case["signal"]["id"])
