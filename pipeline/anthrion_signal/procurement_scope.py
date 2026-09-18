@@ -6,7 +6,7 @@ scope remains a candidate. Original and exact-hash English evidence use the same
 """
 import re
 
-from .capability_matching import affirmed, operational_software_use, physical_integration
+from .capability_matching import affirmed, business_application_development, operational_software_use, physical_integration
 from .vocabulary import phrase_hits
 
 BUSINESS_OBJECTS = (
@@ -58,6 +58,7 @@ def addressable_delivery(segments):
             return segment
         hits = [p for p in phrase_hits(text, BUSINESS_OBJECTS)
                 if affirmed(text, p) and not physical_integration(text, p)
+                and (p != "application development" or business_application_development(text))
                 and not operational_software_use(text, p) and not physical_payment_equipment(text, p)]
         if set(hits) <= {"language model"} and re.search(r"\b(?:server|hardware|computer|gpu)\b", text):
             hits = []
@@ -73,6 +74,10 @@ def addressable_delivery(segments):
 # Title, corroborating description, CPV support. Neither a CPV nor a word in an
 # unrelated paragraph can trigger exclusion by itself. This is a taxonomy of work.
 RULES = (
+    ("quantum_computer_delivery", r"\bquantum\b",
+     r"\b(?:build\w*|develop\w*|deploy\w*|manufactur\w*|scaling)\b.{0,100}"
+     r"\b(?:fault tolerant.{0,60}quantum comput\w*|quantum hardware|quantum computer\w*.{0,60}logical qubits)\b",
+     (), "Development or scaling of specialist quantum computing hardware"),
     ("parking_equipment", r"\b(?:cashless parking machines|parking meters)\b",
      r"\b(?:refurbishment|purchase|units|supply|hardware|equipment)\b", ("3873",),
      "Physical parking payment equipment"),
@@ -158,7 +163,9 @@ def scope_exclusion(segments, cpv_codes):
                     r"migracion|desarrollo|configuracion|servicios profesionales|implementazione|integrazione|conversione|umstellung|sviluppo)\b", s["text"])
                     ):
                 continue
-            detail = next((s for s in segments if s["field"] == "description" and detail_pattern.search(s["text"])), None)
+            detail = next((s for s in segments if s["field"] == "description"
+                           for match in detail_pattern.finditer(s["text"])
+                           if key != "quantum_computer_delivery" or affirmed(s["text"], match.group())), None)
             if detail or any(str(code).startswith(prefixes) for code in cpv_codes):
                 return {"rule": key, "reason": f"{label} without a separately stated business-application, Salesforce or AI delivery scope.",
                         "basis": title["basis"], "title": title["quote"],

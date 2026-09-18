@@ -103,6 +103,28 @@ def paper_application(text):
         ("software", "digital", "crm", "database", "web application", "application platform"))
 
 
+def business_application_development(text):
+    """Disambiguate each occurrence; scientific computing is not a business app.
+
+    A programme name can contain 'application development' while referring to
+    quantum algorithms and scientific discovery. Require both that computing
+    context and a scientific objective locally; never exclude a sector wholesale.
+    A separate business application occurrence remains usable evidence.
+    """
+    if paper_application(text):
+        return False
+    for hit in re.finditer(r"\bapplication development\b", text):
+        local = text[max(0, hit.start() - 110):hit.end() + 110]
+        quantum = re.search(r"\bquantum (?:computers?|computing|algorithms?)\b", local)
+        scientific = phrase_hits(local, ("discovery science", "scientific discovery", "scientific workflows",
+                                        "quantum algorithms", "quantum algorithm", "logical qubits", "fault tolerant"))
+        business = phrase_hits(local, ("crm", "salesforce", "customer", "business application", "business software",
+                                      "enterprise application", "portal", "case management", "workflow automation"))
+        if not (quantum and scientific) or business:
+            return True
+    return False
+
+
 def evidence_excerpt(quote, phrase):
     tokens = list(re.finditer(r"\w+", quote))
     words = [search_text(token.group()).strip() for token in tokens]
@@ -141,7 +163,7 @@ def capability_hits(cap, segments, software_cpv=False, funding=False):
                         if re.search(r"\bClaude\s+(?:[A-Z]\.\s+)?[A-Z][a-z]+\b", segment["quote"]) or phrase_hits(text, ("observatory", "telescope")):
                             continue
                         hint_only = True
-                if phrase == "application development" and paper_application(text):
+                if phrase == "application development" and not business_application_development(text):
                     continue
                 if funding and phrase in ("data integration", "data harmonisation", "data harmonization"):
                     if not software_cpv and not phrase_hits(text, ("software", "database", "api", "crm", "platform",

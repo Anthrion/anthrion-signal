@@ -2,7 +2,7 @@
 import re
 from pathlib import Path
 
-from .capability_matching import capability_hits, evidence_excerpt, paper_application, unrelated_supply
+from .capability_matching import business_application_development, capability_hits, evidence_excerpt, unrelated_supply
 from .procurement_scope import addressable_delivery, generic_digital_scope, scope_exclusion
 from .notice_dates import digital_deadline, digital_deadline_instant, digital_window_uncertain
 from .utils import digest, parse_date, unique
@@ -220,7 +220,7 @@ def prefilter(signals, profile, terms, charter=None, translations=None):
         digital_scope = unique(p for segment in segments for p in phrase_hits(segment["text"], (
             "software development", "website development", "software engineering", "digital telephony",
             "open banking", "application development", "information systems development", "software implementation"))
-            if p != "application development" or not paper_application(segment["text"]))
+            if p != "application development" or business_application_development(segment["text"]))
         digital_scope = unique(digital_scope + generic_digital_scope(segments))
         score = min(100, max(strengths, default=0) + min(24, max(0, len(families) - 1) * 6) + (12 if cpv else 0))
         # Unclassified digital delivery remains a reviewable candidate, not an invented capability.
