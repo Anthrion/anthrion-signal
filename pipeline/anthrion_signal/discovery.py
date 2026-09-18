@@ -52,8 +52,11 @@ def discovery_text(value):
                              r"\b(?:portal|software|platform|application)\b", re.IGNORECASE)
     # This published administrative boilerplate describes an existing submission
     # service, not the work being funded by the surrounding opportunity.
+    # "AI Bietercockpit" is a German e-tendering client, so the acronym in a
+    # submission address is a product name rather than the buyer's scope.
     submission_platform = re.compile(r"\b(?:EDA is excited to announce the launch of its new grants management platform|"
-        r"EDGE was developed to streamline the application and grants management process)\b", re.IGNORECASE)
+        r"EDGE was developed to streamline the application and grants management process|"
+        r"bietercockpit)\b", re.IGNORECASE)
     bidding_context = re.compile(r"\b(?:suppliers?|procurement|tender\w*|bids?|proposals?|applications?|submissions?|quotations?|e-sourcing|"
                                  r"e-tendering|atamis|passport|isupplier)\b", re.IGNORECASE)
     return search_text(" ".join(sentence for sentence in sentences

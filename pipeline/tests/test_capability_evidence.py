@@ -283,3 +283,12 @@ def test_short_ai_title_is_still_recognised(signal, config):
     classify(signal, config, "RFI AI Interpreter",
              "Migrationsverket needs an AI interpreter for recording, transcription and translation.")
     assert "ai" in signal.matched_capabilities
+
+
+def test_named_e_tendering_client_is_not_ai_scope(signal, config):
+    """"AI Bietercockpit" is the bidding software, not the buyer's requirement."""
+    classify(signal, config, "Gewaesserunterhaltung Fliessgewaesser II. Ordnung",
+             "Address for electronic tenders (URL): https://www.evergabe.de using the software "
+             "AI Bietercockpit. Address for written tenders: not applicable.")
+    assert "ai" not in signal.matched_capabilities
+    assert signal.delivery_priority != "ai"
