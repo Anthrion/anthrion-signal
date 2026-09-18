@@ -44668,6 +44668,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "3b9e39d370cf8e128ccc48f7cb012727315c8b8a657e44a5c4739cddcc38433a": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T22:20:22.046858+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "DVLA Payments Out"
+          },
+          "source": "DVLA Payments Out"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "3badc21d272e7d2d8f02466c9dd73caa3bf381e1957fa4e365c08852757a5173": {
       "parts": [
         {
@@ -88489,6 +88512,29 @@
         "IKOMM AS"
       ],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "797d1e9d6af16129199556655e504dd4f89a7ef0268800aca98b272b9fa6c1f7": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T22:20:23.338996+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "DVLA - Driver & Vehicle Licensing Agency"
+          },
+          "source": "DVLA - Driver & Vehicle Licensing Agency"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "7983717a1ea8e0e2d5702e7a984a3247632b4a474a053d005a38e18047c7eec8": {
@@ -132745,6 +132791,29 @@
             "text": "Dynamic Purchasing System (DPS) for the provision of IT services to ECHA"
           },
           "source": "Dynamic Purchasing System (DPS) for the provision of IT services to ECHA"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "b45c5f541d82e4915c73c7424a9a26f1dc2ff5fe5db12ff577792f7dfedcf895": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-18T22:20:22.054718+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "This is a Prior Information Notice (PIN) with the purpose of assisting the Driver and Vehicle Licensing Agency (DVLA) in engaging the market by gathering information. This PIN has the purpose of a fact-finding exercise and only. Background Driver and Vehicle Licensing Agency (DVLA) are exploring options to digitalise payments out of the Agency in a bid to reduce payable orders. A specific user case includes invoice-based payments. Invoices are returned with information to support a customer's application. These applications, information and invoices are currently paper based which are scanned and digitalised in-house. On receipt of the information and sufficient checks, a payment is made by payable order to those named on the invoice. The payable order process is also managed in-house and posted from DVLA. Volumes In this example, for the financial year 2025-26, 221,406 individual payable orders were issued, with a net value of approximately £14.8M. Considerations - The payments are made to anyone qualified to complete the supporting evidence, so there is no static list of payees. There could be around 60,000 individual payees which fluctuates. Some are repeat payees and some are one off payees. - The payees include individuals and company accounts from across the UK. - The invoices (currently paper based) include the payee bank information (account number, sort code). - The invoices are then scanned and a digital copy held. - As a Government Agency we are required to follow all HM Treasury guidance outlined in the 'Managing Public Money' published documentation. - This includes not being able to use intermediary bank accounts outside of the Exchequer pyramid. - DVLA do not have an existing BACs business as usual process for payments out. - DVLA has explored Open Banking for this user case and feel that due to the considerations above it doesn't fully meet our requirements. Project aims - Digitalise movement of funds - Reduce/remove payable orders - Improve invoice management processes - Improve customer experience Information required - Potential solutions to support the project aims aligned to the considerations - Any costs associated with developing and implementing the solution including any licences or additional external costs. - Any ongoing costs associated with ongoing running of the solution. - Time taken to develop and implement the solution. - Any wider considerations, fees or any other supporting information. - Do you provide this type of service for any other large organisations? - How can DVLA procure from your organisation? e.g. Are they on a framework? If so which one? Do we need to go through any third parties to obtain their services? Please provide a response via email to the above question to Michelle Palmer - Michelle.Palmer@dvla.gov.uk by 5pm on May 13th 2026"
+          },
+          "source": "This is a Prior Information Notice (PIN) with the purpose of assisting the Driver and Vehicle Licensing Agency (DVLA) in engaging the market by gathering information. This PIN has the purpose of a fact-finding exercise and only. Background Driver and Vehicle Licensing Agency (DVLA) are exploring options to digitalise payments out of the Agency in a bid to reduce payable orders. A specific user case includes invoice-based payments. Invoices are returned with information to support a customer's application. These applications, information and invoices are currently paper based which are scanned and digitalised in-house. On receipt of the information and sufficient checks, a payment is made by payable order to those named on the invoice. The payable order process is also managed in-house and posted from DVLA. Volumes In this example, for the financial year 2025-26, 221,406 individual payable orders were issued, with a net value of approximately £14.8M. Considerations - The payments are made to anyone qualified to complete the supporting evidence, so there is no static list of payees. There could be around 60,000 individual payees which fluctuates. Some are repeat payees and some are one off payees. - The payees include individuals and company accounts from across the UK. - The invoices (currently paper based) include the payee bank information (account number, sort code). - The invoices are then scanned and a digital copy held. - As a Government Agency we are required to follow all HM Treasury guidance outlined in the 'Managing Public Money' published documentation. - This includes not being able to use intermediary bank accounts outside of the Exchequer pyramid. - DVLA do not have an existing BACs business as usual process for payments out. - DVLA has explored Open Banking for this user case and feel that due to the considerations above it doesn't fully meet our requirements. Project aims - Digitalise movement of funds - Reduce/remove payable orders - Improve invoice management processes - Improve customer experience Information required - Potential solutions to support the project aims aligned to the considerations - Any costs associated with developing and implementing the solution including any licences or additional external costs. - Any ongoing costs associated with ongoing running of the solution. - Time taken to develop and implement the solution. - Any wider considerations, fees or any other supporting information. - Do you provide this type of service for any other large organisations? - How can DVLA procure from your organisation? e.g. Are they on a framework? If so which one? Do we need to go through any third parties to obtain their services? Please provide a response via email to the above question to Michelle Palmer - Michelle.Palmer@dvla.gov.uk by 5pm on May 13th 2026"
         }
       ],
       "protected_names": [],
