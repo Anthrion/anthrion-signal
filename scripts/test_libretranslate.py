@@ -30,7 +30,7 @@ def main():
     from libretranslate.app import create_app
 
     corpus = [json.loads(line) for line in
-              (root / "artifacts/translation-benchmark/float32/results.jsonl").read_text().splitlines()]
+              (root / "artifacts/translation-benchmark/float32/results.jsonl").read_text().split("\n") if line.strip()]
     package.update_package_index()
     installed = {p.from_code: p.package_version for p in package.get_installed_packages() if p.to_code == "en"}
     available = {p.from_code: p.package_version for p in package.get_available_packages() if p.to_code == "en"}
@@ -51,7 +51,7 @@ def main():
     }
     (output / "manifest.json").write_text(json.dumps(manifest, indent=2))
     results_path = output / "results.jsonl"
-    cached = {json.loads(line)["hash"] for line in results_path.read_text().splitlines()} if results_path.exists() else set()
+    cached = {json.loads(line)["hash"] for line in results_path.read_text().split("\n") if line.strip()} if results_path.exists() else set()
     started, counts, failures = time.monotonic(), Counter(), 0
     with results_path.open("a", encoding="utf-8") as stream:
         for index, row in enumerate(corpus):

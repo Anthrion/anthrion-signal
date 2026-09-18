@@ -10,7 +10,7 @@ from anthrion_signal.config import load_config
 from anthrion_signal.discovery import discovery_signature, is_public_opportunity, lifecycle, prefilter
 from anthrion_signal.models import Signal
 from anthrion_signal.translation import available_translations
-from anthrion_signal.utils import atomic_json, parse_date, read_json
+from anthrion_signal.utils import atomic_json, jsonl_lines, parse_date, read_json
 
 
 def retained_records(root):
@@ -21,7 +21,7 @@ def retained_records(root):
         if not path.exists():
             continue
         body = gzip.decompress(path.read_bytes()).decode("utf-8") if path.suffix == ".gz" else path.read_text(encoding="utf-8")
-        for line in body.splitlines():
+        for line in jsonl_lines(body):
             if not line.strip():
                 continue
             signal = Signal.model_validate_json(line)

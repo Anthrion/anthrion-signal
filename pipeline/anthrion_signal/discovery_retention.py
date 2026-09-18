@@ -3,13 +3,13 @@ import gzip
 from pathlib import Path
 
 from .models import Signal
-from .utils import atomic_bytes, parse_date
+from .utils import atomic_bytes, jsonl_lines, parse_date
 
 
 def read_rejected(root):
     latest = {}
     for path in sorted((Path(root) / "data/discovery/rejected").glob("*.jsonl.gz")):
-        for line in gzip.decompress(path.read_bytes()).decode("utf-8").splitlines():
+        for line in jsonl_lines(gzip.decompress(path.read_bytes()).decode("utf-8")):
             if not line.strip():
                 continue
             signal = Signal.model_validate_json(line)
@@ -34,7 +34,7 @@ def retain_rejected(root, signals, now, threshold):
     path = Path(root) / "data/discovery/rejected" / f"{now:%Y-%m-%d}.jsonl.gz"
     records = {}
     if path.exists():
-        for line in gzip.decompress(path.read_bytes()).decode("utf-8").splitlines():
+        for line in jsonl_lines(gzip.decompress(path.read_bytes()).decode("utf-8")):
             if line.strip():
                 s = Signal.model_validate_json(line)
                 records[(s.id, s.content_hash)] = s

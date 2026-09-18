@@ -86,8 +86,8 @@ def main():
                 "models": {k: {"version": available[k].package_version, "urls": available[k].links} for k in supported}}
     (output / "manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
     results = output / "results.jsonl"
-    cached = {r["hash"]: r for line in results.read_text(encoding="utf-8").splitlines()
-              if (r := json.loads(line))} if results.exists() else {}
+    cached = {r["hash"]: r for line in results.read_text(encoding="utf-8").split("\n")
+              if line.strip() and (r := json.loads(line))} if results.exists() else {}
     for language in supported:
         if language not in installed:
             print(f"Installing {language} -> en model", flush=True)

@@ -15,7 +15,7 @@ from .models import Dataset, EnglishText, Signal, SourceHealth
 from .normalise import NORMALISERS, set_hashes
 from .retention import archive_expired, restore_matching
 from .translation import available_translations
-from .utils import atomic_bytes, atomic_json, digest, parse_date, read_json
+from .utils import atomic_bytes, atomic_json, digest, jsonl_lines, parse_date, read_json
 
 SCHEDULED_TIMES = [f"{hour:02}:50" for hour in range(24)]
 
@@ -92,7 +92,7 @@ def export(root):
     config = load_config(root)
     signature = discovery_signature(config)
     canonical = root / "data/signals.jsonl"
-    canonical_signals = [Signal.model_validate_json(line) for line in canonical.read_text(encoding="utf-8").splitlines() if line] if canonical.exists() else data.signals
+    canonical_signals = [Signal.model_validate_json(line) for line in jsonl_lines(canonical.read_text(encoding="utf-8"))] if canonical.exists() else data.signals
     if data.run.get("discovery_signature") != signature and canonical.exists():
         # A rule release must be able to restore previously suppressed candidates
         # even on an existing-data deployment. Availability is still checked below.
@@ -146,7 +146,7 @@ def run(root, args):
     state = read_json(state_path, {})
     previous_data = read_json(root / "data/current.json", None)
     canonical_path = root / "data/signals.jsonl"
-    previous = [Signal.model_validate_json(line) for line in canonical_path.read_text(encoding="utf-8").splitlines() if line] if canonical_path.exists() else []
+    previous = [Signal.model_validate_json(line) for line in jsonl_lines(canonical_path.read_text(encoding="utf-8"))] if canonical_path.exists() else []
     wanted = set(args.sources.split(",")) if args.sources else None
     all_sources = config["sources"]["sources"]
     if wanted and not wanted.issubset({s["id"] for s in all_sources}):

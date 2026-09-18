@@ -54,7 +54,7 @@ def main():
         queue = TranslationQueue(output / "cache.json")
         if args.mode == "benchmark":
             path = root / "artifacts/translation-benchmark/float32/results.jsonl"
-            corpus = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line]
+            corpus = [json.loads(line) for line in path.read_text(encoding="utf-8").split("\n") if line.strip()]
             ids = {entry["id"] for entry in corpus}
             with (root / "data/signals.jsonl").open(encoding="utf-8") as stream:
                 buyers = {record["id"]: record.get("buyer_name") for line in stream
