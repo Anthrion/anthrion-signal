@@ -42,18 +42,22 @@ AMBIGUOUS_NEEDS = {"account management", "client management", "contact managemen
                    "case tracking", "case allocation", "case triage", "referral management", "permit management",
                    "investigation management", "appeals management", "grievance management", "enquiry management",
                    "inquiry management", "workforce scheduling", "mobile workforce", "field service management"}
+AMBIGUOUS_NEEDS.update({"fallmanagement", "atencion al cliente", "atencion ciudadana", "ongoing enhancement"})
 GENERIC_INTEGRATION = {"systems integration", "system integration", "integration with existing systems",
-                       "integrate with existing systems", "systemintegration", "schnittstellenmanagement"}
+                       "integrate with existing systems", "systemintegration", "schnittstellenmanagement",
+                       "integracion de sistemas", "integrazione di sistemi"}
 PHYSICAL_SYSTEMS = ("pipework", "ventilation", "air handling", "compressed air", "heating", "boilers",
                     "high voltage", "switchgear", "electrical installations", "building management system",
-                    "building management systems", "mechanical systems", "tiefengeothermie", "gas systems")
+                    "building management systems", "mechanical systems", "tiefengeothermie", "gas systems",
+                    "welding power sources", "rigging", "deck and fittings", "launching and trials",
+                    "structural hardware", "jarcias", "maquinaria", "herraje estructural")
 DIGITAL_SYSTEMS = ("software", "application", "database", "crm", "salesforce", "api", "middleware",
                    "information system", "information systems", "data platform", "customer portal", "ai agent")
 
 
-def physical_integration(text, phrase):
+def physical_integration(text, phrase, title_context=""):
     """A mechanical connection is not application integration; mixed digital lots survive."""
-    return (phrase in GENERIC_INTEGRATION and bool(phrase_hits(text, PHYSICAL_SYSTEMS))
+    return (phrase in GENERIC_INTEGRATION and bool(phrase_hits(text + " " + title_context, PHYSICAL_SYSTEMS))
             and not phrase_hits(text, DIGITAL_SYSTEMS))
 
 
@@ -63,12 +67,23 @@ def operational_software_use(text, phrase):
     Require both a data-entry action and operational records. Updating software
     itself, or a separate implementation sentence, remains positive evidence.
     """
-    if not phrase_hits(text, ("inspection actions", "inspection results", "visit records", "case notes", "inspection records")):
+    hits = list(re.finditer(r"(?<!\w)" + re.escape(phrase) + r"(?!\w)", text))
+    if (hits and all(re.search(r"\blicen[cs]es?\s+(?:which|that)\s+support\b",
+                              text[max(0, hit.start() - 150):hit.start()]) for hit in hits)
+            and not phrase_hits(text, ("implement", "implementation", "configure", "configuration", "migrate", "migration", "develop", "development"))):
+        return True
+    if hits and all(re.search(r"\bcompatibility with\s+(?:\w+\s+){0,8}$",
+                             text[max(0, hit.start() - 100):hit.start()]) for hit in hits):
+        return True
+    if not phrase_hits(text, ("inspection actions", "inspection results", "visit records", "case notes", "inspection records",
+                              "patient records", "clinical records")):
         return False
     if phrase_hits(text, ("software development", "software upgrade", "implement", "develop", "configure", "migrate")):
         return False
     for hit in re.finditer(r"(?<!\w)" + re.escape(phrase) + r"(?!\w)", text):
         before = text[max(0, hit.start() - 100):hit.start()]
+        if re.search(r"\binput\w*\b.{0,40}\bdata\b.{0,30}\b(?:using|into|in)\s+(?:\w+\s+){0,4}$", before):
+            return True
         if re.search(r"\b(?:updating|recording (?:in|on)|entering (?:in|into)|logging (?:in|into))\s+(?:\w+\s+){0,8}$", before):
             return True
     return False
@@ -95,6 +110,34 @@ AI_DELIVERY = ("implementation", "implement", "implementing", "deploy", "deploym
                "contractor", "licence", "license", "subscription", "chatbot", "ai assistant",
                "ai agent", "virtual assistant", "integrate", "integration", "configure", "configuration")
 MANAGEMENT_PROCESS = re.compile(r"\b(?:quality|information security|environmental|health and safety) management systems?\b")
+
+
+def named_vendor(text, quote, phrase):
+    """The Informatica vendor is distinct from the Romance-language word for IT."""
+    if phrase != "informatica":
+        return True
+    # Accented informática always denotes computing, not this product name.
+    # An unaccented Italian noun also needs a vendor/product cue, rather than
+    # promoting every IT department or piece of computer equipment to data work.
+    return (bool(re.search(r"\binformatica\b", quote, re.IGNORECASE)) and bool(phrase_hits(text, (
+        "powercenter", "power center", "idmc", "intelligent data management cloud",
+        "informatica cloud", "informatica mdm", "informatica iics", "informatica support", "support for informatica",
+        "informatica licences", "informatica licenses", "informatica platform",
+        "informatica integration", "informatica data", "informatica axon", "informatica edc"))))
+
+
+def procedural_system(text, phrase):
+    """A named emergency-response doctrine is not an application requirement."""
+    return (phrase == "incident management system"
+            and bool(phrase_hits(text, ("national incident management system", "nims")))
+            and not phrase_hits(text, ("software", "application", "platform", "database", "api", "saas")))
+
+
+def historical_topic(text, phrase):
+    """A topic of an explicitly contrasted previous report is not current scope."""
+    hits = list(re.finditer(r"(?<!\w)" + re.escape(phrase) + r"(?!\w)", text))
+    past_report = r"\b(?:in contrast to previous reports|unlike previous reports|im gegensatz zu bisherigen berichten)\b"
+    return bool(hits) and all(re.search(past_report, text[max(0, hit.start() - 200):hit.start()]) for hit in hits)
 
 
 def acronym_case_evidence(quote, phrase):
@@ -183,6 +226,7 @@ def capability_hits(cap, segments, software_cpv=False, funding=False):
     if cap["id"] == "pipeline":
         return []
     evidence = []
+    title_context = " ".join(s["text"] for s in segments if s["field"] == "title")
     for segment in segments:
         text = segment["text"]
         technical = has_software(text) or (funding and cap["id"] in ("ai", "genai") and funded_ai_build(text))
@@ -199,9 +243,14 @@ def capability_hits(cap, segments, software_cpv=False, funding=False):
                                ("contextual", cap.get("contextual", []))):
             for phrase in phrase_hits(text, phrases):
                 hint_only = False
+                if (not named_vendor(text, segment["quote"], phrase) or procedural_system(text, phrase)
+                        or historical_topic(text, phrase)):
+                    continue
+                if phrase == "platform support" and "platform support hours" in text:
+                    continue
                 if not affirmed(text, phrase) or operational_software_use(text, phrase):
                     continue
-                if cap["id"] in ("integration", "external_integration") and physical_integration(text, phrase):
+                if cap["id"] in ("integration", "external_integration") and physical_integration(text, phrase, title_context):
                     continue
                 if cap["id"] == "ai" and phrase in ("claude", "gemini"):
                     if not phrase_hits(text, ("ai", "artificial intelligence", "llm", "anthropic", "google ai",
