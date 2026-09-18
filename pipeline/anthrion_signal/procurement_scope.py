@@ -182,7 +182,24 @@ def generic_digital_scope(segments):
                "digital service lifecycle", "digital products and services",
                "software configuration", "software customisation", "software customization",
                "cashless parking", "digital payment services", "digital delivery services",
-               "online learning platform", "incident management system", "clinical patient management system")
+               "online learning platform", "incident management system", "clinical patient management system",
+               # Web estate and named business systems. Each states a built or maintained
+               # digital deliverable; a generic "digital" or "solution" still does not.
+               "website development", "website design", "website relaunch", "website redesign",
+               "website maintenance", "website hosting", "web development", "web portal",
+               "internet portal", "online portal", "open data portal", "transparency portal",
+               "content management system", "learning management system", "document management system",
+               "records management system", "record management system", "records management solution",
+               "record management solution", "patient record management", "asset management system",
+               "quality management system", "enterprise architecture management system",
+               "digital workplace", "intranet", "epos system", "point of sale system",
+               # Named business systems that are bought as software rather than as a
+               # service. Industrial control (SCADA, telemetry) is deliberately absent.
+               "notification system", "ordering system", "booking system", "scheduling system",
+               "reporting system", "registration system", "ticketing system", "archive system",
+               "contract management system", "procurement system", "e-procurement system",
+               "invoicing system", "billing system", "rostering system", "referral tool",
+               "self service portal", "customer portal", "citizen portal", "tenant portal")
     return list(dict.fromkeys(p for s in segments for p in phrase_hits(s["text"], phrases)
                              if affirmed(s["text"], p) and not physical_payment_equipment(s["text"], p)
                              and not operational_software_use(s["text"], p)))

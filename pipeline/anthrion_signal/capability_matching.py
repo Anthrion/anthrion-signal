@@ -4,6 +4,14 @@ import re
 from .vocabulary import phrase_hits, search_text
 
 SOFTWARE = ("software", "platform", "application", "information system", "information systems",
+            # An English compound names the system without ending in "-system" the way
+            # the German and Nordic single words do, so it needs listing separately.
+            # "digital solutions" and "computer system" stay out: reviewed decisions
+            # already hold that neither establishes a technology scope on its own.
+            "management system", "management systems", "it system", "it systems", "digital system",
+            "digital systems", "web application", "web applications",
+            "it solution", "it solutions", "software solution", "software solutions",
+            "web portal", "online portal", "internet portal",
             "automation", "workflow", "api", "crm", "saas", "database", "logiciel", "sistema", "sistemi",
             "applicazioni", "applicazione", "applikationen", "anwendungen", "virtualisierbar", "softwarewartung",
             "plataforma", "piattaforma", "softwareentwicklung", "systeme", "jarjestelma", "jarjestelman",
@@ -211,12 +219,18 @@ def capability_hits(cap, segments, software_cpv=False, funding=False):
                     if not phrase_hits(text, ("customer", "client", "master data", "data platform", "data warehouse")):
                         hint_only = True
                 if level == "contextual":
-                    if not (technical or weak_technical):
+                    # A short notice can name AI in its title and nothing else: "RFI AI
+                    # Interpreter" has no surrounding technical vocabulary to lean on, and
+                    # the case test above already separates the acronym from foreign prose.
+                    titled_acronym = (cap["id"] in ("ai", "genai") and phrase in ("ai", "mcp", "rag")
+                                      and segment["field"] == "title"
+                                      and acronym_case_evidence(segment["quote"], phrase))
+                    if not (technical or weak_technical or titled_acronym):
                         continue
                     guard = CONTEXT_GUARDS.get(cap["id"])
                     if guard and not phrase_hits(text, guard):
                         continue
-                    hint_only |= not technical
+                    hint_only |= not technical and not titled_acronym
                     if cap["id"] in ("ai", "genai") and phrase in ("ai", "mcp", "rag"):
                         if not acronym_case_evidence(segment["quote"], phrase):
                             continue
