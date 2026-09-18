@@ -53,22 +53,41 @@ rather than a deliverable, and they were removed:
 | `online portal` | German pharma rebate notices' submission instructions |
 | `intranet` | publication channels ("published on the intranet") |
 
-`web portal` and `internet portal` stay, being specific to a built thing. This is the reason to look
-at what a vocabulary change recovers rather than only at how much it recovers.
+`web portal` and `internet portal` stay, being specific to a built thing. Writing the test for this
+then caught a duplicate `online portal` entry the first removal had missed. This is the reason to
+look at *what* a vocabulary change recovers rather than only at how much.
+
+Checking the resulting AI tier found one more of the same kind, unrelated to the additions:
+**"AI Bietercockpit" is a German e-tendering client**, and the product name in a submission address
+had put a reservoir masterplan and a waterway-maintenance contract into the AI delivery tier. It now
+joins the submission boilerplate the text filter already strips, alongside the
+`atamis-*.my.salesforce-sites.com` supplier portals.
+
+Worth recording the near-miss: *"Web hosting and professional support for the Quality Seal for
+Sustainable Buildings"* looks like the same false positive and is not. Its description asks for
+"hosting and further development of an AI-based, self-learning chatbot", so the AI tier is right.
 
 ### Measured
 
-Re-scoring the same 2,833 baseline records through the real `prefilter`:
+Both feeds exported from the same canonical data at the same time, so notices expiring between
+runs cannot confound the comparison:
 
-| | Before | After |
+| | Without | With |
 | --- | --- | --- |
-| Records whose only evidence is a CPV code | 2,185 | **1,846** |
-| AI tier | 96 | **114** |
-| Admitted feed | 2,599 | 2,601 |
-| Would survive `cpv_requires_corroboration` | ~1,330 | **1,651** |
+| Published feed | 2,597 | 2,601 |
+| Platform tier | 360 | **360** |
+| AI tier | 96 | **111** |
+| Records whose only evidence is a CPV code | 1,942 | **1,865** |
+| Records removed | — | **0** |
 
-339 records now match on their own text, and 321 more would survive tightening. **Nothing is
-dropped by these changes** — vocabulary only adds evidence.
+77 records exchange "Relevant CPV classification" for quoted evidence, 15 move into the AI tier,
+4 are recovered from the rejection store, and **nothing is dropped**. Vocabulary only adds
+evidence, so the change is monotonic by construction; the export confirms it.
+
+Two records did leave the feed on an earlier comparison run, which is worth recording because it
+looked alarming: both had response deadlines between the two exports and simply expired. Neither
+was affected by the vocabulary. That is the reason the final comparison re-exported both sides
+together.
 
 ### The honest limit
 
@@ -133,6 +152,6 @@ Two things are worth doing anyway, neither of them a filter change:
 ## Verification
 
 ```
-python -m pytest -q                       781 passed
+python -m pytest -q                       794 passed
 python -m ruff check pipeline             clean
 ```
