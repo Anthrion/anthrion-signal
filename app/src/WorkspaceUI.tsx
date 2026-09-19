@@ -9,9 +9,6 @@ import {
   Globe2,
   Languages,
   Pencil,
-  ArrowUp,
-  ArrowDown,
-  X,
   ExternalLink,
 } from 'lucide-react'
 import type { ReactNode } from 'react'
@@ -20,6 +17,7 @@ import type { MarketPreferences } from './personalWorkspace'
 import { LiquidMetal } from '@paper-design/shaders-react'
 import { defaultMarketOptions, safeURL } from './lib'
 import { applyGlassLight, brandLightPosition, scrollMovesSurface } from './glassLighting'
+import { MarketOrganizer } from './MarketOrganizer'
 
 const motionQuery =
   typeof window === 'undefined' ? null : window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -431,86 +429,6 @@ export function MarketSection({
         />
       )}
     </section>
-  )
-}
-
-function MarketOrganizer({
-  preferences,
-  onArrange,
-  onClose,
-}: {
-  preferences: MarketPreferences
-  onArrange: (preferences: MarketPreferences) => boolean
-  onClose: () => void
-}) {
-  const ref = useRef<HTMLDialogElement>(null)
-  useEffect(() => {
-    ref.current?.showModal()
-    return () => ref.current?.close()
-  }, [])
-  const ordered = preferences.order.filter((id) =>
-    defaultMarketOptions.some((market) => market.id === id),
-  )
-  const move = (id: string, offset: number) => {
-    const index = ordered.indexOf(id)
-    const next = [...ordered]
-    ;[next[index], next[index + offset]] = [next[index + offset], next[index]]
-    onArrange({ ...preferences, order: next })
-  }
-  return (
-    <dialog ref={ref} className="market-organizer" aria-label="Organize markets" onCancel={onClose}>
-      <header>
-        <div>
-          <h2>Your markets</h2>
-          <p>Pin the markets you use most. Reorder them below.</p>
-        </div>
-        <button aria-label="Close market organizer" onClick={onClose}>
-          <X size={19} />
-        </button>
-      </header>
-      <ol>
-        {ordered.map((id, index) => (
-          <li key={id}>
-            <label>
-              <input
-                type="checkbox"
-                aria-label={`Pin ${defaultMarketOptions.find((m) => m.id === id)?.name}`}
-                checked={preferences.pinned.includes(id)}
-                onChange={(e) =>
-                  onArrange({
-                    ...preferences,
-                    pinned: e.target.checked
-                      ? [...preferences.pinned, id]
-                      : preferences.pinned.filter((p) => p !== id),
-                  })
-                }
-              />
-              <span>{defaultMarketOptions.find((m) => m.id === id)?.name}</span>
-              <small>{preferences.pinned.includes(id) ? 'Pinned' : 'More'}</small>
-            </label>
-            <button
-              aria-label={`Move ${id || 'All'} up`}
-              disabled={index === 0}
-              onClick={() => move(id, -1)}
-            >
-              <ArrowUp size={15} />
-            </button>
-            <button
-              aria-label={`Move ${id || 'All'} down`}
-              disabled={index === ordered.length - 1}
-              onClick={() => move(id, 1)}
-            >
-              <ArrowDown size={15} />
-            </button>
-          </li>
-        ))}
-      </ol>
-      <footer>
-        <button className="button primary" onClick={onClose}>
-          Done
-        </button>
-      </footer>
-    </dialog>
   )
 }
 

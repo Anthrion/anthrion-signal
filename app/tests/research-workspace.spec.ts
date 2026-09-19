@@ -514,7 +514,9 @@ test('All leads UK; groups and individual countries can be pinned together and m
     ).toHaveCount(1)
   await organizer.getByRole('checkbox', { name: 'Pin Belgium', exact: true }).check()
   await organizer.getByRole('checkbox', { name: 'Pin Germany', exact: true }).check()
-  await organizer.getByRole('button', { name: 'Move All down', exact: true }).click()
+  await organizer
+    .getByRole('button', { name: 'Reorder All markets', exact: true })
+    .press('ArrowDown')
   await organizer.getByRole('button', { name: 'Done', exact: true }).click()
   await page.reload()
   await expect(page.locator('.market-tabs > button').nth(0)).toHaveAttribute(
@@ -529,6 +531,114 @@ test('All leads UK; groups and individual countries can be pinned together and m
     await expect(page.getByRole('button', { name: market, exact: true })).toBeAttached()
   await page.getByRole('button', { name: 'All markets', exact: true }).click()
   await expect(page.locator('.row-select')).toHaveCount(2)
+})
+
+test('market dragging previews the drop and saves order without changing pins or selection', async ({
+  page,
+}, info) => {
+  await page.goto('./')
+  await page.getByRole('button', { name: 'Organize markets' }).click()
+  const organizer = page.getByRole('dialog', { name: 'Organize markets' })
+  const handle = organizer.getByRole('button', { name: 'Reorder All markets', exact: true })
+  const from = (await handle.boundingBox())!
+  const to = (await organizer.locator('[data-market-id="IT"]').boundingBox())!
+  await page.mouse.move(from.x + from.width / 2, from.y + from.height / 2)
+  await page.mouse.down()
+  await page.mouse.move(from.x + from.width / 2, to.y + to.height - 3, { steps: 12 })
+  await expect(organizer.locator('[data-market-id="NORDICS"]')).toHaveAttribute(
+    'data-drop-before',
+    'true',
+  )
+  await expect(organizer.locator('.market-drag-preview')).toContainText('All markets')
+  await page.screenshot({ path: `../artifacts/market-drag-${info.project.name}.png` })
+  await page.mouse.up()
+  await expect(organizer.locator('.market-drag-preview')).toHaveCount(0)
+  await expect(organizer.getByRole('listitem').nth(3)).toHaveAttribute('data-market-id', '')
+  await expect(
+    organizer.getByRole('checkbox', { name: 'Pin All markets', exact: true }),
+  ).toBeChecked()
+  await organizer.getByRole('button', { name: 'Done', exact: true }).click()
+  await expect(page.getByRole('button', { name: 'United Kingdom', exact: true })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  )
+  await page.reload()
+  await expect(page.locator('.market-tabs > button').nth(3)).toHaveAttribute(
+    'aria-label',
+    'All markets',
+  )
+  await expect(page.getByRole('button', { name: 'United Kingdom', exact: true })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  )
+})
+
+test('market drag scrolls the list and Escape cancels without saving or closing the picker', async ({
+  page,
+}) => {
+  await page.goto('./')
+  await page.getByRole('button', { name: 'Organize markets' }).click()
+  const organizer = page.getByRole('dialog', { name: 'Organize markets' })
+  const list = organizer.getByRole('list', { name: 'Market order' })
+  const handle = organizer.getByRole('button', { name: 'Reorder All markets', exact: true })
+  const from = (await handle.boundingBox())!
+  const bounds = (await list.boundingBox())!
+  await page.mouse.move(from.x + from.width / 2, from.y + from.height / 2)
+  await page.mouse.down()
+  await page.mouse.move(from.x + from.width / 2, bounds.y + bounds.height - 2, { steps: 10 })
+  await expect.poll(() => list.evaluate((element) => element.scrollTop)).toBeGreaterThan(200)
+  await page.keyboard.press('Escape')
+  await page.mouse.up()
+  await expect(organizer).toBeVisible()
+  await expect(organizer.locator('.market-drag-preview')).toHaveCount(0)
+  await expect(organizer.getByRole('listitem').first()).toHaveAttribute('data-market-id', '')
+  await handle.press('End')
+  await expect(organizer.getByRole('listitem').last()).toHaveAttribute('data-market-id', '')
+  await expect(handle).toBeFocused()
+  await handle.press('Home')
+  await expect(organizer.getByRole('listitem').first()).toHaveAttribute('data-market-id', '')
+  await expect(handle).toBeFocused()
+  const result = await new AxeBuilder({ page }).include('.market-organizer').analyze()
+  expect(result.violations).toEqual([])
+})
+
+test('touch can reorder a market and a cancelled touch leaves the order intact', async ({
+  page,
+  browserName,
+}, info) => {
+  test.skip(
+    browserName !== 'chromium' || info.project.name !== 'mobile',
+    'Chromium mobile touch protocol check',
+  )
+  await page.goto('./')
+  await page.getByRole('button', { name: 'Organize markets' }).click()
+  const organizer = page.getByRole('dialog', { name: 'Organize markets' })
+  const touch = await page.context().newCDPSession(page)
+  const from = (await organizer
+    .getByRole('button', { name: 'Reorder All markets', exact: true })
+    .boundingBox())!
+  const to = (await organizer.locator('[data-market-id="GB"]').boundingBox())!
+  const x = from.x + from.width / 2
+  const y = from.y + from.height / 2
+  const end = to.y + to.height - 3
+  await touch.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x, y }] })
+  await touch.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x, y: end }] })
+  await expect(organizer.locator('.market-drag-preview')).toBeVisible()
+  await touch.send('Input.dispatchTouchEvent', { type: 'touchCancel', touchPoints: [] })
+  await expect(organizer.locator('.market-drag-preview')).toHaveCount(0)
+  await expect(organizer.getByRole('listitem').first()).toHaveAttribute('data-market-id', '')
+  await touch.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x, y }] })
+  await touch.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x, y: end }] })
+  await expect(organizer.locator('[data-market-id="US"]')).toHaveAttribute(
+    'data-drop-before',
+    'true',
+  )
+  await touch.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] })
+  await expect(organizer.getByRole('listitem').nth(1)).toHaveAttribute('data-market-id', '')
+  await expect(
+    organizer.getByRole('checkbox', { name: 'Pin All markets', exact: true }),
+  ).toBeChecked()
+  await touch.detach()
 })
 
 test('All and grouped markets can be unpinned and remain selectable from More', async ({

@@ -1043,8 +1043,11 @@
   margin: 0;
   max-height: 49dvh;
   overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
 }
 .market-organizer li {
+  position: relative;
   display: flex;
   gap: 7px;
   align-items: center;
@@ -1067,15 +1070,67 @@
   font-size: 9px;
   margin-left: auto;
 }
-.market-organizer li button {
-  width: 28px;
-  height: 32px;
+.market-organizer .market-drag-handle {
+  width: 44px;
+  height: 44px;
   display: grid;
   place-items: center;
   color: var(--muted);
+  flex: 0 0 auto;
+  cursor: grab;
+  touch-action: none;
+  border-radius: 5px;
 }
-.market-organizer li button:disabled {
-  opacity: 0.25;
+.market-drag-handle:hover,
+.market-drag-handle:focus-visible {
+  color: var(--mint);
+  background: var(--mint-bg);
+}
+.market-drag-handle:active,
+.market-organizer ol[data-dragging='true'] {
+  cursor: grabbing;
+  user-select: none;
+}
+.market-organizer li[data-drag-source='true'] > * {
+  opacity: 0.3;
+}
+.market-organizer li[data-drop-before='true']::before,
+.market-organizer li[data-drop-after='true']::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 1;
+  background: var(--mint);
+  box-shadow: 0 0 8px var(--mint-bg);
+  pointer-events: none;
+}
+.market-organizer li[data-drop-before='true']::before {
+  top: 0;
+}
+.market-organizer li[data-drop-after='true']::after {
+  bottom: 0;
+}
+.market-drag-preview {
+  position: fixed;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 13px 0 28px;
+  border: 1px solid var(--mint);
+  border-radius: 6px;
+  background: var(--surface);
+  box-shadow: 0 8px 25px #0006;
+  color: var(--text);
+  font-size: 12px;
+  pointer-events: none;
+  user-select: none;
+}
+.market-drag-preview svg {
+  color: var(--mint);
 }
 .market-organizer footer {
   display: flex;
