@@ -125,10 +125,48 @@ def test_every_publication_requires_browser_checks_and_full_success_is_not_recor
     assert full["env"]["SIGNAL_TEST_PREVIEW"] == smoke["env"]["SIGNAL_TEST_PREVIEW"] == "true"
     assert steps.index(full) < steps.index(passed) < steps.index(by_name["Persist canonical state"])
     assert steps.index(smoke) < steps.index(by_name["Upload Pages build"])
-    optional = {"Translate new and outstanding records", "Checkpoint private translation progress"}
+    optional = {"Create translation checkpoint token", "Translate new and outstanding records",
+                "Checkpoint private translation progress"}
     assert {step.get("name") for step in steps if step.get("continue-on-error") == "true"} == optional
     assert steps.index(by_name["Translate new and outstanding records"]) < steps.index(by_name["Validate pipeline and public dataset"])
     assert "--github-checkpoint" in by_name["Translate new and outstanding records"]["run"]
     assert workflow["concurrency"]["cancel-in-progress"] == "false"
     assert workflow["concurrency"]["queue"] == "max"
     assert workflow["concurrency"]["group"] == "anthrion-signal-production"
+
+
+def test_long_builds_refresh_scoped_credentials_before_each_write_phase():
+    workflow = yaml.load((ROOT / ".github/workflows/ingest-and-deploy.yml").read_text(),
+                         Loader=yaml.BaseLoader)
+    build = workflow["jobs"]["build"]
+    assert int(build["timeout-minutes"]) > 60
+    steps = build["steps"]
+    by_name = {step.get("name"): step for step in steps}
+    checkout = next(step for step in steps if step.get("uses", "").startswith("actions/checkout@"))
+    assert checkout["with"]["persist-credentials"] == "false"
+    assert "gh auth setup-git --hostname github.com" in by_name["Set automation commit identity"]["run"]
+
+    translation_token = by_name["Create translation checkpoint token"]
+    publication_token = by_name["Create publication data token"]
+    for token in (translation_token, publication_token):
+        assert token["uses"].startswith("actions/create-github-app-token@")
+        assert token["with"]["owner"] == "Anthrion"
+        assert token["with"]["repositories"] == "anthrion-signal"
+        assert {k: v for k, v in token["with"].items() if k.startswith("permission-")} == {
+            "permission-contents": "write",
+        }
+    assert "full_tests != 'true'" in translation_token["if"]
+    assert "SIGNAL_GEMINI_FREE_TIER_CONFIRMED == 'true'" in translation_token["if"]
+    assert "steps.translation-token.outcome == 'success'" in by_name["Translate new and outstanding records"]["if"]
+    assert steps.index(by_name["Collect public opportunities"]) < steps.index(translation_token)
+    for name in ("Translate new and outstanding records", "Checkpoint private translation progress"):
+        assert steps.index(translation_token) < steps.index(by_name[name])
+        assert by_name[name]["env"]["GH_TOKEN"] == "${{ steps.translation-token.outputs.token || github.token }}"
+    for name in ("Validate pipeline and public dataset", "Full browser regression against production build",
+                 "Data refresh desktop and mobile smoke tests"):
+        assert steps.index(by_name[name]) < steps.index(publication_token)
+    assert "continue-on-error" not in publication_token
+    assert steps.index(publication_token) < steps.index(by_name["Persist canonical state"])
+    assert by_name["Persist canonical state"]["env"]["GH_TOKEN"] == (
+        "${{ steps.publication-data-token.outputs.token || github.token }}"
+    )
