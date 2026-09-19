@@ -60,14 +60,14 @@ def response_deadline(period):
     if not re.fullmatch(r"\d{4}-\d{2}-\d{2}(?:Z|[+-]\d{2}:\d{2})?", day):
         return None
     if not clock:
-        return iso(day[:10])
+        return day[:10]
     # UBL dates and times can both carry an offset. Use the time's offset once.
     if not re.fullmatch(r"\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})?", clock):
         return None
     if not re.search(r"(?:Z|[+-]\d{2}:\d{2})$", clock):
         offset = re.search(r"(?:Z|[+-]\d{2}:\d{2})$", day)
         if not offset:
-            return iso(day[:10])  # Do not invent a local submission time.
+            return day[:10]  # Do not invent a local submission time.
         clock += offset.group()
     return iso(day[:10] + "T" + clock)
 
@@ -134,10 +134,6 @@ def enrich_release(release, xml, stem):
             tender.setdefault("techniques", {})["frameworkAgreement"] = {"description": "Framework agreement"}
     if deadlines:
         tender["tenderPeriod"] = {"endDate": min(deadlines, key=parse_date)}
-        if len(set(deadlines)) > 1:
-            tender["eligibilityCriteria"] = clean(tender.get("eligibilityCriteria")) + (
-                " Multiple lot deadlines are published. The earliest is shown; check the source notice for the relevant lot."
-            )
     return result
 
 

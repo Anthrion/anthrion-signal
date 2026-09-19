@@ -8,7 +8,7 @@ The console opens on **Live Opportunities**, ordered by recent publication. Sale
 
 The five refiners are **All Signals**, **Live Opportunities**, **Pre-market**, **Closing Soon**, and **Added today**. Pre-market combines requests for information, market engagement, pipeline and genuine future buying intent; these are not presented as open tenders. Unknown deadlines do not enter Closing Soon. Added today means first collected on the current Europe/London calendar date, not recently updated or published. Frameworks and funding remain available through notice-type filters without separate refiner cards.
 
-The UK, US, Italy, Nordics, Germany, Spain and Greece are selectable. Nordics groups Sweden, Finland, Denmark, Norway and Iceland. Counts, saved records, search and filters are market-scoped. A healthy source does not imply complete market coverage or confirmed bidder eligibility.
+The default market row contains UK, All, US, Italy, Nordics, DACH, Spain and Greece. **DACH** combines Germany, Austria and Switzerland; **Benelux** combines Belgium, the Netherlands and Luxembourg. Nordics groups Sweden, Finland, Denmark, Norway and Iceland. More opens the additional European markets, and the pencil control saves each browser's preferred order and pinned markets. Country identifiers and existing country-specific links remain separate underneath the groups. All searches every current market index and deduplicates notices. A healthy source does not imply complete market coverage or confirmed bidder eligibility; new European coverage uses TED, not an assertion that every national or below-threshold portal is included.
 
 The dark glass console uses a measured virtual list: scrolling reveals records without pagination while only nearby rows remain mounted. Desktop has independently scrolling records and details; narrow screens use document scrolling and a detail drawer. The record panel places compact notice facts and capabilities above the complete source description. A vertical integration rail sits beside those facts: Gmail opens a compose window with the selected record's displayed title, buyer, source facts and direct links, without sending a message. Salesforce and Slack are disabled until their integrations are available. Full details and Open source notice stay in a bottom dock outside the scrolling content, including on mobile. The expanded detail view retains its own source action and a Back to record control. Arrow keys and Home/End navigate record selectors. Reduced-motion preferences pause decorative animation.
 
@@ -18,7 +18,9 @@ Search, filters and sort sit between the brand and saved opportunities in the de
 
 Refiner reflections share one continuous animation phase. Scrolling a separate record list or description does not redraw stationary glass or reset its lighting. Relevant document scrolling, carousel movement and resizing still update geometry; decorative lighting remains capped at 25 updates per second and pauses offscreen, in hidden tabs and for reduced motion.
 
-Records show source descriptions, buyers, dates, values, capability matches, original notices, documents and timelines. Bookmarks and hidden-record choices belong to the current browser and synchronize between its tabs. Hide removes a record from ordinary results, counts and exports; Show hidden in the sort menu shows only hidden records within the current market and filters, where Unhide restores them. Saved views, comparison and the Latest updates navigation have been removed. URLs, CSV exports and calendar deadlines can be shared. This public discovery tool does not publish private notes or provide a shared private CRM.
+Records show source descriptions, buyers, dates, typed amounts, capability evidence, participation checks, original notices, documents and timelines. Click a capability to inspect its supporting passage; source requirements remain **needs checking**, never a declaration that the company is eligible. Click the buyer to browse all its collected notice and contract history, or the record title to compare the selected opportunity with related awards. Each comparison states whether the link is a published procurement identifier, buyer identity or shared capability. Award-date and supplier filters do not invent missing dates or imply a renewal is open.
+
+The desktop separator resizes the results and record panes by pointer or keyboard and remembers the width. Search supports exact source text or text plus capabilities, all words, any word and exact phrases. It searches original text and available English translations; native capability aliases are deterministic, not automatic translation of arbitrary queries. Active filter chips remove individual constraints, and named saved views restore the complete filter state. Saved views, market arrangement, pane width, bookmarks and hidden records are browser-local. Hide remains personal and is never a global relevance label. Shared Working flags and notes are deferred until the Salesforce identity integration; this public discovery tool publishes no private team workspace.
 
 ## Collection and Availability
 
@@ -41,7 +43,7 @@ Gemini-based scoring, its SDK dependency and score-based product features have b
 | GOV.UK | Official Search API; rotating buying-intent queries, excluding general directory/profile content |
 | Digital Outcomes | Public listing/detail pages; paginated collection, cached details and explicit submission deadlines |
 | GCA Upcoming Agreements | Public listings/details; framework stages, approximate timing and official links |
-| TED Europe | Official v3 Search API; configured European markets, CPV/keyword discovery and lifecycle mapping |
+| TED Europe | Official v3 Search API; CPV/keyword discovery, lifecycle mapping and a resumable inventory of older notices with current response windows, sharing the existing request budget |
 | German Public Procurement | Official paired daily OCDS/eForms exports; completed days, national-only notices and TED aliases |
 | Spanish Public Procurement | Official PLACSP Atom/CODICE; bounded pending pages, terminal updates and source-local deadline safeguards |
 | NYC City Record | Official DCAS/Socrata API; daily current/recent notices, stable cursor and New York timezone handling |
@@ -105,7 +107,9 @@ Publication is recorded only after deployment succeeds. Times are scheduled star
 
 ## Retention and Verification
 
-Canonical records retain 180 days of recent updates plus future deadlines or contract ends. Older records move into monthly compressed archives with a matching index; later related notices can restore history. The browser loads only public `current.json`, not canonical history or archives.
+Canonical records retain 180 days of recent updates plus future deadlines or contract ends. Older records move into monthly compressed archives with a matching index; later related notices can restore history. The browser first loads a manifest and content-hashed market search indexes, then fetches full records and buyer history as needed. Original and translated descriptions stay in the search index so lazy loading does not remove text from search. Public `current.json` remains a compatibility fallback; private canonical stores and archive files are not served.
+
+Selected official TED notice PDFs can be retrieved within a separate small document count inside the existing collection budget. Source URLs, hashes, revisions and extracted page text stay linked; inaccessible, unsupported and scanned documents are distinguishable. Other official attachments are linked without bypassing access restrictions. Extraction is bounded and documents never become executable instructions. See [the research workspace release notes](docs/research-workspace-2026-09-18.md) and [relevance benchmark](docs/relevance-benchmark.md) for scope and validation.
 
 ```powershell
 .\.venv\Scripts\python -m pytest -q
@@ -122,4 +126,4 @@ npm run test:e2e
 
 Tests use local fixtures, not paid APIs. Review source-health metadata and Actions summaries for partial coverage. Never disable TLS verification to repair a source. Verify an interrupted collector has stopped before removing its local lock.
 
-See [SETUP.md](SETUP.md) for deployment configuration. Contains public-sector information under the Open Government Licence v3.0 where applicable; other source terms continue to apply. Complete tender documents and supplied private files are not copied into the public repository.
+See [SETUP.md](SETUP.md) for deployment configuration. Contains public-sector information under the Open Government Licence v3.0 where applicable; other source terms continue to apply. Document binaries and supplied private files are not copied into the public repository. Permitted public notice text may appear as attributed, page-linked evidence.

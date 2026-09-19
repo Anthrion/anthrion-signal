@@ -2,6 +2,101 @@ export interface Evidence {
   quote: string
   source_url: string
 }
+export interface CapabilityEvidence extends Evidence {
+  capability: string
+  phrase: string
+  strength: string
+  basis: string
+  field: string
+  language: string
+  context: 'delivery' | 'existing_system' | 'uncertain'
+  source_hash: string
+  original_quote?: string
+  translated_quote?: string
+  original_language?: string
+  original_field?: string
+}
+export interface PublishedAmount {
+  kind:
+    | 'estimated_contract'
+    | 'framework_ceiling'
+    | 'grant_range'
+    | 'programme_funding'
+    | 'award'
+    | 'annual_spend'
+    | 'unknown'
+  minimum?: number | null
+  maximum?: number | null
+  currency?: string | null
+  source_label: string
+  source_url: string
+}
+export interface DeadlineEvent {
+  kind:
+    | 'questions'
+    | 'expression_of_interest'
+    | 'application'
+    | 'invited_submission'
+    | 'tender'
+    | 'unknown'
+  date: string
+  time?: string | null
+  timezone?: string | null
+  precision: 'date' | 'local_time' | 'instant'
+  instant?: string | null
+  source_text: string
+  source_url: string
+  lot_id?: string | null
+  status: 'current' | 'superseded' | 'conflicting'
+}
+export interface ParticipationRequirement {
+  id: string
+  requirement: string
+  status: 'needs_checking'
+  source_quote: string
+  source_url: string
+  translated_quote?: string
+  source_hash?: string
+  company_evidence: null
+}
+export interface HistoryRecord {
+  signal_id: string
+  procedure_id?: string | null
+  title: string
+  signal_type?: string
+  notice_type?: string | null
+  published_at?: string | null
+  award_date?: string | null
+  supplier?: string | null
+  status: string
+  source_url: string
+  lot_ids: string[]
+  amount?: PublishedAmount | null
+  contract_start?: string | null
+  contract_end?: string | null
+  extension_end?: string | null
+  winners?: Signal['winners']
+  lots?: Signal['lots']
+}
+export interface PublishedDocument {
+  title: string
+  url: string
+  kind: string
+  status?: string
+  content_hash?: string | null
+  revision?: string | null
+  retrieved_at?: string | null
+  page_count?: number | null
+  pages?: { page: number; text: string }[]
+  previous_revisions?: {
+    content_hash: string
+    revision?: string | null
+    retrieved_at?: string | null
+  }[]
+  source_revision?: string | null
+  media_type?: string | null
+  reuse_basis?: string | null
+}
 export interface Requirement {
   text: string
   importance: number
@@ -28,6 +123,49 @@ export interface Signal {
   title: string
   description: string
   buyer_name: string | null
+  buyer_id?: string | null
+  buyer_identifiers?: string[]
+  buyer_identity_basis?: 'identifier' | 'source_name' | 'unknown'
+  agency_name?: string | null
+  department_name?: string | null
+  buyer_name_conflicts?: string[]
+  source_language?: string
+  procedure_identifiers?: string[]
+  contacts?: {
+    name?: string | null
+    role?: string | null
+    email?: string | null
+    source_url: string
+  }[]
+  procedure_id?: string | null
+  procedure_history?: HistoryRecord[]
+  buyer_history?: HistoryRecord[]
+  buyer_history_ref?: { url: string; count: number; identity_basis: string } | null
+  award_date?: string | null
+  winners?: { name: string; identifiers: string[]; lot_ids: string[]; source_url: string }[]
+  capability_evidence?: CapabilityEvidence[]
+  delivery_role?: {
+    kind: 'direct_supplier' | 'advertised_component' | 'funded_project' | 'unknown'
+    evidence: CapabilityEvidence[]
+  }
+  participation_requirements?: ParticipationRequirement[]
+  eligibility_text?: string | null
+  amount?: PublishedAmount | null
+  deadlines?: DeadlineEvent[]
+  lots?: {
+    id: string
+    title: string
+    description: string
+    status: string
+    source_url: string
+    deadline_at?: string | null
+    value_min?: number | null
+    value_max?: number | null
+    currency?: string | null
+  }[]
+  /** Complete source and translated search text supplied by a market summary shard. */
+  search_text?: string
+  is_summary?: boolean
   source: string
   source_type: string
   primary_source_url: string
@@ -98,7 +236,7 @@ export interface Signal {
     hard_blockers?: { text: string; evidence: Evidence; company_evidence_id: string }[]
     information_gaps: string[]
   } | null
-  documents: { title: string; url: string; kind: string }[]
+  documents: PublishedDocument[]
   provenance: {
     source: string
     source_name: string
@@ -149,6 +287,7 @@ export interface Dataset {
   signals: Signal[]
   translations?: Record<string, EnglishText>
   award_history?: Record<string, { url: string; count: number }>
+  current_feed?: CurrentFeedManifest
   run: {
     sources_attempted: number
     sources_succeeded: number
@@ -161,8 +300,15 @@ export interface Dataset {
     [key: string]: unknown
   }
 }
+export interface CurrentFeedManifest {
+  version: string
+  markets: Record<string, { url: string; count: number }>
+  records: Record<string, { url: string; markets: string[]; view?: 'opportunities' | 'awards' }>
+}
 export interface Filters {
   q: string
+  searchMode: string
+  match: string
   view: string
   sort: string
   market: string
@@ -174,6 +320,10 @@ export interface Filters {
   capability: string
   sector: string
   buyer: string
+  supplier: string
+  awardFrom: string
+  awardTo: string
+  amountType: string
   region: string
   cpv: string
   minValue: string

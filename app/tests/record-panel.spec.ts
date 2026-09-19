@@ -37,6 +37,7 @@ async function dockInViewport(page: Page, panel: Locator) {
 }
 
 test.beforeEach(async ({ page }) => {
+  await page.route('**/data/manifest.json', (route) => route.fulfill({ status: 404 }))
   await page.emulateMedia({ reducedMotion: 'reduce' })
   await page.clock.setFixedTime(new Date('2026-09-11T12:00:00Z'))
 })
@@ -48,7 +49,7 @@ test('selected design presents compact source facts before untruncated text', as
   const panel = await preview(page)
   await expect(panel.locator('.inspector-facts dt')).toHaveText([
     'Notice type',
-    'Value',
+    'Published amount',
     'Deadline',
   ])
   await expect(panel.locator('.inspector-capabilities')).toContainText('Case management & service')
@@ -288,7 +289,7 @@ test('missing descriptions, capabilities and deadlines retain usable dock contro
 }) => {
   await fixture(page, { description: '  \n ', deadline_at: null, matched_capabilities: [] })
   const panel = await preview(page)
-  await expect(panel.locator('.inspector-facts')).toContainText('Deadline not published')
+  await expect(panel.locator('.inspector-facts')).toContainText('Not published')
   await expect(
     panel.getByRole('link', {
       name: 'Add deadline to Google Calendar (opens a new tab)',

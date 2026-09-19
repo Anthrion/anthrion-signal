@@ -1,8 +1,9 @@
 """Conservative exclusions of a purchased deliverable, never a sector word blacklist.
 
-A rule needs a specific title AND corroborating scope/classification. Any separately
-stated application/AI deliverable protects mixed procurements. Unrecognised or sparse
-scope remains a candidate. Original and exact-hash English evidence use the same rules.
+A rule needs a specific purchased object AND corroborating scope/classification.
+Description-led rules require explicit service provision, not just a topic. Any
+separately stated application/AI deliverable protects mixed procurements. Unrecognised
+or sparse scope remains a candidate. Original and exact-hash English use the same rules.
 """
 import re
 
@@ -41,6 +42,133 @@ INCIDENTAL = re.compile(r"\b(?:already (?:use|uses|using|have)|existing (?:suppl
                         r"submit\w* (?:your |the |a )?(?:bid|tender|proposal)|using (?:our|the authority s)|"
                         r"must use (?:our|the authority s))\b")
 
+# Bind the action to its software object through grammatical connectors. Arbitrary
+# intervening words incorrectly turn equipment accessories, licence entitlements
+# and numbered specification headings into commissioned software development.
+NATIVE_SOFTWARE_DELIVERY = tuple(re.compile(
+    rf"\b(?P<action>{action})\s+(?:(?:{connectors})\s+){{0,7}}"
+    rf"(?P<object>{objects})\b") for action, connectors, objects in (
+    (r"developpement|deploiement|fourniture|integration|maintenance|hebergement",
+     r"de|d|du|des|un|une|le|la|les|et|nouveau|nouvelle|nouveaux|nouvelles",
+     r"logiciels?|solution logicielle|solution saas|applications? informatiques?|portail(?: usager)?|outil numerique"),
+    (r"implementatie|ontwikkeling|levering|onderhoud|migratie",
+     r"van|de|het|een|en|nieuwe|nieuw|hosting|belasting",
+     r"software|(?:belasting)?applicatie|applicaties|klantenportaal|burgerportaal|crm platform"),
+    (r"entwicklung|implementierung|beschaffung|lieferung|wartung",
+     r"von|einer|eines|einem|einen|der|die|das|des|den|und|sowie|hosting|neuer|neuen|neue|"
+     r"individueller|individuelle|individuellen|kundenspezifischer|kundenspezifischen|eigener|eigenen",
+     r"software|applikationen|anwendungen|kundenportals?|burgerportals?|crm plattform"),
+    (r"sviluppo|fornitura|implementazione|integrazione|manutenzione",
+     r"di|una|un|uno|della|delle|del|dello|dei|degli|ed|e|nuove|nuovi|nuova|nuovo",
+     r"software|piattaforma|applicazioni|portale (?:clienti|cittadini)"),
+    (r"desarrollo|suministro|implantacion|implementacion|integracion|mantenimiento",
+     r"de|del|la|las|el|los|un|una|unos|unas|y|soporte|tecnico|nueva|nuevas|nuevo|nuevos",
+     r"software|plataforma|aplicaciones|aplicacion informatica|portal (?:ciudadano|de clientes)"),
+    (r"αναπτυξη|υλοποιηση|εγκατασταση|παραδοση|συντηρηση",
+     r"του|τησ|των|μιασ|νεου|νεασ|και|ψηφιακησ",
+     r"λογισμικου|εφαρμογησ|εφαρμογων|πλατφορμασ|ψηφιακησ πυλησ|crm"),
+))
+NATIVE_DIGITAL_CONTEXT = (
+    "software", "logiciel", "logicielle", "informatique", "informatica", "informatico", "informatiche",
+    "digital", "digitale", "numerique", "saas", "crm", "web", "online", "en ligne", "ψηφιακησ",
+    "gestion des dossiers", "gestion des demandes", "gestion des clients", "gestione dei clienti",
+    "gestione delle pratiche", "gestione dei casi", "gestionar clientes", "gestionar expedientes",
+    "gestion de clientes", "gestion de expedientes", "διαχειριση υποθεσεων", "διαχειριση πελατων",
+    "gestion de datos", "gestionar los clientes", "kundenportal", "kundenportals", "burgerportal",
+    "klantenportaal", "burgerportaal", "dossiers", "databases", "database", "informatiker",
+    "aplicaciones empresariales", "aplicaciones de negocio", "applicazioni aziendali",
+)
+NATIVE_IMPLEMENTATION = re.compile(r"^(?:developpement|deploiement|integration|implementatie|ontwikkeling|migratie|"
+                                   r"entwicklung|implementierung|sviluppo|implementazione|integrazione|"
+                                   r"desarrollo|implantacion|implementacion|integracion|αναπτυξη|υλοποιηση)$")
+NATIVE_LICENCE = re.compile(r"\b(?:licen[cs]\w*|lizenz\w*|lizenzen|licenz\w*|αδειων|αδεια|software assurance)\b")
+
+
+def native_equipment_bundle(text):
+    """A supplied appliance and its controls, rather than separately built software."""
+    return bool(
+        re.search(r"\bsoftware\s+(?:asociado|asociada|integrado|embebido|mitgeliefert|beiliegend)\b", text)
+        or (re.search(r"\b(?:suministro|instalacion|alquiler|mantenimiento|disponibilidad)\b", text)
+            and re.search(r"\b(?:equipos de reprografia|mupis|lavavajillas|sistema de riego)\b", text))
+    )
+
+
+def transaction_software_component(text):
+    """An explicitly ordered business-system component in a coordinated lot.
+
+    Greek genitive lists can place another component between the purchase verb
+    and the software noun. Require both that software noun and a transaction or
+    records function; a control system, paper administration or tool use fails.
+    Callers already separate description sentences and semicolon-delimited lots.
+    """
+    pattern = (r"\b(?:προμηθεια|εγκατασταση|αναπτυξη|υλοποιηση)"
+               r"(?P<between>(?:\s+\w+){0,16}?)\s+"
+               r"λογισμικου\s+συστηματοσ\s+(?:διαχειρισησ|εκδοσησ|καταγραφησ|παρακολουθησησ)\s+"
+               r"(?:παραγγελιων|τιμολογιων|κουπονιων|πληρωμων|υποθεσεων|αιτησεων|πελατων|εγγραφων)\b")
+    for hit in re.finditer(pattern, text):
+        before = text[max(0, hit.start() - 90):hit.start()]
+        if re.search(r"\b(?:χρηση|χρησιμοποι\w*|υφισταμεν\w*|ενσωματωμεν\w*|συνοδευ\w*|με|χωρισ)\b", hit["between"]):
+            continue
+        if re.search(r"\bχωρισ\s+(?:\w+\s+){0,4}$", before):
+            continue
+        if affirmed(text, hit.group()) and not INCIDENTAL.search(text):
+            return hit.group()
+    return None
+
+
+def native_software_delivery(text, title_context=""):
+    """Find an affirmative purchased software object, preserving mixed lots."""
+    for pattern in NATIVE_SOFTWARE_DELIVERY:
+        for hit in pattern.finditer(text):
+            before = text[max(0, hit.start() - 100):hit.start()]
+            after = text[hit.end():hit.end() + 100]
+            local = hit.group() + after
+            implementation = bool(NATIVE_IMPLEMENTATION.fullmatch(hit.group("action")))
+            # Reselling entitlements and maintaining manufacturer licences are
+            # not implementation. A separate development/integration statement
+            # is checked independently and can still protect a mixed contract.
+            if not implementation and NATIVE_LICENCE.search(before + local):
+                continue
+            if not implementation and native_equipment_bundle(before + local + " " + title_context):
+                continue
+            # Applications can mean uses of a drug or manufacturing process.
+            # Require local IT/business meaning instead of treating that noun
+            # alone as software, while preserving precise software objects.
+            if hit.group("object") in ("anwendungen", "aplicaciones", "applicazioni", "εφαρμογησ", "εφαρμογων"):
+                if not phrase_hits(before + local, NATIVE_DIGITAL_CONTEXT):
+                    continue
+            if hit.group("object") in ("piattaforma", "plataforma", "πλατφορμασ", "portail"):
+                # A lifting platform or metal gate is a physical object even if
+                # its controls use software. A separate software lot still wins.
+                if re.match(r"\s+(?:aerea|elevadora|elevatrice|offshore|di sollevamento|de elevacion|"
+                            r"metallique|coulissant|battant|en metal|en acier|en aluminium|ανυψωσησ)\b", after):
+                    continue
+                if not phrase_hits(local, NATIVE_DIGITAL_CONTEXT):
+                    continue
+            # Normalisation folds Greek final sigma to sigma. Include that form
+            # and Dutch negatives beyond the shared affirmative-scope guard.
+            if re.search(r"\b(?:zonder|geen|χωρισ)\s+(?:\w+\s+){0,4}$", before):
+                continue
+            if phrase_hits(hit.group(), ("sans", "ohne", "kein", "keine", "keinen", "sin", "senza",
+                                         "zonder", "geen", "χωρις", "δεν περιλαμβανει")):
+                continue
+            # Delivering equipment *for using* software, or executing fieldwork
+            # *with existing* software, does not purchase that software itself.
+            if re.search(r"\b(?:utilis(?:er|ant|ent)|utiliz(?:ar|ando|an)|utilizz(?:are|ando|ano)|usando|"
+                         r"voor gebruik|gebruik van|zur nutzung|zum einsatz|per usare|para ejecutar|"
+                         r"για χρηση|με χρηση|a l aide)\b", hit.group()):
+                continue
+            if (re.search(r"\b(?:avec|mit|con|met|με)\s+(?:\w+\s+){0,3}" + re.escape(hit.group("object")) + r"$", hit.group())
+                    and phrase_hits(local, ("existant", "existante", "vorhandener", "bestehender", "esistente",
+                                            "existente", "bestaande", "υφισταμενου"))):
+                continue
+            # A contractor using an existing tool does not buy its implementation.
+            if re.search(r"\b(?:utilisant|utilizando|utilizzando|gebruik van|χρηση)\s+(?:\w+\s+){0,3}$", before):
+                continue
+            if affirmed(text, hit.group()) and not INCIDENTAL.search(text):
+                return hit.group()
+    return transaction_software_component(text)
+
 
 def information_system_connection(text):
     connection = re.search(r"\b(?:it connection\b.{0,70}\binformation system|"
@@ -66,9 +194,7 @@ def addressable_delivery(segments):
         if (delivered_software and affirmed(text, delivered_software.group()) and not INCIDENTAL.search(text)
                 and not operational_software_use(text, delivered_software.group("object"))):
             return segment
-        native_delivery = re.search(r"\b(?:desarrollo|implantacion|implementacion|integracion|entwicklung|implementierung|sviluppo|implementazione|integrazione)"
-                                    r"\s+(?:\w+\s+){0,6}(?:software|plataforma|aplicaciones|applikationen|anwendungen|piattaforma|applicazioni)\b", text)
-        if native_delivery and affirmed(text, native_delivery.group()) and not INCIDENTAL.search(text):
+        if native_software_delivery(text, title_context):
             return segment
         # An AI service is a delivery signal even in a physical industry. The
         # hardware's capacity to run a model is a different purchased object.
@@ -190,10 +316,10 @@ RULES = (
      r"\b(?:hardware|equipment|server|servers|computers|licences|licenses|supply|purchase|stations|manikins)\b",
      ("30", "32", "38", "48"), "Physical computing, network or measurement equipment"),
     ("licence_resale", r"\b(?:microsoft|adobe|acrobat|vmware|citrix|autodesk|veeam|commvault|red hat|"
-     r"windows|oracle|sap|sophos|arcsight|fortinet|trellix|trend ai)\b.*\b(?:licen[cs]\w*|subscription\w*|renewal|extension|verlangerung)\b|"
-     r"\b(?:licen[cs]\w*|subscription\w*|renewal|extension|verlangerung)\b.*\b(?:microsoft|adobe|acrobat|vmware|citrix|autodesk|"
+     r"windows|oracle|sap|sophos|arcsight|fortinet|trellix|trend ai)\b.*\b(?:licen[csz]\w*|subscription\w*|renewal|extension|verlangerung)\b|"
+     r"\b(?:licen[csz]\w*|subscription\w*|renewal|extension|verlangerung)\b.*\b(?:microsoft|adobe|acrobat|vmware|citrix|autodesk|"
      r"veeam|commvault|red hat|windows|oracle|sap|sophos|arcsight|fortinet|trellix|trend ai)\b",
-     r"\b(?:licen[cs]\w*|subscription\w*|renewal|renew|rights of use|lizenzen)\b", ("48", "72"),
+     r"\b(?:licen[csz]\w*|subscription\w*|renewal|renew|rights of use|lizenzen)\b", ("48", "72"),
      "Resale or renewal of unrelated product licences"),
     ("property_valuation", r"\b(?:property valuation services|land and property valuation|appraisal of real estate|asset valuations?|"
      r"consultancy services strategic property development)\b",
@@ -207,9 +333,23 @@ RULES = (
      "Creative, advertising or public relations services"),
     ("survey_execution", r"\b(?:tenant survey(?: services)?|online panel survey services|audience research services|"
      r"market research (?:services|studies)|employee survey at|residents survey|stakeholder research|"
-     r"population survey service|qualitative survey|eurobarometer surveys|implementation of survey studies)\b",
-     r"\b(?:interviews|questionnaires|respondents|survey|surveys|fieldwork|participants|research)\b",
+     r"population survey service|qualitative survey|eurobarometer surveys|implementation of survey studies|"
+     r"durchfuhrung der feldarbeiten|realizacion de estudios de opinion)\b",
+     r"\b(?:interviews|questionnaires|respondents|survey|surveys|fieldwork|participants|research|"
+     r"stichprobenziehung|befragung|offener antworten|encuestas|personas entrevistadas|cuestionario)\b",
      ("7931", "7932"), "Execution of surveys or market research"),
+    ("native_physical_engineering", r"\b(?:servizi di ingegneria e architettura|ispezioni speciali)\b",
+     r"\b(?:ponti|viadotti|cavalcavia|sottovia|autostrada)\b", (),
+     "Engineering or safety inspection of physical transport infrastructure"),
+    ("traffic_engineering_studies", r"\bingenierie (?:de|du) trafic\b",
+     r"\b(?:etude|etudes|diagnostic|mesure)\b", (),
+     "Traffic engineering studies, diagnosis or measurement"),
+    ("archaeologist_services", r"\b(?:archaeologist services|archaeological services)\b",
+     r"\b(?:flood relief|drainage|excavation|archaeological fieldwork)\b", (),
+     "Archaeologist services for physical works or fieldwork"),
+    ("grant_programme_advice", r"\basistencia tecnica\b.{0,180}\bconvocatorias de ayudas\b",
+     r"\b(?:identificacion|elaboracion|gestion|seguimiento)\b", ("79411",),
+     "Consultancy to identify, prepare or administer grant calls and projects"),
     ("specialist_physical_advice", r"\b(?:nuclear security|nukl(?:ae|æ)r security|agricultural consultancy|property technical consultancy)\b",
      r"\b(?:nuclear material|atomic installations|radiation protection|used fuel|agricultural production|building inspectors?|structural engineers?)\b",
      (), "Specialist advice on physical assets, radiation safety or agricultural production"),
@@ -233,6 +373,35 @@ RULES = (
 )
 COMPILED_RULES = [(key, re.compile(title), re.compile(detail), cpv, label)
                   for key, title, detail, cpv, label in RULES]
+
+
+def description_service_exclusion(segments, cpv_codes):
+    """Explicit purchased services when a title is opaque or names a programme.
+
+    Neither an HR/energy topic nor a consultancy CPV alone is an exclusion. The
+    scope must say what the supplier is to do; digital delivery is checked first.
+    """
+    titles = [s for s in segments if s["field"] == "title"]
+    scope_text = " ".join(s["text"] for s in segments)
+    for detail in (s for s in segments if s["field"] == "description"):
+        text = detail["text"]
+        hr_service = phrase_hits(text, ("παροχη συμβουλευτικων υπηρεσιων",))
+        hr_programme = re.search(
+            r"\bπρογραμματοσ προσληψεων και ενταξησ ανθρωπινου δυναμικου\b", text)
+        if (hr_service and hr_programme and affirmed(text, hr_service[0])
+                and any(str(code).startswith("79414") for code in cpv_codes)):
+            return {"rule": "hr_programme_consultancy", "reason": "Human recruitment and onboarding programme consultancy without separately stated software delivery.",
+                    "basis": detail["basis"], "title": titles[0]["quote"] if titles else "", "quote": detail["quote"]}
+        support = re.search(r"\b(?:objective of (?:this|the) contract|provide|providing|provision of)\b"
+                            r".{0,100}\badministrative and logistical support\b", text)
+        programme_title = next((s for s in titles if re.search(
+            r"\bimplementation of\b.{0,100}\b(?:initiative|programme|program|action plan)\b", s["text"])), None)
+        if (support and programme_title and affirmed(text, support.group())
+                and phrase_hits(scope_text, ("regulatory framework",))
+                and phrase_hits(scope_text, ("stakeholder consultation", "stakeholder forum", "policy coordination"))):
+            return {"rule": "programme_policy_support", "reason": "Administrative and logistical support for a policy programme without separately stated software delivery.",
+                    "basis": detail["basis"], "title": programme_title["quote"], "quote": detail["quote"]}
+    return None
 
 
 def scope_exclusion(segments, cpv_codes):
@@ -263,7 +432,8 @@ def scope_exclusion(segments, cpv_codes):
                     if not INCIDENTAL.search(s["text"]) for match in re.finditer(
                     r"\b(?:implementation|integration|migration|conversion|converting|convert|development|configuration|customisation|professional services|managed services|"
                     r"implementierung|integration|migration|entwicklung|konfiguration|implementacion|integracion|"
-                    r"migracion|desarrollo|configuracion|servicios profesionales|implementazione|integrazione|conversione|umstellung|sviluppo)\b", s["text"])
+                    r"migracion|desarrollo|configuracion|servicios profesionales|implementazione|integrazione|migrazione|"
+                    r"conversione|configurazione|personalizzazione|umstellung|sviluppo)\b", s["text"])
                     ):
                 continue
             detail = next((s for s in segments if s["field"] == "description"
@@ -273,12 +443,13 @@ def scope_exclusion(segments, cpv_codes):
                 return {"rule": key, "reason": f"{label} without a separately stated business-application, Salesforce or AI delivery scope.",
                         "basis": title["basis"], "title": title["quote"],
                         "quote": (detail or title)["quote"]}
-    return None
+    return description_service_exclusion(segments, cpv_codes)
 
 
 def generic_digital_scope(segments):
     """Recall route for sparse but explicit digital delivery, without fabricated tags."""
     scope_text = " ".join(s["text"] for s in segments)
+    title_context = " ".join(s["text"] for s in segments if s["field"] == "title")
     phrases = ("digital and it professional services", "it consultancy", "it consultants", "ict consultants",
                "it systems", "software testing", "software engineering",
                "ai adoption", "ai pilots", "remote patient monitoring", "digital delivery capability",
@@ -325,6 +496,13 @@ def generic_digital_scope(segments):
         text = segment["text"]
         if information_system_connection(text):
             matches.append("information-system connection")
+        if native_software_delivery(text, title_context):
+            matches.append("native-language software delivery")
+        # Explicit maintenance of central computer systems can include hardware
+        # and software. That broad IT service is different from appliance supply.
+        system_support = re.search(r"\bmantenimiento y soporte tecnico del hardware y software de los sistemas informaticos\b", text)
+        if system_support and affirmed(text, system_support.group()):
+            matches.append("computer-system maintenance")
         assistance = re.search(r"\b(?:asistencia|soporte)\s+(?:tecnica\s+(?:material e\s+)?)?informatica\b", text)
         if assistance and affirmed(text, assistance.group()) and not INCIDENTAL.search(text):
             matches.append("IT assistance")

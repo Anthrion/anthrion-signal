@@ -5,14 +5,19 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import UTC, datetime
 from pathlib import Path
 
+from .canonical import canonical_signal_json
 from .collectors import Http, collect_with_backfill, hydrate_sparse
-from .award_history import PUBLIC_EXCLUDE, export_awards
+from .award_history import export_awards
+from .attachments import enrich_documents, hydrate_cached_documents
 from .config import capability_catalog, evidence_catalog, load_config
 from .discovery import discovery_signature, is_public_opportunity, lifecycle, prefilter, ranking_key
 from .discovery_retention import read_rejected, retain_rejected
 from .dedupe import reconcile
 from .models import Dataset, EnglishText, Signal, SourceHealth
 from .normalise import NORMALISERS, set_hashes
+from .notice_dates import response_deadline_instant
+from .public_context import backfill_retained_facts, public_signal
+from .public_feed import export_current
 from .retention import archive_expired, restore_matching
 from .translation import available_translations
 from .utils import atomic_bytes, atomic_json, digest, jsonl_lines, parse_date, read_json
@@ -93,6 +98,9 @@ def export(root):
     signature = discovery_signature(config)
     canonical = root / "data/signals.jsonl"
     canonical_signals = [Signal.model_validate_json(line) for line in jsonl_lines(canonical.read_text(encoding="utf-8"))] if canonical.exists() else data.signals
+    state = read_json(root / "data/source_state.json", {})
+    backfill_retained_facts(canonical_signals, state)
+    backfill_retained_facts(data.signals, state)
     if data.run.get("discovery_signature") != signature and canonical.exists():
         # A rule release must be able to restore previously suppressed candidates
         # even on an existing-data deployment. Availability is still checked below.
@@ -103,6 +111,7 @@ def export(root):
         # must not resurrect a subsequently awarded/cancelled archived procurement.
         restored = restore_matching(root, recovered, known)
         data.signals, _, _ = reconcile(canonical_signals + restored, recovered)
+        backfill_retained_facts(data.signals, state)
     translations = available_translations(root, data.signals)
     prefilter(data.signals, config["company_profile"], config["search_terms"], config["capabilities"], translations)
     data.signals = [s for s in data.signals if is_public_opportunity(s, datetime.now(UTC)) and
@@ -117,18 +126,35 @@ def export(root):
     data.run["discovery_version"] = config["capabilities"]["version"]
     data.run["discovery_signature"] = signature
     data.run["public_signals"] = len(data.signals)
+    data.markets = config["search_terms"]["markets"]
+    for health in data.sources:
+        source = next((s for s in config["sources"]["sources"] if s["id"] == health.id), {})
+        previous_countries = set(health.countries)
+        health.countries = source.get("countries", [source["country"]] if source.get("country") else [])
+        health.coverage = source.get("coverage")
+        if source.get("enabled") and set(health.countries) - previous_countries:
+            health.status = "partial"
+            health.message = "Expanded country coverage is awaiting collection; retained records remain available."
     for signal in data.signals:
         signal.lifecycle_state, signal.lifecycle_reason = lifecycle(signal, datetime.now(UTC))
-    data.award_history = export_awards(root, canonical_signals, config, datetime.now(UTC))
+    award_records = {}
+    data.award_history = export_awards(root, canonical_signals, config, datetime.now(UTC), award_records, data.signals)
+    hydrate_cached_documents(root, data.signals)
+    data.current_feed = export_current(root, data, award_records)
     target = root / "app/public/data"
     target.mkdir(parents=True, exist_ok=True)
-    atomic_json(target / "current.json", public_data(data))
+    public = public_data(data)
+    atomic_json(target / "current.json", public)
+    atomic_json(target / "manifest.json", {**public, "signals": [], "translations": {}})
     return data
 
 
 def public_data(dataset):
-    return dataset.model_dump(exclude={"signals": {"__all__": PUBLIC_EXCLUDE},
-        "run": {"gemini_calls", "cache_hits", "ai_failures", "candidates_shortlisted", "high_fit_signals"}})
+    result = dataset.model_dump(exclude={"signals", "run"})
+    result["signals"] = [public_signal(signal, dataset.translations.get(signal.id)) for signal in dataset.signals]
+    result["run"] = {key: value for key, value in dataset.run.items() if key not in
+        {"gemini_calls", "cache_hits", "ai_failures", "candidates_shortlisted", "high_fit_signals"}}
+    return result
 
 
 def run(root, args):
@@ -147,6 +173,7 @@ def run(root, args):
     previous_data = read_json(root / "data/current.json", None)
     canonical_path = root / "data/signals.jsonl"
     previous = [Signal.model_validate_json(line) for line in jsonl_lines(canonical_path.read_text(encoding="utf-8"))] if canonical_path.exists() else []
+    backfill_retained_facts(previous, state)
     wanted = set(args.sources.split(",")) if args.sources else None
     all_sources = config["sources"]["sources"]
     if wanted and not wanted.issubset({s["id"] for s in all_sources}):
@@ -193,6 +220,10 @@ def run(root, args):
                 or s.id in known_ids or s.ocid in known_ocids or known_aliases.intersection(s.external_ids)]
     previous.extend(restore_matching(root, incoming, {s.id for s in previous}))
     signals, index, stats = reconcile(previous, incoming)
+    # Replayed legacy releases can share a timestamp with corrected records and
+    # reintroduce contact-as-buyer or manufactured midnight fields during merge.
+    # Restore retained source facts before scope, availability and persistence.
+    backfill_retained_facts(signals, state)
     signals = [s for s in signals if not (s.source == "govuk" and s.notice_type in
                ("person", "role", "organisation", "minister", "world_location", "statistics_announcement"))]
     prefilter(signals, config["company_profile"], config["search_terms"], config["capabilities"],
@@ -202,9 +233,9 @@ def run(root, args):
     for s in signals:
         deadlines = sorted(value for value in s.response_deadlines if parse_date(value))
         if deadlines:
-            upcoming = [value for value in deadlines if parse_date(value) > now]
+            upcoming = [value for value in deadlines if response_deadline_instant(value) > now]
             s.deadline_at = min(upcoming) if upcoming else max(deadlines)
-            set_hashes(s)
+        set_hashes(s)
         s.lifecycle_state, s.lifecycle_reason = lifecycle(s, now)
         s.fit_score, s.confidence_score, s.known_weight = None, 0, 0
         s.score_components, s.score_explanation, s.ai_status = [], "", "disabled"
@@ -212,6 +243,8 @@ def run(root, args):
     available = [s for s in signals if is_public_opportunity(s, now)]
     current = [s for s in available if s.prefilter_score >= config["capabilities"]["discovery"]["minimum_candidate_score"]]
     current.sort(key=lambda s: ranking_key(s, now))
+    if selected:
+        enrich_documents(root, current, all_sources, now, limit=min(2, runtime["max_pages"]))
     content_digest = digest([(s.id, s.content_hash, s.delivery_priority, s.matched_capabilities, s.lifecycle_state) for s in current])
     same_content = (previous_data or {}).get("run", {}).get("content_digest") == content_digest
     metadata = {"started_at": now.isoformat(), "finished_at": datetime.now(UTC).isoformat(), "operation": getattr(args, "command", "ingest"),
@@ -239,7 +272,7 @@ def run(root, args):
     public = public_data(dataset)
     Dataset.model_validate(public)
     root.joinpath("data").mkdir(exist_ok=True)
-    canonical_body = "\n".join(s.model_dump_json() for s in sorted(signals, key=lambda s: s.id)) + "\n"
+    canonical_body = "\n".join(canonical_signal_json(s) for s in sorted(signals, key=lambda s: s.id)) + "\n"
     atomic_bytes(canonical_path, canonical_body.encode("utf-8"))
     atomic_json(root / "data/current.json", public)
     atomic_json(root / "data/dedupe_index.json", index)

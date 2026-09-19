@@ -8,10 +8,15 @@ import {
   EyeOff,
   Globe2,
   Languages,
+  Pencil,
+  ArrowUp,
+  ArrowDown,
+  X,
 } from 'lucide-react'
 import type { DisplayLanguage } from './types'
+import type { MarketPreferences } from './personalWorkspace'
 import { LiquidMetal } from '@paper-design/shaders-react'
-import { markets } from './lib'
+import { defaultMarketOptions, markets } from './lib'
 import { applyGlassLight, brandLightPosition, scrollMovesSurface } from './glassLighting'
 
 const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -233,33 +238,243 @@ export function MarketSection({
   onSelect,
   language,
   onLanguage,
+  preferences,
+  onArrange,
 }: {
   selected: string
   onSelect: (id: string) => void
   language: DisplayLanguage
   onLanguage: (language: DisplayLanguage) => void
+  preferences: MarketPreferences
+  onArrange: (preferences: MarketPreferences) => boolean
 }) {
+  const [moreOpen, setMoreOpen] = useState(false)
+  const [organize, setOrganize] = useState(false)
+  const moreRef = useRef<HTMLDivElement>(null)
+  const moreTrigger = useRef<HTMLButtonElement>(null)
+  const ordered = preferences.order
+    .map((id) => defaultMarketOptions.find((m) => m.id === id))
+    .filter((m): m is (typeof markets)[number] => !!m)
+  const pinned = ordered.filter((m) => preferences.pinned.includes(m.id))
+  const more = ordered.filter((m) => !preferences.pinned.includes(m.id))
+  useEffect(() => {
+    if (!moreOpen) return
+    const outside = (event: PointerEvent) => {
+      if (!moreRef.current?.contains(event.target as Node)) setMoreOpen(false)
+    }
+    document.addEventListener('pointerdown', outside)
+    return () => document.removeEventListener('pointerdown', outside)
+  }, [moreOpen])
+  const marketButton = (id: string, name: string, label = name) => (
+    <button key={id} aria-label={name} onClick={() => onSelect(id)} aria-pressed={selected === id}>
+      <span>{label}</span>
+      {selected === id && (
+        <span className="market-active-line">
+          <MetalEdge prominent />
+        </span>
+      )}
+    </button>
+  )
   return (
     <section className="market-section" aria-label="Market selection">
       <nav className="market-tabs" aria-label="Markets">
-        {markets.map((market) => (
-          <button
-            key={market.id}
-            aria-label={market.name}
-            onClick={() => onSelect(market.id)}
-            aria-pressed={selected === market.id}
-          >
-            <span>{market.id === 'GB' ? 'UK' : market.name}</span>
-            {selected === market.id && (
-              <span className="market-active-line">
-                <MetalEdge prominent />
-              </span>
-            )}
-          </button>
-        ))}
+        {!preferences.pinned.includes('GB') && marketButton('', 'All markets', 'All')}
+        {pinned.flatMap((market) => [
+          marketButton(market.id, market.name, market.id === 'GB' ? 'UK' : market.name),
+          ...(market.id === 'GB' ? [marketButton('', 'All markets', 'All')] : []),
+        ])}
       </nav>
+      <div
+        className="more-markets"
+        ref={moreRef}
+        onPointerEnter={() => setMoreOpen(true)}
+        onPointerLeave={() => {
+          if (!moreRef.current?.contains(document.activeElement)) setMoreOpen(false)
+        }}
+        onBlur={(e) => {
+          if (!e.currentTarget.contains(e.relatedTarget)) setMoreOpen(false)
+        }}
+      >
+        <button
+          className="more-markets-trigger"
+          ref={moreTrigger}
+          aria-haspopup="menu"
+          aria-expanded={moreOpen}
+          onClick={() => setMoreOpen(true)}
+          onFocus={(e) => {
+            if (
+              !moreRef.current?.contains(e.relatedTarget as Node) &&
+              e.currentTarget.matches(':focus-visible')
+            )
+              setMoreOpen(true)
+          }}
+          onKeyDown={(e) => {
+            if (e.key === 'ArrowDown') {
+              e.preventDefault()
+              setMoreOpen(true)
+              requestAnimationFrame(() =>
+                moreRef.current?.querySelector<HTMLElement>('[role="menuitemradio"]')?.focus(),
+              )
+            }
+            if (e.key === 'Escape') setMoreOpen(false)
+          }}
+        >
+          {selected && !pinned.some((m) => m.id === selected)
+            ? markets.find((m) => m.id === selected)?.name
+            : 'More'}
+          <ChevronDown size={13} />
+        </button>
+        {moreOpen && (
+          <div
+            className="more-market-menu"
+            role="menu"
+            aria-label="More markets"
+            onKeyDown={(e) => {
+              const items = Array.from(
+                e.currentTarget.querySelectorAll<HTMLButtonElement>('button'),
+              )
+              const index = items.indexOf(document.activeElement as HTMLButtonElement)
+              const next =
+                e.key === 'ArrowDown'
+                  ? (index + 1) % items.length
+                  : e.key === 'ArrowUp'
+                    ? (index + items.length - 1) % items.length
+                    : e.key === 'Home'
+                      ? 0
+                      : e.key === 'End'
+                        ? items.length - 1
+                        : -1
+              if (next >= 0) {
+                e.preventDefault()
+                items[next]?.focus()
+              }
+              if (e.key === 'Escape') {
+                e.preventDefault()
+                setMoreOpen(false)
+                moreTrigger.current?.focus()
+              }
+            }}
+          >
+            {more.length ? (
+              more.map((market) => (
+                <button
+                  key={market.id}
+                  role="menuitemradio"
+                  aria-checked={selected === market.id}
+                  tabIndex={-1}
+                  onClick={() => {
+                    onSelect(market.id)
+                    setMoreOpen(false)
+                    moreTrigger.current?.focus()
+                  }}
+                >
+                  {market.name}
+                  {selected === market.id && <Check size={14} />}
+                </button>
+              ))
+            ) : (
+              <p>All markets are pinned.</p>
+            )}
+          </div>
+        )}
+      </div>
+      <button
+        className="market-organize-button"
+        aria-label="Organize markets"
+        title="Organize markets"
+        onClick={() => setOrganize(true)}
+      >
+        <Pencil size={14} />
+      </button>
       <LanguageMenu value={language} onChange={onLanguage} />
+      {organize && (
+        <MarketOrganizer
+          preferences={preferences}
+          onArrange={onArrange}
+          onClose={() => setOrganize(false)}
+        />
+      )}
     </section>
+  )
+}
+
+function MarketOrganizer({
+  preferences,
+  onArrange,
+  onClose,
+}: {
+  preferences: MarketPreferences
+  onArrange: (preferences: MarketPreferences) => boolean
+  onClose: () => void
+}) {
+  const ref = useRef<HTMLDialogElement>(null)
+  useEffect(() => {
+    ref.current?.showModal()
+    return () => ref.current?.close()
+  }, [])
+  const ordered = preferences.order.filter((id) =>
+    defaultMarketOptions.some((market) => market.id === id),
+  )
+  const move = (id: string, offset: number) => {
+    const index = ordered.indexOf(id)
+    const next = [...ordered]
+    ;[next[index], next[index + offset]] = [next[index + offset], next[index]]
+    onArrange({ ...preferences, order: next })
+  }
+  return (
+    <dialog ref={ref} className="market-organizer" aria-label="Organize markets" onCancel={onClose}>
+      <header>
+        <div>
+          <h2>Your markets</h2>
+          <p>Pin the markets you use most. Reorder them below.</p>
+        </div>
+        <button aria-label="Close market organizer" onClick={onClose}>
+          <X size={19} />
+        </button>
+      </header>
+      <ol>
+        {ordered.map((id, index) => (
+          <li key={id}>
+            <label>
+              <input
+                type="checkbox"
+                aria-label={`Pin ${markets.find((m) => m.id === id)?.name}`}
+                checked={preferences.pinned.includes(id)}
+                onChange={(e) =>
+                  onArrange({
+                    ...preferences,
+                    pinned: e.target.checked
+                      ? [...preferences.pinned, id]
+                      : preferences.pinned.filter((p) => p !== id),
+                  })
+                }
+              />
+              <span>{markets.find((m) => m.id === id)?.name}</span>
+              <small>{preferences.pinned.includes(id) ? 'Pinned' : 'More'}</small>
+            </label>
+            <button
+              aria-label={`Move ${id} up`}
+              disabled={index === 0}
+              onClick={() => move(id, -1)}
+            >
+              <ArrowUp size={15} />
+            </button>
+            <button
+              aria-label={`Move ${id} down`}
+              disabled={index === ordered.length - 1}
+              onClick={() => move(id, 1)}
+            >
+              <ArrowDown size={15} />
+            </button>
+          </li>
+        ))}
+      </ol>
+      <footer>
+        <button className="button primary" onClick={onClose}>
+          Done
+        </button>
+      </footer>
+    </dialog>
   )
 }
 

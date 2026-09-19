@@ -3,6 +3,7 @@ import AxeBuilder from '@axe-core/playwright'
 import type { Dataset } from '../src/types'
 
 async function fixture(page: Page) {
+  await page.route('**/data/manifest.json', (route) => route.fulfill({ status: 404 }))
   const data: Dataset = await (await page.request.get('./data/current.json')).json()
   const base = data.signals[0]
   const now = Date.now()
@@ -22,6 +23,8 @@ async function fixture(page: Page) {
     first_seen_at: new Date(now - (id === 'c' ? 48 * 3600000 : 0)).toISOString(),
     last_material_update: new Date(now).toISOString(),
     deadline_at: '2099-01-01T00:00:00Z',
+    response_deadlines: [],
+    deadlines: [],
     analysis: null,
     exclusion_reasons: [],
   }))
@@ -137,7 +140,7 @@ test('Added today counts first collection, not updates, and hidden records stay 
   await expect(page.locator('.feed-heading .count-badge')).toHaveText('1')
   await page
     .getByRole('navigation', { name: 'Markets' })
-    .getByRole('button', { name: 'Germany', exact: true })
+    .getByRole('button', { name: 'DACH', exact: true })
     .click()
   await expect(page.locator('.row-title')).toHaveText(['CRM implementation D'])
   await hiddenMode(page)

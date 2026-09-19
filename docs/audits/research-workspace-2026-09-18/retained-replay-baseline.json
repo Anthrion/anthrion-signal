@@ -1,0 +1,33 @@
+{
+  "at": "2026-09-18T22:18:02+00:00",
+  "signature": "c0ef4f82c7c1d4c01b7288c424f717aa25568f2dc915b1c7374dc470ad87044c",
+  "counts": {
+    "retained": 81186,
+    "candidate": 32579,
+    "public": 5573,
+    "award": 17268,
+    "other": 4969,
+    "platform": 456,
+    "ai": 148
+  },
+  "partitions": {
+    "data\\signals.jsonl": 16874,
+    "data\\archive\\2022-04.jsonl.gz": 1,
+    "data\\archive\\2023-11.jsonl.gz": 1,
+    "data\\archive\\2024-02.jsonl.gz": 1,
+    "data\\archive\\2025-04.jsonl.gz": 1,
+    "data\\archive\\2025-06.jsonl.gz": 2,
+    "data\\archive\\2025-07.jsonl.gz": 1,
+    "data\\archive\\2025-09.jsonl.gz": 2174,
+    "data\\archive\\2025-10.jsonl.gz": 2981,
+    "data\\archive\\2025-11.jsonl.gz": 2917,
+    "data\\archive\\2025-12.jsonl.gz": 3155,
+    "data\\archive\\2026-01.jsonl.gz": 2368,
+    "data\\archive\\2026-02.jsonl.gz": 2497,
+    "data\\archive\\2026-03.jsonl.gz": 1970,
+    "data\\discovery\\rejected\\2026-09-15.jsonl.gz": 5238,
+    "data\\discovery\\rejected\\2026-09-16.jsonl.gz": 17774,
+    "data\\discovery\\rejected\\2026-09-17.jsonl.gz": 15959,
+    "data\\discovery\\rejected\\2026-09-18.jsonl.gz": 27162
+  }
+}

@@ -1,114 +1,75 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { Dataset, Signal, EnglishText } from './types'
-import { isHistoricalAward } from './lib'
+import { isHistoricalAward, matchesMarket } from './lib'
+import { BoundedCache, loadPages, mergeSignalPages, selectMarketEntries } from './dataClient'
+import type { SignalPage } from './dataClient'
 
-interface AwardPage {
-  schema_version: string
-  signals: Signal[]
-  translations?: Record<string, EnglishText>
-}
 const empty = { signals: [] as Signal[], translations: {} as Record<string, EnglishText> }
-
+export function awardMarketPaths(data: Dataset | null, market: string) {
+  const manifest = data?.award_history || {}
+  return [
+    ...new Set(selectMarketEntries(Object.entries(manifest), market).map(([, p]) => p.url)),
+  ].sort()
+}
 export function useAwardHistory(data: Dataset | null, active: boolean, market: string) {
-  const cache = useRef(new Map<string, AwardPage>())
+  const cache = useRef(new BoundedCache<SignalPage>(12, 40 * 1024 * 1024))
   const [attempt, setAttempt] = useState(0)
   const [result, setResult] = useState({ key: '', ...empty, error: '' })
   const paths = useMemo(
-    () =>
-      active
-        ? Object.entries(data?.award_history || {})
-            .filter(([id]) => !market || id === market)
-            .map(([, page]) => page.url)
-            .sort()
-        : [],
-    [active, data?.award_history, market],
+    () => (active ? awardMarketPaths(data, market) : []),
+    [active, data, market],
   )
-  const key = JSON.stringify(paths)
+  const key = JSON.stringify([market, paths])
   useEffect(() => {
     if (!active || !data) return
     const controller = new AbortController()
     const load = async () => {
       try {
-        const pages = await Promise.all(
-          paths.map(async (path) => {
-            if (!/^awards\/[A-Z]+-[a-f0-9]{16}\.json$/.test(path))
-              throw new Error('Invalid award history path')
-            const cached = cache.current.get(path)
-            if (cached) return cached
-            const response = await fetch(`${import.meta.env.BASE_URL}data/${path}`, {
-              signal: controller.signal,
-            })
-            if (!response.ok) throw new Error('Award history unavailable')
-            const page: AwardPage = await response.json()
-            if (page.schema_version !== '1.0' || !Array.isArray(page.signals))
-              throw new Error('Invalid award history')
-            if (
-              !page.signals.every(
-                (s) =>
-                  s &&
-                  [
-                    'id',
-                    'title',
-                    'description',
-                    'status',
-                    'source',
-                    'signal_type',
-                    'primary_source_url',
-                  ].every((field) => typeof s[field as keyof Signal] === 'string') &&
-                  [
-                    'countries',
-                    'matched_capabilities',
-                    'provenance',
-                    'categories',
-                    'cpv_codes',
-                    'regions',
-                    'lot_ids',
-                    'documents',
-                    'changes',
-                  ].every((field) => Array.isArray(s[field as keyof Signal])),
-              )
-            )
-              throw new Error('Invalid award record')
-            cache.current.set(path, page)
-            return page
-          }),
+        const counts = Object.fromEntries(
+          Object.values(data.award_history || {}).map((page) => [page.url, page.count]),
         )
+        const pages = await loadPages(
+          paths,
+          'awards',
+          controller.signal,
+          cache.current,
+          undefined,
+          counts,
+        )
+        const merged = mergeSignalPages(pages)
         if (!controller.signal.aborted)
           setResult({
             key,
             error: '',
-            signals: [
-              ...new Map(
-                pages
-                  .flatMap((p) => p.signals)
-                  .filter((s) => isHistoricalAward(s))
-                  .map((s) => [s.id, s]),
-              ).values(),
-            ],
-            translations: Object.assign({}, ...pages.map((p) => p.translations || {})),
+            ...merged,
+            signals: merged.signals.filter((s) => isHistoricalAward(s) && matchesMarket(s, market)),
           })
       } catch {
         if (!controller.signal.aborted) {
-          paths.forEach((path) => cache.current.delete(path))
-          setResult({ key, ...empty, error: 'Awarded records are temporarily unavailable.' })
+          controller.abort()
+          setResult({
+            key,
+            ...empty,
+            error: 'Awarded records are temporarily unavailable. Refresh the feed and try again.',
+          })
         }
       }
     }
     void load()
     return () => controller.abort()
-  }, [active, data, key, paths, attempt])
+  }, [active, data, key, paths, market, attempt])
   const current = active && result.key === key
-  const knownSignals = useMemo(
-    () => [
+  const knownSignals = useMemo(() => {
+    const currentPaths = new Set(Object.values(data?.award_history || {}).map((p) => p.url))
+    return [
       ...new Map(
-        [...cache.current.values()]
-          .flatMap((page) => page.signals)
-          .filter((signal) => isHistoricalAward(signal))
-          .map((signal) => [signal.id, signal]),
+        [...currentPaths]
+          .flatMap((path) => cache.current.get(path)?.signals || [])
+          .filter((s) => isHistoricalAward(s))
+          .map((s) => [s.id, s]),
       ).values(),
-    ],
-    [result],
-  )
+    ]
+  }, [data, result])
   return {
     ...(current ? result : { ...empty, error: '' }),
     loading: active && !!data && !current,

@@ -1,17 +1,23 @@
 import math
 import re
-from datetime import UTC, datetime
+from datetime import datetime
 from html import unescape
 from urllib.parse import urljoin
 
-from .models import Document, Provenance, Signal
+from bs4 import BeautifulSoup
+
+from .models import Amount, Document, Lot, Provenance, Signal
+from .markets import TED_COUNTRIES
+from .public_context import deadline_fact, deadline_value, enrich_signal
 from .utils import canonical_url, clean, digest, iso, official_notice_url, parse_date, unique
 
 
 MATERIAL_FIELDS = ["title", "description", "buyer_name", "deadline_at", "contract_start", "contract_end",
                    "extension_end", "value_min", "value_max", "currency", "procurement_stage", "signal_type",
                    "status", "framework", "eligibility_text", "incumbent_supplier", "cpv_codes", "lot_ids", "lot_id",
-                   "countries", "regions", "response_deadlines", "notice_type", "award_statuses"]
+                   "countries", "regions", "response_deadlines", "notice_type", "award_statuses", "amount",
+                   "deadlines", "lots", "award_date", "winners", "procedure_identifiers", "contacts", "agency_name",
+                   "department_name", "buyer_name_conflicts", "source_language"]
 
 
 def material_payload(signal):
@@ -46,7 +52,7 @@ def base(raw, *, title, description, url, **kwargs):
     if not url or not clean(title):
         return None
     ocid = kwargs.get("ocid")
-    external_id = str(data.get("id", ""))
+    external_id = str(data.get("id") or (data.get("publication-number") if source["id"] == "ted" else "") or "")
     signal = Signal(
         id="sig_" + digest([ocid or url, kwargs.get("lot_id")])[:20], source=source["id"],
         source_type=source["source_type"], source_urls=[url], primary_source_url=url,
@@ -57,7 +63,7 @@ def base(raw, *, title, description, url, **kwargs):
         provenance=[Provenance(source=source["id"], source_name=source["name"], url=url, release_id=external_id,
                                ocid=ocid, retrieved_at=raw.retrieved_at, published_at=kwargs.get("published_at"), raw_hash=digest(data))],
         **kwargs)
-    return set_hashes(signal)
+    return set_hashes(enrich_signal(signal))
 
 
 def documents_in(release):
@@ -74,7 +80,8 @@ def documents_in(release):
             seen.add(url)
             result.append(Document(title=clean(document.get("title") or document.get("description")
                                                or document.get("documentType") or "Procurement document", 240),
-                                   url=url, kind=document.get("documentType") or "document"))
+                                   url=url, kind=document.get("documentType") or "document",
+                                   source_revision=str(document.get("dateModified") or document.get("datePublished") or document.get("id") or "") or None))
     return result
 
 
@@ -128,6 +135,9 @@ def normalise_ocds(raw, prior=None):
         value = lots[0].get("value") or {}
     if not value and len(awards) == 1:
         value = awards[0].get("value") or {}
+    actual_awards = [a for a in awards if a.get("status", "active") == "active" and a.get("value")]
+    if stage == "award" and len(actual_awards) == 1:
+        value, min_value = actual_awards[0]["value"], {}
     period = tender.get("contractPeriod") or {}
     if not period and len(lots) == 1:
         period = lots[0].get("contractPeriod") or {}
@@ -176,15 +186,59 @@ def normalise_ocds(raw, prior=None):
     buyer_reference = clean(tender.get("id"))
     if len(buyer_reference) < 6 or buyer_reference.lower() in ("tender", "notice", "contract", "unknown"):
         buyer_reference = ""
+    deadlines = []
+    for period_name, kind in (("enquiryPeriod", "questions"), ("participationPeriod", "application"), ("tenderPeriod", "tender")):
+        fact = deadline_fact((tender.get(period_name) or {}).get("endDate"), url, kind)
+        if fact:
+            deadlines.append(fact)
+    for lot in lots:
+        for period_name, kind in (("participationPeriod", "application"), ("tenderPeriod", "tender")):
+            fact = deadline_fact((lot.get(period_name) or {}).get("endDate"), url, kind, lot_id=str(lot.get("id", "")))
+            if fact:
+                deadlines.append(fact)
+    responses = [fact for fact in deadlines if fact.kind == "application"] or [fact for fact in deadlines if fact.kind == "tender"]
+    from .notice_dates import response_deadline_instant
+    upcoming = [fact for fact in responses if response_deadline_instant(deadline_value(fact)) > parse_date(raw.retrieved_at)]
+    response = min(upcoming, key=lambda fact: response_deadline_instant(deadline_value(fact))) if upcoming else max(responses, key=lambda fact: response_deadline_instant(deadline_value(fact)), default=None)
+    amount_kind = "award" if stage == "award" and len(actual_awards) == 1 else "estimated_contract"
+    if money(value.get("amount")) is None and money(min_value.get("amount")) is None:
+        amount_kind = "unknown"
+    structured_lots = []
+    for lot in lots:
+        lot_ident = str(lot.get("id", ""))
+        lot_awards = [a for a in awards if lot_ident in [str(v) for v in a.get("relatedLots", [])] and a.get("status", "active") == "active"]
+        structured_lots.append(Lot(id=lot_ident, title=clean(lot.get("title")), description=clean(lot.get("description")),
+            status="awarded" if lot_awards else lot.get("status") or "unknown", source_url=url,
+            deadline_at=(lot.get("tenderPeriod") or {}).get("endDate"), value_max=money((lot.get("value") or {}).get("amount")),
+            currency=(lot.get("value") or {}).get("currency")))
+    award_dates = unique([a.get("date") for a in awards if a.get("status", "active") == "active"])
+    winners = [{"name": clean(s.get("name")), "identifiers": unique([s.get("id")]),
+                "lot_ids": [str(v) for v in a.get("relatedLots", [])], "source_url": url}
+               for a in awards if a.get("status", "active") == "active" for s in a.get("suppliers", []) if s.get("name")]
+    record_lot = r.get("lot_id")
+    known_lots = {str(lot.get("id")) for lot in lots} or set(prior.lot_ids if prior else [])
+    result_lots = {str(ident) for award in awards for ident in award.get("relatedLots", [])}
+    if stage == "award" and result_lots:
+        # Cancellation uses the same lot identity as the award it revises.
+        record_lot = next(iter(result_lots)) if len(result_lots) == 1 else "lots:" + ",".join(sorted(result_lots))
+    elif stage == "award" and len(known_lots) > 1:
+        # A partial/unspecified award is a linked notice, not a terminal update to
+        # every lot of the original procedure. Preserve an independently stable ID.
+        record_lot = "award:" + str(r.get("id", ""))
     return base(raw, title=title, description=description, url=url, ocid=r.get("ocid"),
-        lot_id=r.get("lot_id"), lot_ids=[str(lot.get("id")) for lot in lots],
+        lot_id=record_lot, lot_ids=sorted(result_lots) if record_lot and stage == "award" else [str(lot.get("id")) for lot in lots],
+        lots=structured_lots, procedure_identifiers=["ocid:" + r["ocid"]] if r.get("ocid") else [],
+        award_date=iso(award_dates[0]) if len(award_dates) == 1 else None, winners=winners,
         external_ids=unique([f"{source['id']}:{r.get('id')}" if r.get("id") else None,
                              f"buyer-ref:{clean(buyer.get('name')).lower()}:{buyer_reference}" if buyer_reference and buyer.get("name") else None]),
         buyer_name=clean(buyer.get("name")) or None, buyer_identifiers=identifiers,
         signal_type=classify(stage, clean(title), clean(description), notice_type, framework),
         procurement_stage=stage, notice_type=notice_type, status=status,
         published_at=iso(r.get("date")), updated_at=iso(r.get("date")),
-        deadline_at=iso(tender.get("tenderPeriod", {}).get("endDate") or tender.get("enquiryPeriod", {}).get("endDate")),
+        deadline_at=deadline_value(response) if response else None, deadlines=deadlines,
+        response_deadlines=unique([deadline_value(fact) for fact in responses]) if len({deadline_value(fact) for fact in responses}) > 1 else [],
+        amount=Amount(kind=amount_kind, minimum=money(min_value.get("amount")), maximum=money(value.get("amount")),
+            currency=value.get("currency") or min_value.get("currency"), source_label="awards[].value" if amount_kind == "award" else "tender.value / tender.minValue", source_url=url),
         contract_start=iso(period.get("startDate")), contract_end=iso(period.get("endDate")),
         extension_end=iso(period.get("maxExtentDate")), value_min=money(min_value.get("amount")),
         value_max=money(value.get("amount")), currency=value.get("currency") or min_value.get("currency"),
@@ -213,7 +267,7 @@ def normalise_html(raw):
     signal = base(raw, title=r["title"], description=r["description"], url=r["url"],
         buyer_name=r.get("buyer"), signal_type=r["signal_type"], procurement_stage=r["stage"],
         status=r.get("status", "unknown"), countries=[raw.source["country"]],
-        external_ids=[raw.source["id"] + ":" + r["id"]], deadline_at=iso(r.get("deadline")),
+        external_ids=[raw.source["id"] + ":" + r["id"]], deadline_at=r.get("deadline") if parse_date(r.get("deadline")) else None,
         contract_start=iso(r.get("contract_start")), contract_end=iso(r.get("contract_end")),
         value_max=money(r.get("value")), currency="GBP" if r.get("value") is not None else None,
         framework=r.get("framework"), documents=[Document(title="Official procurement notice", url=link, kind="tenderNotice")
@@ -243,12 +297,12 @@ def normalise_ted(raw):
     stage = "award" if form in ("result", "cont-modif") or direct_award else "planning" if form == "planning" else "tender" if form == "competition" else "unknown"
     title = ted_text(r.get("title-proc")) or ted_text(r.get("notice-title"))
     description = "\n\n".join(unique([ted_text(r.get("description-proc")), ted_text(r.get("description-lot"))]))
-    countries = {"GBR": "GB", "DEU": "DE", "ITA": "IT", "ESP": "ES", "GRC": "GR", "SWE": "SE", "FIN": "FI", "DNK": "DK", "NOR": "NO", "ISL": "IS"}
     region = ted_text(r.get("place-of-performance"))
     buyer_countries = r.get("buyer-country") or r.get("place-of-performance") or []
     if isinstance(buyer_countries, str):
         buyer_countries = [buyer_countries]
-    deadlines = []
+    deadlines, facts = [], []
+    url = f"https://ted.europa.eu/en/notice/-/detail/{number}"
     for phase in ("request", "expressions", "tender"):
         dates = r.get(f"deadline-receipt-{phase}-date-lot") or []
         times = r.get(f"deadline-receipt-{phase}-time-lot") or []
@@ -257,14 +311,20 @@ def normalise_ted(raw):
         for day in dates:
             # Search arrays have no lot/time pairing. Do not invent an exact
             # cutoff for multiple lots. Qualification precedes invitation to bid.
-            value = day[:10] + "T" + times[0] if len(dates) == len(times) == 1 else day
-            if iso(value):
-                deadlines.append(iso(value))
+            value = day[:10] + "T" + times[0] if len(dates) == len(times) == 1 else day[:10]
+            fact = deadline_fact(value, url, {"request": "application", "expressions": "expression_of_interest", "tender": "tender"}[phase])
+            if fact:
+                if phase == "tender" and any(f.kind == "application" for f in facts):
+                    fact.kind = "invited_submission"
+                facts.append(fact)
+    for kind in ("application", "expression_of_interest", "tender"):
+        deadlines = [deadline_value(fact) for fact in facts if fact.kind == kind]
         if deadlines:
             break
     deadlines = sorted(set(deadlines))
     now = parse_date(raw.retrieved_at)
-    upcoming = [value for value in deadlines if parse_date(value) > now]
+    from .notice_dates import response_deadline_instant
+    upcoming = [value for value in deadlines if response_deadline_instant(value) > now]
     deadline = min(upcoming) if upcoming else max(deadlines, default=None)
     terminated = r.get("competition-termination-proc") is True or r.get("competition-termination-proc") == "true"
     framework_values = r.get("framework-agreement-lot") or []
@@ -281,16 +341,25 @@ def normalise_ted(raw):
     aliases = ["ted:" + number, "ted-notice:" + ted_text(r.get("notice-identifier")) if r.get("notice-identifier") else None]
     if changed_notice:
         aliases.append("ted-notice:" + changed_notice[1])
-    return base(raw, title=title, description=description or title, url=f"https://ted.europa.eu/en/notice/-/detail/{number}",
+    procedure = ted_text(r.get("procedure-identifier"))
+    lot_ids = unique(r.get("identifier-lot") if isinstance(r.get("identifier-lot"), list) else [r.get("identifier-lot")])
+    original_titles = r.get("title-proc") or r.get("notice-title") or {}
+    language = ("en" if "eng" in original_titles else next(iter(original_titles), "und")) if isinstance(original_titles, dict) else "und"
+    return base(raw, title=title, description=description or title, url=url,
         buyer_name=ted_text(r.get("buyer-name")) or None, signal_type=classify(stage, title, description, framework=framework) if stage != "unknown" else "STRATEGIC_INTENT", procurement_stage=stage,
         external_ids=unique(aliases),
+        procedure_identifiers=["ted-procedure:" + procedure] if procedure else [], source_language=language,
+        lot_ids=lot_ids, lots=[Lot(id=str(ident), title="", description=ted_text(r.get("description-lot")) if len(lot_ids) == 1 else "",
+            status="unknown", source_url=url) for ident in lot_ids],
         notice_type=notice_type, status="cancelled" if terminated else "closed" if direct_award else "awarded" if stage == "award" else "active",
         published_at=iso(ted_text(r.get("publication-date"))), updated_at=iso(ted_text(r.get("publication-date"))),
-        deadline_at=deadline, response_deadlines=deadlines,
-        eligibility_text="Multiple lot deadlines are published. The next remaining date is shown; check the source notice for the relevant lot." if len(deadlines) > 1 else None,
+        deadline_at=deadline, response_deadlines=deadlines, deadlines=facts,
         value_max=value, currency=currencies, framework=framework, incumbent_supplier=ted_text(r.get("winner-name")) or None,
+        amount=Amount(kind=("award" if stage == "award" else "estimated_contract") if value is not None else "unknown",
+            maximum=value, currency=currencies, source_label="total-value" if stage == "award" else "estimated-value-proc", source_url=url),
+        documents=[Document(title="Official notice (PDF)", url=f"https://ted.europa.eu/en/notice/{number}/pdf", kind="notice", source_revision=number)],
         cpv_codes=re.findall(r"\d{8}", ted_text(r.get("classification-cpv"))), regions=[region] if region else [],
-        countries=unique([countries[c] for c in buyer_countries if c in countries]))
+        countries=unique([TED_COUNTRIES[c] for c in buyer_countries if c in TED_COUNTRIES]))
 
 
 def normalise_usaspending(raw):
@@ -313,7 +382,7 @@ def grants_date(value):
     for fmt in ("%Y-%m-%d-%H-%M-%S", "%m/%d/%Y"):
         try:
             # Grants.gov provides a date, not a guaranteed submission cutoff.
-            return datetime.strptime(value, fmt).replace(tzinfo=UTC).isoformat(timespec="seconds")
+            return datetime.strptime(value, fmt).date().isoformat()
         except ValueError:
             pass
     return None
@@ -328,16 +397,41 @@ def normalise_grants(raw):
     types = "; ".join(clean(t.get("description")) for t in facts.get("applicantTypes", []))
     url = f"https://www.grants.gov/search-results-detail/{r['id']}"
     document_url = canonical_url(facts.get("fundingDescLinkUrl") or "")
+    # agencyName in a synopsis has contained an individual contact. Prefer the
+    # documented organisation objects and the authoritative search-listing label.
+    agency = r.get("agencyDetails") or facts.get("agencyDetails") or {}
+    parent_agency = r.get("topAgencyDetails") or facts.get("topAgencyDetails") or {}
+    buyer = clean(agency.get("agencyName") or r.get("agency")) or None
+    agency_code = clean(agency.get("agencyCode") or agency.get("code") or r.get("owningAgencyCode"))
+    contact = {key: clean(facts.get(field)) for key, field in
+               (("name", "agencyContactName"), ("role", "agencyContactDesc"), ("email", "agencyContactEmail")) if facts.get(field)}
+    contacts = [{**contact, "source_url": url}] if contact else []
+    conflicts = [clean(facts["agencyName"])] if facts.get("agencyName") and clean(facts["agencyName"]) != buyer else []
+    deadline = grants_date(facts.get("responseDateStr") or r.get("closeDate"))
+    deadline_info = deadline_fact(deadline, url, "application")
+    docs = [Document(title=clean(facts.get("fundingDescLinkDesc")) or "Funding announcement", url=document_url)] if document_url else []
+    for link in BeautifulSoup(facts.get("synopsisDesc") or facts.get("forecastDesc") or "", "html.parser").find_all("a", href=True):
+        target = canonical_url(link["href"])
+        if target and re.search(r"\.pdf(?:\?|$)|announcement|funding|\.docx?(?:\?|$)", target, re.I):
+            docs.append(Document(title=clean(link.get_text()) or "Linked funding document", url=target))
+    for link in r.get("document_links", []):
+        if canonical_url(link.get("url", "")):
+            docs.append(Document(title=clean(link.get("title")) or "Funding document", url=canonical_url(link["url"])))
     return base(raw, title=r["title"], description=clean(unescape(facts.get("synopsisDesc") or facts.get("forecastDesc") or r["title"])),
-        url=url, external_ids=["grants:" + str(r["id"])], buyer_name=facts.get("agencyName") or r.get("agency"),
+        url=url, external_ids=["grants:" + str(r["id"])], buyer_name=buyer,
+        buyer_identifiers=["grants-agency:" + agency_code] if agency_code else [], agency_name=clean(parent_agency.get("agencyName")) or buyer,
+        department_name=buyer if parent_agency.get("agencyName") and parent_agency["agencyName"] != buyer else None,
+        contacts=contacts, buyer_name_conflicts=conflicts, source_language="en",
         signal_type="FUNDING", procurement_stage="planning" if r.get("status") == "forecasted" else "funding",
         status="complete" if r.get("status") in ("closed", "archived") else "active", notice_type="Federal funding opportunity",
         countries=["US"], published_at=grants_date(facts.get("postingDateStr") or r.get("openDate")),
         updated_at=grants_date(facts.get("createTimeStampStr")),
-        deadline_at=grants_date(facts.get("responseDateStr") or r.get("closeDate")),
+        deadline_at=deadline, deadlines=[deadline_info] if deadline_info else [],
         value_min=money(facts.get("awardFloor")), value_max=money(facts.get("awardCeiling")), currency="USD",
         eligibility_text="\n".join(filter(None, [types, eligibility, clean(facts.get("responseDateDesc"))])) or None,
-        documents=[Document(title=clean(facts.get("fundingDescLinkDesc")) or "Funding announcement", url=document_url)] if document_url else [])
+        amount=Amount(kind="grant_range", minimum=money(facts.get("awardFloor")), maximum=money(facts.get("awardCeiling")),
+                      currency="USD", source_label="awardFloor / awardCeiling", source_url=url),
+        documents=list({d.url: d for d in docs}.values()))
 
 
 def normalise_german(raw, prior=None):

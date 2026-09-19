@@ -5,21 +5,18 @@ archive and rejection stores. No translation/model requests are made here.
 """
 import gzip
 import json
-import re
 
 from .discovery import discovery_signature, is_public_award, lifecycle, prefilter, ranking_key
 from .discovery_retention import read_rejected
 from .models import Signal
+from .markets import MARKETS
+from .public_context import attach_history, backfill_retained_facts, public_signal
+from .public_feed import record_file
 from .translation import available_translations
-from .utils import atomic_bytes, atomic_json, digest, jsonl_lines, parse_date
+from .utils import atomic_bytes, atomic_json, digest, jsonl_lines, parse_date, read_json
 
-MARKETS = {"GB": ["GB"], "US": ["US"], "IT": ["IT"], "NORDICS": ["SE", "FI", "DK", "NO", "IS"],
-           "DE": ["DE"], "ES": ["ES"], "GR": ["GR"]}
 DECISION_FIELDS = ("prefilter_score", "prefilter_matches", "discovery_families", "delivery_priority",
                    "matched_capabilities", "discovery_version", "exclusion_reasons", "capability_evidence", "scope_evidence", "categories")
-PUBLIC_EXCLUDE = {"analysis", "analysis_cache_key", "ai_status", "ai_model", "ai_scored_at", "fit_score",
-                  "confidence_score", "known_weight", "score_components", "score_explanation", "recommendation",
-                  "prefilter_score", "capability_evidence", "scope_evidence"}
 
 
 def retained_history(root, canonical):
@@ -37,8 +34,10 @@ def retained_history(root, canonical):
     return list(latest.values())
 
 
-def export_awards(root, canonical, config, now):
-    candidates = [s for s in retained_history(root, canonical) if is_public_award(s.model_copy(update={"exclusion_reasons": []}), now)]
+def export_awards(root, canonical, config, now, record_manifest=None, context_signals=None):
+    history = retained_history(root, canonical)
+    backfill_retained_facts(history, read_json(root / "data/source_state.json", {}))
+    candidates = [s for s in history if is_public_award(s.model_copy(update={"exclusion_reasons": []}), now)]
     translations = available_translations(root, candidates)
     path = root / "data/discovery/award_classification.json.gz"
     try:
@@ -81,18 +80,20 @@ def export_awards(root, canonical, config, now):
         atomic_bytes(path, gzip.compress(json.dumps(new_cache, ensure_ascii=False, sort_keys=True).encode(), mtime=0))
     threshold = config["capabilities"]["discovery"]["minimum_candidate_score"]
     awards = sorted((s for s in candidates if is_public_award(s, now) and s.prefilter_score >= threshold), key=lambda s: ranking_key(s, now))
+    attach_history(awards, history)
+    attach_history(canonical + (context_signals or []), history)
+    if record_manifest is not None:
+        buyer_refs = {}
+        for signal in awards:
+            _, record_manifest[signal.id] = record_file(root, signal, translations.get(signal.id), "awards", buyer_refs)
     manifest = {}
     for market, countries in MARKETS.items():
         records = [s for s in awards if set(countries).intersection(s.countries)]
         ids = {s.id for s in records}
-        payload = {"schema_version": "1.0", "signals": [s.model_dump(exclude=PUBLIC_EXCLUDE) for s in records],
+        payload = {"schema_version": "1.0", "signals": [public_signal(s, translations.get(s.id)) for s in records],
                    "translations": {sid: value for sid, value in translations.items() if sid in ids}}
         relative = f"awards/{market}-{digest(payload)[:16]}.json"
         atomic_json(root / "app/public/data" / relative, payload)
         manifest[market] = {"url": relative, "count": len(records)}
-    # Remove only our obsolete generated shards, never the retained source stores.
-    current_paths = {item["url"] for item in manifest.values()}
-    for path in (root / "app/public/data/awards").glob("*.json"):
-        if f"awards/{path.name}" not in current_paths and re.fullmatch(r"(?:" + "|".join(MARKETS) + r")-[a-f0-9]{16}\.json", path.name):
-            path.unlink()
+    # Old manifests must remain readable until the new root manifest is published.
     return manifest

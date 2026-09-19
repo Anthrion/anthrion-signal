@@ -2,7 +2,7 @@ import { test, expect, type Page } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 import type { Dataset, Signal } from '../src/types'
 import { recordDataset } from './fixtures/record'
-import { isHistoricalAward, matchesMarket, priorityTier } from '../src/lib'
+import { isHistoricalAward, markets, matchesMarket, priorityTier } from '../src/lib'
 
 const gbPath = 'awards/GB-0123456789abcdef.json'
 const nordicPath = 'awards/NORDICS-fedcba9876543210.json'
@@ -76,6 +76,7 @@ async function fixture(page: Page, fail: boolean | 'malformed' = false) {
 }
 
 test.beforeEach(async ({ page }) => {
+  await page.route('**/data/manifest.json', (route) => route.fulfill({ status: 404 }))
   await page.emulateMedia({ reducedMotion: 'reduce' })
   await page.clock.setFixedTime(new Date('2026-09-18T12:00:00Z'))
 })
@@ -105,8 +106,8 @@ test('Awarded is below Capability A-Z, lazy loads and preserves capability prior
   await expect(panel).toContainText('Example Delivery Ltd')
   await expect(panel.locator('.inspector-facts dt')).toHaveText([
     'Notice type',
-    'Value',
-    'Award notice',
+    'Published amount',
+    'Award notice published',
   ])
   await expect(panel.getByRole('link', { name: /Add deadline/ })).toHaveCount(0)
   const gmail = new URL(
@@ -176,10 +177,11 @@ for (const failure of [true, 'malformed'] as const)
 test('published historical records match every market manifest and stay out of live data', async ({
   page,
 }) => {
-  test.setTimeout(120000)
+  test.setTimeout(180000)
+  await page.unroute('**/data/manifest.json')
   const data: Dataset = await (await page.request.get('./data/current.json')).json()
   expect(data.signals.every((s) => !isHistoricalAward(s))).toBe(true)
-  expect(Object.keys(data.award_history || {})).toHaveLength(7)
+  expect(Object.keys(data.award_history || {}).sort()).toEqual(markets.map((m) => m.id).sort())
   for (const [market, manifest] of Object.entries(data.award_history!)) {
     const response = await page.request.get(`./data/${manifest.url}`)
     expect(response.ok()).toBe(true)

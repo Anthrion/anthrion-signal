@@ -11,6 +11,7 @@ import subprocess
 from datetime import UTC, datetime
 from pathlib import Path
 
+from anthrion_signal.canonical import canonical_signal_json
 from anthrion_signal.dedupe import exact_keys
 from anthrion_signal.models import Signal
 from anthrion_signal.normalise import set_hashes
@@ -48,19 +49,26 @@ def merge_record(base, local, remote):
             result[key] = right if remote["last_seen_at"] >= local["last_seen_at"] else left
         else:
             raise ValueError(f"Conflicting source facts for {local['id']}: {key}")
-    return set_hashes(Signal.model_validate(result)).model_dump()
+    signal = Signal.model_validate(result)
+    if signal.amount and (signal.amount.minimum is not None or signal.amount.maximum is not None):
+        if (signal.amount.minimum, signal.amount.maximum, signal.amount.currency) != (
+                signal.value_min, signal.value_max, signal.currency):
+            raise ValueError(f"Conflicting source facts for {signal.id}: amount disagrees with numeric values")
+    return set_hashes(signal).model_dump()
 
 
 def merge_maps(base, local, remote, keys=None):
     return {key: merge_record(base.get(key), local.get(key), remote.get(key))
-            for key in sorted(keys or (local.keys() | remote.keys()))}
+            for key in sorted(keys if keys is not None else (local.keys() | remote.keys()))}
 
 
 def records(body, compressed=False):
     if not body:
         return {}
     text = gzip.decompress(body).decode() if compressed else body.decode()
-    return {record["id"]: record for line in jsonl_lines(text) if (record := json.loads(line))}
+    # Compare source facts, not whether a canonical writer included empty defaults.
+    return {record.id: record.model_dump(mode="json") for line in jsonl_lines(text)
+            for record in [Signal.model_validate_json(line)]}
 
 
 def main():
@@ -92,7 +100,7 @@ def main():
     archive_paths = {path.as_posix().removeprefix(root.as_posix() + "/")
                      for path in (root / "data/archive").glob("*.jsonl.gz")}
     archive_paths.update(git("ls-tree", "-r", "--name-only", args.remote, "data/archive").decode().splitlines())
-    archives, base_all, local_all, remote_all = {}, {}, {}, {}
+    archive_versions, base_all, local_all, remote_all = {}, {}, {}, {}
     for path in sorted(archive_paths):
         old = records(blob(base_ref, path), True)
         left = records(local_blob(path), True)
@@ -100,13 +108,18 @@ def main():
         base_all.update(old)
         local_all.update(left)
         remote_all.update(right)
-        archives[path] = merge_maps(old, left, right)
+        archive_versions[path] = (left, right)
     old_current = records(blob(base_ref, "data/signals.jsonl"))
     local_current = records(local_blob("data/signals.jsonl"))
     remote_current = records(blob(args.remote, "data/signals.jsonl"))
     base_all.update(old_current)
     local_all.update(local_current)
     remote_all.update(remote_current)
+    # Retention can move the same base record into an archive on both branches.
+    # Its source ancestor is still the canonical base row, not an absent row in
+    # that month's old partition.
+    archives = {path: merge_maps(base_all, left, right)
+                for path, (left, right) in archive_versions.items()}
     merged = merge_maps(base_all, local_all, remote_all, local_current.keys() | remote_current.keys())
 
     old_state = json_blob(base_ref, "data/source_state.json")
@@ -146,15 +159,15 @@ def main():
     index = {}
     for path, items in archives.items():
         if items != records(local_blob(path), True):
-            body = "\n".join(json.dumps(items[key], ensure_ascii=False, separators=(",", ":")) for key in sorted(items)) + "\n"
+            body = "\n".join(canonical_signal_json(Signal.model_validate(items[key])) for key in sorted(items)) + "\n"
             atomic_bytes(root / path, gzip.compress(body.encode(), mtime=0))
         month = Path(path).name[:7]
         for item in items.values():
             for key in exact_keys(Signal.model_validate(item)):
                 index[key] = {"id": item["id"], "month": month}
     atomic_json(root / "data/archive_index.json", index)
-    atomic_bytes(root / "data/signals.jsonl", ("\n".join(json.dumps(value, ensure_ascii=False)
-                                                        for value in merged.values()) + "\n").encode())
+    atomic_bytes(root / "data/signals.jsonl", ("\n".join(canonical_signal_json(Signal.model_validate(value))
+                                                       for value in merged.values()) + "\n").encode())
     atomic_json(root / "data/source_state.json", state)
     atomic_json(root / "data/current.json", current)
     atomic_bytes(root / "data/history.jsonl", ("\n".join(json.dumps(value) for value in sorted(history, key=lambda x: x["at"])) + "\n").encode())

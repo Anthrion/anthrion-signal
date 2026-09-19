@@ -156,6 +156,50 @@ class Document(StrictModel):
     title: str
     url: str
     kind: str = "document"
+    status: Literal["linked", "cached", "missing", "inaccessible", "unsupported", "needs_ocr", "too_large", "permission_required"] = "linked"
+    content_hash: str | None = None
+    revision: str | None = None
+    retrieved_at: str | None = None
+    page_count: int | None = None
+    pages: list[dict[str, Any]] = Field(default_factory=list)
+    previous_revisions: list[dict[str, str]] = Field(default_factory=list)
+    source_revision: str | None = None
+    media_type: str | None = None
+    reuse_basis: str | None = None
+
+
+class Amount(StrictModel):
+    kind: Literal["estimated_contract", "framework_ceiling", "grant_range", "programme_funding", "award", "annual_spend", "unknown"] = "unknown"
+    minimum: float | None = Field(default=None, ge=0)
+    maximum: float | None = Field(default=None, ge=0)
+    currency: str | None = None
+    source_label: str
+    source_url: str
+
+
+class Deadline(StrictModel):
+    kind: Literal["questions", "expression_of_interest", "application", "invited_submission", "tender", "unknown"] = "unknown"
+    date: str
+    time: str | None = None
+    timezone: str | None = None
+    precision: Literal["date", "local_time", "instant"]
+    instant: str | None = None
+    source_text: str
+    source_url: str
+    lot_id: str | None = None
+    status: Literal["current", "superseded", "conflicting"] = "current"
+
+
+class Lot(StrictModel):
+    id: str
+    title: str = ""
+    description: str = ""
+    status: str = "unknown"
+    source_url: str
+    deadline_at: str | None = None
+    value_min: float | None = None
+    value_max: float | None = None
+    currency: str | None = None
 
 
 class Provenance(StrictModel):
@@ -201,6 +245,26 @@ class Signal(StrictModel):
     description: str
     buyer_name: str | None = None
     buyer_identifiers: list[str] = Field(default_factory=list)
+    buyer_id: str | None = None
+    buyer_identity_basis: Literal["identifier", "source_name", "unknown"] = "unknown"
+    agency_name: str | None = None
+    department_name: str | None = None
+    contacts: list[dict[str, str]] = Field(default_factory=list)
+    buyer_name_conflicts: list[str] = Field(default_factory=list)
+    source_language: str = "und"
+    procedure_id: str | None = None
+    procedure_identifiers: list[str] = Field(default_factory=list)
+    lots: list[Lot] = Field(default_factory=list)
+    lot_award_baseline: dict[str, str] = Field(default_factory=dict)
+    procedure_history: list[dict[str, Any]] = Field(default_factory=list)
+    buyer_history: list[dict[str, Any]] = Field(default_factory=list)
+    buyer_history_ref: dict[str, Any] | None = None
+    award_date: str | None = None
+    winners: list[dict[str, Any]] = Field(default_factory=list)
+    amount: Amount | None = None
+    deadlines: list[Deadline] = Field(default_factory=list)
+    delivery_role: dict[str, Any] = Field(default_factory=dict)
+    participation_requirements: list[dict[str, Any]] = Field(default_factory=list)
     signal_type: SignalType
     procurement_stage: str
     notice_type: str | None = None
@@ -296,3 +360,4 @@ class Dataset(StrictModel):
     signals: list[Signal]
     translations: dict[str, EnglishText] = Field(default_factory=dict)
     award_history: dict[str, dict[str, Any]] = Field(default_factory=dict)
+    current_feed: dict[str, Any] = Field(default_factory=dict)

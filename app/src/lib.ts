@@ -1,7 +1,10 @@
 import type { Dataset, Filters, Signal } from './types'
+import { dateOnlyEnd, deadlineEventValue, validCalendarDate } from './deadlineMath'
 
 export const defaults: Filters = {
   q: '',
+  searchMode: 'capability',
+  match: 'all',
   view: 'live',
   sort: 'recent',
   market: 'GB',
@@ -13,6 +16,10 @@ export const defaults: Filters = {
   capability: '',
   sector: '',
   buyer: '',
+  supplier: '',
+  awardFrom: '',
+  awardTo: '',
+  amountType: '',
   region: '',
   cpv: '',
   minValue: '',
@@ -32,19 +39,84 @@ export const markets = [
     countries: ['SE', 'FI', 'DK', 'NO', 'IS'],
     region: 'Northern Europe',
   },
+  {
+    id: 'DACH',
+    name: 'DACH',
+    short: 'DACH',
+    countries: ['DE', 'AT', 'CH'],
+    region: 'Central Europe',
+  },
   { id: 'DE', name: 'Germany', short: 'DE', countries: ['DE'], region: 'Europe' },
   { id: 'ES', name: 'Spain', short: 'ES', countries: ['ES'], region: 'Europe' },
   { id: 'GR', name: 'Greece', short: 'GR', countries: ['GR'], region: 'Europe' },
+  {
+    id: 'BENELUX',
+    name: 'Benelux',
+    short: 'BNL',
+    countries: ['BE', 'NL', 'LU'],
+    region: 'Western Europe',
+  },
+  ...(
+    [
+      ['FR', 'France'],
+      ['BE', 'Belgium'],
+      ['IE', 'Ireland'],
+      ['NL', 'Netherlands'],
+      ['CH', 'Switzerland'],
+      ['AT', 'Austria'],
+      ['PT', 'Portugal'],
+      ['PL', 'Poland'],
+      ['EE', 'Estonia'],
+      ['LV', 'Latvia'],
+      ['LT', 'Lithuania'],
+      ['CZ', 'Czechia'],
+      ['RO', 'Romania'],
+      ['BG', 'Bulgaria'],
+      ['HR', 'Croatia'],
+      ['HU', 'Hungary'],
+      ['LU', 'Luxembourg'],
+      ['CY', 'Cyprus'],
+      ['MT', 'Malta'],
+      ['SI', 'Slovenia'],
+      ['SK', 'Slovakia'],
+      ['SE', 'Sweden'],
+      ['FI', 'Finland'],
+      ['DK', 'Denmark'],
+      ['NO', 'Norway'],
+      ['IS', 'Iceland'],
+    ] as const
+  ).map(([id, name]) => ({ id, name, short: id, countries: [id], region: 'Europe' })),
 ] as const
 
+export const marketGroups: Record<string, readonly string[]> = {
+  NORDICS: ['SE', 'FI', 'DK', 'NO', 'IS'],
+  BENELUX: ['BE', 'NL', 'LU'],
+  DACH: ['DE', 'AT', 'CH'],
+}
+/** Country IDs remain supported in existing links and source facts. */
+export function defaultMarketGroup(id: string) {
+  return ['BENELUX', 'DACH'].find((group) => marketGroups[group].includes(id)) || id
+}
+export const defaultMarketOptions = markets.filter(
+  (market) => defaultMarketGroup(market.id) === market.id,
+)
+
+export const allMarkets = {
+  id: '',
+  name: 'All markets',
+  short: 'All',
+  countries: [] as string[],
+  region: '',
+}
+
 export function matchesMarket(signal: Signal, market: string) {
-  if (!market) return true
+  if (!market || market === 'ALL') return true
   const countries: readonly string[] = markets.find((m) => m.id === market)?.countries || [market]
   return signal.countries.some((country) => countries.includes(country))
 }
 
 export function marketIsEnabled(market: string, configured: Record<string, { enabled: boolean }>) {
-  if (!market) return Object.values(configured).some((m) => m.enabled)
+  if (!market || market === 'ALL') return Object.values(configured).some((m) => m.enabled)
   const countries: readonly string[] = markets.find((m) => m.id === market)?.countries || [market]
   return countries.some((country) => configured[country]?.enabled)
 }
@@ -73,10 +145,10 @@ export const recommendationLabels: Record<string, string> = {
 }
 export const date = (value: string | null, options?: Intl.DateTimeFormatOptions) =>
   value && Number.isFinite(Date.parse(value))
-    ? new Intl.DateTimeFormat(
-        'en-GB',
-        options || { day: 'numeric', month: 'short', year: 'numeric' },
-      ).format(new Date(value))
+    ? new Intl.DateTimeFormat('en-GB', {
+        ...(options || { day: 'numeric', month: 'short', year: 'numeric' }),
+        ...(/^\d{4}-\d{2}-\d{2}$/.test(value) ? { timeZone: 'UTC' } : {}),
+      }).format(new Date(value))
     : 'Not published'
 export const amount = (value: number | null, currency: string | null, compact = true) => {
   if (value === null) return 'Value not published'
@@ -90,6 +162,35 @@ export const amount = (value: number | null, currency: string | null, compact = 
     }).format(value)
   } catch {
     return `${value.toLocaleString('en-GB')} ${currency || ''}`
+  }
+}
+export const amountLabels: Record<string, string> = {
+  estimated_contract: 'Estimated contract value',
+  framework_ceiling: 'Framework ceiling',
+  grant_range: 'Published grant range',
+  programme_funding: 'Programme funding',
+  award: 'Award value',
+  annual_spend: 'Annual spend',
+  unknown: 'Published amount',
+}
+export function amountPresentation(signal: Signal, compact = true) {
+  const fact = signal.amount
+  const minimum = fact?.minimum ?? signal.value_min
+  const maximum = fact?.maximum ?? signal.value_max
+  const currency = fact?.currency ?? signal.currency
+  const value =
+    minimum !== null &&
+    minimum !== undefined &&
+    maximum !== null &&
+    maximum !== undefined &&
+    minimum !== maximum
+      ? `${amount(minimum, currency, compact)}–${amount(maximum, currency, compact)}`
+      : amount(maximum ?? minimum ?? null, currency, compact)
+  return {
+    label: amountLabels[fact?.kind || 'unknown'] || 'Published amount',
+    value,
+    sourceLabel: fact?.source_label || '',
+    sourceURL: fact?.source_url || signal.primary_source_url,
   }
 }
 export function currencyOptions(signals: Signal[]) {
@@ -106,42 +207,57 @@ export function currencyOptions(signals: Signal[]) {
     .sort((a, b) => a.label.localeCompare(b.label, 'en-GB') || a.value.localeCompare(b.value))
 }
 export function responseDeadline(s: Signal, now = Date.now()) {
-  const dates = (s.response_deadlines || [])
+  const dates = responseValues(s)
     .filter((value) => Number.isFinite(Date.parse(value)))
     .sort((a, b) => Date.parse(a) - Date.parse(b))
   return (
-    dates.find((value) => deadlineInstant(value, s.source) > now) || dates.at(-1) || s.deadline_at
+    dates.find((value) => deadlineInstant(value, s) > now) ||
+    dates.at(-1) ||
+    (s.deadlines?.length ? null : s.deadline_at)
   )
 }
-function deadlineInstant(value: string, source: string) {
+function responseEvents(s: Signal) {
+  const current = (s.deadlines || []).filter(
+    (event) =>
+      event.status === 'current' && !['questions', 'invited_submission'].includes(event.kind),
+  )
+  const initial = current.filter((event) =>
+    ['expression_of_interest', 'application'].includes(event.kind),
+  )
+  return initial.length ? initial : current
+}
+export function selectedResponseDeadlineEvent(s: Signal, now = Date.now()) {
+  const value = responseDeadline(s, now)
+  return value ? responseEvents(s).find((event) => deadlineEventValue(event) === value) : undefined
+}
+function responseValues(s: Signal): string[] {
+  if (s.deadlines?.length) {
+    return responseEvents(s)
+      .map(deadlineEventValue)
+      .filter((value): value is string => !!value)
+  }
+  return s.response_deadlines?.length ? s.response_deadlines : s.deadline_at ? [s.deadline_at] : []
+}
+function deadlineInstant(value: string, signal: Signal) {
   const instant = Date.parse(value)
-  if (
-    source !== 'digital_outcomes' ||
-    !/^\d{4}-\d{2}-\d{2}$/.test(value) ||
-    !Number.isFinite(instant)
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value) || !Number.isFinite(instant)) return instant
+  const event = signal.deadlines?.find((d) => d.date === value && d.status === 'current')
+  return dateOnlyEnd(
+    value,
+    event?.timezone || (signal.source === 'digital_outcomes' ? 'Europe/London' : undefined),
   )
-    return instant
-  const londonNoon = Number(
-    new Intl.DateTimeFormat('en-GB', {
-      hour: 'numeric',
-      hourCycle: 'h23',
-      timeZone: 'Europe/London',
-    }).format(new Date(instant + 12 * 3600000)),
-  )
-  return instant + 86400000 - 1 - (londonNoon - 12) * 3600000
 }
 export const daysLeft = (s: Signal, now = Date.now()) => {
   const deadline = responseDeadline(s, now)
-  return deadline ? Math.ceil((deadlineInstant(deadline, s.source) - now) / 86400000) : null
+  return deadline ? Math.ceil((deadlineInstant(deadline, s) - now) / 86400000) : null
 }
 export function deadlineCaption(s: Signal, now = Date.now()) {
   const deadline = responseDeadline(s, now)
   if (!deadline)
     return s.procurement_stage === 'planning' ? 'Early-stage opportunity' : 'Deadline not published'
-  const remaining = deadlineInstant(deadline, s.source) - now
+  const remaining = deadlineInstant(deadline, s) - now
   const label = date(deadline, { day: 'numeric', month: 'short' })
-  if (s.source === 'digital_outcomes' && /^\d{4}-\d{2}-\d{2}$/.test(deadline) && remaining > 0)
-    return label
+  if (/^\d{4}-\d{2}-\d{2}$/.test(deadline) && remaining > 0) return label
   if (remaining <= 0) return `Closed ${label}`
   if (remaining < 3600000) return `${label} · ${Math.ceil(remaining / 60000)}m left`
   if (remaining < 86400000) return `${label} · ${Math.ceil(remaining / 3600000)}h left`
@@ -159,12 +275,10 @@ export function lifecycleState(s: Signal, now = Date.now()) {
   )
     return 'CLOSED'
   if (s.status === 'postponed') return 'UNKNOWN'
-  const deadlines = (s.response_deadlines || [])
-    .map((value) => deadlineInstant(value, s.source))
+  const deadlines = responseValues(s)
+    .map((value) => deadlineInstant(value, s))
     .filter(Number.isFinite)
-  const finalDeadline = deadlines.length
-    ? Math.max(...deadlines)
-    : deadlineInstant(s.deadline_at || '', s.source)
+  const finalDeadline = deadlines.length ? Math.max(...deadlines) : NaN
   if (s.status === 'expired' || finalDeadline <= now) return 'EXPIRED'
   if (s.source === 'digital_outcomes' && s.lifecycle_state === 'UNKNOWN') return 'UNKNOWN'
   if (s.signal_type === 'RENEWAL_SIGNAL') return 'FUTURE'
@@ -233,14 +347,20 @@ export function searchText(value: string) {
     .trim()
 }
 
-export function matchesSearch(
+export interface SearchIntent {
+  mode?: string
+  match?: string
+}
+
+export function explainSearch(
   s: Signal,
   query: string,
   capabilities: Dataset['capabilities'] = [],
   english?: NonNullable<Dataset['translations']>[string],
+  intent: SearchIntent = {},
 ) {
   const q = searchText(query)
-  if (!q) return true
+  if (!q) return { matched: true, basis: 'text' as const, capabilities: [] as string[] }
   const text = searchText(
     [
       s.title,
@@ -249,21 +369,65 @@ export function matchesSearch(
       english?.description,
       s.buyer_name,
       translatedBuyer(s, english),
+      s.search_text,
       s.ocid,
       ...(s.external_ids || []),
     ]
       .filter(Boolean)
       .join(' '),
   )
-  const words = new Set(text.split(' '))
-  if (q.split(' ').every((word) => (word.length <= 3 ? words.has(word) : text.includes(word))))
-    return true
   const matched = new Set([...(s.discovery_families || []), ...s.matched_capabilities])
-  return capabilities.some(
-    (c) =>
-      matched.has(c.id) &&
-      [c.id, c.label, ...(c.search_terms || [])].some((term) => searchText(term) === q),
-  )
+  const words = new Set(text.split(' '))
+  const literal = (term: string, phrase = false) =>
+    phrase || intent.mode === 'exact'
+      ? ` ${text} `.includes(` ${term} `)
+      : term.length <= 3
+        ? words.has(term)
+        : text.includes(term)
+  const aliases = (term: string) =>
+    intent.mode === 'exact'
+      ? []
+      : capabilities
+          .filter(
+            (c) =>
+              matched.has(c.id) &&
+              [c.id, c.label, ...(c.search_terms || [])].some(
+                (alias) => searchText(alias) === term,
+              ),
+          )
+          .map((c) => c.id)
+  const terms =
+    intent.match === 'phrase'
+      ? [{ text: q, phrase: true }]
+      : [...query.matchAll(/"([^"]+)"|(\S+)/gu)]
+          .map((m) => ({ text: searchText(m[1] || m[2]), phrase: !!m[1] }))
+          .filter((t) => t.text)
+  const results = terms.map((term) => ({
+    text: literal(term.text, term.phrase),
+    aliases: aliases(term.text),
+  }))
+  const direct = intent.match === 'any' ? results.some((r) => r.text) : results.every((r) => r.text)
+  if (direct) return { matched: true, basis: 'text' as const, capabilities: [] as string[] }
+  const wholeAliases = aliases(q)
+  const expanded =
+    intent.match === 'any'
+      ? results.some((r) => r.text || r.aliases.length)
+      : results.every((r) => r.text || r.aliases.length)
+  return {
+    matched: !!wholeAliases.length || expanded,
+    basis: 'capability' as const,
+    capabilities: [...new Set([...wholeAliases, ...results.flatMap((r) => r.aliases)])],
+  }
+}
+
+export function matchesSearch(
+  s: Signal,
+  query: string,
+  capabilities: Dataset['capabilities'] = [],
+  english?: NonNullable<Dataset['translations']>[string],
+  intent: SearchIntent = {},
+) {
+  return explainSearch(s, query, capabilities, english, intent).matched
 }
 export function translatedBuyer(s: Signal, english?: NonNullable<Dataset['translations']>[string]) {
   return s.buyer_name && english?.buyer_original === s.buyer_name ? english.buyer_name || '' : ''
@@ -297,9 +461,16 @@ export function normaliseFilters(value: Partial<Filters>): Filters {
   const result = Object.fromEntries(
     Object.entries(defaults).map(([key, fallback]) => [
       key,
-      value[key as keyof Filters] ?? fallback,
+      typeof value[key as keyof Filters] === 'string' ? value[key as keyof Filters] : fallback,
     ]),
   ) as unknown as Filters
+  if (!['exact', 'capability'].includes(result.searchMode)) result.searchMode = defaults.searchMode
+  if (!['all', 'any', 'phrase'].includes(result.match)) result.match = defaults.match
+  if (result.market === 'ALL') result.market = ''
+  if (marketGroups[result.market.toUpperCase()]) result.market = result.market.toUpperCase()
+  for (const key of ['awardFrom', 'awardTo'] as const) {
+    if (result[key] && !validCalendarDate(result[key])) result[key] = ''
+  }
   if (['top', 'renewals', 'sources'].includes(result.view)) result.view = 'all'
   if (result.sort === 'awarded') {
     result.view = 'awards'
@@ -396,7 +567,13 @@ export function filterSignals(
         if (!isAddedToday(s, now)) return false
         break
     }
-    if (!matchesSearch(s, f.q, capabilities, translations[s.id])) return false
+    if (
+      !matchesSearch(s, f.q, capabilities, translations[s.id], {
+        mode: f.searchMode,
+        match: f.match,
+      })
+    )
+      return false
     if (f.source && !s.provenance.some((p) => p.source === f.source)) return false
     if (f.type && s.signal_type !== f.type) return false
     if (f.capability && !s.matched_capabilities.includes(f.capability)) return false
@@ -421,6 +598,16 @@ export function filterSignals(
     )
       return false
     if (f.currency && s.currency !== f.currency) return false
+    if (f.amountType && s.amount?.kind !== f.amountType) return false
+    if (
+      f.supplier &&
+      !searchText(
+        [s.incumbent_supplier, ...(s.winners || []).map((w) => w.name)].join(' '),
+      ).includes(searchText(f.supplier))
+    )
+      return false
+    if (f.awardFrom && (!s.award_date || s.award_date.slice(0, 10) < f.awardFrom)) return false
+    if (f.awardTo && (!s.award_date || s.award_date.slice(0, 10) > f.awardTo)) return false
     if (f.change === 'new' && !isNew(s, now)) return false
     if (f.change === 'updated' && !isUpdated(s, now)) return false
     return true
@@ -436,8 +623,8 @@ export function filterSignals(
     if (f.view === 'awards')
       return (
         priorityTier(a) - priorityTier(b) ||
-        Date.parse(b.updated_at || b.published_at || b.first_seen_at) -
-          Date.parse(a.updated_at || a.published_at || a.first_seen_at) ||
+        Date.parse(b.award_date || b.updated_at || b.published_at || b.first_seen_at) -
+          Date.parse(a.award_date || a.updated_at || a.published_at || a.first_seen_at) ||
         a.id.localeCompare(b.id)
       )
     // An explicit value/capability sort takes precedence over the default delivery tiers.
@@ -512,12 +699,13 @@ function recordShareText(
   recordURL.searchParams.set('signal', signal.id)
   const deadline = responseDeadline(signal)
   const sourceURL = safeURL(signal.primary_source_url)
+  const financial = amountPresentation(signal, false)
   return [
     text.title,
     '',
     `Buyer: ${text.buyerName || 'Not published'}`,
     `Notice type: ${typeLabels[signal.signal_type] || signal.signal_type}`,
-    `Value: ${amount(signal.value_max, signal.currency, false)}`,
+    `${signal.amount ? financial.label : 'Value'}: ${financial.value}`,
     `Deadline: ${
       deadline
         ? date(deadline, {
@@ -587,7 +775,20 @@ export function csv(signals: Signal[]) {
       .replace(/"/g, '""') +
     '"'
   return [
-    ['Title', 'Buyer', 'Type', 'Lifecycle', 'Value', 'Currency', 'Deadline', 'Source URL'],
+    [
+      'Title',
+      'Buyer',
+      'Type',
+      'Lifecycle',
+      'Value',
+      'Currency',
+      'Deadline',
+      'Source URL',
+      'Amount type',
+      'Minimum value',
+      'Amount source label',
+      'Award date',
+    ],
     ...signals.map((s) => [
       s.title,
       s.buyer_name,
@@ -597,6 +798,10 @@ export function csv(signals: Signal[]) {
       s.currency,
       responseDeadline(s),
       s.primary_source_url,
+      s.amount?.kind || 'unknown',
+      s.amount?.minimum ?? s.value_min,
+      s.amount?.source_label || '',
+      s.award_date || '',
     ]),
   ]
     .map((row) => row.map(escape).join(','))

@@ -33,15 +33,17 @@ def test_keyword_lane_is_additive_bounded_and_resumes_exact_query(config, now):
     first = collect_ted_discovery(source(config), initial, now, http, settings, terms)
     assert initial == {} and first.pages == 5
     assert "classification-cpv IN" in bodies[0]["query"]
-    assert "classification-cpv" not in bodies[-1]["query"]
-    assert 'FT ~ "Salesforce Public Sector"' in bodies[-1]["query"]
-    assert 'buyer-country IN' in bodies[-1]["query"]
-    old_keyword = bodies[-1]
+    old_keyword = next(body for body in bodies if body["scope"] == "ALL" and "classification-cpv" not in body["query"])
+    assert 'FT ~ "Salesforce Public Sector"' in old_keyword["query"]
+    assert 'buyer-country IN' in old_keyword["query"]
+    old_token = "next-" + str(bodies.index(old_keyword) + 1)
+    assert sum(body["scope"] == "ACTIVE" for body in bodies) == 2
     frozen_state = copy.deepcopy(first.state)
     second = collect_ted_discovery(source(config), first.state, now + timedelta(hours=1), http, settings, terms)
     assert first.state == frozen_state and second.pages <= 5
-    assert bodies[-1]["query"] == old_keyword["query"]
-    assert bodies[-1]["iterationNextToken"] == "next-5"
+    new_keyword = next(body for body in bodies[5:] if body["scope"] == "ALL" and "classification-cpv" not in body["query"])
+    assert new_keyword["query"] == old_keyword["query"]
+    assert new_keyword["iterationNextToken"] == old_token
 
 
 def test_changed_keyword_query_does_not_reuse_old_continuation_or_reset_cpv(config, now):
@@ -56,7 +58,8 @@ def test_changed_keyword_query_does_not_reuse_old_continuation_or_reset_cpv(conf
     second = collect_ted_discovery(source(config), first.state, now, http, settings,
                                    {**config["search_terms"], "discovery_phrases": ["OmniStudio"]})
     assert "iterationNextToken" in bodies[5]
-    assert "iterationNextToken" not in bodies[-1]
+    keyword = next(body for body in bodies[5:] if body["scope"] == "ALL" and "classification-cpv" not in body["query"])
+    assert "iterationNextToken" not in keyword
     assert first.state["query_version"] == second.state["query_version"]
     assert len(second.state["ted_keywords"]["lanes"]) == 1
 
