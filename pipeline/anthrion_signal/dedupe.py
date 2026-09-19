@@ -101,6 +101,14 @@ def merge(old, incoming):
         # NYC sometimes retains a placeholder date after explicitly postponing bids.
         if incoming.source == "nyc_city_record" and incoming.status == "postponed" and incoming.deadline_at is None:
             merged.deadline_at = None
+        if old.source == incoming.source == "sam":
+            # SAM's full snapshot may remove a date or restore a previously
+            # unlisted notice. Unknown bid status must not inherit a closed one.
+            merged.status = incoming.status
+            merged.deadline_at = incoming.deadline_at
+            merged.response_deadlines = incoming.response_deadlines
+            if not incoming.deadlines:
+                merged.deadlines = []
         merged.raw_source_hash = incoming.raw_source_hash
         if incoming.deadlines and old.deadlines:
             current = {(d.kind, d.lot_id, d.source_text) for d in incoming.deadlines}

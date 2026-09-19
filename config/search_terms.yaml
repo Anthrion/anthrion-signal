@@ -12,7 +12,7 @@ exclusions: [road resurfacing, building construction, catering services, grounds
 govuk_queries: [commercial pipeline digital, procurement pipeline technology, Salesforce, CRM transformation, case management, contact centre, citizen services, digital transformation procurement, data platform, artificial intelligence procurement, generative AI, AI agents, automation integration]
 markets:
   GB: {name: United Kingdom, enabled: true, ted_codes: [GBR]}
-  US: {name: United States, enabled: true, ted_codes: [], coverage: 'Grants.gov funding, NYC City Record and LA RAMP notices. Live federal tenders are not connected.'}
+  US: {name: United States, enabled: true, ted_codes: [], coverage: 'SAM.gov public daily federal notices, Grants.gov funding, NYC City Record and LA RAMP. Federal historical archives and restricted attachments are not included.'}
   IT: {name: Italy, enabled: true, ted_codes: [ITA], coverage: 'TED notices; national-only procurement is not included.'}
   SE: {name: Sweden, enabled: true, ted_codes: [SWE], coverage: 'TED notices; national-only procurement is not included.'}
   FI: {name: Finland, enabled: true, ted_codes: [FIN], coverage: 'TED notices; national-only procurement is not included.'}

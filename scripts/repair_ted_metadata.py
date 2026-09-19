@@ -11,7 +11,8 @@ from anthrion_signal.dedupe import merge
 from anthrion_signal.discovery import is_public_opportunity, lifecycle, prefilter
 from anthrion_signal.models import Signal
 from anthrion_signal.normalise import normalise_ted
-from anthrion_signal.utils import atomic_bytes, atomic_json, digest, jsonl_lines, parse_date, read_json
+from anthrion_signal.utils import (atomic_bytes, atomic_json, atomic_retained_bytes, digest,
+                                  jsonl_lines, parse_date, read_json, read_retained_bytes)
 
 
 def main():
@@ -26,7 +27,7 @@ def main():
     public = read_json(root / "data/current.json", {})
     public_ids = {s["id"] for s in public["signals"]}
     path = root / "data/signals.jsonl"
-    original = path.read_bytes()
+    original = read_retained_bytes(path)
     previous = [Signal.model_validate_json(line) for line in jsonl_lines(original.decode("utf-8"))]
     targets = {alias[4:]: s for s in previous if s.id in public_ids and s.source == "ted"
                for alias in s.external_ids if alias.startswith("ted:")}
@@ -78,10 +79,10 @@ def main():
         with lock.open("x"):
             pass
         try:
-            if path.read_bytes() != original:
+            if read_retained_bytes(path) != original:
                 raise ValueError("Canonical data changed during the audit; repeat the repair")
             atomic_bytes(artifact / ("signals.before-" + digest(original.hex())[:12] + ".jsonl"), original)
-            atomic_bytes(path, ("\n".join(s.model_dump_json() for s in revised) + "\n").encode())
+            atomic_retained_bytes(path, ("\n".join(s.model_dump_json() for s in revised) + "\n").encode())
             report["applied"] = True
             atomic_json(artifact / "report.json", report)
         finally:

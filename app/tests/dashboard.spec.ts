@@ -942,7 +942,7 @@ test('legacy saved-view storage stays isolated and old updates URLs open Added t
   await page.goto('./?view=all&q=CRM')
   await ready(page)
   await expect(page.getByRole('button', { name: 'Latest updates' })).toHaveCount(0)
-  await expect(page.getByText('Saved views', { exact: true })).toBeVisible()
+  await expect(page.getByText('Saved views', { exact: true })).toHaveCount(0)
   await expect(page.getByText('Legacy saved view')).toHaveCount(0)
   await expect(
     page.locator('.workspace-nav').getByRole('button', { name: /Saved opportunities/ }),
@@ -952,8 +952,8 @@ test('legacy saved-view storage stays isolated and old updates URLs open Added t
   expect(new URL(page.url()).searchParams.get('view')).toBe('today')
   await page.reload()
   await expect(page.getByRole('button', { name: 'Latest updates' })).toHaveCount(0)
-  await page.getByText('Saved views', { exact: true }).click()
-  await expect(page.getByRole('button', { name: 'Save this view', exact: true })).toBeVisible()
+  await expect(page.getByText('Saved views', { exact: true })).toHaveCount(0)
+  await expect(page.getByRole('button', { name: 'Save this view', exact: true })).toHaveCount(0)
   await expect(page.getByText('Legacy saved view', { exact: true })).toHaveCount(0)
 })
 
@@ -1427,7 +1427,8 @@ test('unmodified public feed retains real records and exposes source facts witho
   await ready(page)
   await expect(page.locator('.feed-heading .count-badge')).not.toHaveText('0')
   await page.goto('./')
-  await expect(page.locator('.feed-heading h1')).toHaveText('Live Opportunities')
+  await expect(page.locator('.feed-heading h1')).toHaveText('All Signals')
+  await expect(page.getByRole('textbox', { name: 'Search opportunities' })).toHaveValue('CRM')
   await expect(page.getByRole('button', { name: 'Show Top Signals', exact: true })).toHaveCount(0)
   await page.goto('./?view=top&score=90&confidence=80&recommendation=PURSUE')
   await ready(page)

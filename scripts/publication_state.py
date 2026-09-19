@@ -9,9 +9,9 @@ from refresh_plan import code_digest
 
 def signature_for(root):
     from anthrion_signal.translation import available_translations
-    from anthrion_signal.utils import digest
+    from anthrion_signal.utils import digest, read_json
 
-    data = json.loads((root / "data/current.json").read_text(encoding="utf-8"))
+    data = read_json(root / "data/current.json", {})
     exported = root / "app/public/data/current.json"
     public = json.loads(exported.read_text(encoding="utf-8")) if exported.exists() else data
     return {

@@ -227,6 +227,9 @@ def addressable_delivery(segments):
 # Title, corroborating description, CPV support. Neither a CPV nor a word in an
 # unrelated paragraph can trigger exclusion by itself. This is a taxonomy of work.
 RULES = (
+    ("ai_compute_capacity", r"\bai system\b",
+     r"\b(?:artificial intelligence computing system|gpu computing resources|gpu cluster)\b",
+     (), "Computing capacity and its bundled software rather than an AI application"),
     ("industrial_efficiency", r"\b(?:pump optimi[sz]ation|aeration efficiency|wastewater testing)\b",
      r"\b(?:pumping|aeration|site based testing|water samples|sampling|operational assets)\b",
      ("421", "71314", "716"), "Physical plant efficiency testing or wastewater sampling"),

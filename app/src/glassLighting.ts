@@ -43,8 +43,10 @@ export function glassLight(pose: GlassPose, lamp: Point, viewer: Point) {
   }
 }
 
-export function brandLightPosition() {
-  const brand = document.querySelector('.brand-signal')?.getBoundingClientRect()
+export function brandLightPosition(
+  element: Element | null = document.querySelector('.brand-signal'),
+) {
+  const brand = element?.getBoundingClientRect()
   return { x: brand ? brand.left + brand.width / 2 : 240, y: brand ? brand.bottom : 40 }
 }
 

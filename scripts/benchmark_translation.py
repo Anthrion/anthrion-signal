@@ -32,10 +32,11 @@ def main():
     import argostranslate.package as package
     import argostranslate.translate as translate
     from langid.langid import LanguageIdentifier, model
+    from anthrion_signal.utils import read_json
 
     detector = LanguageIdentifier.from_modelstring(model, norm_probs=True)
     detector.set_languages(["en", "de", "es", "it", "fi", "sv", "da", "el", "no", "nb", "is"])
-    data = json.loads((root / "data/current.json").read_text(encoding="utf-8"))
+    data = read_json(root / "data/current.json", {})
     corpus, seen = defaultdict(list), set()
     for signal in sorted(data["signals"], key=lambda s: s["id"]):
         text = signal["title"] + "\n\n" + signal["description"]

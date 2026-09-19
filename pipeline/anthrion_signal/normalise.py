@@ -45,7 +45,7 @@ def money(value):
         return None
 
 
-def base(raw, *, title, description, url, **kwargs):
+def base(raw, *, title, description, url, description_limit=24000, **kwargs):
     source = raw.source
     data = raw.data
     url = canonical_url(url)
@@ -56,7 +56,7 @@ def base(raw, *, title, description, url, **kwargs):
     signal = Signal(
         id="sig_" + digest([ocid or url, kwargs.get("lot_id")])[:20], source=source["id"],
         source_type=source["source_type"], source_urls=[url], primary_source_url=url,
-        title=clean(title, 500), description=clean(description),
+        title=clean(title, 500), description=clean(description, description_limit),
         first_seen_at=raw.retrieved_at, last_seen_at=raw.retrieved_at,
         last_material_update=kwargs.get("updated_at") or raw.retrieved_at,
         raw_source_hash=digest(data),
@@ -454,7 +454,12 @@ def normalise_spain(raw):
     return normalise_spain_notice(raw)
 
 
+def normalise_sam(raw):
+    from .sam_opportunities import normalise_sam_opportunity
+    return normalise_sam_opportunity(raw)
+
+
 NORMALISERS = {"ocds": normalise_ocds, "govuk": normalise_govuk, "html": normalise_html, "ted": normalise_ted,
                "usaspending": normalise_usaspending, "grants": normalise_grants,
                "german_ocds": normalise_german, "nyc_city_record": normalise_nyc, "spain_placsp": normalise_spain,
-               "la_ramp": normalise_ramp}
+               "la_ramp": normalise_ramp, "sam_csv": normalise_sam}

@@ -97,9 +97,6 @@ export const marketGroups: Record<string, readonly string[]> = {
 export function defaultMarketGroup(id: string) {
   return ['BENELUX', 'DACH'].find((group) => marketGroups[group].includes(id)) || id
 }
-export const defaultMarketOptions = markets.filter(
-  (market) => defaultMarketGroup(market.id) === market.id,
-)
 
 export const allMarkets = {
   id: '',
@@ -108,6 +105,7 @@ export const allMarkets = {
   countries: [] as string[],
   region: '',
 }
+export const defaultMarketOptions = [allMarkets, ...markets]
 
 export function matchesMarket(signal: Signal, market: string) {
   if (!market || market === 'ALL') return true
@@ -484,6 +482,10 @@ export function normaliseFilters(value: Partial<Filters>): Filters {
   }
   if (result.view === 'funding') result.view = 'all'
   if (['recommended', 'fit', 'confidence'].includes(result.sort)) result.sort = 'recent'
+  if (!['all', 'live', 'early', 'closing', 'today', 'saved', 'awards'].includes(result.view))
+    result.view = defaults.view
+  if (!['recent', 'updated', 'deadline', 'value', 'value-low', 'capability'].includes(result.sort))
+    result.sort = defaults.sort
   if (['AWARD', 'RENEWAL_SIGNAL'].includes(result.type)) result.type = ''
   if (result.view === 'awards') result.type = result.deadline = result.change = ''
   result.score = result.confidence = result.recommendation = ''

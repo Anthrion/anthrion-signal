@@ -46,7 +46,8 @@ AMBIGUOUS_NEEDS = {"account management", "client management", "contact managemen
                    "resident management", "customer lifecycle", "complaint handling", "complaints management",
                    "case tracking", "case allocation", "case triage", "referral management", "permit management",
                    "investigation management", "appeals management", "grievance management", "enquiry management",
-                   "inquiry management", "workforce scheduling", "mobile workforce", "field service management"}
+                   "inquiry management", "workforce scheduling", "mobile workforce", "field service management",
+                   "subscription management"}
 AMBIGUOUS_NEEDS.update({"fallmanagement", "atencion al cliente", "atencion ciudadana", "ongoing enhancement"})
 GENERIC_INTEGRATION = {"systems integration", "system integration", "integration with existing systems",
                        "integrate with existing systems", "systemintegration", "schnittstellenmanagement",
@@ -55,7 +56,7 @@ PHYSICAL_SYSTEMS = ("pipework", "ventilation", "air handling", "compressed air",
                     "high voltage", "switchgear", "electrical installations", "building management system",
                     "building management systems", "mechanical systems", "tiefengeothermie", "gas systems",
                     "welding power sources", "rigging", "deck and fittings", "launching and trials",
-                    "structural hardware", "jarcias", "maquinaria", "herraje estructural")
+                    "structural hardware", "jarcias", "maquinaria", "herraje estructural", "tow line", "synthetic fiber")
 DIGITAL_SYSTEMS = ("software", "application", "database", "crm", "salesforce", "api", "middleware",
                    "information system", "information systems", "data platform", "customer portal", "ai agent")
 
@@ -280,7 +281,7 @@ def capability_hits(cap, segments, software_cpv=False, funding=False):
         if cap["id"] in {"ai", "genai"} and phrase_hits(text, (
                 "computer system for running", "computing system for training", "laptop for processing",
                 # Capacity to run a model is a different purchased object from the model.
-                "gpu computing resources", "gpu cluster", "inference workloads", "compute resources",
+                "gpu computing resources", "gpu cluster", "inference workloads", "compute resources", "artificial intelligence computing system",
                 "υπολογιστικο συστημα", "φορητος υπολογιστης")) and not ai_software_delivery(text):
             continue
         for level, phrases in (("explicit", cap.get("explicit", [])),

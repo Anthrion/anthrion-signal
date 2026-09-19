@@ -58,7 +58,9 @@ def test_translation_checks_do_not_increase_source_polling_even_when_delayed(roo
     assert [item["cron"] for item in workflow["on"]["schedule"]] == ["50 * * * *", "5,20,35 * * * *"]
     steps = {step.get("name"): step for step in workflow["jobs"]["build"]["steps"]}
     assert steps["Plan collection and verification"]["env"]["SCHEDULE_TRIGGER"] == "${{ github.event.schedule }}"
-    assert "steps.changed.outputs.deploy == 'true'" in steps["Verify pipeline changes"]["if"]
+    assert steps["Verify pipeline changes"]["if"] == "steps.plan.outputs.full_tests == 'true'"
+    assert "--no-export" in steps["Collect public opportunities"]["run"]
+    assert "if" not in steps["Compress retained snapshots"]
     assert "if" not in steps["Validate pipeline and public dataset"]
 
 

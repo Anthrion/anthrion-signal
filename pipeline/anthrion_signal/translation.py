@@ -5,7 +5,7 @@ import math
 import re
 import time
 import unicodedata
-from collections import Counter
+from collections import Counter, deque
 from contextlib import contextmanager
 from dataclasses import dataclass
 from datetime import UTC, datetime, timedelta
@@ -743,7 +743,20 @@ class TranslationQueue:
 
     def prepare(self, signals):
         # Reconstruct the outstanding queue from current text; metadata-only edits reuse translations.
-        ordered = sorted(signals, key=lambda s: s.last_material_update, reverse=True)
+        # Interleave source countries so a large recent import cannot put every
+        # other market behind its entire backlog. Keep recent notices first in
+        # each country, preserve multi-country notices once, and reuse field keys.
+        markets = {}
+        for signal in sorted(signals, key=lambda s: (s.last_material_update, s.id), reverse=True):
+            key = tuple(sorted(set(getattr(signal, "countries", []) or [])))
+            markets.setdefault(key, deque()).append(signal)
+        pending = deque(markets.values())
+        ordered = []
+        while pending:
+            market = pending.popleft()
+            ordered.append(market.popleft())
+            if market:
+                pending.append(market)
         for signal in ordered:
             for text in (signal.title, signal.description):
                 if text.strip():

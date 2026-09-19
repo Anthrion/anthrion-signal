@@ -9,23 +9,28 @@ import {
   Globe2,
   Languages,
   Pencil,
-  ArrowUp,
-  ArrowDown,
-  X,
+  ExternalLink,
 } from 'lucide-react'
+import type { ReactNode } from 'react'
 import type { DisplayLanguage } from './types'
 import type { MarketPreferences } from './personalWorkspace'
 import { LiquidMetal } from '@paper-design/shaders-react'
-import { defaultMarketOptions, markets } from './lib'
+import { defaultMarketOptions, safeURL } from './lib'
 import { applyGlassLight, brandLightPosition, scrollMovesSurface } from './glassLighting'
+import { MarketOrganizer } from './MarketOrganizer'
 
-const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+const motionQuery =
+  typeof window === 'undefined' ? null : window.matchMedia('(prefers-reduced-motion: reduce)')
 const subscribeMotion = (listener: () => void) => {
-  motionQuery.addEventListener('change', listener)
-  return () => motionQuery.removeEventListener('change', listener)
+  motionQuery?.addEventListener('change', listener)
+  return () => motionQuery?.removeEventListener('change', listener)
 }
 export function useReducedMotion() {
-  return useSyncExternalStore(subscribeMotion, () => motionQuery.matches)
+  return useSyncExternalStore(
+    subscribeMotion,
+    () => motionQuery?.matches ?? false,
+    () => false,
+  )
 }
 
 let webglAvailable: boolean | undefined
@@ -191,11 +196,39 @@ export function BrandSignature({ onHome }: { onHome: () => void }) {
   )
 }
 
+export function SourceNoticeLink({
+  href,
+  compact = false,
+  children = 'Open source notice',
+}: {
+  href: string
+  compact?: boolean
+  children?: ReactNode
+}) {
+  return (
+    <a
+      href={safeURL(href)}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`button glass-source-button optical-glass${compact ? ' source-compact' : ''}`}
+    >
+      <span>{children}</span>
+      <span className="source-link-icon" aria-hidden="true">
+        <ExternalLink size={compact ? 14 : 16} />
+      </span>
+      <GlassReflection trackLight />
+    </a>
+  )
+}
+
 export function GlassReflection({ trackLight = false }: { trackLight?: boolean }) {
   const ref = useRef<HTMLSpanElement>(null)
   useEffect(() => {
     const surface = ref.current?.parentElement
     if (!trackLight || !surface) return
+    const brand =
+      surface.closest('dialog')?.querySelector('.brand-signal') ||
+      document.querySelector('.brand-signal')
     let frame = 0
     const update = () => {
       frame = 0
@@ -205,7 +238,7 @@ export function GlassReflection({ trackLight = false }: { trackLight?: boolean }
       applyGlassLight(
         surface,
         { x: bounds.left + bounds.width / 2, y: bounds.top + bounds.height / 2 },
-        brandLightPosition(),
+        brandLightPosition(brand),
       )
     }
     const schedule = () => {
@@ -213,7 +246,6 @@ export function GlassReflection({ trackLight = false }: { trackLight?: boolean }
     }
     const observer = new ResizeObserver(schedule)
     observer.observe(surface)
-    const brand = document.querySelector('.brand-signal')
     if (brand) observer.observe(brand)
     const scroll = (event: Event) => {
       if (scrollMovesSurface(event, surface, brand)) schedule()
@@ -254,7 +286,7 @@ export function MarketSection({
   const moreTrigger = useRef<HTMLButtonElement>(null)
   const ordered = preferences.order
     .map((id) => defaultMarketOptions.find((m) => m.id === id))
-    .filter((m): m is (typeof markets)[number] => !!m)
+    .filter((m): m is (typeof defaultMarketOptions)[number] => !!m)
   const pinned = ordered.filter((m) => preferences.pinned.includes(m.id))
   const more = ordered.filter((m) => !preferences.pinned.includes(m.id))
   useEffect(() => {
@@ -278,11 +310,13 @@ export function MarketSection({
   return (
     <section className="market-section" aria-label="Market selection">
       <nav className="market-tabs" aria-label="Markets">
-        {!preferences.pinned.includes('GB') && marketButton('', 'All markets', 'All')}
-        {pinned.flatMap((market) => [
-          marketButton(market.id, market.name, market.id === 'GB' ? 'UK' : market.name),
-          ...(market.id === 'GB' ? [marketButton('', 'All markets', 'All')] : []),
-        ])}
+        {pinned.map((market) =>
+          marketButton(
+            market.id,
+            market.name,
+            market.id === '' ? 'All' : market.id === 'GB' ? 'UK' : market.name,
+          ),
+        )}
       </nav>
       <div
         className="more-markets"
@@ -319,8 +353,8 @@ export function MarketSection({
             if (e.key === 'Escape') setMoreOpen(false)
           }}
         >
-          {selected && !pinned.some((m) => m.id === selected)
-            ? markets.find((m) => m.id === selected)?.name
+          {!pinned.some((m) => m.id === selected)
+            ? defaultMarketOptions.find((m) => m.id === selected)?.name
             : 'More'}
           <ChevronDown size={13} />
         </button>
@@ -395,86 +429,6 @@ export function MarketSection({
         />
       )}
     </section>
-  )
-}
-
-function MarketOrganizer({
-  preferences,
-  onArrange,
-  onClose,
-}: {
-  preferences: MarketPreferences
-  onArrange: (preferences: MarketPreferences) => boolean
-  onClose: () => void
-}) {
-  const ref = useRef<HTMLDialogElement>(null)
-  useEffect(() => {
-    ref.current?.showModal()
-    return () => ref.current?.close()
-  }, [])
-  const ordered = preferences.order.filter((id) =>
-    defaultMarketOptions.some((market) => market.id === id),
-  )
-  const move = (id: string, offset: number) => {
-    const index = ordered.indexOf(id)
-    const next = [...ordered]
-    ;[next[index], next[index + offset]] = [next[index + offset], next[index]]
-    onArrange({ ...preferences, order: next })
-  }
-  return (
-    <dialog ref={ref} className="market-organizer" aria-label="Organize markets" onCancel={onClose}>
-      <header>
-        <div>
-          <h2>Your markets</h2>
-          <p>Pin the markets you use most. Reorder them below.</p>
-        </div>
-        <button aria-label="Close market organizer" onClick={onClose}>
-          <X size={19} />
-        </button>
-      </header>
-      <ol>
-        {ordered.map((id, index) => (
-          <li key={id}>
-            <label>
-              <input
-                type="checkbox"
-                aria-label={`Pin ${markets.find((m) => m.id === id)?.name}`}
-                checked={preferences.pinned.includes(id)}
-                onChange={(e) =>
-                  onArrange({
-                    ...preferences,
-                    pinned: e.target.checked
-                      ? [...preferences.pinned, id]
-                      : preferences.pinned.filter((p) => p !== id),
-                  })
-                }
-              />
-              <span>{markets.find((m) => m.id === id)?.name}</span>
-              <small>{preferences.pinned.includes(id) ? 'Pinned' : 'More'}</small>
-            </label>
-            <button
-              aria-label={`Move ${id} up`}
-              disabled={index === 0}
-              onClick={() => move(id, -1)}
-            >
-              <ArrowUp size={15} />
-            </button>
-            <button
-              aria-label={`Move ${id} down`}
-              disabled={index === ordered.length - 1}
-              onClick={() => move(id, 1)}
-            >
-              <ArrowDown size={15} />
-            </button>
-          </li>
-        ))}
-      </ol>
-      <footer>
-        <button className="button primary" onClick={onClose}>
-          Done
-        </button>
-      </footer>
-    </dialog>
   )
 }
 
