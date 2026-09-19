@@ -13,7 +13,7 @@ from anthrion_signal.canonical import canonical_signal_json
 from anthrion_signal.collectors import RawRecord
 from anthrion_signal.models import Signal
 from anthrion_signal.normalise import normalise_ted, set_hashes
-from anthrion_signal.utils import atomic_bytes, atomic_json
+from anthrion_signal.utils import atomic_retained_bytes, atomic_json, read_retained_bytes
 
 
 def prepare_repair(canonical_body, retained_body, signal_id, notice_number):
@@ -76,13 +76,13 @@ def main():
     parser.add_argument("--receipt", type=Path, required=True)
     parser.add_argument("--apply", action="store_true")
     args = parser.parse_args()
-    original = args.canonical.read_bytes()
+    original = read_retained_bytes(args.canonical)
     body, receipt = prepare_repair(original, args.retained.read_bytes(), args.signal_id, args.notice_number)
     receipt["applied"] = args.apply
     if args.apply:
-        if args.canonical.read_bytes() != original:
+        if read_retained_bytes(args.canonical) != original:
             raise ValueError("Canonical data changed while preparing repair")
-        atomic_bytes(args.canonical, body)
+        atomic_retained_bytes(args.canonical, body)
     atomic_json(args.receipt, receipt)
     print(json.dumps({"signal_id": args.signal_id, "applied": args.apply, "changed_fields": receipt["changed_fields"]}))
 

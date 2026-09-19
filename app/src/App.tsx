@@ -5,7 +5,6 @@ import {
   ArrowDownToLine,
   ArrowLeft,
   ArrowRight,
-  ArrowUpRight,
   Bookmark,
   BookmarkCheck,
   Building2,
@@ -34,23 +33,27 @@ import { TranslationProvider, useSignalText } from './Translation'
 import {
   AmbientGlass,
   BrandSignature,
-  GlassReflection,
   MarketSection,
   MetalEdge,
   SortMenu,
+  SourceNoticeLink,
   useReducedMotion,
 } from './WorkspaceUI'
 import { DiscoveryCarousel } from './DiscoveryCarousel'
 import { VirtualSignalList } from './VirtualSignalList'
 import { DismissDust } from './DismissDust'
 import { useAwardHistory } from './useAwardHistory'
+import { supplierHistoryMarket } from './supplierResearch'
 import { useOpportunityData, useSignalDetail } from './useOpportunityData'
-import { usePersonalWorkspace } from './personalWorkspace'
+import {
+  initialWorkspaceFilters,
+  rememberLastView,
+  usePersonalWorkspace,
+} from './personalWorkspace'
 import { deadlineEventCalendarURL } from './publicFacts'
 import {
   BuyerLink,
-  CapabilityEvidenceList,
-  DecisionBrief,
+  CapabilityTags,
   DeadlineEvents,
   deadlineFact,
   PaneDivider,
@@ -60,8 +63,10 @@ import {
   ResearchTitle,
   SearchWorkspace,
   SourceDocuments,
+  SupplierLinks,
   valueFact,
 } from './ResearchUI'
+import type { ResearchState } from './ResearchUI'
 import {
   csv,
   currencyOptions,
@@ -83,7 +88,6 @@ import {
   marketIsEnabled,
   readFilters,
   normaliseFilters,
-  safeURL,
   selectedResponseDeadlineEvent,
   typeLabels,
 } from './lib'
@@ -172,21 +176,6 @@ function IconButton({
     </button>
   )
 }
-function OutLink({
-  href,
-  children,
-  className = '',
-}: {
-  href: string
-  children: ReactNode
-  className?: string
-}) {
-  return (
-    <a className={className} href={safeURL(href)} target="_blank" rel="noopener noreferrer">
-      {children}
-    </a>
-  )
-}
 function Modal({
   title,
   children,
@@ -252,15 +241,20 @@ function WorkspaceProviders({
 }
 
 export default function App() {
-  const [filters, setFilters] = useState<Filters>(readFilters)
+  const [filters, setFilters] = useState<Filters>(initialWorkspaceFilters)
   const { data, error, loading, reload: load } = useOpportunityData({ market: filters.market })
   const personal = usePersonalWorkspace()
-  const [research, setResearch] = useState<{
-    kind: 'buyer' | 'related'
-    signal: Signal
-    opener: HTMLElement
-    translation?: EnglishText
-  } | null>(null)
+  useEffect(() => {
+    try {
+      rememberLastView(window.localStorage, filters)
+    } catch {
+      /* Storage is optional. */
+    }
+  }, [filters])
+  const [researchStack, setResearchStack] = useState<
+    (ResearchState & { translation?: EnglishText })[]
+  >([])
+  const research = researchStack.at(-1) || null
   const [compact, setCompact] = useLocal(
     'anthrion-compact-reading-v1',
     false,
@@ -305,11 +299,25 @@ export default function App() {
   const viewingSaved = filters.view === 'saved'
   const needsSavedHistory =
     viewingSaved && saved.some((id) => !data?.signals.some((s) => s.id === id))
+  const supplierPage = researchStack.filter((page) => page.kind === 'supplier').at(-1)
+  const supplierMarket = supplierPage?.supplier
+    ? supplierHistoryMarket(supplierPage.signal, supplierPage.supplier)
+    : ''
+  const reuseMarketAwards = supplierMarket === filters.market || !filters.market
   const awards = useAwardHistory(
     data,
-    viewingAwards || needsSavedHistory || research?.kind === 'related',
+    viewingAwards ||
+      needsSavedHistory ||
+      researchStack.some((page) => page.kind === 'related') ||
+      (!!supplierPage && reuseMarketAwards),
     filters.market,
   )
+  const separateSupplierHistory = useAwardHistory(
+    data,
+    !!supplierPage && !reuseMarketAwards,
+    supplierMarket,
+  )
+  const supplierHistory = reuseMarketAwards ? awards : separateSupplierHistory
   const feedHistoryLoading = (viewingAwards || needsSavedHistory) && awards.loading
   const feedHistoryError = viewingAwards || needsSavedHistory ? awards.error : ''
   const activeSignals = useMemo(
@@ -462,12 +470,13 @@ export default function App() {
   )
   const researchTranslations = useMemo(() => {
     const result = { ...translations }
-    if (research) {
-      delete result[research.signal.id]
-      if (research.translation) result[research.signal.id] = research.translation
+    Object.assign(result, supplierHistory.translations)
+    for (const page of researchStack) {
+      delete result[page.signal.id]
+      if (page.translation) result[page.signal.id] = page.translation
     }
     return result
-  }, [translations, research])
+  }, [translations, supplierHistory.translations, researchStack])
   useEffect(() => {
     if (
       !research ||
@@ -479,11 +488,17 @@ export default function App() {
       detail.signal === research.signal
     )
       return
-    setResearch({
-      ...research,
-      signal: detail.signal,
-      translation: detail.translation || translations[detail.signal.id],
-    })
+    setResearchStack((pages) =>
+      pages.map((page) =>
+        page === research
+          ? {
+              ...page,
+              signal: detail.signal!,
+              translation: detail.translation || translations[detail.signal!.id],
+            }
+          : page,
+      ),
+    )
   }, [research, detail.signal, detail.translation, detail.loading, detail.error, translations])
   useEffect(() => {
     if (
@@ -604,7 +619,14 @@ export default function App() {
       <ResearchProvider
         open={(value) => {
           setDetailOpen(false)
-          setResearch({ ...value, translation: displayTranslations[value.signal.id] })
+          setResearchStack((pages) => [
+            ...pages,
+            {
+              ...value,
+              translation:
+                displayTranslations[value.signal.id] || researchTranslations[value.signal.id],
+            },
+          ])
         }}
       >
         <div className={`app-shell console-shell ${compact ? 'compact-reading' : ''}`}>
@@ -800,12 +822,6 @@ export default function App() {
                 <SearchWorkspace
                   filters={filters}
                   update={update}
-                  showHidden={showHidden}
-                  onRestore={(restored, hiddenView) => {
-                    update(restored)
-                    setShowHidden(hiddenView)
-                  }}
-                  personal={personal}
                   data={data}
                   count={filtered.length}
                 />
@@ -990,19 +1006,29 @@ export default function App() {
               />
             </Modal>
           )}
-          {research && data && (
-            <TranslationProvider language={language} translations={researchTranslations}>
-              <ResearchPage
-                state={research}
-                data={data}
-                awards={awards.signals}
-                loading={awards.loading}
-                error={awards.error}
-                onRetry={awards.retry}
-                onBack={() => setResearch(null)}
-              />
-            </TranslationProvider>
-          )}
+          {data &&
+            researchStack.map((page, index) => (
+              <TranslationProvider
+                key={`${index}-${page.kind}-${page.signal.id}`}
+                language={language}
+                translations={researchTranslations}
+              >
+                <ResearchPage
+                  state={page}
+                  data={data}
+                  awards={page.kind === 'supplier' ? supplierHistory.signals : awards.signals}
+                  loading={page.kind === 'supplier' ? supplierHistory.loading : awards.loading}
+                  error={page.kind === 'supplier' ? supplierHistory.error : awards.error}
+                  onRetry={page.kind === 'supplier' ? supplierHistory.retry : awards.retry}
+                  nested={index > 0}
+                  onBack={() => setResearchStack((pages) => pages.slice(0, -1))}
+                  onHome={() => {
+                    setResearchStack([])
+                    update(defaults)
+                  }}
+                />
+              </TranslationProvider>
+            ))}
           {detailOpen && selectedSignal && data && (
             <Modal
               title="Opportunity intelligence"
@@ -1151,7 +1177,9 @@ function SignalRow({
             {(s.value_max !== null || s.value_min !== null || s.amount) && (
               <>
                 <strong>{valueFact(s).value}</strong>
-                <small>{valueFact(s).label}</small>
+                {valueFact(s).label !== 'Estimated contract value' && (
+                  <small>{valueFact(s).label}</small>
+                )}
               </>
             )}
             {isHistoricalAward(s) ? (
@@ -1185,18 +1213,6 @@ function SignalRow({
       </article>
       {departure === 'hide' && <DismissDust id={s.id} />}
     </div>
-  )
-}
-
-function SourceNoticeLink({ href }: { href: string }) {
-  return (
-    <OutLink href={href} className="button glass-source-button optical-glass">
-      <span>Open source notice</span>
-      <span className="source-link-icon" aria-hidden="true">
-        <ExternalLink size={16} />
-      </span>
-      <GlassReflection trackLight />
-    </OutLink>
   )
 }
 
@@ -1354,15 +1370,13 @@ function ConsoleDetail({
               </dl>
               <section className="inspector-capabilities">
                 <h3>Capabilities</h3>
-                <CapabilityEvidenceList signal={s} data={data} />
+                <CapabilityTags signal={s} data={data} />
               </section>
               {isHistoricalAward(s) && (
                 <section className="inspector-capabilities">
                   <h3>Awarded supplier</h3>
                   <p>
-                    {s.winners?.map((winner) => winner.name).join(', ') ||
-                      s.incumbent_supplier ||
-                      'Not published'}
+                    <SupplierLinks signal={s} />
                   </p>
                 </section>
               )}
@@ -1380,11 +1394,6 @@ function ConsoleDetail({
               </span>
             </p>
           )}
-          <DecisionBrief signal={s} compact />
-          <details className="original-notice">
-            <summary>Read original notice text</summary>
-            <p>{s.description}</p>
-          </details>
           <div className="inspector-summary">
             {text.original && (
               <span className="translation-status" title="English translation is not available yet">
@@ -1694,10 +1703,9 @@ function SignalDetail({
       >
         {activeTab === 'overview' ? (
           <>
-            <DecisionBrief signal={s} />
             <section className="detail-section">
               <h3>Capabilities</h3>
-              <CapabilityEvidenceList signal={s} data={data} />
+              <CapabilityTags signal={s} data={data} />
             </section>
             <section className="detail-section">
               <h3>Published deadlines</h3>
@@ -1705,10 +1713,6 @@ function SignalDetail({
             </section>
             <section className="detail-section">
               <h3>Opportunity scope</h3>
-              <details className="original-notice">
-                <summary>Read original notice text</summary>
-                <p>{s.description}</p>
-              </details>
               {text.original && (
                 <span
                   className="translation-status"
@@ -1732,7 +1736,7 @@ function SignalDetail({
                 {facts.map(([label, value]) => (
                   <div key={label}>
                     <dt>{label}</dt>
-                    <dd>{value}</dd>
+                    <dd>{label === 'Awarded supplier' ? <SupplierLinks signal={s} /> : value}</dd>
                   </div>
                 ))}
               </dl>
@@ -1749,10 +1753,9 @@ function SignalDetail({
                       <FileText size={16} />
                     </span>
                     <div>
-                      <OutLink href={p.url}>
+                      <SourceNoticeLink href={p.url} compact>
                         {p.source_name}
-                        <ArrowUpRight size={13} />
-                      </OutLink>
+                      </SourceNoticeLink>
                       <small>Reference {p.release_id || 'Not published'}</small>
                       <small>
                         Checked{' '}

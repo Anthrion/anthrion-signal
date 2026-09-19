@@ -334,14 +334,12 @@ test('default summary selection loads full evidence and precise commercial facts
   await expect(panel.locator('.inspector-facts')).toContainText('Estimated contract value')
   await expect(panel.locator('.inspector-facts')).toContainText('14:00 Europe/London')
   await page.screenshot({ path: `../artifacts/research-overview-${info.project.name}.png` })
-  await panel.getByRole('button', { name: 'Salesforce platform', exact: true }).click()
-  await expect(panel.getByRole('region', { name: 'Salesforce platform evidence' })).toContainText(
-    quote,
-  )
-  await panel.locator('.evidence-entry').getByText('English translation', { exact: true }).click()
-  await expect(panel.locator('.evidence-entry')).toContainText('connect customer casework')
-  await panel.getByText('Participation checks', { exact: true }).click()
-  await expect(panel.locator('.participation-row')).toContainText('Needs checking')
+  await expect(panel.locator('.capability-tags')).toContainText('Salesforce platform')
+  await expect(
+    panel.locator('.capability-tags button, .evidence-sheet, .decision-brief, .original-notice'),
+  ).toHaveCount(0)
+  await expect(panel.locator('.inspector-summary')).toContainText(quote)
+  await expect(page.locator('.row-numbers')).not.toContainText(['Estimated contract value'])
   expect(requests.some((url) => url.includes('/records/panel-a-'))).toBe(true)
   expect(requests.some((url) => url.includes('/current/FR-'))).toBe(false)
   await expect(page.getByRole('button', { name: /Mark working/ })).toHaveCount(0)
@@ -355,9 +353,7 @@ test('default summary selection loads full evidence and precise commercial facts
   ).toEqual([])
 })
 
-test('decision brief labels translated evidence and uses the same response stage as its calendar', async ({
-  page,
-}) => {
+test('simplified record keeps the same response stage as its calendar', async ({ page }) => {
   await fixture(page, (record) => {
     const original = 'Implementieren Sie Salesforce und integrieren Sie die Kundenfallbearbeitung.'
     record.capability_evidence = [
@@ -384,47 +380,7 @@ test('decision brief labels translated evidence and uses the same response stage
       exact: true,
     }),
   ).toHaveAttribute('href', /20261005T130000Z/)
-  const brief = panel.getByRole('region', { name: 'Decision brief' })
-  await expect(brief.locator('.evidence-language')).toHaveText('English translation')
-  await brief.getByText('Original passage', { exact: true }).click()
-  await expect(brief).toContainText('Implementieren Sie Salesforce')
-})
-
-test('participation passages avoid duplication and keep translated originals expandable', async ({
-  page,
-}) => {
-  const original = 'Die Registrierung auf dem Vergabeportal ist vor der Bewerbung erforderlich.'
-  const translated = 'Register on the procurement portal before applying.'
-  await fixture(page, (record) => {
-    const existing = record.participation_requirements![0]
-    record.participation_requirements = [
-      { ...existing, id: 'duplicate', requirement: existing.source_quote },
-      {
-        ...existing,
-        id: 'translated',
-        requirement: translated,
-        source_quote: original,
-        translated_quote: translated,
-      },
-      existing,
-    ]
-  })
-  const panel = await openRecord(page)
-  await panel.getByText('Participation checks', { exact: true }).click()
-  const rows = panel.locator('.participation-row')
-  await expect(rows.first().locator('blockquote')).toHaveCount(0)
-  await expect(rows.nth(1)).toContainText(translated)
-  await expect(rows.nth(1).locator('blockquote')).toBeHidden()
-  await rows.nth(1).getByText('Original source text', { exact: true }).click()
-  await expect(rows.nth(1).locator('blockquote')).toHaveText(original)
-  await expect(rows.nth(1).locator('blockquote')).toBeVisible()
-  await expect(rows.nth(2).locator('blockquote')).toHaveText(
-    'Framework membership must be confirmed before bidding.',
-  )
-  await expect(rows.first().getByRole('link', { name: 'View source' })).toHaveAttribute(
-    'href',
-    source,
-  )
+  await expect(panel.locator('.decision-brief, .evidence-sheet')).toHaveCount(0)
 })
 
 test('document revisions and page-linked evidence remain source traceable', async ({ page }) => {
@@ -481,7 +437,9 @@ test('title research compares source-linked awards with explicit relationship an
   await expect(research.locator('.related-award').first()).toContainText(
     'Same published buyer identifier',
   )
-  await expect(research.locator('.related-award').last()).toContainText('Shared capability')
+  await expect(research.locator('.related-award').last().locator('.award-reason')).toHaveText(
+    'Salesforce platform · Case management & service',
+  )
   await research.getByLabel('Supplier', { exact: true }).fill('Example Delivery')
   await expect(research.locator('.related-award')).toHaveCount(1)
   await research.getByLabel('Awarded from').fill('2025-01-01')
@@ -493,35 +451,72 @@ test('title research compares source-linked awards with explicit relationship an
   })
 })
 
-test('search intent, active chips and named views persist without private record fields', async ({
+test('last view remembers search and matching while shared URLs and UK startup stay predictable', async ({
   page,
 }) => {
   await page.goto('./')
   await page.getByRole('textbox', { name: 'Search opportunities' }).fill('kundenplattform')
   await expect(page.locator('.row-select')).toHaveCount(1)
-  await expect(page.locator('.row-search-match')).toContainText('Salesforce platform')
   await page.getByRole('combobox', { name: 'Search mode' }).selectOption('exact')
   await expect(page.getByText('No matching signals', { exact: true })).toBeVisible()
   await page.getByRole('combobox', { name: 'Search mode' }).selectOption('capability')
-  await page.getByText('Saved views', { exact: true }).click()
-  await page.getByRole('button', { name: 'Save this view' }).click()
-  await page.getByRole('textbox', { name: 'Saved view name' }).fill('UK platform leads')
-  await page.getByRole('button', { name: 'Save', exact: true }).click()
-  await page.getByRole('button', { name: 'Remove Search filter', exact: true }).click()
-  await page.reload()
-  await page.getByText('Saved views', { exact: true }).click()
-  await page.getByRole('button', { name: 'UK platform leads', exact: true }).click()
+  await page.goto('./')
   await expect(page.getByRole('textbox', { name: 'Search opportunities' })).toHaveValue(
     'kundenplattform',
   )
-  const stored = await page.evaluate(() =>
-    JSON.parse(localStorage.getItem('anthrion-personal-workspace-v1') || '{}'),
+  await expect(page.getByRole('button', { name: 'United Kingdom', exact: true })).toHaveAttribute(
+    'aria-pressed',
+    'true',
   )
-  expect(stored.records).toBeUndefined()
+  await expect(page.getByText('Saved views', { exact: true })).toHaveCount(0)
+  await page.goto('./?market=FR&view=all')
+  await expect(page.getByRole('textbox', { name: 'Search opportunities' })).toHaveValue('')
+  await expect(page.getByRole('button', { name: 'France', exact: true })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  )
+  await page.goto('./')
+  await expect(page.getByRole('button', { name: 'United Kingdom', exact: true })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  )
 })
 
-test('All follows UK and market organizer pins and reorders More markets', async ({ page }) => {
+test('All leads UK; groups and individual countries can be pinned together and moved', async ({
+  page,
+}) => {
   await page.goto('./')
+  await expect(page.locator('.market-tabs > button').nth(0)).toHaveAttribute(
+    'aria-label',
+    'All markets',
+  )
+  await expect(page.locator('.market-tabs > button').nth(1)).toHaveAttribute(
+    'aria-label',
+    'United Kingdom',
+  )
+  await expect(page.getByRole('button', { name: 'France', exact: true })).toBeAttached()
+  await expect(page.getByRole('button', { name: 'Benelux', exact: true })).toBeAttached()
+  await page.getByRole('button', { name: 'Organize markets' }).click()
+  const organizer = page.getByRole('dialog', { name: 'Organize markets' })
+  await expect(
+    organizer.getByRole('checkbox', { name: 'Pin All markets', exact: true }),
+  ).toBeChecked()
+  for (const country of [
+    'Germany',
+    'Austria',
+    'Switzerland',
+    'Belgium',
+    'Netherlands',
+    'Luxembourg',
+  ])
+    await expect(
+      organizer.getByRole('checkbox', { name: `Pin ${country}`, exact: true }),
+    ).toHaveCount(1)
+  await organizer.getByRole('checkbox', { name: 'Pin Belgium', exact: true }).check()
+  await organizer.getByRole('checkbox', { name: 'Pin Germany', exact: true }).check()
+  await organizer.getByRole('button', { name: 'Move All down', exact: true }).click()
+  await organizer.getByRole('button', { name: 'Done', exact: true }).click()
+  await page.reload()
   await expect(page.locator('.market-tabs > button').nth(0)).toHaveAttribute(
     'aria-label',
     'United Kingdom',
@@ -530,70 +525,84 @@ test('All follows UK and market organizer pins and reorders More markets', async
     'aria-label',
     'All markets',
   )
-  await page.getByRole('button', { name: 'Organize markets' }).click()
-  const organizer = page.getByRole('dialog', { name: 'Organize markets' })
-  await expect(organizer.getByRole('checkbox', { name: 'Pin Benelux', exact: true })).toHaveCount(1)
-  await expect(organizer.getByRole('checkbox', { name: 'Pin DACH', exact: true })).toBeChecked()
-  await expect(
-    organizer.getByRole('checkbox', {
-      name: /Pin (Germany|Austria|Switzerland|Belgium|Netherlands|Luxembourg)$/,
-    }),
-  ).toHaveCount(0)
-  await organizer.getByRole('checkbox', { name: 'Pin France', exact: true }).check()
-  await organizer.getByRole('button', { name: 'Done', exact: true }).click()
-  await page.reload()
-  await expect(page.getByRole('button', { name: 'France', exact: true })).toBeAttached()
+  for (const market of ['Belgium', 'Germany', 'DACH', 'Benelux'])
+    await expect(page.getByRole('button', { name: market, exact: true })).toBeAttached()
   await page.getByRole('button', { name: 'All markets', exact: true }).click()
   await expect(page.locator('.row-select')).toHaveCount(2)
 })
 
-test('every market can move or unpin while All remains available', async ({ page }) => {
+test('All and grouped markets can be unpinned and remain selectable from More', async ({
+  page,
+}) => {
   await page.goto('./')
   await page.getByRole('button', { name: 'Organize markets' }).click()
   const organizer = page.getByRole('dialog', { name: 'Organize markets' })
-  const up = organizer.getByRole('button', { name: 'Move DACH up', exact: true })
-  for (let i = 0; i < 4; i++) await up.click()
-  await expect(up).toBeDisabled()
+  for (const name of ['All markets', 'Benelux', 'France'])
+    await organizer.getByRole('checkbox', { name: `Pin ${name}`, exact: true }).uncheck()
   await organizer.getByRole('button', { name: 'Done', exact: true }).click()
   await page.reload()
-  await expect(page.locator('.market-tabs > button').nth(0)).toHaveAttribute('aria-label', 'DACH')
-  await expect(page.locator('.market-tabs > button').nth(1)).toHaveAttribute(
-    'aria-label',
-    'United Kingdom',
-  )
-  await expect(page.locator('.market-tabs > button').nth(2)).toHaveAttribute(
-    'aria-label',
-    'All markets',
-  )
-  await page.getByRole('button', { name: 'Organize markets' }).click()
-  await organizer.getByRole('checkbox', { name: 'Pin United Kingdom', exact: true }).uncheck()
-  await organizer.getByRole('button', { name: 'Done', exact: true }).click()
-  await expect(page.locator('.market-tabs > button').first()).toHaveAttribute(
-    'aria-label',
-    'All markets',
-  )
-  await page.locator('.more-markets-trigger').click()
   await expect(
-    page.getByRole('menuitemradio', { name: 'United Kingdom', exact: true }),
-  ).toBeVisible()
+    page.locator('.market-tabs').getByRole('button', { name: 'All markets', exact: true }),
+  ).toHaveCount(0)
+  await page.locator('.more-markets-trigger').click()
+  const menu = page.getByRole('menu', { name: 'More markets' })
+  for (const name of ['All markets', 'Benelux', 'France', 'Belgium'])
+    await expect(menu.getByRole('menuitemradio', { name, exact: true })).toBeAttached()
+  await menu.getByRole('menuitemradio', { name: 'All markets', exact: true }).click()
+  await expect(page.locator('.row-select')).toHaveCount(2)
+  await expect(page.locator('.more-markets-trigger')).toContainText('All markets')
 })
 
-test('named views restore hidden-result intent as well as ordinary filters', async ({ page }) => {
-  await page.goto('./')
-  await page.getByRole('checkbox', { name: `Hide ${title}` }).click()
-  await expect(page.locator('.row-select')).toHaveCount(0)
-  await page.getByRole('button', { name: /Sort opportunities:/ }).click()
-  await page.getByRole('menuitemcheckbox', { name: 'Show hidden', exact: true }).click()
-  await expect(page.locator('.row-select')).toHaveCount(1)
-  await page.getByText('Saved views', { exact: true }).click()
-  await page.getByRole('button', { name: 'Save this view' }).click()
-  await page.getByRole('textbox', { name: 'Saved view name' }).fill('Revisit hidden records')
-  await page.getByRole('button', { name: 'Save', exact: true }).click()
-  await page.reload()
-  await expect(page.locator('.row-select')).toHaveCount(0)
-  await page.getByText('Saved views', { exact: true }).click()
-  await page.getByRole('button', { name: 'Revisit hidden records', exact: true }).click()
-  await expect(page.getByRole('checkbox', { name: `Unhide ${title}` })).toBeChecked()
+test('nested buyer and supplier timelines return to the same Context filters and focus', async ({
+  page,
+}) => {
+  const panel = await openRecord(page)
+  await panel.getByRole('button', { name: title, exact: true }).click()
+  const context = page.getByRole('dialog', { name: 'Opportunity research' })
+  await expect(context.getByRole('heading', { name: 'Context', exact: true })).toBeVisible()
+  await expect(context.locator('.research-current > .metal-edge')).toHaveCount(1)
+  await expect(context.locator('.decision-brief, .original-notice, .evidence-sheet')).toHaveCount(0)
+  await expect(context.locator('.research-description')).toContainText(quote)
+  await expect(context.locator('.workspace-brand img')).toHaveAttribute('src', /anthrion-logo.svg$/)
+  await context.getByLabel('Supplier', { exact: true }).fill('Example Delivery')
+  const winner = context.getByRole('button', {
+    name: 'View awarded contracts for Example Delivery Ltd',
+  })
+  await winner.click()
+  const supplier = page.getByRole('dialog', { name: 'Supplier history' })
+  await expect(
+    supplier.getByRole('heading', { name: 'Example Delivery Ltd', exact: true }),
+  ).toBeVisible()
+  await expect(supplier.locator('.research-timeline > li')).toHaveCount(1)
+  await supplier.getByRole('button', { name: 'View buyer history for Northbridge Council' }).click()
+  const buyer = page.getByRole('dialog', { name: 'Buyer history' })
+  await expect(buyer.locator('.surface-heading').first()).toContainText('55 collected')
+  await buyer.getByRole('button', { name: 'Back', exact: true }).click()
+  await expect(supplier).toBeVisible()
+  await supplier.getByRole('button', { name: 'Back', exact: true }).click()
+  await expect(context.getByLabel('Supplier', { exact: true })).toHaveValue('Example Delivery')
+  await expect(winner).toBeFocused()
+  await expect(context.locator('.related-award')).toHaveCount(1)
+  await context
+    .locator('.related-award')
+    .getByRole('button', { name: 'View buyer history for Northbridge Council' })
+    .click()
+  await expect(buyer).toBeVisible()
+})
+
+test('awarded supplier links work from the main record and its full details', async ({ page }) => {
+  await page.goto('./?view=awards')
+  await page
+    .locator('.row-select')
+    .filter({ hasText: 'Customer platform implementation 2024' })
+    .click()
+  const panel = page.locator('.console-detail:visible')
+  await panel
+    .getByRole('button', { name: 'View awarded contracts for Example Delivery Ltd' })
+    .click()
+  await expect(
+    page.getByRole('dialog', { name: 'Supplier history' }).locator('.research-timeline > li'),
+  ).toHaveCount(1)
 })
 
 test('slow details stay in a loading state before source research can open', async ({
@@ -697,14 +706,11 @@ test('an open research page updates source and translation together after a dela
   )
   await expect(page.locator('.console-inspector')).toContainText('Loading full record…')
   await expect(research.locator('.research-current h2')).toHaveText(title)
-  await expect(research.getByRole('region', { name: 'Decision brief' })).toContainText(quote)
+  await expect(research.locator('.research-description')).toContainText(quote)
   release()
   await expect(research.locator('.research-current h2')).toHaveText(english.title)
-  await expect(research.getByRole('region', { name: 'Decision brief' })).toContainText(
-    'Version two source scope.',
-  )
-  await research.getByText('Read original notice text', { exact: true }).click()
-  await expect(research.locator('.original-notice')).toContainText(revised.description)
+  await expect(research.locator('.research-description')).toContainText(english.description)
+  await expect(research.locator('.original-notice')).toHaveCount(0)
 })
 
 test('direct record links load the requested country before choosing a default row', async ({
@@ -713,13 +719,16 @@ test('direct record links load the requested country before choosing a default r
   await page.goto('./?signal=panel-b')
   await expect(page.locator('.console-detail:visible h2')).toHaveText('Portail citoyen')
   await expect(page).toHaveURL(/market=FR/)
-  await expect(page.locator('.more-markets-trigger')).toContainText('France')
+  await expect(page.getByRole('button', { name: 'France', exact: true })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  )
   await expect(
     page.getByText('This opportunity is no longer available', { exact: true }),
   ).toHaveCount(0)
 })
 
-test('More markets supports hover and keyboard navigation without split group clutter', async ({
+test('More markets exposes individual countries with hover and keyboard navigation', async ({
   page,
 }) => {
   await page.goto('./')
@@ -728,12 +737,12 @@ test('More markets supports hover and keyboard navigation without split group cl
   await trigger.press('ArrowDown')
   const menu = page.getByRole('menu', { name: 'More markets' })
   await expect(menu).toBeVisible()
-  await expect(menu.getByRole('menuitemradio', { name: 'Benelux', exact: true })).toHaveCount(1)
+  await expect(menu.getByRole('menuitemradio', { name: 'Benelux', exact: true })).toHaveCount(0)
   await expect(
     menu.getByRole('menuitemradio', {
       name: /^(Germany|Austria|Switzerland|Belgium|Netherlands|Luxembourg)$/,
     }),
-  ).toHaveCount(0)
+  ).toHaveCount(6)
   await page.keyboard.press('End')
   await expect(menu.getByRole('menuitemradio').last()).toBeFocused()
   await page.keyboard.press('Escape')

@@ -14,7 +14,7 @@ from pathlib import Path
 from anthrion_signal.config import load_config
 from anthrion_signal.discovery import discovery_signature, prefilter
 from anthrion_signal.models import Signal
-from anthrion_signal.utils import atomic_json
+from anthrion_signal.utils import atomic_json, read_json
 
 
 def stable(value):
@@ -229,7 +229,7 @@ def main():
             result = collection_controls(signals, controls)
         else:
             from anthrion_signal.translation import source_language_hint
-            current = json.loads((data_root / "data/current.json").read_text(encoding="utf-8"))
+            current = read_json(data_root / "data/current.json", {})
             result = sample_queue(signals, {s["id"] for s in current["signals"]}, load_regressions(root),
                                   args.size, newer_than=args.newer_than)
             for case in result:

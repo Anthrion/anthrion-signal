@@ -7,6 +7,8 @@ import {
   readPersonalWorkspace,
   restoreSavedView,
   writePersonalWorkspace,
+  readLastView,
+  rememberLastView,
 } from './personalWorkspace'
 import type { StorageAccess } from './personalWorkspace'
 
@@ -20,6 +22,64 @@ function memoryStorage(initial: string | null = null) {
   } satisfies StorageAccess
 }
 describe('personal views and market preferences', () => {
+  test('last-view memory restores filters while a plain visit starts in the UK', () => {
+    const storage = memoryStorage()
+    rememberLastView(storage, {
+      ...defaults,
+      view: 'awards',
+      q: 'CRM',
+      market: 'FR',
+      supplier: 'Example',
+    })
+    expect(readLastView(storage)).toEqual({
+      ...defaults,
+      view: 'awards',
+      q: 'CRM',
+      supplier: 'Example',
+    })
+    expect(readLastView(memoryStorage('{broken'))).toEqual(defaults)
+    const blocked = {
+      getItem() {
+        throw Error('Blocked')
+      },
+      setItem() {
+        throw Error('Blocked')
+      },
+    }
+    expect(readLastView(blocked)).toEqual(defaults)
+    expect(() => rememberLastView(blocked, defaults)).not.toThrow()
+  })
+  test('All, groups and countries can be independently pinned and reordered', () => {
+    expect(emptyPersonalWorkspace().marketPreferences.pinned).toEqual([
+      '',
+      'GB',
+      'US',
+      'IT',
+      'NORDICS',
+      'DACH',
+      'ES',
+      'GR',
+      'BENELUX',
+      'FR',
+    ])
+    expect(
+      normaliseMarketPreferences({
+        pinned: ['BENELUX', 'BE', 'DACH', 'DE', ''],
+        order: ['BE', '', 'DE', 'BENELUX'],
+      }).pinned,
+    ).toEqual(['BENELUX', 'BE', 'DACH', 'DE', ''])
+    const legacy = memoryStorage(
+      JSON.stringify({
+        ...emptyPersonalWorkspace(),
+        marketPreferences: { pinned: ['FR', 'BENELUX'], order: ['FR', 'BENELUX', 'GB'] },
+      }),
+    )
+    expect(readPersonalWorkspace(legacy).state.marketPreferences.pinned).toEqual([
+      '',
+      'FR',
+      'BENELUX',
+    ])
+  })
   test('a named view restores all search, market, financial and award filters', () => {
     const filters = {
       ...defaults,

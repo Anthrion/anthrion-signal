@@ -24,7 +24,7 @@ from anthrion_signal.translation import (
     field_key,
     translation_lock,
 )
-from anthrion_signal.utils import atomic_bytes, atomic_json, read_json
+from anthrion_signal.utils import atomic_bytes, atomic_json, read_json, read_retained_bytes, jsonl_lines
 
 
 def main():
@@ -56,16 +56,16 @@ def main():
             path = root / "artifacts/translation-benchmark/float32/results.jsonl"
             corpus = [json.loads(line) for line in path.read_text(encoding="utf-8").split("\n") if line.strip()]
             ids = {entry["id"] for entry in corpus}
-            with (root / "data/signals.jsonl").open(encoding="utf-8") as stream:
-                buyers = {record["id"]: record.get("buyer_name") for line in stream
-                          if (record := json.loads(line))["id"] in ids}
+            buyers = {record["id"]: record.get("buyer_name")
+                      for line in jsonl_lines(read_retained_bytes(root / "data/signals.jsonl").decode("utf-8"))
+                      if (record := json.loads(line))["id"] in ids}
             for entry in corpus:
                 queue.add(entry["source"], [buyers.get(entry["id"])])
         else:
             now = datetime.now(UTC)
             if (root / "config/capabilities.yaml").exists():
-                from anthrion_signal.cli import export
-                candidates = export(root).signals
+                from anthrion_signal.cli import prepare_current
+                candidates = prepare_current(root, save_cache=True)[0].signals
             else:
                 candidates = Dataset.model_validate(read_json(root / "data/current.json", {})).signals
             records = [signal for signal in candidates

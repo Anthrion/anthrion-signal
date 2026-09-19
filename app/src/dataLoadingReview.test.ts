@@ -52,15 +52,15 @@ afterEach(() => vi.unstubAllGlobals())
 
 describe('Benelux as a combined market', () => {
   const entry = (id: string, count = 1) => ({ url: `current/${id}-0123456789abcdef.json`, count })
-  test('default preferences consolidate three countries while country facts and old links stay precise', () => {
+  test('group and individual country preferences remain independent', () => {
     expect(defaultMarketOptions.map((m) => m.id)).toContain('BENELUX')
-    expect(defaultMarketOptions.some((m) => ['BE', 'NL', 'LU'].includes(m.id))).toBe(false)
+    expect(defaultMarketOptions.filter((m) => ['BE', 'NL', 'LU'].includes(m.id))).toHaveLength(3)
     const preferences = normaliseMarketPreferences({
       pinned: ['NL', 'BE', 'LU', 'GB'],
       order: ['BE', 'FR', 'NL', 'LU'],
     })
-    expect(preferences.pinned).toEqual(['BENELUX', 'GB'])
-    expect(preferences.order.slice(0, 2)).toEqual(['BENELUX', 'FR'])
+    expect(preferences.pinned).toEqual(['NL', 'BE', 'LU', 'GB'])
+    expect(preferences.order.slice(0, 4)).toEqual(['BE', 'FR', 'NL', 'LU'])
     expect(preferences.order.filter((id) => id === 'BENELUX')).toHaveLength(1)
     expect(normaliseFilters({ market: 'benelux' }).market).toBe('BENELUX')
     expect(normaliseFilters({ market: 'BE' }).market).toBe('BE')
@@ -112,9 +112,9 @@ describe('Benelux as a combined market', () => {
       pinned: ['GB', 'DE', 'CH', 'AT'],
       order: ['DE', 'AT', 'FR', 'CH'],
     })
-    expect(arranged.pinned).toEqual(['GB', 'DACH'])
-    expect(arranged.order.slice(0, 2)).toEqual(['DACH', 'FR'])
-    expect(defaultMarketOptions.some((m) => ['DE', 'AT', 'CH'].includes(m.id))).toBe(false)
+    expect(arranged.pinned).toEqual(['GB', 'DE', 'CH', 'AT'])
+    expect(arranged.order.slice(0, 4)).toEqual(['DE', 'AT', 'FR', 'CH'])
+    expect(defaultMarketOptions.filter((m) => ['DE', 'AT', 'CH'].includes(m.id))).toHaveLength(3)
     expect(normaliseFilters({ market: 'dach' }).market).toBe('DACH')
     expect(normaliseFilters({ market: 'DE' }).market).toBe('DE')
     expect(matchesMarket({ ...record, countries: ['CH'] }, 'DACH')).toBe(true)

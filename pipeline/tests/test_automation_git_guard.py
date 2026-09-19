@@ -69,3 +69,17 @@ def test_source_change_followed_by_revert_cannot_hide_in_net_diff(guard, reposit
     assert not git("diff", "origin/main", "HEAD")
     with pytest.raises(RuntimeError):
         guard.check_unpushed(root)
+
+
+def test_oversized_blob_is_rejected_even_if_deleted_by_a_later_commit(guard, repository, monkeypatch):
+    root, git = repository
+    monkeypatch.setattr(guard, "MAX_BLOB_BYTES", 20)
+    (root / "data/oversize.json").write_text("x" * 21)
+    git("add", "data")
+    with pytest.raises(RuntimeError, match="safety limit"):
+        guard.check_staged(root)
+    git("commit", "-m", "Oversized data")
+    git("rm", "data/oversize.json")
+    git("commit", "-m", "Remove oversized data")
+    with pytest.raises(RuntimeError, match="safety limit"):
+        guard.check_unpushed(root)

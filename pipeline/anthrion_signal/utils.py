@@ -1,4 +1,5 @@
 import hashlib
+import gzip
 import json
 import os
 import re
@@ -85,9 +86,47 @@ def official_notice_url(url: str) -> str:
 
 
 def read_json(path: Path, default):
-    if not path.exists():
+    if not retained_path(path).exists():
         return default
-    return json.loads(path.read_text(encoding="utf-8"))
+    return json.loads(read_retained_bytes(path))
+
+
+def retained_path(path: Path) -> Path:
+    """Read old plain snapshots and their lossless compressed successors."""
+    compressed = path.with_name(path.name + ".gz")
+    return path if path.exists() or not compressed.exists() else compressed
+
+
+def read_retained_bytes(path: Path) -> bytes:
+    actual = retained_path(path)
+    body = actual.read_bytes()
+    return gzip.decompress(body) if actual.suffix == ".gz" else body
+
+
+def atomic_retained_bytes(path: Path, body: bytes, *, threshold=32 * 1024 * 1024) -> bool:
+    """Compress growing Git snapshots atomically; public web assets stay ordinary JSON.
+
+    Write and fsync the replacement before removing the old representation. Gzip's
+    fixed timestamp makes unchanged records byte-stable across collection runs.
+    Small legacy fixtures and files remain readable without a migration step.
+    """
+    if path.suffix == ".gz":
+        path = path.with_suffix("")
+    compressed = path.with_name(path.name + ".gz")
+    if len(body) < threshold and not compressed.exists():
+        return atomic_bytes(path, body)
+    packed = gzip.compress(body, compresslevel=6, mtime=0)
+    if len(packed) >= 95 * 1024 * 1024:
+        raise ValueError("Compressed retained snapshot needs partitioning before Git publication")
+    changed = atomic_bytes(compressed, packed)
+    legacy = path.exists()
+    path.unlink(missing_ok=True)
+    return changed or legacy
+
+
+def atomic_retained_json(path: Path, value) -> bool:
+    body = json.dumps(value, ensure_ascii=False, sort_keys=True, indent=2, allow_nan=False) + "\n"
+    return atomic_retained_bytes(path, body.encode("utf-8"))
 
 
 def jsonl_lines(body: str):

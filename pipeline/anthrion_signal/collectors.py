@@ -953,10 +953,16 @@ def collect_spain(source, state, frozen, http, settings, terms):
     return collect_spain_notices(source, state, frozen, http, settings, terms)
 
 
+def collect_sam(source, state, frozen, http, settings, terms):
+    from .sam_opportunities import collect_sam_opportunities
+    return collect_sam_opportunities(source, state, frozen, http, settings, terms)
+
+
 COLLECTORS = {"ocds_cursor": collect_cursor, "ocds_monthly": collect_monthly, "govuk": collect_govuk,
               "digital_outcomes": collect_digital, "upcoming_agreements": collect_upcoming, "ted": collect_ted,
               "usaspending": collect_usaspending, "grants": collect_grants, "german_daily": collect_german_daily,
-              "nyc_city_record": collect_nyc, "spain_atom": collect_spain, "la_ramp": collect_ramp}
+              "nyc_city_record": collect_nyc, "spain_atom": collect_spain, "la_ramp": collect_ramp,
+              "sam_csv": collect_sam}
 
 
 def collect_with_backfill(source, state, frozen, http, settings, terms, charter):

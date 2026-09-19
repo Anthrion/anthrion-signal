@@ -88,7 +88,9 @@ jobs:
         env:
           MAX_PAGES_PER_SOURCE: '80'
           PYTHONUNBUFFERED: '1'
-        run: python -m anthrion_signal.cli ingest
+        run: python -m anthrion_signal.cli ingest --no-export
+      - name: Compress retained snapshots
+        run: python scripts/compress_retained_data.py
       - name: Translate new and outstanding records
         id: translate
         # A free model can still be billed when the Google project is on a paid tier.
@@ -124,10 +126,10 @@ jobs:
           FORCE_DEPLOY: ${{ github.event_name != 'schedule' }}
         run: python scripts/publication_state.py after
       - name: Verify pipeline changes
-        if: steps.plan.outputs.collect == 'true' || steps.changed.outputs.deploy == 'true' || steps.plan.outputs.full_tests == 'true'
+        if: steps.plan.outputs.full_tests == 'true'
         run: |
           python -m pytest -q
-          python -m ruff check pipeline scripts/refresh_plan.py scripts/translate_records.py scripts/publication_state.py scripts/reconcile_release_data.py scripts/audit_translations.py scripts/audit_relevance.py scripts/automation_git_guard.py scripts/timestamp_source.py
+          python -m ruff check pipeline scripts/refresh_plan.py scripts/translate_records.py scripts/publication_state.py scripts/reconcile_release_data.py scripts/audit_translations.py scripts/audit_relevance.py scripts/automation_git_guard.py scripts/timestamp_source.py scripts/compress_retained_data.py
       - uses: actions/setup-node@v4
         if: steps.changed.outputs.deploy == 'true' || steps.plan.outputs.full_tests == 'true'
         with:

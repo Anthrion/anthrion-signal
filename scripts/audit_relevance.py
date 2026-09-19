@@ -10,12 +10,13 @@ from anthrion_signal.config import load_config
 from anthrion_signal.discovery import discovery_signature, is_public_opportunity, lifecycle, prefilter
 from anthrion_signal.models import Signal
 from anthrion_signal.translation import available_translations
-from anthrion_signal.utils import atomic_json, jsonl_lines, parse_date, read_json
+from anthrion_signal.utils import atomic_json, jsonl_lines, parse_date, read_json, retained_path
 
 
 def retained_records(root):
     records, locations, canonical_ids = {}, Counter(), set()
-    paths = [root / "data/signals.jsonl", *sorted((root / "data/archive").glob("*.jsonl.gz")),
+    canonical = retained_path(root / "data/signals.jsonl")
+    paths = [canonical, *sorted((root / "data/archive").glob("*.jsonl.gz")),
              *sorted((root / "data/discovery/rejected").glob("*.jsonl.gz"))]
     for path in paths:
         if not path.exists():
@@ -26,7 +27,7 @@ def retained_records(root):
                 continue
             signal = Signal.model_validate_json(line)
             locations[str(path.relative_to(root))] += 1
-            if path == root / "data/signals.jsonl":
+            if path == canonical:
                 records[signal.id] = signal
                 canonical_ids.add(signal.id)
             elif signal.id not in canonical_ids:

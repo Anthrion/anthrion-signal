@@ -205,7 +205,21 @@ sources:
   - {id: nspa, name: NSPA, enabled: false, collector: external_adapter, website: 'https://www.nspa.nato.int', access: authorised feed}
   - {id: world_bank, name: World Bank, enabled: false, collector: external_adapter, website: 'https://projects.worldbank.org', access: official procurement API}
   - {id: ebrd, name: EBRD, enabled: false, collector: external_adapter, website: 'https://www.ebrd.com', access: official procurement notices}
-  - {id: sam, name: SAM.gov, enabled: false, collector: external_adapter, website: 'https://sam.gov', access: API key and official opportunities API}
+  - id: sam
+    name: SAM.gov
+    enabled: true
+    collector: sam_csv
+    max_records_per_run: 3000
+    source_type: official_notice
+    url: https://s3.amazonaws.com/falextracts/Contract%20Opportunities/datagov/ContractOpportunitiesFullCSV.csv
+    website: https://sam.gov
+    docs: https://sam.gov/data-services/Contract%20Opportunities?privacy=Public
+    country: US
+    refresh_hours: 24
+    max_bytes: 536870912
+    max_rows: 250000
+    minimum_rows: 1000
+    coverage: Public daily federal opportunity extract, including solicitations, sources sought and award notices. Listed status does not establish an open response window. Full historical archives and restricted attachments are not included.
   - {id: ungm, name: UNGM, enabled: false, collector: external_adapter, website: 'https://www.ungm.org', access: authorised public API or supplier alerts}
 
   # Disabled national-source research registry; these entries add no collected coverage.

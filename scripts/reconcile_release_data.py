@@ -15,7 +15,8 @@ from anthrion_signal.canonical import canonical_signal_json
 from anthrion_signal.dedupe import exact_keys
 from anthrion_signal.models import Signal
 from anthrion_signal.normalise import set_hashes
-from anthrion_signal.utils import atomic_bytes, atomic_json, jsonl_lines
+from anthrion_signal.utils import (atomic_bytes, atomic_json, atomic_retained_bytes,
+                                  atomic_retained_json, jsonl_lines)
 
 
 def unique(values):
@@ -88,11 +89,20 @@ def main():
 
     def blob(ref, path):
         result = subprocess.run(["git", "show", f"{ref}:{path}"], cwd=root, capture_output=True)
-        return result.stdout if result.returncode == 0 else b""
+        if result.returncode == 0:
+            return result.stdout
+        if not path.endswith(".gz"):
+            result = subprocess.run(["git", "show", f"{ref}:{path}.gz"], cwd=root, capture_output=True)
+            if result.returncode == 0:
+                return gzip.decompress(result.stdout)
+        return b""
 
     def local_blob(path):
         target = root / path
-        return target.read_bytes() if target.exists() else b""
+        if target.exists():
+            return target.read_bytes()
+        compressed = target.with_name(target.name + ".gz")
+        return gzip.decompress(compressed.read_bytes()) if not path.endswith(".gz") and compressed.exists() else b""
 
     def json_blob(ref, path):
         return json.loads(blob(ref, path) or b"{}")
@@ -166,10 +176,10 @@ def main():
             for key in exact_keys(Signal.model_validate(item)):
                 index[key] = {"id": item["id"], "month": month}
     atomic_json(root / "data/archive_index.json", index)
-    atomic_bytes(root / "data/signals.jsonl", ("\n".join(canonical_signal_json(Signal.model_validate(value))
+    atomic_retained_bytes(root / "data/signals.jsonl", ("\n".join(canonical_signal_json(Signal.model_validate(value))
                                                        for value in merged.values()) + "\n").encode())
-    atomic_json(root / "data/source_state.json", state)
-    atomic_json(root / "data/current.json", current)
+    atomic_retained_json(root / "data/source_state.json", state)
+    atomic_retained_json(root / "data/current.json", current)
     atomic_bytes(root / "data/history.jsonl", ("\n".join(json.dumps(value) for value in sorted(history, key=lambda x: x["at"])) + "\n").encode())
     for path in ("data/publication_state.json", "data/verification_state.json"):
         body = blob(args.remote, path)

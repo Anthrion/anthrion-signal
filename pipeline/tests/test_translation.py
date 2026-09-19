@@ -47,6 +47,23 @@ MODELS = (ModelBudget("gemini-3.5-flash-lite", rpm=1000, tpm=1_000_000),
           ModelBudget("gemini-3.1-flash-lite", rpm=1000, tpm=1_000_000))
 
 
+def test_translation_queue_interleaves_markets_without_losing_records_or_repeating_fields(tmp_path):
+    records = [SimpleNamespace(id=str(i), title=f"Notice {i}", description=f"Description {i}",
+        buyer_name="Shared buyer", countries=countries, last_material_update=f"2026-09-{20-i:02d}")
+        for i, countries in enumerate([["DE"], ["DE"], ["DE"], ["FR"], ["BE", "NL"], ["AT"]])]
+    queue = TranslationQueue(tmp_path / "cache.json")
+    queue.prepare(records)
+    content = [queue.state["fields"][key]["parts"][0]["source"] for key in queue.active]
+    assert content[:8] == ["Notice 0", "Description 0", "Notice 3", "Description 3",
+                          "Notice 4", "Description 4", "Notice 5", "Description 5"]
+    assert content[8:12] == ["Notice 1", "Description 1", "Notice 2", "Description 2"]
+    assert content[12:] == ["Shared buyer"]
+    saved = list(queue.active)
+    resumed = TranslationQueue(tmp_path / "cache.json")
+    resumed.prepare(list(reversed(records)))
+    assert resumed.active == saved
+
+
 def test_verified_limits_use_full_project_capacity_without_resetting_previous_usage(tmp_path):
     clock = Clock()
     ledger = QuotaLedger(tmp_path / "quota.json", clock)

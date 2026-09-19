@@ -1,8 +1,47 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { defaultMarketOptions, defaultMarketGroup, normaliseFilters } from './lib'
+import { defaultMarketOptions, normaliseFilters, defaults, readFilters } from './lib'
 import type { Filters } from './types'
 
 export const PERSONAL_WORKSPACE_KEY = 'anthrion-personal-workspace-v1'
+export const LAST_VIEW_KEY = 'anthrion-last-view-v1'
+
+export function readLastView(storage: StorageAccess): Filters {
+  try {
+    const value: unknown = JSON.parse(storage.getItem(LAST_VIEW_KEY) || 'null')
+    if (
+      object(value) &&
+      value.version === 1 &&
+      object(value.filters) &&
+      Object.values(value.filters).every((item) => typeof item === 'string' && item.length <= 2000)
+    ) {
+      return normaliseFilters({ ...value.filters, market: defaults.market })
+    }
+  } catch {
+    /* Private browsing, invalid data and storage limits keep the defaults usable. */
+  }
+  return { ...defaults }
+}
+
+export function initialWorkspaceFilters(): Filters {
+  // Shared URLs always specify their own view; a plain visit starts in the UK.
+  if (window.location.search) return readFilters()
+  try {
+    return readLastView(window.localStorage)
+  } catch {
+    return { ...defaults }
+  }
+}
+
+export function rememberLastView(storage: StorageAccess, filters: Filters) {
+  try {
+    storage.setItem(
+      LAST_VIEW_KEY,
+      JSON.stringify({ version: 1, filters: normaliseFilters(filters) }),
+    )
+  } catch {
+    /* Remembering a view must never prevent browsing. */
+  }
+}
 export interface SavedView {
   id: string
   name: string
@@ -27,29 +66,26 @@ const object = (value: unknown): value is Record<string, unknown> =>
   !!value && typeof value === 'object' && !Array.isArray(value)
 const strings = (value: unknown): value is string[] =>
   Array.isArray(value) && value.every((v) => typeof v === 'string')
-const identifier = () =>
-  globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`
 export function emptyPersonalWorkspace(): PersonalWorkspace {
   return {
     version: 1,
     savedViews: [],
     marketPreferences: {
-      pinned: ['GB', 'US', 'IT', 'NORDICS', 'DACH', 'ES', 'GR'],
+      pinned: ['', 'GB', 'US', 'IT', 'NORDICS', 'DACH', 'ES', 'GR', 'BENELUX', 'FR'],
       order: defaultMarketOptions.map((m) => m.id),
     },
   }
 }
 export function normaliseMarketPreferences(value: MarketPreferences): MarketPreferences {
   const known = new Set<string>(defaultMarketOptions.map((m) => m.id))
-  const group = defaultMarketGroup
   return {
     order: [
       ...new Set([
-        ...value.order.map(group).filter((id) => known.has(id)),
+        ...value.order.filter((id) => known.has(id)),
         ...defaultMarketOptions.map((m) => m.id),
       ]),
     ],
-    pinned: [...new Set(value.pinned.map(group).filter((id) => known.has(id)))],
+    pinned: [...new Set(value.pinned.filter((id) => known.has(id)))],
   }
 }
 export function validPersonalWorkspace(value: unknown): value is PersonalWorkspace {
@@ -80,6 +116,10 @@ export function readPersonalWorkspace(storage: StorageAccess): {
     if (raw === null) return { state: emptyPersonalWorkspace(), error: '' }
     const parsed: unknown = JSON.parse(raw)
     if (!validPersonalWorkspace(parsed)) throw new Error('Invalid saved data')
+    const previousDefaultPins = ['GB', 'US', 'IT', 'NORDICS', 'DACH', 'ES', 'GR']
+    const untouchedPins =
+      parsed.marketPreferences.pinned.length === previousDefaultPins.length &&
+      previousDefaultPins.every((id) => parsed.marketPreferences.pinned.includes(id))
     return {
       state: {
         version: 1,
@@ -88,15 +128,26 @@ export function readPersonalWorkspace(storage: StorageAccess): {
           filters: normaliseFilters(v.filters),
           showHidden: v.showHidden ?? false,
         })),
-        marketPreferences: normaliseMarketPreferences(parsed.marketPreferences),
+        marketPreferences: normaliseMarketPreferences(
+          // All used to be an implicit tab after UK, outside the saved arrangement.
+          parsed.marketPreferences.order.includes('')
+            ? parsed.marketPreferences
+            : {
+                order: ['', ...parsed.marketPreferences.order],
+                pinned: [
+                  '',
+                  ...parsed.marketPreferences.pinned,
+                  ...(untouchedPins ? ['BENELUX', 'FR'] : []),
+                ],
+              },
+        ),
       },
       error: '',
     }
   } catch {
     return {
       state: emptyPersonalWorkspace(),
-      error:
-        'Your saved views and market preferences could not be read. Existing browser data has been preserved.',
+      error: 'Your market preferences could not be read. Existing browser data has been preserved.',
     }
   }
 }
@@ -114,7 +165,7 @@ export function writePersonalWorkspace(
   } catch {
     return {
       ...loaded,
-      error: 'Your views and market preferences could not be saved in this browser.',
+      error: 'Your market preferences could not be saved in this browser.',
     }
   }
 }
@@ -157,37 +208,10 @@ export function usePersonalWorkspace() {
       setStorageError(result.error)
       return !result.error
     } catch {
-      setStorageError('Your views and market preferences could not be saved in this browser.')
+      setStorageError('Your market preferences could not be saved in this browser.')
       return false
     }
   }, [])
-  const saveView = useCallback(
-    (name: string, filters: Filters, showHidden = false) => {
-      if (!name.trim()) return false
-      return editPreferences((value) => ({
-        ...value,
-        savedViews: [
-          ...value.savedViews,
-          {
-            id: identifier(),
-            name: name.trim(),
-            filters: normaliseFilters(filters),
-            showHidden,
-            createdAt: new Date().toISOString(),
-          },
-        ],
-      }))
-    },
-    [editPreferences],
-  )
-  const removeView = useCallback(
-    (id: string) =>
-      editPreferences((value) => ({
-        ...value,
-        savedViews: value.savedViews.filter((v) => v.id !== id),
-      })),
-    [editPreferences],
-  )
   const arrangeMarkets = useCallback(
     (preferences: MarketPreferences) =>
       editPreferences((value) => ({
@@ -196,5 +220,5 @@ export function usePersonalWorkspace() {
       })),
     [editPreferences],
   )
-  return { ...state, storageError, saveView, removeView, arrangeMarkets }
+  return { ...state, storageError, arrangeMarkets }
 }

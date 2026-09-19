@@ -10,7 +10,8 @@ from .collectors import Http, collect_with_backfill, hydrate_sparse
 from .award_history import export_awards
 from .attachments import enrich_documents, hydrate_cached_documents
 from .config import capability_catalog, evidence_catalog, load_config
-from .discovery import discovery_signature, is_public_opportunity, lifecycle, prefilter, ranking_key
+from .discovery import discovery_signature, is_public_opportunity, lifecycle, ranking_key
+from .discovery_cache import ClassificationCache
 from .discovery_retention import read_rejected, retain_rejected
 from .dedupe import reconcile
 from .models import Dataset, EnglishText, Signal, SourceHealth
@@ -20,7 +21,8 @@ from .public_context import backfill_retained_facts, public_signal
 from .public_feed import export_current
 from .retention import archive_expired, restore_matching
 from .translation import available_translations
-from .utils import atomic_bytes, atomic_json, digest, jsonl_lines, parse_date, read_json
+from .utils import (atomic_json, atomic_retained_bytes, atomic_retained_json, digest,
+                    jsonl_lines, parse_date, read_json, read_retained_bytes, retained_path)
 
 SCHEDULED_TIMES = [f"{hour:02}:50" for hour in range(24)]
 
@@ -61,6 +63,9 @@ def _collect(source, previous_state, now, config, previous_signals=None):
             health.message = f"{rejected} records could not be normalised; retrieval checkpoint retained."
             next_state = state
             health.last_success = state.get("last_success")
+        elif source["collector"] == "sam_csv" and next_state.get("snapshot_etag") != state.get("snapshot_etag"):
+            from .sam_opportunities import removed_sam_records
+            normalised.extend(removed_sam_records(previous_signals or [], next_state, now.isoformat()))
         return source["id"], normalised, next_state, health, len(result.records) + len(result.rejected_records)
     except Exception as exc:
         health.status = "failed"
@@ -92,16 +97,17 @@ def derive_renewals(signals, now, config):
     return result
 
 
-def export(root):
+def prepare_current(root, *, save_cache=False):
+    """Classify current candidates without writing award shards or public assets."""
     data = Dataset.model_validate(read_json(root / "data/current.json", {}))
     config = load_config(root)
     signature = discovery_signature(config)
     canonical = root / "data/signals.jsonl"
-    canonical_signals = [Signal.model_validate_json(line) for line in jsonl_lines(canonical.read_text(encoding="utf-8"))] if canonical.exists() else data.signals
+    canonical_signals = [Signal.model_validate_json(line) for line in jsonl_lines(read_retained_bytes(canonical).decode("utf-8"))] if retained_path(canonical).exists() else data.signals
     state = read_json(root / "data/source_state.json", {})
     backfill_retained_facts(canonical_signals, state)
     backfill_retained_facts(data.signals, state)
-    if data.run.get("discovery_signature") != signature and canonical.exists():
+    if data.run.get("discovery_signature") != signature and retained_path(canonical).exists():
         # A rule release must be able to restore previously suppressed candidates
         # even on an existing-data deployment. Availability is still checked below.
         known = {s.id for s in canonical_signals}
@@ -113,7 +119,10 @@ def export(root):
         data.signals, _, _ = reconcile(canonical_signals + restored, recovered)
         backfill_retained_facts(data.signals, state)
     translations = available_translations(root, data.signals)
-    prefilter(data.signals, config["company_profile"], config["search_terms"], config["capabilities"], translations)
+    cache = ClassificationCache(root, config)
+    cache.classify(data.signals, translations)
+    if save_cache:
+        cache.save()
     data.signals = [s for s in data.signals if is_public_opportunity(s, datetime.now(UTC)) and
                     s.prefilter_score >= config["capabilities"]["discovery"]["minimum_candidate_score"]]
     public_ids = {s.id for s in data.signals}
@@ -137,6 +146,11 @@ def export(root):
             health.message = "Expanded country coverage is awaiting collection; retained records remain available."
     for signal in data.signals:
         signal.lifecycle_state, signal.lifecycle_reason = lifecycle(signal, datetime.now(UTC))
+    return data, canonical_signals, config
+
+
+def export(root):
+    data, canonical_signals, config = prepare_current(root, save_cache=True)
     award_records = {}
     data.award_history = export_awards(root, canonical_signals, config, datetime.now(UTC), award_records, data.signals)
     hydrate_cached_documents(root, data.signals)
@@ -172,7 +186,7 @@ def run(root, args):
     state = read_json(state_path, {})
     previous_data = read_json(root / "data/current.json", None)
     canonical_path = root / "data/signals.jsonl"
-    previous = [Signal.model_validate_json(line) for line in jsonl_lines(canonical_path.read_text(encoding="utf-8"))] if canonical_path.exists() else []
+    previous = [Signal.model_validate_json(line) for line in jsonl_lines(read_retained_bytes(canonical_path).decode("utf-8"))] if retained_path(canonical_path).exists() else []
     backfill_retained_facts(previous, state)
     wanted = set(args.sources.split(",")) if args.sources else None
     all_sources = config["sources"]["sources"]
@@ -208,8 +222,8 @@ def run(root, args):
     replayed = read_rejected(root) if replay else []
     # Current retrieval follows replay so newer status updates remain authoritative.
     incoming = replayed + incoming
-    prefilter(incoming, config["company_profile"], config["search_terms"], config["capabilities"],
-              available_translations(root, incoming))
+    cache = ClassificationCache(root, config)
+    cache.classify(incoming, available_translations(root, incoming))
     # Replayed source versions already have durable evidence; do not duplicate
     # the entire rejection history into a new date partition on every release.
     rejected_count = retain_rejected(root, incoming[len(replayed):], now, config["capabilities"]["discovery"]["minimum_candidate_score"])
@@ -226,8 +240,7 @@ def run(root, args):
     backfill_retained_facts(signals, state)
     signals = [s for s in signals if not (s.source == "govuk" and s.notice_type in
                ("person", "role", "organisation", "minister", "world_location", "statistics_announcement"))]
-    prefilter(signals, config["company_profile"], config["search_terms"], config["capabilities"],
-              available_translations(root, signals))
+    cache.classify(signals, available_translations(root, signals))
     print(f"Reconciled {len(signals)} candidates; applying source-based discovery and availability rules", flush=True)
     ai_stats = {"gemini_calls": 0, "cache_hits": 0, "ai_failures": 0}
     for s in signals:
@@ -273,19 +286,21 @@ def run(root, args):
     Dataset.model_validate(public)
     root.joinpath("data").mkdir(exist_ok=True)
     canonical_body = "\n".join(canonical_signal_json(s) for s in sorted(signals, key=lambda s: s.id)) + "\n"
-    atomic_bytes(canonical_path, canonical_body.encode("utf-8"))
-    atomic_json(root / "data/current.json", public)
+    atomic_retained_bytes(canonical_path, canonical_body.encode("utf-8"))
+    atomic_retained_json(root / "data/current.json", public)
     atomic_json(root / "data/dedupe_index.json", index)
     atomic_json(root / "data/run_metadata.json", metadata)
     atomic_json(root / "data/discovery/state.json", {"version": config["capabilities"]["version"],
                                                    "signature": signature, "evaluated_at": now.isoformat()})
+    cache.save()
     history = root / "data/history.jsonl"
     if not same_content:
         with history.open("a", encoding="utf-8") as stream:
             stream.write(json.dumps({"at": now.isoformat(), **stats, "content_digest": content_digest}) + "\n")
     # Watermarks are persisted last so interrupted publication causes overlap, never a skipped window.
-    atomic_json(state_path, state)
-    export(root)
+    atomic_retained_json(state_path, state)
+    if not getattr(args, "no_export", False):
+        export(root)
     print(json.dumps(metadata, indent=2), flush=True)
     return dataset
 
@@ -300,6 +315,7 @@ def main():
     parser.add_argument("--refresh-daily", action="store_true", help="Refresh daily snapshots without overriding provider retry delays")
     parser.add_argument("--max-ai", type=int)
     parser.add_argument("--no-ai", action="store_true")
+    parser.add_argument("--no-export", action="store_true", help="Save retained data; leave public asset export to the validation step")
     args = parser.parse_args()
     if (args.days is not None and args.days < 1) or (args.max_pages is not None and args.max_pages < 1) or (args.max_ai is not None and args.max_ai < 0):
         parser.error("Days and page budget must be positive; AI-call budget must be non-negative")
