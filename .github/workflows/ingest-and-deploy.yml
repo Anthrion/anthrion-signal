@@ -32,7 +32,9 @@ jobs:
   build:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    # A fallback for stuck work, not the target runtime. Refresh write tokens
+    # below so valid long runs can still save data after the initial token expires.
+    timeout-minutes: 120
     permissions:
       contents: write
     outputs:
@@ -54,6 +56,7 @@ jobs:
           ref: main
           fetch-depth: 0
           token: ${{ steps.app-token.outputs.token || github.token }}
+          persist-credentials: false
       - name: Set automation commit identity
         env:
           GH_TOKEN: ${{ steps.app-token.outputs.token || github.token }}
@@ -67,6 +70,8 @@ jobs:
           fi
           echo "SIGNAL_GIT_NAME=$name" >> "$GITHUB_ENV"
           echo "SIGNAL_GIT_EMAIL=$id+$name@users.noreply.github.com" >> "$GITHUB_ENV"
+          # Git reads the current step's GH_TOKEN, never an expired checkout token.
+          gh auth setup-git --hostname github.com
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -91,19 +96,42 @@ jobs:
         run: python -m anthrion_signal.cli ingest --no-export
       - name: Compress retained snapshots
         run: python scripts/compress_retained_data.py
+      - name: Create translation checkpoint token
+        id: translation-token
+        if: >-
+          github.repository == 'Anthrion/anthrion-signal' &&
+          steps.plan.outputs.full_tests != 'true' &&
+          vars.SIGNAL_GEMINI_FREE_TIER_CONFIRMED == 'true'
+        # Optional translation waits for another refresh if token creation fails.
+        continue-on-error: true
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.ANTHRION_APP_CLIENT_ID }}
+          private-key: ${{ secrets.ANTHRION_APP_PRIVATE_KEY }}
+          owner: Anthrion
+          repositories: anthrion-signal
+          permission-contents: write
       - name: Translate new and outstanding records
         id: translate
+        # Leave full-regression runs enough time to validate and publish; regular
+        # data refreshes resume the same translation queue with the same quotas.
         # A free model can still be billed when the Google project is on a paid tier.
         # Confirm the existing project's free tier before enabling calls after transfer.
-        if: github.repository != 'Anthrion/anthrion-signal' || vars.SIGNAL_GEMINI_FREE_TIER_CONFIRMED == 'true'
+        if: >-
+          steps.plan.outputs.full_tests != 'true' &&
+          (github.repository != 'Anthrion/anthrion-signal' ||
+          (vars.SIGNAL_GEMINI_FREE_TIER_CONFIRMED == 'true' && steps.translation-token.outcome == 'success'))
         continue-on-error: true
         env:
+          GH_TOKEN: ${{ steps.translation-token.outputs.token || github.token }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           PYTHONUNBUFFERED: '1'
         run: python scripts/translate_records.py records --github-checkpoint --max-calls 150 --max-seconds 300
       - name: Checkpoint private translation progress
         if: always() && steps.translate.outcome != 'skipped'
         continue-on-error: true
+        env:
+          GH_TOKEN: ${{ steps.translation-token.outputs.token || github.token }}
         run: |
           git config user.name "$SIGNAL_GIT_NAME"
           git config user.email "$SIGNAL_GIT_EMAIL"
@@ -166,8 +194,20 @@ jobs:
       - name: Record successful full regression
         if: steps.plan.outputs.full_tests == 'true'
         run: python scripts/refresh_plan.py passed
+      - name: Create publication data token
+        id: publication-data-token
+        if: github.repository == 'Anthrion/anthrion-signal'
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.ANTHRION_APP_CLIENT_ID }}
+          private-key: ${{ secrets.ANTHRION_APP_PRIVATE_KEY }}
+          owner: Anthrion
+          repositories: anthrion-signal
+          permission-contents: write
       - name: Persist canonical state
         # Publication is still gated on every required check above.
+        env:
+          GH_TOKEN: ${{ steps.publication-data-token.outputs.token || github.token }}
         run: |
           git config user.name "$SIGNAL_GIT_NAME"
           git config user.email "$SIGNAL_GIT_EMAIL"
