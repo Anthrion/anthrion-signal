@@ -12,6 +12,7 @@ from anthrion_signal.discovery import prefilter
     ("Serial subscriptions", "Obtain printed journals, publisher pricing, accurate billing and subscription management services."),
     ("OEM tow line", "To ensure safety and integration with existing systems, only authorized vendors may supply the synthetic fiber tow line."),
     ("Receiver repair", "Equipment; Example Systems Information & Electronic Systems Integration; Company Name; repair of supplied parts."),
+    ("Receiver repair", "Equipment;Example Systems Information &Electronic Systems Integration; Company Name; repair of supplied parts."),
     ("AI system", "This procurement consists of an artificial intelligence computing system and associated software/licensing, installation and maintenance."),
 ])
 def test_administrative_and_physical_scope_is_not_software_work(signal, config, title, description):

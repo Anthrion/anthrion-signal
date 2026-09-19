@@ -22,6 +22,8 @@ The updated workflow exports the public assets once, after translation. Collecti
 
 These changes remove redundant work; they are not a guaranteed runtime. Source latency, backlog and first-time policy reclassification still vary. Confirm steady-state duration from successful production runs after deployment.
 
+An offline trial on 1,000 real SAM rows took 25.52 seconds for initial classification (950 distinct input versions) and 0.10 seconds after reloading the cache, with identical decisions. This measures classification alone, not the full build or a guaranteed production speed-up. First runs after rule changes intentionally rebuild their decisions.
+
 ## Storage decision
 
 | Local snapshot | Before | Lossless gzip |

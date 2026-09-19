@@ -225,8 +225,10 @@ def prefilter(signals, profile, terms, charter=None, translations=None):
         labelled_suppliers = {search_text(match["name"]).strip()
                               for _, _, description in documents for match in SUPPLIER_LABEL.finditer(description)}
         for segment in segments:
-            if segment["field"] == "description" and segment["text"].strip() in labelled_suppliers:
-                segment["text"] = " published supplier "
+            if segment["field"] == "description":
+                for supplier in labelled_suppliers:
+                    segment["text"] = re.sub(r"(?<!\w)" + re.escape(supplier) + r"(?!\w)",
+                                             "published supplier", segment["text"])
         # An authority's name can contain "Digital Transformation", "AI", etc.
         # Mask only the complete multiword identity in matching text, never the
         # source quote or a separate statement of the work being commissioned.
