@@ -142,6 +142,7 @@ def test_pending_analysis_has_no_fabricated_fit(signal, config, now):
 def test_expired_cancelled_and_awarded_never_pursue(signal, analysis, config, now):
     signal.analysis = analysis
     signal.deadline_at = (now - timedelta(hours=1)).isoformat()
+    signal.deadlines = []
     assert score(signal, config, now).recommendation == "WATCH"
     signal.status = "cancelled"
     assert score(signal, config, now).recommendation == "LOW_PRIORITY"

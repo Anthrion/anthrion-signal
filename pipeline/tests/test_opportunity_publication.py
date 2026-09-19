@@ -36,6 +36,7 @@ def test_award_publication_gate_recognises_all_supported_representations(signal,
     ({"status": "unknown", "deadline_at": None}, True),
 ])
 def test_only_available_or_unconfirmed_candidates_can_be_published(signal, now, fields, expected):
+    signal.deadlines = []
     assert is_public_opportunity(signal.model_copy(update=fields), now) is expected
 
 

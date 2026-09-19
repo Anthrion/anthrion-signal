@@ -1176,27 +1176,40 @@ test('unmodified actionable feed has a compact inspector and hidden, working scr
 test('old award and renewal links cannot expose unavailable records from a stale feed', async ({
   page,
 }) => {
-  await page.route('**/data/current.json', async (route) => {
-    const response = await route.fetch()
-    const data = await response.json()
-    const base = data.signals.find((s: { countries: string[] }) => s.countries.includes('GB'))
-    const award = {
-      ...base,
-      id: 'removed-award',
-      title: 'Unavailable incumbent award',
-      signal_type: 'AWARD',
-      status: 'awarded',
-    }
-    const renewal = {
-      ...base,
-      id: 'removed-renewal',
-      title: 'Unconfirmed incumbent renewal',
-      signal_type: 'RENEWAL_SIGNAL',
-      status: 'inferred',
-      related_signal_id: award.id,
-    }
-    await route.fulfill({ response, json: { ...data, signals: [award, renewal, ...data.signals] } })
+  // Exercise stale-link handling with explicit controls, independently of the
+  // growing real-data download. The real-market count test covers that feed.
+  const data = await isolatedDataset(page)
+  const base = data.signals[0]
+  const award: Signal = {
+    ...base,
+    id: 'removed-award',
+    title: 'Unavailable incumbent award',
+    signal_type: 'AWARD',
+    status: 'awarded',
+  }
+  const renewal: Signal = {
+    ...base,
+    id: 'removed-renewal',
+    title: 'Unconfirmed incumbent renewal',
+    signal_type: 'RENEWAL_SIGNAL',
+    status: 'inferred',
+    related_signal_id: award.id,
+  }
+  const awardsPath = 'awards/GB-0011223344556677.json'
+  await installDataset(page, {
+    ...data,
+    current_feed: undefined,
+    signals: [award, renewal, base],
+    award_history: { GB: { url: awardsPath, count: 1 } },
   })
+  await page.route(`**/data/${awardsPath}`, (route) =>
+    route.fulfill({
+      json: {
+        schema_version: '1.0',
+        signals: [{ ...award, id: 'control-award', title: 'Published customer platform award' }],
+      },
+    }),
+  )
   await page.addInitScript(() =>
     localStorage.setItem('anthrion-saved-v1', JSON.stringify(['removed-award', 'removed-renewal'])),
   )

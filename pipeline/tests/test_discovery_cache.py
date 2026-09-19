@@ -21,6 +21,7 @@ def test_cache_matches_fresh_classification_and_never_caches_lifecycle(tmp_path,
     monkeypatch.setattr(discovery_cache, "prefilter", no_misses)
     signal.deadline_at = "2001-01-01"
     signal.response_deadlines = []
+    signal.deadlines = []  # Exercise a legacy deadline without newer source facts.
     assert fresh.classify([signal]) == 0
     assert lifecycle(signal, now)[0] == "EXPIRED"
     signal.status = "cancelled"
