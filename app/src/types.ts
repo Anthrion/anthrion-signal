@@ -61,12 +61,17 @@ export interface ParticipationRequirement {
 }
 export interface HistoryRecord {
   signal_id: string
+  source?: string
+  countries?: string[]
+  buyer_name?: string | null
+  buyer_id?: string | null
   procedure_id?: string | null
   title: string
   signal_type?: string
   notice_type?: string | null
   published_at?: string | null
   award_date?: string | null
+  award_statuses?: string[]
   supplier?: string | null
   status: string
   source_url: string

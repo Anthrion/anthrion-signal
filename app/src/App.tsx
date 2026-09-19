@@ -43,7 +43,8 @@ import { DiscoveryCarousel } from './DiscoveryCarousel'
 import { VirtualSignalList } from './VirtualSignalList'
 import { DismissDust } from './DismissDust'
 import { useAwardHistory } from './useAwardHistory'
-import { supplierHistoryMarket } from './supplierResearch'
+import { historySupplierScope, supplierHistoryMarket } from './supplierResearch'
+import { distinctSources } from './researchPresentation'
 import { useOpportunityData, useSignalDetail } from './useOpportunityData'
 import {
   initialWorkspaceFilters,
@@ -301,7 +302,12 @@ export default function App() {
     viewingSaved && saved.some((id) => !data?.signals.some((s) => s.id === id))
   const supplierPage = researchStack.filter((page) => page.kind === 'supplier').at(-1)
   const supplierMarket = supplierPage?.supplier
-    ? supplierHistoryMarket(supplierPage.signal, supplierPage.supplier)
+    ? supplierHistoryMarket(
+        supplierPage.supplierRecord
+          ? historySupplierScope(supplierPage.supplierRecord, data || undefined)
+          : supplierPage.signal,
+        supplierPage.supplier,
+      )
     : ''
   const reuseMarketAwards = supplierMarket === filters.market || !filters.market
   const awards = useAwardHistory(
@@ -1753,9 +1759,19 @@ function SignalDetail({
                       <FileText size={16} />
                     </span>
                     <div>
-                      <SourceNoticeLink href={p.url} compact>
-                        {p.source_name}
-                      </SourceNoticeLink>
+                      {distinctSources(
+                        [p.url],
+                        [
+                          s.primary_source_url,
+                          ...s.provenance.slice(0, i).map((previous) => previous.url),
+                        ],
+                      ).length ? (
+                        <SourceNoticeLink href={p.url} compact>
+                          {p.source_name}
+                        </SourceNoticeLink>
+                      ) : (
+                        <strong>{p.source_name}</strong>
+                      )}
                       <small>Reference {p.release_id || 'Not published'}</small>
                       <small>
                         Checked{' '}
@@ -1779,10 +1795,16 @@ function SignalDetail({
             </section>
             <section className="detail-section">
               <h3>Documents</h3>
-              <SourceDocuments signal={s} />
+              <SourceDocuments signal={s} excludedSources={s.provenance.map((p) => p.url)} />
             </section>
             <section className="detail-section">
-              <ProcurementHistory signal={s} />
+              <ProcurementHistory
+                signal={s}
+                excludedSources={[
+                  ...s.provenance.map((p) => p.url),
+                  ...s.documents.map((doc) => doc.url),
+                ]}
+              />
             </section>
             <section className="detail-section">
               <h3>Timeline</h3>
