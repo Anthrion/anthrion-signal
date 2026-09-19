@@ -31,7 +31,7 @@ import { useSignalText } from './Translation'
 import type { usePersonalWorkspace } from './personalWorkspace'
 
 type Personal = ReturnType<typeof usePersonalWorkspace>
-type ResearchState = { kind: 'buyer' | 'related'; signal: Signal }
+type ResearchState = { kind: 'buyer' | 'related'; signal: Signal; opener: HTMLElement }
 const ResearchContext = createContext<{ open: (value: ResearchState) => void }>({ open: () => {} })
 export function ResearchProvider({
   open,
@@ -47,7 +47,7 @@ export function ResearchTitle({ signal, children }: { signal: Signal; children: 
   return (
     <button
       className="research-title-link"
-      onClick={() => open({ kind: 'related', signal })}
+      onClick={(event) => open({ kind: 'related', signal, opener: event.currentTarget })}
       title="Research this opportunity and related awards"
     >
       {children}
@@ -61,7 +61,7 @@ export function BuyerLink({ signal }: { signal: Signal }) {
   return (
     <button
       className="buyer-history-link"
-      onClick={() => open({ kind: 'buyer', signal })}
+      onClick={(event) => open({ kind: 'buyer', signal, opener: event.currentTarget })}
       aria-label={`View buyer history for ${text.buyerName}`}
     >
       {text.buyerName}
@@ -817,17 +817,19 @@ export function ResearchPage({
   const buyer = useBuyerHistory(signal, state.kind === 'buyer')
   useEffect(() => {
     const el = ref.current
-    const previous = document.activeElement as HTMLElement | null
+    const previous = state.opener
     el?.showModal()
     el?.querySelector<HTMLElement>('.research-back')?.focus()
     return () => {
       el?.close()
-      const restore = previous?.isConnected
-        ? previous
-        : document.querySelector<HTMLElement>(
+      if (previous.isConnected) previous.focus({ preventScroll: true })
+      if (document.activeElement !== previous) {
+        const restore =
+          document.querySelector<HTMLElement>(
             `[data-signal-id="${CSS.escape(signal.id)}"] .row-select`,
           ) || document.querySelector<HTMLElement>('.signal-feed')
-      restore?.focus({ preventScroll: true })
+        restore?.focus({ preventScroll: true })
+      }
     }
   }, [])
   const related = relatedAwards(signal, awards, Number.MAX_SAFE_INTEGER)

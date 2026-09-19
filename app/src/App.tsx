@@ -258,6 +258,7 @@ export default function App() {
   const [research, setResearch] = useState<{
     kind: 'buyer' | 'related'
     signal: Signal
+    opener: HTMLElement
     translation?: EnglishText
   } | null>(null)
   const [compact, setCompact] = useLocal(
