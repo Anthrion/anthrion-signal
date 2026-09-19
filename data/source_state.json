@@ -1,31 +1,38 @@
 {
   "contracts_finder": {
     "discovery_backfill": {
-      "checkpoint": {},
+      "checkpoint": {
+        "cursor_window": {
+          "cursor": "cHVibGlzaGVkRnJvbT0yMDI2LTA4LTA0VDA4OjIyOjM3WnxwdWJsaXNoZWRUbz0yMDI2LTA4LTA1VDA4OjIyOjM3WnxsaW1pdD0xMDB8bmV4dEN1cnNvcj03NzkwNjU=",
+          "from": "2026-08-04T08:22:37+00:00",
+          "to": "2026-08-05T08:22:37+00:00"
+        },
+        "watermark": "2026-08-04T09:22:37+00:00"
+      },
       "complete": false,
-      "cursor": "2026-07-28T09:22:37+00:00",
+      "cursor": "2026-08-04T09:22:37+00:00",
       "until": "2026-08-29T09:22:37+00:00",
       "version": "2026-09-11.1"
     },
-    "last_success": "2026-09-19T00:42:25+00:00",
-    "watermark": "2026-09-19T00:42:25+00:00"
+    "last_success": "2026-09-19T05:11:46+00:00",
+    "watermark": "2026-09-19T05:11:46+00:00"
   },
   "digital_outcomes": {
     "digital_details": {
       "73428": {
         "data": {
-          "deadline": "2026-05-29T00:00:00+00:00",
+          "deadline": "2026-05-29T12:00:00+01:00",
           "description": "Beta This is a new service – your feedback will help us to improve it. Home Digital Outcomes opportunities Procurement details Ministry Of Justice prj_17499 HMCTS Test Centre of Excellence Single stage Call-off procedure Outside scope Off-payroll (IR35) status £7,100,000 Value 1. Project name prj_17499 HMCTS Test Centre of Excellence 2. Summary of work The Test Centre of Excellence (TCoE) will provide a centralised assurance and enablement capability for HMCTS, offering strategic oversight, expert guidance, and hands-on support across all testing disciplines. 3. Latest start date 2026-08-03 4. Expected contract length 4 Years 0 months 5. Estimated contract value (excl VAT) 7100000.0 6. Incumbent supplier (optional) 7. Security clearance Baseline Personnel Security Standard (BPSS),Security Check (SC) 8. Competition type Single stage competitive selection process 9. Timeline Publish procurement documents on Friday 8th May 2026. The tender submission deadline will be 12 Noon Friday 29th May 2026. Notification of contract award date will be 22nd June 2026. These dates are indicative and may change. 10. Contracted out service or supply of resource Contracted out service: the off-payroll rules do not apply 11. How to apply The Ministry of Justice (MoJ) intends to use the MoJ e‐Sourcing portal to run Invitations to Tender (ITT) for relevant DOS7 competitions, (subject to use of the DOS7 filtering tool). Suppliers who wish to be considered for potential procurements advertised by MoJ should ensure they are registered on the portal. All ITT activity and communications between MoJ and suppliers will usually be conducted through the MoJ e‐Sourcing portal. Suppliers will be required to access the ITT documentation, submit clarification questions, and upload their tender responses via the portal. To facilitate participation, suppliers must create an account on the MoJ e‐Sourcing portal, which can be accessed via the link below: https://ministryofjusticecommercial.bravosolution.co.uk/web/login.html Further details, including ITT documentation, event timelines and instructions for submitting responses for any future procurement activity, will be shared with the relevant DOS7 Suppliers in due course. Help You can contact us by email, phone or using the enquiry form (opens in a new tab) . Email: info@gca.gov.uk Telephone: 0345 410 2222 GCA customer services team is available Monday to Friday, 9am to 5pm."
         },
-        "fetched_at": "2026-09-18T01:37:13+00:00",
+        "fetched_at": "2026-09-19T05:11:46+00:00",
         "signature": "91eb06cb8d0a0afb223d20635d8b0536aa2cd32591c44ab32e9e73bc42187771"
       },
       "73579": {
         "data": {
-          "deadline": null,
+          "deadline": "2026-09-28",
           "description": "Beta This is a new service – your feedback will help us to improve it. Home Digital Outcomes opportunities Procurement details Department For Work and Pensions The Garage Delivery Factory and Live Service Teams Two stage Call-off procedure Potentially in scope Off-payroll (IR35) status £120,000,000 Value Search criteria used: 65 results found in Lot 2: Digital capability and delivery partner and where the supplier provides Amazon Bedrock, Amazon Sagemaker, Hugging Face, Langchain and Uipath and where the supplier provides Amazon Aws Snssqs, Amazon Elasticsearch Service and Amazon Textract and where the supplier provides Amazon Aws Lambda, Docker, Git, Javascript, Jira and Python 1. Project name The Garage Delivery Factory and Live Service Teams 2. Summary of work Department for Work and Pensions (DWP) is seeking a delivery partner to provide integrated digital capability and specialist expertise to support The Garage Delivery Factory and Live Service Teams. The requirement encompasses the provision of multidisciplinary digital teams and resources across Live Service, Delivery Core and Delivery Project activities, supporting the design, development, operation, maintenance and continuous improvement of digital products, platforms and automation services. 3. Latest start date 2027-02-01 4. Expected contract length 6 Years 0 months 5. Estimated contract value (excl VAT) 120000000 6. Incumbent supplier (optional) Accenture - https://www.contractsfinder.service.gov.uk/notice/18ceecd6-d034-472c-8c8e-a9e0a4f7c625?origin=SearchResults&p=1 7. Security clearance Baseline Personnel Security Standard (BPSS),Security Check (SC) 8. Competition type Two stage competitive selection process 9. Timeline 07/08/2026 - Launch of Procurement Stage 1 07/09/2026 @ 12 noon - Deadline for submission of Stage 1 Bids 28/09/2026 -Launch of Procurement Stage 2 26/10/2026 @ 12noon - Deadline for submission of Stage 2 Bids December 2026 - Contract Award Notice Published & outcome letters to be issued January 2027 - Contract Details Notice Published 10. Contracted out service or supply of resource Supply of resource: the off-payroll rules may apply 11. How to apply To ensure that you can access the procurement documentation and participate in the competition, please ensure that your organisation is registered on the DWP e-Sourcing Portal (Atamis). To register, please visit: https://dwp2.my.site.com/s/Welcome Once on the portal, please select \"Supplier Registration Here\" and complete the registration process. Help You can contact us by email, phone or using the enquiry form (opens in a new tab) . Email: info@gca.gov.uk Telephone: 0345 410 2222 GCA customer services team is available Monday to Friday, 9am to 5pm."
         },
-        "fetched_at": "2026-09-18T01:37:13+00:00",
+        "fetched_at": "2026-09-19T05:11:46+00:00",
         "signature": "3a332c9f38e0612765c2ac32857ddf93ed35b4bdf96b9c21fa9869e30d617d75"
       },
       "73660": {
@@ -33,7 +40,7 @@
           "deadline": null,
           "description": "Beta This is a new service – your feedback will help us to improve it. Home Digital Outcomes opportunities Procurement details UK Health Security Agency UK Health Security Agency Research Participant Recuitment Services Single stage Call-off procedure Outside scope Off-payroll (IR35) status £1,550,000 Value 1. Project name UK Healthy Security Agency (UKHSA) Research Participant Recruitment Service C440863 2. Summary of work UK Health Security Agency (UKHSA) is seeking a participant recruitment supplier to recruit participants for user research and usability testing. The purpose of the research is to ensure that digital products, services and policies designed are inclusive and user centred. It is therefore explicit that this tender is for an ongoing requirement – not for one specific research piece. The Potential Provider shall be able to adapt to a variety of requirements throughout the contract’s duration. 3. Latest start date 2026-07-18 4. Expected contract length 2 Years 0 months 5. Estimated contract value (excl VAT) 1550000.0 6. Incumbent supplier (optional) Acumen Field Limited, https://www.contractsfinder.service.gov.uk/Notice/9ede1de1-ad70-4f80-94cb-f9707b29956a 7. Security clearance Baseline Personnel Security Standard (BPSS) 8. Competition type Single stage competitive selection process 9. Timeline 13/05/26 – Procurement launch/publication 13/05/26 – Clarification period starts 24/05/26 – Clarification period closes 29/05/26 – Deadline for clarification responses 05/06/26 – Deadline for submission of bid 08/06/26 – Commencement of evaluation process 29/06/26 – Proposed award date of contract 18/07/26 – Contract commencement date 10. Contracted out service or supply of resource Contracted out service: the off-payroll rules do not apply 11. How to apply To bid for this opportunity, you must be registered on our e-Sourcing portal, Atamis, via https://atamis-1928.my.site.com/s/Welcome if you are not already registered. Questions must only be asked via our e-Sourcing portal, and you must use our e-Sourcing portal to make your bid. Shortlisted suppliers will be invited to bid for this opportunity via our e-Sourcing portal. Atamis. The Atamis project number is C440863. Enter your bid into the e-Sourcing Portal. We can only accept bids that we receive through the e-Sourcing Portal. If you are unsure, ask questions through Atamis before the Clarification Questions Deadline. Help You can contact us by email, phone or using the enquiry form (opens in a new tab) . Email: info@gca.gov.uk Telephone: 0345 410 2222 GCA customer services team is available Monday to Friday, 9am to 5pm."
         },
-        "fetched_at": "2026-09-18T01:37:13+00:00",
+        "fetched_at": "2026-09-19T05:11:46+00:00",
         "signature": "17c4e112bc64e35979c73a18700e41389942da5617c87ca6723589dd42ff8066"
       },
       "73661": {
@@ -41,7 +48,7 @@
           "deadline": null,
           "description": "Beta This is a new service – your feedback will help us to improve it. Home Digital Outcomes opportunities Procurement details Peabody Trust RM1043.9-1-Peabody Website Two stage Call-off procedure Outside scope Off-payroll (IR35) status £250,000 Value 1. Project name Peabody Website Redesign and Build 2. Summary of work Peabody requires a supplier to redesign and rebuild its public website, consolidating multiple sites into a single, accessible platform. The solution must enhance resident services, support corporate and investor users, include a flexible CMS, integrate with existing systems, and provide secure UK hosting, support and maintenance. 3. Latest start date 2026-09-01 4. Expected contract length 4 Years 0 months 5. Estimated contract value (excl VAT) 250000.0 6. Incumbent supplier (optional) 7. Security clearance Baseline Personnel Security Standard (BPSS) 8. Competition type Two stage competitive selection process 9. Timeline Publication: June 2026 (first week) Stage 1 (shortlisting): 2–3 weeks (June) Stage 2 (demos and final proposals): 3–4 weeks (late June – July) Evaluation and award: 2 weeks (late July) Contract award: August 2026 Mobilisation/start: September 2026 10. Contracted out service or supply of resource Contracted out service: the off-payroll rules do not apply 11. How to apply Suppliers must submit their responses via Peabody’s e-procurement portal (Delta eSourcing). The procurement will be conducted as a two-stage process. Stage 1 responses will be evaluated to shortlist suppliers. Shortlisted suppliers will be invited to Stage 2 to provide detailed proposals, attend demonstrations and submit pricing. Full instructions and timelines will be provided within the ITT documentation. Help You can contact us by email, phone or using the enquiry form (opens in a new tab) . Email: info@gca.gov.uk Telephone: 0345 410 2222 GCA customer services team is available Monday to Friday, 9am to 5pm."
         },
-        "fetched_at": "2026-09-18T01:37:13+00:00",
+        "fetched_at": "2026-09-19T05:11:46+00:00",
         "signature": "24decd33f95972dd2948459af04f0626a5b2cb425f2105a3bceff3cc88055132"
       },
       "73701": {
@@ -49,7 +56,7 @@
           "deadline": null,
           "description": "Beta This is a new service – your feedback will help us to improve it. Home Digital Outcomes opportunities Procurement details THE GOOD GYM RM1043.9-4-THE GOOD GYM Multi stage Call-off procedure Outside scope Off-payroll (IR35) status £345,345 Value 1. Project name Test101 2. Summary of work https://uat-contractawardservice-ui.crowncommercial.gov.uk/project/48216/event/ocds-pfhb7i-49612/overview 3. Latest start date 2027-03-01 4. Expected contract length 2 Years 3 months 5. Estimated contract value (excl VAT) 345345.0 6. Incumbent supplier (optional) 7. Security clearance Counter Terrorist Check (CTC),Security Check (SC) 8. Competition type Multi stage competitive selection process 9. Timeline sdfgdf 10. Contracted out service or supply of resource Contracted out service: the off-payroll rules do not apply 11. How to apply weger Help You can contact us by email, phone or using the enquiry form (opens in a new tab) . Email: info@gca.gov.uk Telephone: 0345 410 2222 GCA customer services team is available Monday to Friday, 9am to 5pm."
         },
-        "fetched_at": "2026-09-18T01:37:13+00:00",
+        "fetched_at": "2026-09-19T05:11:46+00:00",
         "signature": "d64c356b67d2bfc509769a190a7fcbb977061c26372b05d18d07c296f50b84c7"
       },
       "74078": {
@@ -57,7 +64,7 @@
           "deadline": null,
           "description": "Beta This is a new service – your feedback will help us to improve it. Home Digital Outcomes opportunities Procurement details HOUSING OMBUDSMAN HOS0069 - Digital Delivery Partner (Work Package A – Discovery & Design) Two stage Call-off procedure Outside scope Off-payroll (IR35) status £352,000 Value 1. Project name HOS0069 - Digital Delivery Partner (Work Package A – Discovery & Design) 2. Summary of work Seeking a Digital Delivery Partner to procure a Digital Delivery Partner consultancy to enable the organisation to confidently define, scope, and prepare for the subsequent procurements, this procurement is to include: • Discovery and design of future CRM/CMS and customer-facing digital services • Validation and enhancement of Work Package B outcomes • Options appraisal, benefits modelling, and delivery planning • Identification of quick wins and system optimisation 3. Latest start date 2026-09-01 4. Expected contract length 1 Years 6 months 5. Estimated contract value (excl VAT) 352000.0 6. Incumbent supplier (optional) N/a 7. Security clearance Baseline Personnel Security Standard (BPSS) 8. Competition type Two stage competitive selection process 9. Timeline Stage 1 Conditions of Participation publication - 10/06/26 Stage 2 publication estimated - 06/07/26 Estimated award - 21/08/26 Estimated contract start date - 01/09/26 10. Contracted out service or supply of resource Contracted out service: the off-payroll rules do not apply 11. How to apply Invites will be issued via HOS's e-tendering portal (Delta eSourcing), all communication will be via Delta eSourcing. Help You can contact us by email, phone or using the enquiry form (opens in a new tab) . Email: info@gca.gov.uk Telephone: 0345 410 2222 GCA customer services team is available Monday to Friday, 9am to 5pm."
         },
-        "fetched_at": "2026-09-18T01:37:13+00:00",
+        "fetched_at": "2026-09-19T05:11:46+00:00",
         "signature": "3714977ed6951fe8f9d09d58ddd6b8b8caeb088da4810c3fe344fe60987e62e2"
       },
       "74112": {
@@ -65,23 +72,23 @@
           "deadline": null,
           "description": "Beta This is a new service – your feedback will help us to improve it. Home Digital Outcomes opportunities Procurement details Clackmannanshire Council RM1043.9-1-Clackmannanshire Council Single stage Call-off procedure Outside scope Off-payroll (IR35) status £1 Value 1. Project name IMPLEMENTATION SUPPORT PARTNER (ISP) 2. Summary of work 1.1. Clackmannanshire Council is undertaking a transformation of its social work services. The introduction of a modern Social Work Information Technology (SWIT) Case Management System (CMS) is central to this change, driven by the Council’s commitment to improving service delivery, enhancing data integrity, and ensuring long-term sustainability. The Implementation Support Provider (ISP) will play a critical role in embedding the new CMS within the council’s operational environment. 3. Latest start date 2026-07-01 4. Expected contract length 1 Years 0 months 5. Estimated contract value (excl VAT) 1.0 6. Incumbent supplier (optional) none 7. Security clearance Baseline Personnel Security Standard (BPSS) 8. Competition type Single stage competitive selection process 9. Timeline ASAP 10. Contracted out service or supply of resource Contracted out service: the off-payroll rules do not apply 11. How to apply Public Contracts Scotland Help You can contact us by email, phone or using the enquiry form (opens in a new tab) . Email: info@gca.gov.uk Telephone: 0345 410 2222 GCA customer services team is available Monday to Friday, 9am to 5pm."
         },
-        "fetched_at": "2026-09-18T01:37:13+00:00",
+        "fetched_at": "2026-09-19T05:11:46+00:00",
         "signature": "defdf8b5cf0fc9f5ba27af075d77516d5fc7a7150b994215a5ba582086be8c03"
       },
       "74437": {
         "data": {
-          "deadline": "2026-06-09T00:00:00+00:00",
+          "deadline": "2026-06-09T13:00:00+01:00",
           "description": "Beta This is a new service – your feedback will help us to improve it. Home Digital Outcomes opportunities Procurement details Ministry Of Justice prj_17578 Legacy Prison Systems Replacement Single stage Call-off procedure Outside scope Off-payroll (IR35) status Value 1. Project name prj_17578 Legacy Prison Systems Replacement 2. Summary of work MoJ is seeking services from a third-party Supplier to provide digital and data delivery capability to support the migration of functionality, users and data from the legacy prison system to Digital Prison Services (DPS). This includes delivery of modern digital services, onboarding and adoption support, and coordinated legacy exit planning and execution. The Contract will be 3+1 years, and is likely to be awarded July 2026 with a period of Knowledge Transfer from the incumbent supplier. 3. Latest start date 2026-06-24 4. Expected contract length 3 Years 0 months 5. Estimated contract value (excl VAT) 4.0E7 6. Incumbent supplier (optional) 7. Security clearance Baseline Personnel Security Standard (BPSS),Security Check (SC) 8. Competition type Single stage competitive selection process 9. Timeline Start date (Tender documents published) 20th May 2026 Deadline for receipt of clarification questions 23:29 29th May 2026 Buyer responses to clarification questions published 23:29 3rd June 2026 Tender submission deadline 13:00 9th June 2026 Contract Award c. 24th July 2026 10. Contracted out service or supply of resource Contracted out service: the off-payroll rules do not apply 11. How to apply The Ministry of Justice (MoJ) intends to use the MoJ e‐Sourcing portal to run Invitations to Tender (ITT) for relevant DOS7 competitions, (subject to use of the DOS7 filtering tool). Suppliers who wish to be considered for potential procurements advertised by MoJ should ensure they are registered on the portal. All ITT activity and communications between MoJ and suppliers will usually be conducted through the MoJ e‐Sourcing portal. Suppliers will be required to access the ITT documentation, submit clarification questions, and upload their tender responses via the portal. To facilitate participation, suppliers must create an account on the MoJ e‐Sourcing portal, which can be accessed via the link below: https://ministryofjusticecommercial.bravosolution.co.uk/web/login.html Further details, including ITT documentation, event timelines and instructions for submitting responses for any future procurement activity, will be shared with the relevant DOS7 Suppliers in due course. Help You can contact us by email, phone or using the enquiry form (opens in a new tab) . Email: info@gca.gov.uk Telephone: 0345 410 2222 GCA customer services team is available Monday to Friday, 9am to 5pm."
         },
-        "fetched_at": "2026-09-18T01:37:13+00:00",
+        "fetched_at": "2026-09-19T05:11:46+00:00",
         "signature": "f13a37a29fd7469eb464ad84d55d3a71206efa3fba5f623d0c0469a8fc7a7b6e"
       },
       "74461": {
         "data": {
-          "deadline": null,
+          "deadline": "2026-06-19T12:00:00+01:00",
           "description": "Beta This is a new service – your feedback will help us to improve it. Home Digital Outcomes opportunities Procurement details Ministry Of Justice RM1043.9-2-Ministry Of Justice - Digital Outcomes Single stage Call-off procedure Outside scope Off-payroll (IR35) status Value 1. Project name Probation Digital Delivery for Manage People on Probation and Probation User Services and Probation Digital Services Platform 2. Summary of work Probation Digital Delivery for Manage People on Probation and Probation User Services - This requirement is focused on design, development, enhancement and support of digital capabilities that help probation practitioners manage people on probation more effectively. Probation Digital Services Platform - This requirement focused on providing scalable digital delivery capability to support the wider Probation Digital Services Platform and associated transformation initiatives. 3. Latest start date 2026-07-01 4. Expected contract length 3 Years 12 months 5. Estimated contract value (excl VAT) 5.0E7 6. Incumbent supplier (optional) 7. Security clearance Baseline Personnel Security Standard (BPSS) 8. Competition type Single stage competitive selection process 9. Timeline Activity Date Non-disclosure Agreements signed By 26/05/2026 Start date (Tender documents published) 26/05/2026 Deadline for receipt of clarification questions 12:00 09/06/2026 Buyer responses to clarification questions published 23:59 11/06/2026 Tender submission deadline 12:00 19/06/2026 Compliance checks and assessment of tenders and tenders evaluation - July 2026 Contract Award July 2026 10. Contracted out service or supply of resource Contracted out service: the off-payroll rules do not apply 11. How to apply How to apply: The Ministry of Justice (MoJ) intends to use the MoJ e‐Sourcing portal to run Invitations to Tender (ITT) for relevant DOS7 competitions, (subject to use of the DOS7 filtering tool). Suppliers who wish to be considered for potential procurements advertised by MoJ should ensure they are registered on the portal. All ITT activity and communications between MoJ and suppliers will usually be conducted through the MoJ e‐Sourcing portal. Suppliers will be required to access the ITT documentation, submit clarification questions, and upload their tender responses via the portal To facilitate participation, suppliers must create an account on the MoJ e‐Sourcing portal, which can be accessed via the link below: https://ministryofjusticecommercial.bravosolution.co.uk/web/login.html Further details, including ITT documentation, event timelines and instructions for submitting responses for any future procurement activity, will be shared with the relevant DOS7 Suppliers in due course. Help You can contact us by email, phone or using the enquiry form (opens in a new tab) . Email: info@gca.gov.uk Telephone: 0345 410 2222 GCA customer services team is available Monday to Friday, 9am to 5pm."
         },
-        "fetched_at": "2026-09-18T01:37:13+00:00",
+        "fetched_at": "2026-09-19T05:11:46+00:00",
         "signature": "b33347904cd96dcb46740e267ff9a7cacf3cf764a3c9f8ae1636b0ffc5096d1e"
       },
       "74534": {
@@ -89,7 +96,7 @@
           "deadline": null,
           "description": "Beta This is a new service – your feedback will help us to improve it. Home Digital Outcomes opportunities Procurement details Foreign, Commonwealth and Development Office FCDO/DDaT: Digital and Data: CPG/13857/2026 - Digital Products and Services,Corporate Enquiries Handling Single stage Call-off procedure Outside scope Off-payroll (IR35) status £4,500,000 Value 1. Project name FCDO/DDaT: Digital and Data: CPG/13857/2026 - Digital Products and Services,Corporate Enquiries Handling 2. Summary of work The Foreign, Commonwealth and Development Office (FCDO) is seeking a delivery partner to design, build, and implement a portfolio of transformational digital services for its corporate functions. The “Corporate Enquiries & Process Improvement” (CEPI) programme will replace existing fragmented, email- and spreadsheet-driven processes with a unified solution incorporating validated digital forms, automated triage and response, and integrated workflows, enabled by AI where relevant. 3. Latest start date 2026-09-01 4. Expected contract length 3 Years 0 months 5. Estimated contract value (excl VAT) 4500000.0 6. Incumbent supplier (optional) 7. Security clearance Security Check (SC) 8. Competition type Single stage competitive selection process 9. Timeline Target publication will be issued June 2026. Target contract start will be 01 September 2026 10. Contracted out service or supply of resource Contracted out service: the off-payroll rules do not apply 11. How to apply Bidder's will be invited via GCA Jaggaer. All details of the ITT will be shared through that invitation. Help You can contact us by email, phone or using the enquiry form (opens in a new tab) . Email: info@gca.gov.uk Telephone: 0345 410 2222 GCA customer services team is available Monday to Friday, 9am to 5pm."
         },
-        "fetched_at": "2026-09-18T01:37:13+00:00",
+        "fetched_at": "2026-09-19T05:11:46+00:00",
         "signature": "56300c9e5ddc9f758eb947cdd1894e0c9d2bc05a927f78f226a6aa7dbde1f3b4"
       },
       "74607": {
@@ -325,27 +332,27 @@
         "signature": "a01847b6592e0feb1b526f7e8efec9d740d3b6c103a1b91ad4ea106839bb85fe"
       }
     },
-    "last_success": "2026-09-19T00:42:25+00:00",
+    "last_success": "2026-09-19T05:11:46+00:00",
     "next_detail": 0,
-    "watermark": "2026-09-19T00:42:25+00:00"
+    "watermark": "2026-09-19T05:11:46+00:00"
   },
   "find_tender": {
     "discovery_backfill": {
       "checkpoint": {
-        "retry_at": "2026-09-19T00:44:58.116186+00:00",
-        "watermark": "2025-09-21T17:48:39+00:00"
+        "retry_at": "2026-09-19T05:14:18.453801+00:00",
+        "watermark": "2025-09-22T00:18:39+00:00"
       },
       "complete": false,
-      "cursor": "2025-09-20T18:48:39+00:00",
+      "cursor": "2025-09-21T18:48:39+00:00",
       "until": "2026-08-29T18:48:39+00:00",
       "version": "2026-09-11.1"
     },
-    "last_success": "2026-09-19T00:42:25+00:00",
-    "watermark": "2026-09-19T00:42:25+00:00"
+    "last_success": "2026-09-19T05:11:46+00:00",
+    "watermark": "2026-09-19T05:11:46+00:00"
   },
   "germany": {
     "discovery_vocabulary": "f289f291cee9ad260e24df827842e27edee4bab1f877c6fe694676f64edcefef",
-    "last_success": "2026-09-19T00:42:25+00:00",
+    "last_success": "2026-09-19T05:11:46+00:00",
     "pending_days": [],
     "scheduled_through": "2026-09-18",
     "tracked_ocids": [
@@ -945,7 +952,7 @@
   "govuk": {
     "discovery_backfill": {
       "checkpoint": {
-        "next_query": 70,
+        "next_query": 21,
         "queries": {
           "AI agent procurement": {
             "from": "2025-10-11T09:22:37+00:00",
@@ -954,7 +961,7 @@
           },
           "AI agents": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "AI assistant tender": {
@@ -979,7 +986,7 @@
           },
           "CRM market engagement": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "CRM procurement": {
@@ -993,9 +1000,9 @@
             "to": "2025-11-11T09:22:37+00:00"
           },
           "CRM transformation": {
-            "from": "2025-10-11T09:22:37+00:00",
-            "offset": 200,
-            "to": "2025-11-11T09:22:37+00:00"
+            "from": "2025-11-10T09:22:37+00:00",
+            "offset": 0,
+            "through": "2025-11-11T09:22:37+00:00"
           },
           "LLM implementation procurement": {
             "from": "2025-10-11T09:22:37+00:00",
@@ -1039,7 +1046,7 @@
           },
           "Salesforce implementation": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "Salesforce managed services": {
@@ -1049,7 +1056,7 @@
           },
           "Salesforce professional services": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "application modernisation tender": {
@@ -1059,7 +1066,7 @@
           },
           "artificial intelligence procurement": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "automated triage tender": {
@@ -1069,7 +1076,7 @@
           },
           "automation integration": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "benefits management system": {
@@ -1089,12 +1096,12 @@
           },
           "case management": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "case management procurement": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "citizen portal tender": {
@@ -1104,7 +1111,7 @@
           },
           "citizen services": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "collaboration workflow platform tender": {
@@ -1114,17 +1121,17 @@
           },
           "commercial pipeline digital": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "complaints management tender": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "contact centre": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "contact centre implementation": {
@@ -1144,7 +1151,7 @@
           },
           "customer relationship management tender": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "customer service platform procurement": {
@@ -1154,7 +1161,7 @@
           },
           "data platform": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "data quality implementation": {
@@ -1164,7 +1171,7 @@
           },
           "digital transformation procurement": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "document intelligence procurement": {
@@ -1174,7 +1181,7 @@
           },
           "donor management tender": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "ecommerce platform tender": {
@@ -1199,7 +1206,7 @@
           },
           "generative AI": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "generative AI tender": {
@@ -1249,7 +1256,7 @@
           },
           "procurement pipeline technology": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "quote to cash implementation": {
@@ -1279,7 +1286,7 @@
           },
           "stakeholder management procurement": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "student services platform tender": {
@@ -1455,7 +1462,7 @@
       },
       "case management": {
         "from": "2026-06-10T10:57:03+00:00",
-        "offset": 6300,
+        "offset": 6400,
         "to": "2026-09-09T10:57:03+00:00"
       },
       "case management procurement": {
@@ -1470,7 +1477,7 @@
       },
       "citizen services": {
         "from": "2026-06-10T10:57:03+00:00",
-        "offset": 6300,
+        "offset": 6400,
         "to": "2026-09-09T10:57:03+00:00"
       },
       "collaboration workflow platform tender": {
@@ -1490,7 +1497,7 @@
       },
       "contact centre": {
         "from": "2026-06-10T10:57:03+00:00",
-        "offset": 6300,
+        "offset": 6400,
         "to": "2026-09-09T10:57:03+00:00"
       },
       "contact centre implementation": {
@@ -22339,7 +22346,7 @@
     "watermark": "2026-09-19T00:42:25+00:00"
   },
   "la_ramp": {
-    "last_success": "2026-09-19T00:42:25+00:00",
+    "last_success": "2026-09-19T05:11:46+00:00",
     "missing": {
       "222114": 1789731002,
       "229261": 1789731002,
@@ -28156,9 +28163,9 @@
     "watermark": "2026-09-18T11:53:56+00:00"
   },
   "nyc_city_record": {
-    "last_success": "2026-09-19T00:42:25+00:00",
+    "last_success": "2026-09-19T05:11:46+00:00",
     "query_version": "nyc-procurement-v1",
-    "watermark": "2026-09-18T01:37:13+00:00"
+    "watermark": "2026-09-19T05:11:46+00:00"
   },
   "scotland": {
     "discovery_backfill": {
@@ -28168,8 +28175,8 @@
       "until": "2026-08-29T09:22:37+00:00",
       "version": "2026-09-11.1"
     },
-    "last_success": "2026-09-19T00:42:25+00:00",
-    "watermark": "2026-09-19T00:42:25+00:00"
+    "last_success": "2026-09-19T05:11:46+00:00",
+    "watermark": "2026-09-19T05:11:46+00:00"
   },
   "spain": {
     "active_records": {
@@ -41144,10 +41151,12 @@
           "/sindicacion/sindicacion_643/licitacionesPerfilesContratanteCompleto3_20260916_202342_1.atom",
           "/sindicacion/sindicacion_643/licitacionesPerfilesContratanteCompleto3_20260916_202342_2.atom",
           "/sindicacion/sindicacion_643/licitacionesPerfilesContratanteCompleto3_20260916_202342_3.atom",
-          "/sindicacion/sindicacion_643/licitacionesPerfilesContratanteCompleto3_20260916_202342_4.atom"
+          "/sindicacion/sindicacion_643/licitacionesPerfilesContratanteCompleto3_20260916_202342_4.atom",
+          "/sindicacion/sindicacion_643/licitacionesPerfilesContratanteCompleto3_20260916_202342_5.atom",
+          "/sindicacion/sindicacion_643/licitacionesPerfilesContratanteCompleto3_20260915_201500.atom"
         ],
         "through": "2026-09-17T18:22:33.237000+00:00",
-        "url": "https://contrataciondelestado.es/sindicacion/sindicacion_643/licitacionesPerfilesContratanteCompleto3_20260916_202342_5.atom"
+        "url": "https://contrataciondelestado.es/sindicacion/sindicacion_643/licitacionesPerfilesContratanteCompleto3_20260915_201500_1.atom"
       },
       {
         "after": "2026-08-30T17:38:50+00:00",
@@ -84704,6 +84713,11 @@
         "dda77775ee1f71ebaa46a11c6025d83d951da0e2ed498a1a114819eb211813e6",
         true
       ],
+      "19979658": [
+        "2026-09-15T18:10:53.771000+00:00",
+        "83f9dcf79b0e85425945258855e51d35e11ceba880e9ac8ff1ccfb6938c14e6a",
+        true
+      ],
       "19979663": [
         "2026-09-01T09:39:09.049000+00:00",
         "51bfff2b8411b015a284ba4d0607672f16b51d6409d0a399b663579853e75d30",
@@ -91162,6 +91176,11 @@
       "20050276": [
         "2026-09-14T08:19:29.692000+00:00",
         "c7ac3152c52d90d89f1eeab08753b2dba0898a8a2c4249de5fad1d611bb7bb20",
+        true
+      ],
+      "20050277": [
+        "2026-09-15T18:14:12.696000+00:00",
+        "6e143bcebffc1fa31e691527a21d237a89d3a89ac5d826f61721666da0cf0819",
         true
       ],
       "20050278": [
@@ -120034,6 +120053,11 @@
         "4830c9142a3cd2a4b756a8fd5ea04db9eee4734197086396e7b3e2dfabd0671b",
         true
       ],
+      "20356743": [
+        "2026-09-15T18:09:44.541000+00:00",
+        "b542a971a8d085f7bc40336d08874af16ae381ab370d6ddfd9ee1591356995a0",
+        true
+      ],
       "20356750": [
         "2026-09-04T10:30:39.198000+00:00",
         "8720c76e13c2eec18a4e931be29fe568a17b010c593916361fde2e31972148e3",
@@ -132164,6 +132188,11 @@
         "6c6d978739e48cafeeacb3a59b80d55ed77bd220ac203833d225bd6c5a1e1aef",
         true
       ],
+      "20435440": [
+        "2026-09-15T18:12:52.331000+00:00",
+        "91394cf9088fdd2b5a96aea7d727e974646180cf7b95ba17b9fed2a1603dc2f1",
+        true
+      ],
       "20446723": [
         "2026-09-17T17:23:46.784000+00:00",
         "744db51aa05285fc652b31412da1e281ae77db1952653db17a2f18855a074ad6",
@@ -134707,15 +134736,14 @@
       "checkpoint": {
         "query_version": "17f39a916251985f06623cfefe55453a709aeb10fdb2339cad86b7b5fd1b240c",
         "ted_pending": {
-          "from": "2026-03-30T09:22:37+00:00",
-          "through": "2026-04-01T09:22:37+00:00",
-          "token": "AAABoLcfdOYAThRfjG/P2aQk2xBvMFOGLtHn3F2JlGM9OoirU3eVVk0MYQOdir+6t7ID7qUl+2aSIHmU6pAcmEXMSgbtY8g9KAiHXe2E/tj7M4H6XpkTbA==",
-          "until": "2026-03-31T09:22:37+00:00"
+          "from": "2026-04-03T09:22:37+00:00",
+          "through": "2026-04-04T09:22:37+00:00",
+          "until": "2026-04-04T09:22:37+00:00"
         },
-        "watermark": "2026-03-31T09:22:37+00:00"
+        "watermark": "2026-04-03T09:22:37+00:00"
       },
       "complete": false,
-      "cursor": "2026-03-31T09:22:37+00:00",
+      "cursor": "2026-04-03T09:22:37+00:00",
       "until": "2026-08-29T09:22:37+00:00",
       "version": "2026-09-11.1"
     },
@@ -134727,185 +134755,186 @@
         "04ea750b292bf5ad7c3729617a1f821c2ec72fb80c8d039cdc8f3e2f427a9ce2": {
           "query_version": "49fec6a4e86a16418a83f12b922daadb51c2a00848b9791f2342c0a0481dd533",
           "ted_pending": {
-            "from": "2026-09-08T11:53:56+00:00",
+            "from": "2026-09-09T11:53:56+00:00",
             "through": "2026-09-18T11:53:56+00:00",
-            "token": "AAABoLce/qcAThQj3xJjWbord8rbRzm7hZW9nVs2RJYawWMZ7T2JuBqRBh5NntctILwbDjMU/0t4mlIWi3JwNT4yzxJlOSYsDrQnL0CekNj2CPiyY0QyAg==",
-            "until": "2026-09-09T11:53:56+00:00"
+            "token": "AAABoLgVsIsATlCFM0HA+Je812t80YFMCyK5M4oPgksC1JGPyY0CLrWAj46xi5lOWQ9CRpOHmSKKP9ksjoIlSZiLSwoyeSgncDyedhIoZ81qUjxliKQB0w==",
+            "until": "2026-09-10T11:53:56+00:00"
           },
-          "watermark": "2026-09-08T11:53:56+00:00"
+          "watermark": "2026-09-09T11:53:56+00:00"
         },
         "5861ca8839715c105985a0c787070388abfd2536f884343ad6397b56304e9ed2": {
           "query_version": "f392c58f720f66d8a02c0f2a2749ac157a7f9b458517a6fcb76c13b510ae7677",
           "ted_pending": {
-            "from": "2026-09-09T11:53:56+00:00",
+            "from": "2026-09-10T11:53:56+00:00",
             "through": "2026-09-18T11:53:56+00:00",
-            "token": "AAABoLcez6kATco47jDETTfiU1bo6w62LB6CelW3lk/fuepkuzrORnN5zf87aL5hlaBSsqgmUu/L8wNlMtLI1+cQeztDbm/YbgAvpbn9VtIXVbRVWPA4LA==",
-            "until": "2026-09-10T11:53:56+00:00"
+            "token": "AAABoLgVhssATprth2RnnWfNDNf7M4VAHohGrSIWVK43Csco870zRtyI4iDruuevgVy6LpqM9qRohPTwZiTcVbibVCsisFfIej2cT2zApCshFYn7MX4RxQ==",
+            "until": "2026-09-11T11:53:56+00:00"
           },
-          "watermark": "2026-09-09T11:53:56+00:00"
+          "watermark": "2026-09-10T11:53:56+00:00"
+        },
+        "590917cc63063643f9be0f464bfed20d1bb7f9f43f85fc615c7de13b07052bea": {
+          "query_version": "e8a63d606c29d35ca6c9b65cc27ebc81bf1d0b130fcd9e60dc9248ee9442e62c",
+          "ted_pending": {
+            "from": "2026-09-05T05:11:46+00:00",
+            "through": "2026-09-19T05:11:46+00:00",
+            "until": "2026-09-06T05:11:46+00:00"
+          },
+          "watermark": "2026-09-05T05:11:46+00:00"
         },
         "62ffa15a47d48f7c34aece1a88c8d9da6132e3c4d54cd2fefc5d24ce9f32b02f": {
           "query_version": "c424e15a306195ffd5c14a84dc9a6fccfa9d9dcbf9c45fe512de71a9323c2110",
           "ted_pending": {
-            "from": "2026-09-08T11:53:56+00:00",
+            "from": "2026-09-09T11:53:56+00:00",
             "through": "2026-09-18T11:53:56+00:00",
-            "token": "AAABoLcesJsAThPpcUEibQ6L1gZYjm0cl4a2kCq+ERZUq2xk9DC8txM72tpATlOc4BgpUS0MKCakK1zRGd1u4ESYiZ4PUFmUX79Zjw1/7OaXghlPtFg+aw==",
-            "until": "2026-09-09T11:53:56+00:00"
+            "token": "AAABoLgVYPMATlBIuzIB/Mp2IVX5AJ5Hm7r2bvSc0GGSZ4xXTJrhjCtbafIpAjQrtnAHkhbD1wFL+prKmD6XfbLN8Wg706HVKBVAqcNs1QweKPaZXKPIqQ==",
+            "until": "2026-09-10T11:53:56+00:00"
           },
-          "watermark": "2026-09-08T11:53:56+00:00"
-        },
-        "6b9a61cb68bc35ae229127ee3084e778d2a682df179c110974c3712cec275eaf": {
-          "query_version": "5bae49952c06f434c72a93ebcc5cda156b4670dafac38044b26bb647e9891e17",
-          "ted_pending": {
-            "from": "2026-09-05T00:42:25+00:00",
-            "through": "2026-09-19T00:42:25+00:00",
-            "until": "2026-09-06T00:42:25+00:00"
-          },
-          "watermark": "2026-09-05T00:42:25+00:00"
+          "watermark": "2026-09-09T11:53:56+00:00"
         },
         "6d034afd5915cb2071ca55fc25b853491de22585e8659d00e6f1377fbfed4853": {
           "query_version": "20d7c9897a45087440ff28b9c572fe5c8a5ba5cbc8dd50319d959d8aff58880c",
           "ted_pending": {
-            "from": "2026-09-08T11:53:56+00:00",
+            "from": "2026-09-09T11:53:56+00:00",
             "through": "2026-09-18T11:53:56+00:00",
-            "token": "AAABoLcfCGYAThQnjjEPBrdMiJXG5KrAT6dUMZcMa6HGckrBTmGkNzw66yz4MQIpSry6vTexdUzOV4M0dyac3kYFRCUtMLD5VvnaeDiUzp9JKPgANdf+1g==",
-            "until": "2026-09-09T11:53:56+00:00"
+            "token": "AAABoLgVv3wATpsQPpn14YE5MFHqulTENMalj7FLKk0wp7c+pNY1S2FbxfHVJuVERrc8MmLdWqhPc5WJuPa7j8uR4k1hxDZ0IJawRMVybmMLHl6ZGwjUcA==",
+            "until": "2026-09-10T11:53:56+00:00"
           },
-          "watermark": "2026-09-08T11:53:56+00:00"
+          "watermark": "2026-09-09T11:53:56+00:00"
         },
         "7dd11b93ce2e4f26843ed525314521f8193ede4e334de28f70ca0add342bf74d": {
           "query_version": "393fc655fed070666fc320f41013d217e28873f4f0fda1f7859dbea6cf8278b1",
           "ted_pending": {
-            "from": "2026-09-08T11:53:56+00:00",
+            "from": "2026-09-09T11:53:56+00:00",
             "through": "2026-09-18T11:53:56+00:00",
-            "token": "AAABoLcexDUATcoy8uENOKuOYbQXdCN2y3qgh1NtfyCaVFYKRsbzK0ASoeZu6hhVsRctyRypnysGAeYBlo4+M45LNJYDQ9WihCabmOGZWkErFK4uqe6WYg==",
-            "until": "2026-09-09T11:53:56+00:00"
+            "token": "AAABoLgVf8kATprrb3KpaIV6BlbgRGIY+a4N84JAMtzWeRhynZPlHTZ8BkTq+mhq3OaxgsKwO+DLxsmf3gtb6zb3Hwg6wvaY2SaTJ99zdBmgJK+102GKxA==",
+            "until": "2026-09-10T11:53:56+00:00"
           },
-          "watermark": "2026-09-08T11:53:56+00:00"
+          "watermark": "2026-09-09T11:53:56+00:00"
         },
         "8606aec172024425c9490a42282a4e6a387f9f50e5dde3389075becbe5b2822a": {
           "query_version": "c1ebbae76539106fc053391197892bb8c3978b3307a6ec380d61f445c224edf5",
           "ted_pending": {
-            "from": "2026-09-08T11:53:56+00:00",
+            "from": "2026-09-09T11:53:56+00:00",
             "through": "2026-09-18T11:53:56+00:00",
-            "token": "AAABoLce4AUATcpAQ0sRp6J7wDk7oRGGEK6CDdj0vu15ze66wSMXxdckOnp/Qk43XiZOMzqdhY6frgqvTx3T4gi7LRTy5gKLoWCv5gsdF8JFCu9NFzDqVA==",
-            "until": "2026-09-09T11:53:56+00:00"
+            "token": "AAABoLgVkZIATlBsJ1HdBoR8kMyR94F9t9nrrBKvvzmcioAU9ZjQ3xRin7mfdPUB1JrGaCDf2t8gvBVIcsUzzXxhV17puDIFW9+LA3lGVuHwJaNDgn+ztA==",
+            "until": "2026-09-10T11:53:56+00:00"
           },
-          "watermark": "2026-09-08T11:53:56+00:00"
+          "watermark": "2026-09-09T11:53:56+00:00"
         },
         "8907dcc6f0cf9fa15561229b3c71508d9ea0f6ba094a7cf80d51dca4255e0c0c": {
           "query_version": "9977f64d519bd5695585a9bdc9eb3efc70bf9b82e3630f2294094568a99afb7b",
           "ted_pending": {
-            "from": "2026-09-08T11:53:56+00:00",
+            "from": "2026-09-09T11:53:56+00:00",
             "through": "2026-09-18T11:53:56+00:00",
-            "token": "AAABoLcel84ATcoihRbmOODJHQgvYEauqGdJGORMNwR+NjyCa4l65hBro9bWqmQoD5r2GvUlxWSZtvvijHO9Rxry7VeT0x26AIKJIl0VuNh5QcfpjReFig==",
-            "until": "2026-09-09T11:53:56+00:00"
+            "token": "AAABoLgVSmkATprGix5P9mps5RtBpupj/w/U7m+I/yfK+CBgyFaIHKIc2UbG91pKC1Z77/ctArZqtl12tyvaO2DdMZE9zIlr4QXDV5ESQ/o6x36hVjvsiA==",
+            "until": "2026-09-10T11:53:56+00:00"
           },
-          "watermark": "2026-09-08T11:53:56+00:00"
+          "watermark": "2026-09-09T11:53:56+00:00"
         },
         "8a4647271e2bcd926bef4774a87dc9beb2dd25d5c924c708898c5f8176e0221d": {
           "query_version": "0160888086a76bfb321e660b31453734560b781f9a2b64e7d683611183699423",
           "ted_pending": {
-            "from": "2026-09-08T11:53:56+00:00",
+            "from": "2026-09-09T11:53:56+00:00",
             "through": "2026-09-18T11:53:56+00:00",
-            "token": "AAABoLceT80AThPCKO//jr+/x1ia59aHvL8L1Uhafk1yNKo6lQC9Mw2n1gwkutCyhPl3VGD46re+q2dGxAkNm2QSBvnUsAJBeZaPrvnNNVhmga+90hT3cg==",
-            "until": "2026-09-09T11:53:56+00:00"
+            "token": "AAABoLgU+EkATpqP9CkNjASF5UHTjrZ8Srsy8PhN0aIoKKoCyXN4zNP166MMpUl4miiWhrCixM8nJlZD5QJgyLaSUbk9gmoOklV58koOx6reSYnDBefaqA==",
+            "until": "2026-09-10T11:53:56+00:00"
           },
-          "watermark": "2026-09-08T11:53:56+00:00"
-        },
-        "8c81d58f0c09e4a80ae7f5dcef56ffb62f626b9b001d04083e010946e4f474e5": {
-          "query_version": "de276287a8ddc1e6275b4673e3eb262582076c16a0224b664ada1a9187b902ec",
-          "ted_pending": {
-            "from": "2026-09-07T11:53:56+00:00",
-            "through": "2026-09-18T11:53:56+00:00",
-            "token": "AAABoLceoQIAThPk+1/fGYEePePZDB61h05zd3/SoBGaSTvb4aToLW91AoCA8im4PR67Mr83K7x5SDqiHDyMuJneUwzVQf5YkZUQ7bfzqr4bwnSXQkWhiQ==",
-            "until": "2026-09-08T11:53:56+00:00"
-          },
-          "watermark": "2026-09-07T11:53:56+00:00"
+          "watermark": "2026-09-09T11:53:56+00:00"
         },
         "9bff76a205f04292975b19c0c257696d7905898a13453ff4b2ee5887769d19cf": {
           "query_version": "073b32233b32c3e5489657b554adaad8c34991c7c0ee00e81ffc3c04c8c82ba1",
           "ted_pending": {
-            "from": "2026-09-08T11:53:56+00:00",
+            "from": "2026-09-09T11:53:56+00:00",
             "through": "2026-09-18T11:53:56+00:00",
-            "token": "AAABoLceVjoAThPFCCd6t9Oao0dKar7kFgSB24kEzOd5nBbeuU1zV9+sJlfbzz5SVaVXfBovZzgMVcLbfNnvqYU2rZRKGU8Hlru5YVkOnHnHunjDnzWZRg==",
-            "until": "2026-09-09T11:53:56+00:00"
+            "token": "AAABoLgVA8gATlAWwcOpPIQPrtEUIXXzDoJFHqmYOhX23MgIW+grmYOYb53XHMeeSJur1QBVAJ8qKrg8xOsDrpAneNyqqRNlrmLa0Zx+KHsGnRGAlxX/SQ==",
+            "until": "2026-09-10T11:53:56+00:00"
           },
-          "watermark": "2026-09-08T11:53:56+00:00"
+          "watermark": "2026-09-09T11:53:56+00:00"
         },
         "b094d565377e8db37f7ed75a7f9f3414ff7f1b4c1db9b3fc13e66866e048be01": {
           "query_version": "e740290d729e935b03c72e2d024a7c2c00cf3612f32e881a380fcc6dbdd9bc66",
           "ted_pending": {
-            "from": "2026-09-05T21:57:07+00:00",
-            "through": "2026-09-18T21:57:07+00:00",
-            "until": "2026-09-06T21:57:07+00:00"
-          },
-          "watermark": "2026-09-05T21:57:07+00:00"
-        },
-        "b6a9b427fd1e80c0733134847cd4ce7fc741d7c18289c74ff9537dd2404a2678": {
-          "query_version": "846be7b5de5998b175df4ebbd3d4a53be1e1a9e50a7ac47ff1ee5c92a98b5a8b",
-          "ted_pending": {
-            "from": "2026-09-08T11:53:56+00:00",
-            "through": "2026-09-18T11:53:56+00:00",
-            "token": "AAABoLcefmsATcoS9DdAIHunBXze8zn4XFwLkCX2SeEFm56Gg+NSzecFv9ouGOMC4nTnOl6eO582nqq0LwcNWZwLAtBWTojenkU3NuWitkRbwmhlR4NcoA==",
-            "until": "2026-09-09T11:53:56+00:00"
-          },
-          "watermark": "2026-09-08T11:53:56+00:00"
-        },
-        "b9c53ea8c56deb7ba561badc3606d7661dfbf23d2274aced7e82c7987fb051aa": {
-          "query_version": "79116827b1b965c8c4f03dfc0df3efe09782a53ede1b7d9265229c57a09e6475",
-          "ted_pending": {
-            "from": "2026-09-06T19:14:50+00:00",
-            "through": "2026-09-18T19:14:50+00:00",
-            "token": "AAABoLcecyAATcoMYx5ZKkuDMiNhyWzbzSCZXsumjgyu2C68KFWn5zsUkRPj4rueCpvGrPIdXs2MJVvjy39u4GnSUnLLIl/UTwPuMeKUaBQsSIMgHGk3Uw==",
-            "until": "2026-09-07T19:14:50+00:00"
-          },
-          "watermark": "2026-09-06T19:14:50+00:00"
-        },
-        "c6ed0e88bacc627f912552101621f2aa0c840f646c15c14325bdab55d2989893": {
-          "query_version": "106e7796b5e84e233739a9694ff2ef3b4fcb4a479f5e62647297bbc47934b751",
-          "ted_pending": {
-            "from": "2026-09-08T11:53:56+00:00",
-            "through": "2026-09-18T11:53:56+00:00",
-            "token": "AAABoLce9nMATcpOSQVRwd6rV9zILf/sJNd5T+Kl5HU9nLf2Y5tZKZQjosSJBsiYio2NbsI1Je/xe86G60h73afBhoD1NyisGy74veyCtjC3x1m7b4VDlw==",
-            "until": "2026-09-09T11:53:56+00:00"
-          },
-          "watermark": "2026-09-08T11:53:56+00:00"
-        },
-        "e4c11de344c8713f18b4917d9c982eaaa5bae53b24d2a2e7bb178d09ee1c19cf": {
-          "query_version": "5d17fae8c77dca95c7fc1deace6d9c94c2f7789f75fa734700ba513921b81651",
-          "ted_pending": {
-            "from": "2026-09-05T00:42:25+00:00",
-            "through": "2026-09-19T00:42:25+00:00",
-            "until": "2026-09-06T00:42:25+00:00"
-          },
-          "watermark": "2026-09-05T00:42:25+00:00"
-        },
-        "ee6a9eedcec6bc30da92bbdb3434b6c7049c3ff73344bff90950291d82de8ff7": {
-          "query_version": "c1a3414ac0af2af70c19e2d0ff6110fc1cb3c131d0d80000d2ffd954d048c9b8",
-          "ted_pending": {
             "from": "2026-09-06T21:57:07+00:00",
             "through": "2026-09-18T21:57:07+00:00",
+            "token": "AAABoLgVIC8ATlAnQdWfEsRIEBlfE1R9wrHsxGuDnOHfTn9p1fyxFCO8Pl8H74znBKq7dmMGCY4iu7PfS1GxGymWFl8ppRQxzzYPhH0AfNKtoAelbn61WA==",
             "until": "2026-09-07T21:57:07+00:00"
           },
           "watermark": "2026-09-06T21:57:07+00:00"
         },
-        "f3be88ef68c48e27cfa4a23a64e9b02a85f6d766ea76abfebed0afbef3aeb2f8": {
-          "query_version": "168c7131004e783133b1f8a31a1e0c4c42b6c992f047e31dfd36ce237b0a0aaf",
+        "b6a9b427fd1e80c0733134847cd4ce7fc741d7c18289c74ff9537dd2404a2678": {
+          "query_version": "846be7b5de5998b175df4ebbd3d4a53be1e1a9e50a7ac47ff1ee5c92a98b5a8b",
           "ted_pending": {
             "from": "2026-09-09T11:53:56+00:00",
             "through": "2026-09-18T11:53:56+00:00",
+            "token": "AAABoLgVM/AATpq1GhCkD7s6YqDovj/MNr2eYH/AAbV5E/tyFrtHqUAoGnM4b25aYNRIojorJ0WbWZJexNf+0EmgluA0Cg6ljFKDjTFubbAqrKbkgHCaaQ==",
             "until": "2026-09-10T11:53:56+00:00"
           },
           "watermark": "2026-09-09T11:53:56+00:00"
+        },
+        "b9c53ea8c56deb7ba561badc3606d7661dfbf23d2274aced7e82c7987fb051aa": {
+          "query_version": "79116827b1b965c8c4f03dfc0df3efe09782a53ede1b7d9265229c57a09e6475",
+          "ted_pending": {
+            "from": "2026-09-07T19:14:50+00:00",
+            "through": "2026-09-18T19:14:50+00:00",
+            "token": "AAABoLgVJ/wATlAroYehvxJhIFiBjGrzNP5rdSfPypoGk7HDu00dWDDh0TY26Ljuffp2r3Nh2PblKqox72raI1SBslFIXZh0b59mLaXKPhCt0No+1/HLjw==",
+            "until": "2026-09-08T19:14:50+00:00"
+          },
+          "watermark": "2026-09-07T19:14:50+00:00"
+        },
+        "bec897a5904780289ed1e211f8f10503c89832bf4511a11bb458ae4f04bfdb5f": {
+          "query_version": "c8e716b87e682ccdcfe349f928f74f7aa383b7274817d44be96a976c53325cde",
+          "ted_pending": {
+            "from": "2026-09-06T05:11:46+00:00",
+            "through": "2026-09-19T05:11:46+00:00",
+            "until": "2026-09-07T05:11:46+00:00"
+          },
+          "watermark": "2026-09-06T05:11:46+00:00"
+        },
+        "c6ed0e88bacc627f912552101621f2aa0c840f646c15c14325bdab55d2989893": {
+          "query_version": "106e7796b5e84e233739a9694ff2ef3b4fcb4a479f5e62647297bbc47934b751",
+          "ted_pending": {
+            "from": "2026-09-09T11:53:56+00:00",
+            "through": "2026-09-18T11:53:56+00:00",
+            "token": "AAABoLgVo9gATpr/5Nf9I0bxCJ+15z6zoemlKrsVC2MWuIYBi7a7GQ3BeuHfD0iA5/U+ErzVeYS44kAecHRYj2vfcpyU4QLPnSc2wFZAWCUJsezZoBD2pg==",
+            "until": "2026-09-10T11:53:56+00:00"
+          },
+          "watermark": "2026-09-09T11:53:56+00:00"
+        },
+        "c713dee638184fdec8b1746d3fa6e816f04f426bdcdc47b78780b4d6f9b75a15": {
+          "query_version": "c7044ffafd473502118da9301133a0ecdc03676011f457c7c180fd859a45d2e7",
+          "ted_pending": {
+            "from": "2026-09-05T05:11:46+00:00",
+            "through": "2026-09-19T05:11:46+00:00",
+            "until": "2026-09-06T05:11:46+00:00"
+          },
+          "watermark": "2026-09-05T05:11:46+00:00"
+        },
+        "e4c11de344c8713f18b4917d9c982eaaa5bae53b24d2a2e7bb178d09ee1c19cf": {
+          "query_version": "5d17fae8c77dca95c7fc1deace6d9c94c2f7789f75fa734700ba513921b81651",
+          "ted_pending": {
+            "from": "2026-09-06T00:42:25+00:00",
+            "through": "2026-09-19T00:42:25+00:00",
+            "token": "AAABoLgVE30ATpqgfPAjzXz1ffnpD5cO21CmM+JsoEyWyUxowyMVbj5kYpCmBPjHYMb67LfxXYY+oPblz26MwMAvCc0gYxagwdrj2GMV82vYHiNQMWZWDg==",
+            "until": "2026-09-07T00:42:25+00:00"
+          },
+          "watermark": "2026-09-06T00:42:25+00:00"
+        },
+        "f3be88ef68c48e27cfa4a23a64e9b02a85f6d766ea76abfebed0afbef3aeb2f8": {
+          "query_version": "168c7131004e783133b1f8a31a1e0c4c42b6c992f047e31dfd36ce237b0a0aaf",
+          "ted_pending": {
+            "from": "2026-09-10T11:53:56+00:00",
+            "through": "2026-09-18T11:53:56+00:00",
+            "until": "2026-09-11T11:53:56+00:00"
+          },
+          "watermark": "2026-09-10T11:53:56+00:00"
         }
       }
     },
-    "watermark": "2026-09-19T00:42:25+00:00"
+    "watermark": "2026-09-19T05:11:46+00:00"
   },
   "upcoming_agreements": {
-    "last_success": "2026-09-19T00:42:25+00:00",
-    "watermark": "2026-09-19T00:42:25+00:00"
+    "last_success": "2026-09-19T05:11:46+00:00",
+    "watermark": "2026-09-19T05:11:46+00:00"
   },
   "usaspending": {
     "last_success": "2026-09-09T23:17:56+00:00",
@@ -134977,10 +135006,6 @@
       "pending": [
         {
           "month": "08-2026",
-          "type": 14
-        },
-        {
-          "month": "08-2026",
           "type": 20
         },
         {
@@ -135070,10 +135095,14 @@
         {
           "month": "08-2026",
           "type": 7
+        },
+        {
+          "month": "08-2026",
+          "type": 14
         }
       ],
       "through": "2026-09-11T13:29:55+00:00"
     },
-    "retry_at": "2026-09-19T01:42:51.649501+00:00"
+    "retry_at": "2026-09-19T06:12:14.505686+00:00"
   }
 }
