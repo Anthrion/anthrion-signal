@@ -2559,6 +2559,39 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "03a87a8c45b05453e9fe150a02011513d93c22addb3a4c71d9e90908239d391a": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 2
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "rejected": {
+            "id": "03a87a8c45b05453e9fe150a02011513d93c22addb3a4c71d9e90908239d391a:0",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "RENOVACIÓN DEL MANTENIMIENTO CORRECTIVO Y LICENCIAS PARA DIEZ ROUTERS JUNIPER MX-960 DE LA RED INFORMÁTICA CIENTÍFICA DE ANDALUCÍA (RICA), PERTENECIENTE A LA AGENCIA DIGITAL DE ANDALUCÍA"
+          },
+          "result": {
+            "at": "2026-09-19T05:22:36.760386+00:00",
+            "language": "es",
+            "model": "gemini-3.1-flash-lite",
+            "text": "RENEWAL OF CORRECTIVE MAINTENANCE AND LICENCES FOR TEN JUNIPER MX-960 ROUTERS OF THE SCIENTIFIC COMPUTER NETWORK OF ANDALUSIA (RICA), BELONGING TO THE AGENCIA DIGITAL DE ANDALUCÍA"
+          },
+          "source": "RENOVACIÓN DEL MANTENIMIENTO CORRECTIVO Y LICENCIAS PARA DIEZ ROUTERS JUNIPER MX-960 DE LA RED INFORMÁTICA CIENTÍFICA DE ANDALUCÍA (RICA), PERTENECIENTE A LA AGENCIA DIGITAL DE ANDALUCÍA"
+        }
+      ],
+      "protected_names": [
+        "Agencia Digital de Andalucía"
+      ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "03b913175ba0226a1d476498908df8ab4577db4adea2c4b5493e2a1aafdea290": {
       "parts": [
         {
@@ -4061,6 +4094,29 @@
             "text": "The subject of the procurement is high-level procurement expertise and legal expertise for various public procurements and public procurement tender assignments of different sizes, as well as consulting, development, training and legal representation related to the entire lifecycle of public procurements to support and provide additional resources for the contracting authority's own procurement organisation. In addition to good delivery reliability, the contract suppliers must have the ability, competence and resources to handle demanding and varied assignments within each area of expertise for the expert services. A framework arrangement will be formed from the procurement. The assignments covered by the procurement vary according to the current need. The procurement is divided into six areas as follows: • Area 1: Expert services for public procurements (goods and services) • Area 2: Expert services for public procurements (ICT procurements) • Area 3: Expert services for public procurements (construction) • Area 4: Expert services for public procurements (social and health services and other special service procurements) • Area 5: Expert services for public procurements (innovative procurements and procurement development) • Area 6: Legal services related to public procurements. For each area, 4 suppliers will be selected, unless there are fewer suppliers that meet the requirements. A separate priority order will be formed for each area. The maximum value of the procurement is 10,5 million euros (VAT 0 %). The estimated value includes the entire contract period, i.e. four (4) years, and it is estimated to be divided by area as follows: area 1: 2,8 million €, area 2: 2,65 million €, area 3: 1,65 million €, area 4: 700 000 €, area 5: 1 million €, area 6: 1,7 million €. The services of the area include goods and service procurements. There are separate areas for ICT procurements, construction-related procurements, social and health services and other special services, as well as innovative procurements. Assignments may include carrying out the entire procurement process or individual tasks related to the procurement process, participating in or leading working groups consisting of the contracting authority's experts and stakeholder representatives, and other expert tasks related to procurements. The subject of the procurement is defined in more detail in this invitation to tender and its appendices.; The services of the area include ICT procurements, which are typically various information system procurements of different scopes or other ICT equipment, goods, service or combination procurements. The area emphasises knowledge of the special features of ICT procurements and markets, their contract and pricing models, and other commercial aspects related to ICT procurements. Assignments may include carrying out the entire procurement process or individual tasks related to the procurement process, participating in or leading working groups consisting of the contracting authority's experts and stakeholder representatives, and other expert tasks related to procurements. The subject of the procurement is defined in more detail in this invitation to tender and its appendices.; The services of the area include construction-related procurements. The area emphasises special expertise related to construction projects, contract forms, YSE terms and conditions, and construction contract law. Assignments may include carrying out the entire procurement process or individual tasks related to the procurement process, participating in or leading working groups consisting of the contracting authority's experts and stakeholder representatives, and other expert tasks related to procurements. The subject of the procurement is defined in more detail in this invitation to tender and its appendices.; The services of the area include procurements according to social and health services and other special services, which belong to the procurements according to Appendix E of the Procurement Act. Assignments may include carrying out the entire procurement process or individual tasks related to the procurement process, participating in or leading working groups consisting of the contracting authority's experts and stakeholder representatives, and other expert tasks related to procurements. The subject of the procurement is defined in more detail in this invitation to tender and its appendices.; The services of the area include, in particular, innovative public procurements. By innovative procurements, we mean the procurement of a new or significantly improved product or service that aims to improve productivity, quality, sustainability and effectiveness. The area emphasises: - development of result- and effectiveness-based procurements and development/modelling of the earnings logic for related procurements, - definition of effectiveness targets and monitored impacts, as well as preparation of a measurement system. Assignments may include carrying out the entire procurement process or individual tasks related to the procurement process, participating in or leading working groups consisting of the contracting authority's experts and stakeholder representatives, and other expert tasks related to procurements. The subject of the procurement is defined in more detail in this invitation to tender and its appendices.; The services of the area do not include carrying out the entire procurement process, but the service focuses on legal advice related to public procurements and representation in courts regarding the Procurement Act (the Procurement Act refers to procurements falling within the scope of the Procurement Act and the Act on Public Procurement and Concession Contracts in the Utilities Sector; acts 1397/2016, 1398/2016). The subject of the procurement is defined in more detail in this invitation to tender and its appendices."
           },
           "source": "Hankinnan kohteena on korkeatasoinen hankinta-asiantuntemus ja juridinen asiantuntemus erilaisiin ja eri kokoluokan julkisiin hankintoihin ja julkisten hankintojen kilpailutustoimeksiantoihin, sekä julkisten hankintojen koko elinkaareen liittyvään konsultointiin, kehittämiseen, kouluttamiseen sekä oikeudelliseen edustamiseen tilaajan oman hankintaorganisaation tueksi ja lisäresurssiksi. Sopimustoimittajilla tulee olla hyvän toimitusvarmuuden lisäksi kykyä, osaamista ja resursseja hoitaa vaativia ja vaihtelevia toimeksiantoja kunkin asiantuntijapalvelun osa-alueen sisällä. Hankinnasta muodostetaan puitejärjestely. Hankinnan piiriin kuuluvat toimeksiannot vaihtelevat kulloisenkin tarpeen mukaan. Hankinta on jaettu kuuteen osa-alueeseen seuraavasti: • Osa-alue 1: Julkisten hankintojen asiantuntijapalvelut (tavarat ja palvelut) • Osa-alue 2: Julkisten hankintojen asiantuntijapalvelut (ICT-hankinnat) • Osa-alue 3: Julkisten hankintojen asiantuntijapalvelut (rakentaminen) • Osa-alue 4: Julkisten hankintojen asiantuntijapalvelut (sote-palvelut ja muut erityiset palveluhankinnat) • Osa-alue 5: Julkisten hankintojen asiantuntijapalvelut (innovatiiviset hankinnat ja hankintojen kehittäminen) • Osa-alue 6: Julkisiin hankintoihin liittyvät juridiset palvelut Jokaiselle osa-alueelle valitaan 4 toimittajaa, ellei vaatimukset täyttäviä toimittajia ole vähemmän. Jokaiselle osa-alueelle muodostetaan oma etusijajärjestyksensä. Hankinnan enimmäisarvo on 10,5 milj. euroa (alv 0 %). Arvioitu arvo sisältää koko sopimuskauden eli neljä (4) vuotta ja sen arvioidaan jakautuvan osa-alueittain seuraavasti: osa-alue 1: 2,8 milj. €, osa-alue 2: 2,65 milj. €, osa-alue 3: 1,65 milj. €, osa-alue 4: 700 000 €, osa-alue 5: 1 milj. €, osa-alue 6: 1,7 milj. €. Osa-alueen palvelut sisältävät tavara- ja palveluhankintoja. ICT-hankintoihin, rakentamiseen liittyviin hankintoihin ja sosiaali- ja terveyspalvelujen sekä muiden erityisten palvelujen mukaisiin hankintoihin sekä innovatiivisiin hankintoihin on omat osa-alueensa. Toimeksiannot voivat sisältää koko hankintaprosessin läpiviemisen tai hankintaprosessiin liittyviä yksittäisiä tehtäviä, erilaisissa hankintayksikön asiantuntijoiden ja sidosryhmien edustajista koostuviin työryhmiin osallistumista tai työryhmien vetämistä sekä muita hankintoihin liittyviä asiantuntijatehtäviä. Hankinnan kohde on määritelty tarkemmin tässä tarjouspyynnössä ja sen liitteissä.; Osa-alueen palvelut sisältävät ICT-hankintoja, jotka ovat tyypillisesti erilaisia ja eri laajuisia tietojärjestelmähankintoja tai muita ICT-laite-, - tavara-, - palvelu- tai näiden yhdistelmien hankintoja. Osa-alueessa korostuu ICT-hankintojen ja -markkinoiden erityispiirteiden ja niiden sopimus- ja hinnoittelumallien sekä muiden ICT - hankintoihin liittyvien kaupallisten näkökohtien tuntemus. Toimeksiannot voivat sisältää koko hankintaprosessin läpiviemisen tai hankintaprosessiin liittyviä yksittäisiä tehtäviä, erilaisissa hankintayksikön asiantuntijoiden ja sidosryhmien edustajista koostuviin työryhmiin osallistumista tai työryhmien vetämistä sekä muita hankintoihin liittyviä asiantuntijatehtäviä. Hankinnan kohde on määritelty tarkemmin tässä tarjouspyynnössä ja sen liitteissä.; Osa-alueen palvelut sisältävät rakentamiseen liittyviä hankintoja. Osa-alueessa korostuvat rakennushankkeisiin, urakkamuotoihin, YSE-ehtoihin ja rakennuttamisen sopimusjuridiikkaan liittyvä erityisosaaminen. Toimeksiannot voivat sisältää koko hankintaprosessin läpiviemisen tai hankintaprosessiin liittyviä yksittäisiä tehtäviä, erilaisissa hankintayksikön asiantuntijoiden ja sidosryhmien edustajista koostuviin työryhmiin osallistumista tai työryhmien vetämistä sekä muita hankintoihin liittyviä asiantuntijatehtäviä. Hankinnan kohde on määritelty tarkemmin tässä tarjouspyynnössä ja sen liitteissä.; Osa-alueen palvelut sisältävät sosiaali- ja terveyspalvelujen sekä muiden erityisten palvelujen mukaisia hankintoja, jotka kuuluvat hankintalain liitteen E-mukaisiin hankintoihin. Toimeksiannot voivat sisältää koko hankintaprosessin läpiviemisen tai hankintaprosessiin liittyviä yksittäisiä tehtäviä, erilaisissa hankintayksikön asiantuntijoiden ja sidosryhmien edustajista koostuviin työryhmiin osallistumista tai työryhmien vetämistä sekä muita hankintoihin liittyviä asiantuntijatehtäviä. Hankinnan kohde on määritelty tarkemmin tässä tarjouspyynnössä ja sen liitteissä.; Osa-alueen palvelut sisältävät erityisesti innovatiivisia julkisia hankintoja. Innovatiivisilla hankinnoilla tarkoitamme uuden tai merkittävästi parannellun tuotteen tai palvelun hankintaa, jolla tavoitellaan tuottavuuden, laadun, kestävyyden ja vaikuttavuuden paranemista. Osa-alueessa korostuu: - tulos- ja vaikuttavuusperusteisten hankintojen kehittäminen sekä näihin liittyvien hankintojen ansaintalogiikan kehittäminen/mallintaminen, - vaikuttavuustavoitteiden ja seurattavien vaikutusten määrittely sekä mittariston laatiminen. Toimeksiannot voivat sisältää koko hankintaprosessin läpiviemisen tai hankintaprosessiin liittyviä yksittäisiä tehtäviä, erilaisissa hankintayksikön asiantuntijoiden ja sidosryhmien edustajista koostuviin työryhmiin osallistumista tai työryhmien vetämistä sekä muita hankintoihin liittyviä asiantuntijatehtäviä. Hankinnan kohde on määritelty tarkemmin tässä tarjouspyynnössä ja sen liitteissä.; Osa-alueen palvelut eivät sisällä koko hankintaprosessin läpivientiä, vaan palvelu keskittyy julkisiin hankintoihin liittyvään oikeudelliseen neuvontaan sekä edustamiseen tuomioistuimissa hankintalakiin liittyen (hankintalailla tarkoitetaan hankintalain ja erityisalojen hankintalain soveltamisalaan kuuluvia hankintoja; lait 1397/2016, 1398/2016). Hankinnan kohde on määritelty tarkemmin tässä tarjouspyynnössä ja sen liitteissä."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "0550fc265e81a3d235d269b85f4e16701e83d1093808882f228404acf86e8a3b": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:21:42.807904+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Service for drafting the basic and execution project and site supervision for the comprehensive refurbishment works of floors 2st, 3nd and 4rd of administrative building I of the Parliament of the Canary Islands. Submission deadline (source local time): 2026-09-25 15:00:00. Time zone not supplied; check the source notice. Please remember that the Platform's schedule is peninsula time, the official time of the electronic access headquarters, which must be taken into account for the timely submission of tenders."
+          },
+          "source": "Servicio de redacción de proyecto básico y de ejecución y dirección facultativa de las obras de reforma integral de las plantas 2a, 3a y 4a del edificio administrativo I del Parlamento de Canarias. Submission deadline (source local time): 2026-09-25 15:00:00. Time zone not supplied; check the source notice. Se recuerda que el horario de la Plataforma es el peninsular, hora oficial de la sede electrónica de acceso, lo que deberá tenerse en cuenta para la presentación en plazo de las ofertas."
         }
       ],
       "protected_names": [],
@@ -10554,6 +10610,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "0db59b59f0390d00b0ea99d2fed7154813ec9cdc78c7d016c1563e44b0ed2371": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:21:42.798274+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Within the GCA Energy Category, we operate a managed service on behalf of the public sector, aggregating their energy demand and purchasing on the wholesale market under a number of risk strategies. In order to support these activities, we require a cloud-based energy portfolio management solution, suitable for managing the GCA Energy portfolio frameworks, which includes; c.1,200 customers, c.108,000 power / gas meters, c. 80,000 sites There is currently no system in place to meet these requirements. This requirement will run on a 3 month trial period. If after the trial period concludes successfully, the supplier will be awarded the subsequent contract term and value. The value included in this notice is for the trial period only. Any subsequent contract term is subject to further budgetary approval which, will be confirmed at the future procurement stage. The proposed system must be able to accurately record the customer portfolio data for both gas and power, including site and meter information and assigned trading strategy. Each of the meters is assigned to a customer and a site. Each meter is attached to current and future Gas / Power buying strategies with varying buying lengths. The system must support the ability for nominated energy suppliers to access the meter data for their assigned customers. We also require the ability for customers to complete a self-serve audit of their portfolio and buying strategy, including the ability to request changes and additions to their portfolio. The system should have the The ability to extract data via API (REST) to integrate with the rest of our data infrastructure The successful supplier will be expected to provide ongoing management maintenance of the solution throughout the duration of the contract to ensure its effective running and optimisation. The dates included in this notice are indicative and subject to change. GCA intend to run this procurement opportunity via commercial agreement Demand Management & Renewables DPS RM6313. Should you intend to bid, you will need to onboard onto the agreement. Please follow the below link and click \"access as a supplier\": https://supplierregistration.cabinetoffice.gov.uk/dps/RM6313?nav=0"
+          },
+          "source": "Within the GCA Energy Category, we operate a managed service on behalf of the public sector, aggregating their energy demand and purchasing on the wholesale market under a number of risk strategies. In order to support these activities, we require a cloud-based energy portfolio management solution, suitable for managing the GCA Energy portfolio frameworks, which includes; c.1,200 customers, c.108,000 power / gas meters, c. 80,000 sites There is currently no system in place to meet these requirements. This requirement will run on a 3 month trial period. If after the trial period concludes successfully, the supplier will be awarded the subsequent contract term and value. The value included in this notice is for the trial period only. Any subsequent contract term is subject to further budgetary approval which, will be confirmed at the future procurement stage. The proposed system must be able to accurately record the customer portfolio data for both gas and power, including site and meter information and assigned trading strategy. Each of the meters is assigned to a customer and a site. Each meter is attached to current and future Gas / Power buying strategies with varying buying lengths. The system must support the ability for nominated energy suppliers to access the meter data for their assigned customers. We also require the ability for customers to complete a self-serve audit of their portfolio and buying strategy, including the ability to request changes and additions to their portfolio. The system should have the The ability to extract data via API (REST) to integrate with the rest of our data infrastructure The successful supplier will be expected to provide ongoing management maintenance of the solution throughout the duration of the contract to ensure its effective running and optimisation. The dates included in this notice are indicative and subject to change. GCA intend to run this procurement opportunity via commercial agreement Demand Management & Renewables DPS RM6313. Should you intend to bid, you will need to onboard onto the agreement. Please follow the below link and click \"access as a supplier\": https://supplierregistration.cabinetoffice.gov.uk/dps/RM6313?nav=0"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "0db65bf39e93a52b20bdaf8bb42ba12c3a9759a126d0dbe90ab16d786ce4a555": {
       "parts": [
         {
@@ -11405,6 +11484,29 @@
       ],
       "protected_names": [],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "0edeccfeab3fe5e4a291599067218c730b0bdf093ab2cda371619541bcfbea25": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:22:29.967402+00:00",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Klinikum Stuttgart gKAöR"
+          },
+          "source": "Klinikum Stuttgart gKAöR"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "0ee611c289cf9a21d33ccd54e96034c4bf7d6795a27569c66d1d64c5be4f9501": {
@@ -13209,6 +13311,37 @@
             "text": "Data centre maintenance"
           },
           "source": "Mantenimiento CPD"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "10d1cb09db1e9bd3446c0f53795eab1ce7e81bd9e447dda7f41d071c11c05271": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 2
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "rejected": {
+            "id": "10d1cb09db1e9bd3446c0f53795eab1ce7e81bd9e447dda7f41d071c11c05271:0",
+            "language": "sv",
+            "model": "gemini-3.5-flash-lite",
+            "text": "RFI Laboratorieinformationssystem till transfusionsmedicin"
+          },
+          "result": {
+            "at": "2026-09-19T05:22:36.750130+00:00",
+            "language": "sv",
+            "model": "gemini-3.1-flash-lite",
+            "text": "RFI Laboratory information system for transfusion medicine"
+          },
+          "source": "RFI Laboratorieinformationssystem till transfusionsmedicin"
         }
       ],
       "protected_names": [],
@@ -16566,6 +16699,29 @@
       ],
       "protected_names": [],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "14de1fc49715bae5d73cb46b41a8a40b82cc0ae91142a94d401e9bb658edad8c": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:22:29.965319+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Mayor's Office of the Municipality of Puertollano"
+          },
+          "source": "Alcaldía del Ayuntamiento de Puertollano"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "14e609178b7e1a2b7bf5af7a015d9e297f3b550f791ed8572ef463ccc03f9cf4": {
@@ -20782,6 +20938,31 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "1a7a166d5305bd36ab19252954e066311d07061f315f83836d0f7be5c3158280": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:22:26.825764+00:00",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "We kindly request you to submit your response to this request for information concerning the procurement of an online training service. We greatly appreciate all responses received, and each of them will be taken into account in the preparation of a potential tendering procedure. The purpose of the request for information is to ensure that the preparers of the tendering procedure have access to as comprehensive and up-to-date a picture of the market and available solutions as possible. With this request for information, we wish to map out suppliers' offerings of online training services that support the competence development of the personnel of Istekki Oy and Istekki's owner-customers and provide a smooth and appropriate user experience for the end user. At the same time, we aim to familiarise ourselves with the market situation of services related to the service, contract terms and commercial conditions such as pricing. Based on the responses to the request for information, market dialogue sessions may be organised where suppliers can present their own services, products and alternatives for the implementation of the subject of the procurement. If market dialogue sessions are organised, they will be conducted in the Finnish language. Istekki will notify the companies participating in the sessions of the more detailed schedules and a Teams meeting link later. Please note that the information, descriptions and estimates of the publication date of the tendering procedure presented in this request for information are only preliminary and indicative. The final schedules will be specified as the preparation progresses. We kindly ask you to submit your response by email to hankinnat@istekki.fi at the latest by 15.4.2026 at 12.00. We hope that the responses will be submitted as a separate attachment in the Finnish language so that their processing is as smooth as possible. If you wish, you may also include Finnish-language brochures or other material that supports the content of your response. Based on the responses received, Istekki will select tenderers at its discretion to present their solution at a market dialogue meeting. All responses received to the request for information will be taken into account in the preparation of the invitation to tender, and they are an important part of grasping the overall entity. It is worth noting that this request for information does not oblige Istekki Oy to carry out the procurement in the manner presented in this document or its appendices. A potential call for tenders may also be left unorganised. No separate compensation will be paid for responding to the request for information or participating in potential presentation sessions. We would like to mention again that this is a request for information, not a prior information notice, contract notice or invitation to tender. The purpose of the request for information is to familiarise oneself with the market situation and gather information related to the subject of the procurement to support the planning of the future tendering procedure. Responding to the request for information is voluntary and is not a prerequisite for participation in a potential tendering procedure nor does it bind Istekki to publish a tendering procedure. At the same time, however, we greatly appreciate the information provided by suppliers, as it helps us build the future tendering procedure into as functional and clear a whole as possible."
+          },
+          "source": "Pyydämme teitä toimittamaan vastauksenne tähän verkkokoulutuspalvelun hankintaa koskevaan tietopyyntöön. Arvostamme suuresti kaikkia saamiamme vastauksia, ja jokainen niistä huomioidaan mahdollisen kilpailutuksen valmistelussa. Tietopyynnön tarkoituksena on varmistaa, että kilpailutuksen valmistelijoilla on käytössään mahdollisimman kattava ja ajantasainen kuva markkinoista ja tarjolla olevista ratkaisuista. Tällä tietopyynnöllä haluamme kartoittaa toimittajien tarjontaa verkkokoulutuspalveluista, jotka tukevat Istekki Oy:n ja Istekin omistaja-asiakkaiden henkilöstön osaamisen kehittämistä ja tarjoavat sujuvan ja tarkoituksenmukaisen käyttökokemuksen loppukäyttäjälle. Samalla pyrimme tutustumaan palveluun liittyvien palvelujen markkinatilanteeseen, sopimus-ehtoihin ja kaupallisiin ehtoihin kuten hinnoitteluun. Tietopyynnön vastauksien perusteella voidaan järjestää markkinavuoropuhelutilaisuuksia, joissa toimittajat voivat esitellä omia palveluita, tuotteita ja vaihtoehtojaan kilpailutuksen kohteen toteutumiselle. Jos markkinavuoropuhelutilaisuuksia järjestetään, ne toteutetaan suomen kielellä. Istekki ilmoittaa tilaisuuksiin osallistuville yrityksille tarkemmat aikataulut sekä Teams‐kokouslinkin myöhemmin. Huomioithan, että tässä tietopyynnössä esitetyt tiedot, kuvaukset ja arviot kilpailutuksen julkaisuajankohdasta ovat vasta alustavia ja suuntaa antavia. Lopulliset aikataulut tarkentuvat valmistelun edetessä. Pyydämme toimittamaan vastauksenne sähköpostitse osoitteeseen hankinnat@istekki.fi viimeistään 15.4.2026 klo 12.00. Toivomme, että vastaukset toimitetaan erillisellä liitteellä suomen kielellä, jotta niiden käsittely on mahdollisimman sujuvaa. Halutessanne voitte liittää mukaan myös suomenkielisiä esitteitä tai muuta materiaalia, joka tukee vastauksenne sisältöä. Saatujen vastausten pohjalta Istekki valitsee harkintansa perusteella tarjoajia esittelemään ratkaisuaan markkinavuoropuhelutapaamisessa. Kaikki tietopyyntöön tulleet vastaukset otetaan huomioon tarjouspyynnön valmistelussa, ja ne ovat tärkeä osa kokonaisuuden hahmottamista. On hyvä huomioida, että tämä tietopyyntö ei velvoita Istekki Oy:tä toteuttamaan hankintaa tässä asiakirjassa tai sen liitteissä esitetyllä tavalla. Mahdollinen tarjouskilpailu voidaan myös jättää järjestämättä. Tietopyyntöön vastaamisesta tai mahdollisiin esittelytilaisuuksiin osallistumisesta ei makseta erillistä korvausta. Haluamme vielä mainita, että kyseessä on tietopyyntö, ei ennakkoilmoitus, hankintailmoitus tai tarjouspyyntö. Tietopyynnön tarkoituksena on tutustua markkinatilanteeseen ja kerätä hankinnan kohteeseen liittyvää tietoa tulevan kilpailutuksen suunnittelun tueksi. Tietopyyntöön vastaaminen on vapaaehtoista, eikä se ole edellytys mahdolliseen tarjouskilpailuun osallistumiselle tai sido Istekkiä julkaisemaan tarjouskilpailua. Samalla kuitenkin arvostamme suuresti toimittajien tarjoamaa tietoa, sillä se auttaa meitä rakentamaan tulevasta kilpailutuksesta mahdollisimman toimivan ja selkeän kokonaisuuden."
+        }
+      ],
+      "protected_names": [
+        "Istekki Oy"
+      ],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "1a802cb7675c02b91e2d95f8a98c785d7e0c43c469888903f9d9f2f4fc5f416e": {
@@ -25158,6 +25339,29 @@
             "text": "Presidency of the Provincial Tourism Board of Costa Blanca"
           },
           "source": "Presidencia del Patronato Provincial de Turismo de la Costa Blanca"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "20e19932c4e0858be82aec76f7e0cb8d75d78550d2297ae05a24ea8305a071eb": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:22:29.968399+00:00",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Central Procurement Office"
+          },
+          "source": "Vergabestelle der Zentrale"
         }
       ],
       "protected_names": [],
@@ -30893,6 +31097,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "280c88bc1c7f9fd10ea1c438fb0eed0b830786dc246b02931f0b2b1f9e2bce43": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:21:51.563746+00:00",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Kela is planning to replace its current HR service package based on the SAP ERP environment. The objective of the market dialogue is, among other things, to form an up-to-date overall picture of alternatives available on the market and to gather suppliers' views on the preparation of the procurement's content, implementation model and contract terms. The procurement is preliminarily aimed at the following software and related services: 1. HR system The HR system must support at least the following areas: - HR master data (organisation data management, personal data management, employment relationship and salary basis management) - Competence management (competence management, competence profile, learning and renewal) - Training management (training and other events) - Continuous coaching discussion / development discussions - Salary discussion - Onboarding - Offboarding - Time management: holidays and absences - HR analytics and reporting 2. Payroll system - E-payslip distribution service 3. Working time management system The working time management solution must include at least: - Working time clocking - Working time reporting (allocation of working time to activities and projects) - Possible shift planning for period-based work (preliminary need) The delivery of the solution preliminarily involves the following requirements: - The solution must meet the functional and non-functional requirements set by Kela - A delivery and deployment project led by the supplier - Necessary integration implementations into other systems - Necessary conversion and migration implementations - Necessary training and documentation - Expert services that may be ordered separately (e.g. system development and consulting) Number of users: There are estimated to be approximately 8 500 users of the system at Kela. The objective of the market dialogue is, among other things: - to form an objective and comprehensive picture of solutions and implementation models on the market - to receive feedback on the content of the procurement subject and service package - to gather views on contract terms - to obtain information on prices and pricing bases Registration for the market dialogue: Kela requests interested suppliers to register and submit a short preliminary presentation of their solution (1-3). The market dialogue can also be conducted as Teams discussions. Registrations are requested to be sent by email: - Address: it.tarjouskilpailut@kela.fi - Message subject: HR-järjestelmä, ilmoittautuminen (1-3) - Content: company's official name and contact person's email address - Deadline: 21.4.2026. We particularly welcome views on the following themes: - Description of how the proposed system package meets Kela's needs - Access rights management, information security and data protection - Customer-specific test environment and related pricing - Integrations into other systems (principles, technologies, interfaces) - Usability-supporting solutions The material to be delivered is expected to include at least: - basic information on the system and architecture - description of support and maintenance - development roadmap - information security and data protection practices (e.g. role assignment, logging, auditing, data location)"
+          },
+          "source": "Kela suunnittelee korvaavansa nykyisen SAP ERP -ympäristöön perustuvan HR-palvelukokonaisuuden. Markkinavuoropuhelun tavoitteena on mm. muodostaa ajantasainen kokonaiskuva markkinoilla olevista vaihtoehdoista sekä kerätä toimittajilta näkemyksiä hankinnan sisällön, toteutusmallin ja sopimusehtojen valmisteluun. Hankinta kohdistuu alustavasti seuraaviin ohjelmistoihin ja niihin liittyviin palveluihin: 1. HR-järjestelmä HR-järjestelmän tulee tukea vähintään seuraavia osa-alueita: - HR-masterdata (organisaatiotietojen hallinta, henkilötietojen hallinta, työsuhteiden sekä palkan perusteiden hallinta) - Osaamisen hallinta (osaamisen johtaminen, osaamisprofiili, oppiminen ja uudistuminen) - Koulutuksenhallinta (koulutukset ja muut tilaisuudet) - Jatkuva valmennuskeskustelu / kehityskeskustelut - Palkkakeskustelu - Onboarding: perehdytys - Offboarding: työsuhteen päättäminen - Ajanhallinta: lomat ja poissaolot - HR-analytiikka ja raportointi 2. Palkanlaskentajärjestelmä - Verkkopalkkalaskelmien välityspalvelu 3. Työajanhallintajärjestelmä Työajanhallintaratkaisun tulee sisältää vähintään: - Työajan leimaus - Työajan raportointi (työajan kohdentaminen toiminnoille ja projekteille) - Mahdollinen jaksotyön työvuorosuunnittelu (alustava tarve) Ratkaisun toimittamiseen liittyy alustavasti seuraavia vaatimuksia: - Ratkaisun tulee täyttää Kelan asettamat toiminnalliset ja ei-toiminnalliset vaatimukset - Toimitus- ja käyttöönottoprojekti, jossa vetovastuu on toimittajalla - Tarvittavat integraatiototeutukset muihin järjestelmiin - Tarvittavat konversio- ja migraatiototeutukset - Tarvittavat koulutukset ja dokumentaatio - Mahdollisesti erikseen tilattavat asiantuntijapalvelut (mm. järjestelmän kehittäminen ja konsultointi) Käyttäjämäärä: Järjestelmän käyttäjiä Kelassa on arviolta noin 8 500 henkilöä. Markkinavuoropuhelun tavoitteena on mm: - muodostaa objektiivinen ja kattava kuva markkinoilla olevista ratkaisuista ja toteutusmalleista - saada palautetta hankinnan kohteen ja palvelukokonaisuuden sisällöstä - kerätä näkemyksiä sopimusehdoista - saada tietoa hinnoista ja hinnoitteluperusteista Ilmoittautuminen markkinavuoropuheluun: Kela pyytää kiinnostuneita toimittajia ilmoittautumaan ja toimittamaan lyhyen alustavan esityksen ratkaisustaan (1-3). Markkinavuoropuhelua voidaan käydä myös Teams-keskusteluina. Ilmoittautumiset pyydetään lähettämään sähköpostitse: - Osoite: it.tarjouskilpailut@kela.fi - Viestin aihe: HR-järjestelmä, ilmoittautuminen (1-3) - Sisältö: yrityksen virallinen nimi sekä yhteyshenkilön sähköpostiosoite - Määräaika: 21.4.2026. Toivomme erityisesti näkemyksiä seuraavista teemoista: - Kuvaus siitä, miten ehdotettu järjestelmäkokonaisuus vastaa Kelan tarpeisiin - Käyttöoikeuksien hallinta, tietoturva sekä tietosuoja - Asiakaskohtainen testiympäristö ja siihen liittyvä hinnoittelu - Integraatiot muihin järjestelmiin (periaatteet, teknologiat, rajapinnat) - Käytettävyyttä tukevat ratkaisut Toimitettavan materiaalin odotetaan sisältävän vähintään: - perustiedot järjestelmästä ja arkkitehtuurista - kuvaus tuesta ja ylläpidosta - kehitysnäkymä / roadmap - tietoturva- ja tietosuojakäytännöt (mm. roolitus, lokitus, auditointi, tietojen sijainti)"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "280eda98455cc271708706effbe0956ee593d3427dde4841b3c45acd4e09cd85": {
       "parts": [
         {
@@ -33263,6 +33490,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "2b25fbfdad73d0e6d7cffdf8bd4941e523aa7fee09f0ac0da6bee9204f3bf494": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:22:29.969369+00:00",
+            "language": "no",
+            "model": "gemini-3.5-flash-lite",
+            "text": "ICT Valdres IKS"
+          },
+          "source": "IKT Valdres IKS"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "2b27f4ec88887c552b282e38e57a4b4dfc0f5327ae7fc7149c393e9421ec500c": {
       "parts": [
         {
@@ -34928,6 +35178,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "2d7c54b317ae9d50e40189df0f6c6b4ccf115e6510c577b00031aa009af519ae": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:22:29.966488+00:00",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Municipality of Pälkäne"
+          },
+          "source": "Pälkäneen kunta"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "2d816cc217824b1c3c1b114c833163919826b253600c475ea6cf8831f8a8accb": {
       "parts": [
         {
@@ -34970,6 +35243,29 @@
       "protected_names": [
         "Landkreis Emmendingen"
       ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "2d9b90a93d1876fc39c3a9158dd2544014490df6edd6b70dd4c7b652528c7cc6": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:21:42.805943+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Collaboration and technical and material assistance services for the Municipality of Villanueva del Río Segura in tax management and the voluntary and enforcement collection of taxes, penalties and other public-law revenue. Submission deadline (source local time): 2026-09-30 14:00:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Servicios de colaboración y asistencia técnica y material al Ayuntamiento de Villanueva del Río Segura en la gestión tributaria y en la recaudación voluntaria y ejecutiva de tributos, sanciones y otros ingresos de derecho público. Submission deadline (source local time): 2026-09-30 14:00:00. Time zone not supplied; check the source notice."
+        }
+      ],
+      "protected_names": [],
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
@@ -38012,6 +38308,38 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "3235fb4733186a8676b7bdf03ccdeeaaa08a8d2f7373fdbaa20b5f91b6e3b31a": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.1-flash-lite": 1,
+            "gemini-3.5-flash-lite": 2
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "rejected": {
+            "id": "3235fb4733186a8676b7bdf03ccdeeaaa08a8d2f7373fdbaa20b5f91b6e3b31a:0",
+            "language": "es",
+            "model": "gemini-3.1-flash-lite",
+            "text": "Evaluation and monitoring service for the 2nd Municipal Strategic Plan for Equal Opportunities between Women and Men of the Puertollano City Council for the period 2026-2029."
+          },
+          "result": {
+            "at": "2026-09-19T05:22:39.617388+00:00",
+            "language": "es",
+            "model": "gemini-3.1-flash-lite",
+            "text": "Evaluation and monitoring service for the II Municipal Strategic Plan for Equal Opportunities between Women and Men of the Puertollano City Council for the period 2026-2029."
+          },
+          "source": "Servicio de evaluación y seguimiento del II Plan Estratégico Municipal de Igualdad de Oportunidades entre Mujeres y Hombres del Ayuntamiento de Puertollano para el periodo 2026-2029."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "32399ff03914a4de380c33ab3e287691cd1fc7b49cb38de786d7e66390b4ec7c": {
       "parts": [
         {
@@ -38759,6 +39087,37 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "32e659e6bf22158300fe16dcce3be5579b053d775b359cec9c7920d0655d1ea3": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 2
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "rejected": {
+            "id": "32e659e6bf22158300fe16dcce3be5579b053d775b359cec9c7920d0655d1ea3:0",
+            "language": "sv",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Informationsinhämtning inför upphandling av Dokument- och ärendehanteringssystem"
+          },
+          "result": {
+            "at": "2026-09-19T05:22:36.759535+00:00",
+            "language": "sv",
+            "model": "gemini-3.1-flash-lite",
+            "text": "Information gathering prior to procurement of Document and case management system"
+          },
+          "source": "Informationsinhämtning inför upphandling av Dokument- och ärendehanteringssystem"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "32ed8a19a55e32a6b3e0c36c03b8a5d35f6089d9738323657fc19b7b62302695": {
@@ -52022,6 +52381,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "448ec2e691ec82adb3ed7edb721bb6ebd6f597ac953203d0d4d7e3078c23fed6": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:21:42.795808+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "BSOL is seeking to procure and implement a single, modern, Pathology network-wide LIMS solution that will support the delivery of its BSOL Pathology Network Strategy and provide a platform for future service transformation. Suppliers wishing to participate in this market engagement exercise and express an interest in this requirement should respond by completing and attaching the following via the online form on the Health Family Single eCommercial System Portal (Atamis) by 17:00 on Tuesday 8th September 2026: 1. BSOL LIMS PME Market Engagement Questionnaire 2. Annex 1 - BSOL LIMS PME Feedback on Requirements 3. Annex 2 - BSOL LIMS PME Indicative Cost Schedule"
+          },
+          "source": "BSOL is seeking to procure and implement a single, modern, Pathology network-wide LIMS solution that will support the delivery of its BSOL Pathology Network Strategy and provide a platform for future service transformation. Suppliers wishing to participate in this market engagement exercise and express an interest in this requirement should respond by completing and attaching the following via the online form on the Health Family Single eCommercial System Portal (Atamis) by 17:00 on Tuesday 8th September 2026: 1. BSOL LIMS PME Market Engagement Questionnaire 2. Annex 1 - BSOL LIMS PME Feedback on Requirements 3. Annex 2 - BSOL LIMS PME Indicative Cost Schedule"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "44952c17ceecc62e3f2875cc12f2f1c7a8092f09d78f1cc0aac8de5fe71da388": {
       "parts": [
         {
@@ -54377,6 +54759,29 @@
             "text": "NHS HAMPSHIRE AND THE ISLE OF WIGHT INTEGRATED CARE BOARD"
           },
           "source": "NHS HAMPSHIRE AND THE ISLE OF WIGHT INTEGRATED CARE BOARD"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "47dc7273587e46381ebb51caddbb31104308b128469009ab7ae4247d4f28d4ab": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:22:29.970374+00:00",
+            "language": "is",
+            "model": "gemini-3.5-flash-lite",
+            "text": "National University Hospital"
+          },
+          "source": "Landspítali Háskólasjúkrahús"
         }
       ],
       "protected_names": [],
@@ -59044,6 +59449,37 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "4def22ff743bd432cefb88f8e0c6329a764f0a1a88dbe3c2d53c4ccd7249d5b8": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 2
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "rejected": {
+            "id": "4def22ff743bd432cefb88f8e0c6329a764f0a1a88dbe3c2d53c4ccd7249d5b8:0",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Software zur Verwaltung und Dokumentation von Humanmilch nach SoHo-Verordnung"
+          },
+          "result": {
+            "at": "2026-09-19T05:22:36.750259+00:00",
+            "language": "de",
+            "model": "gemini-3.1-flash-lite",
+            "text": "Software for the management and documentation of human milk in accordance with the SoHo Regulation"
+          },
+          "source": "Software zur Verwaltung und Dokumentation von Humanmilch nach SoHo-Verordnung"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "4df68751ad3e1110a3424ceaab55402265b47c2621fa5398ff9e29cfdae28834": {
       "parts": [
         {
@@ -61427,6 +61863,29 @@
             "text": "Framework agreement on the provision, implementation and operation of workforce management software (PEP)"
           },
           "source": "Rahmenvereinbarung über die Bereitstellung, Implementierung und Betrieb einer Personaleinsatzplanungssoftware (PEP)"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "51447810396ee70fbdb2d8950f2caa6573bc52069f622a082ed69f3f46f6a8d7": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:22:26.822812+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The contracting authority intends to enter into a contract with Norkart AS for a gradual transition to Norkart KOMTEK ́s cloud based system (SaaS) for the operation and further use of trade systems within municipal engineering (VAR), property tax and fixing fees. The municipalities in Valdres have used KOMTEK software delivered by Norkart over several years. The operation of the system has until now been handled in a separate ICT cooperation. The contracting authority considers it appropriate to move operations to the service provider as part of a natural technological development from local operations to cloud based services. The transition is planned to be carried out gradually, so that: • The existing functionality will be continued without interruption to critical services • Data flow, integrations and history are safeguarded • the municipalities can adapt the transitional rate and dates within joint frameworks."
+          },
+          "source": "The contracting authority intends to enter into a contract with Norkart AS for a gradual transition to Norkart KOMTEK ́s cloud based system (SaaS) for the operation and further use of trade systems within municipal engineering (VAR), property tax and fixing fees. The municipalities in Valdres have used KOMTEK software delivered by Norkart over several years. The operation of the system has until now been handled in a separate ICT cooperation. The contracting authority considers it appropriate to move operations to the service provider as part of a natural technological development from local operations to cloud based services. The transition is planned to be carried out gradually, so that: • The existing functionality will be continued without interruption to critical services • Data flow, integrations and history are safeguarded • the municipalities can adapt the transitional rate and dates within joint frameworks."
         }
       ],
       "protected_names": [],
@@ -64736,6 +65195,29 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "5663ba92cfc51c5cdaae2bda2a68d29ea128244fb714d5a12462e585b6854fdd": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:21:42.808700+00:00",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "REQUEST FOR INFORMATION Technological solutions for information security services (DPS)"
+          },
+          "source": "TIETOPYYNTÖ Tietoturvapalveluiden teknologiaratkaisujen (DPS)"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "56659c131d51368f1bf6d57081effa1ebe7bd46b7531b41ffb10f7a76116d53e": {
@@ -71004,6 +71486,29 @@
       "purpose": "passage",
       "retry_profile": "english-coverage-and-organisation-names-2"
     },
+    "5f338af4d5a3750107797bbabc31710aa8d0a5792beeaef7362485845ffcca83": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:22:02.444658+00:00",
+            "language": "fr",
+            "model": "gemini-3.5-flash-lite",
+            "text": "CONTR 2026 91021"
+          },
+          "source": "CONTR 2026 91021"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "5f39e3e31f1d7571a1ce0b0dabe14422c23046e0649e0764703e77043465526a": {
       "parts": [
         {
@@ -76301,6 +76806,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "66e30915d967eed99872ee9794ac9ea9e60a53a2d28f6d541e1c665aac396ce1": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:22:02.427334+00:00",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "SUBJECT OF THE PROCUREMENT The subject of the procurement is the municipality's outsourced financial and payroll administration services, including both service production and the necessary information systems. The selected service provider is responsible for the municipality's overall financial management, which includes bookkeeping, participation in the preparation of the financial statements and budget, statutory financial reporting including municipal data reporting, VAT reporting and tax returns, financial planning, purchase and sales ledgers, payment transactions, and entering memorandum vouchers into bookkeeping. Personnel and payroll administration services cover payroll calculation for the municipality's various collective agreement sectors (KVTES, OVTES, TS), maintenance of personnel data, service period calculation, reporting of absences and income to the incomes register and Kela, as well as the payment of travel and expense claims and trustee allowances. The municipality has approximately 250 employees whose payroll calculation must be handled monthly. The procurement package covers only the municipality's services, not, for example, the municipality's subsidiaries. The currently used systems are FPM for financial planning, Sarastia365 BI for financial reporting, Dooap for purchase invoices, Sarastia365 TalousApp for sales invoicing, and Sarastia365 MuistioApp for memorandum vouchers, as well as Populus 25.2.0 for personnel administration. The service provider must also have the capability for system integration, including sales invoicing from billing systems commonly used in various sectors, such as early childhood education, the water utility, and construction and permit supervision. In connection with the procurement, the possibility of replacing the current financial planning and HR systems with more appropriate solutions will be surveyed. The procurement may include options, such as the electronic archiving of permanently retained financial and personnel administration documents in the contracting authority's own archive, and HR system interface solutions with third-party systems, such as occupational healthcare or employee benefit services. CONTRACT PERIOD The contract period is five (5) years. The contracting authority has the right to extend the validity of the contract by an option period of two (2) years. SCOPE OF THE PROCUREMENT Based on previous outcomes, the annual value of the procurement has been approximately 280 000–330 000 euros (VAT 0 %). REGISTRATION FOR MARKET CONSULTATION Interested tenderers are requested to register for the market consultation by filling out the forms survey 20.4.2026 by 12.00 at https://forms.cloud.microsoft/e/2wSrXSgP2e. Tenderers are requested to note that registration for the market consultation cannot be done via Tarjouspalvelu."
+          },
+          "source": "HANKINNAN KOHDE Hankinnan kohteena on kunnan ulkoistetut talous- ja palkkahallinnon palvelut sisältäen sekä palvelutuotannon että tarvittavat tietojärjestelmät. Valittava palveluntuottaja vastaa kunnan taloushallinnon kokonaisuudesta, johon sisältyvät kirjanpito, tilinpäätöksen ja talousarvion valmisteluun osallistuminen, lakisääteinen talousraportointi mukaan lukien kuntatietoraportointi, ALV-raportointi ja veroilmoitukset, taloussuunnittelu, osto- ja myyntireskontra, maksuliikenne sekä muistiotositteiden vieminen kirjanpitoon. Henkilöstö- ja palkkahallinnon palvelut kattavat palkanlaskennan kunnan eri sopimusaloille (KVTES, OVTES, TS), henkilöstötietojen ylläpidon, palvelusaikalaskennan, poissaolojen ja tulojen ilmoittamisen tulorekisteriin ja Kelaan, sekä matka- ja kululaskujen ja luottamustoimipalkkioiden maksatuksen. Kunnassa on arvoilta noin 250 työntekijää, joiden palkanlaskenta tulee hoitaa kuukausittain. Hankittava kokonaisuus kattaa ainoastaan kunnan palvelut, ei esimerkiksi kunnan tytäryhtiöitä. Nykyiset käytössä olevat järjestelmät ovat taloussuunnittelussa FPM, talousraportoinnissa Sarastia365 BI, ostolaskuissa Dooap, myyntilaskutuksessa Sarastia365 TalousApp ja muistiotositteissa Sarastia365 MuistioApp, sekä henkilöstöhallinnossa Populus 25.2.0. Palveluntuottajalla tulee olla lisäksi kyvykkyys järjestelmäintegraatioihin mm. Myyntilaskutuksen osalta eri toimialojen yleisesti käytössä olevista laskutusjärjestelmistä esimerkiksi varhaiskasvatuksen, vesilaitoksen ja rakennus- ja lupavalvonnan osalta. Hankinnan yhteydessä kartoitetaan mahdollisuus korvata nykyiset taloussuunnittelu- ja HR-järjestelmät tarkoituksenmukaisemmilla ratkaisuilla. Hankintaan voi sisältyä optioita, kuten talous- ja henkilöstöhallinnon pysyvästi säilytettävien asiakirjojen sähköinen arkistointi hankintayksikön omaan arkistoon sekä HRjärjestelmän rajapintaratkaisut kolmansien osapuolien järjestelmiin, kuten työterveyshuoltoon tai henkilöstöetupalveluihin. SOPIMUSKAUSI Sopimuskausi on viisi (5) vuotta. Hankintayksiköllä on oikeus jatkaa sopimuksen voimassaoloa kahden (2) vuoden mittaisella optiokaudella. HANKINNAN LAAJUUS Hankinnan vuosiarvo on aiempien toteumien perusteella ollut noin 280 000–330 000 euroa (alv 0 %). ILMOITTAUTUMINEN MARKKINAKARTOITUKSEEN Kiinnostuneita tarjoajia pyydetään ilmoittautumaan markkinakartoitukseen täyttämällä forms-kysely 20.4.2026 klo 12.00 mennessä osoitteessa https://forms.cloud.microsoft/e/2wSrXSgP2e. Tarjoajia pyydetään huomioimaan, että markkinakartoitukseen ei voi ilmoittautua Tarjouspalvelun kautta."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "66ee7f50ef7045abaa5b86fe5b4724df8a35812e43c1da3024474cf16550ab5f": {
       "parts": [
         {
@@ -76656,6 +77184,29 @@
             "text": "The subject of the tender is independent quality assurance services for the software solution AIS (Adaptive Intelligent System). The services serve the objective and comprehensible evaluation of the provided software with regard to the functional, technical and security-related requirements defined in the respective lots. The aim of the services is to determine and document the quality status of the software and to identify deviations, defects, risks and potential for improvement. The results produced as part of quality assurance form an essential basis for the client's decision on the acceptance of the software. Responsibility for the acceptance decision remains exclusively with the client. The advertised services are divided into three lots. Submission of tenders is possible for one lot, for several lots or for all lots. There is therefore no obligation to submit tenders for all lots. The lots are evaluated independently of one another. The contract can be awarded to different contractors per lot. The tender comprises the following lots: Lot 1: Acceptance tests Lot 2: Security tests Lot 3: Code reviews The contractor shall provide its services in a professionally independent manner and free of instructions with regard to the evaluation of the test results. The services shall be provided on the basis of the documents, information, software statuses, source codes, test environments, test data, accesses and other resources required for the respective service provided by the client. The scope of the documents and resources to be provided by the client depends on the requirements of the respective lots.; The advertised services are divided into three lots. Submission of tenders is possible for one lot, for several lots or for all lots. There is therefore no obligation to submit tenders for all lots. The lots are evaluated independently of one another. The contract can be awarded to different contractors per lot. The tender comprises the following lots: Lot 1: Acceptance tests Lot 2: Security tests Lot 3: Code reviews The contractor shall provide its services in a professionally independent manner and free of instructions with regard to the evaluation of the test results. The services shall be provided on the basis of the documents, information, software statuses, source codes, test environments, test data, accesses and other resources required for the respective service provided by the client. The scope of the documents and resources to be provided by the client depends on the requirements of the respective lots.; The advertised services are divided into three lots. Submission of tenders is possible for one lot, for several lots or for all lots. There is therefore no obligation to submit tenders for all lots. The lots are evaluated independently of one another. The contract can be awarded to different contractors per lot. The tender comprises the following lots: Lot 1: Acceptance tests Lot 2: Security tests Lot 3: Code reviews The contractor shall provide its services in a professionally independent manner and free of instructions with regard to the evaluation of the test results. The services shall be provided on the basis of the documents, information, software statuses, source codes, test environments, test data, accesses and other resources required for the respective service provided by the client. The scope of the documents and resources to be provided by the client depends on the requirements of the respective lots."
           },
           "source": "Gegenstand der Ausschreibung sind Leistungen der unabhängigen Qualitätssicherung für die Softwarelösung AIS (Adaptives Intelligentes System). Die Leistungen dienen der objektiven und nachvollziehbaren Bewertung der bereitgestellten Software hinsichtlich der in den jeweiligen Losen definierten fachlichen, technischen und sicherheitsrelevanten Anforderungen. Ziel der Leistungen ist die Ermittlung und Dokumentation des Qualitätsstands der Software sowie die Identifikation von Abweichungen, Mängeln, Risiken und Verbesserungspotenzialen. Die im Rahmen der Qualitätssicherung erstellten Ergebnisse bilden eine wesentliche Grundlage für die Entscheidung des Auftraggebers über die Abnahme der Software. Die Verantwortung für die Abnahmeentscheidung verbleibt ausschließlich beim Auftraggeber. Die ausgeschriebenen Leistungen sind in drei Fachlose unterteilt. Eine Angebotsabgabe ist für ein Los, für mehrere Lose oder für alle Lose möglich. Eine Verpflichtung zur Angebotsabgabe für sämtliche Lose besteht demnach nicht. Die Lose werden unabhängig voneinander bewertet. Der Zuschlag kann je Los an unterschiedliche Auftragnehmer erteilt werden. Die Ausschreibung umfasst folgende Lose: Los 1: Abnahmetests Los 2: Security-Tests Los 3: Code Reviews Der Auftragnehmer erbringt seine Leistungen fachlich unabhängig und weisungsfrei hinsichtlich der Bewertung der Prüfungsergebnisse. Die Leistungen erfolgen auf Grundlage der vom Auftraggeber bereitgestellten Unterlagen, Informationen, Softwarestände, Quellcodes, Testumgebungen, Testdaten, Zugänge und sonstigen für die jeweilige Leistung erforderlichen Ressourcen. Der Umfang der vom Auftraggeber bereitzustellenden Unterlagen und Ressourcen richtet sich nach den Anforderungen der jeweiligen Lose.; Die ausgeschriebenen Leistungen sind in drei Fachlose unterteilt. Eine Angebotsabgabe ist für ein Los, für mehrere Lose oder für alle Lose möglich. Eine Verpflichtung zur Angebotsabgabe für sämtliche Lose besteht demnach nicht. Die Lose werden unabhängig voneinander bewertet. Der Zuschlag kann je Los an unterschiedliche Auftragnehmer erteilt werden. Die Ausschreibung umfasst folgende Lose: Los 1: Abnahmetests Los 2: Security-Tests Los 3: Code Reviews Der Auftragnehmer erbringt seine Leistungen fachlich unabhängig und weisungsfrei hinsichtlich der Bewertung der Prüfungsergebnisse. Die Leistungen erfolgen auf Grundlage der vom Auftraggeber bereitgestellten Unterlagen, Informationen, Softwarestände, Quellcodes, Testumgebungen, Testdaten, Zugänge und sonstigen für die jeweilige Leistung erforderlichen Ressourcen. Der Umfang der vom Auftraggeber bereitzustellenden Unterlagen und Ressourcen richtet sich nach den Anforderungen der jeweiligen Lose.; Die ausgeschriebenen Leistungen sind in drei Fachlose unterteilt. Eine Angebotsabgabe ist für ein Los, für mehrere Lose oder für alle Lose möglich. Eine Verpflichtung zur Angebotsabgabe für sämtliche Lose besteht demnach nicht. Die Lose werden unabhängig voneinander bewertet. Der Zuschlag kann je Los an unterschiedliche Auftragnehmer erteilt werden. Die Ausschreibung umfasst folgende Lose: Los 1: Abnahmetests Los 2: Security-Tests Los 3: Code Reviews Der Auftragnehmer erbringt seine Leistungen fachlich unabhängig und weisungsfrei hinsichtlich der Bewertung der Prüfungsergebnisse. Die Leistungen erfolgen auf Grundlage der vom Auftraggeber bereitgestellten Unterlagen, Informationen, Softwarestände, Quellcodes, Testumgebungen, Testdaten, Zugänge und sonstigen für die jeweilige Leistung erforderlichen Ressourcen. Der Umfang der vom Auftraggeber bereitzustellenden Unterlagen und Ressourcen richtet sich nach den Anforderungen der jeweiligen Lose."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "675fb17b739b4e1030447cb2a08fc45708618aff9923423052e25b4ae74939e7": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:22:26.827324+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Laboratory Billing Management System"
+          },
+          "source": "Laboratory Billing Management System"
         }
       ],
       "protected_names": [],
@@ -78574,6 +79125,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "6a14e845f880322ae1655bcf82923f7536656712a0d00159487e8583932a2805": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:22:26.827682+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Landspitali is seeking information from qualified suppliers (RFI) regarding software solutions that can handle text-based information from highly specialized Laboratory Billing Management System, which requires managing values based on set criteria from the origin software and needs to be classified based on set rules (i.e. age, insurance payment status etc.). Further information is in the RFI Documents available electronically from the Mercell-Tendsign procurement portal."
+          },
+          "source": "Landspitali is seeking information from qualified suppliers (RFI) regarding software solutions that can handle text-based information from highly specialized Laboratory Billing Management System, which requires managing values based on set criteria from the origin software and needs to be classified based on set rules (i.e. age, insurance payment status etc.). Further information is in the RFI Documents available electronically from the Mercell-Tendsign procurement portal."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "6a39b8cfe63ee545bd350ad7e95e4885b75607f101c1f31abac92ce307fd6da6": {
       "parts": [
         {
@@ -79032,6 +79606,29 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "6ad7709bccd60384eb818bb44bc180862a59905a802618f326b736a49cbb2f06": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:22:02.425239+00:00",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "INVITATION TO MARKET CONSULTATION: Financial and personnel administration services and systems"
+          },
+          "source": "KUTSU MARKKINAKARTOITUKSEEN: Talous- ja henkilöstöhallinnon palvelut ja järjestelmät"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "6ad8cfe027c3f4dadf03218ee49e005ac1af4468c006701c9f8a67de77829f67": {
@@ -81838,6 +82435,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "6e3653ba0e3f8921445017bc07fd2f1311505fb8e51b08808bd8f8336b21396d": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:21:42.806174+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Service for drafting the basic and execution project and site supervision for the comprehensive refurbishment works of floors 2st, 3nd and 4rd of administrative building I of the Parliament of the Canary Islands."
+          },
+          "source": "Servicio de redacción de proyecto básico y de ejecución y dirección facultativa de las obras de reforma integral de las plantas 2a, 3a y 4a del edificio administrativo I del Parlamento de Canarias."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "6e38353eed44cedf7e2f3106eea6a2e7349ceff554c0f384a525d32d73bdbfa2": {
       "parts": [
         {
@@ -82605,6 +83225,31 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "6f590e1bd28b3591c28f6ec716b316030bd2b92ad8dd0560b2f0771d63a9709f": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:21:51.569740+00:00",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "THIS IS NOT A PROCUREMENT NOTICE OR INVITATION TO TENDER BUT A REQUEST FOR INFORMATION FOR MARKET RESEARCH AND TECHNICAL DIALOGUE. This request for information is used to survey the market and obtain information concerning the procurement. The contracting authority does not initiate a tendering procedure by publishing the request for information; instead, a potential procurement notice and invitation to tender will be published later. The request for information does not oblige the contracting authority to carry out the actual procurement. Answering the request for information is not a precondition for participating in a potentially organised subsequent tendering procedure. Suppliers are not paid compensation for answering the request for information or participating in the market dialogue. HUS-yhtymä is preparing the procurement of an Information Security Monitoring and Management Service (CSOC) to maintain the cybersecurity of ICT systems and services owned and managed by HUS-yhtymä and procured from third parties. The procurement may potentially be implemented as a procurement ring with one or more wellbeing services counties of Southern Finland. The answers given to this request for information will be used in planning this procurement. The service to be procured will be delivered by the selected supplier with a 24/7/365 service period under the requirements and service level agreements defined later in the invitation to tender. The offered service must be able to detect, analyse, respond to, report on, and, if necessary, escalate cyber security-related threats, observations and disruptions within the response times given to the customer, and report the aforementioned events and the information security situation in accordance with reporting requirements. The objective of this request for information is to inform about the upcoming procurement and to survey suppliers that have the capability and interest to offer HUS-yhtymä an information security monitoring and management service. The service must include, among other things, CSOC services, vulnerability management, threat hunting, situational awareness service and digital forensics service. The supplier must implement the service using a hybrid model utilising HUS-yhtymä's devices and systems. These systems include, inter alia, SIEM, XDR, NDR, IPS, DLP, SOAR, as well as other modern information security solutions, such as automation utilising artificial intelligence. The supplier must also be able to offer assistance in developing automation. HUS-yhtymä's CSOC experts must retain the necessary rights to all systems. In addition, the purpose is to ascertain suppliers' views on the subject of the procurement and the implementation of the planned tendering. We also want to hear suppliers' views on a contemporary and modern information security monitoring and management solution for a supply-critical organisation of HUS-yhtymä's size. We request suppliers interested in the procurement to submit a service description of their available services in accordance with the request for information in PDF format. Please note that all material is intended solely for conducting this market dialogue. The contracting authority will handle your answers confidentially. Based on the answers to the request for information, suppliers may be invited for interviews in a manner to be announced later. Suppliers that have answered the request for information may receive preliminary invitation to tender documents for comment. We request that answers to the request for information and notifications of interest be submitted no later than 17.4.2026 at 12:00 by email to the address kilpailutus.ict@hus.fi. The subject of the message must mention \"HUS 192-2026 - Tietoturvallisuuden valvonta- ja hallintapalvelu (CSOC)\"."
+          },
+          "source": "TÄMÄ EI OLE HANKINTAILMOITUS TAI TARJOUSPYYNTÖ VAAN TIETOPYYNTÖ MARKKINAKARTOITUSTA JA TEKNISTÄ VUOROPUHELUA VARTEN. Tämän tietopyynnön avulla kartoitetaan markkinoita ja saadaan hankintaa koskevaa tietoa. Hankintayksikkö ei aloita tietopyynnön julkaisulla tarjouskilpailua, vaan mahdollinen hankintailmoitus ja tarjouspyyntö julkaistaan myöhemmin. Tietopyyntö ei velvoita hankintayksikköä toteuttamaan varsinaista hankintaa. Tietopyyntöön vastaaminen ei ole edellytys myöhempään mahdollisesti järjestettävään tarjouskilpailuun osallistumiselle. Toimittajille ei makseta korvausta tietopyyntöön vastaamisesta tai markkinavuoropuheluun osallistumisesta. HUS-yhtymä valmistelee Tietoturvallisuuden valvonta- ja hallintapalvelun (CSOC) hankintaa HUS-yhtymän omistamien ja hallinnoimien sekä kolmansilta osapuolilta hankittujen ICT-järjestelmien ja palveluiden kyberturvallisuuden ylläpitämiseksi. Hankinta tullaan mahdollisesti toteuttamaan hankintarenkaana yhden tai useamman Etelä-Suomen hyvinvointialueen kanssa. Tähän tietopyyntöön annettuja vastauksia käytetään suunniteltaessa tätä hankintaa. Hankittava palvelu tullaan toimittamaan valitun toimittajan toimesta 24/7/365 palveluajalla tarjouspyynnössä myöhemmin määritellyillä vaatimuksilla ja palvelutasosopimuksilla. Tarjotun palvelun tulee kyetä havainnoimaan, analysoimaan, reagoimaan ja ilmoittamaan ja tarvittaessa eskaloimaan kyberturvallisuuteen liittyvistä uhkista, havainnoista ja häiriöistä tilaajalle annettujen vasteaikojen puitteissa sekä raportoimaan edellä mainitut tapahtumat sekä tietoturvan tilannetta raportointivaatimusten mukaisesti. Tämän tietopyynnön tavoitteena on tiedottaa tulevasta hankinnasta ja kartoittaa toimittajia, joilla on kykyä ja kiinnostusta tarjota HUS-yhtymälle tietoturvallisuuden valvonta- ja hallintapalvelua. Palvelun tulee sisältää mm. CSOC-palvelut, haavoittuvuuksien hallinta, uhkien metsästys, tilannekuvapalvelu ja digitaalinen forensiikkapalvelu. Toimittajan tulee toteuttaa palvelu hybridimallilla käyttäen HUS-yhtymän laitteita ja järjestelmiä. Näitä järjestelmiä ovat mm. SIEM, XDR, NDR, IPS, DLP, SOAR, sekä muut modernit tietoturvaratkaisut, kuten automatisointi tekoälyä hyödyntämällä. Toimittajan tulee myös kyetä tarjoamaan apua automatisoinnin kehittämisessä. HUS-yhtymän CSOC-asiantuntijoilla tulee säilyä tarvittavat oikeudet kaikkiin järjestelmiin. Lisäksi tarkoituksena on selvittää toimittajien näkemyksiä hankinnan kohteesta ja suunnitteilla olevan kilpailutuksen toteuttamisesta. Haluamme myös kuulla toimittajien näkemyksiä nykyaikaisesta ja modernista tietoturvan valvonta- ja hallintaratkaisusta HUS-yhtymän kokoiselle, huoltovarmuuskriittiselle organisaatiolle. Pyydämme hankinnasta kiinnostuneita toimittajia toimittamaan palvelukuvauksen tarjolla olevista, tietopyynnön mukaisista palveluistaan pdf-muodossa. Pyydämme huomioimaan, että kaikki materiaali on tarkoitettu ainoastaan tämän markkinavuoropuhelun käymiseen. Hankintayksikkö käsittelee vastauksenne luottamuksellisesti. Tietopyynnön vastausten perusteella toimittajat saatetaan kutsua haastateltaviksi myöhemmin ilmoitettavalla tavalla. Tietopyyntöön vastanneet toimittajat saavat mahdollisesti kommentoitavakseen alustavat tarjouspyyntöasiakirjat. Pyydämme toimittamaan vastaukset tietopyyntöön ja ilmoittamaan kiinnostuksestanne viimeistään 17.4.2026 klo 12:00 mennessä sähköpostitse osoitteeseen kilpailutus.ict@hus.fi. Viestin aiheeksi maininta \"HUS 192-2026 - Tietoturvallisuuden valvonta- ja hallintapalvelu (CSOC)\"."
+        }
+      ],
+      "protected_names": [
+        "HUS-yhtymä"
+      ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "6f5b44c3c71b85bd47f94147fb64aa82913702ffb29ece85f25473e95a21655b": {
       "parts": [
         {
@@ -82807,6 +83452,38 @@
             "text": "Procurement of 7 Citrix servers"
           },
           "source": "Beschaffung von 7 Citrix Servern"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "6f87f9c895f2eb276fefd587bb2dc3f894209ef48bcd2027f6f02a49a93897d6": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.1-flash-lite": 1,
+            "gemini-3.5-flash-lite": 2
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "rejected": {
+            "id": "6f87f9c895f2eb276fefd587bb2dc3f894209ef48bcd2027f6f02a49a93897d6:0",
+            "language": "es",
+            "model": "gemini-3.1-flash-lite",
+            "text": "Evaluation and monitoring service for the 2nd Municipal Strategic Plan for Equal Opportunities between Women and Men of the Puertollano City Council for the period 2026-2029. Submission deadline (source local time): 2026-09-30 23:59:00. Time zone not supplied; check the source notice."
+          },
+          "result": {
+            "at": "2026-09-19T05:22:39.618475+00:00",
+            "language": "es",
+            "model": "gemini-3.1-flash-lite",
+            "text": "Evaluation and monitoring service for the II Municipal Strategic Plan for Equal Opportunities between Women and Men of the Puertollano City Council for the period 2026-2029. Submission deadline (source local time): 2026-09-30 23:59:00. Time zone not supplied; check the source notice."
+          },
+          "source": "Servicio de evaluación y seguimiento del II Plan Estratégico Municipal de Igualdad de Oportunidades entre Mujeres y Hombres del Ayuntamiento de Puertollano para el periodo 2026-2029. Submission deadline (source local time): 2026-09-30 23:59:00. Time zone not supplied; check the source notice."
         }
       ],
       "protected_names": [],
@@ -83633,6 +84310,29 @@
             "text": "The object of the contract is the digital transformation of the Municipality of Makrakomi through the design, supply and installation of applications and technological means that will improve the management and functionality of the municipality's urban environment, providing more efficient, innovative and high-quality services, for the benefit of residents, visitors and businesses"
           },
           "source": "Αντικείμενο της σύμβασης είναι ο ψηφιακός μετασχηματισμός του Δήμου Μακρακώμης με τον σχεδιασμό, την προμήθεια και την εγκατάσταση εφαρμογών και τεχνολογικών μέσων που θα βελτιώσουν τη διαχείριση και λειτουργικότητα του αστικού περιβάλλοντος του δήμου, παρέχοντας πιο αποδοτικές, καινοτόμες και υψηλής ποιότητας υπηρεσίες, προς όφελος των κατοίκων, των επισκεπτών και των επιχειρήσεων"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "7072c4ed10081e909952e6efa984b2ffd35076e1228338e0b8e09969068c8973": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:22:26.827835+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Service for Activation, Management and Maintenance of Public INTERNET Access Points for Municipal Buildings of the Worshipful City Council of Valladolid (WIFI AREAS)."
+          },
+          "source": "Servicio de Alta, Gestión y Mantenimiento de los Accesos Públicos a INTERNET de los Edificios Municipales del Excmo. Ayuntamiento de Valladolid (ÁREAS WIFI)."
         }
       ],
       "protected_names": [],
@@ -94836,6 +95536,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "803ad5f78ff97654fe9e2550d873cd151f52894d3034f6afe1cfb4ac37d44f12": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:22:02.450305+00:00",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The objective of the Finnish Institute for Health and Welfare (also THL) is to initiate a procurement process targeting two (2) new digital pathology glass scanners for the histology laboratories of THL's forensic medicine unit located in Helsinki and Turku (one device in both). The subject of the planned procurement would include the software and systems/system integrations required by the scanners, as well as the services required for the maintenance of the devices and software. The assumption is that the procurement would not need to separately account for specific device-bound supplies or spare parts. With the procurement of the scanners, the forensic medicine unit would be introducing digital pathology investigation methods, where the histological deceased samples from the unit's five (5) locations would be scanned into digital format so that they could be examined regardless of location. On an annual basis, the deceased samples to be scanned would be approximately 80 000 items and would be divided equally between the two (2) scanners. A total of approximately 50 users should have the ability to view the images. The baskets entering the scanners must be compatible with the baskets of the Sakura Prisma automated staining machine used by the contracting authority. The preliminary idea is to tender the procurement as a single entity, because the devices and their associated services must be uniform. The devices can be procured as a service solution, on a leasing model, or as owned; the procurement model will be specified later. During the market dialogue, alternatives will be explored and the impacts of regulation will also be taken into account (most recently the amendment to the Energy Efficiency Act, ETL 1382/2025). ADDITIONAL INFORMATION This notice is a market consultation notice. This notice does not request tenders. Associated with the market consultation notice is an invitation to register for the market dialogue. 1. Market Dialogue The market dialogue may consist of, for example, answering questions posed by the contracting authority, providing written comments on preliminary tender request materials, and possibly Teams meetings before the publication of the tender request. No compensation is paid for participating in the market dialogue. Participation in the market dialogue does not bind a potential tenderer interested in the procurement to participate in a tender competition that may be implemented later. Nor does the market dialogue obligate the contracting authority to implement the actual procurement procedure. All information presented in this market consultation notice and during the market dialogue is preliminary and indicative advance information, and is not binding on any kind of solution. 2. Registration We kindly ask interested companies to register for the market dialogue and answer preliminary questions via the Forms form no later than Mon 20.4.2026 at 12:00 (Finnish time): https://forms.cloud.microsoft/e/rn9RbaN4xJ Please note that registrations should not be made via Tarjouspalvelu. Hansel Oy will act in a consulting role in the possible procurement."
+          },
+          "source": "Terveyden ja hyvinvoinnin laitoksen (myös THL) tavoitteena on käynnistää kilpailutus, jonka kohteena olisi kaksi (2) uutta digipatologian lasiskanneria THL:n oikeuslääkintäyksikön Helsingissä ja Turussa sijaitseviin histologian laboratorioihin (yksi laite molempiin). Suunnitellun hankinnan kohteeseen sisältyisivät skannereiden vaatimat ohjelmistot ja järjestelmät/järjestelmäintegraatiot sekä laitteiden ja ohjelmistojen ylläpidon vaatimat palvelut. Oletuksena on, että hankinnassa ei tarvitsisi huomioida erikseen erityisiä laitesidonnaisia tarvikkeita tai varaosia. Skannereiden hankinnan myötä oikeuslääkintäyksikkö olisi ottamassa käyttöön digipatologiset tutkimusmenetelmät, jossa yksikön viiden (5) toimipisteen histologiset vainajanäytteet skannattaisiin digitaaliseen muotoon, jolloin ne olisivat tutkittavissa paikasta riippumatta. Vuositasolla skannattavia vainajanäytteitä olisi arviolta noin 80 000 kpl ja ne jakautuisivat tasan kahden (2) skannerin kesken. Yhteensä noin 50 käyttäjällä pitäisi olla mahdollisuus kuvien katseluun. Skannereihin menevien korien tulisi olla yhteensopivia hankintayksikön käytössä olevien Sakura Prisma -värjäysautomaatin korien kanssa. Alustavana ajatuksena on kilpailuttaa hankinta yhtenä kokonaisuutena, koska laitteiden ja niihin liittyvien palvelujen tulee olla yhdenmukaiset. Laitteet voidaan hankkia palveluratkaisuna, leasing-mallilla tai omaksi; hankintamalli tarkentuu vielä. Markkinavuoropuhelun aikana selvitetään vaihtoehtoja ja otetaan huomioon myös sääntelyn vaikutukset (viimeisimpänä energiatehokkuuslain muutos, ETL 1382/2025). LISÄTIEDOT Tämä ilmoitus on markkinakartoitusilmoitus. Tällä ilmoituksella ei pyydetä tarjouksia. Markkinakartoitusilmoitukseen liittyy kutsu ilmoittautua markkinavuoropuheluun. 1. Markkinavuoropuhelu Markkinavuoropuhelu voi koostua esimerkiksi vastaamisesta hankintayksikön esittämiin kysymyksiin, alustavan tarjouspyyntömateriaalin kirjallisesta kommentoinnista sekä mahdollisesti Teams-tapaamisista ennen tarjouspyynnön julkaisua. Markkinavuoropuheluun osallistumisesta ei makseta korvausta. Markkinavuoropuhelu ei sido hankinnasta kiinnostunutta, potentiaalista tarjoajaa myöhemmin mahdollisesti toteutettavaan tarjouskilpailuun osallistumiseen. Markkinavuoropuhelu ei myöskään velvoita hankintayksikköä toteuttamaan varsinaista hankintamenettelyä. Kaikki tässä markkinakartoitusilmoituksessa ja markkinavuoropuhelun aikana esitetyt tiedot ovat alustavia ja suuntaa-antavia ennakkotietoja, eivätkä sido minkäänlaiseen ratkaisuun. 2. Ilmoittautuminen Pyydämme kiinnostuneita yrityksiä ilmoittautumaan markkinavuoropuheluun ja vastaamaan alustaviin kysymyksiin viimeistään ma 20.4.2026 klo 12:00 (Suomen aikaa) mennessä Forms-lomakkeen kautta: https://forms.cloud.microsoft/e/rn9RbaN4xJ Huomaattehan, että ilmoittautumisia ei tule tehdä Tarjouspalvelun kautta. Hansel Oy toimii mahdollisessa hankinnassa konsultoivassa roolissa."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "803b4a62591789ce720385fa163a468186b64decbe1bb6f401018bc8ba651886": {
       "parts": [
         {
@@ -95646,6 +96369,29 @@
             "text": "RFI - Case management system for grant management"
           },
           "source": "RFI - Case management system for grant management"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "81b4829421e967e3c2dbcab246633ac0c98c118066f7667d14a6e9f4fd36dc96": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:22:26.823352+00:00",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "REQUEST FOR INFORMATION Procurement of online training service"
+          },
+          "source": "TIETOPYYNTÖ Verkkokoulutuspalvelun hankinta"
         }
       ],
       "protected_names": [],
@@ -105658,6 +106404,37 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "8e3534e2b5e89834c9364ad774757068cca1b6c7be80c708cc154fc3603abf94": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 2
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "rejected": {
+            "id": "8e3534e2b5e89834c9364ad774757068cca1b6c7be80c708cc154fc3603abf94:0",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "1. Zielsetzung Im Rahmen dieser Markterkundung werden geeignete Softwarelösungen zur digitalen Verwaltung und Nachverfolgung von Humanmilchprozessen (Eigenmilch und gespendete Frauenmilch) in einer klinischen Umgebung gesucht. Ziel ist ein System zur vollständigen, revisionssicheren Abbildung aller Prozesse unter Berücksichtigung der Anforderungen der SoHo-Verordnung, mit Fokus auf Patientensicherheit, Rückverfolgbarkeit und Prozessautomatisierung. 2. Allgemeine Anforderungen Die Software muss eine durchgängige digitale Dokumentation und Rückverfolgbarkeit gewährleisten; Schnittstellen zu SAP sowie Copra 5/6 bereitstellen; Workflows und Benachrichtigungen automatisieren; Etikettendruck und Scanprozesse integrieren; sowie rollenbasierte Zugriffe ermöglichen. 3. Eigenmilch („Mother’s Own Milk“) Die Software soll die Erfassung der Mütter auf Station mit SAP-Anbindung ermöglichen, eine eindeutige Mutter-ID vergeben, den CMV-Status erfassen inklusive Aufklärung und Einwilligung, die abgepumpte Milchmenge dokumentieren, Etiketten durch Personal oder Mutter erstellen, den Lagerort und Bestand nachverfolgen sowie automatische Hinweise für CMV-Inaktivierung (Tag 7 und 32+0 SSW) geben. Daten zu den Kindern wie Name, Geburtsdatum, Schwangerschaftswoche und Gewicht sollen automatisch aus SAP oder Copra übernommen werden. 4. Verarbeitung Eigenmilch CMV-inaktivierte Milch soll tageweise gepoolt, flaschenweise in Chargen vergeben, etikettiert, Inaktivierung dokumentiert und Kühlvorgänge sowie Lagerorte vermerkt werden. Zentrifugierte Milch soll analog verarbeitet werden, inklusive Dokumentation von Dauer und Umdrehungen, Kennzeichnung als entrahmt, Zuordnung von Analysen und Lagerung. 5. Verabreichung Die Software soll die Zuordnung von Milchchargen zu Kindern ermöglichen, Schnittstellen zu Copra 5/6 bieten, Teilmengen per Scan erfassen und Abrufe dokumentieren. 6. Chargenmanagement Die Software muss Chargen automatisch generieren, basierend auf Mutter-ID, Schwangerschaftswoche, Kalenderwoche der Geburt, Kalenderwoche der Milchgewinnung und Verarbeitungsart (roh oder pasteurisiert). Farbkennzeichnungen nach Schwangerschaftswoche sollen automatisch angepasst werden, ebenso die Dokumentation des Verarbeitungstags. 7. Frauenmilchbank Potenzielle Spenderinnen sollen automatisch identifiziert werden (z. B. >600 ml/Tag), digitale Aufklärungs- und Anamneseformulare mit Signatur ausfüllen können, und eine Spenderinnen-ID erhalten. Schnittstellen zu SAP, Copra und Labor (z. B. ix.serv) sollen Laborbefunde automatisch übernehmen. Die Software soll Freigaben durch Fachpersonal, Bewertung der Befunde und Kennzeichnung von Pasteurisierungspflichten ermöglichen. 8. Gespendete Milch Die Software soll Milchmenge, Datum, Uhrzeit, Kalenderwoche, Temperatur, mikrobiologische Proben und Lagerorte erfassen. 9. Verarbeitung gespendeter Milch Rohmilch soll tageweise gepoolt, in Chargen vergeben und bis Freigabe gelagert werden. Pasteurisierte Milch soll mit Dokumentation von Pasteurisierung, Kühlung und Lagerung verarbeitet werden. CMV-inaktivierte Milch soll Pooling, Inaktivierung, Kühlung und Freigabe dokumentieren. Zentrifugierte Milch wird analog Eigenmilch verarbeitet, ggf. mit zusätzlicher Pasteurisierung. 10. Nicht freigegebene Milch Die Software soll Maßnahmen wie Verwerfen, Nachpasteurisierung, Schulung der Spenderin und erneute Proben dokumentieren. 11. Ausgabe Die Software soll die Zuordnung von Chargen zu Stationen und einzelnen Kindern ermöglichen und Teilmengen per Scan erfassen. 12. Zusammenfassung Gesucht wird eine integrierte Softwarelösung zur sicheren, automatisierten Verwaltung von Humanmilchprozessen mit vollständiger Rückverfolgbarkeit, hoher Systemintegration und Benutzerfreundlichkeit. 13. Teilnahme an der Markterkundung Interessierte Unternehmen werden gebeten, ihre Teilnahme sowie Informationen zur Lösung bis spätestens 15.05.2026 per E-Mail an vergabestelle@klinikum-stuttgart.de zu übermitteln. Die Markterkundung dient ausschließlich der Vorbereitung eines möglichen Vergabeverfahrens. Ein Anspruch auf Durchführung besteht nicht."
+          },
+          "result": {
+            "at": "2026-09-19T05:22:36.758426+00:00",
+            "language": "de",
+            "model": "gemini-3.1-flash-lite",
+            "text": "1. Objective As part of this market survey, suitable software solutions for the digital management and tracking of human milk processes (mother's own milk and donated human milk) in a clinical environment are being sought. The goal is a system for the complete, audit-proof mapping of all processes, taking into account the requirements of the SoHo Regulation, with a focus on patient safety, traceability and process automation. 2. General requirements The software must ensure end-to-end digital documentation and traceability; provide interfaces to SAP and Copra 5/6; automate workflows and notifications; integrate label printing and scanning processes; and enable role-based access. 3. Mother's Own Milk The software should enable the registration of mothers on the ward with an SAP connection, assign a unique mother ID, record CMV status including information and consent, document the amount of milk expressed, allow labels to be created by staff or the mother, track the storage location and inventory, and provide automatic alerts for CMV inactivation (day 7 and 32+0 weeks of gestation). Data on the children such as name, date of birth, week of gestation and weight should be automatically transferred from SAP or Copra. 4. Processing Mother's Own Milk CMV-inactivated milk should be pooled by day, assigned in batches by bottle, labelled, inactivation documented, and cooling processes and storage locations noted. Centrifuged milk should be processed analogously, including documentation of duration and revolutions, labelling as skimmed, assignment of analyses and storage. 5. Administration The software should enable the assignment of milk batches to children, offer interfaces to Copra 5/6, record partial quantities via scan and document retrievals. 6. Batch management The software must automatically generate batches based on mother ID, week of gestation, calendar week of birth, calendar week of milk collection and processing type (raw or pasteurised). Colour coding by week of gestation should be adjusted automatically, as should the documentation of the processing day. 7. Human Milk Bank Potential donors should be identified automatically (e.g. >600 ml/day), be able to fill out digital information and anamnesis forms with a signature, and receive a donor ID. Interfaces to SAP, Copra and the laboratory (e.g. ix.serv) should automatically adopt laboratory findings. The software should enable approvals by specialist staff, evaluation of findings and labelling of pasteurisation requirements. 8. Donated milk The software should record milk quantity, date, time, calendar week, temperature, microbiological samples and storage locations. 9. Processing of donated milk Raw milk should be pooled by day, assigned in batches and stored until release. Pasteurised milk should be processed with documentation of pasteurisation, cooling and storage. CMV-inactivated milk should document pooling, inactivation, cooling and release. Centrifuged milk is processed analogously to mother's own milk, if necessary with additional pasteurisation. 10. Non-released milk The software should document measures such as discarding, re-pasteurisation, training of the donor and repeat samples. 11. Dispensing The software should enable the assignment of batches to wards and individual children and record partial quantities via scan. 12. Summary We are looking for an integrated software solution for the secure, automated management of human milk processes with complete traceability, high system integration and user-friendliness. 13. Participation in the market survey Interested companies are requested to submit their participation and information on the solution by email to vergabestelle@klinikum-stuttgart.de no later than 15.05.2026. The market survey serves exclusively to prepare for a possible procurement procedure. There is no entitlement to the implementation of such a procedure."
+          },
+          "source": "1. Zielsetzung Im Rahmen dieser Markterkundung werden geeignete Softwarelösungen zur digitalen Verwaltung und Nachverfolgung von Humanmilchprozessen (Eigenmilch und gespendete Frauenmilch) in einer klinischen Umgebung gesucht. Ziel ist ein System zur vollständigen, revisionssicheren Abbildung aller Prozesse unter Berücksichtigung der Anforderungen der SoHo-Verordnung, mit Fokus auf Patientensicherheit, Rückverfolgbarkeit und Prozessautomatisierung. 2. Allgemeine Anforderungen Die Software muss eine durchgängige digitale Dokumentation und Rückverfolgbarkeit gewährleisten; Schnittstellen zu SAP sowie Copra 5/6 bereitstellen; Workflows und Benachrichtigungen automatisieren; Etikettendruck und Scanprozesse integrieren; sowie rollenbasierte Zugriffe ermöglichen. 3. Eigenmilch („Mother’s Own Milk“) Die Software soll die Erfassung der Mütter auf Station mit SAP-Anbindung ermöglichen, eine eindeutige Mutter-ID vergeben, den CMV-Status erfassen inklusive Aufklärung und Einwilligung, die abgepumpte Milchmenge dokumentieren, Etiketten durch Personal oder Mutter erstellen, den Lagerort und Bestand nachverfolgen sowie automatische Hinweise für CMV-Inaktivierung (Tag 7 und 32+0 SSW) geben. Daten zu den Kindern wie Name, Geburtsdatum, Schwangerschaftswoche und Gewicht sollen automatisch aus SAP oder Copra übernommen werden. 4. Verarbeitung Eigenmilch CMV-inaktivierte Milch soll tageweise gepoolt, flaschenweise in Chargen vergeben, etikettiert, Inaktivierung dokumentiert und Kühlvorgänge sowie Lagerorte vermerkt werden. Zentrifugierte Milch soll analog verarbeitet werden, inklusive Dokumentation von Dauer und Umdrehungen, Kennzeichnung als entrahmt, Zuordnung von Analysen und Lagerung. 5. Verabreichung Die Software soll die Zuordnung von Milchchargen zu Kindern ermöglichen, Schnittstellen zu Copra 5/6 bieten, Teilmengen per Scan erfassen und Abrufe dokumentieren. 6. Chargenmanagement Die Software muss Chargen automatisch generieren, basierend auf Mutter-ID, Schwangerschaftswoche, Kalenderwoche der Geburt, Kalenderwoche der Milchgewinnung und Verarbeitungsart (roh oder pasteurisiert). Farbkennzeichnungen nach Schwangerschaftswoche sollen automatisch angepasst werden, ebenso die Dokumentation des Verarbeitungstags. 7. Frauenmilchbank Potenzielle Spenderinnen sollen automatisch identifiziert werden (z. B. >600 ml/Tag), digitale Aufklärungs- und Anamneseformulare mit Signatur ausfüllen können, und eine Spenderinnen-ID erhalten. Schnittstellen zu SAP, Copra und Labor (z. B. ix.serv) sollen Laborbefunde automatisch übernehmen. Die Software soll Freigaben durch Fachpersonal, Bewertung der Befunde und Kennzeichnung von Pasteurisierungspflichten ermöglichen. 8. Gespendete Milch Die Software soll Milchmenge, Datum, Uhrzeit, Kalenderwoche, Temperatur, mikrobiologische Proben und Lagerorte erfassen. 9. Verarbeitung gespendeter Milch Rohmilch soll tageweise gepoolt, in Chargen vergeben und bis Freigabe gelagert werden. Pasteurisierte Milch soll mit Dokumentation von Pasteurisierung, Kühlung und Lagerung verarbeitet werden. CMV-inaktivierte Milch soll Pooling, Inaktivierung, Kühlung und Freigabe dokumentieren. Zentrifugierte Milch wird analog Eigenmilch verarbeitet, ggf. mit zusätzlicher Pasteurisierung. 10. Nicht freigegebene Milch Die Software soll Maßnahmen wie Verwerfen, Nachpasteurisierung, Schulung der Spenderin und erneute Proben dokumentieren. 11. Ausgabe Die Software soll die Zuordnung von Chargen zu Stationen und einzelnen Kindern ermöglichen und Teilmengen per Scan erfassen. 12. Zusammenfassung Gesucht wird eine integrierte Softwarelösung zur sicheren, automatisierten Verwaltung von Humanmilchprozessen mit vollständiger Rückverfolgbarkeit, hoher Systemintegration und Benutzerfreundlichkeit. 13. Teilnahme an der Markterkundung Interessierte Unternehmen werden gebeten, ihre Teilnahme sowie Informationen zur Lösung bis spätestens 15.05.2026 per E-Mail an vergabestelle@klinikum-stuttgart.de zu übermitteln. Die Markterkundung dient ausschließlich der Vorbereitung eines möglichen Vergabeverfahrens. Ein Anspruch auf Durchführung besteht nicht."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "8e39e40657dad7479fd73bbd86b953791a123113659aea4bb798eb8b5f07c657": {
       "parts": [
         {
@@ -106305,6 +107082,29 @@
       ],
       "protected_names": [],
       "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "8f2ec9bc33bdc42eb902569c82a0c152d289d309ed708f060a9a88cc74be0fce": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:22:29.965236+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Bureau of the Parliament of the Canary Islands"
+          },
+          "source": "Mesa del Parlamento de Canarias"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "8f369f73faf0fd28659442e5ca5f709c7a7ca65adf72995a03396371adbf4ea2": {
@@ -109895,6 +110695,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "9380d565b3ce3c7b5d6cc783f0b4fedc3bf24fb784fd3fcd40307d90a162b1ad": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:21:42.803628+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The DVLA require expressions of interest for the Provision of Direct Debit Solution. The proposed route to market is the Government Commercial DPS (GCA) Open Banking (Data, Digital Payments & Confirmation of Payee Services) DPS - Lot 1. The estimated value of the contract is c£37,500,000 and the contract will run for a 5-year term. DVLA anticipate issuing the award letter in May 2027 with a contract start date of February 2028, which allows around 8 months for transition and mobilisation activities. To find out how to become a supplier on this commercial agreement, visit https://supplierregistration.cabinetoffice.gov.uk/dps/RM6301, download the 'Bid pack', and read the READ FIRST RM6301-DPS Needs. To apply, or to update your responses, click 'Access as a supplier' to login/register. Registration is free and there is no limit on the number of suppliers who can join this DPS Marketplace. The purpose of this Prior Information Notice (PIN) is to inform the market of this upcoming requirement and invite interested suppliers to attend a virtual market engagement event. This event will provide an opportunity for DVLA to outline its proposed requirements, gather market feedback and help inform the future procurement requirements. Background The DVLA is an Executive Agency of The Department for Transport (DfT), based in Swansea. The Agency's primary aims are to facilitate road safety and general law enforcement by maintaining accurate registers of drivers and vehicle keepers and to collect Vehicle Excise Duty (VED). A Direct Debit (DD) payment option was introduced from 1st October 2014 which enables End Users to currently pay the full annual VED amount in one annual instalment, pay for a 6-month licensing period in one instalment or opt to spread the costs evenly over the term of a 12-month licensing period. All options result in an automatic VED renewal, subject to all business requirements being met, unless the End User opts out of the DD scheme. - Currently, over 1.4 million mandates are created per month, this is split between circa new (40%) and renewed (60%) mandates. - On average, Direct Debit payments total approximately £230m a month. From 1 April 2028 a new requirement will be introduced to collect eVED (Electric Vehicle Excise Duty) it is a new mileage charge for electric and plug in hybrid cars. Market Engagement Event DVLA will host a virtual Market Engagement Event on 18 August 2026 and will consist of an overview session provided by DVLA for all attendees followed by 1-2-1 sessions at the request of suppliers. If you would like to attend the event or wish to reserve a 1-2-1 appointment, please register your interest by emailing sophie.willis@dvla.gov.uk and jason.thomas@dvla.gov.uk by 17:00pm on Thursday 6 August 2026. Please include the names and positions of the individuals you wish to attend. Following registration, DVLA will provide further details, including joining instructions and any relevant pre-event information."
+          },
+          "source": "The DVLA require expressions of interest for the Provision of Direct Debit Solution. The proposed route to market is the Government Commercial DPS (GCA) Open Banking (Data, Digital Payments & Confirmation of Payee Services) DPS - Lot 1. The estimated value of the contract is c£37,500,000 and the contract will run for a 5-year term. DVLA anticipate issuing the award letter in May 2027 with a contract start date of February 2028, which allows around 8 months for transition and mobilisation activities. To find out how to become a supplier on this commercial agreement, visit https://supplierregistration.cabinetoffice.gov.uk/dps/RM6301, download the &apos;Bid pack&apos;, and read the READ FIRST RM6301-DPS Needs. To apply, or to update your responses, click &apos;Access as a supplier&apos; to login/register. Registration is free and there is no limit on the number of suppliers who can join this DPS Marketplace. The purpose of this Prior Information Notice (PIN) is to inform the market of this upcoming requirement and invite interested suppliers to attend a virtual market engagement event. This event will provide an opportunity for DVLA to outline its proposed requirements, gather market feedback and help inform the future procurement requirements. Background The DVLA is an Executive Agency of The Department for Transport (DfT), based in Swansea. The Agency&apos;s primary aims are to facilitate road safety and general law enforcement by maintaining accurate registers of drivers and vehicle keepers and to collect Vehicle Excise Duty (VED). A Direct Debit (DD) payment option was introduced from 1st October 2014 which enables End Users to currently pay the full annual VED amount in one annual instalment, pay for a 6-month licensing period in one instalment or opt to spread the costs evenly over the term of a 12-month licensing period. All options result in an automatic VED renewal, subject to all business requirements being met, unless the End User opts out of the DD scheme. - Currently, over 1.4 million mandates are created per month, this is split between circa new (40%) and renewed (60%) mandates. - On average, Direct Debit payments total approximately £230m a month. From 1 April 2028 a new requirement will be introduced to collect eVED (Electric Vehicle Excise Duty) it is a new mileage charge for electric and plug in hybrid cars. Market Engagement Event DVLA will host a virtual Market Engagement Event on 18 August 2026 and will consist of an overview session provided by DVLA for all attendees followed by 1-2-1 sessions at the request of suppliers. If you would like to attend the event or wish to reserve a 1-2-1 appointment, please register your interest by emailing sophie.willis@dvla.gov.uk and jason.thomas@dvla.gov.uk by 17:00pm on Thursday 6 August 2026. Please include the names and positions of the individuals you wish to attend. Following registration, DVLA will provide further details, including joining instructions and any relevant pre-event information."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "9385f2c4e3a2a86c1650ae36f57f7ad80cf11a97e2e8622bd31759c4d33dfc09": {
       "parts": [
         {
@@ -111013,6 +111836,39 @@
         }
       ],
       "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "95305c195ead888725288e5cf5840a7bb0e50de9a699741a3e74108be2ebdb07": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "rejected": {
+            "id": "95305c195ead888725288e5cf5840a7bb0e50de9a699741a3e74108be2ebdb07:0",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Kirkon keskusrahasto käynnistää tällä ilmoituksella markkinavuoropuhelun koskien taloushallinnon ydinjärjestelmän hankintaa. Kirkkohallituksen yhteydessä toimii Suomen evankelis-luterilaisen kirkon kirjanpidon ja palkanlaskennan palvelukeskus, joka hoitaa seurakuntien, seurakuntayhtymien, hiippakuntien, kirkon keskusrahaston ja kirkon eläkerahaston kirjanpidon, ostolaskut, ostoreskontran, myyntilaskut, myyntireskontran, käyttöomaisuuskirjanpidon, palkanlaskennan, matka- ja kululaskut sekä niihin liittyvän maksuliikenteen. Kirkon palvelukeskuksessa taloushallinnon ydinprosesseja tuetaan tällä hetkellä SAP-pohjaisella ratkaisulla. Nykyisen SAP-ympäristön valmistajan ilmoittama versiotuen päättymisaikataulu edellyttää, että hankintayksikkö arvioi laajasti tulevien vuosien järjestelmävaihtoehtoja. Markkinavuoropuhelussa tarkastellaan SAP:in rinnalla myös vaihtoehtoisten taloushallinnon ydinjärjestelmien soveltuvuutta. Markkinavuoropuhelun tavoitteena on muodostaa kokonaiskuva eri vaihtoehtojen teknisistä, toiminnallisista ja taloudellisista eduista sekä auttaa arvioimaan niitä objektiivisesti ennen varsinaisen hankinnan käynnistämistä. Markkinavuoropuhelun tulosten perusteella hankintayksikkö voi päätyä joko teknologianeutraaliin kilpailutukseen tai perustellusta syystä rajata hankinnan nykyiseen SAP-teknologiaan. Mikäli teknologiarajaus on perusteltu, kilpailutus kohdistuu SAP-ratkaisun päivitykseen ja toteutuskumppanin valintaan. Muussa tapauksessa kilpailutus toteutetaan avoimena kaikille toimittajille, mukaan lukien SAP-teknologiaa hyödyntävät ratkaisut. Mahdollinen tuleva kilpailutus tullaan toteuttamaan suurella todennäköisyydellä kilpailullisena neuvottelumenettelynä hankintalain periaatteita noudattaen. Jos toimittajalla on esittää referenssejä projekteista, joissa asiakas on siirtynyt SAP-pohjaisesta taloushallinnon ratkaisusta toiseen järjestelmään, nämä referenssit ovat erityisen kiinnostavia hankintayksikön näkökulmasta. Näiden referenssien tarkoituksena on auttaa hankintayksikköä ymmärtämään tällaisen siirtymän toteutusmallia, työmäärää, riskikohtia ja kokonaislaajuutta – ei ennakoida mahdollisen tulevan hankinnan järjestelmävalintaa. Toimittajat voivat ilmoittaa kiinnostuksestaan osallistua markkinavuoropuheluun toimittamalla kiinnostusta koskevan ilmoituksen sekä lyhyen esittelyn tarjoamastaan taloushallinnon ydinjärjestelmästä referenssiprojekteineen sähköpostitse osoitteeseen anette.tolvanen@evl.fi VIIMEISTÄÄN PERJANTAINA 17.4.2026. Esittely pyydetään toimittamaan joko PDF- tai Office-tiedostomuodossa. Vuoropuheluun kutsutaan lähtökohtaisesti 6 toimittajaa, jotka valitaan vertaamalla toimitettuja järjestelmäesittelyitä ja nimettyjä referenssiprojekteja alla kuvattuun hankinnan kohteeseen. Vertailu tehdään kokonaisarviointina huomioiden mm. nyt hankittavien palveluiden laajuus ja toimitettujen referenssiasiakkaiden/projektien vertailtavuus Kirkon keskusrahaston toimintaan. Alustava hankinnan kohde Kirkon palvelukeskus suunnittelee taloushallinnon ydinjärjestelmän kilpailuttamista. Tulevan hankinnan tavoitteena on uudistaa ja yhtenäistää taloushallinnon keskeiset prosessit sekä varmistaa moderni, integroitunut ja automaatiota tukeva järjestelmäkokonaisuus. Hankinnan sisältö voi muodostua esimerkiksi seuraavista taloushallinnon ydintoiminnoista: • kirjanpito, tilinpäätös ja käyttöomaisuus • ostolaskujen käsittely ja ostoreskontra • myyntilaskutus, myyntireskontra ja perintä • maksuliikenne • talousraportointi ja seuranta • taloussuunnittelu, budjetointi ja ennustaminen • arkistointi • sekä myöhemmin toteutettavista hankittavien laajennusten ja toiminnallisuuksien optioista Tämän tietopyynnön tarkoituksena on kartoittaa hankintaan liittyviä toimittaja- ja ratkaisuvaihtoehtoja. Tämä ilmoitus ei ole hankintailmoitus eikä tarjouspyyntö vaan ennakkoilmoituksella toteutettava kutsu markkinavuoropuheluun osana mahdollisen hankinnan valmistelua. Tämä tietopyyntö ei velvoita hankintayksikköä toteuttamaan hankintaa. Nykyiset taloushallinnon prosessit ovat osittain automatisoituja, mutta sisältävät edelleen paljon manuaalisia työvaiheita, poikkeusten selvittelyä sekä hajanaisia käytäntöjä eri palvelualueiden välillä. Järjestelmäkokonaisuuden kehittämisellä tavoitellaan esimerkiksi: • prosessien yhtenäistämistä ja automatisoinnin lisäämistä • tiedonsiirron ja integraatioiden parantamista • poikkeusten ja virheiden vähentämistä • läpimenoaikojen ja kustannustehokkuuden parantamista • parempaa läpinäkyvyyttä ja raportointia johtamisen tueksi Markkinavuoropuhelun tavoitteena on kartoittaa markkinoilla olevia ratkaisuja ja saada toimittajien näkemyksiä erityisesti: • automaatiomahdollisuuksista ja parhaista käytännöistä • Kirkon palvelukeskuksen nykyprosessien tehostamisesta toimittajan tarjoaman ratkaisun avulla • integraatioista haastavassa monitoimijaympäristössä • kehitysmallista ja palvelutasovaatimuksista • hintatasosta ja kokonaiskustannuksen skaalautuvuudesta erilaisten skenaarioiden valossa • järjestelmän käyttöönoton ja migraation toteutuksesta mukaan lukien aikataulu ja kustannukset • tietoturvasta ja tietosuojasta • arkkitehtuurista"
+          },
+          "result": {
+            "at": "2026-09-19T05:22:20.658270+00:00",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Kirkon keskusrahasto is launching a market consultation with this notice regarding the procurement of a core financial management system. Operating alongside the Church Office is the bookkeeping and payroll service centre of the Evangelical Lutheran Church of Finland, which manages the bookkeeping, purchase invoices, accounts payable, sales invoices, accounts receivable, fixed asset accounting, payroll, travel and expense claims, and associated payment transactions for parishes, parish unions, dioceses, kirkon keskusrahasto and the church pension fund. At the Church Service Centre, core financial management processes are currently supported by a SAP-based solution. The end-of-version support schedule announced by the manufacturer of the current SAP environment requires the contracting entity to evaluate system alternatives for the coming years on a broad scale. The market consultation will examine the suitability of alternative core financial management systems alongside SAP. The aim of the market consultation is to build a comprehensive picture of the technical, functional and economic benefits of the various alternatives and to help evaluate them objectively before launching the actual procurement. Based on the results of the market consultation, the contracting entity may opt for a technology-neutral tender or, for a reasoned reason, restrict the procurement to the current SAP technology. If the technology restriction is justified, the tender will focus on the upgrade of the SAP solution and the selection of an implementation partner. Otherwise, the tender will be implemented as open to all suppliers, including solutions utilising SAP technology. Any future tender will most likely be implemented as a competitive dialogue procedure in compliance with the principles of the Public Procurement Act. If a supplier has references from projects where a client has transitioned from a SAP-based financial management solution to another system, these references are of particular interest from the contracting entity's perspective. The purpose of these references is to help the contracting entity understand the implementation model, workload, risk areas and overall scope of such a transition - not to anticipate the system selection of any potential future procurement. Suppliers can express their interest in participating in the market consultation by submitting an expression of interest and a brief presentation of the core financial management system they offer, along with reference projects, by email to anette.tolvanen@evl.fi NO LATER THAN FRIDAY 17.4.2026. The presentation is requested to be submitted in either PDF or Office file format. As a starting point, 6 suppliers will be invited to the dialogue, selected by comparing the submitted system presentations and named reference projects against the subject of the procurement described below. The comparison will be made as an overall assessment taking into account, inter alia, the scope of the services currently being procured and the comparability of the submitted reference clients/projects to the operations of Kirkon keskusrahasto. Preliminary subject of the procurement The Church Service Centre is planning to tender a core financial management system. The aim of the future procurement is to overhaul and harmonise key financial management processes and ensure a modern, integrated system entity that supports automation. The content of the procurement may consist of, for example, the following core financial management functions: • bookkeeping, financial statements and fixed assets • processing of purchase invoices and accounts payable • sales invoicing, accounts receivable and debt collection • payment transactions • financial reporting and monitoring • financial planning, budgeting and forecasting • archiving • as well as options for extensions and functionalities to be procured later The purpose of this request for information is to map out supplier and solution alternatives related to the procurement. This notice is not a procurement notice or a call for tenders, but an invitation to participate in a market consultation implemented via a prior information notice as part of the preparation of a possible procurement. This request for information does not oblige the contracting entity to carry out the procurement. Current financial management processes are partially automated, but still involve a lot of manual work steps, resolution of exceptions, and fragmented practices between different service areas. The development of the system entity aims, for example, at: • harmonising processes and increasing automation • improving data transfer and integrations • reducing exceptions and errors • improving turnaround times and cost efficiency • better transparency and reporting to support management The aim of the market consultation is to map out solutions available on the market and obtain suppliers' views in particular on: • automation opportunities and best practices • streamlining the current processes of the Church Service Centre using the supplier's offered solution • integrations in a challenging multi-vendor environment • development model and service level requirements • price level and scalability of total costs in light of various scenarios • implementation and migration of the system, including schedule and costs • information security and data protection • architecture"
+          },
+          "source": "Kirkon keskusrahasto käynnistää tällä ilmoituksella markkinavuoropuhelun koskien taloushallinnon ydinjärjestelmän hankintaa. Kirkkohallituksen yhteydessä toimii Suomen evankelis-luterilaisen kirkon kirjanpidon ja palkanlaskennan palvelukeskus, joka hoitaa seurakuntien, seurakuntayhtymien, hiippakuntien, kirkon keskusrahaston ja kirkon eläkerahaston kirjanpidon, ostolaskut, ostoreskontran, myyntilaskut, myyntireskontran, käyttöomaisuuskirjanpidon, palkanlaskennan, matka- ja kululaskut sekä niihin liittyvän maksuliikenteen. Kirkon palvelukeskuksessa taloushallinnon ydinprosesseja tuetaan tällä hetkellä SAP-pohjaisella ratkaisulla. Nykyisen SAP-ympäristön valmistajan ilmoittama versiotuen päättymisaikataulu edellyttää, että hankintayksikkö arvioi laajasti tulevien vuosien järjestelmävaihtoehtoja. Markkinavuoropuhelussa tarkastellaan SAP:in rinnalla myös vaihtoehtoisten taloushallinnon ydinjärjestelmien soveltuvuutta. Markkinavuoropuhelun tavoitteena on muodostaa kokonaiskuva eri vaihtoehtojen teknisistä, toiminnallisista ja taloudellisista eduista sekä auttaa arvioimaan niitä objektiivisesti ennen varsinaisen hankinnan käynnistämistä. Markkinavuoropuhelun tulosten perusteella hankintayksikkö voi päätyä joko teknologianeutraaliin kilpailutukseen tai perustellusta syystä rajata hankinnan nykyiseen SAP-teknologiaan. Mikäli teknologiarajaus on perusteltu, kilpailutus kohdistuu SAP-ratkaisun päivitykseen ja toteutuskumppanin valintaan. Muussa tapauksessa kilpailutus toteutetaan avoimena kaikille toimittajille, mukaan lukien SAP-teknologiaa hyödyntävät ratkaisut. Mahdollinen tuleva kilpailutus tullaan toteuttamaan suurella todennäköisyydellä kilpailullisena neuvottelumenettelynä hankintalain periaatteita noudattaen. Jos toimittajalla on esittää referenssejä projekteista, joissa asiakas on siirtynyt SAP-pohjaisesta taloushallinnon ratkaisusta toiseen järjestelmään, nämä referenssit ovat erityisen kiinnostavia hankintayksikön näkökulmasta. Näiden referenssien tarkoituksena on auttaa hankintayksikköä ymmärtämään tällaisen siirtymän toteutusmallia, työmäärää, riskikohtia ja kokonaislaajuutta – ei ennakoida mahdollisen tulevan hankinnan järjestelmävalintaa. Toimittajat voivat ilmoittaa kiinnostuksestaan osallistua markkinavuoropuheluun toimittamalla kiinnostusta koskevan ilmoituksen sekä lyhyen esittelyn tarjoamastaan taloushallinnon ydinjärjestelmästä referenssiprojekteineen sähköpostitse osoitteeseen anette.tolvanen@evl.fi VIIMEISTÄÄN PERJANTAINA 17.4.2026. Esittely pyydetään toimittamaan joko PDF- tai Office-tiedostomuodossa. Vuoropuheluun kutsutaan lähtökohtaisesti 6 toimittajaa, jotka valitaan vertaamalla toimitettuja järjestelmäesittelyitä ja nimettyjä referenssiprojekteja alla kuvattuun hankinnan kohteeseen. Vertailu tehdään kokonaisarviointina huomioiden mm. nyt hankittavien palveluiden laajuus ja toimitettujen referenssiasiakkaiden/projektien vertailtavuus Kirkon keskusrahaston toimintaan. Alustava hankinnan kohde Kirkon palvelukeskus suunnittelee taloushallinnon ydinjärjestelmän kilpailuttamista. Tulevan hankinnan tavoitteena on uudistaa ja yhtenäistää taloushallinnon keskeiset prosessit sekä varmistaa moderni, integroitunut ja automaatiota tukeva järjestelmäkokonaisuus. Hankinnan sisältö voi muodostua esimerkiksi seuraavista taloushallinnon ydintoiminnoista: • kirjanpito, tilinpäätös ja käyttöomaisuus • ostolaskujen käsittely ja ostoreskontra • myyntilaskutus, myyntireskontra ja perintä • maksuliikenne • talousraportointi ja seuranta • taloussuunnittelu, budjetointi ja ennustaminen • arkistointi • sekä myöhemmin toteutettavista hankittavien laajennusten ja toiminnallisuuksien optioista Tämän tietopyynnön tarkoituksena on kartoittaa hankintaan liittyviä toimittaja- ja ratkaisuvaihtoehtoja. Tämä ilmoitus ei ole hankintailmoitus eikä tarjouspyyntö vaan ennakkoilmoituksella toteutettava kutsu markkinavuoropuheluun osana mahdollisen hankinnan valmistelua. Tämä tietopyyntö ei velvoita hankintayksikköä toteuttamaan hankintaa. Nykyiset taloushallinnon prosessit ovat osittain automatisoituja, mutta sisältävät edelleen paljon manuaalisia työvaiheita, poikkeusten selvittelyä sekä hajanaisia käytäntöjä eri palvelualueiden välillä. Järjestelmäkokonaisuuden kehittämisellä tavoitellaan esimerkiksi: • prosessien yhtenäistämistä ja automatisoinnin lisäämistä • tiedonsiirron ja integraatioiden parantamista • poikkeusten ja virheiden vähentämistä • läpimenoaikojen ja kustannustehokkuuden parantamista • parempaa läpinäkyvyyttä ja raportointia johtamisen tueksi Markkinavuoropuhelun tavoitteena on kartoittaa markkinoilla olevia ratkaisuja ja saada toimittajien näkemyksiä erityisesti: • automaatiomahdollisuuksista ja parhaista käytännöistä • Kirkon palvelukeskuksen nykyprosessien tehostamisesta toimittajan tarjoaman ratkaisun avulla • integraatioista haastavassa monitoimijaympäristössä • kehitysmallista ja palvelutasovaatimuksista • hintatasosta ja kokonaiskustannuksen skaalautuvuudesta erilaisten skenaarioiden valossa • järjestelmän käyttöönoton ja migraation toteutuksesta mukaan lukien aikataulu ja kustannukset • tietoturvasta ja tietosuojasta • arkkitehtuurista"
+        }
+      ],
+      "protected_names": [
+        "Kirkon keskusrahasto"
+      ],
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
@@ -116267,6 +117123,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "9c74f9b0bf323d52f05082a20c222013a29c9949351ffdb5a535a4212c59b265": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:21:42.796707+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Due to the ongoing growth and development of the Open Banking market, Crown Commercial Service (CCS), as the Authority, intends to put in place an agreement for Open Banking Services for use by Central Government and the Wider Public Sector. The Agreement will be a Dynamic Purchasing System (DPS). This will be called RM6301: Open Banking DPS (Data, Digital Payments and Confirmation of Payee Services). This agreement will provide a vehicle for Central Government and the Public Sector to source Open Banking Services, including but not limited to: Digital Payment Services Account Information Services Confirmation of Payee (CoP) Services This will be the first agreement for Open Banking Services CCS has developed. We intend to launch for supplier onboarding from late July with the DPS anticipated to go live for use in the Autumn. The agreement is expected to run for 8 years and suppliers will have the opportunity to onboard throughout this duration. Additional information: Please note the Closing Date, Contract Start Date and Contract End Date have been manipulated to support compatibility system issues. However please refer to the contract notice for the correct dates, timelines etc."
+          },
+          "source": "Due to the ongoing growth and development of the Open Banking market, Crown Commercial Service (CCS), as the Authority, intends to put in place an agreement for Open Banking Services for use by Central Government and the Wider Public Sector. The Agreement will be a Dynamic Purchasing System (DPS). This will be called RM6301: Open Banking DPS (Data, Digital Payments and Confirmation of Payee Services). This agreement will provide a vehicle for Central Government and the Public Sector to source Open Banking Services, including but not limited to: Digital Payment Services Account Information Services Confirmation of Payee (CoP) Services This will be the first agreement for Open Banking Services CCS has developed. We intend to launch for supplier onboarding from late July with the DPS anticipated to go live for use in the Autumn. The agreement is expected to run for 8 years and suppliers will have the opportunity to onboard throughout this duration. Additional information: Please note the Closing Date, Contract Start Date and Contract End Date have been manipulated to support compatibility system issues. However please refer to the contract notice for the correct dates, timelines etc."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "9c79e937378ca75f23cc266769706d8455313a6c070b956714ca3cbc102fed97": {
       "parts": [
         {
@@ -118231,6 +119110,29 @@
             "text": "Supply of an integrated system for the updating/homogenisation of information system solutions to support the Biobank."
           },
           "source": "Fornitura di sistema integrato per l’attualizzazione/omogenizzazione delle soluzioni dei sistemi informativi a supporto della Biobanca."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "9e5f5e2892ffe1d9afe5043b74fa373cc8b247bc18cbc97b16d2c80fbc728551": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:22:02.447506+00:00",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Digipatologian skannerit"
+          },
+          "source": "Digipatologian skannerit"
         }
       ],
       "protected_names": [],
@@ -121953,6 +122855,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "a3175cdaf7ec7a6b928c1e4136d9194ee3c38780d521d2843c79cd8684c6ff7b": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:22:26.823129+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Security Technical Office and Cybersecurity Operations Centre (SOC) Service and various Cybersecurity solutions."
+          },
+          "source": "Servicio de Oficina Técnica de Seguridad y Centro de Operaciones de Ciberseguridad (SOC) y diversas soluciones de Ciberseguridad."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "a321803495a891a3cd147b6e220ed699fe8a0d13b6e89e9bf05e9f58a38f2ec5": {
       "parts": [
         {
@@ -122371,6 +123296,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "a3aff38ef02d057f7ca6e2dae50632c69206640158245d2448012b52efe7ef3c": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:22:26.828129+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Maintenance and Technical Assistance Service for the SICALWIN Budgetary, Accounting and Financial Information System of the City Council of Valladolid."
+          },
+          "source": "Servicio de Mantenimiento y Asistencia Técnica del Sistema de Información Presupuestaria, Contable y Financiera SICALWIN del Ayuntamiento de Valladolid."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "a3b79a47f79210654aac913e0cb1eeecef48b89ac537f40486ed1b2d9b6a0034": {
       "parts": [
         {
@@ -122612,6 +123560,37 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "a3fd0fc9d3c0afc787cf319ecec0bd4426f9d44ef15180fa2863b36018b67305": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "rejected": {
+            "id": "a3fd0fc9d3c0afc787cf319ecec0bd4426f9d44ef15180fa2863b36018b67305:0",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Tietopyyntö: Tietoturvallisuuden valvonta- ja hallintapalvelu (CSOC)"
+          },
+          "result": {
+            "at": "2026-09-19T05:22:02.422401+00:00",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Information request: Information security monitoring and management service (CSOC)"
+          },
+          "source": "Tietopyyntö: Tietoturvallisuuden valvonta- ja hallintapalvelu (CSOC)"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "a3fe0a45e660285505a934625480d7ebf8a3236fc914a419ce0ea44049d2b0fb": {
@@ -128087,6 +129066,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "ab718fd87df3d3d36bcc2d992a8a85359bffe8b1e2567edcf1ae55faf22ad6e6": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:22:29.967463+00:00",
+            "language": "sv",
+            "model": "gemini-3.5-flash-lite",
+            "text": "GÖLISKA IT"
+          },
+          "source": "GÖLISKA IT"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "ab821384ca4745353967ac521e3e1da8cc4e54cc1196e8475bc424e17d662146": {
       "parts": [
         {
@@ -132647,6 +133649,29 @@
       "protected_names": [],
       "purpose": "passage",
       "retry_profile": "english-coverage-and-organisation-names-2"
+    },
+    "b1e63c69883afb0fc2d42c99fcb6b1f9c1160d3ff52ebd209824df3cee46c89c": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:22:20.669632+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Intention notice Komtek software as a service"
+          },
+          "source": "Intention notice Komtek software as a service"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "b1fc932fc18334c67b4be6394bac5cbfb52230a186ab58d5f7043055c1ab8d33": {
       "parts": [
@@ -138261,6 +139286,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "b9190be152fa8bab2f0a51cbc3b511d6bf860a1e9c6a085c06aff70245cc7bf8": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:22:29.965140+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Local Government Board of the Municipality of Villanueva del Río Segura"
+          },
+          "source": "Junta de Gobierno Local del Ayuntamiento de Villanueva del Río Segura"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "b91f49ec61a9ff76ef1c2791ef475817984918659d3686c65dc228523fec0201": {
       "parts": [
         {
@@ -138848,6 +139896,37 @@
             "text": "Voice communication systems and applications 50 Hertz"
           },
           "source": "Systeme und Applikationen der Sprachkommunikation 50Hertz"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "ba0ef94b51f6548ee4995bde562425701a84f26006a47af953aa820f7a3fba14": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 2
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "rejected": {
+            "id": "ba0ef94b51f6548ee4995bde562425701a84f26006a47af953aa820f7a3fba14:0",
+            "language": "sv",
+            "model": "gemini-3.5-flash-lite",
+            "text": "RFI - Dokument- och ärendehanteringssystem"
+          },
+          "result": {
+            "at": "2026-09-19T05:22:36.759415+00:00",
+            "language": "sv",
+            "model": "gemini-3.1-flash-lite",
+            "text": "RFI - Document and case management system"
+          },
+          "source": "RFI - Dokument- och ärendehanteringssystem"
         }
       ],
       "protected_names": [],
@@ -142676,6 +143755,29 @@
       "purpose": "organisation",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "bf0c1ee0b1695771c7015042f3b9b71efa0e09d5bb690be81be7070907db3b9a": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:21:51.559619+00:00",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The objective of the request is to establish a dynamic purchasing system (DPS), the preliminary subject of which is the security technologies and related services required for the implementation of technical information security and compliance. The DPS to be established would enable, among other things, the procurement of the following solutions, technologies and services as needed: - Security event management, analytics and response automation. Examples include SIEM, SOAR and other similar solutions, security alert enrichment, correlation, prioritisation, workflow automation, hyperautomation and AI agent-based automation. - Analytics and artificial intelligence solutions to support security monitoring and response. Examples include AI/ML-based solutions to support SOC operations, improving analyst efficiency, automation of threat hunting, and supporting anomaly detection and investigation. - Threat intelligence management and utilisation in security monitoring and response. Examples include the management, combination, automation, analysis and utilisation of threat intelligence collected from public, open, commercial and other sources in anomaly forecasting, enrichment and decision-making, including Threat Intelligence Platform (TIP) solutions. - Asset management for security monitoring needs. Examples include solutions that create and maintain up-to-date and unified visibility into environments containing IT, OT, IoT and medical devices, including devices, software, software versions, dependencies, integrations with existing asset management solutions, and the utilisation of SBOM data. - Third-party and supply chain risk management. Examples include automated solutions supporting supplier information security risk assessment, continuous monitoring and software supply chain risk management. - Network traffic security event detection and response. Examples include Network Detection and Response (NDR) and other similar solutions for analysing network traffic, identifying anomalies and supporting automated or guided response. - Safe utilisation of artificial intelligence and usage monitoring. Examples include solutions for managing, monitoring and protecting the use of artificial intelligence, generative artificial intelligence and AI agents in the organisation, as well as the risks associated with their use. - A system/solution intended for the handling of security incidents (case management), into which all data related to incident handling, such as memory dumps, log data, actions taken, evidence, etc., can be collected securely as part of the DFIR process. - SandBox tools for malware investigation and operational analysis. In addition, probable general requirements/boundary conditions concerning all potential procurement packages are: - Solutions should in principle support a multi-tenant model or otherwise be suitable for a multi-tenant environment. - Solutions should in principle be integrable with security event management and response automation solutions (e.g. SOAR) as well as log management solutions, and support the large-scale utilisation of artificial intelligence. - Procurements to be implemented may include, inter alia, the following: consulting, maintenance, development, deployment, integration and expert services. - Istekki may procure technologies for its own use, exclusively for customers' use, or for the use of both Istekki and customers. The objective is for the establishment phase of the dynamic purchasing system to commence in May-June 2026. Please note that this is a prior information notice (hereinafter referred to as the notice), and this notice does not yet constitute a request to participate. The information provided in this notice is preliminary and may change as preparation progresses. REGISTRATION. Companies interested in this dynamic purchasing system (DPS) are requested to register for the market dialogue by email at: hankinnat@istekki.fi no later than 17.4.2026 (with the subject \"Tietoturvapalveluiden DPS\"). The personal data of registered persons will be used solely for contacts related to the preparation of this dynamic purchasing system. MARKET DIALOGUE. Draft material related to the dynamic purchasing system under preparation will be sent to registered companies for comments, in a so-called market dialogue, during an estimated period of 05/2026. Registered companies will be given the opportunity to comment on the draft material in writing. The market dialogue and materials will be in Finnish. Participation or non-participation in the market dialogue does not preclude participation in a potential procurement procedure."
+          },
+          "source": "Istekin tavoitteena on perustaa dynaaminen hankintajärjestelmä (DPS), jonka alustavana kohteena on teknisen tietoturvallisuuden ja vaatimustenmukaisuuden toteuttamiseen tarvittavat turvallisuusteknologiat ja niihin liittyvät palvelut. Perustettava DPS mahdollistaisi mm. seuraavien ratkaisujen, teknologioiden ja palveluiden hankinnan tarpeen mukaan: - Tietoturvatapahtumien hallinta, analytiikka ja vasteen automatisointi. Esimerkkeinä SIEM-, SOAR- ja muut vastaavat ratkaisut, tietoturvahälytysten rikastaminen, korrelointi, priorisointi, työnkulkujen automatisointi, hyperautomaatio sekä AI agenttipohjainen automaatio. - Analytiikka- ja tekoälyratkaisut tietoturvavalvonnan ja reagoinnin tueksi. Esimerkkeinä AI-/ML-pohjaiset ratkaisut SOC-toiminnan tueksi, analyytikkotyön tehostaminen, uhkien metsästyksen automatisointi sekä poikkeamien tunnistamisen ja tutkinnan tukeminen. - Uhkatiedon hallinta ja hyödyntäminen tietoturvan valvonnassa ja reagoinnissa. Esimerkkeinä julkisista, avoimista, kaupallisista ja muista lähteistä kerättävän uhkatiedon hallinta, yhdistäminen, automatisointi, analysointi ja hyödyntäminen poikkeamien ennakoinnissa, rikastamisessa ja päätöksenteossa, mukaan lukien Threat Intelligence Platform (TIP) -ratkaisut. - Omaisuudenhallinta tietoturvan valvonnan tarpeisiin. Esimerkkeinä ratkaisut, joilla muodostetaan ja ylläpidetään ajantasaista ja yhtenäistä näkyvyyttä IT-, OT-, IoT- ja lääkinnällisiä laitteita sisältävään ympäristöön, mukaan lukien laitteet, ohjelmistot, ohjelmistoversiot, riippuvuudet, integraatiot olemassa oleviin asset management -ratkaisuihin sekä SBOM-tiedon hyödyntäminen. - Kolmansien osapuolten ja toimitusketjujen riskienhallinta. Esimerkkeinä toimittajien tietoturvariskien arviointia, jatkuvaa seurantaa ja ohjelmistotoimitusketjujen riskienhallintaa tukevat automatisoidut ratkaisut. - Verkkoliikenteen turvallisuustapahtumien havainnointi ja reagointi. Esimerkkeinä Network Detection and Response (NDR) ja muut vastaavat ratkaisut, joilla analysoidaan verkkoliikennettä, tunnistetaan poikkeamia ja tuetaan automatisoitua tai ohjattua reagointia. - Tekoälyn turvallinen hyödyntäminen ja käytön valvonta. Esimerkkeinä ratkaisut, joilla hallitaan, valvotaan ja suojataan tekoälyn, generatiivisen tekoälyn ja AI-agenttien käyttöä organisaatiossa sekä niiden käyttöön kohdistuvia riskejä. - Turvallisuuspoikkeamien käsittelyyn tarkoitettu järjestelmä/ratkaisu (case management), johon voidaan kerätä kaikki poikkeukseen käsittelyyn liittyvät tiedot, kuten muistidumpit, lokitiedot, tehdyt toimet, todisteaineistot jne. turvallisesti osana DFIR-prosessia. - SandBox työkalut haittaohjelmien tutkintaan ja toiminnan analysointia varten. Lisäksi kaikkia mahdollisia hankintakokonaisuuksia koskevia todennäköisiä yleisvaatimuksia/reunaehtoja ovat: - Ratkaisujen tulee lähtökohtaisesti tukea moniasiakasmallia (multi-tenant) tai soveltua muutoin moniasiakasympäristöön. - Ratkaisujen tulee lähtökohtaisesti olla integroitavissa tietoturvallisuustapahtumien hallinnan ja vasteen automatisoinnin ratkaisuihin (esim. SOAR) sekä lokienhallinnan ratkaisuihin sekä tukea tekoälyn laajamittaista hyödyntämistä. - Toteutettaviin hankintoihin voi sisältyä mm. seuraavia: konsultointi-, ylläpito-, kehitys-, käyttöönotto-, integraatio- ja asiantuntijapalveluita. - Istekki voi hankkia teknologiat omaan käyttöön tai pelkästään asiakkaiden käyttöön tai istekin ja asiakkaiden käyttöön. Tavoitteena on, että dynaamisen hankintajärjestelmän perustamisvaihe käynnistyy touko-kesäkuussa 2026. Huomioittehan, että kyseessä on ennakkoilmoitus (jäljempänä ilmoitus), eikä tällä ilmoituksella pyydetä vielä osallistumishakemuksia. Tällä ilmoituksella annetut tiedot ovat alustavia ja saattavat muuttua valmistelun edetessä. ILMOITTAUTUMINEN. Tästä dynaamisesta hankintajärjestelmästä (DPS) kiinnostuneita yrityksiä pyydetään ilmoittautumaan markkinavuoropuheluun sähköpostitse osoitteeseen: hankinnat@istekki.fi viimeistään 17.4.2026 (otsikolla \"Tietoturvapalveluiden DPS\") . Ilmoittautuneiden henkilöiden henkilötietoja käytetään vain tämän dynaamisen hankintajärjestelmän valmisteluun liittyviin yhteydenottoihin. MARKKINAVUOROPUHELU. Ilmoittautuneille yrityksille tullaan lähettämään valmistelussa olevaan dynaamiseen hankintajärjestelmään liittyvää luonnosmateriaalia kommenteille, ns. markkinavuoropuheluun arviolta 05/2026 aikana. Ilmoittautuneille varataan mahdollisuus kommentoida luonnosmateriaalia kirjallisesti. Markkinavuoropuhelu ja materiaalit tulevat olemaan suomen kielellä. Markkinavuoropuheluun osallistuminen tai osallistumatta jättäminen ei estä mahdolliseen hankintamenettelyyn osallistumista."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "bf1297d98abda6f34c4ef4144ed8c46941fe8e3f67b4ff7533c4d9c430ea4a9c": {
       "parts": [
         {
@@ -143780,6 +144882,29 @@
             "text": "10045595-Design and operationalisation of the ESF+/EaSI National Contact Point function at MLSP, informed by a gap analysis and institutional readiness report mapped to relevant EU/EaSI requirement"
           },
           "source": "10045595-Design and operationalisation of the ESF+/EaSI National Contact Point function at MLSP, informed by a gap analysis and institutional readiness report mapped to relevant EU/EaSI requirement"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "c03fac217f4cd7801dfa1cd0997da964a72726071bd5bc557ad0c8562b9ddc00": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:21:42.803856+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Collaboration and technical and material assistance services for the Municipality of Villanueva del Río Segura in tax management and the voluntary and enforcement collection of taxes, penalties and other public-law revenue."
+          },
+          "source": "Servicios de colaboración y asistencia técnica y material al Ayuntamiento de Villanueva del Río Segura en la gestión tributaria y en la recaudación voluntaria y ejecutiva de tributos, sanciones y otros ingresos de derecho público."
         }
       ],
       "protected_names": [],
@@ -148039,6 +149164,37 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "c5b191eab01a998a8396f1cebdeee1cc0a3707f397ab2c19e41abe78d1e9e400": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 2
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "rejected": {
+            "id": "c5b191eab01a998a8396f1cebdeee1cc0a3707f397ab2c19e41abe78d1e9e400:0",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Implementierung und Betrieb von Systemen zur Angriffserkennung"
+          },
+          "result": {
+            "at": "2026-09-19T05:22:36.759624+00:00",
+            "language": "de",
+            "model": "gemini-3.1-flash-lite",
+            "text": "Implementation and operation of attack detection systems"
+          },
+          "source": "Implementierung und Betrieb von Systemen zur Angriffserkennung"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "c5b3a64c1581aaef96ae1105605373607a93cad4e2b6b10a708ab25b2ac9da54": {
@@ -157939,6 +159095,29 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "d2412d87b2995dcd9777757dcadcc73f7fd8d0b6a9461f393b0269167e492122": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:21:51.561531+00:00",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Invitation to market dialogue: HR system entity as a SaaS service"
+          },
+          "source": "Kutsu markkinavuoropuheluun: HR -järjestelmäkokonaisuus SaaS-palveluna"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "d2462eec37c6a0117d3ce362d622c08143d81f31f49f843a0ea92ed4ebf68dbe": {
       "parts": [
         {
@@ -165597,6 +166776,31 @@
         }
       ],
       "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "dd1142447c06dedc4fd651f051acbc43aec8fd581c45584043972d530678126a": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:22:20.668497+00:00",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Hansel Oy has initiated the preparation of the Data Centre Infrastructure Equipment 2026 dynamic purchasing system*. The subject of the dynamic purchasing system (DPS) is the procurement of data centre infrastructure equipment (e.g. servers, storage and backup equipment, integrated solutions, and data centre network equipment) as well as related accessories and services. The aim is for the establishment phase of the dynamic purchasing system to start in August 2026. *See more about the dynamic purchasing system: https://www.hansel.fi/hankintatietoa/dynaaminen-hankintajarjestelma-dps/ GENERAL Please note that this is a market consultation notice (hereinafter notice), and this notice does not yet request applications to participate. The information provided in this notice is preliminary and may change as the preparation progresses. REGISTRATION Companies interested in the dynamic purchasing system are requested to report their contact details by email to kilpailutus@hansel.fi and to title the email \"Hansel: Konesali-infrastruktuurilaitteet 2026 (00737) - ilmoittautuminen\". The personal data of registered persons will be used only for contacts related to the preparation of this dynamic purchasing system. MARKET CONSULTATION The market consultation is intended for companies interested in tendering. In the market consultation, suppliers will primarily be given the opportunity to comment in writing on the draft material related to the joint procurement. The contracting entity also reserves the right to invite companies interested in the joint procurement to bilateral meetings if it considers that the preparation of the procurement so requires. Opportunities to comment on the draft material related to the joint procurement are tentatively planned to be organised twice. The commenting opportunities are tentatively planned to be organised in April 2026 and in May 2026. Participation or non-participation in the market consultation does not prevent participation in a potential procurement procedure."
+          },
+          "source": "Hansel Oy on käynnistänyt Konesali-infrastruktuurilaitteet 2026 -dynaamisen hankintajärjestelmän* valmistelun. Dynaamisen hankintajärjestelmän (DPS) kohteena on konesali-infrastruktuurilaitteet (esim. palvelimet, tallennus- ja varmistuslaitteet, integroidut ratkaisut ja konesaliverkon laitteet) sekä niihin liittyvien lisätarvikkeiden ja palveluiden hankinta. Tavoitteena on, että dynaamisen hankintajärjestelmän perustamisvaihe käynnistyy elokuussa 2026. *Ks. lisää dynaamisesta hankintajärjestelmästä: https://www.hansel.fi/hankintatietoa/dynaaminen-hankintajarjestelma-dps/ YLEISTÄ Huomioittehan, että kyseessä on markkinakartoitusilmoitus (jäljempänä ilmoitus), eikä tällä ilmoituksella pyydetä vielä osallistumishakemuksia. Tällä ilmoituksella annetut tiedot ovat alustavia ja saattavat muuttua valmistelun edetessä. ILMOITTAUTUMINEN Dynaamisesta hankintajärjestelmästä kiinnostuneita yrityksiä pyydetään ilmoittamaan yhteystietonsa sähköpostitse osoitteeseen kilpailutus@hansel.fi ja otsikoimaan sähköpostiviesti \"Hansel: Konesali-infrastruktuurilaitteet 2026 (00737) - ilmoittautuminen\". Ilmoittautuneiden henkilöiden henkilötietoja käytetään vain tämän dynaamisen hankintajärjestelmän valmisteluun liittyviin yhteydenottoihin. MARKKINAVUOROPUHELU Markkinavuoropuhelu on tarkoitettu tarjoamisesta kiinnostuneille yrityksille. Markkinavuoropuhelussa toimittajille varataan ensisijaisesti mahdollisuus kommentoida yhteishankintaan liittyvää luonnosmateriaalia kirjallisesti. Hankintayksikkö varaa myös oikeuden kutsua yhteishankinnasta kiinnostuneita yrityksiä kahdenvälisiin tapaamisiin, jos katsoo hankinnan valmistelun sellaisia edellyttävän. Yhteishankintaan liittyvän luonnosmateriaalin kommentointimahdollisuuksia on suunniteltu alustavasti järjestettäväksi kaksi kertaa. Kommentointimahdollisuudet on alustavasti suunniteltu järjestettävän huhtikuussa 2026 sekä toukokuussa 2026. Markkinavuoropuheluun osallistuminen tai osallistumatta jättäminen ei estä mahdolliseen hankintamenettelyyn osallistumista."
+        }
+      ],
+      "protected_names": [
+        "Hansel Oy"
+      ],
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
@@ -174070,6 +175274,37 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "e7ac47d1c8a69ccfdf77176a4b26cf89ad0f928beeba8822c6e923a9ce28b9ee": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 1
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "rejected": {
+            "id": "e7ac47d1c8a69ccfdf77176a4b26cf89ad0f928beeba8822c6e923a9ce28b9ee:0",
+            "language": "mul",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Markkinakartoitus: Digipatologian kokonaisratkaisu // Market Consultation: Comprehensive digital pathology solution"
+          },
+          "result": {
+            "at": "2026-09-19T05:22:20.660703+00:00",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Market Consultation: Comprehensive digital pathology solution // Market Consultation: Comprehensive digital pathology solution"
+          },
+          "source": "Markkinakartoitus: Digipatologian kokonaisratkaisu // Market Consultation: Comprehensive digital pathology solution"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "e7b3604af445213a1d2df165cc70ecaf041869f2775c139e92d3dd1100d1850d": {
       "parts": [
         {
@@ -174238,6 +175473,52 @@
             "text": "CFM0531 - Risk Management Solution"
           },
           "source": "CFM0531 - Risk Management Solution"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "e8003237d5f1ddf527e2a6725c5854773bc2506a0deb27b3685c2342ab17e031": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:22:26.823265+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Technical Assistance, Operation, Service Desk (CAU) and Maintenance Service for Basic and Communications Software."
+          },
+          "source": "Servicio de Asistencia Técnica, Operación, CAU y Mantenimiento del Software de Base y de Comunicaciones."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "e80682a6107f49ec72a91280c3ad1996a457416fc3e0f1a6fb395e52128a5dac": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:22:26.822972+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Support and Maintenance Service for the Portal and Electronic Office of the City Council of Valladolid based on PROXIA SUITE."
+          },
+          "source": "Servicio de Soporte y Mantenimiento del Portal y Sede Electrónica del Ayuntamiento de Valladolid basados en PROXIA SUITE."
         }
       ],
       "protected_names": [],
@@ -175204,6 +176485,29 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "e936e8fe399e912b24e95a21d019183ec3388e4680b61cb8f9f212e0eeb3b727": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:22:02.450421+00:00",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Invitation to market dialogue: Procurement of core financial management system"
+          },
+          "source": "Kutsu markkinavuoropuheluun: Taloushallinnon ydinjärjestelmän hankinta"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "e9517fec135a7fe6c01d4123028b8caf5be714c167bd1a5f9072bbbddcb1091e": {
@@ -176215,6 +177519,29 @@
       ],
       "protected_names": [],
       "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "eabbfea4316d741ff338ff75b3e6eb518bdca3d6bcb00c53eca7e50ebea13b01": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:21:42.794721+00:00",
+            "language": "en",
+            "model": "gemini-3.5-flash-lite",
+            "text": "BSOL Laboratory Information Management System"
+          },
+          "source": "BSOL Laboratory Information Management System"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "eabdce9beecc5b171ded3d828e8561df0de89c12c104e247b432a60cbbc5649a": {
@@ -179814,6 +181141,31 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "ef7acbf2623c69fe6b1822b38cf8632526cb30c467c04e309846a60c4ad1427a": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:22:20.667097+00:00",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "The purpose of this request for information is to clarify questions and cost estimates related to the comprehensive digital pathology solution to be deployed by Fimlab Laboratoriot Oy (hereinafter \"Fimlab\" or \"Contracting Entity\"). This is not a procurement notice or a call for tenders, but a request for information for a market consultation, the aim of which is to obtain comprehensive additional information regarding the planned procurement so that any future competitive tendering can be carried out as appropriately as possible, taking into account the latest technologies and market trends. Fimlab invites interested suppliers to participate in the market consultation and requests your views regarding the planned procurement. The Contracting Entity is not committed to carrying out the procurement covered by the request for information. Decisions on initiating a possible procurement process will be made after the market consultation. SUBJECT OF THE PROCUREMENT The subject of the procurement is a digital pathology production system and related services. The procurement comprises slide scanners, server software, viewer software and image analysis software used on pathologists' workstations, and centralised physical storage systems, as well as related services. The objective of the procurement is set as a modern and modular digital pathology solution that supports Fimlab's operations and whose sub-components can be flexibly replaced as technology evolves and Fimlab's needs change. The request for information will be used to determine, among other things, into which procurement packages the solution can be appropriately divided and how these packages should be competitively tendered in order to acquire an overall solution that meets Fimlab's needs. The procurement will possibly consist of the following areas: A. Digitisation and scanning of samples (= scanners) B. Quality assurance of scanned samples (= harmonisation module) C. Viewing of digitised samples (= viewers and image server solution) D. Ongoing IT services supporting digital pathology The procurement areas described above are Fimlab's preliminary views. We would gladly hear if you have alternative solutions to offer. --------------------------- The purpose of this request for information is to clarify questions, obtain information and preliminary cost estimates related to a comprehensive digital pathology solution to be deployed by Fimlab Laboratoriot Oy (hereinafter “Fimlab” or “Contracting Entity”). This is not a Call for Tenders, but a market consultation; request of information. Fimlab invites interested suppliers to participate in the market consultation and requests their views regarding the planned procurement. The Contracting Entity is not committed to carrying out the procurement referred to in this request for information. Decisions on whether to initiate a possible procurement process will be made after the market consultation. SUBJECT OF THE PROCUREMENT The subject of the procurement is a digital pathology production system and related services. The procurement includes slide scanners, server software, viewer software used on pathologists’ workstations, image analysis software, and centralised physical storage systems, as well as related services. The objective of the procurement is to acquire a modern and modular digital pathology solution that supports Fimlab’s operations and whose individual components can be flexibly replaced as technology evolves and Fimlab’s needs change. Through this request for information, Fimlab seeks, among other things, to determine how the solution could be appropriately divided into separate procurement and how these lots should be competitively tendered in order to acquire an overall solution that best meets Fimlab’s needs. The procurement may consist of the following lots: A. Digitalization and scanning of samples (= scanners) B. Harmonization of scanned samples (= harmonization module) C. Viewing of digitized samples (= viewers and image server solution) D. IT services supporting digital pathology Lots described above represent Fimlab’s preliminary views. Fimlab welcomes alternative solution proposals and views."
+          },
+          "source": "Tällä tietopyynnöllä on tarkoitus selvittää Fimlab Laboratoriot Oy:n (jäljempänä \"Fimlab\" tai \"hankintayksikkö\") käyttöön tulevan digipatologian kokonaisratkaisuun liittyviä kysymyksiä ja hinta-arvioita. Tämä ei ole hankintailmoitus tai tarjouspyyntö, vaan markkinakartoituksen tietopyyntö, jonka tavoitteena on saada kattavasti suunnitteilla olevaan hankintaan liittyen lisätietoa, jotta mahdollinen tuleva tarjouskilpailu voidaan toteuttaa mahdollisimman tarkoituksenmukaisesti huomioiden uusimmat teknologiat ja markkinasuuntaukset. Fimlab kutsuu kiinnostuneita toimittajia osallistumaan markkinakartoitukseen ja pyytää näkemyksiänne suunnitteilla olevaan hankintaan liittyen. Hankintayksikkö ei sitoudu toteuttamaan tietopyynnön kohteena olevaa hankintaa. Päätökset mahdollisen hankintaprosessin käynnistämisestä tehdään markkinakartoituksen jälkeen. HANKINNAN KOHDE Hankinnan kohde on digitaalisen patologian tuotantojärjestelmä ja siihen liittyvät palvelut. Hankinta käsittää lasiskannerit, palvelinohjelmistot, patologien työasemilla käytettävät katselinohjelmistot ja kuva-analyysiohjelmistot sekä keskitetyt fyysiset tallennusjärjestelmät sekä näihin liittyvät palvelut. Hankinnan tavoitteeksi on asetettu moderni ja modulaarinen digipatologian ratkaisu, joka tukee Fimlabin toimintaa ja jonka osakomponentteja voidaan joustavasti vaihtaa teknologian kehittyessä ja Fimlabin tarpeiden muuttuessa. Tietopyynnön avulla selvitetään muun muassa sitä, mihin hankintakokonaisuuksiin ratkaisu voidaan tarkoituksenmukaisesti jakaa ja miten nämä kokonaisuudet kannattaa kilpailuttaa, jotta Fimlabille voidaan hankkia tarpeita vastaava kokonaisratkaisu. Hankinta koostuu mahdollisesti seuraavista osa-alueista: A. Näytteiden digitalisointi- ja skannaus (=skannerit) B. Skannattujen näytteiden laadun varmistus (=harmonisointimoduuli) C. Digitalisoitujen näytteiden katselu (=katselimet ja kuvapalvelinratkaisu) D. Digipatologiaa tukevat jatkuvat IT-palvelut Edellä kuvatut hankinnan osa-alueet ovat Fimlabin alustavia näkemyksiä. Kuulisimme mielellään, jos teillä on tarjota vaihtoehtoisia ratkaisuja. --------------------------- The purpose of this request for information is to clarify questions, obtain information and preliminary cost estimates related to a comprehensive digital pathology solution to be deployed by Fimlab Laboratoriot Oy (hereinafter “Fimlab” or \"Contracting Entity\"). This is not a Call for Tenders, but a market consultation; request of information. Fimlab invites interested suppliers to participate in the market consultation and requests their views regarding the planned procurement. The Contracting Entity is not committed to carrying out the procurement referred to in this request for information. Decisions on whether to initiate a possible procurement process will be made after the market consultation. SUBJECT OF THE PROCUREMENT The subject of the procurement is a digital pathology production system and related services. The procurement includes slide scanners, server software, viewer software used on pathologists’ workstations, image analysis software, and centralised physical storage systems, as well as related services. The objective of the procurement is to acquire a modern and modular digital pathology solution that supports Fimlab’s operations and whose individual components can be flexibly replaced as technology evolves and Fimlab’s needs change. Through this request for information, Fimlab seeks, among other things, to determine how the solution could be appropriately divided into separate procurement and how these lots should be competitively tendered in order to acquire an overall solution that best meets Fimlab’s needs. The procurement may consist of the following lots: A. Digitalization and scanning of samples (= scanners) B. Harmonization of scanned samples (= harmonization module) C. Viewing of digitized samples (= viewers and image server solution) D. IT services supporting digital pathology Lots described above represent Fimlab’s preliminary views. Fimlab welcomes alternative solution proposals and views."
+        }
+      ],
+      "protected_names": [
+        "Fimlab Laboratoriot Oy"
+      ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "ef7e41be6a78715fd67a8e4163971403f4fc8623ef34c7ae87615b24c8f38b5b": {
       "parts": [
         {
@@ -181479,6 +182831,37 @@
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
+    "f203dfa140e245b6c6e50df0d9848602f5df5428ea30d5c9494c59af2e3e2ec7": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {
+            "gemini-3.5-flash-lite": 2
+          },
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "rejected": {
+            "id": "f203dfa140e245b6c6e50df0d9848602f5df5428ea30d5c9494c59af2e3e2ec7:0",
+            "language": "de",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Die zu beschaffende Leistung gliedert sich in zwei übergeordnete Leistungsteile: - Leistungsteil 1 umfasst die Erstellung des Gesamtsystems SzA (Systeme zur Angriffserkennung), bestehend aus einer Initialisierungsphase und einer Implementierungsphase (voraussichtlicher Projektstart Q1 2027, voraussichtlicher Projektabschluss 30.04.2028) - Leistungsteil 2 umfasst den technischen Betrieb der implementierten Systeme als Systemservice sowie die Weiterentwicklung des Gesamtsystems durch Umsetzung von Maßnahmen des kontinuierlichen Verbesserungsprozesses (KVP). Die Implementierung von Systemen für die Erstellung des Gesamtsystems SzA in Leistungsteil 1 erfolgt auf einem risikobasierten Ansatz, standortweise im Ramp-Up-Verfahren."
+          },
+          "result": {
+            "at": "2026-09-19T05:22:36.760195+00:00",
+            "language": "de",
+            "model": "gemini-3.1-flash-lite",
+            "text": "The service to be procured is divided into two overarching service parts: - Service part 1 comprises the creation of the overall SzA system (attack detection systems), consisting of an initialisation phase and an implementation phase (expected project start Q1 2027, expected project completion 30.04.2028) - Service part 2 comprises the technical operation of the implemented systems as a system service as well as the further development of the overall system through the implementation of continuous improvement process (CIP) measures. The implementation of systems for the creation of the overall SzA system in service part 1 is based on a risk-based approach, site-by-site using a ramp-up procedure."
+          },
+          "source": "Die zu beschaffende Leistung gliedert sich in zwei übergeordnete Leistungsteile: - Leistungsteil 1 umfasst die Erstellung des Gesamtsystems SzA (Systeme zur Angriffserkennung), bestehend aus einer Initialisierungsphase und einer Implementierungsphase (voraussichtlicher Projektstart Q1 2027, voraussichtlicher Projektabschluss 30.04.2028) - Leistungsteil 2 umfasst den technischen Betrieb der implementierten Systeme als Systemservice sowie die Weiterentwicklung des Gesamtsystems durch Umsetzung von Maßnahmen des kontinuierlichen Verbesserungsprozesses (KVP). Die Implementierung von Systemen für die Erstellung des Gesamtsystems SzA in Leistungsteil 1 erfolgt auf einem risikobasierten Ansatz, standortweise im Ramp-Up-Verfahren."
+        }
+      ],
+      "protected_names": [],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
     "f20668b8541d6e2260e8901b18e75f0ba9fe57f29e8d4a47f71258cde9aeb639": {
       "parts": [
         {
@@ -182591,6 +183974,29 @@
       "protected_names": [
         "Ruter As"
       ],
+      "purpose": "passage",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
+    },
+    "f31654fea25cf5352f5b0893001e6aafbf557fcd4f3a72dac6f645bb68a5ece9": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:22:26.827955+00:00",
+            "language": "es",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Maintenance and Development Service for the AVANTE Administration Platform of the City Council of Valladolid."
+          },
+          "source": "Servicio de Mantenimiento y Evolución de la Plataforma de Administración AVANTE del Ayuntamiento de Valladolid."
+        }
+      ],
+      "protected_names": [],
       "purpose": "passage",
       "retry_profile": "decoded-entities-and-source-site-names-3"
     },
@@ -184760,6 +186166,29 @@
       "protected_names": [],
       "purpose": "passage",
       "retry_profile": "english-coverage-and-organisation-names-2"
+    },
+    "f63d5d61ddced400da1a18469295e80dc4721b42b14e2310ff2041fea205073f": {
+      "parts": [
+        {
+          "blocked": false,
+          "failures": {},
+          "quality_retry": {
+            "after": 0,
+            "day": "2026-09-18",
+            "round": 0
+          },
+          "result": {
+            "at": "2026-09-19T05:22:29.968899+00:00",
+            "language": "fi",
+            "model": "gemini-3.5-flash-lite",
+            "text": "Church Central Fund"
+          },
+          "source": "Kirkon keskusrahasto"
+        }
+      ],
+      "protected_names": [],
+      "purpose": "organisation",
+      "retry_profile": "decoded-entities-and-source-site-names-3"
     },
     "f63fb945b26ece72ea81b6d7884a9b11c5bbb0eb16153f4330c6093388944b75": {
       "parts": [
