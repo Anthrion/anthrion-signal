@@ -22,6 +22,12 @@ The updated workflow exports the public assets once, after translation. Collecti
 
 These changes remove redundant work; they are not a guaranteed runtime. Source latency, backlog and first-time policy reclassification still vary. Confirm steady-state duration from successful production runs after deployment.
 
+### Full-regression release timeout
+
+[Run 35459593493](https://github.com/Anthrion/anthrion-signal/actions/runs/35459593493) reached its 45-minute job limit during browser regression. Dataset validation, all 1,563 Python tests, lint, all 99 frontend tests and the dashboard build had passed. Translation preparation and calls used 14m 28s before validation began; GitHub cancelled the job while the full browser suite was still running, so it did not publish.
+
+Full-regression runs now use existing cached translations and leave new translation work for the next regular incremental run after verification succeeds. This removes that competing work from the release budget without removing any checks or extending the job limit. New notices can remain in their original language until the queue resumes. Translation quotas, the remote pre-call reservation, free-tier confirmation and completed-text checkpoints are unchanged. This is a scheduling correction, not a guarantee that every possible collection fits the time limit.
+
 An offline trial on 1,000 real SAM rows took 25.52 seconds for initial classification (950 distinct input versions) and 0.10 seconds after reloading the cache, with identical decisions. This measures classification alone, not the full build or a guaranteed production speed-up. First runs after rule changes intentionally rebuild their decisions.
 
 ## Storage decision

@@ -93,9 +93,13 @@ jobs:
         run: python scripts/compress_retained_data.py
       - name: Translate new and outstanding records
         id: translate
+        # Leave full-regression runs enough time to validate and publish; regular
+        # data refreshes resume the same translation queue with the same quotas.
         # A free model can still be billed when the Google project is on a paid tier.
         # Confirm the existing project's free tier before enabling calls after transfer.
-        if: github.repository != 'Anthrion/anthrion-signal' || vars.SIGNAL_GEMINI_FREE_TIER_CONFIRMED == 'true'
+        if: >-
+          steps.plan.outputs.full_tests != 'true' &&
+          (github.repository != 'Anthrion/anthrion-signal' || vars.SIGNAL_GEMINI_FREE_TIER_CONFIRMED == 'true')
         continue-on-error: true
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
