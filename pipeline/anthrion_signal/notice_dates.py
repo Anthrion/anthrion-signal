@@ -115,3 +115,50 @@ def response_deadline_instant(value, source_timezone=None):
         day = datetime.strptime(value[:10], "%Y-%m-%d").date()
         return datetime.combine(day, time.max, tzinfo=zone)
     return parsed
+
+
+def _zoned_local_instant(day, clock, zone):
+    """Resolve only one real wall-clock instant, including DST folds and gaps."""
+    try:
+        local = datetime.fromisoformat(f"{day}T{clock}")
+        candidates = {local.replace(tzinfo=zone, fold=fold).astimezone(timezone.utc)
+                      for fold in (0, 1)}
+        candidates = {candidate for candidate in candidates
+                      if candidate.astimezone(zone).replace(tzinfo=None) == local}
+        return next(iter(candidates)) if len(candidates) == 1 else None
+    except ValueError:
+        return None
+
+
+def deadline_event_instant(event):
+    """Comparison boundary for a source fact; never rewrite its published precision."""
+    if event.precision == "instant" and event.instant and re.search(r"(?:Z|[+-]\d{2}:?\d{2})$", event.instant):
+        instant = parse_date(event.instant)
+        if instant:
+            return instant
+    try:
+        zone = ZoneInfo(event.timezone) if event.timezone else None
+    except (KeyError, ValueError):
+        zone = None
+    if event.precision == "local_time" and event.time and zone:
+        instant = _zoned_local_instant(event.date, event.time, zone)
+        if instant:
+            return instant
+    if zone:
+        end = _zoned_local_instant(event.date, "23:59:59", zone)
+        if end:
+            return end + timedelta(microseconds=999999)
+    return response_deadline_instant(event.date)
+
+
+def signal_response_deadline(signal):
+    """Use current public-entry stages and retain any still-open response lot."""
+    if signal.deadlines:
+        current = [event for event in signal.deadlines if event.status == "current"
+                   and event.kind not in {"questions", "invited_submission"}]
+        initial = [event for event in current if event.kind in {"application", "expression_of_interest"}]
+        values = [deadline_event_instant(event) for event in (initial or current)]
+    else:
+        values = [response_deadline_instant(value)
+                  for value in (signal.response_deadlines or [signal.deadline_at])]
+    return max((value for value in values if value), default=None)

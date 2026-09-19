@@ -157,6 +157,7 @@ def test_retired_model_cache_is_not_republished(signal, analysis, config, now, t
 def test_lifecycle_precedes_conflicting_deadlines(signal, now, status, kind, stage, deadline, expected):
     signal.status, signal.signal_type, signal.procurement_stage = status, kind, stage
     signal.deadline_at = (now + timedelta(days=deadline)).isoformat() if deadline is not None else None
+    signal.deadlines = []
     assert lifecycle(signal, now)[0] == expected
 
 

@@ -67,6 +67,7 @@ def test_lot_only_scope_does_not_grow_on_repeated_collection(release, source, no
 def test_archive_preserves_provenance_and_restores_updates(signal, now, tmp_path):
     signal.updated_at = (now - timedelta(days=220)).isoformat()
     signal.deadline_at = (now - timedelta(days=190)).isoformat()
+    signal.deadlines = []
     set_hashes(signal)
     active = signal.model_copy(deep=True)
     active.id, active.ocid = "active", "ocds-active"
@@ -100,6 +101,7 @@ def test_expired_early_engagement_is_not_actionable(signal, analysis, config, no
     signal.analysis = analysis
     signal.signal_type, signal.procurement_stage = "RFI", "planning"
     signal.deadline_at = (now - timedelta(hours=1)).isoformat()
+    signal.deadlines = []
     assert score(signal, config, now).recommendation == "WATCH"
 
 

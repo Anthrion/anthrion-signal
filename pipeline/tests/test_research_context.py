@@ -78,6 +78,7 @@ def test_initial_applications_before_later_invited_stage_and_questions(config, n
 
 def test_date_only_deadlines_stay_open_through_last_possible_calendar_day(signal):
     signal.deadline_at, signal.response_deadlines = "2026-10-19", []
+    signal.deadlines = []
     assert lifecycle(signal, datetime(2026, 10, 20, 4, tzinfo=UTC))[0] == "OPEN"
     assert lifecycle(signal, datetime(2026, 10, 20, 12, tzinfo=UTC))[0] == "EXPIRED"
     assert response_deadline_instant("2026-10-25", "Europe/London").utcoffset().total_seconds() == 0

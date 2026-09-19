@@ -50,6 +50,7 @@ def test_past_planned_start_does_not_invent_deadline_or_revive_old_calloff(signa
     signal.source, signal.status = 'digital_outcomes', 'open'
     signal.description = 'Digital delivery. Latest start date 2026-08-03. Tender submission deadline 29th June 13:00.'
     signal.deadline_at, signal.response_deadlines = None, []
+    signal.deadlines = []
     now = datetime(2026, 9, 18, tzinfo=UTC)
     assert lifecycle(signal, now)[0] == 'UNKNOWN'
     # An indicative start date cannot justify deleting otherwise relevant scope.

@@ -26,6 +26,7 @@ def test_same_day_grant_remains_public_after_equal_timestamp_legacy_replay(tmp_p
     corrected = normalise_grants(RawRecord(raw, source, now.isoformat(), "grants"))
     legacy = corrected.model_copy(deep=True)
     legacy.buyer_name, legacy.deadline_at = "Public contact", now.strftime("%Y-%m-%dT00:00:00+00:00")
+    legacy.deadlines = []  # Legacy snapshots predate the corrected structured date.
     set_hashes(legacy)
     assert legacy.updated_at == corrected.updated_at
     assert legacy.raw_source_hash == corrected.raw_source_hash == digest(raw)
