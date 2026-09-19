@@ -1,9 +1,10 @@
-from datetime import timedelta
+from datetime import UTC, datetime, timedelta
 
 from rapidfuzz.fuzz import ratio
 
 from .models import Change, Signal
 from .normalise import MATERIAL_FIELDS, material_payload, set_hashes
+from .public_context import enrich_signal
 from .utils import digest, normal_text, parse_date, unique
 
 
@@ -55,25 +56,48 @@ def is_fuzzy_duplicate(left, right):
     return date_anchor and value_anchor
 
 
+def merge_provenance(previous, incoming):
+    """Keep distinct source versions even when a publisher reuses its release ID."""
+    def observed_at(item):
+        return parse_date(item.retrieved_at) or datetime.min.replace(tzinfo=UTC)
+
+    versions = {}
+    for item in previous + incoming:
+        key = (item.source, item.release_id, item.url, item.raw_hash)
+        existing = versions.get(key)
+        if existing is None or observed_at(item) > observed_at(existing):
+            versions[key] = item
+    return sorted(versions.values(), key=observed_at)[-60:]
+
+
 def merge(old, incoming):
     old_payload = material_payload(old)
     merged = old.model_copy(deep=True)
     older = (parse_date(incoming.updated_at) or parse_date(incoming.first_seen_at)) < (
         parse_date(old.updated_at) or parse_date(old.first_seen_at))
     if not older:
+        # Retained releases from the older schema carry only scalar prices.
+        # Apply the normal evidence policy to that release before merging, so
+        # new numbers never inherit an earlier amount's type, units or source.
+        incoming_amount = incoming.amount
+        if incoming_amount is None:
+            incoming_values = (incoming.value_min, incoming.value_max, incoming.currency)
+            proved_values = (old.amount.minimum, old.amount.maximum, old.amount.currency) if old.amount else None
+            incoming_amount = (old.amount if incoming_values == proved_values else
+                               enrich_signal(incoming.model_copy(deep=True)).amount)
         for field in MATERIAL_FIELDS + ["updated_at", "buyer_identifiers", "countries", "regions", "notice_type"]:
-            if incoming.amount is not None and field in {"amount", "value_min", "value_max", "currency"}:
+            if field in {"amount", "value_min", "value_max", "currency"}:
                 continue
             value = getattr(incoming, field)
             if value not in (None, "", [], "unknown"):
                 setattr(merged, field, value)
-        if incoming.amount is not None and (incoming.amount.minimum is not None or incoming.amount.maximum is not None):
+        if incoming_amount is not None and (incoming_amount.minimum is not None or incoming_amount.maximum is not None):
             # A sparse revision has no new financial fact. When a value is
             # published, replace its bounds, currency and provenance together;
             # retaining an old upper bound/currency would invent a mixed range.
-            merged.amount = incoming.amount.model_copy(deep=True)
-            merged.value_min, merged.value_max = incoming.amount.minimum, incoming.amount.maximum
-            merged.currency = incoming.amount.currency
+            merged.amount = incoming_amount.model_copy(deep=True)
+            merged.value_min, merged.value_max = incoming_amount.minimum, incoming_amount.maximum
+            merged.currency = incoming_amount.currency
         # NYC sometimes retains a placeholder date after explicitly postponing bids.
         if incoming.source == "nyc_city_record" and incoming.status == "postponed" and incoming.deadline_at is None:
             merged.deadline_at = None
@@ -95,8 +119,7 @@ def merge(old, incoming):
     if incoming.published_at:
         merged.published_at = min(filter(None, [old.published_at, incoming.published_at]))
     merged.documents = list({d.url: d for d in old.documents + incoming.documents}.values())[-40:]
-    provenance = {(p.source, p.release_id or p.url): p for p in old.provenance + incoming.provenance}
-    merged.provenance = sorted(provenance.values(), key=lambda p: p.retrieved_at)[-60:]
+    merged.provenance = merge_provenance(old.provenance, incoming.provenance)
     set_hashes(merged)
     changed = [k for k in old_payload if old_payload[k] != material_payload(merged)[k]]
     if changed:

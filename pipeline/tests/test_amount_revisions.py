@@ -56,6 +56,47 @@ def test_unproved_sparse_legacy_amount_is_kept_without_an_invented_meaning(signa
     assert result["amount"]["currency"] == "GBP"
 
 
+@pytest.mark.parametrize(("minimum", "maximum", "currency"), [(None, 0, "USD"), (5000, None, "EUR"), (None, 16000, None)])
+def test_legacy_replayed_price_does_not_inherit_an_older_amount_type(signal, minimum, maximum, currency):
+    signal.signal_type = "AWARD"
+    signal.amount.kind = "award"
+    incoming = signal.model_copy(update={"amount": None, "value_min": minimum, "value_max": maximum,
+        "currency": currency, "updated_at": "2026-09-10T12:00:00Z",
+        "primary_source_url": "https://example.gov/notices/amendment"}, deep=True)
+
+    result, changed = merge(signal, incoming)
+
+    assert changed
+    assert (result.value_min, result.value_max, result.currency) == (minimum, maximum, currency)
+    assert (result.amount.minimum, result.amount.maximum, result.amount.currency) == (minimum, maximum, currency)
+    assert result.amount.kind == "unknown"
+    assert result.amount.source_url == incoming.primary_source_url
+    assert incoming.amount is None
+
+
+def test_legacy_currency_only_replay_does_not_change_units_of_retained_price(signal):
+    incoming = signal.model_copy(update={"amount": None, "value_min": None, "value_max": None,
+        "currency": "EUR", "updated_at": "2026-09-10T12:00:00Z"}, deep=True)
+
+    result, _ = merge(signal, incoming)
+
+    assert result.amount == signal.amount
+    assert (result.value_min, result.value_max, result.currency) == (signal.value_min, signal.value_max, signal.currency)
+
+
+def test_legacy_replay_with_unchanged_price_preserves_proved_meaning_and_source(signal):
+    signal.signal_type = "AWARD"
+    signal.amount.kind = "award"
+    incoming = signal.model_copy(update={"amount": None, "updated_at": "2026-09-10T12:00:00Z",
+        "primary_source_url": "https://example.gov/notices/amendment"}, deep=True)
+
+    result, _ = merge(signal, incoming)
+
+    assert result.amount == signal.amount
+    assert result.amount.kind == "award"
+    assert result.primary_source_url == incoming.primary_source_url != result.amount.source_url
+
+
 def test_ted_sparse_revision_preserves_amount_and_distinct_notice_provenance(config, now):
     source = next(s for s in config["sources"]["sources"] if s["id"] == "ted")
     raw = {"publication-number": "694369-2023", "title-proc": {"eng": "CRM implementation"},

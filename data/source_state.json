@@ -1,31 +1,38 @@
 {
   "contracts_finder": {
     "discovery_backfill": {
-      "checkpoint": {},
+      "checkpoint": {
+        "cursor_window": {
+          "cursor": "cHVibGlzaGVkRnJvbT0yMDI2LTA4LTA0VDA4OjIyOjM3WnxwdWJsaXNoZWRUbz0yMDI2LTA4LTA1VDA4OjIyOjM3WnxsaW1pdD0xMDB8bmV4dEN1cnNvcj03NzkwNjU=",
+          "from": "2026-08-04T08:22:37+00:00",
+          "to": "2026-08-05T08:22:37+00:00"
+        },
+        "watermark": "2026-08-04T09:22:37+00:00"
+      },
       "complete": false,
-      "cursor": "2026-07-21T09:22:37+00:00",
+      "cursor": "2026-08-04T09:22:37+00:00",
       "until": "2026-08-29T09:22:37+00:00",
       "version": "2026-09-11.1"
     },
-    "last_success": "2026-09-18T21:57:07+00:00",
-    "watermark": "2026-09-18T21:57:07+00:00"
+    "last_success": "2026-09-19T05:11:46+00:00",
+    "watermark": "2026-09-19T05:11:46+00:00"
   },
   "digital_outcomes": {
     "digital_details": {
       "73428": {
         "data": {
-          "deadline": "2026-05-29T00:00:00+00:00",
+          "deadline": "2026-05-29T12:00:00+01:00",
           "description": "Beta This is a new service – your feedback will help us to improve it. Home Digital Outcomes opportunities Procurement details Ministry Of Justice prj_17499 HMCTS Test Centre of Excellence Single stage Call-off procedure Outside scope Off-payroll (IR35) status £7,100,000 Value 1. Project name prj_17499 HMCTS Test Centre of Excellence 2. Summary of work The Test Centre of Excellence (TCoE) will provide a centralised assurance and enablement capability for HMCTS, offering strategic oversight, expert guidance, and hands-on support across all testing disciplines. 3. Latest start date 2026-08-03 4. Expected contract length 4 Years 0 months 5. Estimated contract value (excl VAT) 7100000.0 6. Incumbent supplier (optional) 7. Security clearance Baseline Personnel Security Standard (BPSS),Security Check (SC) 8. Competition type Single stage competitive selection process 9. Timeline Publish procurement documents on Friday 8th May 2026. The tender submission deadline will be 12 Noon Friday 29th May 2026. Notification of contract award date will be 22nd June 2026. These dates are indicative and may change. 10. Contracted out service or supply of resource Contracted out service: the off-payroll rules do not apply 11. How to apply The Ministry of Justice (MoJ) intends to use the MoJ e‐Sourcing portal to run Invitations to Tender (ITT) for relevant DOS7 competitions, (subject to use of the DOS7 filtering tool). Suppliers who wish to be considered for potential procurements advertised by MoJ should ensure they are registered on the portal. All ITT activity and communications between MoJ and suppliers will usually be conducted through the MoJ e‐Sourcing portal. Suppliers will be required to access the ITT documentation, submit clarification questions, and upload their tender responses via the portal. To facilitate participation, suppliers must create an account on the MoJ e‐Sourcing portal, which can be accessed via the link below: https://ministryofjusticecommercial.bravosolution.co.uk/web/login.html Further details, including ITT documentation, event timelines and instructions for submitting responses for any future procurement activity, will be shared with the relevant DOS7 Suppliers in due course. Help You can contact us by email, phone or using the enquiry form (opens in a new tab) . Email: info@gca.gov.uk Telephone: 0345 410 2222 GCA customer services team is available Monday to Friday, 9am to 5pm."
         },
-        "fetched_at": "2026-09-18T01:37:13+00:00",
+        "fetched_at": "2026-09-19T05:11:46+00:00",
         "signature": "91eb06cb8d0a0afb223d20635d8b0536aa2cd32591c44ab32e9e73bc42187771"
       },
       "73579": {
         "data": {
-          "deadline": null,
+          "deadline": "2026-09-28",
           "description": "Beta This is a new service – your feedback will help us to improve it. Home Digital Outcomes opportunities Procurement details Department For Work and Pensions The Garage Delivery Factory and Live Service Teams Two stage Call-off procedure Potentially in scope Off-payroll (IR35) status £120,000,000 Value Search criteria used: 65 results found in Lot 2: Digital capability and delivery partner and where the supplier provides Amazon Bedrock, Amazon Sagemaker, Hugging Face, Langchain and Uipath and where the supplier provides Amazon Aws Snssqs, Amazon Elasticsearch Service and Amazon Textract and where the supplier provides Amazon Aws Lambda, Docker, Git, Javascript, Jira and Python 1. Project name The Garage Delivery Factory and Live Service Teams 2. Summary of work Department for Work and Pensions (DWP) is seeking a delivery partner to provide integrated digital capability and specialist expertise to support The Garage Delivery Factory and Live Service Teams. The requirement encompasses the provision of multidisciplinary digital teams and resources across Live Service, Delivery Core and Delivery Project activities, supporting the design, development, operation, maintenance and continuous improvement of digital products, platforms and automation services. 3. Latest start date 2027-02-01 4. Expected contract length 6 Years 0 months 5. Estimated contract value (excl VAT) 120000000 6. Incumbent supplier (optional) Accenture - https://www.contractsfinder.service.gov.uk/notice/18ceecd6-d034-472c-8c8e-a9e0a4f7c625?origin=SearchResults&p=1 7. Security clearance Baseline Personnel Security Standard (BPSS),Security Check (SC) 8. Competition type Two stage competitive selection process 9. Timeline 07/08/2026 - Launch of Procurement Stage 1 07/09/2026 @ 12 noon - Deadline for submission of Stage 1 Bids 28/09/2026 -Launch of Procurement Stage 2 26/10/2026 @ 12noon - Deadline for submission of Stage 2 Bids December 2026 - Contract Award Notice Published & outcome letters to be issued January 2027 - Contract Details Notice Published 10. Contracted out service or supply of resource Supply of resource: the off-payroll rules may apply 11. How to apply To ensure that you can access the procurement documentation and participate in the competition, please ensure that your organisation is registered on the DWP e-Sourcing Portal (Atamis). To register, please visit: https://dwp2.my.site.com/s/Welcome Once on the portal, please select \"Supplier Registration Here\" and complete the registration process. Help You can contact us by email, phone or using the enquiry form (opens in a new tab) . Email: info@gca.gov.uk Telephone: 0345 410 2222 GCA customer services team is available Monday to Friday, 9am to 5pm."
         },
-        "fetched_at": "2026-09-18T01:37:13+00:00",
+        "fetched_at": "2026-09-19T05:11:46+00:00",
         "signature": "3a332c9f38e0612765c2ac32857ddf93ed35b4bdf96b9c21fa9869e30d617d75"
       },
       "73660": {
@@ -33,7 +40,7 @@
           "deadline": null,
           "description": "Beta This is a new service – your feedback will help us to improve it. Home Digital Outcomes opportunities Procurement details UK Health Security Agency UK Health Security Agency Research Participant Recuitment Services Single stage Call-off procedure Outside scope Off-payroll (IR35) status £1,550,000 Value 1. Project name UK Healthy Security Agency (UKHSA) Research Participant Recruitment Service C440863 2. Summary of work UK Health Security Agency (UKHSA) is seeking a participant recruitment supplier to recruit participants for user research and usability testing. The purpose of the research is to ensure that digital products, services and policies designed are inclusive and user centred. It is therefore explicit that this tender is for an ongoing requirement – not for one specific research piece. The Potential Provider shall be able to adapt to a variety of requirements throughout the contract’s duration. 3. Latest start date 2026-07-18 4. Expected contract length 2 Years 0 months 5. Estimated contract value (excl VAT) 1550000.0 6. Incumbent supplier (optional) Acumen Field Limited, https://www.contractsfinder.service.gov.uk/Notice/9ede1de1-ad70-4f80-94cb-f9707b29956a 7. Security clearance Baseline Personnel Security Standard (BPSS) 8. Competition type Single stage competitive selection process 9. Timeline 13/05/26 – Procurement launch/publication 13/05/26 – Clarification period starts 24/05/26 – Clarification period closes 29/05/26 – Deadline for clarification responses 05/06/26 – Deadline for submission of bid 08/06/26 – Commencement of evaluation process 29/06/26 – Proposed award date of contract 18/07/26 – Contract commencement date 10. Contracted out service or supply of resource Contracted out service: the off-payroll rules do not apply 11. How to apply To bid for this opportunity, you must be registered on our e-Sourcing portal, Atamis, via https://atamis-1928.my.site.com/s/Welcome if you are not already registered. Questions must only be asked via our e-Sourcing portal, and you must use our e-Sourcing portal to make your bid. Shortlisted suppliers will be invited to bid for this opportunity via our e-Sourcing portal. Atamis. The Atamis project number is C440863. Enter your bid into the e-Sourcing Portal. We can only accept bids that we receive through the e-Sourcing Portal. If you are unsure, ask questions through Atamis before the Clarification Questions Deadline. Help You can contact us by email, phone or using the enquiry form (opens in a new tab) . Email: info@gca.gov.uk Telephone: 0345 410 2222 GCA customer services team is available Monday to Friday, 9am to 5pm."
         },
-        "fetched_at": "2026-09-18T01:37:13+00:00",
+        "fetched_at": "2026-09-19T05:11:46+00:00",
         "signature": "17c4e112bc64e35979c73a18700e41389942da5617c87ca6723589dd42ff8066"
       },
       "73661": {
@@ -41,7 +48,7 @@
           "deadline": null,
           "description": "Beta This is a new service – your feedback will help us to improve it. Home Digital Outcomes opportunities Procurement details Peabody Trust RM1043.9-1-Peabody Website Two stage Call-off procedure Outside scope Off-payroll (IR35) status £250,000 Value 1. Project name Peabody Website Redesign and Build 2. Summary of work Peabody requires a supplier to redesign and rebuild its public website, consolidating multiple sites into a single, accessible platform. The solution must enhance resident services, support corporate and investor users, include a flexible CMS, integrate with existing systems, and provide secure UK hosting, support and maintenance. 3. Latest start date 2026-09-01 4. Expected contract length 4 Years 0 months 5. Estimated contract value (excl VAT) 250000.0 6. Incumbent supplier (optional) 7. Security clearance Baseline Personnel Security Standard (BPSS) 8. Competition type Two stage competitive selection process 9. Timeline Publication: June 2026 (first week) Stage 1 (shortlisting): 2–3 weeks (June) Stage 2 (demos and final proposals): 3–4 weeks (late June – July) Evaluation and award: 2 weeks (late July) Contract award: August 2026 Mobilisation/start: September 2026 10. Contracted out service or supply of resource Contracted out service: the off-payroll rules do not apply 11. How to apply Suppliers must submit their responses via Peabody’s e-procurement portal (Delta eSourcing). The procurement will be conducted as a two-stage process. Stage 1 responses will be evaluated to shortlist suppliers. Shortlisted suppliers will be invited to Stage 2 to provide detailed proposals, attend demonstrations and submit pricing. Full instructions and timelines will be provided within the ITT documentation. Help You can contact us by email, phone or using the enquiry form (opens in a new tab) . Email: info@gca.gov.uk Telephone: 0345 410 2222 GCA customer services team is available Monday to Friday, 9am to 5pm."
         },
-        "fetched_at": "2026-09-18T01:37:13+00:00",
+        "fetched_at": "2026-09-19T05:11:46+00:00",
         "signature": "24decd33f95972dd2948459af04f0626a5b2cb425f2105a3bceff3cc88055132"
       },
       "73701": {
@@ -49,7 +56,7 @@
           "deadline": null,
           "description": "Beta This is a new service – your feedback will help us to improve it. Home Digital Outcomes opportunities Procurement details THE GOOD GYM RM1043.9-4-THE GOOD GYM Multi stage Call-off procedure Outside scope Off-payroll (IR35) status £345,345 Value 1. Project name Test101 2. Summary of work https://uat-contractawardservice-ui.crowncommercial.gov.uk/project/48216/event/ocds-pfhb7i-49612/overview 3. Latest start date 2027-03-01 4. Expected contract length 2 Years 3 months 5. Estimated contract value (excl VAT) 345345.0 6. Incumbent supplier (optional) 7. Security clearance Counter Terrorist Check (CTC),Security Check (SC) 8. Competition type Multi stage competitive selection process 9. Timeline sdfgdf 10. Contracted out service or supply of resource Contracted out service: the off-payroll rules do not apply 11. How to apply weger Help You can contact us by email, phone or using the enquiry form (opens in a new tab) . Email: info@gca.gov.uk Telephone: 0345 410 2222 GCA customer services team is available Monday to Friday, 9am to 5pm."
         },
-        "fetched_at": "2026-09-18T01:37:13+00:00",
+        "fetched_at": "2026-09-19T05:11:46+00:00",
         "signature": "d64c356b67d2bfc509769a190a7fcbb977061c26372b05d18d07c296f50b84c7"
       },
       "74078": {
@@ -57,7 +64,7 @@
           "deadline": null,
           "description": "Beta This is a new service – your feedback will help us to improve it. Home Digital Outcomes opportunities Procurement details HOUSING OMBUDSMAN HOS0069 - Digital Delivery Partner (Work Package A – Discovery & Design) Two stage Call-off procedure Outside scope Off-payroll (IR35) status £352,000 Value 1. Project name HOS0069 - Digital Delivery Partner (Work Package A – Discovery & Design) 2. Summary of work Seeking a Digital Delivery Partner to procure a Digital Delivery Partner consultancy to enable the organisation to confidently define, scope, and prepare for the subsequent procurements, this procurement is to include: • Discovery and design of future CRM/CMS and customer-facing digital services • Validation and enhancement of Work Package B outcomes • Options appraisal, benefits modelling, and delivery planning • Identification of quick wins and system optimisation 3. Latest start date 2026-09-01 4. Expected contract length 1 Years 6 months 5. Estimated contract value (excl VAT) 352000.0 6. Incumbent supplier (optional) N/a 7. Security clearance Baseline Personnel Security Standard (BPSS) 8. Competition type Two stage competitive selection process 9. Timeline Stage 1 Conditions of Participation publication - 10/06/26 Stage 2 publication estimated - 06/07/26 Estimated award - 21/08/26 Estimated contract start date - 01/09/26 10. Contracted out service or supply of resource Contracted out service: the off-payroll rules do not apply 11. How to apply Invites will be issued via HOS's e-tendering portal (Delta eSourcing), all communication will be via Delta eSourcing. Help You can contact us by email, phone or using the enquiry form (opens in a new tab) . Email: info@gca.gov.uk Telephone: 0345 410 2222 GCA customer services team is available Monday to Friday, 9am to 5pm."
         },
-        "fetched_at": "2026-09-18T01:37:13+00:00",
+        "fetched_at": "2026-09-19T05:11:46+00:00",
         "signature": "3714977ed6951fe8f9d09d58ddd6b8b8caeb088da4810c3fe344fe60987e62e2"
       },
       "74112": {
@@ -65,23 +72,23 @@
           "deadline": null,
           "description": "Beta This is a new service – your feedback will help us to improve it. Home Digital Outcomes opportunities Procurement details Clackmannanshire Council RM1043.9-1-Clackmannanshire Council Single stage Call-off procedure Outside scope Off-payroll (IR35) status £1 Value 1. Project name IMPLEMENTATION SUPPORT PARTNER (ISP) 2. Summary of work 1.1. Clackmannanshire Council is undertaking a transformation of its social work services. The introduction of a modern Social Work Information Technology (SWIT) Case Management System (CMS) is central to this change, driven by the Council’s commitment to improving service delivery, enhancing data integrity, and ensuring long-term sustainability. The Implementation Support Provider (ISP) will play a critical role in embedding the new CMS within the council’s operational environment. 3. Latest start date 2026-07-01 4. Expected contract length 1 Years 0 months 5. Estimated contract value (excl VAT) 1.0 6. Incumbent supplier (optional) none 7. Security clearance Baseline Personnel Security Standard (BPSS) 8. Competition type Single stage competitive selection process 9. Timeline ASAP 10. Contracted out service or supply of resource Contracted out service: the off-payroll rules do not apply 11. How to apply Public Contracts Scotland Help You can contact us by email, phone or using the enquiry form (opens in a new tab) . Email: info@gca.gov.uk Telephone: 0345 410 2222 GCA customer services team is available Monday to Friday, 9am to 5pm."
         },
-        "fetched_at": "2026-09-18T01:37:13+00:00",
+        "fetched_at": "2026-09-19T05:11:46+00:00",
         "signature": "defdf8b5cf0fc9f5ba27af075d77516d5fc7a7150b994215a5ba582086be8c03"
       },
       "74437": {
         "data": {
-          "deadline": "2026-06-09T00:00:00+00:00",
+          "deadline": "2026-06-09T13:00:00+01:00",
           "description": "Beta This is a new service – your feedback will help us to improve it. Home Digital Outcomes opportunities Procurement details Ministry Of Justice prj_17578 Legacy Prison Systems Replacement Single stage Call-off procedure Outside scope Off-payroll (IR35) status Value 1. Project name prj_17578 Legacy Prison Systems Replacement 2. Summary of work MoJ is seeking services from a third-party Supplier to provide digital and data delivery capability to support the migration of functionality, users and data from the legacy prison system to Digital Prison Services (DPS). This includes delivery of modern digital services, onboarding and adoption support, and coordinated legacy exit planning and execution. The Contract will be 3+1 years, and is likely to be awarded July 2026 with a period of Knowledge Transfer from the incumbent supplier. 3. Latest start date 2026-06-24 4. Expected contract length 3 Years 0 months 5. Estimated contract value (excl VAT) 4.0E7 6. Incumbent supplier (optional) 7. Security clearance Baseline Personnel Security Standard (BPSS),Security Check (SC) 8. Competition type Single stage competitive selection process 9. Timeline Start date (Tender documents published) 20th May 2026 Deadline for receipt of clarification questions 23:29 29th May 2026 Buyer responses to clarification questions published 23:29 3rd June 2026 Tender submission deadline 13:00 9th June 2026 Contract Award c. 24th July 2026 10. Contracted out service or supply of resource Contracted out service: the off-payroll rules do not apply 11. How to apply The Ministry of Justice (MoJ) intends to use the MoJ e‐Sourcing portal to run Invitations to Tender (ITT) for relevant DOS7 competitions, (subject to use of the DOS7 filtering tool). Suppliers who wish to be considered for potential procurements advertised by MoJ should ensure they are registered on the portal. All ITT activity and communications between MoJ and suppliers will usually be conducted through the MoJ e‐Sourcing portal. Suppliers will be required to access the ITT documentation, submit clarification questions, and upload their tender responses via the portal. To facilitate participation, suppliers must create an account on the MoJ e‐Sourcing portal, which can be accessed via the link below: https://ministryofjusticecommercial.bravosolution.co.uk/web/login.html Further details, including ITT documentation, event timelines and instructions for submitting responses for any future procurement activity, will be shared with the relevant DOS7 Suppliers in due course. Help You can contact us by email, phone or using the enquiry form (opens in a new tab) . Email: info@gca.gov.uk Telephone: 0345 410 2222 GCA customer services team is available Monday to Friday, 9am to 5pm."
         },
-        "fetched_at": "2026-09-18T01:37:13+00:00",
+        "fetched_at": "2026-09-19T05:11:46+00:00",
         "signature": "f13a37a29fd7469eb464ad84d55d3a71206efa3fba5f623d0c0469a8fc7a7b6e"
       },
       "74461": {
         "data": {
-          "deadline": null,
+          "deadline": "2026-06-19T12:00:00+01:00",
           "description": "Beta This is a new service – your feedback will help us to improve it. Home Digital Outcomes opportunities Procurement details Ministry Of Justice RM1043.9-2-Ministry Of Justice - Digital Outcomes Single stage Call-off procedure Outside scope Off-payroll (IR35) status Value 1. Project name Probation Digital Delivery for Manage People on Probation and Probation User Services and Probation Digital Services Platform 2. Summary of work Probation Digital Delivery for Manage People on Probation and Probation User Services - This requirement is focused on design, development, enhancement and support of digital capabilities that help probation practitioners manage people on probation more effectively. Probation Digital Services Platform - This requirement focused on providing scalable digital delivery capability to support the wider Probation Digital Services Platform and associated transformation initiatives. 3. Latest start date 2026-07-01 4. Expected contract length 3 Years 12 months 5. Estimated contract value (excl VAT) 5.0E7 6. Incumbent supplier (optional) 7. Security clearance Baseline Personnel Security Standard (BPSS) 8. Competition type Single stage competitive selection process 9. Timeline Activity Date Non-disclosure Agreements signed By 26/05/2026 Start date (Tender documents published) 26/05/2026 Deadline for receipt of clarification questions 12:00 09/06/2026 Buyer responses to clarification questions published 23:59 11/06/2026 Tender submission deadline 12:00 19/06/2026 Compliance checks and assessment of tenders and tenders evaluation - July 2026 Contract Award July 2026 10. Contracted out service or supply of resource Contracted out service: the off-payroll rules do not apply 11. How to apply How to apply: The Ministry of Justice (MoJ) intends to use the MoJ e‐Sourcing portal to run Invitations to Tender (ITT) for relevant DOS7 competitions, (subject to use of the DOS7 filtering tool). Suppliers who wish to be considered for potential procurements advertised by MoJ should ensure they are registered on the portal. All ITT activity and communications between MoJ and suppliers will usually be conducted through the MoJ e‐Sourcing portal. Suppliers will be required to access the ITT documentation, submit clarification questions, and upload their tender responses via the portal To facilitate participation, suppliers must create an account on the MoJ e‐Sourcing portal, which can be accessed via the link below: https://ministryofjusticecommercial.bravosolution.co.uk/web/login.html Further details, including ITT documentation, event timelines and instructions for submitting responses for any future procurement activity, will be shared with the relevant DOS7 Suppliers in due course. Help You can contact us by email, phone or using the enquiry form (opens in a new tab) . Email: info@gca.gov.uk Telephone: 0345 410 2222 GCA customer services team is available Monday to Friday, 9am to 5pm."
         },
-        "fetched_at": "2026-09-18T01:37:13+00:00",
+        "fetched_at": "2026-09-19T05:11:46+00:00",
         "signature": "b33347904cd96dcb46740e267ff9a7cacf3cf764a3c9f8ae1636b0ffc5096d1e"
       },
       "74534": {
@@ -89,7 +96,7 @@
           "deadline": null,
           "description": "Beta This is a new service – your feedback will help us to improve it. Home Digital Outcomes opportunities Procurement details Foreign, Commonwealth and Development Office FCDO/DDaT: Digital and Data: CPG/13857/2026 - Digital Products and Services,Corporate Enquiries Handling Single stage Call-off procedure Outside scope Off-payroll (IR35) status £4,500,000 Value 1. Project name FCDO/DDaT: Digital and Data: CPG/13857/2026 - Digital Products and Services,Corporate Enquiries Handling 2. Summary of work The Foreign, Commonwealth and Development Office (FCDO) is seeking a delivery partner to design, build, and implement a portfolio of transformational digital services for its corporate functions. The “Corporate Enquiries & Process Improvement” (CEPI) programme will replace existing fragmented, email- and spreadsheet-driven processes with a unified solution incorporating validated digital forms, automated triage and response, and integrated workflows, enabled by AI where relevant. 3. Latest start date 2026-09-01 4. Expected contract length 3 Years 0 months 5. Estimated contract value (excl VAT) 4500000.0 6. Incumbent supplier (optional) 7. Security clearance Security Check (SC) 8. Competition type Single stage competitive selection process 9. Timeline Target publication will be issued June 2026. Target contract start will be 01 September 2026 10. Contracted out service or supply of resource Contracted out service: the off-payroll rules do not apply 11. How to apply Bidder's will be invited via GCA Jaggaer. All details of the ITT will be shared through that invitation. Help You can contact us by email, phone or using the enquiry form (opens in a new tab) . Email: info@gca.gov.uk Telephone: 0345 410 2222 GCA customer services team is available Monday to Friday, 9am to 5pm."
         },
-        "fetched_at": "2026-09-18T01:37:13+00:00",
+        "fetched_at": "2026-09-19T05:11:46+00:00",
         "signature": "56300c9e5ddc9f758eb947cdd1894e0c9d2bc05a927f78f226a6aa7dbde1f3b4"
       },
       "74607": {
@@ -325,38 +332,36 @@
         "signature": "a01847b6592e0feb1b526f7e8efec9d740d3b6c103a1b91ad4ea106839bb85fe"
       }
     },
-    "last_success": "2026-09-18T21:57:07+00:00",
+    "last_success": "2026-09-19T05:11:46+00:00",
     "next_detail": 0,
-    "watermark": "2026-09-18T21:57:07+00:00"
+    "watermark": "2026-09-19T05:11:46+00:00"
   },
   "find_tender": {
     "discovery_backfill": {
       "checkpoint": {
-        "retry_at": "2026-09-18T21:59:39.263908+00:00",
-        "watermark": "2025-09-21T06:18:39+00:00"
+        "retry_at": "2026-09-19T05:14:18.453801+00:00",
+        "watermark": "2025-09-22T00:18:39+00:00"
       },
       "complete": false,
-      "cursor": "2025-09-20T18:48:39+00:00",
+      "cursor": "2025-09-21T18:48:39+00:00",
       "until": "2026-08-29T18:48:39+00:00",
       "version": "2026-09-11.1"
     },
-    "last_success": "2026-09-18T21:57:07+00:00",
-    "watermark": "2026-09-18T21:57:07+00:00"
+    "last_success": "2026-09-19T05:11:46+00:00",
+    "watermark": "2026-09-19T05:11:46+00:00"
   },
   "germany": {
     "discovery_vocabulary": "f289f291cee9ad260e24df827842e27edee4bab1f877c6fe694676f64edcefef",
-    "last_success": "2026-09-18T06:43:47+00:00",
-    "pending_days": [
-      "2026-09-05",
-      "2026-09-04"
-    ],
-    "scheduled_through": "2026-09-17",
+    "last_success": "2026-09-19T05:11:46+00:00",
+    "pending_days": [],
+    "scheduled_through": "2026-09-18",
     "tracked_ocids": [
       "ocds-mnwr74-005cd0bb-19eb-4986-82a9-331b1aad53bb",
       "ocds-mnwr74-00645247-2a18-4009-8d3c-86d79b0008cd",
       "ocds-mnwr74-00c416e9-7645-4bf0-8992-ed798d612548",
       "ocds-mnwr74-019f80df-4d80-4824-beca-a983c30f656a",
       "ocds-mnwr74-019f8e0d-8287-4684-b111-2948e95bf20b",
+      "ocds-mnwr74-01a02565-59bd-4044-b57a-b43f5eade39b",
       "ocds-mnwr74-01a0335e-fabc-4462-a77a-c8ac0f76c5f8",
       "ocds-mnwr74-01a03dd8-631c-4af3-b2bc-fd8d46298035",
       "ocds-mnwr74-01a04849-2c55-44fc-8301-4e988c81e0ef",
@@ -367,6 +372,7 @@
       "ocds-mnwr74-01a08f41-9e92-47c9-8da2-55417c3d240e",
       "ocds-mnwr74-01a09085-bf43-42a6-9805-535346aa836a",
       "ocds-mnwr74-01a0a3c2-d046-42eb-bd6b-2cc9cb3eac96",
+      "ocds-mnwr74-01a0a5c9-98fe-4bc9-9255-67fc75be562f",
       "ocds-mnwr74-020f9511-5448-4e16-a387-8a3bcbe65140",
       "ocds-mnwr74-02634d9e-5f7e-4cd3-a995-202f189ccc28",
       "ocds-mnwr74-02ce40e0-bd53-4535-a356-2a641ff02358",
@@ -397,6 +403,8 @@
       "ocds-mnwr74-119b99ac-f9de-47f3-8fd5-2de3b17d090e",
       "ocds-mnwr74-11cf703c-2466-4f39-a43c-bdeffde70c45",
       "ocds-mnwr74-1206c72a-b6d5-4574-84b5-dea5a5e66109",
+      "ocds-mnwr74-1283cb33-5924-4e7e-aa37-ac8f51ba1bdd",
+      "ocds-mnwr74-12d01ddb-a764-4afa-a688-c9cbbfbff6c6",
       "ocds-mnwr74-1443f065-1beb-49a3-bb1d-ed98254626ed",
       "ocds-mnwr74-15310dd2-50c4-4434-a3ad-7422949e80c0",
       "ocds-mnwr74-1571ebc5-f6f1-4299-810a-ef140ece9fd4",
@@ -408,6 +416,7 @@
       "ocds-mnwr74-183beff2-aebb-48c9-bb75-ec869b1f8ceb",
       "ocds-mnwr74-18402aa0-af7d-489d-8bbc-0f5382dba3a7",
       "ocds-mnwr74-19a3d92f-4f8b-4746-b3b8-7f1c83de347e",
+      "ocds-mnwr74-19b59baf-75c9-47f8-ac2d-7005917b8284",
       "ocds-mnwr74-19bbf8e3-b2c6-442c-964d-c6a35b6f5b79",
       "ocds-mnwr74-1a028e5a-536c-49c7-84b2-9e60cb544417",
       "ocds-mnwr74-1aa02571-0a54-4ee2-aff3-bc1a0f9b497f",
@@ -422,6 +431,7 @@
       "ocds-mnwr74-1f9cd7e3-afe4-4ef4-86c9-a6c54a512c10",
       "ocds-mnwr74-1ffe0a2b-ab04-41a0-a02c-78aeed417f8b",
       "ocds-mnwr74-2028dd66-0c43-4710-a06a-913ebe5c2018",
+      "ocds-mnwr74-206d987f-88f5-471d-a24e-20e4dcb62c0c",
       "ocds-mnwr74-209bf069-6483-41e7-ae4a-2e0a21a8cda6",
       "ocds-mnwr74-21494063-3b69-4e9b-8dbf-9562013654e8",
       "ocds-mnwr74-215ff9dc-236d-49d7-afdd-bd1f7ac491ef",
@@ -431,6 +441,7 @@
       "ocds-mnwr74-22479f87-9c3a-42c8-8c26-16221de9f791",
       "ocds-mnwr74-22956d7a-6b16-456c-86af-63b5759fba7c",
       "ocds-mnwr74-230cd534-9627-4282-8352-87a623141c1b",
+      "ocds-mnwr74-239e3b86-3b66-4c38-a41f-ac80586dcb40",
       "ocds-mnwr74-24465447-9aea-488b-8776-cd07e1026fa7",
       "ocds-mnwr74-25676798",
       "ocds-mnwr74-25692956",
@@ -580,6 +591,15 @@
       "ocds-mnwr74-25831470",
       "ocds-mnwr74-25831552",
       "ocds-mnwr74-25831686",
+      "ocds-mnwr74-25833444",
+      "ocds-mnwr74-25833504",
+      "ocds-mnwr74-25833512",
+      "ocds-mnwr74-25835922",
+      "ocds-mnwr74-25836360",
+      "ocds-mnwr74-25836372",
+      "ocds-mnwr74-25836412",
+      "ocds-mnwr74-25836616",
+      "ocds-mnwr74-25836828",
       "ocds-mnwr74-26c48bd9-6e8d-4526-9956-41ef1d8b4fdf",
       "ocds-mnwr74-281e8004-fab0-4b67-aa0e-bcd119ba8729",
       "ocds-mnwr74-28860b69-4d1d-4cbc-a9d5-0704d70b8ca5",
@@ -587,6 +607,7 @@
       "ocds-mnwr74-295e794c-21d4-4f65-a0cb-07402738ee38",
       "ocds-mnwr74-2a39699e-d9ba-4b00-93aa-dab1052f2376",
       "ocds-mnwr74-2a7e44fc-8917-4387-85a0-7a977a80ee24",
+      "ocds-mnwr74-2c1a54ec-895c-4080-a1ea-49e0b1ba872e",
       "ocds-mnwr74-2ca62fcb-2ab8-41b1-948c-371092164b93",
       "ocds-mnwr74-2ca7cca9-f37f-4cf0-921b-cc7b7c168aa1",
       "ocds-mnwr74-2e35aa47-e0da-46c0-a9c9-bb7986c5a795",
@@ -618,6 +639,7 @@
       "ocds-mnwr74-40d4a23f-1233-4466-9f43-e235ccb7a849",
       "ocds-mnwr74-4191ee5c-ba25-4e31-baf4-e533d2c037b5",
       "ocds-mnwr74-4193ae29-b9fa-4433-8807-8ac106e452ac",
+      "ocds-mnwr74-41baed96-0202-4440-b946-67041a193f68",
       "ocds-mnwr74-42bf8771-2808-43c6-a0e4-1cf225857b6b",
       "ocds-mnwr74-4305230b-1ded-4308-804f-aaa95fc65c9a",
       "ocds-mnwr74-43523210-3289-4cd9-92c9-8f8792474b98",
@@ -627,6 +649,7 @@
       "ocds-mnwr74-457db124-841a-4662-bd3f-45df37eda6e3",
       "ocds-mnwr74-45a95d95-225d-4d9d-9c48-9b6363771f16",
       "ocds-mnwr74-4653c99c-72e8-4874-8ac3-d403d7b769a6",
+      "ocds-mnwr74-4772907f-11b6-4a46-b401-879a504c695b",
       "ocds-mnwr74-48f282e6-e5c3-417f-9861-29098b71c1d6",
       "ocds-mnwr74-4aeb1b72-2d26-4b57-a561-c05da75348c4",
       "ocds-mnwr74-4d4948c7-1e89-492b-b5cb-6b96ec46a604",
@@ -643,6 +666,7 @@
       "ocds-mnwr74-54a4a27a-e9ad-44b7-a55c-1e205723e9f8",
       "ocds-mnwr74-54dadc11-5043-48b1-bc23-2fa0d5251c2f",
       "ocds-mnwr74-55bdc43c-6968-4cd6-a4e5-4f3d0bdde05f",
+      "ocds-mnwr74-564bacd1-b20a-44d9-83ef-a5a70777ed6f",
       "ocds-mnwr74-56727309-5e84-4177-98fb-0b2e6b2c8b85",
       "ocds-mnwr74-5679872e-ce31-4973-8a88-1e462211bb25",
       "ocds-mnwr74-5695bf6a-a950-4f22-8b41-a545e75caf0e",
@@ -665,6 +689,7 @@
       "ocds-mnwr74-5da70b1c-cc47-480d-8094-dba99641b1f4",
       "ocds-mnwr74-5e4a3625-594f-40c6-93db-63a76bc3ebb4",
       "ocds-mnwr74-61130cff-c132-45d1-aedf-c89cb5903ea7",
+      "ocds-mnwr74-61a4751d-5384-4b5d-9554-f64aa848c85e",
       "ocds-mnwr74-621843ea-5f1e-4f8d-b832-06270a109960",
       "ocds-mnwr74-6247c534-4117-4d3b-a217-dc92bc817794",
       "ocds-mnwr74-631ac869-4690-4025-88af-653585177c59",
@@ -674,6 +699,7 @@
       "ocds-mnwr74-666feec5-fa43-40a0-8fc4-6bfc74093c68",
       "ocds-mnwr74-66a0eb90-f315-483d-af11-c14df5e33201",
       "ocds-mnwr74-686a8069-afe5-4c95-93b2-c608722fd67f",
+      "ocds-mnwr74-686aa3f2-e5d4-49f4-bc50-d1c66d209635",
       "ocds-mnwr74-68990e09-4140-4220-a7ec-6dc86115abc0",
       "ocds-mnwr74-6a88cd32-116a-4616-90d5-6d8507d8fcf2",
       "ocds-mnwr74-6b86c76f-374d-4039-8304-20ffb271aea5",
@@ -746,10 +772,12 @@
       "ocds-mnwr74-9673dd19-6d5a-4f41-8d11-48a3faa6a437",
       "ocds-mnwr74-96de2855-7efb-41dc-9349-abd7614a3067",
       "ocds-mnwr74-96ed0066-7f15-4d5a-8da2-bc856f8300f4",
+      "ocds-mnwr74-977cd8ff-4627-4c57-b66f-312f10359715",
       "ocds-mnwr74-986051e6-3f94-4b77-941c-efae50c67b9c",
       "ocds-mnwr74-9ab8164e-0a88-460e-af3d-d122e3af42f4",
       "ocds-mnwr74-9ae429a7-6104-4211-b375-95e8ccf5627d",
       "ocds-mnwr74-9b50d427-24a6-4301-891c-b19e19d188a0",
+      "ocds-mnwr74-9e184081-3852-47bb-948e-dd5f6eda646e",
       "ocds-mnwr74-9e520487-8964-400c-8fc3-00073112600a",
       "ocds-mnwr74-9fe23b79-91dc-4017-b35b-2bcbd56a955d",
       "ocds-mnwr74-a0455443-ceac-449d-864e-954254a5f407",
@@ -775,14 +803,18 @@
       "ocds-mnwr74-aabd1acc-6791-4c26-8e8b-3989986bd08c",
       "ocds-mnwr74-aad0ad26-ffd2-4aca-a236-9eae04b38a36",
       "ocds-mnwr74-ab5b3226-23de-4e55-aca0-66cbf74d5f02",
+      "ocds-mnwr74-aed8dfe0-0e3e-4e76-be70-a65c2d999e05",
       "ocds-mnwr74-af2011d7-f735-4157-b044-a047a0f5bfc7",
       "ocds-mnwr74-aff98f8a-2e13-4ad8-b262-658e139a2a94",
+      "ocds-mnwr74-b0c5eff0-5909-4ed4-b8ab-4f593399cb2a",
+      "ocds-mnwr74-b1731434-1fb2-46e7-acb9-125fbf742304",
       "ocds-mnwr74-b21cf071-c34e-4d0f-b973-084f3bb79d64",
       "ocds-mnwr74-b2b52568-32db-4315-8d58-d531aa2e8532",
       "ocds-mnwr74-b37cf7a0-bcb8-4a3e-af85-4ce5b0fd1865",
       "ocds-mnwr74-b3ab7f61-a544-4613-bb54-809508711e14",
       "ocds-mnwr74-b3d24008-ac93-49f5-852b-2f84840804c2",
       "ocds-mnwr74-b49ef941-23e3-430e-b1f1-ec47e4454f27",
+      "ocds-mnwr74-b5419c23-202a-40fa-b645-4f066de52fe9",
       "ocds-mnwr74-b547f474-df8f-4588-8756-565049ba0ccb",
       "ocds-mnwr74-b571a405-7b28-4ec5-9069-e16cdca44a88",
       "ocds-mnwr74-b5f49a96-1f31-440c-95f0-d8289cd911ae",
@@ -805,6 +837,7 @@
       "ocds-mnwr74-be7d1030-6c90-43d9-b405-033a1fbc5452",
       "ocds-mnwr74-be851a53-6fa0-43d4-865a-c2a1f18c6dd8",
       "ocds-mnwr74-bf49f65f-2d58-4f77-a7ac-d5f52b77f1e8",
+      "ocds-mnwr74-bf9d44e3-87eb-4208-96e2-81d12b0b269a",
       "ocds-mnwr74-c015b95c-88f8-4d73-884b-801eedef449e",
       "ocds-mnwr74-c04c6a9c-00d6-4598-aae1-3cfecf65a3ee",
       "ocds-mnwr74-c2cc1dcf-150b-4a54-9739-a1af28c1173e",
@@ -816,12 +849,14 @@
       "ocds-mnwr74-c6331610-10b6-4488-be4a-b7505e47155f",
       "ocds-mnwr74-c6cc30e4-8a27-4916-ae2b-d2b77def85a4",
       "ocds-mnwr74-c733072a-590a-4653-a5b7-3c5795af68eb",
+      "ocds-mnwr74-ca0301a7-b6b5-4b91-842f-cbb58efef04b",
       "ocds-mnwr74-ca0e5473-cfff-4c44-abbd-2f364b7f7d48",
       "ocds-mnwr74-ca4f5f4b-76f8-47a2-aa18-5fa2f34d81c6",
       "ocds-mnwr74-cae95a5c-ebf1-421b-869c-82ce3dc22092",
       "ocds-mnwr74-cc67b8d7-5d79-40c8-ba47-2d911423d5de",
       "ocds-mnwr74-cc689969-6870-4f85-8c89-24b618697885",
       "ocds-mnwr74-cc7d3e0c-85d1-435c-80e6-ca343958ceb8",
+      "ocds-mnwr74-ccbb297f-8fe5-452f-937b-bfabe9e1500a",
       "ocds-mnwr74-cd7e8874-1442-42d2-b937-33a6cd77d8b4",
       "ocds-mnwr74-cd92c663-9756-4a10-a22c-e48fb4aa7026",
       "ocds-mnwr74-ce0f2d1f-73b7-40d5-8446-567ac833d62e",
@@ -836,13 +871,16 @@
       "ocds-mnwr74-d20d8b47-2b8f-47a8-bb2b-62794745df05",
       "ocds-mnwr74-d291dac5-66a3-4912-a892-f1ce94025c71",
       "ocds-mnwr74-d2994bab-b59e-44bd-b3e6-183982561eb3",
+      "ocds-mnwr74-d304875b-92d4-4a4c-8ff4-a2a1e7dee358",
       "ocds-mnwr74-d3196c6b-7526-4f6c-9dbc-0f05bdf6fbf6",
       "ocds-mnwr74-d3688804-45fd-4165-9d4f-629cc10d9e75",
       "ocds-mnwr74-d3b4e9ac-cbef-46dc-bbf0-13005cca95c0",
       "ocds-mnwr74-d3c0f09f-a29c-4007-a052-92857b9c2d13",
       "ocds-mnwr74-d3ec00fd-56a4-4251-8674-8297cf1736d8",
+      "ocds-mnwr74-d4316a16-6d9f-4a3e-8807-36d7c2c7f791",
       "ocds-mnwr74-d4425a9b-53d6-4cc5-bad0-78c451d87734",
       "ocds-mnwr74-d452c70b-abb5-40e0-9fa4-e570a25eb52f",
+      "ocds-mnwr74-d483b919-9b40-408f-a3fd-dff6df25e4ee",
       "ocds-mnwr74-d54eef77-40ca-4a2b-ad71-e6ceef25de4b",
       "ocds-mnwr74-d6506133-a895-4e0e-a307-c191940b390e",
       "ocds-mnwr74-d70fa575-137e-4023-97b3-5542b7521eef",
@@ -850,10 +888,12 @@
       "ocds-mnwr74-d82222eb-c353-4fa8-9efc-488107d89c38",
       "ocds-mnwr74-d835e8ed-5cf8-4066-9669-d11f10a950e2",
       "ocds-mnwr74-d8a3611b-393a-40fb-b50a-660a3740c49b",
+      "ocds-mnwr74-d949619d-9661-4d89-9fbf-6a0fda986b34",
       "ocds-mnwr74-d9c293ff-f6aa-4e7b-848a-2b72e94be249",
       "ocds-mnwr74-da403a4b-0c61-445c-a2c4-9a6232100681",
       "ocds-mnwr74-da90adf8-c6a5-4eec-ab10-8eabab77619e",
       "ocds-mnwr74-db388189-90fc-48be-89e5-2377d24be81e",
+      "ocds-mnwr74-db997452-6c67-4de9-bccb-feddc5353e58",
       "ocds-mnwr74-dba477e2-e769-4f78-9a23-c015c2fc71c7",
       "ocds-mnwr74-dcb79b5a-cb7e-4546-96ad-3cea172fec24",
       "ocds-mnwr74-de074874-a88c-421b-9c95-4a14d07cb9b5",
@@ -907,26 +947,26 @@
       "ocds-mnwr74-fec63895-8c07-4039-88f0-59e3531144eb",
       "ocds-mnwr74-ff38a4ef-174d-4970-ac94-ada81520d1e3"
     ],
-    "watermark": "2026-09-17"
+    "watermark": "2026-09-18"
   },
   "govuk": {
     "discovery_backfill": {
       "checkpoint": {
-        "next_query": 49,
+        "next_query": 21,
         "queries": {
           "AI agent procurement": {
-            "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
-            "to": "2025-11-11T09:22:37+00:00"
-          },
-          "AI agents": {
             "from": "2025-10-11T09:22:37+00:00",
             "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
+          "AI agents": {
+            "from": "2025-10-11T09:22:37+00:00",
+            "offset": 300,
+            "to": "2025-11-11T09:22:37+00:00"
+          },
           "AI assistant tender": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "API management tender": {
@@ -941,12 +981,12 @@
           },
           "CRM legacy integration procurement": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "CRM market engagement": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "CRM procurement": {
@@ -956,17 +996,17 @@
           },
           "CRM support tender": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
-            "to": "2025-11-11T09:22:37+00:00"
-          },
-          "CRM transformation": {
-            "from": "2025-10-11T09:22:37+00:00",
             "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
+          "CRM transformation": {
+            "from": "2025-11-10T09:22:37+00:00",
+            "offset": 0,
+            "through": "2025-11-11T09:22:37+00:00"
+          },
           "LLM implementation procurement": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "OmniStudio": {
@@ -991,32 +1031,32 @@
           },
           "Salesforce consulting tender": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "Salesforce contract resources": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "Salesforce document generation": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "Salesforce implementation": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "Salesforce managed services": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "Salesforce professional services": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "application modernisation tender": {
@@ -1026,17 +1066,17 @@
           },
           "artificial intelligence procurement": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "automated triage tender": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "automation integration": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "benefits management system": {
@@ -1051,17 +1091,17 @@
           },
           "business rules engine procurement": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "case management": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "case management procurement": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "citizen portal tender": {
@@ -1071,27 +1111,27 @@
           },
           "citizen services": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "collaboration workflow platform tender": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "commercial pipeline digital": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "complaints management tender": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "contact centre": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "contact centre implementation": {
@@ -1111,7 +1151,7 @@
           },
           "customer relationship management tender": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "customer service platform procurement": {
@@ -1121,7 +1161,7 @@
           },
           "data platform": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "data quality implementation": {
@@ -1131,17 +1171,17 @@
           },
           "digital transformation procurement": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "document intelligence procurement": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "donor management tender": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "ecommerce platform tender": {
@@ -1156,7 +1196,7 @@
           },
           "enterprise integration partner": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "field service software tender": {
@@ -1166,17 +1206,17 @@
           },
           "generative AI": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "generative AI tender": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "grant management system procurement": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "housing allocation system": {
@@ -1186,12 +1226,12 @@
           },
           "intelligent automation procurement": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "knowledge assistant tender": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "legacy integration programme": {
@@ -1211,12 +1251,12 @@
           },
           "patient engagement platform": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "procurement pipeline technology": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "quote to cash implementation": {
@@ -1246,12 +1286,12 @@
           },
           "stakeholder management procurement": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 200,
+            "offset": 300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "student services platform tender": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 100,
+            "offset": 200,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "systems integration procurement": {
@@ -1422,7 +1462,7 @@
       },
       "case management": {
         "from": "2026-06-10T10:57:03+00:00",
-        "offset": 6200,
+        "offset": 6400,
         "to": "2026-09-09T10:57:03+00:00"
       },
       "case management procurement": {
@@ -1437,7 +1477,7 @@
       },
       "citizen services": {
         "from": "2026-06-10T10:57:03+00:00",
-        "offset": 6200,
+        "offset": 6400,
         "to": "2026-09-09T10:57:03+00:00"
       },
       "collaboration workflow platform tender": {
@@ -1457,7 +1497,7 @@
       },
       "contact centre": {
         "from": "2026-06-10T10:57:03+00:00",
-        "offset": 6200,
+        "offset": 6400,
         "to": "2026-09-09T10:57:03+00:00"
       },
       "contact centre implementation": {
@@ -8113,7 +8153,7 @@
         "signature": "6b880e00c7d9ac8ef5b1ff36894b8d340a1ab7f903505363285af663d006e2ff"
       },
       "359701": {
-        "fetched_at": "2026-09-17T23:09:17+00:00",
+        "fetched_at": "2026-09-19T00:42:25+00:00",
         "record": {
           "agency": "National Institutes of Health",
           "closeDate": "01/25/2028",
@@ -8122,20 +8162,20 @@
             "applicantEligibilityDesc": "See Section III. Eligibility Information in the NOFO for additional information on eligibility.Foreign Organizations/International CollaborationsNon-domestic (non-U.S.) Entities (Foreign Organizations) are not eligible to apply.Non-domestic (non-U.S.) components of U.S. Organizations are not eligible to apply.Foreign components, as defined in the NIH Grants Policy Statement, are not allowed.",
             "applicantTypes": [
               {
-                "description": "Public and State controlled institutions of higher education",
-                "id": "06"
+                "description": "Private institutions of higher education",
+                "id": "20"
               },
               {
                 "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
                 "id": "13"
               },
               {
-                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "12"
+                "description": "Public and State controlled institutions of higher education",
+                "id": "06"
               },
               {
-                "description": "Private institutions of higher education",
-                "id": "20"
+                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "12"
               }
             ],
             "awardCeiling": "8000000",
@@ -19896,7 +19936,7 @@
         "signature": "b7376c05ea72c2950d990ce4c36703c7ca4d273420dc388358ab69370863b47c"
       },
       "363514": {
-        "fetched_at": "2026-09-17T23:09:17+00:00",
+        "fetched_at": "2026-09-19T00:42:25+00:00",
         "record": {
           "agency": "Library of Congress",
           "closeDate": "09/28/2026",
@@ -20091,7 +20131,7 @@
         "signature": "e74d98417ec0f72a5895aa25c7da0b8de2233be99df675113322cb450f2701fd"
       },
       "363590": {
-        "fetched_at": "2026-09-17T20:35:45+00:00",
+        "fetched_at": "2026-09-19T00:42:25+00:00",
         "record": {
           "agency": "Bureau of International Narcotics-Law Enforcement",
           "closeDate": "10/16/2026",
@@ -20190,21 +20230,13 @@
         "signature": "87af42b8277f2acdab0e2a83325ddfcc90dcefcf0b128c86f61a9405c6a903c5"
       },
       "363625": {
-        "fetched_at": "2026-09-17T23:09:17+00:00",
+        "fetched_at": "2026-09-19T00:42:25+00:00",
         "record": {
           "agency": "Centers for Disease Control - NCBDDD",
           "closeDate": "",
           "facts": {
             "applicantEligibilityDesc": "Not Applicable.",
             "applicantTypes": [
-              {
-                "description": "State governments",
-                "id": "00"
-              },
-              {
-                "description": "County governments",
-                "id": "01"
-              },
               {
                 "description": "Unrestricted (i.e., open to any type of entity above), subject to any clarification in text field entitled \"Additional Information on Eligibility\"",
                 "id": "99"
@@ -20214,20 +20246,28 @@
                 "id": "04"
               },
               {
-                "description": "City or township governments",
-                "id": "02"
+                "description": "County governments",
+                "id": "01"
               },
               {
-                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
-                "id": "11"
+                "description": "State governments",
+                "id": "00"
               },
               {
                 "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
                 "id": "13"
               },
               {
-                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
-                "id": "25"
+                "description": "Public housing authorities/Indian housing authorities",
+                "id": "08"
+              },
+              {
+                "description": "Private institutions of higher education",
+                "id": "20"
+              },
+              {
+                "description": "Small businesses",
+                "id": "23"
               },
               {
                 "description": "Independent school districts",
@@ -20238,28 +20278,28 @@
                 "id": "06"
               },
               {
-                "description": "For profit organizations other than small businesses",
-                "id": "22"
-              },
-              {
-                "description": "Private institutions of higher education",
-                "id": "20"
-              },
-              {
-                "description": "Public housing authorities/Indian housing authorities",
-                "id": "08"
+                "description": "City or township governments",
+                "id": "02"
               },
               {
                 "description": "Native American tribal governments (Federally recognized)",
                 "id": "07"
               },
               {
+                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
+                "id": "11"
+              },
+              {
                 "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
                 "id": "12"
               },
               {
-                "description": "Small businesses",
-                "id": "23"
+                "description": "For profit organizations other than small businesses",
+                "id": "22"
+              },
+              {
+                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
+                "id": "25"
               }
             ],
             "awardCeiling": "0",
@@ -20395,7 +20435,7 @@
         "signature": "98094095a8ee2fcba8bb064ce13712751422df66c708bc3b3f82b69e60b72d8e"
       },
       "363662": {
-        "fetched_at": "2026-09-17T23:09:17+00:00",
+        "fetched_at": "2026-09-19T00:42:25+00:00",
         "record": {
           "agency": "Assistant Secretary for Preparedness and Response",
           "closeDate": "09/18/2026",
@@ -20425,7 +20465,7 @@
         "signature": "9fb4706cae2136dd445449fb71c0ec174f513c9b018f518ca483170e6fea82f0"
       },
       "363670": {
-        "fetched_at": "2026-09-17T23:09:17+00:00",
+        "fetched_at": "2026-09-19T00:42:25+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "11/18/2026",
@@ -20455,7 +20495,7 @@
         "signature": "4e28954c4f0740efbfea68987862b61303c6028bd4b7c8020e9683331ce1911c"
       },
       "363671": {
-        "fetched_at": "2026-09-17T23:09:17+00:00",
+        "fetched_at": "2026-09-19T00:42:25+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "closeDate": "11/18/2026",
@@ -20566,7 +20606,7 @@
         "signature": "125650778bc5797c12cde1f4da324b941bb345397614ec7eb719da95f0afd37b"
       },
       "363683": {
-        "fetched_at": "2026-09-17T23:09:17+00:00",
+        "fetched_at": "2026-09-19T00:42:25+00:00",
         "record": {
           "agency": "Centers for Disease Control - NCIPC",
           "closeDate": "",
@@ -20574,24 +20614,24 @@
             "applicantEligibilityDesc": "Eligible applicants are U.S. state governments, including the District of Columbia; U.S. territorial governments; and political subdivisions of states, including county, city or township, and special district governments.Bona fide agents may apply on behalf of an eligible state, territorial, or local government organization. A bona fide agent must submit documentation demonstrating its formal arrangement with and authority to apply on behalf of the eligible governmental entity.Only one application will be funded from each eligible state or territory. Applicants must demonstrate the ability to implement statewide or territory-wide surveillance and access the data sources required for the National Violent Death Reporting System, including death certificates, coroner or medical examiner reports, including toxicology reports, and law enforcement reports.",
             "applicantTypes": [
               {
-                "description": "State governments",
-                "id": "00"
-              },
-              {
                 "description": "City or township governments",
                 "id": "02"
               },
               {
-                "description": "Special district governments",
-                "id": "04"
+                "description": "State governments",
+                "id": "00"
+              },
+              {
+                "description": "County governments",
+                "id": "01"
               },
               {
                 "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
                 "id": "25"
               },
               {
-                "description": "County governments",
-                "id": "01"
+                "description": "Special district governments",
+                "id": "04"
               }
             ],
             "awardCeiling": "966085",
@@ -20641,7 +20681,7 @@
         "signature": "2c652605f9f1c82e4ff1ffba9ed14128ab0aa1d6aa1911bd0eeeb999b244d888"
       },
       "363690": {
-        "fetched_at": "2026-09-17T23:09:17+00:00",
+        "fetched_at": "2026-09-19T00:42:25+00:00",
         "record": {
           "agency": "Foreign Agricultural Service",
           "closeDate": "10/26/2026",
@@ -20671,7 +20711,7 @@
         "signature": "27b8a955378e588e92c763de58ad1439962b9796f0b54d2cf8218daf86d7c8d3"
       },
       "363692": {
-        "fetched_at": "2026-09-17T23:09:17+00:00",
+        "fetched_at": "2026-09-19T00:42:25+00:00",
         "record": {
           "agency": "DOC NOAA - ERA Production",
           "closeDate": "01/22/2027",
@@ -20680,60 +20720,60 @@
             "applicantEligibilityDesc": "Eligible applicants are individuals, institutions of higher education, other nonprofits, for-profit organizations, and state, local, U.S. territorial, Alaska Native, and Indian tribal governments. Federal agencies or instrumentalities are not eligible to receive Federal assistance under this notice. If an eligible applicant has questions regarding this funding opportunity, they should contact: Justin Pearce Office of Sustainable Fisheries 1315 East-West Highway Silver Spring, MD 20910 301-427-8521 NMFS.HQ.BREP@noaa.gov",
             "applicantTypes": [
               {
+                "description": "Native American tribal governments (Federally recognized)",
+                "id": "07"
+              },
+              {
                 "description": "County governments",
                 "id": "01"
-              },
-              {
-                "description": "Special district governments",
-                "id": "04"
-              },
-              {
-                "description": "City or township governments",
-                "id": "02"
-              },
-              {
-                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "12"
-              },
-              {
-                "description": "Private institutions of higher education",
-                "id": "20"
-              },
-              {
-                "description": "Individuals",
-                "id": "21"
-              },
-              {
-                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
-                "id": "25"
               },
               {
                 "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
                 "id": "11"
               },
               {
-                "description": "Public and State controlled institutions of higher education",
-                "id": "06"
+                "description": "For profit organizations other than small businesses",
+                "id": "22"
+              },
+              {
+                "description": "Individuals",
+                "id": "21"
+              },
+              {
+                "description": "Special district governments",
+                "id": "04"
+              },
+              {
+                "description": "Private institutions of higher education",
+                "id": "20"
               },
               {
                 "description": "State governments",
                 "id": "00"
               },
               {
-                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "13"
+                "description": "Public and State controlled institutions of higher education",
+                "id": "06"
               },
               {
-                "description": "For profit organizations other than small businesses",
-                "id": "22"
+                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "12"
               },
               {
                 "description": "Small businesses",
                 "id": "23"
               },
               {
-                "description": "Native American tribal governments (Federally recognized)",
-                "id": "07"
+                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
+                "id": "25"
+              },
+              {
+                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "13"
+              },
+              {
+                "description": "City or township governments",
+                "id": "02"
               }
             ],
             "awardCeiling": "400000",
@@ -20753,7 +20793,7 @@
         "signature": "5fb5a7d20e53a53fdc16124fc00786aaea8848b54cebdafe101ca11d2d18dc2a"
       },
       "363699": {
-        "fetched_at": "2026-09-17T23:09:17+00:00",
+        "fetched_at": "2026-09-19T00:42:25+00:00",
         "record": {
           "agency": "Fish and Wildlife Service",
           "closeDate": "04/30/2027",
@@ -20815,7 +20855,7 @@
         "signature": "c4c5a1e4d0ecb4e42a2f6122cc2765b6c9848949ee225da10e33684c4cc25789"
       },
       "363714": {
-        "fetched_at": "2026-09-17T23:09:17+00:00",
+        "fetched_at": "2026-09-19T00:42:25+00:00",
         "record": {
           "agency": "Fish and Wildlife Service",
           "closeDate": "10/24/2026",
@@ -20845,7 +20885,7 @@
         "signature": "c05e2f9154af3897712c744586fa42eb2c6d16c3faf94ff15770d42ff4d75b74"
       },
       "363715": {
-        "fetched_at": "2026-09-17T23:09:17+00:00",
+        "fetched_at": "2026-09-19T00:42:25+00:00",
         "record": {
           "agency": "Employment and Training Administration",
           "closeDate": "01/31/2027",
@@ -20937,7 +20977,7 @@
         "signature": "c3387ac97f4330c92b042524a7bdf2d856916728e98c0646feaef2a0a3b338f0"
       },
       "363729": {
-        "fetched_at": "2026-09-17T23:09:17+00:00",
+        "fetched_at": "2026-09-19T00:42:25+00:00",
         "record": {
           "agency": "DOC NOAA - ERA Production",
           "closeDate": "12/31/2026",
@@ -20950,56 +20990,56 @@
                 "id": "12"
               },
               {
-                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
-                "id": "11"
-              },
-              {
                 "description": "Public and State controlled institutions of higher education",
                 "id": "06"
-              },
-              {
-                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "13"
-              },
-              {
-                "description": "Small businesses",
-                "id": "23"
-              },
-              {
-                "description": "State governments",
-                "id": "00"
               },
               {
                 "description": "City or township governments",
                 "id": "02"
               },
               {
-                "description": "Special district governments",
-                "id": "04"
+                "description": "Native American tribal governments (Federally recognized)",
+                "id": "07"
               },
               {
                 "description": "For profit organizations other than small businesses",
                 "id": "22"
               },
               {
-                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
-                "id": "25"
-              },
-              {
-                "description": "Private institutions of higher education",
-                "id": "20"
+                "description": "County governments",
+                "id": "01"
               },
               {
                 "description": "Individuals",
                 "id": "21"
               },
               {
-                "description": "County governments",
-                "id": "01"
+                "description": "Private institutions of higher education",
+                "id": "20"
               },
               {
-                "description": "Native American tribal governments (Federally recognized)",
-                "id": "07"
+                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
+                "id": "25"
+              },
+              {
+                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "13"
+              },
+              {
+                "description": "State governments",
+                "id": "00"
+              },
+              {
+                "description": "Special district governments",
+                "id": "04"
+              },
+              {
+                "description": "Small businesses",
+                "id": "23"
+              },
+              {
+                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
+                "id": "11"
               }
             ],
             "awardCeiling": "300000",
@@ -21097,7 +21137,7 @@
         "signature": "c8f45e7039ce6587184562a3a25c66c14eab28a0d62227d8c7cdfecebbdb279b"
       },
       "363747": {
-        "fetched_at": "2026-09-17T23:09:17+00:00",
+        "fetched_at": "2026-09-19T00:42:25+00:00",
         "record": {
           "agency": "NASA Headquarters",
           "closeDate": "12/03/2026",
@@ -21221,7 +21261,7 @@
         "signature": "5035cbe3fcdf3a4caf711a4a6f3e626abc1fa673aa653a3acc4320cad1f3dd9f"
       },
       "363758": {
-        "fetched_at": "2026-09-17T23:09:17+00:00",
+        "fetched_at": "2026-09-19T00:42:25+00:00",
         "record": {
           "agency": "DOC NOAA - ERA Production",
           "closeDate": "11/18/2026",
@@ -21251,7 +21291,7 @@
         "signature": "d4bdd5a0e51244ead97b551abe659152624c56dac4b0ddb6bfb1d82b559da84a"
       },
       "363759": {
-        "fetched_at": "2026-09-17T23:09:17+00:00",
+        "fetched_at": "2026-09-19T00:42:25+00:00",
         "record": {
           "agency": "NASA Headquarters",
           "closeDate": "12/04/2026",
@@ -21283,7 +21323,7 @@
         "signature": "77add060196d0a7aeff5b80b68e900f6f7e385a01e1c49dcd2e66ad8db3ae005"
       },
       "363762": {
-        "fetched_at": "2026-09-17T23:09:17+00:00",
+        "fetched_at": "2026-09-19T00:42:25+00:00",
         "record": {
           "agency": "Institute of Museum and Library Services",
           "closeDate": "11/13/2026",
@@ -21314,7 +21354,7 @@
         "signature": "edef0d0761d0f9091390e7743184356479ae19851dba6ecd95766f1a912ec5af"
       },
       "363763": {
-        "fetched_at": "2026-09-17T23:09:17+00:00",
+        "fetched_at": "2026-09-19T00:42:25+00:00",
         "record": {
           "agency": "Institute of Museum and Library Services",
           "closeDate": "11/13/2026",
@@ -21407,7 +21447,7 @@
         "signature": "c79d5c46f7f0627cd50bf4cbcd723a7a00b59d3644a3585159f28aa6594804f2"
       },
       "363767": {
-        "fetched_at": "2026-09-17T23:09:17+00:00",
+        "fetched_at": "2026-09-19T00:42:25+00:00",
         "record": {
           "agency": "Institute of Museum and Library Services",
           "closeDate": "11/13/2026",
@@ -21623,7 +21663,7 @@
         "signature": "afab0d808010f4c646214dc58efd6df34949ed42ad2dc149f68210191750352a"
       },
       "363775": {
-        "fetched_at": "2026-09-17T23:09:17+00:00",
+        "fetched_at": "2026-09-19T00:42:25+00:00",
         "record": {
           "agency": "Institute of Museum and Library Services",
           "closeDate": "11/13/2026",
@@ -21685,7 +21725,7 @@
         "signature": "1b3bf817de10c768ecd23d1ed8553b8a384e688b07a77229dd1401e3d3c0ef85"
       },
       "363779": {
-        "fetched_at": "2026-09-17T23:09:17+00:00",
+        "fetched_at": "2026-09-19T00:42:25+00:00",
         "record": {
           "agency": "Rural Utilities Service",
           "closeDate": "",
@@ -21777,7 +21817,7 @@
         "signature": "52f843d07a09d30e774680e9957f0675b8727fb1c7b9dc6e8b7f1a24594d055a"
       },
       "363789": {
-        "fetched_at": "2026-09-17T23:09:17+00:00",
+        "fetched_at": "2026-09-19T00:42:25+00:00",
         "record": {
           "agency": "NASA Headquarters",
           "closeDate": "01/28/2027",
@@ -21873,7 +21913,7 @@
         "signature": "27bc8f90c72efa10cc0b5ab8984dae64c95ceb143b17446dc400284a55b55d0b"
       },
       "363815": {
-        "fetched_at": "2026-09-17T23:09:17+00:00",
+        "fetched_at": "2026-09-19T00:42:25+00:00",
         "record": {
           "agency": "Golden Field Office",
           "closeDate": "12/01/2026",
@@ -21881,30 +21921,6 @@
             "agencyName": "Golden Field Office",
             "applicantEligibilityDesc": "As one of the main goals of this NOFO is to move technologies quickly to market, participation of the following entities is limited as follows: \n\nInstitutions of higher education are eligible to participate as a recipient or subrecipient for Topic Area 1 but are only eligible to participate as a subrecipient for Topic Area 2.   \n\nProvided there is no conflict of interest, DOE FFRDCs3 are eligible to apply for funding as subrecipients but are not eligible to apply as recipients. \n\nNon-DOE FFRDCs are eligible to participate as subrecipients but are not eligible to apply as recipients.   \n\nFederal agencies and instrumentalities (other than DOE) are eligible to participate as subrecipients but are not eligible to apply as recipients. \n\nThe National Energy Technology Laboratory (NETL) is eligible to apply as a subrecipient, not as prime recipient.",
             "applicantTypes": [
-              {
-                "description": "State governments",
-                "id": "00"
-              },
-              {
-                "description": "Small businesses",
-                "id": "23"
-              },
-              {
-                "description": "Private institutions of higher education",
-                "id": "20"
-              },
-              {
-                "description": "For profit organizations other than small businesses",
-                "id": "22"
-              },
-              {
-                "description": "City or township governments",
-                "id": "02"
-              },
-              {
-                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "12"
-              },
               {
                 "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
                 "id": "11"
@@ -21914,32 +21930,56 @@
                 "id": "04"
               },
               {
-                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "13"
-              },
-              {
                 "description": "Independent school districts",
                 "id": "05"
               },
               {
-                "description": "Public housing authorities/Indian housing authorities",
-                "id": "08"
+                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "13"
               },
               {
-                "description": "County governments",
-                "id": "01"
+                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "12"
               },
               {
                 "description": "Public and State controlled institutions of higher education",
                 "id": "06"
               },
               {
-                "description": "Native American tribal governments (Federally recognized)",
-                "id": "07"
+                "description": "Public housing authorities/Indian housing authorities",
+                "id": "08"
+              },
+              {
+                "description": "For profit organizations other than small businesses",
+                "id": "22"
               },
               {
                 "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
                 "id": "25"
+              },
+              {
+                "description": "Private institutions of higher education",
+                "id": "20"
+              },
+              {
+                "description": "County governments",
+                "id": "01"
+              },
+              {
+                "description": "State governments",
+                "id": "00"
+              },
+              {
+                "description": "City or township governments",
+                "id": "02"
+              },
+              {
+                "description": "Small businesses",
+                "id": "23"
+              },
+              {
+                "description": "Native American tribal governments (Federally recognized)",
+                "id": "07"
               },
               {
                 "description": "Individuals",
@@ -21963,7 +22003,7 @@
         "signature": "4bdab3ebf158a231e89eacaa9a40616e114f9b3c7fb1a87d88eca63efc7a9c98"
       },
       "363829": {
-        "fetched_at": "2026-09-17T23:09:17+00:00",
+        "fetched_at": "2026-09-19T00:42:25+00:00",
         "record": {
           "agency": "Air Force Office of Scientific Research",
           "closeDate": "12/04/2026",
@@ -21972,24 +22012,24 @@
             "applicantEligibilityDesc": "",
             "applicantTypes": [
               {
+                "description": "Private institutions of higher education",
+                "id": "20"
+              },
+              {
                 "description": "Public and State controlled institutions of higher education",
                 "id": "06"
-              },
-              {
-                "description": "For profit organizations other than small businesses",
-                "id": "22"
-              },
-              {
-                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "13"
               },
               {
                 "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
                 "id": "12"
               },
               {
-                "description": "Private institutions of higher education",
-                "id": "20"
+                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "13"
+              },
+              {
+                "description": "For profit organizations other than small businesses",
+                "id": "22"
               }
             ],
             "awardCeiling": "450000",
@@ -22009,7 +22049,7 @@
         "signature": "949b7f72478a12b4f14ce3d198dcaca32ecc1a2ac6fd76d1d4c3009eafd1a30d"
       },
       "363830": {
-        "fetched_at": "2026-09-17T23:09:17+00:00",
+        "fetched_at": "2026-09-19T00:42:25+00:00",
         "record": {
           "agency": "Bureau of International Narcotics-Law Enforcement",
           "closeDate": "11/09/2026",
@@ -22041,7 +22081,7 @@
         "signature": "b05ec6518ef977593fa450a7ea2118290c71f7956f91cd99af42a9aacaf692f6"
       },
       "363843": {
-        "fetched_at": "2026-09-17T23:09:17+00:00",
+        "fetched_at": "2026-09-19T00:42:25+00:00",
         "record": {
           "agency": "Bureau of Emerging Threats",
           "closeDate": "10/16/2026",
@@ -22073,7 +22113,7 @@
         "signature": "09b8d00cfd1baed19e90925fed74d54286de35f3e657c8f1cbcfe32e6867c1b0"
       },
       "363845": {
-        "fetched_at": "2026-09-17T23:09:17+00:00",
+        "fetched_at": "2026-09-19T00:42:25+00:00",
         "record": {
           "agency": "Veterans Employment and Training Service",
           "closeDate": "",
@@ -22081,60 +22121,60 @@
             "applicantEligibilityDesc": "The following U.S. Territories or Possessions are eligible to apply: Puerto Rico, U.S. Virgin Islands, and Guam, as these are the only U.S. Territories or Possessions that have an active Continuum of Care, American Job Center, and a 2025 HUD Point in Time count for homeless veterans. Native American Tribally-Designated Organizations are eligible to apply.State and Local Workforce Development Boards (SWDBs/LWDBs) established under the Workforce Innovation and Opportunity Act (WIOA) are eligible to apply.  Faith-based Organizations: Faith-based organizations are encouraged to apply. Those that meet the eligibility requirements may receive awards under this funding opportunity. DOL will not, in the selection of recipients and administration of the grant, discriminate on the basis of an organization's religious character, affiliation, exercise, or lack thereof, or on the basis of conduct that would not be considered grounds to favor or disfavor a similarly situated secular organization. Among eligible applicants listed above, the applicant agency or organization must also maintain a physical location in the proposed Service Delivery Area. Please see Section VI.H. of Veterans' Program Letter VPL 02-26 Homeless Veterans' Reintegration Program Requirements and Functions for more information about the physical location.Any organization whose federal grant was terminated, as described in 2 C.F.R. &sect; 200.340, before the expiration of the period of performance (PoP) established by that grant&quot;s FOA will be ineligible to apply for any HVRP FOA for a three-year period (e.g. FOA-VETS-27, FOA-VETS-28, and/or FOA-VETS 29) following the termination date, unless the termination was due to unanticipated circumstances beyond the reasonable control of the grant recipient (e.g., natural disaster). A termination is defined as an action initiated by either the grant recipient or the awarding federal agency that terminated the grant prior to the conclusion of the PoP.",
             "applicantTypes": [
               {
-                "description": "Public and State controlled institutions of higher education",
-                "id": "06"
-              },
-              {
-                "description": "Special district governments",
-                "id": "04"
-              },
-              {
                 "description": "Public housing authorities/Indian housing authorities",
                 "id": "08"
-              },
-              {
-                "description": "City or township governments",
-                "id": "02"
-              },
-              {
-                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "12"
-              },
-              {
-                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "13"
-              },
-              {
-                "description": "Native American tribal governments (Federally recognized)",
-                "id": "07"
               },
               {
                 "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
                 "id": "25"
               },
               {
+                "description": "State governments",
+                "id": "00"
+              },
+              {
                 "description": "Small businesses",
                 "id": "23"
+              },
+              {
+                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "13"
               },
               {
                 "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
                 "id": "11"
               },
               {
-                "description": "For profit organizations other than small businesses",
-                "id": "22"
+                "description": "Public and State controlled institutions of higher education",
+                "id": "06"
               },
               {
-                "description": "Private institutions of higher education",
-                "id": "20"
+                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "12"
+              },
+              {
+                "description": "City or township governments",
+                "id": "02"
               },
               {
                 "description": "County governments",
                 "id": "01"
               },
               {
-                "description": "State governments",
-                "id": "00"
+                "description": "Private institutions of higher education",
+                "id": "20"
+              },
+              {
+                "description": "Special district governments",
+                "id": "04"
+              },
+              {
+                "description": "Native American tribal governments (Federally recognized)",
+                "id": "07"
+              },
+              {
+                "description": "For profit organizations other than small businesses",
+                "id": "22"
               }
             ],
             "awardCeiling": "500000",
@@ -22154,7 +22194,7 @@
         "signature": "07c9e2f6ed1c28ebe92c5d351252150caebeaba881a133981770662a0ff467b2"
       },
       "363852": {
-        "fetched_at": "2026-09-17T23:09:17+00:00",
+        "fetched_at": "2026-09-19T00:42:25+00:00",
         "record": {
           "agency": "DOC NOAA - ERA Production",
           "closeDate": "10/26/2026",
@@ -22218,7 +22258,7 @@
         "signature": "7d72e427c906e0c3c98debc2d8dfee5ca5b7e0792c3e0cd2d34a0613bac597db"
       },
       "363874": {
-        "fetched_at": "2026-09-17T23:09:17+00:00",
+        "fetched_at": "2026-09-19T00:42:25+00:00",
         "record": {
           "agency": "National Institutes of Health",
           "closeDate": "",
@@ -22302,11 +22342,11 @@
         "signature": "d86f2ade648a14c219f6d901793f8909ca970fd3ad39fb5ab6966e4ccb0eb48a"
       }
     },
-    "last_success": "2026-09-18T19:14:50+00:00",
-    "watermark": "2026-09-18T19:14:50+00:00"
+    "last_success": "2026-09-19T00:42:25+00:00",
+    "watermark": "2026-09-19T00:42:25+00:00"
   },
   "la_ramp": {
-    "last_success": "2026-09-18T21:57:07+00:00",
+    "last_success": "2026-09-19T05:11:46+00:00",
     "missing": {
       "222114": 1789731002,
       "229261": 1789731002,
@@ -28123,9 +28163,9 @@
     "watermark": "2026-09-18T11:53:56+00:00"
   },
   "nyc_city_record": {
-    "last_success": "2026-09-18T21:57:07+00:00",
+    "last_success": "2026-09-19T05:11:46+00:00",
     "query_version": "nyc-procurement-v1",
-    "watermark": "2026-09-18T01:37:13+00:00"
+    "watermark": "2026-09-19T05:11:46+00:00"
   },
   "scotland": {
     "discovery_backfill": {
@@ -28135,8 +28175,8 @@
       "until": "2026-08-29T09:22:37+00:00",
       "version": "2026-09-11.1"
     },
-    "last_success": "2026-09-18T21:57:07+00:00",
-    "watermark": "2026-09-18T21:57:07+00:00"
+    "last_success": "2026-09-19T05:11:46+00:00",
+    "watermark": "2026-09-19T05:11:46+00:00"
   },
   "spain": {
     "active_records": {
@@ -29608,51 +29648,6 @@
         "value": 17756.75,
         "winner": ""
       },
-      "20287792": {
-        "buyer": "Dirección de Adquisiciones del Mando de Apoyo Logístico del Ejército del Aire y del Espacio",
-        "buyer_identifiers": [
-          "EA0003003",
-          "S2830189C",
-          "10000140099881"
-        ],
-        "contracting_system": "0",
-        "cpv_codes": [
-          "72310000"
-        ],
-        "currency": "EUR",
-        "deadline_at": null,
-        "deadline_date": "2026-09-17",
-        "deadline_description": "",
-        "deadline_time": "23:59:00",
-        "description": "",
-        "documents": [
-          {
-            "title": "142795282.PDF",
-            "url": "https://contrataciondelestado.es/FileSystem/servlet/GetDocumentByIdServlet?DocumentIdParam=ppX0GSNnvg%2Fa4rDCr69a7IRzzB6Lix2s2m1c3Uw9Q6nPZwcQnGDh%2Fkn2SpucvybMhqlcjzeVnOkblWes5hV2lGVWJi8nb%2BjFZpii%2BQUBR%2Fm1aXEvq3KHa%2FAEHgtDrQw0&cifrado=QUC1GjXXSiLkydRHJBmbpw%3D%3D"
-          },
-          {
-            "title": "142240770.PDF",
-            "url": "https://contrataciondelestado.es/FileSystem/servlet/GetDocumentByIdServlet?DocumentIdParam=7j1PjIZNeIsKcSoU7H4g86NCw4LtWv4rrP7lCGtMAKASRMPf9m6MNdD2NwqPIvLXl%2Ff47pFC7UEOMUy4xxfa0UYCpgq0%2FlhJv8oPc4RkotCB0nvVKRzfe4rpHcnlPhSZ&cifrado=QUC1GjXXSiLkydRHJBmbpw%3D%3D"
-          }
-        ],
-        "entry_id": "https://contrataciondelestado.es/sindicacion/licitacionesPerfilContratante/20287792",
-        "id": "20287792",
-        "lots": [],
-        "procedure": "9",
-        "published": "2026-08-11",
-        "reference": "2026/EA02/00000894E",
-        "regions": [
-          "Madrid"
-        ],
-        "result_codes": [],
-        "state": "PUB",
-        "ted_ids": [],
-        "title": "20269V32 Servicio de asistencia técnica para la digitalización y normalización de expedientes de la CITAAM y el estudio de un sistema de explotación futuro",
-        "updated": "2026-09-15T11:39:07.967000+00:00",
-        "url": "https://contrataciondelestado.es/wps/poc?idEvl=Uy7JVIr7mWRVYjgxA4nMUw%3D%3D&uri=deeplink%3Adetalle_licitacion",
-        "value": 49585.0,
-        "winner": ""
-      },
       "20292187": {
         "buyer": "Alcaldía del Ayuntamiento de Huétor Tájar",
         "buyer_identifiers": [
@@ -29997,53 +29992,6 @@
         "updated": "2026-09-03T12:34:23.176000+00:00",
         "url": "https://contrataciondelestado.es/wps/poc?idEvl=l%2FmmGxaOVZS7JOCXkOhcDg%3D%3D&uri=deeplink%3Adetalle_licitacion",
         "value": 500258.4,
-        "winner": ""
-      },
-      "20317176": {
-        "buyer": "Junta de Gobierno del Ayuntamiento de Benidorm",
-        "buyer_identifiers": [
-          "L01030319",
-          "P0303100B",
-          "30843420128102"
-        ],
-        "contracting_system": "0",
-        "cpv_codes": [
-          "72220000",
-          "72224000",
-          "79411000"
-        ],
-        "currency": "EUR",
-        "deadline_at": null,
-        "deadline_date": "2026-09-17",
-        "deadline_description": "Estrategia de Desarrollo Integrado Local (Plan EDIL)",
-        "deadline_time": "23:59:59",
-        "description": "",
-        "documents": [
-          {
-            "title": "PCAP.pdf",
-            "url": "https://contrataciondelestado.es/FileSystem/servlet/GetDocumentByIdServlet?DocumentIdParam=%2B%2FSgxxG2o60Xdevz1DkVa3JcTSOd6moiPWkHUKkvJNUiIAfg8HbSkuSKYKFZ5ZNQc19yd5I7gboSs1ezBKIyRSaQv1Lq1A6mjxAwguOgviFJOVDbGCDM%2BMigrvuVS7Rv&cifrado=QUC1GjXXSiLkydRHJBmbpw%3D%3D"
-          },
-          {
-            "title": "PPT.pdf",
-            "url": "https://contrataciondelestado.es/FileSystem/servlet/GetDocumentByIdServlet?DocumentIdParam=0vf97H8LJaBGJ%2B6FS4wxFNwj%2FJw%2Bjjg4Y9E6vtK%2FFF16XWUkDJFHbJlRtt11DmkzxkeRdRnu96oKCYGG2Z8qxawprU6OoxtRcZExaDbEKT2Cx2e6p7hqtlp2aFupgHMr&cifrado=QUC1GjXXSiLkydRHJBmbpw%3D%3D"
-          }
-        ],
-        "entry_id": "https://contrataciondelestado.es/sindicacion/licitacionesPerfilContratante/20317176",
-        "id": "20317176",
-        "lots": [],
-        "procedure": "1",
-        "published": "2026-08-19",
-        "reference": "11110/2026",
-        "regions": [
-          "Alicante/Alacant"
-        ],
-        "result_codes": [],
-        "state": "PUB",
-        "ted_ids": [],
-        "title": "Contrato de asistencia técnica para la gestión e implementación del plan de actuación integrado (PAI) Benidorm Open Arena del Ayuntamiento de Benidorm",
-        "updated": "2026-09-11T06:33:18.080000+00:00",
-        "url": "https://contrataciondelestado.es/wps/poc?idEvl=oeCs7zR%2BMHf10HRJw8TEnQ%3D%3D&uri=deeplink%3Adetalle_licitacion",
-        "value": 340947.28,
         "winner": ""
       },
       "20317182": {
@@ -30676,52 +30624,6 @@
         "value": 2910080.0,
         "winner": ""
       },
-      "20363362": {
-        "buyer": "Dirección General Económico-Financiera de la Entidad Pública Empresarial RENFE-Operadora",
-        "buyer_identifiers": [
-          "EA0003337",
-          "Q2801659J",
-          "40158410025741"
-        ],
-        "contracting_system": "0",
-        "cpv_codes": [
-          "48730000",
-          "72611000"
-        ],
-        "currency": "EUR",
-        "deadline_at": null,
-        "deadline_date": "2026-09-17",
-        "deadline_description": "",
-        "deadline_time": "15:00:00",
-        "description": "",
-        "documents": [
-          {
-            "title": "PCP Plataforma integrada gestion de vulnerabilidades .pdf",
-            "url": "https://contrataciondelestado.es/FileSystem/servlet/GetDocumentByIdServlet?DocumentIdParam=EPEqliFHgqK2p4zxLEM2yUC1gH7ovNln1KRbTp5G1RQ3JNuPt5PbSr7BtLz8CMlGmfSX0bLaPXo%2Fo2WNbxFgZdL3QpvUyqq2l4pXBkCh2I6HAj0WEJrB5sP7amrh2jBD&cifrado=QUC1GjXXSiLkydRHJBmbpw%3D%3D"
-          },
-          {
-            "title": "ET herramienta gestion vulnerabilidades PCSP.pdf",
-            "url": "https://contrataciondelestado.es/FileSystem/servlet/GetDocumentByIdServlet?DocumentIdParam=KZ%2FSQf9vmxmasLFlnTJkYNXv5F4WIORvy%2F%2F9WODu1TAYdNMCTP7pVvuUJyLNyaHpimEb29dG2FNGB3EN2JPLs4a1dZhdfGs%2FZNjdei0I0u7fdyQgZAdTm3EfcUAC7CJ6&cifrado=QUC1GjXXSiLkydRHJBmbpw%3D%3D"
-          }
-        ],
-        "entry_id": "https://contrataciondelestado.es/sindicacion/licitacionesPerfilContratante/20363362",
-        "id": "20363362",
-        "lots": [],
-        "procedure": "1",
-        "published": "2026-09-01",
-        "reference": "2026-03413",
-        "regions": [
-          "España"
-        ],
-        "result_codes": [],
-        "state": "PUB",
-        "ted_ids": [],
-        "title": "Suministro de una plataforma integrada de gestion de vulnerabilidades",
-        "updated": "2026-09-05T07:16:49.744000+00:00",
-        "url": "https://contrataciondelestado.es/wps/poc?idEvl=3nE3zX%2BhYC7ECtSnloz%2BZQ%3D%3D&uri=deeplink%3Adetalle_licitacion",
-        "value": 310000.0,
-        "winner": ""
-      },
       "20363409": {
         "buyer": "Alcaldía del Ayuntamiento de Orcera",
         "buyer_identifiers": [
@@ -30767,54 +30669,6 @@
         "updated": "2026-09-01T06:06:07.049000+00:00",
         "url": "https://contrataciondelestado.es/wps/poc?idEvl=SKqeEO89RdPLIx6q1oPaMg%3D%3D&uri=deeplink%3Adetalle_licitacion",
         "value": 34848.0,
-        "winner": ""
-      },
-      "20365474": {
-        "buyer": "Alcaldía del Ayuntamiento de Ardales",
-        "buyer_identifiers": [
-          "L01290189",
-          "P2901800I",
-          "31227220166482"
-        ],
-        "contracting_system": "0",
-        "cpv_codes": [
-          "38421100",
-          "48900000",
-          "32571000",
-          "50411000"
-        ],
-        "currency": "EUR",
-        "deadline_at": null,
-        "deadline_date": "2026-09-17",
-        "deadline_description": "Según Cláusula 27 del PCAP.",
-        "deadline_time": "23:59:00",
-        "description": "",
-        "documents": [
-          {
-            "title": "PCAP.pdf",
-            "url": "https://contrataciondelestado.es/FileSystem/servlet/GetDocumentByIdServlet?DocumentIdParam=ya6B%2BEL7pV4MpNcyaU0AFtGBFtrpV5cI1VuZ776NZFSMqTgpiujYojfg0Sn444%2F1UUOSJfvQ0%2BoIJR3Fhc7zAPv7xCnrJ%2BKacRUyCEz9qNL6CYyL7SIrUOBFfNf52ZqA&cifrado=QUC1GjXXSiLkydRHJBmbpw%3D%3D"
-          },
-          {
-            "title": "PPT.pdf",
-            "url": "https://contrataciondelestado.es/FileSystem/servlet/GetDocumentByIdServlet?DocumentIdParam=TPysFFu1I71CuGSkSgxzrVw2tlkg2fFWFPDskVVyIebUSoKqKFo1CzSs0QGfDw7IdDWVBqvCE2%2BOlf4QoX86dWRg3BdZQU1xSdHKIouLmyrDdQD9RyhUmzT4jZ2In4zL&cifrado=QUC1GjXXSiLkydRHJBmbpw%3D%3D"
-          }
-        ],
-        "entry_id": "https://contrataciondelestado.es/sindicacion/licitacionesPerfilContratante/20365474",
-        "id": "20365474",
-        "lots": [],
-        "procedure": "9",
-        "published": "2026-09-02",
-        "reference": "SUM-2026/800",
-        "regions": [
-          "Málaga"
-        ],
-        "result_codes": [],
-        "state": "PUB",
-        "ted_ids": [],
-        "title": "El suministro, instalación, configuración, puesta en servicio, mantenimiento y soporte de un sistema integral de digitalización del servicio municipal de abastecimiento de agua potable del Ayuntamiento de Ardales, mediante la implantación de un sistema de telelectura basado en tecnología LoRaWAN.",
-        "updated": "2026-09-02T12:08:15.001000+00:00",
-        "url": "https://contrataciondelestado.es/wps/poc?idEvl=TePdFdS3zoTL1rX3q%2FMAPA%3D%3D&uri=deeplink%3Adetalle_licitacion",
-        "value": 54214.88,
         "winner": ""
       },
       "20365502": {
@@ -30998,51 +30852,6 @@
         "updated": "2026-09-17T08:35:23.558000+00:00",
         "url": "https://contrataciondelestado.es/wps/poc?idEvl=9YoRf1B%2FsfYeIBJRHQiPkQ%3D%3D&uri=deeplink%3Adetalle_licitacion",
         "value": 2209536.0,
-        "winner": ""
-      },
-      "20367760": {
-        "buyer": "Instituto Nacional de Estadística INE",
-        "buyer_identifiers": [
-          "EA0033694",
-          "Q2826039F",
-          "10000430050641"
-        ],
-        "contracting_system": "0",
-        "cpv_codes": [
-          "72313000"
-        ],
-        "currency": "EUR",
-        "deadline_at": null,
-        "deadline_date": "2026-09-17",
-        "deadline_description": "",
-        "deadline_time": "23:59:00",
-        "description": "",
-        "documents": [
-          {
-            "title": "PCAP 2026N0057001 firmado.pdf",
-            "url": "https://contrataciondelestado.es/FileSystem/servlet/GetDocumentByIdServlet?DocumentIdParam=IUA3fBmJIeBNqDnfmFNRSM3tuVjfQangrxmzhg0IMDQDK9Kkci2%2BkxFVc2WLOJQ07Kn%2BU7%2BBkkvGGxcTWkDSjNw58y29r%2FfQm0mKUnNtWMPfdyQgZAdTm3EfcUAC7CJ6&cifrado=QUC1GjXXSiLkydRHJBmbpw%3D%3D"
-          },
-          {
-            "title": "PPT 2026N0057001 firmado.pdf",
-            "url": "https://contrataciondelestado.es/FileSystem/servlet/GetDocumentByIdServlet?DocumentIdParam=%2Bo1DuLpHRsqJAYSeZVs1nv%2FbzuF2%2FJs03mPutUCBPhbKgMhJPV2cFhY9iJbJZO6s%2FjTF29kyeWs0c6BUamzogoPhwh1k3M6jBl3SptrRvIuCx2e6p7hqtlp2aFupgHMr&cifrado=QUC1GjXXSiLkydRHJBmbpw%3D%3D"
-          }
-        ],
-        "entry_id": "https://contrataciondelestado.es/sindicacion/licitacionesPerfilContratante/20367760",
-        "id": "20367760",
-        "lots": [],
-        "procedure": "9",
-        "published": "2026-09-03",
-        "reference": "2026N0057001",
-        "regions": [
-          "Madrid"
-        ],
-        "result_codes": [],
-        "state": "PUB",
-        "ted_ids": [],
-        "title": "Dirección, coordinación, recogida de datos y análisis de la encuesta de bienes de equipo de Paridades de Poder Adquisitivo 2027",
-        "updated": "2026-09-03T05:50:34.627000+00:00",
-        "url": "https://contrataciondelestado.es/wps/poc?idEvl=f3axZNkJoRGExvMJXBMHHQ%3D%3D&uri=deeplink%3Adetalle_licitacion",
-        "value": 15825.62,
         "winner": ""
       },
       "20376967": {
@@ -31485,51 +31294,6 @@
         "updated": "2026-09-14T13:53:48.677000+00:00",
         "url": "https://contrataciondelestado.es/wps/poc?idEvl=hGqQ6rHCZ%2Ft9Zh%2FyRJgM8w%3D%3D&uri=deeplink%3Adetalle_licitacion",
         "value": 149757.0,
-        "winner": ""
-      },
-      "20415740": {
-        "buyer": "Fundación del Sector Público Estatal Centro Nacional de Investigaciones Oncológicas Carlos III",
-        "buyer_identifiers": [
-          "EA0008470",
-          "G81972242",
-          "40003890000806"
-        ],
-        "contracting_system": "0",
-        "cpv_codes": [
-          "33112000"
-        ],
-        "currency": "EUR",
-        "deadline_at": null,
-        "deadline_date": "2026-09-17",
-        "deadline_description": "",
-        "deadline_time": "11:00:00",
-        "description": "",
-        "documents": [
-          {
-            "title": "PCAP Actualizacion Tecnologica Ultrasonidos Vevo 3100.pdf",
-            "url": "https://contrataciondelestado.es/FileSystem/servlet/GetDocumentByIdServlet?DocumentIdParam=IUZx6ACC6fhtqKgbpDFHc47ImHaJby1GjBmq3PwnyeEmFeVm2aj5h6MMXVD1eoplL7clqLn1thpvDLmTxf2hjylHx6fMLMqp2PJ7cdO9d3kZyAJWGsSt0OzTSTyw9JAs&cifrado=QUC1GjXXSiLkydRHJBmbpw%3D%3D"
-          },
-          {
-            "title": "PPT Actualizacion Tecnologica Ultrasonidos Vevo 3100.pdf",
-            "url": "https://contrataciondelestado.es/FileSystem/servlet/GetDocumentByIdServlet?DocumentIdParam=mXcgn%2BczoBoY5B1JRQHJHZlLm3m7MDQkSgqawJ5VVQRCI0dA3AhyALOTqTGCnoSziR2viZoFaptJ%2FF7h%2BHkgfxafwyrXol5qfVHNhLaF2A0ZyAJWGsSt0OzTSTyw9JAs&cifrado=QUC1GjXXSiLkydRHJBmbpw%3D%3D"
-          }
-        ],
-        "entry_id": "https://contrataciondelestado.es/sindicacion/licitacionesPerfilContratante/20415740",
-        "id": "20415740",
-        "lots": [],
-        "procedure": "9",
-        "published": "2026-08-31",
-        "reference": "24/26SPF",
-        "regions": [
-          "Madrid"
-        ],
-        "result_codes": [],
-        "state": "PUB",
-        "ted_ids": [],
-        "title": "Suministro e Instalación de Módulos de Software de Análisis Avanzado y Equipamiento para la Actualización Tecnológica de los Sistemas de Ultrasonidos de Alta Resolución Vevo 3100",
-        "updated": "2026-09-14T13:10:46.327000+00:00",
-        "url": "https://contrataciondelestado.es/wps/poc?idEvl=9czd5Vsd3Et%2FP7lJ7Fu0SA%3D%3D&uri=deeplink%3Adetalle_licitacion",
-        "value": 95500.0,
         "winner": ""
       },
       "20415746": {
@@ -36327,51 +36091,6 @@
         "value": 41322.32,
         "winner": ""
       },
-      "20418121": {
-        "buyer": "Comité de Dirección de Equipos Nucleares S.A.",
-        "buyer_identifiers": [
-          "EA0008290",
-          "A28325520",
-          "50512010090021"
-        ],
-        "contracting_system": "0",
-        "cpv_codes": [
-          "48000000"
-        ],
-        "currency": "EUR",
-        "deadline_at": null,
-        "deadline_date": "2026-09-17",
-        "deadline_description": "",
-        "deadline_time": "13:00:00",
-        "description": "",
-        "documents": [
-          {
-            "title": "PCAP.pdf",
-            "url": "https://contrataciondelestado.es/FileSystem/servlet/GetDocumentByIdServlet?DocumentIdParam=EV8%2FeN6%2Fm5OVXPk8cFAKbK3MbC1W2mKQDcBZHxc6RwjsyXab9bjvlHpGnPQvWjkfyMtrsWaCnGLGZPCW5zOxwQoZvwBo12%2FW8%2FukrdJ55bpJOVDbGCDM%2BMigrvuVS7Rv&cifrado=QUC1GjXXSiLkydRHJBmbpw%3D%3D"
-          },
-          {
-            "title": "PPT.pdf",
-            "url": "https://contrataciondelestado.es/FileSystem/servlet/GetDocumentByIdServlet?DocumentIdParam=Xzkw6iSlRcNY96oaWMw9%2BLnIcF1TRmq1A1o4h2Bjq%2FWmFYMQDdkwoIGDO%2B4a%2F9r2iPfFkQ4svmbfeanfcMJIlJtBPFOjIwmlFKfPUCjM%2Fr9JOVDbGCDM%2BMigrvuVS7Rv&cifrado=QUC1GjXXSiLkydRHJBmbpw%3D%3D"
-          }
-        ],
-        "entry_id": "https://contrataciondelestado.es/sindicacion/licitacionesPerfilContratante/20418121",
-        "id": "20418121",
-        "lots": [],
-        "procedure": "1",
-        "published": "2026-09-08",
-        "reference": "001864/2026",
-        "regions": [
-          "Cantabria"
-        ],
-        "result_codes": [],
-        "state": "PUB",
-        "ted_ids": [],
-        "title": "Suministro de Software de Gestión de Servicios TI",
-        "updated": "2026-09-09T08:46:52.422000+00:00",
-        "url": "https://contrataciondelestado.es/wps/poc?idEvl=Tc%2Fl08bGzNsmMOlAXxDEjw%3D%3D&uri=deeplink%3Adetalle_licitacion",
-        "value": 28000.0,
-        "winner": ""
-      },
       "20418133": {
         "buyer": "Dirección General de la Sociedad Española para la Transformación Tecnológica, E.P.E.",
         "buyer_identifiers": [
@@ -37754,50 +37473,6 @@
         "updated": "2026-09-15T10:03:44.814000+00:00",
         "url": "https://contrataciondelestado.es/wps/poc?idEvl=QddTscGQiLaTylGzYmBF9Q%3D%3D&uri=deeplink%3Adetalle_licitacion",
         "value": 1120000.0,
-        "winner": ""
-      },
-      "20426848": {
-        "buyer": "Dirección General de la Mutual Midat Cyclops, Mutua Colaboradora con la Seguridad Social, no 1",
-        "buyer_identifiers": [
-          "G64172513",
-          "50254410043881"
-        ],
-        "contracting_system": "0",
-        "cpv_codes": [
-          "48000000"
-        ],
-        "currency": "EUR",
-        "deadline_at": null,
-        "deadline_date": "2026-09-17",
-        "deadline_description": "",
-        "deadline_time": "23:59:00",
-        "description": "",
-        "documents": [
-          {
-            "title": "Pliego de condiciones particulares.pdf",
-            "url": "https://contrataciondelestado.es/FileSystem/servlet/GetDocumentByIdServlet?DocumentIdParam=Y5Uz8ZqmXxO7%2FVUsYCH%2ByclJpa7Hggssw2lYu5mNjoFHqK9wtWYZ9Hp%2BSieZADPgMnnabOlZYIr5ZzmisptwyXEPYWEMS2t7QWhQlM9jCrAZyAJWGsSt0OzTSTyw9JAs&cifrado=QUC1GjXXSiLkydRHJBmbpw%3D%3D"
-          },
-          {
-            "title": "Pliego de prescripciones tecnicas.pdf",
-            "url": "https://contrataciondelestado.es/FileSystem/servlet/GetDocumentByIdServlet?DocumentIdParam=36TRxevIx8tv%2FXJWGfdjovPSU4H76IezfwAO6dw8SfbvwYK90l%2F2ZKsQUI1cqHuJ4Y6UqcQnCBzozGcY%2BnrI6gJKUpSnKGp7%2F9DX2oEMS6J7QB3HKyQaFUExmUVQCerk&cifrado=QUC1GjXXSiLkydRHJBmbpw%3D%3D"
-          }
-        ],
-        "entry_id": "https://contrataciondelestado.es/sindicacion/licitacionesPerfilContratante/20426848",
-        "id": "20426848",
-        "lots": [],
-        "procedure": "1",
-        "published": "2026-09-01",
-        "reference": "N202600493",
-        "regions": [
-          "Barcelona"
-        ],
-        "result_codes": [],
-        "state": "PUB",
-        "ted_ids": [],
-        "title": "Adquisición y mantenimiento de las licencias software de los productos COGNOS de MC MUTUAL",
-        "updated": "2026-09-15T09:48:32.710000+00:00",
-        "url": "https://contrataciondelestado.es/wps/poc?idEvl=V9ZjVmmyZTuOUi78BmzhOQ%3D%3D&uri=deeplink%3Adetalle_licitacion",
-        "value": 101270.0,
         "winner": ""
       },
       "20426873": {
@@ -39344,99 +39019,6 @@
         "updated": "2026-09-16T12:00:36.002000+00:00",
         "url": "https://contrataciondelestado.es/wps/poc?idEvl=X63NQfYhhBw7u6%2B%2FR7DUoA%3D%3D&uri=deeplink%3Adetalle_licitacion",
         "value": 175700.93,
-        "winner": ""
-      },
-      "20434943": {
-        "buyer": "Gerencia Municipal de Urbanismos del Ayuntamiento de Móstoles",
-        "buyer_identifiers": [
-          "LA0000380",
-          "Q2801650i",
-          "31347070178467"
-        ],
-        "contracting_system": "0",
-        "cpv_codes": [
-          "48326000"
-        ],
-        "currency": "EUR",
-        "deadline_at": null,
-        "deadline_date": "2026-09-17",
-        "deadline_description": "",
-        "deadline_time": "23:59:00",
-        "description": "",
-        "documents": [
-          {
-            "title": "PCA_ESRI 2026 v3.pdf",
-            "url": "https://contrataciondelestado.es/FileSystem/servlet/GetDocumentByIdServlet?DocumentIdParam=CImuXrMetAZwjEXXEScbcDLo2Fg8%2FbMYWt3dPIffOix8dquXzrsFfRZSM1H5gen7o6VpYpyJ8vGRIXiEEzc0Zz6gAVRCWd3SgwLQZzgZsdi1aXEvq3KHa%2FAEHgtDrQw0&cifrado=QUC1GjXXSiLkydRHJBmbpw%3D%3D"
-          },
-          {
-            "title": "2026 GIS - 05 - PPT v5_signed.pdf",
-            "url": "https://contrataciondelestado.es/FileSystem/servlet/GetDocumentByIdServlet?DocumentIdParam=h0iJDUTVEc2UTd7p9ZY4MzO1pdGy5%2BtVR7biJ4VCKMOR6gafX7Ky3FPtK4f2kGqbcveOH6I6O8NSouHHGd7GyhbazsCnmV7QVYaofir1E5GCx2e6p7hqtlp2aFupgHMr&cifrado=QUC1GjXXSiLkydRHJBmbpw%3D%3D"
-          }
-        ],
-        "entry_id": "https://contrataciondelestado.es/sindicacion/licitacionesPerfilContratante/20434943",
-        "id": "20434943",
-        "lots": [],
-        "procedure": "1",
-        "published": "2026-09-02",
-        "reference": "C034/03/2026",
-        "regions": [
-          "Comunidad de Madrid"
-        ],
-        "result_codes": [],
-        "state": "PUB",
-        "ted_ids": [],
-        "title": "Renovación del mantenimiento y soporte integral de las licencias del software ESRI de la GMU",
-        "updated": "2026-09-16T11:07:27.225000+00:00",
-        "url": "https://contrataciondelestado.es/wps/poc?idEvl=ScSIsmmx2D0adbH3CysQuQ%3D%3D&uri=deeplink%3Adetalle_licitacion",
-        "value": 174656.25,
-        "winner": ""
-      },
-      "20434996": {
-        "buyer": "Área de Gobierno de Vicealcaldía, Portavoz, Seguridad y Emergencias del Ayuntamiento de Madrid",
-        "buyer_identifiers": [
-          "L01280796",
-          "P2807900B",
-          "31606280204388"
-        ],
-        "contracting_system": "0",
-        "cpv_codes": [
-          "72413000",
-          "79970000",
-          "79552000",
-          "79340000"
-        ],
-        "currency": "EUR",
-        "deadline_at": null,
-        "deadline_date": "2026-09-17",
-        "deadline_description": "",
-        "deadline_time": "23:59:00",
-        "description": "",
-        "documents": [
-          {
-            "title": "28555681-PliegodeClusulasAdminist-001004PCA_OE.pdf",
-            "url": "https://contrataciondelestado.es/FileSystem/servlet/GetDocumentByIdServlet?DocumentIdParam=BY3EDyf2yqEZeXzdOSIsK1rGy76mZTO9qkPFe2K%2B09ngSWV6afaTCj%2Fi0AWilvCQm0COJKXitZslkHcwha2S0uQcXZzIUIvT9tqYKzo0fFe1aXEvq3KHa%2FAEHgtDrQw0&cifrado=QUC1GjXXSiLkydRHJBmbpw%3D%3D"
-          },
-          {
-            "title": "28246916--02_PPT300202803900_consolidadoV5juli.pdf",
-            "url": "https://contrataciondelestado.es/FileSystem/servlet/GetDocumentByIdServlet?DocumentIdParam=j%2FWqOF60hopLhjU8pfI06oBbsrbpAzDGorQVCFOQbXg3GkN%2FJ5WcotMQZni%2FOoUd8126tTO8u4gD7Q3afMaqwZmJcF9SvHxHFp39bIu9b4P6CYyL7SIrUOBFfNf52ZqA&cifrado=QUC1GjXXSiLkydRHJBmbpw%3D%3D"
-          }
-        ],
-        "entry_id": "https://contrataciondelestado.es/sindicacion/licitacionesPerfilContratante/20434996",
-        "id": "20434996",
-        "lots": [],
-        "procedure": "1",
-        "published": "2026-09-02",
-        "reference": "300/2025/03900",
-        "regions": [
-          "Madrid"
-        ],
-        "result_codes": [],
-        "state": "PUB",
-        "ted_ids": [],
-        "title": "Contrato plurianual de servicios de asistencia técnica para la implantación y el desarrollo de la comunicación clara en el Ayuntamiento de Madrid",
-        "updated": "2026-09-16T10:36:55.927000+00:00",
-        "url": "https://contrataciondelestado.es/wps/poc?idEvl=0K%2FyNMHq0fXua%2Fi14w%2FPLA%3D%3D&uri=deeplink%3Adetalle_licitacion",
-        "value": 78317.73,
         "winner": ""
       },
       "20434997": {
@@ -41567,10 +41149,14 @@
           "/sindicacion/sindicacion_643/licitacionesPerfilesContratanteCompleto3_20260917_202233_4.atom",
           "/sindicacion/sindicacion_643/licitacionesPerfilesContratanteCompleto3_20260916_202342.atom",
           "/sindicacion/sindicacion_643/licitacionesPerfilesContratanteCompleto3_20260916_202342_1.atom",
-          "/sindicacion/sindicacion_643/licitacionesPerfilesContratanteCompleto3_20260916_202342_2.atom"
+          "/sindicacion/sindicacion_643/licitacionesPerfilesContratanteCompleto3_20260916_202342_2.atom",
+          "/sindicacion/sindicacion_643/licitacionesPerfilesContratanteCompleto3_20260916_202342_3.atom",
+          "/sindicacion/sindicacion_643/licitacionesPerfilesContratanteCompleto3_20260916_202342_4.atom",
+          "/sindicacion/sindicacion_643/licitacionesPerfilesContratanteCompleto3_20260916_202342_5.atom",
+          "/sindicacion/sindicacion_643/licitacionesPerfilesContratanteCompleto3_20260915_201500.atom"
         ],
         "through": "2026-09-17T18:22:33.237000+00:00",
-        "url": "https://contrataciondelestado.es/sindicacion/sindicacion_643/licitacionesPerfilesContratanteCompleto3_20260916_202342_3.atom"
+        "url": "https://contrataciondelestado.es/sindicacion/sindicacion_643/licitacionesPerfilesContratanteCompleto3_20260915_201500_1.atom"
       },
       {
         "after": "2026-08-30T17:38:50+00:00",
@@ -85127,6 +84713,11 @@
         "dda77775ee1f71ebaa46a11c6025d83d951da0e2ed498a1a114819eb211813e6",
         true
       ],
+      "19979658": [
+        "2026-09-15T18:10:53.771000+00:00",
+        "83f9dcf79b0e85425945258855e51d35e11ceba880e9ac8ff1ccfb6938c14e6a",
+        true
+      ],
       "19979663": [
         "2026-09-01T09:39:09.049000+00:00",
         "51bfff2b8411b015a284ba4d0607672f16b51d6409d0a399b663579853e75d30",
@@ -91585,6 +91176,11 @@
       "20050276": [
         "2026-09-14T08:19:29.692000+00:00",
         "c7ac3152c52d90d89f1eeab08753b2dba0898a8a2c4249de5fad1d611bb7bb20",
+        true
+      ],
+      "20050277": [
+        "2026-09-15T18:14:12.696000+00:00",
+        "6e143bcebffc1fa31e691527a21d237a89d3a89ac5d826f61721666da0cf0819",
         true
       ],
       "20050278": [
@@ -120457,6 +120053,11 @@
         "4830c9142a3cd2a4b756a8fd5ea04db9eee4734197086396e7b3e2dfabd0671b",
         true
       ],
+      "20356743": [
+        "2026-09-15T18:09:44.541000+00:00",
+        "b542a971a8d085f7bc40336d08874af16ae381ab370d6ddfd9ee1591356995a0",
+        true
+      ],
       "20356750": [
         "2026-09-04T10:30:39.198000+00:00",
         "8720c76e13c2eec18a4e931be29fe568a17b010c593916361fde2e31972148e3",
@@ -132587,6 +132188,11 @@
         "6c6d978739e48cafeeacb3a59b80d55ed77bd220ac203833d225bd6c5a1e1aef",
         true
       ],
+      "20435440": [
+        "2026-09-15T18:12:52.331000+00:00",
+        "91394cf9088fdd2b5a96aea7d727e974646180cf7b95ba17b9fed2a1603dc2f1",
+        true
+      ],
       "20446723": [
         "2026-09-17T17:23:46.784000+00:00",
         "744db51aa05285fc652b31412da1e281ae77db1952653db17a2f18855a074ad6",
@@ -135130,15 +134736,14 @@
       "checkpoint": {
         "query_version": "17f39a916251985f06623cfefe55453a709aeb10fdb2339cad86b7b5fd1b240c",
         "ted_pending": {
-          "from": "2026-03-26T09:22:37+00:00",
-          "through": "2026-03-27T09:22:37+00:00",
-          "token": "AAABoLaIUpcATX6ju3FvaLs86ungUqQP8eOpEgPQmb9VV6YjDmyFYOyK9wlVl7VtjvcvhMgZTP4+oHFPAqQJH+GfiRe/UwDSYiomnftkiJjqVDj6/JfkeQ==",
-          "until": "2026-03-27T09:22:37+00:00"
+          "from": "2026-04-03T09:22:37+00:00",
+          "through": "2026-04-04T09:22:37+00:00",
+          "until": "2026-04-04T09:22:37+00:00"
         },
-        "watermark": "2026-03-26T09:22:37+00:00"
+        "watermark": "2026-04-03T09:22:37+00:00"
       },
       "complete": false,
-      "cursor": "2026-03-26T09:22:37+00:00",
+      "cursor": "2026-04-03T09:22:37+00:00",
       "until": "2026-08-29T09:22:37+00:00",
       "version": "2026-09-11.1"
     },
@@ -135155,186 +134760,186 @@
         "04ea750b292bf5ad7c3729617a1f821c2ec72fb80c8d039cdc8f3e2f427a9ce2": {
           "query_version": "49fec6a4e86a16418a83f12b922daadb51c2a00848b9791f2342c0a0481dd533",
           "ted_pending": {
-            "from": "2026-09-07T11:53:56+00:00",
+            "from": "2026-09-09T11:53:56+00:00",
             "through": "2026-09-18T11:53:56+00:00",
-            "token": "AAABoLaH1n4ATcbNySIzrqOp+UGknDAd4f/6/XoM0WCKF4A+HNk3a3D2V9evMJlGuSqAqh7B2LE6CK82NrEQfau/8w4vOAW2uQiKRKlopHqYusddTapfFw==",
-            "until": "2026-09-08T11:53:56+00:00"
+            "token": "AAABoLgVsIsATlCFM0HA+Je812t80YFMCyK5M4oPgksC1JGPyY0CLrWAj46xi5lOWQ9CRpOHmSKKP9ksjoIlSZiLSwoyeSgncDyedhIoZ81qUjxliKQB0w==",
+            "until": "2026-09-10T11:53:56+00:00"
           },
-          "watermark": "2026-09-07T11:53:56+00:00"
-        },
-        "2b1ff2d74905fd30d2075e6ba55668ce2ed0899442c5a057bc970a7cbd31bdfd": {
-          "query_version": "caa56de09364933e2b31a30371bc2b7603d103093634821e94230e4d2914c197",
-          "ted_pending": {
-            "from": "2026-09-04T21:57:07+00:00",
-            "through": "2026-09-18T21:57:07+00:00",
-            "until": "2026-09-05T21:57:07+00:00"
-          },
-          "watermark": "2026-09-04T21:57:07+00:00"
+          "watermark": "2026-09-09T11:53:56+00:00"
         },
         "5861ca8839715c105985a0c787070388abfd2536f884343ad6397b56304e9ed2": {
           "query_version": "f392c58f720f66d8a02c0f2a2749ac157a7f9b458517a6fcb76c13b510ae7677",
           "ted_pending": {
-            "from": "2026-09-08T11:53:56+00:00",
+            "from": "2026-09-10T11:53:56+00:00",
             "through": "2026-09-18T11:53:56+00:00",
-            "token": "AAABoLaHswoATX553/tXSr/AiBC2fW0RwON/HzpWtTdVZKOs+anuUOlt79Y/OQ1mlP7yChkKVJMp0LSiW6Yp4YyVAJTirA55r0NM6EW4JDst3POJY6Eo0A==",
-            "until": "2026-09-09T11:53:56+00:00"
+            "token": "AAABoLgVhssATprth2RnnWfNDNf7M4VAHohGrSIWVK43Csco870zRtyI4iDruuevgVy6LpqM9qRohPTwZiTcVbibVCsisFfIej2cT2zApCshFYn7MX4RxQ==",
+            "until": "2026-09-11T11:53:56+00:00"
           },
-          "watermark": "2026-09-08T11:53:56+00:00"
+          "watermark": "2026-09-10T11:53:56+00:00"
+        },
+        "590917cc63063643f9be0f464bfed20d1bb7f9f43f85fc615c7de13b07052bea": {
+          "query_version": "e8a63d606c29d35ca6c9b65cc27ebc81bf1d0b130fcd9e60dc9248ee9442e62c",
+          "ted_pending": {
+            "from": "2026-09-05T05:11:46+00:00",
+            "through": "2026-09-19T05:11:46+00:00",
+            "until": "2026-09-06T05:11:46+00:00"
+          },
+          "watermark": "2026-09-05T05:11:46+00:00"
         },
         "62ffa15a47d48f7c34aece1a88c8d9da6132e3c4d54cd2fefc5d24ce9f32b02f": {
           "query_version": "c424e15a306195ffd5c14a84dc9a6fccfa9d9dcbf9c45fe512de71a9323c2110",
           "ted_pending": {
-            "from": "2026-09-07T11:53:56+00:00",
+            "from": "2026-09-09T11:53:56+00:00",
             "through": "2026-09-18T11:53:56+00:00",
-            "token": "AAABoLaHkhgATX5u6RrBjgAl+7LmFsaxpLH5H4EhUTH0s2R/JL7SpKJmQFy70AqzsqkRVmKmt1cCGwq8J6gpI8IHZr1Ll9s9O/DiqdqUEpNgZz4WCeggVQ==",
-            "until": "2026-09-08T11:53:56+00:00"
+            "token": "AAABoLgVYPMATlBIuzIB/Mp2IVX5AJ5Hm7r2bvSc0GGSZ4xXTJrhjCtbafIpAjQrtnAHkhbD1wFL+prKmD6XfbLN8Wg706HVKBVAqcNs1QweKPaZXKPIqQ==",
+            "until": "2026-09-10T11:53:56+00:00"
           },
-          "watermark": "2026-09-07T11:53:56+00:00"
+          "watermark": "2026-09-09T11:53:56+00:00"
         },
         "6d034afd5915cb2071ca55fc25b853491de22585e8659d00e6f1377fbfed4853": {
           "query_version": "20d7c9897a45087440ff28b9c572fe5c8a5ba5cbc8dd50319d959d8aff58880c",
           "ted_pending": {
-            "from": "2026-09-07T11:53:56+00:00",
+            "from": "2026-09-09T11:53:56+00:00",
             "through": "2026-09-18T11:53:56+00:00",
-            "token": "AAABoLaH4JgATcbPksDvOhvj09MTDaFe99qrm2jr1mSst5iyNHP8X7r5Pk74I5j5CF7w7XjYhy6LsPztTzSj9ciJLbEtJ5YD++OMOHiREGrwJkvNvcHQLw==",
-            "until": "2026-09-08T11:53:56+00:00"
+            "token": "AAABoLgVv3wATpsQPpn14YE5MFHqulTENMalj7FLKk0wp7c+pNY1S2FbxfHVJuVERrc8MmLdWqhPc5WJuPa7j8uR4k1hxDZ0IJawRMVybmMLHl6ZGwjUcA==",
+            "until": "2026-09-10T11:53:56+00:00"
           },
-          "watermark": "2026-09-07T11:53:56+00:00"
+          "watermark": "2026-09-09T11:53:56+00:00"
         },
         "7dd11b93ce2e4f26843ed525314521f8193ede4e334de28f70ca0add342bf74d": {
           "query_version": "393fc655fed070666fc320f41013d217e28873f4f0fda1f7859dbea6cf8278b1",
           "ted_pending": {
-            "from": "2026-09-07T11:53:56+00:00",
+            "from": "2026-09-09T11:53:56+00:00",
             "through": "2026-09-18T11:53:56+00:00",
-            "token": "AAABoLaHo4cATca/QlS1Cai/qMasGFpx5WsLdFhuB4ZFbCPKjsp+EdelJIsK+7Y1KJ2VOYztOI9iTTYwVztZaEEZSGLoiGm4R+tlu9yq+ntEX6fzBBxeIg==",
-            "until": "2026-09-08T11:53:56+00:00"
+            "token": "AAABoLgVf8kATprrb3KpaIV6BlbgRGIY+a4N84JAMtzWeRhynZPlHTZ8BkTq+mhq3OaxgsKwO+DLxsmf3gtb6zb3Hwg6wvaY2SaTJ99zdBmgJK+102GKxA==",
+            "until": "2026-09-10T11:53:56+00:00"
           },
-          "watermark": "2026-09-07T11:53:56+00:00"
+          "watermark": "2026-09-09T11:53:56+00:00"
         },
         "8606aec172024425c9490a42282a4e6a387f9f50e5dde3389075becbe5b2822a": {
           "query_version": "c1ebbae76539106fc053391197892bb8c3978b3307a6ec380d61f445c224edf5",
           "ted_pending": {
-            "from": "2026-09-07T11:53:56+00:00",
+            "from": "2026-09-09T11:53:56+00:00",
             "through": "2026-09-18T11:53:56+00:00",
-            "token": "AAABoLaHut8ATX59yUza1snjhZ4mZD/wPazra+2lfEIQTTANg9uWuHLqVCgIU35cZsWvSzk7pHgwElwQIfdC43tXo8fyJeN1FvJ9AG+bUQt16030QqSMHg==",
-            "until": "2026-09-08T11:53:56+00:00"
+            "token": "AAABoLgVkZIATlBsJ1HdBoR8kMyR94F9t9nrrBKvvzmcioAU9ZjQ3xRin7mfdPUB1JrGaCDf2t8gvBVIcsUzzXxhV17puDIFW9+LA3lGVuHwJaNDgn+ztA==",
+            "until": "2026-09-10T11:53:56+00:00"
           },
-          "watermark": "2026-09-07T11:53:56+00:00"
+          "watermark": "2026-09-09T11:53:56+00:00"
         },
         "8907dcc6f0cf9fa15561229b3c71508d9ea0f6ba094a7cf80d51dca4255e0c0c": {
           "query_version": "9977f64d519bd5695585a9bdc9eb3efc70bf9b82e3630f2294094568a99afb7b",
           "ted_pending": {
-            "from": "2026-09-07T11:53:56+00:00",
+            "from": "2026-09-09T11:53:56+00:00",
             "through": "2026-09-18T11:53:56+00:00",
-            "token": "AAABoLaHfXYATX5ltnoIfZcrzYyKivM2Mg0x4RrzYvw6sBm+hcSmAGBBYhGZGkYkFuMa2LBeTn7VWlqk1KTTb9h0ld83ac1ubgNwscT9Nkvm+uAboIl7/w==",
-            "until": "2026-09-08T11:53:56+00:00"
+            "token": "AAABoLgVSmkATprGix5P9mps5RtBpupj/w/U7m+I/yfK+CBgyFaIHKIc2UbG91pKC1Z77/ctArZqtl12tyvaO2DdMZE9zIlr4QXDV5ESQ/o6x36hVjvsiA==",
+            "until": "2026-09-10T11:53:56+00:00"
           },
-          "watermark": "2026-09-07T11:53:56+00:00"
+          "watermark": "2026-09-09T11:53:56+00:00"
         },
         "8a4647271e2bcd926bef4774a87dc9beb2dd25d5c924c708898c5f8176e0221d": {
           "query_version": "0160888086a76bfb321e660b31453734560b781f9a2b64e7d683611183699423",
           "ted_pending": {
-            "from": "2026-09-07T11:53:56+00:00",
+            "from": "2026-09-09T11:53:56+00:00",
             "through": "2026-09-18T11:53:56+00:00",
-            "token": "AAABoLaHLBMATX5E5PKRjRqqu/Ya3cJ8xb8qhNlo+d2GSxBebiXgjERreI8X4Pai12z03e0oAjObUMbPpj7F+P/tVjMmdfyXuLrElUIN+tDKvX5WWJ/s2g==",
-            "until": "2026-09-08T11:53:56+00:00"
+            "token": "AAABoLgU+EkATpqP9CkNjASF5UHTjrZ8Srsy8PhN0aIoKKoCyXN4zNP166MMpUl4miiWhrCixM8nJlZD5QJgyLaSUbk9gmoOklV58koOx6reSYnDBefaqA==",
+            "until": "2026-09-10T11:53:56+00:00"
           },
-          "watermark": "2026-09-07T11:53:56+00:00"
-        },
-        "8c81d58f0c09e4a80ae7f5dcef56ffb62f626b9b001d04083e010946e4f474e5": {
-          "query_version": "de276287a8ddc1e6275b4673e3eb262582076c16a0224b664ada1a9187b902ec",
-          "ted_pending": {
-            "from": "2026-09-06T11:53:56+00:00",
-            "through": "2026-09-18T11:53:56+00:00",
-            "token": "AAABoLaHhFcATX5pD1cMPNgDo3JKOhuyqI/Iyv3dgLasqM90jfj3DUfMXFII1GJRkcOoNlFW0C1C4SrvGrmHIJlgBJdb+27zWALR1KoW771J8u/MB7oz5A==",
-            "until": "2026-09-07T11:53:56+00:00"
-          },
-          "watermark": "2026-09-06T11:53:56+00:00"
+          "watermark": "2026-09-09T11:53:56+00:00"
         },
         "9bff76a205f04292975b19c0c257696d7905898a13453ff4b2ee5887769d19cf": {
           "query_version": "073b32233b32c3e5489657b554adaad8c34991c7c0ee00e81ffc3c04c8c82ba1",
           "ted_pending": {
-            "from": "2026-09-07T11:53:56+00:00",
+            "from": "2026-09-09T11:53:56+00:00",
             "through": "2026-09-18T11:53:56+00:00",
-            "token": "AAABoLaHOagATX5KuBxnpLOJFBubMjGWTv8POM5TaxLrlr0wSg+poe3gTTAgSY84mqblXyOFmb9jNgsHaejVPuca6nqZCILYqbHbxThcQkXpUq+I8Ur7Bw==",
-            "until": "2026-09-08T11:53:56+00:00"
+            "token": "AAABoLgVA8gATlAWwcOpPIQPrtEUIXXzDoJFHqmYOhX23MgIW+grmYOYb53XHMeeSJur1QBVAJ8qKrg8xOsDrpAneNyqqRNlrmLa0Zx+KHsGnRGAlxX/SQ==",
+            "until": "2026-09-10T11:53:56+00:00"
           },
-          "watermark": "2026-09-07T11:53:56+00:00"
+          "watermark": "2026-09-09T11:53:56+00:00"
         },
         "b094d565377e8db37f7ed75a7f9f3414ff7f1b4c1db9b3fc13e66866e048be01": {
           "query_version": "e740290d729e935b03c72e2d024a7c2c00cf3612f32e881a380fcc6dbdd9bc66",
           "ted_pending": {
-            "from": "2026-09-04T21:57:07+00:00",
+            "from": "2026-09-06T21:57:07+00:00",
             "through": "2026-09-18T21:57:07+00:00",
-            "until": "2026-09-05T21:57:07+00:00"
+            "token": "AAABoLgVIC8ATlAnQdWfEsRIEBlfE1R9wrHsxGuDnOHfTn9p1fyxFCO8Pl8H74znBKq7dmMGCY4iu7PfS1GxGymWFl8ppRQxzzYPhH0AfNKtoAelbn61WA==",
+            "until": "2026-09-07T21:57:07+00:00"
           },
-          "watermark": "2026-09-04T21:57:07+00:00"
+          "watermark": "2026-09-06T21:57:07+00:00"
         },
         "b6a9b427fd1e80c0733134847cd4ce7fc741d7c18289c74ff9537dd2404a2678": {
           "query_version": "846be7b5de5998b175df4ebbd3d4a53be1e1a9e50a7ac47ff1ee5c92a98b5a8b",
           "ted_pending": {
-            "from": "2026-09-07T11:53:56+00:00",
+            "from": "2026-09-09T11:53:56+00:00",
             "through": "2026-09-18T11:53:56+00:00",
-            "token": "AAABoLaHY/gATcand7+gNSRKhtCnWkXPCy2zCbWUVvvM3d71kUhEMRufQv6w4y3WuAIHVdFb21FVU8ss0KoikxoNVpZzintFMxB0KzU2XL8i4zy2hHLhag==",
-            "until": "2026-09-08T11:53:56+00:00"
+            "token": "AAABoLgVM/AATpq1GhCkD7s6YqDovj/MNr2eYH/AAbV5E/tyFrtHqUAoGnM4b25aYNRIojorJ0WbWZJexNf+0EmgluA0Cg6ljFKDjTFubbAqrKbkgHCaaQ==",
+            "until": "2026-09-10T11:53:56+00:00"
           },
-          "watermark": "2026-09-07T11:53:56+00:00"
+          "watermark": "2026-09-09T11:53:56+00:00"
         },
         "b9c53ea8c56deb7ba561badc3606d7661dfbf23d2274aced7e82c7987fb051aa": {
           "query_version": "79116827b1b965c8c4f03dfc0df3efe09782a53ede1b7d9265229c57a09e6475",
           "ted_pending": {
-            "from": "2026-09-05T19:14:50+00:00",
+            "from": "2026-09-07T19:14:50+00:00",
             "through": "2026-09-18T19:14:50+00:00",
-            "until": "2026-09-06T19:14:50+00:00"
+            "token": "AAABoLgVJ/wATlAroYehvxJhIFiBjGrzNP5rdSfPypoGk7HDu00dWDDh0TY26Ljuffp2r3Nh2PblKqox72raI1SBslFIXZh0b59mLaXKPhCt0No+1/HLjw==",
+            "until": "2026-09-08T19:14:50+00:00"
           },
-          "watermark": "2026-09-05T19:14:50+00:00"
+          "watermark": "2026-09-07T19:14:50+00:00"
+        },
+        "bec897a5904780289ed1e211f8f10503c89832bf4511a11bb458ae4f04bfdb5f": {
+          "query_version": "c8e716b87e682ccdcfe349f928f74f7aa383b7274817d44be96a976c53325cde",
+          "ted_pending": {
+            "from": "2026-09-06T05:11:46+00:00",
+            "through": "2026-09-19T05:11:46+00:00",
+            "until": "2026-09-07T05:11:46+00:00"
+          },
+          "watermark": "2026-09-06T05:11:46+00:00"
         },
         "c6ed0e88bacc627f912552101621f2aa0c840f646c15c14325bdab55d2989893": {
           "query_version": "106e7796b5e84e233739a9694ff2ef3b4fcb4a479f5e62647297bbc47934b751",
           "ted_pending": {
-            "from": "2026-09-07T11:53:56+00:00",
+            "from": "2026-09-09T11:53:56+00:00",
             "through": "2026-09-18T11:53:56+00:00",
-            "token": "AAABoLaHzwsATX6B1iQnAguGgVxq3ZttiZsIc8G6e/+7xYSwguInaoST/Uf8ENf+d9rLU5plMA0FFJQT2EmwLPMEil4ycCy+52SplgKAROTFpw7QSw9uiw==",
-            "until": "2026-09-08T11:53:56+00:00"
+            "token": "AAABoLgVo9gATpr/5Nf9I0bxCJ+15z6zoemlKrsVC2MWuIYBi7a7GQ3BeuHfD0iA5/U+ErzVeYS44kAecHRYj2vfcpyU4QLPnSc2wFZAWCUJsezZoBD2pg==",
+            "until": "2026-09-10T11:53:56+00:00"
           },
-          "watermark": "2026-09-07T11:53:56+00:00"
+          "watermark": "2026-09-09T11:53:56+00:00"
         },
         "c713dee638184fdec8b1746d3fa6e816f04f426bdcdc47b78780b4d6f9b75a15": {
           "query_version": "c7044ffafd473502118da9301133a0ecdc03676011f457c7c180fd859a45d2e7",
           "ted_pending": {
-            "from": "2026-09-06T11:53:56+00:00",
-            "through": "2026-09-18T17:53:22+00:00",
-            "token": "AAABoLaHcAQATcasSsQe/r0Ae5m37Og5lab3t8KTsVp2HfiIvz5yynBJCYAF5mZ1OqfMoTbXNmKJfvRLk/Sgbh8C8yH7gsIL0xq6PxrgxLBd6/C/yYsd5A==",
-            "until": "2026-09-07T11:53:56+00:00"
+            "from": "2026-09-05T05:11:46+00:00",
+            "through": "2026-09-19T05:11:46+00:00",
+            "until": "2026-09-06T05:11:46+00:00"
           },
-          "watermark": "2026-09-06T11:53:56+00:00"
+          "watermark": "2026-09-05T05:11:46+00:00"
         },
-        "ee6a9eedcec6bc30da92bbdb3434b6c7049c3ff73344bff90950291d82de8ff7": {
-          "query_version": "c1a3414ac0af2af70c19e2d0ff6110fc1cb3c131d0d80000d2ffd954d048c9b8",
+        "e4c11de344c8713f18b4917d9c982eaaa5bae53b24d2a2e7bb178d09ee1c19cf": {
+          "query_version": "5d17fae8c77dca95c7fc1deace6d9c94c2f7789f75fa734700ba513921b81651",
           "ted_pending": {
-            "from": "2026-09-04T21:57:07+00:00",
-            "through": "2026-09-18T21:57:07+00:00",
-            "until": "2026-09-05T21:57:07+00:00"
+            "from": "2026-09-06T00:42:25+00:00",
+            "through": "2026-09-19T00:42:25+00:00",
+            "token": "AAABoLgVE30ATpqgfPAjzXz1ffnpD5cO21CmM+JsoEyWyUxowyMVbj5kYpCmBPjHYMb67LfxXYY+oPblz26MwMAvCc0gYxagwdrj2GMV82vYHiNQMWZWDg==",
+            "until": "2026-09-07T00:42:25+00:00"
           },
-          "watermark": "2026-09-04T21:57:07+00:00"
+          "watermark": "2026-09-06T00:42:25+00:00"
         },
         "f3be88ef68c48e27cfa4a23a64e9b02a85f6d766ea76abfebed0afbef3aeb2f8": {
           "query_version": "168c7131004e783133b1f8a31a1e0c4c42b6c992f047e31dfd36ce237b0a0aaf",
           "ted_pending": {
-            "from": "2026-09-07T11:53:56+00:00",
+            "from": "2026-09-10T11:53:56+00:00",
             "through": "2026-09-18T11:53:56+00:00",
-            "token": "AAABoLaHmVYATca8jKSgeh/r09xThTiWMV9f2njz1DNsUTaICRnxtvlbfXHPxLI0+PthzUDXtxMElK4C2IH84XewdZBRnLeGmYOm7W/mKcQta6iMJOCAwA==",
-            "until": "2026-09-08T11:53:56+00:00"
+            "until": "2026-09-11T11:53:56+00:00"
           },
-          "watermark": "2026-09-07T11:53:56+00:00"
+          "watermark": "2026-09-10T11:53:56+00:00"
         }
       }
     },
-    "watermark": "2026-09-18T21:57:07+00:00"
+    "watermark": "2026-09-19T05:11:46+00:00"
   },
   "upcoming_agreements": {
-    "last_success": "2026-09-18T21:57:07+00:00",
-    "watermark": "2026-09-18T21:57:07+00:00"
+    "last_success": "2026-09-19T05:11:46+00:00",
+    "watermark": "2026-09-19T05:11:46+00:00"
   },
   "usaspending": {
     "last_success": "2026-09-09T23:17:56+00:00",
@@ -135406,14 +135011,6 @@
       "pending": [
         {
           "month": "08-2026",
-          "type": 7
-        },
-        {
-          "month": "08-2026",
-          "type": 14
-        },
-        {
-          "month": "08-2026",
           "type": 20
         },
         {
@@ -135499,10 +135096,18 @@
         {
           "month": "08-2026",
           "type": 6
+        },
+        {
+          "month": "08-2026",
+          "type": 7
+        },
+        {
+          "month": "08-2026",
+          "type": 14
         }
       ],
       "through": "2026-09-11T13:29:55+00:00"
     },
-    "retry_at": "2026-09-18T22:57:33.153904+00:00"
+    "retry_at": "2026-09-19T06:12:14.505686+00:00"
   }
 }
