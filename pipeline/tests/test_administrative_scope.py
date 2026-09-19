@@ -14,6 +14,11 @@ from anthrion_signal.discovery import prefilter
     ("Receiver repair", "Equipment; Example Systems Information & Electronic Systems Integration; Company Name; repair of supplied parts."),
     ("Receiver repair", "Equipment;Example Systems Information &Electronic Systems Integration; Company Name; repair of supplied parts."),
     ("AI system", "This procurement consists of an artificial intelligence computing system and associated software/licensing, installation and maintenance."),
+    ("Appliance replacement", "Supply breakroom appliances. Clauses: 52.204-16 Commercial and Government Entity Code Reporting (Aug 2020) 52.204-23 Prohibition on Contracting for Hardware, Software, and Services Developed or Provided by Kaspersky Lab (Dec 2023)."),
+    ("Video component", "CONTACT INFORMATION|4|N100.6|CRM|555-123-4567|contact@example.org| Supply a video converter."),
+    ("Site equipment", "Use the AI Phone (video/audio system) at the door to announce themselves to the security guard for entry."),
+    ("Building services", "Provide snow removal for the 127?? Software Engineering Group (127 SWEG). Clear walkways for each 127 Software Engineering Group building."),
+    ("Grounds services", "The contractor shall provide an after-hours contact number in the Emergency Mass Notification System for personnel. Foreign nationals may remove themselves from the Emergency Mass Notification System at any time."),
 ])
 def test_administrative_and_physical_scope_is_not_software_work(signal, config, title, description):
     signal.title, signal.description, signal.cpv_codes = title, description, []
@@ -26,6 +31,24 @@ def test_administrative_and_physical_scope_is_not_software_work(signal, config, 
     assert signal.prefilter_score >= config["capabilities"]["discovery"]["minimum_candidate_score"]
     assert "salesforce" in signal.matched_capabilities and not signal.exclusion_reasons
     assert signal.description.startswith(original)
+
+
+@pytest.mark.parametrize("description", [
+    "52.204-16 Commercial and Government Entity Code Reporting (Aug 2020) Implement a CRM reporting platform.",
+    "Provide a dedicated software engineering group to build business applications.",
+    "For the Information Technology Department, implement an AI assistant for residents.",
+    "Provide CRM support. CONTACT INFORMATION|4|N100.6|CRM|555-123-4567|contact@example.org|",
+    "Develop an emergency notification system that stores after-hours contact information for personnel.",
+    "Implement an AI visitor-management platform; visitors use the AI Phone at the door for entry.",
+])
+def test_real_delivery_survives_recipient_contact_and_regulatory_context(signal, config, description):
+    signal.title, signal.description, signal.cpv_codes = "Service requirement", description, []
+    signal.source = "sam"
+    prefilter([signal], config["company_profile"], config["search_terms"], config["capabilities"])
+    assert signal.prefilter_score >= config["capabilities"]["discovery"]["minimum_candidate_score"]
+    assert not signal.exclusion_reasons
+    assert signal.description == description
+    assert all(item["quote"] in getattr(signal, item["field"]) for item in signal.capability_evidence)
 
 
 @pytest.mark.parametrize("description", [

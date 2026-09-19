@@ -16,6 +16,10 @@ PLATFORM_FAMILIES = {"salesforce", "crm", "relationships", "service", "contact_c
     "workflow", "managed", "industry", "external_integration", "collaboration"}
 AI_FAMILIES = {"ai", "genai", "automation", "knowledge"}
 SUPPLIER_LABEL = re.compile(r"(?:^|;)\s*(?P<name>[^;\n]{2,200});\s*(?:company|supplier|manufacturer|contractor)\s+name\b", re.IGNORECASE)
+RECIPIENT_ORGANISATION = re.compile(
+    r"\b(?:for|at|within|serving)\s+(?:(?:the|each)\s+)?(?:\d+(?:st|nd|rd|th|\?)*\s+)?"
+    r"(?:software engineering|digital transformation|information technology|artificial intelligence|systems integration)"
+    r"\s+(?:group|division|department|office|directorate)\b", re.IGNORECASE)
 
 
 def discovery_signature(config):
@@ -38,6 +42,18 @@ def discovery_text(value):
     # Submission instructions and portal hostnames are not buyer technology requirements.
     value = re.sub(r"https?://\S+", " ", value, flags=re.IGNORECASE)
     value = SUPPLIER_LABEL.sub("; published supplier; company name", value)
+    # Regulatory clause headings and structured contact-role cells are not the
+    # purchased scope. Match their syntax, not the surrounding procurement's
+    # industry, and preserve any separate software deliverable in the same notice.
+    value = re.sub(r"(?:\b(?:52|252)\.|^\s*)\d{3}-\d{1,4},?\s+[^()\n]{1,220}"
+                   r"\((?:JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)[A-Z.]*\s+\d{4}\)",
+                   " acquisition clause ", value, flags=re.IGNORECASE)
+    value = re.sub(r"(?<=\|)\s*[A-Z][A-Z &/.-]{0,30}\|\s*\+?\d[\d() -]{6,}\d\s*\|",
+                   " contact role | telephone |", value)
+    # An organisation receiving services may have a technical name even when
+    # the contract buys physical work for its buildings. This does not mask a
+    # requirement to provide software engineering or an implementation team.
+    value = RECIPIENT_ORGANISATION.sub(" for the receiving organisation ", value)
     value = re.sub(r"\b(?:AI\s+software\s+[\"']?)?(?:AI[ _-]*)?(?:Bietercockpit|Vergabemanager)\b", "bidding client", value, flags=re.IGNORECASE)
     value = re.sub(r"\b(?:[a-z0-9-]+\.)+[a-z]{2,24}/[^\s<>]*", " ", value, flags=re.IGNORECASE)
     sentences = re.split(r"(?<=[.!?])\s+|\n+", value)
@@ -67,6 +83,9 @@ def discovery_text(value):
         r"\bcontractor performance assessment reporting system\b|"
         r"\binvoice processing platform\b|"
         r"\bIPP is\b[^.!?]{0,90}\binvoicing system\b|"
+        r"\b(?:use|using)\b[^.!?]{0,80}\b(?:phone|intercom)\b[^.!?]{0,120}\b(?:door|entry|security guard)\b|"
+        r"\b(?:after[- ]hours (?:contact|email)|contact (?:number|information|details)|remove themselves)\b"
+        r"[^.!?]{0,160}\b(?:notification|alert|registration) system\b|"
         r"\bto gain access\b[^.!?]{0,100}\b(?:offerors?|bidders?|suppliers?)\b[^.!?]{0,90}\buser roles\b|"
         r"\b(?:has|have) transitioned to an electronic invoicing system\b", re.IGNORECASE)
     # Purchasing an administrative system is still software work. Only existing
@@ -86,6 +105,21 @@ def discovery_text(value):
 
 def contains(text, phrase):
     return search_text(phrase) in text
+
+
+def scope_segments(basis, field, value):
+    # Resolve recipient context before sentence splitting: OCR punctuation in a
+    # numbered unit name must not detach its technical name from "services for".
+    # Equal-length masking keeps every evidence quote an exact original span.
+    matching = RECIPIENT_ORGANISATION.sub(lambda match: " " * len(match.group()), value)
+    boundaries = [] if field == "title" else list(re.finditer(r"(?<!\b[A-Z]\.)(?<=[.!?;])\s+|\n+", value))
+    start = 0
+    for boundary in [*boundaries, None]:
+        end = boundary.start() if boundary else len(value)
+        quote = value[start:end]
+        if quote.strip():
+            yield {"basis": basis, "field": field, "quote": quote, "text": discovery_text(matching[start:end])}
+        start = boundary.end() if boundary else end
 
 
 def lifecycle(signal, now):
@@ -218,10 +252,9 @@ def prefilter(signals, profile, terms, charter=None, translations=None):
             translated = translated.model_dump()
         if translated and translated.get("source_hash") == digest([signal.title, signal.description]):
             documents.append(("english_translation", translated["title"], translated["description"]))
-        segments = [{"basis": basis, "field": field, "quote": part, "text": discovery_text(part)}
-                    for basis, heading, description in documents
+        segments = [segment for basis, heading, description in documents
                     for field, value in (("title", heading), ("description", description))
-                    for part in ([value] if field == "title" else re.split(r"(?<!\b[A-Z]\.)(?<=[.!?;])\s+|\n+", value)) if part.strip()]
+                    for segment in scope_segments(basis, field, value)]
         labelled_suppliers = {search_text(match["name"]).strip()
                               for _, _, description in documents for match in SUPPLIER_LABEL.finditer(description)}
         for segment in segments:
