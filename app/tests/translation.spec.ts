@@ -2,6 +2,10 @@ import { test, expect } from '@playwright/test'
 import type { Dataset } from '../src/types'
 import type { Page } from '@playwright/test'
 
+test.beforeEach(async ({ page }) => {
+  await page.route('**/data/manifest.json', (route) => route.fulfill({ status: 404 }))
+})
+
 async function chooseLanguage(page: Page, label: 'English' | 'Original') {
   await page.getByRole('button', { name: /^Record language:/ }).click()
   await page.getByRole('menuitemradio', { name: label, exact: true }).click()
@@ -28,6 +32,8 @@ test('English is default; original text, search, hides and refresh retain their 
       delivery_priority: 'platform',
       exclusion_reasons: [],
       deadline_at: '2099-01-01T00:00:00Z',
+      response_deadlines: [],
+      deadlines: [],
       published_at: now,
       first_seen_at: now,
       last_material_update: now,

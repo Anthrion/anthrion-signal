@@ -8,8 +8,9 @@ from urllib.parse import urlsplit
 from xml.etree import ElementTree as ET
 
 from .collectors import Collection, RawRecord, SourceUnavailable, defer_collection
-from .models import Document
+from .models import Document, Lot
 from .normalise import base, money
+from .public_context import deadline_fact
 from .utils import canonical_url, clean, digest, iso, unique
 
 
@@ -159,6 +160,7 @@ def _entry_facts(entry):
         "reference": _text(folder, "cbc:ContractFolderID"), "cpv_codes": unique(cpvs), "lots": lots,
         "regions": _texts(folder, "cac:ProcurementProject/cac:RealizedLocation/cbc:CountrySubentity"),
         "value": money(amount_node.text) if amount_node is not None else None,
+        "value_label": amount_node.tag.split("}")[-1] if amount_node is not None else None,
         "currency": amount_node.get("currencyID") if amount_node is not None else None,
         "deadline_date": day, "deadline_time": clock, "deadline_at": submission_deadline(day, clock),
         "deadline_description": _text(folder, deadline + "cbc:Description"),
@@ -399,6 +401,9 @@ def normalise_spain_notice(raw):
     url = record.get("url") or record.get("entry_id")
     documents = [Document(title="Official PLACSP notice", url=url, kind="awardNotice" if awarded else "tenderNotice")]
     documents.extend(Document(**document) for document in record.get("documents", []))
+    published_deadline = record.get("deadline_at") or (record.get("deadline_date", "")[:10] +
+        ("T" + record["deadline_time"] if record.get("deadline_time") else ""))
+    deadline = deadline_fact(published_deadline, url, "tender")
     signal = base(raw, title=record.get("title", ""), description=description, url=url,
         buyer_name=buyer, buyer_identifiers=record.get("buyer_identifiers", []),
         signal_type=kind, procurement_stage=stage, status=status, notice_type="PLACSP " + state,
@@ -406,6 +411,9 @@ def normalise_spain_notice(raw):
                              f"buyer-ref:{buyer.lower()}:{reference}" if buyer and reference else None]),
         published_at=iso(record.get("published")), updated_at=record.get("updated"),
         deadline_at=record.get("deadline_at"), value_max=record.get("value"), currency=record.get("currency"),
+        deadlines=[deadline] if deadline else [], source_language="es", procedure_identifiers=["placsp:" + ident],
+        lots=[Lot(id=lot["id"], title=lot.get("title", ""), description=lot.get("description", ""),
+                  source_url=url) for lot in record.get("lots", []) if lot.get("id")],
         cpv_codes=record.get("cpv_codes", []), countries=["ES"], regions=record.get("regions", []),
         framework=framework, incumbent_supplier=record.get("winner") or None,
         lot_ids=unique(lot["id"] for lot in record.get("lots", []) if lot.get("id")), documents=documents)

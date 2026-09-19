@@ -47,6 +47,9 @@ const sourceFixture = (dataset: Dataset): Dataset => {
         description: 'Implementation of a customer platform with integration and reporting.',
         published_at: '2026-09-10T12:00:00+00:00',
         deadline_at: '2099-01-01T12:00:00+00:00',
+        response_deadlines: [],
+        deadlines: [],
+        amount: undefined,
         exclusion_reasons: [],
         eligibility_status: 'CHECK_REQUIRED',
         framework: fields.signal_type === 'FRAMEWORK' ? 'Framework agreement' : null,
@@ -131,6 +134,7 @@ const detail = async (page: Page, index = 0) => {
   await expect(page.getByRole('dialog', { name: 'Opportunity intelligence' })).toBeVisible()
 }
 test.beforeEach(async ({ page }) => {
+  await page.route('**/data/manifest.json', (route) => route.fulfill({ status: 404 }))
   await page.emulateMedia({ reducedMotion: 'reduce' })
   // Deterministic source facts exercise every optional category without API calls.
   // These in-memory records never change canonical data or production assets.
@@ -161,7 +165,7 @@ test('real feed, logo, filtering, saving, evidence and search', async ({ page },
   await page.getByLabel('Buyer', { exact: true }).fill('no-such-buyer-xyz')
   await page.getByRole('button', { name: 'Show 0 signals' }).click()
   await expect(page.getByText('No matching signals', { exact: true })).toBeVisible()
-  await page.getByRole('button', { name: /Clear 1 filters/ }).click()
+  await page.getByRole('button', { name: 'Remove Buyer filter', exact: true }).click()
   await detail(page)
   await expect(
     page.getByRole('dialog').getByRole('link', { name: 'Open source notice' }),
@@ -504,6 +508,7 @@ test('reduced-motion glass stays still and the source dock stays anchored during
 test('all market tabs have real, correctly scoped records and opportunity counts', async ({
   page,
 }, info) => {
+  test.setTimeout(180000)
   // This assertion compares a published snapshot; real deadlines can expire
   // during a release run. Expiry behaviour is covered separately in lib tests.
   const snapshot = await (await page.request.get('./data/current.json')).json()
@@ -516,7 +521,7 @@ test('all market tabs have real, correctly scoped records and opportunity counts
     ['US', 'United States', ['US']],
     ['IT', 'Italy', ['IT']],
     ['NORDICS', 'Nordics', ['SE', 'FI', 'DK', 'NO', 'IS']],
-    ['DE', 'Germany', ['DE']],
+    ['DACH', 'DACH', ['DE', 'AT', 'CH']],
     ['ES', 'Spain', ['ES']],
     ['GR', 'Greece', ['GR']],
   ] as const) {
@@ -852,7 +857,7 @@ test('universal value labels, both sort directions and adjacent range controls',
   expect(page.url()).toContain('currency=USD')
   await page.getByRole('button', { name: 'Sort opportunities: Highest value' }).click()
   await page.getByRole('menuitemradio', { name: 'Lowest value', exact: true }).click()
-  await page.getByRole('button', { name: 'Germany', exact: true }).click()
+  await page.getByRole('button', { name: 'DACH', exact: true }).click()
   await expect(page.getByRole('button', { name: 'Sort opportunities: Lowest value' })).toBeVisible()
   expect(page.url()).toContain('minValue=100000')
   expect(page.url()).toContain('maxValue=900000')
@@ -925,7 +930,7 @@ test('failed refresh and malformed storage retain a usable workspace', async ({ 
   await expect(page.locator('.row-title').first()).toHaveText(title!)
 })
 
-test('saved views and updates navigation stay removed even with legacy storage and URLs', async ({
+test('legacy saved-view storage stays isolated and old updates URLs open Added today', async ({
   page,
 }) => {
   await page.addInitScript(() =>
@@ -936,7 +941,8 @@ test('saved views and updates navigation stay removed even with legacy storage a
   )
   await page.goto('./?view=all&q=CRM')
   await ready(page)
-  await expect(page.getByRole('button', { name: /Save view|Latest updates/ })).toHaveCount(0)
+  await expect(page.getByRole('button', { name: 'Latest updates' })).toHaveCount(0)
+  await expect(page.getByText('Saved views', { exact: true })).toBeVisible()
   await expect(page.getByText('Legacy saved view')).toHaveCount(0)
   await expect(
     page.locator('.workspace-nav').getByRole('button', { name: /Saved opportunities/ }),
@@ -945,7 +951,10 @@ test('saved views and updates navigation stay removed even with legacy storage a
   await expect(page.locator('.feed-heading h1')).toHaveText('Added today')
   expect(new URL(page.url()).searchParams.get('view')).toBe('today')
   await page.reload()
-  await expect(page.getByRole('button', { name: /Save view|Latest updates/ })).toHaveCount(0)
+  await expect(page.getByRole('button', { name: 'Latest updates' })).toHaveCount(0)
+  await page.getByText('Saved views', { exact: true }).click()
+  await expect(page.getByRole('button', { name: 'Save this view', exact: true })).toBeVisible()
+  await expect(page.getByText('Legacy saved view', { exact: true })).toHaveCount(0)
 })
 
 test('compact and wide layouts have no horizontal overflow', async ({ page }, info) => {

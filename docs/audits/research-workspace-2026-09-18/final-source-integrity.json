@@ -1,0 +1,49 @@
+{
+  "baseline_canonical_records": 16874,
+  "final_canonical_records": 16735,
+  "baseline_all_retained_ids": 81186,
+  "final_all_retained_ids": 81186,
+  "missing_all_retained_ids": [],
+  "missing_retained_ids": [],
+  "protected_source_changes": [
+    {
+      "id": "sig_16b64acc4b8a3a21e8ab",
+      "changes": {
+        "raw_source_hash": {
+          "before": "748c5cd8152f5bd155ed3c91155dba5270b91906fe979670c4d0eb0d813afc0c",
+          "after": "f23a99c374d366e7626fddf0b9b1d88b597c23506624b61e4894b10ea5be7fb5"
+        },
+        "primary_source_url": {
+          "before": "https://ted.europa.eu/en/notice/-/detail/623090-2026",
+          "after": "https://ted.europa.eu/en/notice/-/detail/624846-2026"
+        }
+      }
+    },
+    {
+      "id": "sig_eaf79cba6ee5f201b58d",
+      "changes": {
+        "published_at": {
+          "before": "2026-09-03T22:00:00+00:00",
+          "after": "2026-08-18T22:00:00+00:00"
+        }
+      }
+    }
+  ],
+  "lost_source_members": [],
+  "enrichment_changes": {
+    "content_hash": 12428,
+    "material_change_hash": 12428,
+    "provenance": 23,
+    "buyer_name": 11,
+    "deadline_at": 11,
+    "amount": 7,
+    "deadlines": 5,
+    "winners": 5,
+    "response_deadlines": 2
+  },
+  "canonical_hash_errors": [],
+  "amount_scalar_mismatches": [],
+  "canonical_bytes": 90964852,
+  "source_metadata_changes_exactly_match_reviewed_evidence": true,
+  "source_metadata_adjudication": "final-source-delta-adjudication.json"
+}

@@ -26,6 +26,11 @@ NEGATED_BEFORE = re.compile(r"\b(?:no|without|excluding|exclude|excludes|not inc
                             r"sans|ohne|kein|keine|keinen|sin|senza|χωρις|δεν περιλαμβανει)\s+(?:\w+\s+){0,4}$")
 NEGATED_AFTER = re.compile(r"^\s*(?:\w+\s+){0,3}(?:is |are |will be )?(?:not included|not required|excluded|out of scope|"
                            r"δεν περιλαμβανεται|δεν περιλαμβανονται)")
+FRENCH_NEGATED_BEFORE = re.compile(
+    r"\b(?:n (?:a|ont) pas pour objet|ne (?:vise|visent)(?: donc)? pas|"
+    r"ne (?:comprend|comprennent) pas|n (?:inclut|incluent) pas)\s+(?P<object>(?:\w+\s+){0,8})$")
+FRENCH_NEGATED_AFTER = re.compile(r"^\s*(?:n est|ne sont) pas\s+(?:inclus\w*|compris\w*|requis\w*|prevu\w*)\b")
+CONTRAST = re.compile(r"\b(?:mais|cependant|toutefois|en revanche|but|however)\b", re.IGNORECASE)
 AMBIGUOUS_NEEDS = {"account management", "client management", "contact management", "application processing",
                    "licensing applications", "casework", "case working", "case handling", "case processing",
                    "case management", "claims management", "patient engagement", "customer journeys",
@@ -162,14 +167,47 @@ def acronym_case_evidence(quote, phrase):
     return False
 
 
-def affirmed(text, phrase):
-    """Ignore only explicit local exclusions, not a whole document containing 'not'."""
+def affirmative_context(before, after):
+    """Local object negation stops at a contrast, never at document scope."""
+    before = CONTRAST.split(before)[-1][-150:]
+    after = CONTRAST.split(after)[0][:150]
+    french = FRENCH_NEGATED_BEFORE.search(before)
+    if (french and not re.match(r"(?:seulement|uniquement)\b", french["object"])
+            and not re.search(r"\b(?:exclure|exclusion|supprimer|suppression|interdire)\b", french["object"])):
+        return False
+    return not (NEGATED_BEFORE.search(before[-85:]) or NEGATED_AFTER.search(after[:85])
+                or FRENCH_NEGATED_AFTER.search(after))
+
+
+def source_occurrences(quote, phrase):
+    """Map normalised phrases to exact source spans and their local clauses."""
+    tokens = list(re.finditer(r"\w+", quote))
+    words = [search_text(token.group()).strip() for token in tokens]
+    target = search_text(phrase).split()
+    links = [match.span() for match in re.finditer(r"https?://\S+|\b(?:[a-z0-9-]+\.)+[a-z]{2,24}/[^\s<>]*", quote, re.IGNORECASE)]
+    for i in range(len(words) - len(target) + 1):
+        if words[i:i + len(target)] != target:
+            continue
+        start, end = tokens[i].start(), tokens[i + len(target) - 1].end()
+        if any(start < link_end and end > link_start for link_start, link_end in links):
+            continue
+        # Keep punctuation/contrast boundaries before normalisation removes them.
+        left = list(re.finditer(r"[.!?;\n]|\b(?:mais|cependant|toutefois|en revanche|but|however)\b", quote[:start], re.IGNORECASE))
+        right = re.search(r"[.!?;\n]|\b(?:mais|cependant|toutefois|en revanche|but|however)\b", quote[end:], re.IGNORECASE)
+        clause_start = left[-1].end() if left else 0
+        clause_end = end + (right.end() if len(right.group()) == 1 else right.start()) if right else len(quote)
+        before, after = search_text(quote[clause_start:start]), search_text(quote[end:clause_end])
+        if affirmative_context(before, after):
+            yield start, end, clause_start, clause_end
+
+
+def affirmed(text, phrase, quote=None):
+    """Accept an affirmative occurrence, including after a locally negated one."""
+    if quote is not None:
+        return next(source_occurrences(quote, phrase), None) is not None
     pattern = re.compile(r"(?<!\w)" + re.escape(phrase) + r"(?!\w)")
-    for hit in pattern.finditer(text):
-        before, after = text[max(0, hit.start() - 85):hit.start()], text[hit.end():hit.end() + 85]
-        if not NEGATED_BEFORE.search(before) and not NEGATED_AFTER.search(after):
-            return True
-    return False
+    return any(affirmative_context(text[max(0, hit.start() - 150):hit.start()],
+                                   text[hit.end():hit.end() + 150]) for hit in pattern.finditer(text))
 
 
 def has_software(text):
@@ -224,12 +262,8 @@ def business_application_development(text):
 
 
 def evidence_excerpt(quote, phrase):
-    tokens = list(re.finditer(r"\w+", quote))
-    words = [search_text(token.group()).strip() for token in tokens]
-    target = phrase.split()
-    for i in range(len(words) - len(target) + 1):
-        if words[i:i + len(target)] == target:
-            return quote[max(0, tokens[i].start() - 100):tokens[i + len(target) - 1].end() + 100]
+    for start, end, clause_start, clause_end in source_occurrences(quote, phrase):
+        return quote[max(clause_start, start - 100):min(clause_end, end + 100)].strip()
     return quote
 
 
@@ -259,7 +293,10 @@ def capability_hits(cap, segments, software_cpv=False, funding=False):
                     continue
                 if phrase == "platform support" and "platform support hours" in text:
                     continue
-                if not affirmed(text, phrase) or operational_software_use(text, phrase):
+                # The cleaned search text remains authoritative: a source URL or
+                # stripped bidding instruction cannot rescue a negated scope.
+                if (not affirmed(text, phrase) or not affirmed(text, phrase, segment["quote"])
+                        or operational_software_use(text, phrase)):
                     continue
                 if cap["id"] in ("integration", "external_integration") and physical_integration(text, phrase, title_context):
                     continue

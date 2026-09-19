@@ -105,8 +105,12 @@ sources:
     docs: https://docs.ted.europa.eu/ODS/latest/reuse/search-api.html
     limit: 200
     country: EU
-    countries: [IT, SE, FI, DK, 'NO', IS, DE, ES, GR]
+    countries: [IT, SE, FI, DK, 'NO', IS, DE, ES, GR, BE, NL, FR, CH, AT, IE, PT, PL, EE, LV, LT, CZ, RO, BG, HR, HU, LU, CY, MT, SI, SK]
     coverage: European public notices published on TED; national-only notices are not included.
+    documents:
+      hosts: [ted.europa.eu]
+      paths: ['/en/notice/\d+-\d{4}/pdf']
+      reuse_basis: 'Official TED notices may be reused unless otherwise noted: https://ted.europa.eu/en/legal-notice'
   - id: usaspending
     name: USAspending
     enabled: false
@@ -203,3 +207,203 @@ sources:
   - {id: ebrd, name: EBRD, enabled: false, collector: external_adapter, website: 'https://www.ebrd.com', access: official procurement notices}
   - {id: sam, name: SAM.gov, enabled: false, collector: external_adapter, website: 'https://sam.gov', access: API key and official opportunities API}
   - {id: ungm, name: UNGM, enabled: false, collector: external_adapter, website: 'https://www.ungm.org', access: authorised public API or supplier alerts}
+
+  # Disabled national-source research registry; these entries add no collected coverage.
+  # See docs/free-apis-market-expansion-2026-09-18.md for primary sources and open checks.
+  # Access notes are implementation metadata and are not public SourceHealth coverage text.
+  - id: boamp
+    name: BOAMP (France)
+    enabled: false
+    collector: external_adapter
+    country: FR
+    website: https://www.boamp.fr
+    docs: https://www.data.gouv.fr/dataservices/api-bulletin-officiel-des-annonces-des-marches-publics-boamp
+    access_notes: >-
+      Official free notice search and exports under Licence Ouverte 2.0 plus API conditions.
+      Confirm supported Explore version, permitted bulk route, bounded pagination and lot-aware lifecycle before activation.
+  - id: boamp_dila_xml
+    name: BOAMP XML flow (DILA)
+    enabled: false
+    collector: external_adapter
+    country: FR
+    website: https://echanges.dila.gouv.fr/OPENDATA/BOAMP
+    docs: https://www.data.gouv.fr/dataservices/api-bulletin-officiel-des-annonces-des-marches-publics-boamp
+    access_notes: >-
+      PR8 identified dated XML notice files as an alternative BOAMP format.
+      Confirm flow-specific documentation, licence and schemas; avoid collecting the same BOAMP notices twice.
+  - id: decp_aife
+    name: DECP contract data (AIFE)
+    enabled: false
+    collector: external_adapter
+    country: FR
+    website: https://www.data.gouv.fr/datasets/api-decp
+    docs: https://www.data.gouv.fr/datasets/api-decp
+    access_notes: >-
+      Official contract and concession resources under Licence Ouverte 2.0.
+      Candidate buyer and award history; contract publication does not establish an open submission window.
+  - id: place_fr
+    name: PLACE (France)
+    enabled: false
+    collector: external_adapter
+    country: FR
+    website: https://www.marches-publics.gouv.fr
+    access_notes: >-
+      Candidate national consultations. PR8 reported reproduction restrictions and limited historical queries.
+      Current interface authorisation, reuse for descriptions and translations, and lifecycle coverage remain unverified.
+  - id: atexo_regional
+    name: French regional procurement platforms
+    enabled: false
+    collector: external_adapter
+    country: FR
+    website: https://marches.maximilien.fr
+    access_notes: >-
+      PR8 identified Maximilien, Megalis Bretagne and Demat-AMPA as related platform candidates.
+      Review each operator's supported interface and terms independently; shared software implies neither permission nor completeness.
+  - id: tenderned
+    name: TenderNed (Netherlands)
+    enabled: false
+    collector: external_adapter
+    country: NL
+    website: https://www.tenderned.nl
+    docs: https://data.overheid.nl/dataset/aankondigingen-van-overheidsopdrachten---tenderned
+    access_notes: >-
+      Official catalogue lists CC0 notice data, RSS and a public TNS JSON webservice that can change without notice.
+      The separate XML API requires credentials and currently waitlists requests. Verify paging, filters and update semantics.
+  - id: bda_be
+    name: Bulletin des Adjudications (Belgium)
+    enabled: false
+    collector: external_adapter
+    country: BE
+    website: https://www.publicprocurement.be
+    docs: https://bosa.belgium.be/en/conditions-use-and-availability-services-e-procurement-platform
+    access_notes: >-
+      BOSA describes free public notice access and reserves rights over site material.
+      Confirm a supported bulk access route and republication permission. Do not obtain or use credentials exposed in client code.
+  - id: pmp_lu
+    name: Portail des marches publics (Luxembourg)
+    enabled: false
+    collector: external_adapter
+    country: LU
+    website: https://pmp.b2g.etat.lu
+    docs: https://marches.public.lu/fr/support/aspects-legaux.html
+    access_notes: >-
+      Candidate national notice supplement. Published portal terms restrict reproduction and ordinary use to private information.
+      Establish the exact data-interface terms and republication permission; reproduce lifecycle and sentinel-date checks.
+  - id: usp_at
+    name: USP Ausschreibungssuche (Austria)
+    enabled: false
+    collector: external_adapter
+    country: AT
+    website: https://ausschreibungen.usp.gv.at
+    docs: https://www.usp.gv.at/hilfe-und-support/ausschreibungssuche/eforms.html
+    access_notes: >-
+      Candidate national index. USP documents the legacy Kerndaten to eForms change on 2026-10-01.
+      Confirm the supported retrieval interface, pagination and reuse scope; the schema change does not imply complete TED coverage.
+  - id: kerndaten_at
+    name: Austrian Kerndaten distributions
+    enabled: false
+    collector: external_adapter
+    country: AT
+    website: https://www.data.gv.at
+    docs: https://www.data.gv.at/netiquette/
+    access_notes: >-
+      Statutory notice distributions include CC BY 4.0 examples; confirm each distribution's exact licence and access conditions.
+      PR8 reported ANKOE ai-input restrictions. Quote-only output does not authorise inference; an alternative host needs its own verified rights.
+  - id: simap_ch
+    name: simap.ch (Switzerland)
+    enabled: false
+    collector: external_adapter
+    country: CH
+    website: https://www.simap.ch
+    docs: https://www.simap.ch/en/about/legal
+    access_notes: >-
+      API terms currently permit free unauthenticated publication search and commercial redistribution subject to unchanged content,
+      prescribed attribution, publication-day 08:00 Europe/Zurich release, corrections and downstream obligations.
+      Review separate translations and full terms before activation. publicationTed is a boolean, not a matching TED identifier.
+  - id: amtsblattportal
+    name: Amtsblattportal / SHAB (Switzerland)
+    enabled: false
+    collector: external_adapter
+    country: CH
+    website: https://www.amtsblattportal.ch
+    access_notes: >-
+      Candidate additional cantonal procurement notices. PR8 reported public JSON and XML access with free-text deadlines.
+      Interface stability, publication rubrics, automation permission and reuse licence remain to be verified.
+  - id: udbud_dk
+    name: udbud.dk (Denmark)
+    enabled: false
+    collector: external_adapter
+    country: DK
+    website: https://udbud.dk
+    docs: https://udbud.dk/hjaelp/hjaelpSystemudbydere
+    access_notes: >-
+      Official guidance permits attributed reproduction and third-party notice monitoring, and describes API-access registration.
+      Confirm the appropriate read API, authentication, limits and update cursor; do not assume all endpoints are keyless.
+  - id: kimdis_gr
+    name: KIMDIS open data (Greece)
+    enabled: false
+    collector: external_adapter
+    country: GR
+    website: https://cerpp.eprocurement.gov.gr
+    docs: https://cerpp.eprocurement.gov.gr/khmdhs-opendata/help
+    access_notes: >-
+      Official help describes free Open Data API access under CC BY 4.0.
+      Separate competitions from other registered decisions and verify deadlines, corrections, paging and request limits.
+  - id: doffin_no
+    name: Doffin (Norway)
+    enabled: false
+    collector: external_adapter
+    country: 'NO'
+    website: https://www.doffin.no
+    access_notes: >-
+      Candidate national notice supplement. PR8 reported a public search interface with CPV facets.
+      Supported bulk retrieval and reuse terms remain unverified; sentToTed cannot substitute for an explicit TED identifier.
+  - id: anac_avvisi_it
+    name: ANAC national notices (Italy)
+    enabled: false
+    collector: external_adapter
+    country: IT
+    website: https://pubblicitalegale.anticorruzione.it
+    docs: https://www.anticorruzione.it/-/digitalizzazione-contratti-pubblici
+    access_notes: >-
+      ANAC documents national legal publication through BDNCP.
+      Review a supported public retrieval interface and reuse scope separately from authenticated buyer submission services.
+  - id: hilma_fi
+    name: Hilma (Finland)
+    enabled: false
+    collector: external_adapter
+    country: FI
+    website: https://www.hankintailmoitukset.fi
+    docs: https://www.hankintailmoitukset.fi/en/info
+    access_notes: >-
+      Candidate national notices and procurement plans. PR8 reported a free-key API and restrictions on substantive modification and direct marketing.
+      Current contract and permitted description republication, separate translation and inference require source-specific review.
+  - id: sweden_annonsdatabas
+    name: Swedish registered notice databases
+    enabled: false
+    collector: external_adapter
+    country: SE
+    website: https://www.konkurrensverket.se
+    docs: https://www.konkurrensverket.se/informationsmaterial/nyhetsarkiv/2026/konkurrensverket-avslutar-arende-om-krav-pa-funktioner-i-annonsdatabas/
+    access_notes: >-
+      The regulator confirmed free public search and full published award notices following Mercell's changes, with basic notice information accessible without an account.
+      Assess each operator's bulk interface and reuse permission; commercial operation does not imply paid-only public access.
+  - id: etenders_ie
+    name: eTenders (Ireland)
+    enabled: false
+    collector: external_adapter
+    country: IE
+    website: https://www.etenders.gov.ie
+    access_notes: >-
+      Candidate national notice supplement. PR8 reported a CSV export; supported export access and reuse remain unverified.
+      Confirm deadlines, updates, cancellations and overlap before activation; this is not an assertion of the only available route.
+  - id: dados_gov_pt
+    name: IMPIC announcements (Portugal)
+    enabled: false
+    collector: external_adapter
+    country: PT
+    website: https://dados.gov.pt
+    docs: https://dados.gov.pt/pt/datasets/contratos-publicos-portal-base-impic-anuncios-de-2012-a-2026/
+    access_notes: >-
+      Official IMPIC announcements catalogue labels this dataset public domain.
+      Verify resource freshness, notice lifecycle and deadline fields before bounded downloads; announcements differ from awarded-contract registers.

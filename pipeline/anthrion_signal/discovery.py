@@ -5,7 +5,7 @@ from pathlib import Path
 from .capability_matching import (affirmed, business_application_development, capability_hits, evidence_excerpt,
                                   has_software, unrelated_supply)
 from .procurement_scope import addressable_delivery, generic_digital_scope, scope_exclusion
-from .notice_dates import digital_deadline, digital_deadline_instant, digital_window_uncertain
+from .notice_dates import digital_deadline, digital_deadline_instant, digital_window_uncertain, response_deadline_instant
 from .utils import digest, parse_date, unique
 from .vocabulary import phrase_hits, search_text
 
@@ -73,9 +73,9 @@ def contains(text, phrase):
 
 def lifecycle(signal, now):
     status = signal.status.casefold().replace("-", "_")
-    deadlines = [parse_date(value) for value in signal.response_deadlines]
+    deadlines = [response_deadline_instant(value) for value in signal.response_deadlines]
     deadlines = [value for value in deadlines if value]
-    deadline = max(deadlines) if deadlines else parse_date(signal.deadline_at)
+    deadline = max(deadlines) if deadlines else response_deadline_instant(signal.deadline_at)
     if signal.source == "digital_outcomes":
         # An initial application deadline takes precedence over a later,
         # invitation-only stage. Re-evaluate retained detail after parser releases.

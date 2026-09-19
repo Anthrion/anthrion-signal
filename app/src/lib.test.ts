@@ -12,6 +12,7 @@ import {
   amount,
   currencyOptions,
   matchesSearch,
+  explainSearch,
   lifecycleState,
   isAwardIntelligence,
   isAvailableOpportunity,
@@ -57,6 +58,110 @@ const signal = {
   first_seen_at: '2026-09-08T14:00:00Z',
   last_material_update: '2026-09-08T14:00:00Z',
 } as unknown as Signal
+describe('explicit research search', () => {
+  const catalog = [
+    {
+      id: 'crm',
+      label: 'CRM',
+      family: 'platform',
+      search_terms: ['Kundenmanagement', 'customer platform', 'asiakastietojärjestelmä'],
+    },
+    { id: 'ai', label: 'AI', family: 'ai', search_terms: ['künstliche Intelligenz'] },
+  ]
+  const row = {
+    ...signal,
+    title: 'Civic services',
+    description: 'A constituent relationship system with an assistant.',
+    matched_capabilities: ['crm'],
+    discovery_families: ['crm'],
+  }
+  test('native aliases search capability evidence but exact mode never infers a literal occurrence', () => {
+    expect(matchesSearch(row, 'Kundenmanagement', catalog)).toBe(true)
+    expect(matchesSearch(row, 'Kundenmanagement', catalog, undefined, { mode: 'exact' })).toBe(
+      false,
+    )
+    expect(explainSearch(row, 'customer platform', catalog)).toEqual({
+      matched: true,
+      basis: 'capability',
+      capabilities: ['crm'],
+    })
+    expect(matchesSearch(row, 'asiakastietojärjestelmä', catalog)).toBe(true)
+  })
+  test('all, any, quoted phrases and phrase intent have distinct deterministic results', () => {
+    expect(
+      matchesSearch(row, 'civic quantum', catalog, undefined, { mode: 'exact', match: 'all' }),
+    ).toBe(false)
+    expect(
+      matchesSearch(row, 'civic quantum', catalog, undefined, { mode: 'exact', match: 'any' }),
+    ).toBe(true)
+    expect(
+      matchesSearch(row, 'constituent system', catalog, undefined, {
+        mode: 'exact',
+        match: 'phrase',
+      }),
+    ).toBe(false)
+    expect(
+      matchesSearch(row, '"constituent relationship" assistant', catalog, undefined, {
+        mode: 'exact',
+        match: 'all',
+      }),
+    ).toBe(true)
+    expect(matchesSearch(row, 'crm ai', catalog, undefined, { match: 'all' })).toBe(false)
+    expect(matchesSearch(row, 'crm ai', catalog, undefined, { match: 'any' })).toBe(true)
+  })
+  test('a lazy summary retains full original and translated search coverage', () => {
+    const summary = {
+      ...row,
+      description: '',
+      search_text: 'Développement du portail citoyen\nCitizen portal implementation',
+      matched_capabilities: [],
+    }
+    expect(matchesSearch(summary, 'développement', [], undefined, { mode: 'exact' })).toBe(true)
+    expect(
+      matchesSearch(summary, 'citizen portal', [], undefined, { mode: 'exact', match: 'phrase' }),
+    ).toBe(true)
+    expect(matchesSearch(summary, 'AI', [], undefined, { mode: 'exact' })).toBe(false)
+    expect(
+      matchesSearch({ ...summary, external_ids: ['AB1234'] }, 'AB123', [], undefined, {
+        mode: 'exact',
+      }),
+    ).toBe(false)
+    expect(
+      matchesSearch({ ...summary, external_ids: ['AB123'] }, 'AB123', [], undefined, {
+        mode: 'exact',
+      }),
+    ).toBe(true)
+  })
+  test('award ranges use actual award dates, not update dates', () => {
+    const award = {
+      ...signal,
+      signal_type: 'AWARD',
+      status: 'awarded',
+      award_date: '2025-01-10',
+      updated_at: '2026-09-09',
+      incumbent_supplier: 'Acme Ltd',
+    }
+    expect(
+      filterSignals([award], { ...defaults, view: 'awards', awardFrom: '2026-01-01' }, [], now),
+    ).toEqual([])
+    expect(
+      filterSignals(
+        [award],
+        { ...defaults, view: 'awards', supplier: 'acme', awardTo: '2025-12-31' },
+        [],
+        now,
+      ),
+    ).toEqual([award])
+    expect(
+      filterSignals(
+        [{ ...award, award_date: null }],
+        { ...defaults, view: 'awards', awardFrom: '2020-01-01' },
+        [],
+        now,
+      ),
+    ).toEqual([])
+  })
+})
 describe('team workflows', () => {
   test('Google Calendar drafts preserve the deadline instant and selected record, without inviting anyone', () => {
     const record = { ...signal, deadline_at: '2026-09-20T12:00:00+01:00' }

@@ -17,6 +17,7 @@ dependencies = [
   "tzdata==2026.3",
   "python-dotenv==1.2.2",
   "lingua-language-detector==2.2.0",
+  "pypdf==6.19.0",
 ]
 
 [project.optional-dependencies]

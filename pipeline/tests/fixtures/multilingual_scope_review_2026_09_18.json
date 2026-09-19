@@ -1,0 +1,1771 @@
+[
+  {
+    "expected": "exclude",
+    "rationale": "The purchased work is survey fieldwork, sampling and coding/scoring open answers; it does not commission a software system.",
+    "reviewer": "Independent Codex source-scope review; adjudicated policy controls, requires human calibration",
+    "used_for_policy": true,
+    "language": "de",
+    "signal": {
+      "id": "sig_9798f383940f257cd7ba",
+      "source": "ted",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://ted.europa.eu/en/notice/-/detail/617724-2025",
+        "https://ted.europa.eu/en/notice/-/detail/621738-2025"
+      ],
+      "primary_source_url": "https://ted.europa.eu/en/notice/-/detail/621738-2025",
+      "title": "Organisation und Durchführung der Feldarbeiten in Deutschland inkl. Stichprobenziehung sowie Kodierung und Scoring offener Antworten für die ICCS 2027 (International Civic and Citizenship Education Study).",
+      "description": "Die ICCS ist eine international vergleichende repräsentative Studie zur politischen Bildung und Demokratieerziehung im Schulbereich. Der zu vergebende Auftrag bezieht sich auf die Befragung in Deutschland und beinhaltet die Organisation und Durchführung der Feldarbeiten, Durchführung der Stichprobenziehung sowie Kodierung und Scoring offener Antworten. Die Erhebung von ICCS 2027 in Deutschland ist für das Frühjahr 2027 geplant.",
+      "buyer_name": "Universität Münster",
+      "signal_type": "PIPELINE",
+      "procurement_stage": "planning",
+      "status": "active",
+      "published_at": "2025-09-21T22:00:00+00:00",
+      "updated_at": "2025-09-22T22:00:00+00:00",
+      "cpv_codes": [
+        "79311200",
+        "79311200"
+      ],
+      "countries": [
+        "DE"
+      ],
+      "ocid": null,
+      "procedure_id": null,
+      "first_seen_at": "2026-09-12T11:44:36+00:00",
+      "last_seen_at": "2026-09-12T11:44:36+00:00",
+      "last_material_update": "2025-09-21T22:00:00+00:00",
+      "raw_source_hash": "cb635109083ff59d361ad763bc4401c8d8d3de6fc5d953d8a424524a0fcbf300",
+      "content_hash": "c917ba1e1d05688cb1f714168b1a4ad95cc7b842522a9a92240ab3515da56db3"
+    }
+  },
+  {
+    "expected": "exclude",
+    "rationale": "All described lots deliver opinion surveys, respondent panels, interviews or moderated groups. Online questionnaires and panel records are tools used to perform the research, with no software implementation lot.",
+    "reviewer": "Independent Codex source-scope review; adjudicated policy controls, requires human calibration",
+    "used_for_policy": true,
+    "language": "es",
+    "signal": {
+      "id": "sig_de888fffe3fc8f3a317f",
+      "source": "ted",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://ted.europa.eu/en/notice/-/detail/726469-2025"
+      ],
+      "primary_source_url": "https://ted.europa.eu/en/notice/-/detail/726469-2025",
+      "title": "Acuerdo marco de servicios para la realización de estudios de opinión de interés de la Generalitat de Cataluña",
+      "description": "El Acuerdo marco tiene por objeto la prestación de los servicios necesarios para la realización de estudios de opinión mediante encuestas o reuniones de grupo. Este lote incluye las prestaciones de recogida de datos de las encuestas en las que la opinión de las personas entrevistadas la recoge personal encuestador cara a cara, mediante un cuestionario estructurado y de una muestra representativa del total de la población que se quiere estudiar.; Este lote incluye las prestaciones de recogida de datos de las encuestas en las que la opinión de las personas entrevistadas la recoge personal encuestador por teléfono mediante un cuestionario estructurado y de una muestra representativa del total de la población que se quiere estudiar.; Este lote incluye las prestaciones de recogida de datos de las encuestas en las que la opinión de las personas entrevistadas se recoge por Internet mediante un cuestionario estructurado y de una muestra representativa del total de la población que se quiere estudiar. En este lote el contratante es quien aporta o facilita el marco muestral con los datos de contacto del universo a entrevistar.; Este lote incluye las prestaciones de recogida de datos de las encuestas en las que la opinión de las personas entrevistadas se recoge por Internet a partir del contacto existente en un panel mediante un cuestionario estructurado y de una muestra representativa del total de la población que se quiere estudiar. Se entiende por panel una base de datos de potenciales personas entrevistadas que han sido precontactadas e incentivadas para responder encuestas de forma habitual.; Este lote incluye las prestaciones de recogida de datos de los estudios en los que la opinión de las personas que participan se obtiene en reuniones de más de tres participantes dirigidas por una persona moderadora. La selección de las personas participantes no debe ser necesariamente representativa del conjunto de la población y no se aplican técnicas estadísticas en la elaboración de la muestra. Tampoco hay un cuestionario estructurado sino que quien modera aplica un guión abierto de discusión.; Este lote incluye las prestaciones de gestión, mantenimiento y refresco del Panel Ciudadano así como las de soporte para la realización de las encuestas autoadministradas del Centro de Estudios de Opinión.",
+      "buyer_name": "Centro de Estudios de Opinión",
+      "signal_type": "FRAMEWORK",
+      "procurement_stage": "tender",
+      "status": "active",
+      "published_at": "2025-11-02T23:00:00+00:00",
+      "updated_at": "2025-11-02T23:00:00+00:00",
+      "cpv_codes": [
+        "79311000",
+        "79311000",
+        "79311000",
+        "79311000",
+        "79311000",
+        "79310000",
+        "79311000",
+        "79311000",
+        "79311000",
+        "79311000",
+        "79311000",
+        "79310000",
+        "79311000"
+      ],
+      "countries": [
+        "ES"
+      ],
+      "ocid": null,
+      "procedure_id": null,
+      "first_seen_at": "2026-09-13T06:47:49+00:00",
+      "last_seen_at": "2026-09-13T12:20:37+00:00",
+      "last_material_update": "2025-11-02T23:00:00+00:00",
+      "raw_source_hash": "57f7aee868ea61d1facf6899648f939319b4a2cc87553e6545049efec73805d4",
+      "content_hash": "2a11078e56f855da5028b9d677639971e2ef9c0f6a6a07c71d59cdc3de757d24"
+    }
+  },
+  {
+    "expected": "exclude",
+    "rationale": "Engineering, architecture and special safety inspections of motorway bridges and viaducts are physical infrastructure services.",
+    "reviewer": "Independent Codex source-scope review; adjudicated policy controls, requires human calibration",
+    "used_for_policy": true,
+    "language": "it",
+    "signal": {
+      "id": "sig_ec4d87e57116456825b9",
+      "source": "ted",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://ted.europa.eu/en/notice/-/detail/750634-2025",
+        "https://ted.europa.eu/en/notice/-/detail/859862-2025"
+      ],
+      "primary_source_url": "https://ted.europa.eu/en/notice/-/detail/859862-2025",
+      "title": "ACCORDO QUADRO DI SERVIZI DI INGEGNERIA E ARCHITETTURA E DI ISPEZIONI SPECIALI PER LA VALUTAZIONE DELLA SICUREZZA DI PONTI, VIADOTTI, CAVALCAVIA E SOTTOVIA DELL'AUTOSTRADA A/20 E DELL'AUTOSTRADA A/18 CUP B46G22015980005 LOTTO 1 AUTOSTRADA A20 ME-PA LOTTO 2 AUTOSTRADA A18 ME-CT E SR-GELA",
+      "description": "ACCORDO QUADRO DI SERVIZI DI INGEGNERIA E ARCHITETTURA E DI ISPEZIONI SPECIALI PER LA VALUTAZIONE DELLA SICUREZZA DI PONTI, VIADOTTI, CAVALCAVIA E SOTTOVIA DELL'AUTOSTRADA A/20 E DELL'AUTOSTRADA A/18 CUP B46G22015980005 LOTTO 1 AUTOSTRADA A20 ME-PA LOTTO 2 AUTOSTRADA A18 ME-CT E SR-GELA AUTOSTRADA A20 ME-PA; AUTOSTRADA A18 ME-CT E SR-GELA",
+      "buyer_name": "Consorzio per le Autostrade Siciliane",
+      "signal_type": "FRAMEWORK",
+      "procurement_stage": "tender",
+      "status": "active",
+      "published_at": "2025-11-11T23:00:00+00:00",
+      "updated_at": "2025-12-23T23:00:00+00:00",
+      "cpv_codes": [
+        "71300000",
+        "79311200",
+        "79311200",
+        "71300000",
+        "71300000",
+        "79311200",
+        "79311200"
+      ],
+      "countries": [
+        "IT"
+      ],
+      "ocid": null,
+      "procedure_id": null,
+      "first_seen_at": "2026-09-13T14:07:52+00:00",
+      "last_seen_at": "2026-09-15T12:14:50+00:00",
+      "last_material_update": "2026-09-15T12:14:50+00:00",
+      "raw_source_hash": "433d79bcbafd4f0eaf1a8ed9690e434b55e27a26ead88ff94d3d10af36d01d36",
+      "content_hash": "3c6a6a180ffb2b6ea20e69b524c2bc81dba16fde98b94b53cfd5e08e704e063d"
+    }
+  },
+  {
+    "expected": "exclude",
+    "rationale": "The full description, despite the opaque title, buys HR consultancy to design and implement a recruitment and onboarding programme, with no stated software deliverable.",
+    "reviewer": "Independent Codex source-scope review; adjudicated policy controls, requires human calibration",
+    "used_for_policy": true,
+    "language": "el",
+    "signal": {
+      "id": "sig_0eba2bff8f3bec8978d4",
+      "source": "ted",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://ted.europa.eu/en/notice/-/detail/628481-2026"
+      ],
+      "primary_source_url": "https://ted.europa.eu/en/notice/-/detail/628481-2026",
+      "title": "Δ8481",
+      "description": "ΠΑΡΟΧΗ ΣΥΜΒΟΥΛΕΥΤΙΚΩΝ ΥΠΗΡΕΣΙΩΝ ΣΤΗ ΓΕΝΙΚΗ ΔΙΕΥΘΥΝΣΗ ΑΝΘΡΩΠΙΝΟΥ ΔΥΝΑΜΙΚΟΥ ΓΙΑ ΤΟΝ ΣΧΕΔΙΑΣΜΟ ΚΑΙ ΤΗΝ ΥΛΟΠΟΙΗΣΗ ΟΛΟΚΛΗΡΩΜΕΝΟΥ ΠΡΟΓΡΑΜΜΑΤΟΣ ΠΡΟΣΛΗΨΕΩΝ ΚΑΙ ΕΝΤΑΞΗΣ ΑΝΘΡΩΠΙΝΟΥ ΔΥΝΑΜΙΚΟΥ",
+      "buyer_name": "ΕΤΑΙΡΙΑ ΥΔΡΕΥΣΕΩΣ ΚΑΙ ΑΠΟΧΕΤΕΥΣΕΩΣ ΠΡΩΤΕΥΟΥΣΗΣ Α.Ε. (Ε.ΥΔ.Α.Π. Α.Ε.)",
+      "signal_type": "LIVE_TENDER",
+      "procurement_stage": "tender",
+      "status": "active",
+      "published_at": "2026-09-10T22:00:00+00:00",
+      "updated_at": "2026-09-10T22:00:00+00:00",
+      "cpv_codes": [
+        "79414000",
+        "79414000"
+      ],
+      "countries": [
+        "GR"
+      ],
+      "ocid": null,
+      "procedure_id": "proc_d0f111a84a88ba0efc4f",
+      "first_seen_at": "2026-09-12T09:22:37+00:00",
+      "last_seen_at": "2026-09-18T22:10:25.694845+00:00",
+      "last_material_update": "2026-09-18T22:10:25.694845+00:00",
+      "raw_source_hash": "46e8bdf83587a6dc01504d1bb6d806eb4a9cfe0d1c30650d1068cfab60101586",
+      "content_hash": "c34e468991d93b559e1feff73a05b238d28ec42ba62f7fde6fb0dcd1bba97e1a"
+    }
+  },
+  {
+    "expected": "exclude",
+    "rationale": "Technical assistance identifies, prepares, manages and monitors projects and international grant calls; no application or information system is commissioned.",
+    "reviewer": "Independent Codex source-scope review; adjudicated policy controls, requires human calibration",
+    "used_for_policy": true,
+    "language": "es",
+    "signal": {
+      "id": "sig_4e93c073abf8f2376d22",
+      "source": "ted",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://ted.europa.eu/en/notice/-/detail/130398-2026"
+      ],
+      "primary_source_url": "https://ted.europa.eu/en/notice/-/detail/130398-2026",
+      "title": "Acuerdo marco para el servicio de asistencia técnica en la identificación, elaboración, gestión y seguimiento de iniciativas, proyectos y convocatorias de ayudas de ámbito internacional.",
+      "description": "Acuerdo marco para el servicio de asistencia técnica en la identificación, elaboración, gestión y seguimiento de iniciativas, proyectos y convocatorias de ayudas de ámbito internacional.",
+      "buyer_name": "Junta de Gobierno Local del Ayuntamiento de Fuenlabrada",
+      "signal_type": "FRAMEWORK",
+      "procurement_stage": "tender",
+      "status": "active",
+      "published_at": "2026-02-23T23:00:00+00:00",
+      "updated_at": "2026-02-23T23:00:00+00:00",
+      "cpv_codes": [
+        "79411000",
+        "79411000"
+      ],
+      "countries": [
+        "ES"
+      ],
+      "ocid": null,
+      "procedure_id": null,
+      "first_seen_at": "2026-09-17T20:35:45+00:00",
+      "last_seen_at": "2026-09-17T20:35:45+00:00",
+      "last_material_update": "2026-02-23T23:00:00+00:00",
+      "raw_source_hash": "afc8e5cc300a4be51620d1953206724901e511fbc832da886e95ded8192b42ac",
+      "content_hash": "92e2a7c27aee0b57bb6f56e0920fbb3ae5a15310085a2fbd47a40daefdbb22f6"
+    }
+  },
+  {
+    "expected": "exclude",
+    "rationale": "Traffic engineering studies, diagnosis, measurement and project support are the purchased services. The source states no separately delivered software.",
+    "reviewer": "Independent Codex source-scope review; adjudicated policy controls, requires human calibration",
+    "used_for_policy": true,
+    "language": "fr",
+    "signal": {
+      "id": "sig_0022e51e31802f9174d8",
+      "source": "ted",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://ted.europa.eu/en/notice/-/detail/592599-2026"
+      ],
+      "primary_source_url": "https://ted.europa.eu/en/notice/-/detail/592599-2026",
+      "title": "Prestations d'études, de pilotage et d'ingénierie de trafic",
+      "description": "Les prestations visent à assister l’acheteur dans le pilotage de projets spécifiques en matière de gestion dynamique du trafic, et à réaliser des prestations d’ingénierie du trafic (étude, diagnostic, mesure, proposition de solutions, mise en œuvre, évaluation).",
+      "buyer_name": "Direction interdépartementale des routes ouest - DIR Ouest",
+      "signal_type": "FRAMEWORK",
+      "procurement_stage": "tender",
+      "status": "active",
+      "published_at": "2026-08-26T22:00:00+00:00",
+      "updated_at": "2026-08-26T22:00:00+00:00",
+      "cpv_codes": [
+        "79311000",
+        "79311000"
+      ],
+      "countries": [
+        "FR"
+      ],
+      "ocid": null,
+      "procedure_id": "proc_6fdc18371a036052d5cd",
+      "first_seen_at": "2026-09-18T22:10:25.694845+00:00",
+      "last_seen_at": "2026-09-18T22:10:25.694845+00:00",
+      "last_material_update": "2026-08-26T22:00:00+00:00",
+      "raw_source_hash": "c5a02ee0f711af04f38efc7a76edba65f546d87ee9cd72bcc576cfe5846e3501",
+      "content_hash": "78f0cbbfe69c16819f47ecac182076b7bfddb25b2d425d0403c57ee2e9dce476"
+    }
+  },
+  {
+    "expected": "exclude",
+    "rationale": "The purchase is consultant/project archaeologists for flood-relief schemes and drainage maintenance. The ancillary IT consultancy CPV does not change that explicit physical-work scope.",
+    "reviewer": "Independent Codex source-scope review; adjudicated policy controls, requires human calibration",
+    "used_for_policy": true,
+    "language": "en",
+    "signal": {
+      "id": "sig_007020ae3cdf4214dfdf",
+      "source": "ted",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://ted.europa.eu/en/notice/-/detail/554696-2026"
+      ],
+      "primary_source_url": "https://ted.europa.eu/en/notice/-/detail/554696-2026",
+      "title": "Consultant and Project Archaeologist Services for the Office of Public Works Flood Risk Management Division",
+      "description": "The Office of Public Works (OPW), is procuring consultant and project archaeologist services for its Flood Risk Management division to serve the needs of flood relief schemes’ project teams and arterial drainage maintenance teams nationwide. Project archaeologist services may also be utilised by local authorities across Ireland working in partnership with the OPW, for the purposes of developing and delivering flood relief schemes in their local areas, where they are the relevant project’s Sponsoring Agency and Contracting Authority.",
+      "buyer_name": "Office of Public Works (OPW)",
+      "signal_type": "LIVE_TENDER",
+      "procurement_stage": "tender",
+      "status": "active",
+      "published_at": "2026-08-10T22:00:00+00:00",
+      "updated_at": "2026-08-10T22:00:00+00:00",
+      "cpv_codes": [
+        "71351914",
+        "71351720",
+        "71351811",
+        "45112450",
+        "71350000",
+        "71300000",
+        "71000000",
+        "79415200",
+        "79417000",
+        "79418000",
+        "90713000",
+        "71311300",
+        "71312000",
+        "72224000",
+        "71313000",
+        "71351200",
+        "71351210",
+        "71351220",
+        "71330000",
+        "71351914",
+        "71351720",
+        "71351811",
+        "45112450",
+        "71350000",
+        "71300000",
+        "71000000",
+        "79415200",
+        "79417000",
+        "79418000",
+        "90713000",
+        "71311300",
+        "71312000",
+        "72224000",
+        "71313000",
+        "71351200",
+        "71351210",
+        "71351220",
+        "71330000"
+      ],
+      "countries": [
+        "IE"
+      ],
+      "ocid": null,
+      "procedure_id": "proc_d954fe333a57a3938205",
+      "first_seen_at": "2026-09-18T22:10:25.694845+00:00",
+      "last_seen_at": "2026-09-18T22:10:25.694845+00:00",
+      "last_material_update": "2026-08-10T22:00:00+00:00",
+      "raw_source_hash": "42fca52a2d0ba5f9f28846948e1a37fd82a0d1c8e4dd897260f04cebdacf68c0",
+      "content_hash": "f8c297e559dc2c6a3d7b72ca9e2ea61b6bd6eee2060f9f2f7565e0a09bc46076"
+    }
+  },
+  {
+    "expected": "exclude",
+    "rationale": "The contract buys technical, scientific, administrative and logistical support for a policy initiative, stakeholder coordination and regulatory work, not a digital system.",
+    "reviewer": "Independent Codex source-scope review; adjudicated policy controls, requires human calibration",
+    "used_for_policy": true,
+    "language": "en",
+    "signal": {
+      "id": "sig_8d7d62b54b6f7dcce81d",
+      "source": "ted",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://ted.europa.eu/en/notice/-/detail/403102-2026"
+      ],
+      "primary_source_url": "https://ted.europa.eu/en/notice/-/detail/403102-2026",
+      "title": "Framework contract - Implementation of the European Radioisotope Valley Initiative (ERVI)",
+      "description": "As part of the SAMIRA action plan, the Commission carried out exploratory work on ERVI in 2022-2025. This work included a feasibility study, a stakeholder consultation, inputs from the ERVI Steering Group and Stakeholder Forum, and several expert workshops. This work has been formally supported by Member States and the civil society. Furthermore, the REPowerEU Roadmap adopted by the Commission last May directed ERVI to strengthen EU production capacities, improve the resilience of the supply chain and reduce dependency on foreign suppliers, in particular Russia, focusing on production of metallic HALEU and stable isotopes. In order to advance the implementation of ERVI, the Commission, Member States and stakeholders should pursue mid-term and long-term actions grouped in five pillars: • Investment in innovative production facilities • Research and innovation • Market monitoring and forecasting • Strategic international partnerships • Evolution of the regulatory framework. Furthermore, the Commission will build a coordination mechanism to ensure coherence between these pillars as they advance over time. The objective of this contract will be to ensure technical, scientific, administrative and logistical support to DG ENER for the implementation of the ERVI activities.",
+      "buyer_name": "European Commission, DG ENER - Energy",
+      "signal_type": "FRAMEWORK",
+      "procurement_stage": "tender",
+      "status": "active",
+      "published_at": "2026-06-11T22:00:00+00:00",
+      "updated_at": "2026-06-11T22:00:00+00:00",
+      "cpv_codes": [
+        "79417000",
+        "79417000"
+      ],
+      "countries": [
+        "LU"
+      ],
+      "ocid": null,
+      "procedure_id": "proc_79c85ac9ca9a6001b57d",
+      "first_seen_at": "2026-09-18T22:10:25.694845+00:00",
+      "last_seen_at": "2026-09-18T22:10:25.694845+00:00",
+      "last_material_update": "2026-06-11T22:00:00+00:00",
+      "raw_source_hash": "cb4fc320f63929c3ac2986eb3b69ccf69f88752343a894e9d1a6e828adbe5fc4",
+      "content_hash": "d4c6ec337137145c279e402afc761c73c84cbff5721b211ab416f1e2169a87c3"
+    }
+  },
+  {
+    "expected": "retain",
+    "rationale": "The buyer commissions a tax application, implementation, migration and maintenance, including a resident/business tax portal, workflows and reports.",
+    "reviewer": "Independent Codex source-scope review; adjudicated policy controls, requires human calibration",
+    "used_for_policy": true,
+    "language": "nl",
+    "signal": {
+      "id": "sig_03a7e6fa73f5d16a07ba",
+      "source": "ted",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://ted.europa.eu/en/notice/-/detail/434650-2026",
+        "https://ted.europa.eu/en/notice/-/detail/441533-2026",
+        "https://ted.europa.eu/en/notice/-/detail/635439-2026"
+      ],
+      "primary_source_url": "https://ted.europa.eu/en/notice/-/detail/635439-2026",
+      "title": "Belastingapplicatie",
+      "description": "De gemeente Smallingerland heeft behoefte aan een nieuw Belasting applicatie. En wenst met onderhavige opdracht een overeenkomst af te sluiten met 1 opdrachtnemer voor de implementatie en het onderhoud van de Belasting en applicatie. De gemeente Smallingerland heeft behoefte aan een nieuw Belasting applicatie. En wenst met onderhavige opdracht een overeenkomst af te sluiten met 1 opdrachtnemer voor de implementatie en het onderhoud van de Belasting en applicatie. De Opdracht bestaat uit 3 delen: 1) de belasting applicatie, 2) de implementatie van de belasting applicatie, inclusief de migratie, 3) het onderhoud van de applicatie na implementatie. De belasting applicatie ondersteund de medewerker bij het efficiënt uitvoeren van de taken en faciliteert het werk van de verschillende disciplines binnen het cluster belastingen en WOZ. Onderdeel van de belasting applicatie is tenminste de volgende standaard functionaliteit: • Heffen • Invordering • Kwijtschelding • Bezwaar en Beroep • WOZ • Belastingportaal voor inwoners en bedrijven • Het genereren van standaard- en maatwerkrapporten • Het genereren van standaard- en maatwerksjablonen De implementatie van de belasting applicatie is een ingrijpend proces voor de betrokken medewerkers. Bij de implementatie willen wij kunnen vertrouwen op ervaren projectleider(s) en consultants van de Opdrachtnemer. Een duidelijk plan van aanpak met duidelijke verantwoordelijkheden, taken en planning is daarom een belangrijk onderdeel van een succesvolle implementatie. Omvang van de opdracht is geraamd (en tevens plafondbedrag) op €2.100.000,- exclusief btw. Met de raming van de opdracht is eventuele afname van toekomstige modules rekening gehouden. De Overeenkomst expireert als de geraamde waarde wordt bereikt.",
+      "buyer_name": "Gemeente Smallingerland",
+      "signal_type": "LIVE_TENDER",
+      "procurement_stage": "tender",
+      "status": "active",
+      "published_at": "2026-06-24T22:00:00+00:00",
+      "updated_at": "2026-09-14T22:00:00+00:00",
+      "cpv_codes": [
+        "48000000",
+        "48000000"
+      ],
+      "countries": [
+        "NL"
+      ],
+      "ocid": null,
+      "procedure_id": "proc_ea37da7b0d19651c04e5",
+      "first_seen_at": "2026-09-18T22:10:25.694845+00:00",
+      "last_seen_at": "2026-09-18T22:10:25.694845+00:00",
+      "last_material_update": "2026-09-18T22:10:25.694845+00:00",
+      "raw_source_hash": "70d34f627a1b3b11ccb1b7289407d7dc57fe66f67a84bf6e54a8fcde6f2d8f8e",
+      "content_hash": "f444a90ed362aea8463fd87bd14525295944edf72f0ba593ea17156aa2363896"
+    }
+  },
+  {
+    "expected": "retain",
+    "rationale": "The buyer explicitly requires a SaaS software solution, information-system integration and maintenance for stock transfers and supply orders.",
+    "reviewer": "Independent Codex source-scope review; adjudicated policy controls, requires human calibration",
+    "used_for_policy": true,
+    "language": "fr",
+    "signal": {
+      "id": "sig_773627a6903a13fb39b6",
+      "source": "ted",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://ted.europa.eu/en/notice/-/detail/633000-2026"
+      ],
+      "primary_source_url": "https://ted.europa.eu/en/notice/-/detail/633000-2026",
+      "title": "CARAML V2",
+      "description": "CARAML est une solution logicielle permettant de couvrir 3 fonctionnalités majeures : - La gestion des transferts de stocks COMBUSTIBLE SNCF - La gestion des sites sources (Raffineries) et cibles (Stations SNCF COMBUSTIBLE) - La gestion des commandes d’approvisionnement en COMBUSTIBLE L’objectif de la consultation est la remise en concurrence du périmètre de la solution CARAML afin de couvrir les besoins au-delà de l’actuelle contractualisation. Les prestations à couvrir sont la fourniture d’une solution SaaS, son intégration dans le SI SNCF et sa maintenance. Le périmètre complémentaire de la solution ENERGOLD gestion fait l’objet d’une PSE Obligatoire.",
+      "buyer_name": "SNCF Voyageurs",
+      "signal_type": "FRAMEWORK",
+      "procurement_stage": "tender",
+      "status": "active",
+      "published_at": "2026-09-14T22:00:00+00:00",
+      "updated_at": "2026-09-14T22:00:00+00:00",
+      "cpv_codes": [
+        "48000000",
+        "48000000"
+      ],
+      "countries": [
+        "FR"
+      ],
+      "ocid": null,
+      "procedure_id": "proc_dd0d2bd0ae06f565af20",
+      "first_seen_at": "2026-09-18T22:10:25.694845+00:00",
+      "last_seen_at": "2026-09-18T22:10:25.694845+00:00",
+      "last_material_update": "2026-09-14T22:00:00+00:00",
+      "raw_source_hash": "e2f5d096f004b0b4bd9f5b967fab9ab232f59f85fa4f8b269587f5e86c5d2a87",
+      "content_hash": "141e12ab7dab1a1879843f9b16f2d08c47ffb75fc14df5c586705beed8f779d4"
+    }
+  },
+  {
+    "expected": "retain",
+    "rationale": "The contract commissions deployment, operation, maintenance and development of a digital tool connecting supply and demand for reusable construction materials.",
+    "reviewer": "Independent Codex source-scope review; adjudicated policy controls, requires human calibration",
+    "used_for_policy": true,
+    "language": "fr",
+    "signal": {
+      "id": "sig_7943bb5e601b288234ea",
+      "source": "ted",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://ted.europa.eu/en/notice/-/detail/634893-2026"
+      ],
+      "primary_source_url": "https://ted.europa.eu/en/notice/-/detail/634893-2026",
+      "title": "Déploiement, hébergement et maintenance d’un outil numérique territorial dédié au réemploi des matériaux de construction",
+      "description": "Ce marché a pour objet le déploiement sur le territoire métropolitain d’un outil numérique, en marque blanche, visant à massifier le réemploi des matériaux de construction, en facilitant la rencontre entre l’offre et la demande. Le prestataire aura pour mission la maintenance, l’exploitation ainsi que la mise à disposition de l’outil et devra réaliser les développements nécessaires pour répondre au cahier des charges du présent marché.",
+      "buyer_name": "Métropole du Grand Paris",
+      "signal_type": "LIVE_TENDER",
+      "procurement_stage": "tender",
+      "status": "active",
+      "published_at": "2026-09-14T22:00:00+00:00",
+      "updated_at": "2026-09-14T22:00:00+00:00",
+      "cpv_codes": [
+        "72212900",
+        "72267100",
+        "72262000",
+        "72263000",
+        "72212900",
+        "72267100",
+        "72262000",
+        "72263000"
+      ],
+      "countries": [
+        "FR"
+      ],
+      "ocid": null,
+      "procedure_id": "proc_b7e365208a3dc4b88f62",
+      "first_seen_at": "2026-09-18T22:10:25.694845+00:00",
+      "last_seen_at": "2026-09-18T22:10:25.694845+00:00",
+      "last_material_update": "2026-09-14T22:00:00+00:00",
+      "raw_source_hash": "1e132a5a90adbc12dd57f56e8764805d2959f49516b09b353b7cee394347346c",
+      "content_hash": "63b1c10b3c9e80591e588665ac903d74bceb2139219b0a77bbb74c40ade0d780"
+    }
+  },
+  {
+    "expected": "retain",
+    "rationale": "The title and complete description purchase maintenance of the user portal and Salesforce CRM.",
+    "reviewer": "Independent Codex source-scope review; adjudicated policy controls, requires human calibration",
+    "used_for_policy": true,
+    "language": "fr",
+    "signal": {
+      "id": "sig_814b801f6a3e82911cd2",
+      "source": "ted",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://ted.europa.eu/en/notice/-/detail/626725-2026"
+      ],
+      "primary_source_url": "https://ted.europa.eu/en/notice/-/detail/626725-2026",
+      "title": "Maintenance du Portail Usager et du CRM Salesforce de la Ville de Neuilly-sur-Seine et prestations associées",
+      "description": "Maintenance du Portail Usager et du CRM Salesforce de la Ville de Neuilly-sur-Seine et prestations associées",
+      "buyer_name": "Ville de Neuilly-sur-Seine",
+      "signal_type": "FRAMEWORK",
+      "procurement_stage": "tender",
+      "status": "active",
+      "published_at": "2026-09-10T22:00:00+00:00",
+      "updated_at": "2026-09-10T22:00:00+00:00",
+      "cpv_codes": [
+        "72267000",
+        "72267000"
+      ],
+      "countries": [
+        "FR"
+      ],
+      "ocid": null,
+      "procedure_id": "proc_b1de6e3e1b3e96600322",
+      "first_seen_at": "2026-09-18T22:10:25.694845+00:00",
+      "last_seen_at": "2026-09-18T22:10:25.694845+00:00",
+      "last_material_update": "2026-09-10T22:00:00+00:00",
+      "raw_source_hash": "7447803b1c8eeedd57ffd9d74dc1d2aab27bf2420ddcdfd542a9cb15cc7e4f72",
+      "content_hash": "3aa7fdf328b1a3bc411f6db1496eb5639b353cc0458716a2189a3f7b00247fcf"
+    }
+  },
+  {
+    "expected": "retain",
+    "rationale": "The advertised supply explicitly concerns Salesforce and MuleSoft SaaS licences with CRM, CTI and ESB scope.",
+    "reviewer": "Independent Codex source-scope review; adjudicated policy controls, requires human calibration",
+    "used_for_policy": true,
+    "language": "fr",
+    "signal": {
+      "id": "sig_08e9bac3730d8bf69b82",
+      "source": "ted",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://ted.europa.eu/en/notice/-/detail/585221-2026",
+        "https://ted.europa.eu/en/notice/-/detail/587210-2026"
+      ],
+      "primary_source_url": "https://ted.europa.eu/en/notice/-/detail/587210-2026",
+      "title": "Marché public de fourniture de licences SaaS de gestion CRM, Téléphonie CTI et intégration ESB",
+      "description": "Le présent marché a pour objet la fourniture de licences Salesforce, MuleSoft et Natterbox",
+      "buyer_name": "Compagnie Intercommunale Liégeoise des Eaux",
+      "signal_type": "LIVE_TENDER",
+      "procurement_stage": "tender",
+      "status": "active",
+      "published_at": "2026-08-24T22:00:00+00:00",
+      "updated_at": "2026-08-25T22:00:00+00:00",
+      "cpv_codes": [
+        "48000000",
+        "48000000"
+      ],
+      "countries": [
+        "BE"
+      ],
+      "ocid": null,
+      "procedure_id": "proc_c9e7c80b50db124264e2",
+      "first_seen_at": "2026-09-18T22:10:25.694845+00:00",
+      "last_seen_at": "2026-09-18T22:10:25.694845+00:00",
+      "last_material_update": "2026-09-18T22:10:25.694845+00:00",
+      "raw_source_hash": "bec5c67a482c74718e61c26149cf4930c91c52b7147113018e67748b590cf78a",
+      "content_hash": "2e9246c6750eb065b1518bea95fc50f52dcd0e25a2ad519c9295ecf1fc1702d0"
+    }
+  },
+  {
+    "expected": "retain",
+    "rationale": "The deliverable is clinical information-management software, implementation, training and support. Its healthcare domain does not make it a human-service or equipment-only contract.",
+    "reviewer": "Independent Codex source-scope review; adjudicated policy controls, requires human calibration",
+    "used_for_policy": true,
+    "language": "fr",
+    "signal": {
+      "id": "sig_81153bd5c4f33f978a9a",
+      "source": "ted",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://ted.europa.eu/en/notice/-/detail/629755-2026"
+      ],
+      "primary_source_url": "https://ted.europa.eu/en/notice/-/detail/629755-2026",
+      "title": "Fourniture, gestion du projet d'implémentation, formation, mise en service, support et maintenance d'un logiciel de gestion de la feuille d'anesthésie pour l’AHSM (Durée: 10 ans)",
+      "description": "Fourniture, gestion du projet d'implémentation, formation, mise en service, support et maintenance d'un logiciel de gestion de la feuille d'anesthésie pour l’AHSM (Durée: 10 ans).",
+      "buyer_name": "Association Hospitalière Sambre et Meuse",
+      "signal_type": "LIVE_TENDER",
+      "procurement_stage": "tender",
+      "status": "active",
+      "published_at": "2026-09-13T22:00:00+00:00",
+      "updated_at": "2026-09-13T22:00:00+00:00",
+      "cpv_codes": [
+        "48180000",
+        "48180000"
+      ],
+      "countries": [
+        "BE"
+      ],
+      "ocid": null,
+      "procedure_id": "proc_1921ba62ce48253c9375",
+      "first_seen_at": "2026-09-18T22:10:25.694845+00:00",
+      "last_seen_at": "2026-09-18T22:10:25.694845+00:00",
+      "last_material_update": "2026-09-13T22:00:00+00:00",
+      "raw_source_hash": "8d43e7feb173c27c43e7bafb760443d5fabb85d9b60003cf26bb5e3a4dd87452",
+      "content_hash": "7b66126a78c3cc6bd2984f482e001ed1cad929b1d485f470ddcc4028b1377e8e"
+    }
+  },
+  {
+    "expected": "exclude",
+    "rationale": "The stated purchase is software licence entitlements, subscriptions, updates or manufacturer support, without separately stated application implementation or integration work.",
+    "reviewer": "Codex source-scope review of replay changes; requires human calibration",
+    "used_for_policy": true,
+    "scope_exclusion_required": false,
+    "signal": {
+      "id": "sig_4a3bcdcc9e886aa4ab32",
+      "ocid": null,
+      "source": "spain",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://contrataciondelestado.es/wps/poc?idEvl=g6gLA84qvOMS7pcxhTeWOg%3D%3D&uri=deeplink%3Adetalle_licitacion"
+      ],
+      "primary_source_url": "https://contrataciondelestado.es/wps/poc?idEvl=g6gLA84qvOMS7pcxhTeWOg%3D%3D&uri=deeplink%3Adetalle_licitacion",
+      "title": "Suministro de nueve (9) licencias de software Adobe Creative Cloud (CC) 12M N1 Gobierno.",
+      "description": "Suministro de nueve (9) licencias de software Adobe Creative Cloud (CC) 12M N1 Gobierno. Submission deadline (source local time): 2026-08-19 23:59:00. Time zone not supplied; check the source notice.",
+      "buyer_name": "Junta de Gobierno del Ayuntamiento de Valdemoro",
+      "procedure_id": "proc_52bb85dce28e31eed29e",
+      "signal_type": "LIVE_TENDER",
+      "procurement_stage": "tender",
+      "status": "closed",
+      "published_at": "2026-08-05T00:00:00+00:00",
+      "updated_at": "2026-09-03T09:48:51.821000+00:00",
+      "cpv_codes": [
+        "48218000"
+      ],
+      "countries": [
+        "ES"
+      ],
+      "first_seen_at": "2026-09-14T14:26:13+00:00",
+      "last_seen_at": "2026-09-14T14:26:13+00:00",
+      "last_material_update": "2026-09-03T09:48:51.821000+00:00",
+      "raw_source_hash": "6337662194e945daeffeea6d92e52b798dc3cff5168fbe24f4a5ab6f5384f38d",
+      "content_hash": "df40da81946936e5e57b1a4e68f09c86d4d06a85746f11f578b0e5695e9d8b76"
+    }
+  },
+  {
+    "expected": "exclude",
+    "rationale": "The stated purchase is software licence entitlements, subscriptions, updates or manufacturer support, without separately stated application implementation or integration work.",
+    "reviewer": "Codex source-scope review of replay changes; requires human calibration",
+    "used_for_policy": true,
+    "scope_exclusion_required": false,
+    "signal": {
+      "id": "sig_89378e5c24157c40224d",
+      "ocid": null,
+      "source": "ted",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://ted.europa.eu/en/notice/-/detail/790357-2025"
+      ],
+      "primary_source_url": "https://ted.europa.eu/en/notice/-/detail/790357-2025",
+      "title": "Consultazione preliminare di mercato - Rinnovo della manutenzione dei prodotti software e hardware ORACLE, fornitura di nuove licenze e della tecnologia Oracle Exacc",
+      "description": "Consultazione preliminare di mercato - Rinnovo della manutenzione dei prodotti software e hardware ORACLE, fornitura di nuove licenze e della tecnologia Oracle Exacc",
+      "buyer_name": "RAI - Radiotelevisione Italiana S.p.A. - A/TEI/INT",
+      "procedure_id": "proc_e9cabb0dc0018924022d",
+      "signal_type": "PIPELINE",
+      "procurement_stage": "planning",
+      "status": "active",
+      "published_at": "2025-11-27T23:00:00+00:00",
+      "updated_at": "2025-11-27T23:00:00+00:00",
+      "cpv_codes": [
+        "72267000"
+      ],
+      "countries": [
+        "IT"
+      ],
+      "first_seen_at": "2026-09-14T01:46:00+00:00",
+      "last_seen_at": "2026-09-14T07:12:17+00:00",
+      "last_material_update": "2025-11-27T23:00:00+00:00",
+      "raw_source_hash": "6c23379eedaa20c1933e796b2bd7e3f073634ec4347c22cbec6af7a5387ff4cf",
+      "content_hash": "78d3974133a5d41338cd62fca273827194fa5700374445a09154291d11461bb4"
+    }
+  },
+  {
+    "expected": "retain",
+    "rationale": "The purchased object is explicitly an IT platform for corporate welfare services; the physical CPV does not negate that stated software scope.",
+    "reviewer": "Codex source-scope review of replay changes; requires human calibration",
+    "used_for_policy": true,
+    "scope_exclusion_required": false,
+    "signal": {
+      "id": "sig_8edb4ce4033c2a91d8a6",
+      "ocid": null,
+      "source": "ted",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://ted.europa.eu/en/notice/-/detail/605774-2026"
+      ],
+      "primary_source_url": "https://ted.europa.eu/en/notice/-/detail/605774-2026",
+      "title": "Procedura aperta ai sensi dell’art. 71 del D. Lgs. 36/2023 volta alla conclusione di un Accordo Quadro con un unico operatore economico ai sensi dell’art. 59 co. 3 del D. Lgs. 36/2023 per la fornitura di una piattaforma informatica per l’erogazione di servizi di welfare aziendale",
+      "description": "ID 6704 - Piattaforma welfare ID 6704 Piattaforma welfare",
+      "buyer_name": "Insiel SpA con socio unico Regione Autonoma Friuli Venezia Giulia",
+      "procedure_id": "proc_a54c4eb85972a1a2d89a",
+      "signal_type": "AWARD",
+      "procurement_stage": "award",
+      "status": "awarded",
+      "published_at": "2026-09-01T22:00:00+00:00",
+      "updated_at": "2026-09-01T22:00:00+00:00",
+      "cpv_codes": [
+        "30211300",
+        "30211300"
+      ],
+      "countries": [
+        "IT"
+      ],
+      "first_seen_at": "2026-09-13T21:47:47+00:00",
+      "last_seen_at": "2026-09-13T23:40:53+00:00",
+      "last_material_update": "2026-09-01T22:00:00+00:00",
+      "raw_source_hash": "19b46d8c9995b398aa154458348189914b335bd7e588997bedc2ba448becf073",
+      "content_hash": "69286b8a434553b3bdd01abdf14ba61c694d3c6912a991869c1459ae59947722"
+    }
+  },
+  {
+    "expected": "retain",
+    "rationale": "The supplier must procure and host the network-management software and provide ticketed support. This is a stated software service component, not only network equipment.",
+    "reviewer": "Codex source-scope review of replay changes; requires human calibration",
+    "used_for_policy": true,
+    "scope_exclusion_required": false,
+    "signal": {
+      "id": "sig_42351cb0b27dc3557764",
+      "ocid": null,
+      "source": "ted",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://ted.europa.eu/en/notice/-/detail/641214-2025"
+      ],
+      "primary_source_url": "https://ted.europa.eu/en/notice/-/detail/641214-2025",
+      "title": "Breitband-Powerline",
+      "description": "Breitband-Powerline Die Abgrenzung der Leistungen der Ausschreibung entnehmen Sie bitte der folgenden Aufstellung: 1. Betrieb des Netzwerkmanagement-Systems (NMS): - Beschaffung und Hosting der Software durch den AN. - Die Pflege der Stammdaten im NMS erfolgt durch den AG. - Monitoring und Überwachung der eingebauten Komponenten durch den AG. - Fehleranalyse und Störungsbehebung im System durch den AG ggf. mit Unterstützung des AN. - Ticketsystem vom AG für das Störungsmanagement und die Koordinierung von Vor-Ort-Arbeiten im 1st-Level-Bereich. Mit bedarfsweiser Unterstützung (2nd- und 3rd-Level) durch ein Ticketsystem des AN. 2. Lieferung der BPL-Komponenten: - Alle für den störungsfreien Betrieb des BPL-Netzes im Feld benötigten Komponenten von der Anschlussklemme, über Verstärker bis zu Umsetzern auf eine WAN-Technologie - Montagewerkzeug zur leichteren und sicheren Montage - Hinweis: Die SMGW sind kein Teil dieser Ausschreibung, da diese über Rahmenverträge des AG beschafft werden.",
+      "buyer_name": "enercity Netz GmbH",
+      "procedure_id": null,
+      "signal_type": "AWARD",
+      "procurement_stage": "award",
+      "status": "awarded",
+      "published_at": "2025-09-30T22:00:00+00:00",
+      "updated_at": "2025-09-30T22:00:00+00:00",
+      "cpv_codes": [
+        "72211000",
+        "72200000",
+        "72211000",
+        "72200000"
+      ],
+      "countries": [
+        "DE"
+      ],
+      "first_seen_at": "2026-09-12T16:23:45+00:00",
+      "last_seen_at": "2026-09-12T18:48:39+00:00",
+      "last_material_update": "2025-09-30T22:00:00+00:00",
+      "raw_source_hash": "96d22d9fff5308edddfac2b2af3e1aa89e3a6e1adc3ef2b554782d0dad440d9b",
+      "content_hash": "5754fa00bfd8c020b67a2f49b35c0f5d47ec9575c392fc99c896d01c0e51f36b"
+    }
+  },
+  {
+    "expected": "retain",
+    "rationale": "The mixed notice separately advertises installation of control-system software and coupon-issuance software; preserve that plausible digital component alongside kitchen equipment.",
+    "reviewer": "Codex source-scope review of replay changes; requires human calibration",
+    "used_for_policy": true,
+    "scope_exclusion_required": false,
+    "signal": {
+      "id": "sig_0ebfab55cdb756c94608",
+      "ocid": null,
+      "source": "ted",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://ted.europa.eu/en/notice/-/detail/661514-2025"
+      ],
+      "primary_source_url": "https://ted.europa.eu/en/notice/-/detail/661514-2025",
+      "title": "Προμήθεια εξοπλισμού του Νέου Φοιτητικού Εστιατορίου – Μαγειρείου της Φοιτητικής Εστίας Πατρών (ΦΕΠ) του Πανεπιστήμιου Πατρών",
+      "description": "Προμήθεια εξοπλισμού του Νέου Φοιτητικού Εστιατορίου – Μαγειρείου της Φοιτητικής Εστίας Πατρών (ΦΕΠ) του Πανεπιστήμιου Πατρών Προμήθεια Εξοπλισμού Εστίασης του Νέου Φοιτητικού Εστιατορίου-Μαγειρείου της ΦΕΠ του Πανεπιστημίου Πατρών; Προμήθεια Ξενοδοχειακού Εξοπλισμού (τραπεζοκαθίσματα) του Νέου Φοιτητικού Εστιατορίου-Μαγειρείου της ΦΕΠ του Πανεπιστημίου Πατρών; Προμήθεια και εγκατάσταση εξοπλισμού τουρνικέ; Προμήθεια και εγκατάσταση μηχανήματος αυτόματης πληρωμής και έκδοσης προπληρωμένων κουπονιών (τύπου barcode); Προμήθεια και εγκατάσταση ελεγκτών, λογισμικού συστήματος ελέγχου και λογισμικού συστήματος έκδοσης κουπονιών; Προμήθεια και εγκατάσταση οπτικοακουστικού εξοπλισμού – οθονών για τα ανάγκες του Νέου Εστιατορίου – Μαγειρείου της Φοιτητικής Εστίας Πανεπιστημίου Πατρών στο Ρίο",
+      "buyer_name": "Πανεπιστήμιο Πατρών",
+      "procedure_id": null,
+      "signal_type": "LIVE_TENDER",
+      "procurement_stage": "tender",
+      "status": "active",
+      "published_at": "2025-10-08T22:00:00+00:00",
+      "updated_at": "2025-10-08T22:00:00+00:00",
+      "cpv_codes": [
+        "39221000",
+        "39315000",
+        "35126000",
+        "32000000",
+        "32300000",
+        "32323100",
+        "48000000",
+        "51100000",
+        "72000000",
+        "51000000",
+        "39221000",
+        "39315000",
+        "35126000",
+        "35126000",
+        "48000000",
+        "32000000",
+        "32300000",
+        "32323100"
+      ],
+      "countries": [
+        "GR"
+      ],
+      "first_seen_at": "2026-09-12T18:48:39+00:00",
+      "last_seen_at": "2026-09-12T21:01:36+00:00",
+      "last_material_update": "2025-10-08T22:00:00+00:00",
+      "raw_source_hash": "5f5a04c675ed0c27de078d7bcb20767e7635bfd2b0823e0212e3c94948cfa4b7",
+      "content_hash": "38ad2f5ef30f3e1a5968eb3f319e70a59c985bc6fa515e94a775f5225b1c03ec"
+    }
+  },
+  {
+    "expected": "exclude",
+    "rationale": "The stated purchase is software licence entitlements, subscriptions, updates or manufacturer support, without separately stated application implementation or integration work.",
+    "reviewer": "Codex source-scope review of replay changes; requires human calibration",
+    "used_for_policy": true,
+    "scope_exclusion_required": false,
+    "signal": {
+      "id": "sig_1077fb5cd09cc1b16c76",
+      "ocid": null,
+      "source": "ted",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://ted.europa.eu/en/notice/-/detail/853596-2025"
+      ],
+      "primary_source_url": "https://ted.europa.eu/en/notice/-/detail/853596-2025",
+      "title": "Contratación del servicio de soporte y mantenimiento de software del fabricante SAP para todos los productos y licencias detalladas en pliego técnico.",
+      "description": "Procedimiento SARA por importe y duración del Servicio, según LCSP",
+      "buyer_name": "Mutua Universal Mugenat, Mutua Colaboradora con la Seguridad Social no 10",
+      "procedure_id": null,
+      "signal_type": "AWARD",
+      "procurement_stage": "award",
+      "status": "awarded",
+      "published_at": "2025-12-21T23:00:00+00:00",
+      "updated_at": "2025-12-21T23:00:00+00:00",
+      "cpv_codes": [
+        "72267000",
+        "72267000"
+      ],
+      "countries": [
+        "ES"
+      ],
+      "first_seen_at": "2026-09-15T06:47:30+00:00",
+      "last_seen_at": "2026-09-15T06:47:30+00:00",
+      "last_material_update": "2025-12-21T23:00:00+00:00",
+      "raw_source_hash": "6de6760c695e3d671077aa80172d52bf1e9ecc0255fa4bd557f9a2826fc95392",
+      "content_hash": "5ef4180c98b8ead8d84042c3563534612eb1d20279414b274ac5b810ef720328"
+    }
+  },
+  {
+    "expected": "retain",
+    "rationale": "The mixed contract explicitly commissions development of data-management applications in addition to aircraft operations.",
+    "reviewer": "Codex source-scope review of replay changes; requires human calibration",
+    "used_for_policy": true,
+    "scope_exclusion_required": false,
+    "signal": {
+      "id": "sig_ac6ffbc5520c25cace08",
+      "ocid": null,
+      "source": "spain",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://contrataciondelestado.es/wps/poc?idEvl=bjKCmqqB5XC2gkLQ8TeYKA%3D%3D&uri=deeplink%3Adetalle_licitacion"
+      ],
+      "primary_source_url": "https://contrataciondelestado.es/wps/poc?idEvl=bjKCmqqB5XC2gkLQ8TeYKA%3D%3D&uri=deeplink%3Adetalle_licitacion",
+      "title": "Despliegue de operaciones con plataformas UAS de media (MALEs) y/o gran altitud (HAPS) y desarrollo de las aplicaciones de gestión de datos en el marco del proyecto AGAMENON",
+      "description": "Despliegue de operaciones con plataformas UAS de media (MALEs) y/o gran altitud (HAPS) y desarrollo de las aplicaciones de gestión de datos en el marco del proyecto AGAMENON Submission deadline (source local time): 2026-09-04 23:59:00. Time zone not supplied; check the source notice.",
+      "buyer_name": "Consejo de Administración del Parque Tecnológico de Fuerteventura S.A., M.P.",
+      "procedure_id": null,
+      "signal_type": "LIVE_TENDER",
+      "procurement_stage": "tender",
+      "status": "closed",
+      "published_at": "2026-07-23T00:00:00+00:00",
+      "updated_at": "2026-09-15T07:29:08.439000+00:00",
+      "cpv_codes": [
+        "60440000",
+        "73200000"
+      ],
+      "countries": [
+        "ES"
+      ],
+      "first_seen_at": "2026-09-15T23:12:31+00:00",
+      "last_seen_at": "2026-09-15T23:12:31+00:00",
+      "last_material_update": "2026-09-15T07:29:08.439000+00:00",
+      "raw_source_hash": "8bd1eee23260a6389223f5ad1e6856239c7e6e5ab76b54ef6e98fe970b02627a",
+      "content_hash": "bbf9846efa2f8c59f3ce7fa0d2c8d04efc8a8a45ca8df5de780acaac1fb833e9"
+    }
+  },
+  {
+    "expected": "exclude",
+    "rationale": "Maintenance of an existing irrigation equipment control package and hardware availability, without a separately commissioned application or integration task.",
+    "reviewer": "Codex source-scope review of replay changes; requires human calibration",
+    "used_for_policy": true,
+    "scope_exclusion_required": false,
+    "signal": {
+      "id": "sig_c9d33cba40a78d91fc2f",
+      "ocid": null,
+      "source": "spain",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://contrataciondelestado.es/wps/poc?idEvl=uR1K0qgk8zMmMOlAXxDEjw%3D%3D&uri=deeplink%3Adetalle_licitacion"
+      ],
+      "primary_source_url": "https://contrataciondelestado.es/wps/poc?idEvl=uR1K0qgk8zMmMOlAXxDEjw%3D%3D&uri=deeplink%3Adetalle_licitacion",
+      "title": "Contratación del servicio de asistencia técnica, mantenimiento de software y garantía de disponibilidad de hardware del sistema de riego Cirrus y Toro Sitepro de los campos de golf del Parador de Turismo de Málaga Golf y el Parador de Turismo de El Saler (Valencia).",
+      "description": "Contratación del servicio de asistencia técnica, mantenimiento de software y garantía de disponibilidad de hardware del sistema de riego Cirrus y Toro Sitepro de los campos de golf del Parador de Turismo de Málaga Golf y el Parador de Turismo de El Saler (Valencia). Submission deadline (source local time): 2026-07-29 14:00:00. Time zone not supplied; check the source notice.",
+      "buyer_name": "Paradores de Turismo de España, S.M.E., S.A.",
+      "procedure_id": null,
+      "signal_type": "LIVE_TENDER",
+      "procurement_stage": "tender",
+      "status": "closed",
+      "published_at": "2026-07-14T00:00:00+00:00",
+      "updated_at": "2026-09-15T07:59:34.216000+00:00",
+      "cpv_codes": [
+        "71356200"
+      ],
+      "countries": [
+        "ES"
+      ],
+      "first_seen_at": "2026-09-15T23:12:31+00:00",
+      "last_seen_at": "2026-09-15T23:12:31+00:00",
+      "last_material_update": "2026-09-15T07:59:34.216000+00:00",
+      "raw_source_hash": "8435e84f8fa49d818194f2a6df7219573cc45d10b113bd3834075fa6a357b881",
+      "content_hash": "ff5c3d9402328b58558ce80714feaaaf5f30b82528b26dfc4e34d790977b61eb"
+    }
+  },
+  {
+    "expected": "exclude",
+    "rationale": "This is the hardware lot call-off; the parent framework also mentions software, but the advertised lot is hardware.",
+    "reviewer": "Codex source-scope review of replay changes; requires human calibration",
+    "used_for_policy": true,
+    "scope_exclusion_required": false,
+    "signal": {
+      "id": "sig_17942c96eddb17d62adf",
+      "ocid": null,
+      "source": "spain",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://contrataciondelestado.es/wps/poc?idEvl=gYwV80ya8pwUqXM96WStVA%3D%3D&uri=deeplink%3Adetalle_licitacion"
+      ],
+      "primary_source_url": "https://contrataciondelestado.es/wps/poc?idEvl=gYwV80ya8pwUqXM96WStVA%3D%3D&uri=deeplink%3Adetalle_licitacion",
+      "title": "Contrato derivado 16 del Acuerdo Marco de Suministro de Hardware y Software de Calle 30 del lote No1,denominado \"Hardware - memoria de 7 de septiembre 2026\"",
+      "description": "Contrato derivado 16 del Acuerdo Marco de Suministro de Hardware y Software de Calle 30 del lote No1,denominado \"Hardware - memoria de 7 de septiembre 2026\"",
+      "buyer_name": "Madrid Calle 30, S.A.",
+      "procedure_id": null,
+      "signal_type": "LIVE_TENDER",
+      "procurement_stage": "tender",
+      "status": "closed",
+      "published_at": "2026-09-15T00:00:00+00:00",
+      "updated_at": "2026-09-15T06:15:45.012000+00:00",
+      "cpv_codes": [
+        "30200000"
+      ],
+      "countries": [
+        "ES"
+      ],
+      "first_seen_at": "2026-09-16T01:46:27+00:00",
+      "last_seen_at": "2026-09-16T01:46:27+00:00",
+      "last_material_update": "2026-09-15T06:15:45.012000+00:00",
+      "raw_source_hash": "6273f517c6ec55b53b44e5dd23de7e9d0a702fd39020fcb22cdf12ae536318d7",
+      "content_hash": "f0f058d75f2f11b3e810cf5509bae6c6f1dbb790ba73040392972ab9a27cd17a"
+    }
+  },
+  {
+    "expected": "uncertain",
+    "rationale": "Broad central computer-system hardware and software maintenance is a plausible IT service. The source is too sparse to narrow the application work; preserve it for review.",
+    "reviewer": "Codex source-scope review of replay changes; requires human calibration",
+    "used_for_policy": true,
+    "scope_exclusion_required": false,
+    "signal": {
+      "id": "sig_67179526ffda0dda5868",
+      "ocid": null,
+      "source": "spain",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://contrataciondelestado.es/wps/poc?idEvl=8AgV95UUwKGP66GS%2BONYvQ%3D%3D&uri=deeplink%3Adetalle_licitacion"
+      ],
+      "primary_source_url": "https://contrataciondelestado.es/wps/poc?idEvl=8AgV95UUwKGP66GS%2BONYvQ%3D%3D&uri=deeplink%3Adetalle_licitacion",
+      "title": "Servicio de mantenimiento y soporte técnico del hardware y software de los sistemas informáticos centrales",
+      "description": "Servicio de mantenimiento y soporte técnico del hardware y software de los sistemas informáticos centrales Submission deadline (source local time): 2026-09-07 23:59:00. Time zone not supplied; check the source notice.",
+      "buyer_name": "Rectorado de la Universidad de Granada",
+      "procedure_id": null,
+      "signal_type": "LIVE_TENDER",
+      "procurement_stage": "tender",
+      "status": "closed",
+      "published_at": "2026-07-29T00:00:00+00:00",
+      "updated_at": "2026-09-10T07:31:42.302000+00:00",
+      "cpv_codes": [
+        "50300000"
+      ],
+      "countries": [
+        "ES"
+      ],
+      "first_seen_at": "2026-09-16T01:46:27+00:00",
+      "last_seen_at": "2026-09-16T01:46:27+00:00",
+      "last_material_update": "2026-09-10T07:31:42.302000+00:00",
+      "raw_source_hash": "39a331bda02553042206b6cc69afa1d244354b7c4db152d77d3eccb4a91aac00",
+      "content_hash": "2a498c5a77f84c2464692388dc0bdae2f09e6c2ae89ea18351f234be819eb2f6"
+    }
+  },
+  {
+    "expected": "exclude",
+    "rationale": "The stated purchase is software licence entitlements, subscriptions, updates or manufacturer support, without separately stated application implementation or integration work.",
+    "reviewer": "Codex source-scope review of replay changes; requires human calibration",
+    "used_for_policy": true,
+    "scope_exclusion_required": false,
+    "signal": {
+      "id": "sig_814d7d687b2858f0801e",
+      "ocid": null,
+      "source": "spain",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://contrataciondelestado.es/wps/poc?idEvl=xg8wXrUxPkPkY6rls5tG9A%3D%3D&uri=deeplink%3Adetalle_licitacion"
+      ],
+      "primary_source_url": "https://contrataciondelestado.es/wps/poc?idEvl=xg8wXrUxPkPkY6rls5tG9A%3D%3D&uri=deeplink%3Adetalle_licitacion",
+      "title": "Contrato de suministro de licencias de uso del software de copias Veeam Backup",
+      "description": "Contrato de suministro de licencias de uso del software de copias Veeam Backup Submission deadline (source local time): 2026-09-23 23:59:00. Time zone not supplied; check the source notice. Según lo dispuesto en el PCAP",
+      "buyer_name": "Junta de Gobierno del Ayuntamiento de Benidorm",
+      "procedure_id": null,
+      "signal_type": "LIVE_TENDER",
+      "procurement_stage": "tender",
+      "status": "active",
+      "published_at": "2026-09-09T00:00:00+00:00",
+      "updated_at": "2026-09-09T11:10:30.323000+00:00",
+      "cpv_codes": [
+        "48218000"
+      ],
+      "countries": [
+        "ES"
+      ],
+      "first_seen_at": "2026-09-16T12:51:45+00:00",
+      "last_seen_at": "2026-09-16T12:51:45+00:00",
+      "last_material_update": "2026-09-09T11:10:30.323000+00:00",
+      "raw_source_hash": "d9ed895874d7d0057059cf4aa2ac36226bb4801ffb1f497bf35dea06ba6049e0",
+      "content_hash": "03321bd0830895d4648f214d1ff15ae0dd01db9fc865badbd81a98bfff500516"
+    }
+  },
+  {
+    "expected": "exclude",
+    "rationale": "The stated purchase is software licence entitlements, subscriptions, updates or manufacturer support, without separately stated application implementation or integration work.",
+    "reviewer": "Codex source-scope review of replay changes; requires human calibration",
+    "used_for_policy": true,
+    "scope_exclusion_required": false,
+    "signal": {
+      "id": "sig_973850a4a167eb2c758a",
+      "ocid": null,
+      "source": "spain",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://contrataciondelestado.es/wps/poc?idEvl=d6zyRWPzZ4570UvEyYJSGw%3D%3D&uri=deeplink%3Adetalle_licitacion"
+      ],
+      "primary_source_url": "https://contrataciondelestado.es/wps/poc?idEvl=d6zyRWPzZ4570UvEyYJSGw%3D%3D&uri=deeplink%3Adetalle_licitacion",
+      "title": "Suministro de las licencias del software Microsoft así como los servicios de mantenimiento asociados",
+      "description": "Suministro de las licencias del software Microsoft así como los servicios de mantenimiento asociados Submission deadline (source local time): 2026-09-24 12:00:00. Time zone not supplied; check the source notice.",
+      "buyer_name": "Ineco-Comité de Dirección",
+      "procedure_id": null,
+      "signal_type": "LIVE_TENDER",
+      "procurement_stage": "tender",
+      "status": "active",
+      "published_at": "2026-09-08T00:00:00+00:00",
+      "updated_at": "2026-09-16T10:22:18.261000+00:00",
+      "cpv_codes": [
+        "48000000"
+      ],
+      "countries": [
+        "ES"
+      ],
+      "first_seen_at": "2026-09-16T23:17:31+00:00",
+      "last_seen_at": "2026-09-16T23:17:31+00:00",
+      "last_material_update": "2026-09-16T10:22:18.261000+00:00",
+      "raw_source_hash": "44caaf1b1af1c2b46060d7a67047a78341be62c82c3e97ea6c4b0103eff0d33d",
+      "content_hash": "d5cc4004d1f92ea62c28ebeb910322affafba7c9ee81cf2577e7fa6272ddf980"
+    }
+  },
+  {
+    "expected": "exclude",
+    "rationale": "Supply and installation of two outdoor digital displays, with the associated software maintenance; no separately specified application work.",
+    "reviewer": "Codex source-scope review of replay changes; requires human calibration",
+    "used_for_policy": true,
+    "scope_exclusion_required": false,
+    "signal": {
+      "id": "sig_b938200ccaf65d2f2b7c",
+      "ocid": null,
+      "source": "spain",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://contrataciondelestado.es/wps/poc?idEvl=YyT9s6g8pRJrhBlEHQFSKA%3D%3D&uri=deeplink%3Adetalle_licitacion"
+      ],
+      "primary_source_url": "https://contrataciondelestado.es/wps/poc?idEvl=YyT9s6g8pRJrhBlEHQFSKA%3D%3D&uri=deeplink%3Adetalle_licitacion",
+      "title": "Suministro e instalación de dos MUPIS digitales exteriores y mantenimiento del software.",
+      "description": "Suministro e instalación de dos MUPIS digitales exteriores y mantenimiento del software. Submission deadline (source local time): 2026-08-10 23:59:00. Time zone not supplied; check the source notice.",
+      "buyer_name": "Alcaldía del Ayuntamiento de Illescas",
+      "procedure_id": null,
+      "signal_type": "LIVE_TENDER",
+      "procurement_stage": "tender",
+      "status": "closed",
+      "published_at": "2026-07-27T00:00:00+00:00",
+      "updated_at": "2026-09-09T07:41:46.883000+00:00",
+      "cpv_codes": [
+        "30231300"
+      ],
+      "countries": [
+        "ES"
+      ],
+      "first_seen_at": "2026-09-16T12:51:45+00:00",
+      "last_seen_at": "2026-09-16T12:51:45+00:00",
+      "last_material_update": "2026-09-09T07:41:46.883000+00:00",
+      "raw_source_hash": "819586070ff34e9dc7a713bbc5c1696c85243853eee189d13a21e5a5f1941936",
+      "content_hash": "81fd9efd78c7c8b860d9132bee56d7652b6c1a6352b052fd1968bb558647e558"
+    }
+  },
+  {
+    "expected": "uncertain",
+    "rationale": "The purchased work is explicitly maintenance of access-control software. Scope is sparse; do not infer that it buys only physical access equipment.",
+    "reviewer": "Codex source-scope review of replay changes; requires human calibration",
+    "used_for_policy": true,
+    "scope_exclusion_required": false,
+    "signal": {
+      "id": "sig_f069c66e7640a1ac21f2",
+      "ocid": null,
+      "source": "spain",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://contrataciondelestado.es/wps/poc?idEvl=oQOjVyxcuKIeC9GJQOEBkQ%3D%3D&uri=deeplink%3Adetalle_licitacion"
+      ],
+      "primary_source_url": "https://contrataciondelestado.es/wps/poc?idEvl=oQOjVyxcuKIeC9GJQOEBkQ%3D%3D&uri=deeplink%3Adetalle_licitacion",
+      "title": "Mantenimiento del software del sistema de seguridad y control de accesos cyberlock-cyberauditweb de la Autoridad Portuaria de Valencia.",
+      "description": "Mantenimiento del software del sistema de seguridad y control de accesos cyberlock-cyberauditweb de la Autoridad Portuaria de Valencia. Submission deadline (source local time): 2026-07-10 14:30:00. Time zone not supplied; check the source notice. Sólo se aceptarán las preguntas planteadas a través de la plataforma de contratación del Sector Público en el plazo indicado para ello.",
+      "buyer_name": "Presidencia de la Autoridad Portuaria de Valencia",
+      "procedure_id": null,
+      "signal_type": "LIVE_TENDER",
+      "procurement_stage": "tender",
+      "status": "closed",
+      "published_at": "2026-08-10T00:00:00+00:00",
+      "updated_at": "2026-09-09T09:06:19.438000+00:00",
+      "cpv_codes": [
+        "50324100"
+      ],
+      "countries": [
+        "ES"
+      ],
+      "first_seen_at": "2026-09-16T12:51:45+00:00",
+      "last_seen_at": "2026-09-16T12:51:45+00:00",
+      "last_material_update": "2026-09-09T09:06:19.438000+00:00",
+      "raw_source_hash": "7b746b0fbc69f8598ff524457a6c6d7fdec0f7fec833530b50559d7a8f0c4586",
+      "content_hash": "cd53ac805ad7d7c3f408b4a9679e7d9ce1c68660df03eb12b8d70fef7f4de846"
+    }
+  },
+  {
+    "expected": "exclude",
+    "rationale": "Factory-made, ready-to-operate breathing-test equipment including its necessary controls and commissioning; no separate software development.",
+    "reviewer": "Codex source-scope review of replay changes; requires human calibration",
+    "used_for_policy": true,
+    "scope_exclusion_required": false,
+    "signal": {
+      "id": "sig_f44cd9832dc996810e8c",
+      "ocid": "ocds-mnwr74-0f306728-5c00-42d5-9fd3-052f62bc3076",
+      "source": "germany",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://oeffentlichevergabe.de/ui/de/notices/de04d599-50d7-485d-a2b1-fc5a6a02cc4d"
+      ],
+      "primary_source_url": "https://oeffentlichevergabe.de/ui/de/notices/de04d599-50d7-485d-a2b1-fc5a6a02cc4d",
+      "title": "Prüftechnik Atemschutzwerkstatt Feuerwehr Stadt Nordhausen",
+      "description": "Die Stadt Nordhausen beabsichtigt im Rahmen einer öffentlichen Ausschreibung die Beschaffung eines computergesteuerten Prüfsystems einschließlich der erforderlichen Software sowie einer kontinuierlichen Atemluftüberwachung für die Atemschutzwerkstatt der Feuerwehr Nordhausen. Gegenstand der Ausschreibung ist die Lieferung fabrikneuer, serienmäßig gefertigter und betriebsbereiter Prüftechnik einschließlich sämtlicher für den bestimmungsgemäßen Betrieb erforderlicher Hard- und Softwarekomponenten, Anschluss- und Verbindungselemente, Adapter, Prüfzubehör, Dokumentationen sowie aller Leistungen zur Montage, Installation, Inbetriebnahme und Einweisung des Bedienpersonals. Der Auftrag umfasst die vollständige Lieferung, Montage, Installation, Inbetriebnahme und betriebsfertige Übergabe sämtlicher ausgeschriebener Systeme einschließlich aller hierfür erforderlichen Nebenleistungen. Lot LOT-0000: Prüftechnik Atemschutzwerkstatt Feuerwehr Stadt Nordhausen. Die Stadt Nordhausen beabsichtigt im Rahmen einer öffentlichen Ausschreibung die Beschaffung eines computergesteuerten Prüfsystems einschließlich der erforderlichen Software sowie einer kontinuierlichen Atemluftüberwachung für die Atemschutzwerkstatt der Feuerwehr Nordhausen. Gegenstand der Ausschreibung ist die Lieferung fabrikneuer, serienmäßig gefertigter und betriebsbereiter Prüftechnik einschließlich sämtlicher für den bestimmungsgemäßen Betrieb erforderlicher Hard- und Softwarekomponenten, Anschluss- und Verbindungselemente, Adapter, Prüfzubehör, Dokumentationen sowie aller Leistungen zur Montage, Installation, Inbetriebnahme und Einweisung des Bedienpersonals. Der Auftrag umfasst die vollständige Lieferung, Montage, Installation, Inbetriebnahme und betriebsfertige Übergabe sämtlicher ausgeschriebener Systeme einschließlich aller hierfür erforderlichen Nebenleistungen.",
+      "buyer_name": "Stadtverwaltung Nordhausen - Rechtsamt und Beteiligungen / Vergabestelle",
+      "procedure_id": null,
+      "signal_type": "LIVE_TENDER",
+      "procurement_stage": "tender",
+      "status": "active",
+      "published_at": "2026-09-15T11:06:04+00:00",
+      "updated_at": "2026-09-15T11:06:04+00:00",
+      "cpv_codes": [],
+      "countries": [
+        "DE"
+      ],
+      "first_seen_at": "2026-09-18T11:53:56+00:00",
+      "last_seen_at": "2026-09-18T11:53:56+00:00",
+      "last_material_update": "2026-09-15T11:06:04+00:00",
+      "raw_source_hash": "38803e47625592430faa947711c8f754e75735da4280497be91fa5cbc63e7710",
+      "content_hash": "93fc88354545fbdadcc28438414a8da595e335c4b6b46ebf5fcad9feae6f0d04"
+    }
+  },
+  {
+    "expected": "exclude",
+    "rationale": "Supply of radioembolisation microspheres and the software/materials needed for that physical treatment package; no independent application implementation.",
+    "reviewer": "Codex source-scope review of replay changes; requires human calibration",
+    "used_for_policy": true,
+    "scope_exclusion_required": false,
+    "signal": {
+      "id": "sig_f9f5ca3f2f33d1ab5b81",
+      "ocid": null,
+      "source": "spain",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://contrataciondelestado.es/wps/poc?idEvl=b5LyIXf60w5VYjgxA4nMUw%3D%3D&uri=deeplink%3Adetalle_licitacion"
+      ],
+      "primary_source_url": "https://contrataciondelestado.es/wps/poc?idEvl=b5LyIXf60w5VYjgxA4nMUw%3D%3D&uri=deeplink%3Adetalle_licitacion",
+      "title": "Suministro de microesferas marcadas con Ytrio-90, software y material necesario para para radioembolización hepática",
+      "description": "Suministro de microesferas marcadas con Ytrio-90, software y material necesario para para radioembolización hepática Submission deadline (source local time): 2026-07-21 14:00:00. Time zone not supplied; check the source notice.",
+      "buyer_name": "Gerencia del Área Sanitaria IV del Servicio de Salud del Principado de Asturias",
+      "procedure_id": null,
+      "signal_type": "LIVE_TENDER",
+      "procurement_stage": "tender",
+      "status": "closed",
+      "published_at": "2026-06-02T00:00:00+00:00",
+      "updated_at": "2026-09-10T08:38:33.899000+00:00",
+      "cpv_codes": [
+        "33693000"
+      ],
+      "countries": [
+        "ES"
+      ],
+      "first_seen_at": "2026-09-16T01:46:27+00:00",
+      "last_seen_at": "2026-09-16T01:46:27+00:00",
+      "last_material_update": "2026-09-10T08:38:33.899000+00:00",
+      "raw_source_hash": "5411b2be9774ef2a6265ee4ae564b32d8326b31ca102fc1bb5c47ac357b7375a",
+      "content_hash": "3512861d492cbda288431bd8b026d1c1259b103834b23f568266333e3504c281"
+    }
+  },
+  {
+    "expected": "exclude",
+    "rationale": "The object is an HTC reactor with accessories, included software, installation and commissioning, explicitly as a single complete supply.",
+    "reviewer": "Codex source-scope review of replay changes; requires human calibration",
+    "used_for_policy": true,
+    "scope_exclusion_required": false,
+    "signal": {
+      "id": "sig_25f4bee13ab6d38b41b0",
+      "ocid": "ocds-mnwr74-25822672",
+      "source": "germany",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://oeffentlichevergabe.de/ui/de/notices/25822672"
+      ],
+      "primary_source_url": "https://oeffentlichevergabe.de/ui/de/notices/25822672",
+      "title": "HTC-Reaktor",
+      "description": "Nationale Ausschreibung nach VOL/A Öffentliche Ausschreibung Vergabenr.: 125022/26 a) Zur Angebotsabgabe auffordernde Stelle, zuschlagserteilende Stelle: Name und Anschrift: Technische Universität Dresden, Dezernat Finanzen und Beschaffung, Sachgebiet Zentrale Beschaffung und Anlagenbuchhaltung Mommsenstraße 6 01069 Dresden Deutschland Telefonnummer: +49 351463-38768 Telefaxnummer: +49 351463-37102 E-Mail-Adresse: beschaffung@tu-dresden.de Internet-Adresse: https://tu-dresden.de/ Zuschlagserteilende Stelle: Siehe oben Zuschlagserteilende Stelle: siehe Vergabestelle. b) Art der Vergabe (§ 3 VOL/A): Verfahrensart: Öffentliche Ausschreibung c) Angebote können abgegeben werden: schriftlich elektronisch mit fortgeschrittener Signatur elektronisch mit qualifizierter Signatur elektronisch in Textform Anschrift zur Einreichung schriftlicher Angebote: Siehe oben d) Art und Umfang sowie Ort der Leistung: Art der Leistung: Lieferung (inkl. Zubehör, Software, Installation, Inbetriebnahme, Schulung und Abnahme) eines Reaktors für die thermochemische Umwandlung von biogenen Reststoffen nach dem Prinzip der hydrothermalen Carbonisierung. Menge und Umfang: Ziel der Ausschreibung ist die Beschaffung (inkl. Lieferung, Zubehör, Software, Installation, Inbetriebnahme, Schulung und Abnahme) eines Reaktors für die thermochemische Umwandlung von biogenen Reststoffen nach dem Prinzip der hydrothermalen Carbonisierung entsprechend Leistungsbeschreibung. Die Apperatur soll an der Professur für Energieverfahrenstechnik der TU Dresden für die Herstellung biopharmazeutischer Wirkstoffe aus erneuerbaren Ressourcen in einem geschlossenen Produktionssystem eringesetzt werden. Ort der Leistung: Nagel Ingenieurbau GmbH Schwarze Pumpe c/o TU Dresden Institut für Verfahrenstechnik und Umwelttechnik Professur für Energieverfahrenstechnik Straße B 1 02979 Spreetal e) Losaufteilung: Losweise Vergabe: Nein Angebote sind möglich für: die Gesamtleistung f) Nebenangebote sind nicht zugelassen g) Liefer-/Ausführungsfrist: Beginn: Ende: h) Die Vergabeunterlagen sind auf der Vergabeplattform eVergabe.de abrufbar. Anschrift der Stelle, bei der die Vergabeunterlagen eingesehen werden können: Anschrift: Technische Universität Dresden, Dezernat Finanzen und Beschaffung, Sachgebiet Zentrale Beschaffung und Anlagenbuchhaltung Mommsenstr. 6 01069 Dresden Deutschland i) Ablauf der Angebots- und Bindefrist: Angebote sind einzureichen bis: 13.10.2026 14:00 Ablauf der Bindefrist: 15.12.2026 j) Höhe etwa geforderter Sicherheitsleistungen: k) Wesentliche Zahlungsbedingungen: Gemäß Ausschreibungsunterlagen auf Basis VOPR 30/53 sowie VOL/B. l) Unterlagen zur Eignungsprüfung: Liste der vorzulegenden Unterlagen: Nachfolgend genannte Einzelnachweise der Eignung (Forderung gemäß SächsVergabeG § 3) zur Prüfung der Fachkunde, Leistungsfähigkeit und Zuverlässigkeit (VOL/A § 6) sind beizulegen. Fehlen diese Nachweise, sind unvollständig oder veraltet, kann dies zum Ausschluss des Angebotes von der Wertung führen. 1. Angabe über die Ausführung von Leistungen in den letzten drei abgeschlossenen Geschäftsjahren, die mit der zu vergebenden Leistung vergleichbar sind (prüfbare abgeschlossene Referenzen). 2. Vorlage einer amtlichen Unbedenklichkeitsbescheinigung des zuständigen Finanzamtes bzw. eine eigene Erklärung über die pflichtgemäße Zahlung von Steuern, Abgaben und Beiträgen zur gesetzlichen Sozialversicherung. Anstelle der geforderten Einzelnachweise zur Zuverlässigkeit, Leistungsfähigkeit und Fachkunde kann die Bescheinigung der Eintragung in die Präqualifikationsdatenbank für den Liefer- und Dienstleistungsbereich (PQ-VOL) oder die Bescheinigung anderer Präqualifikationsstellen, wenn in der Bescheinigung angegeben wird, welche Eignungskriterien anhand welcher Dokumente bei der Präqualifizierung geprüft wurden, vorgelegt werden. Die Nachweise gemäß Punkt 1 sind jedoch in jedem Fall einzureichen. m) Die Unterlagen werden kostenfrei abgegeben.: n) Angabe der Zuschlagskriterien: Der niedrigste Preis: Nein Wirtschaftlich günstigstes Angebot in Bezug auf die Kriterien, die in den Vergabe-/Ausschreibungsunterlagen, der Aufforderung zur Angebotsabgabe oder zur Verhandlung bzw. in der Beschreibung zum wettbewerblichen Dialog aufgeführt sind.: Industrietechnische Anlagen/ Ausrüstung,Labortechnik/ Messtechnik,Software Lot LOT-0000: HTC-Reaktor. Nationale Ausschreibung nach VOL/A Öffentliche Ausschreibung Vergabenr.: 125022/26 a) Zur Angebotsabgabe auffordernde Stelle, zuschlagserteilende Stelle: Name und Anschrift: Technische Universität Dresden, Dezernat Finanzen und Beschaffung, Sachgebiet Zentrale Beschaffung und Anlagenbuchhaltung Mommsenstraße 6 01069 Dresden Deutschland Telefonnummer: +49 351463-38768 Telefaxnummer: +49 351463-37102 E-Mail-Adresse: beschaffung@tu-dresden.de Internet-Adresse: https://tu-dresden.de/ Zuschlagserteilende Stelle: Siehe oben Zuschlagserteilende Stelle: siehe Vergabestelle. b) Art der Vergabe (§ 3 VOL/A): Verfahrensart: Öffentliche Ausschreibung c) Angebote können abgegeben werden: schriftlich elektronisch mit fortgeschrittener Signatur elektronisch mit qualifizierter Signatur elektronisch in Textform Anschrift zur Einreichung schriftlicher Angebote: Siehe oben d) Art und Umfang sowie Ort der Leistung: Art der Leistung: Lieferung (inkl. Zubehör, Software, Installation, Inbetriebnahme, Schulung und Abnahme) eines Reaktors für die thermochemische Umwandlung von biogenen Reststoffen nach dem Prinzip der hydrothermalen Carbonisierung. Menge und Umfang: Ziel der Ausschreibung ist die Beschaffung (inkl. Lieferung, Zubehör, Software, Installation, Inbetriebnahme, Schulung und Abnahme) eines Reaktors für die thermochemische Umwandlung von biogenen Reststoffen nach dem Prinzip der hydrothermalen Carbonisierung entsprechend Leistungsbeschreibung. Die Apperatur soll an der Professur für Energieverfahrenstechnik der TU Dresden für die Herstellung biopharmazeutischer Wirkstoffe aus erneuerbaren Ressourcen in einem geschlossenen Produktionssystem eringesetzt werden. Ort der Leistung: Nagel Ingenieurbau GmbH Schwarze Pumpe c/o TU Dresden Institut für Verfahrenstechnik und Umwelttechnik Professur für Energieverfahrenstechnik Straße B 1 02979 Spreetal e) Losaufteilung: Losweise Vergabe: Nein Angebote sind möglich für: die Gesamtleistung f) Nebenangebote sind nicht zugelassen g) Liefer-/Ausführungsfrist: Beginn: Ende: h) Die Vergabeunterlagen sind auf der Vergabeplattform eVergabe.de abrufbar. Anschrift der Stelle, bei der die Vergabeunterlagen eingesehen werden können: Anschrift: Technische Universität Dresden, Dezernat Finanzen und Beschaffung, Sachgebiet Zentrale Beschaffung und Anlagenbuchhaltung Mommsenstr. 6 01069 Dresden Deutschland i) Ablauf der Angebots- und Bindefrist: Angebote sind einzureichen bis: 13.10.2026 14:00 Ablauf der Bindefrist: 15.12.2026 j) Höhe etwa geforderter Sicherheitsleistungen: k) Wesentliche Zahlungsbedingungen: Gemäß Ausschreibungsunterlagen auf Basis VOPR 30/53 sowie VOL/B. l) Unterlagen zur Eignungsprüfung: Liste der vorzulegenden Unterlagen: Nachfolgend genannte Einzelnachweise der Eignung (Forderung gemäß SächsVergabeG § 3) zur Prüfung der Fachkunde, Leistungsfähigkeit und Zuverlässigkeit (VOL/A § 6) sind beizulegen. Fehlen diese Nachweise, sind unvollständig oder veraltet, kann dies zum Ausschluss des Angebotes von der Wertung führen. 1. Angabe über die Ausführung von Leistungen in den letzten drei abgeschlossenen Geschäftsjahren, die mit der zu vergebenden Leistung vergleichbar sind (prüfbare abgeschlossene Referenzen). 2. Vorlage einer amtlichen Unbedenklichkeitsbescheinigung des zuständigen Finanzamtes bzw. eine eigene Erklärung über die pflichtgemäße Zahlung von Steuern, Abgaben und Beiträgen zur gesetzlichen Sozialversicherung. Anstelle der geforderten Einzelnachweise zur Zuverlässigkeit, Leistungsfähigkeit und Fachkunde kann die Bescheinigung der Eintragung in die Präqualifikationsdatenbank für den Liefer- und Dienstleistungsbereich (PQ-VOL) oder die Bescheinigung anderer Präqualifikationsstellen, wenn in der Bescheinigung angegeben wird, welche Eignungskriterien anhand welcher Dokumente bei der Präqualifizierung geprüft wurden, vorgelegt werden. Die Nachweise gemäß Punkt 1 sind jedoch in jedem Fall einzureichen. m) Die Unterlagen werden kostenfrei abgegeben.: n) Angabe der Zuschlagskriterien: Der niedrigste Preis: Nein Wirtschaftlich günstigstes Angebot in Bezug auf die Kriterien, die in den Vergabe-/Ausschreibungsunterlagen, der Aufforderung zur Angebotsabgabe oder zur Verhandlung bzw. in der Beschreibung zum wettbewerblichen Dialog aufgeführt sind.: Industrietechnische Anlagen/ Ausrüstung,Labortechnik/ Messtechnik,Software",
+      "buyer_name": "Technische Universität Dresden, Dezernat Finanzen und Beschaffung, Sachgebiet Zentrale Beschaffung und Anlagenbuchhaltung",
+      "procedure_id": null,
+      "signal_type": "LIVE_TENDER",
+      "procurement_stage": "tender",
+      "status": "active",
+      "published_at": "2026-09-16T07:01:02+00:00",
+      "updated_at": "2026-09-16T07:01:02+00:00",
+      "cpv_codes": [],
+      "countries": [
+        "DE"
+      ],
+      "first_seen_at": "2026-09-18T11:53:56+00:00",
+      "last_seen_at": "2026-09-18T11:53:56+00:00",
+      "last_material_update": "2026-09-16T07:01:02+00:00",
+      "raw_source_hash": "48d773fdcbc146475812a145b4732c335e0ba5b0123d2cc341eec726ca1cdd0e",
+      "content_hash": "2b45a9c73ac6e15e13600d7befd686487d8459b2a8781a58b797331eac8f7e77"
+    }
+  },
+  {
+    "expected": "exclude",
+    "rationale": "An industrial dishwasher supply, installation and commissioning package, including its associated software.",
+    "reviewer": "Codex source-scope review of replay changes; requires human calibration",
+    "used_for_policy": true,
+    "scope_exclusion_required": false,
+    "signal": {
+      "id": "sig_6879d75ed84972b659d4",
+      "ocid": null,
+      "source": "spain",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://contrataciondelestado.es/wps/poc?idEvl=SiRmBaGvtgsXhk1FZxEyvw%3D%3D&uri=deeplink%3Adetalle_licitacion"
+      ],
+      "primary_source_url": "https://contrataciondelestado.es/wps/poc?idEvl=SiRmBaGvtgsXhk1FZxEyvw%3D%3D&uri=deeplink%3Adetalle_licitacion",
+      "title": "Suministro, instalación, desinstalación y retirada del equipo actualmente instalado, puesta en funcionamiento, formación del personal y suministro del software asociado de un (1) lavavajillas industrial de arrastre de cinta (túnel de lavado), con destino a la cocina del Hospital Universitario de Cabueñes, Área Sanitaria V, del Servicio de Salud del Principado de Asturias.",
+      "description": "Suministro, instalación, desinstalación y retirada del equipo actualmente instalado, puesta en funcionamiento, formación del personal y suministro del software asociado de un (1) lavavajillas industrial de arrastre de cinta (túnel de lavado), con destino a la cocina del Hospital Universitario de Cabueñes, Área Sanitaria V, del Servicio de Salud del Principado de Asturias. Submission deadline (source local time): 2026-06-18 14:00:00. Time zone not supplied; check the source notice.",
+      "buyer_name": "Gerencia del Área Sanitaria V - Gijón del Servicio de Salud del Principado de Asturias",
+      "procedure_id": null,
+      "signal_type": "LIVE_TENDER",
+      "procurement_stage": "tender",
+      "status": "closed",
+      "published_at": "2026-05-19T00:00:00+00:00",
+      "updated_at": "2026-09-17T07:29:43.944000+00:00",
+      "cpv_codes": [
+        "42959000"
+      ],
+      "countries": [
+        "ES"
+      ],
+      "first_seen_at": "2026-09-17T23:09:17+00:00",
+      "last_seen_at": "2026-09-17T23:09:17+00:00",
+      "last_material_update": "2026-09-17T07:29:43.944000+00:00",
+      "raw_source_hash": "53919621101259005863ad41614396d6842f4be6a5f968e497e11dee315af679",
+      "content_hash": "b43f41a79cd5542438de2c247b1b22e147766fc4d45ffcc936e88f17ef064126"
+    }
+  },
+  {
+    "expected": "exclude",
+    "rationale": "The stated purchase is software licence entitlements, subscriptions, updates or manufacturer support, without separately stated application implementation or integration work.",
+    "reviewer": "Codex source-scope review of replay changes; requires human calibration",
+    "used_for_policy": true,
+    "scope_exclusion_required": false,
+    "signal": {
+      "id": "sig_ac172abfae9719cd805b",
+      "ocid": null,
+      "source": "spain",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://contrataciondelestado.es/wps/poc?idEvl=1IX3yIQL62DIGlsa0Wad%2Bw%3D%3D&uri=deeplink%3Adetalle_licitacion"
+      ],
+      "primary_source_url": "https://contrataciondelestado.es/wps/poc?idEvl=1IX3yIQL62DIGlsa0Wad%2Bw%3D%3D&uri=deeplink%3Adetalle_licitacion",
+      "title": "Suministro, Actualización y Soporte de Licencias del Software Autodesk AEC Collection",
+      "description": "Suministro, Actualización y Soporte de Licencias del Software Autodesk AEC Collection Submission deadline (source local time): 2026-10-01 11:00:00. Time zone not supplied; check the source notice.",
+      "buyer_name": "Fundación del Sector Público Estatal Centro Nacional de Investigaciones Oncológicas Carlos III",
+      "procedure_id": null,
+      "signal_type": "LIVE_TENDER",
+      "procurement_stage": "tender",
+      "status": "active",
+      "published_at": "2026-09-17T00:00:00+00:00",
+      "updated_at": "2026-09-17T12:38:14.761000+00:00",
+      "cpv_codes": [
+        "48000000"
+      ],
+      "countries": [
+        "ES"
+      ],
+      "first_seen_at": "2026-09-17T20:35:45+00:00",
+      "last_seen_at": "2026-09-17T20:35:45+00:00",
+      "last_material_update": "2026-09-17T12:38:14.761000+00:00",
+      "raw_source_hash": "944e134691d400c9de0a4593d1b10ec7fe809f4bc6629787d4e6d5f5049e884a",
+      "content_hash": "12590e56a31e9872f6d0357887034cfb34ae2c60001df4eb835725cd1f7298be"
+    }
+  },
+  {
+    "expected": "exclude",
+    "rationale": "The stated purchase is software licence entitlements, subscriptions, updates or manufacturer support, without separately stated application implementation or integration work.",
+    "reviewer": "Codex source-scope review of replay changes; requires human calibration",
+    "used_for_policy": true,
+    "scope_exclusion_required": false,
+    "signal": {
+      "id": "sig_f8a00c02db99274a01e3",
+      "ocid": null,
+      "source": "ted",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://ted.europa.eu/en/notice/-/detail/136700-2026"
+      ],
+      "primary_source_url": "https://ted.europa.eu/en/notice/-/detail/136700-2026",
+      "title": "Servicio del mantenimiento y soporte de software y licencias Oracle del Ministerio de Transportes y Movilidad Sostenible Año 2026-2028 con cargo a la Subdirección General de Tecnologías de la Información y Administración Digital",
+      "description": "El objeto del contrato consiste en la realización de trabajos de mantenimiento, descritos en el Pliego de Prescripciones Técnicas, con el objeto de mantener los correspondientes sistemas en funcionamiento.",
+      "buyer_name": "Junta de Contratación del Ministerio de Transportes y Movilidad Sostenible",
+      "procedure_id": null,
+      "signal_type": "AWARD",
+      "procurement_stage": "award",
+      "status": "awarded",
+      "published_at": "2026-02-25T23:00:00+00:00",
+      "updated_at": "2026-02-25T23:00:00+00:00",
+      "cpv_codes": [
+        "72000000",
+        "72000000"
+      ],
+      "countries": [
+        "ES"
+      ],
+      "first_seen_at": "2026-09-17T23:09:17+00:00",
+      "last_seen_at": "2026-09-17T23:09:17+00:00",
+      "last_material_update": "2026-02-25T23:00:00+00:00",
+      "raw_source_hash": "870e19bff6000772822791416932d500ebc12b158b9ed89c67c33b975575b5ef",
+      "content_hash": "0d4e511007411dec2d79a1477f721355f031f0092f596b31223f7a27309b4225"
+    }
+  },
+  {
+    "expected": "exclude",
+    "rationale": "The stated purchase is software licence entitlements, subscriptions, updates or manufacturer support, without separately stated application implementation or integration work.",
+    "reviewer": "Codex source-scope review of replay changes; requires human calibration",
+    "used_for_policy": true,
+    "scope_exclusion_required": false,
+    "signal": {
+      "id": "sig_0ee379e388eaa71e5db2",
+      "ocid": null,
+      "source": "ted",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://ted.europa.eu/en/notice/-/detail/171880-2026"
+      ],
+      "primary_source_url": "https://ted.europa.eu/en/notice/-/detail/171880-2026",
+      "title": "SUMINISTRO PARA LA SUSCRIPCIÓN DE LICENCIAS DEL SOFTWARE PARA FIREWALLS DE PALO ALTO INSTALADOS EN CANAL DE ISABEL II, S.A., M.P.",
+      "description": "SUMINISTRO PARA LA SUSCRIPCIÓN DE LICENCIAS DEL SOFTWARE PARA FIREWALLS DE PALO ALTO INSTALADOS EN CANAL DE ISABEL II, S.A., M.P.",
+      "buyer_name": "CANAL DE ISABEL II, S.A., M.P.",
+      "procedure_id": null,
+      "signal_type": "LIVE_TENDER",
+      "procurement_stage": "tender",
+      "status": "active",
+      "published_at": "2026-03-11T23:00:00+00:00",
+      "updated_at": "2026-03-11T23:00:00+00:00",
+      "cpv_codes": [
+        "48730000",
+        "72268000",
+        "48730000",
+        "72268000"
+      ],
+      "countries": [
+        "ES"
+      ],
+      "first_seen_at": "2026-09-18T11:53:56+00:00",
+      "last_seen_at": "2026-09-18T11:53:56+00:00",
+      "last_material_update": "2026-03-11T23:00:00+00:00",
+      "raw_source_hash": "c9f64e603cc08793b6df3bb1a5361a112dddbecac249493385a3b73ca62c5299",
+      "content_hash": "d30f2701e52097fa576f342c58632567ec11885c174d65d0bf2d008de7ee3a95"
+    }
+  },
+  {
+    "expected": "exclude",
+    "rationale": "Rental and maintenance of multifunction printing equipment with its print-management software; no separate application work.",
+    "reviewer": "Codex source-scope review of replay changes; requires human calibration",
+    "used_for_policy": true,
+    "scope_exclusion_required": false,
+    "signal": {
+      "id": "sig_35ef0c6e40ccf695128f",
+      "ocid": null,
+      "source": "ted",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://ted.europa.eu/en/notice/-/detail/609588-2026"
+      ],
+      "primary_source_url": "https://ted.europa.eu/en/notice/-/detail/609588-2026",
+      "title": "Contrato del suministro de 26 equipos de reprografía multifunción en régimen de alquiler, mantenimiento y de un software de gestión de impresión para la Sociedad Estatal de Infraestructuras del Transporte Terrestre, S.M.E., S.A.",
+      "description": "El objeto de esta contratación es el suministro en régimen de alquiler de 26 equipos de reprografía multifunción junto con el servicio de mantenimiento y el software de gestión de impresión para cubrir las necesidades de la Sociedad Estatal de Infraestructuras del Transporte Terrestre, S.M.E., S.A.",
+      "buyer_name": "Presidencia del Consejo de Administración de la Sociedad Estatal de Infraestructuras del Transporte Terrestre, S.M.E., S.A.",
+      "procedure_id": null,
+      "signal_type": "AWARD",
+      "procurement_stage": "award",
+      "status": "awarded",
+      "published_at": "2026-09-03T22:00:00+00:00",
+      "updated_at": "2026-09-03T22:00:00+00:00",
+      "cpv_codes": [
+        "30120000",
+        "50313000",
+        "30120000",
+        "50313000"
+      ],
+      "countries": [
+        "ES"
+      ],
+      "first_seen_at": "2026-09-18T17:53:22+00:00",
+      "last_seen_at": "2026-09-18T17:53:22+00:00",
+      "last_material_update": "2026-09-03T22:00:00+00:00",
+      "raw_source_hash": "84e2f8486a7dbcf0dfa3d08d3134ef75c35086e62f2b1ec89ac4677088059a2d",
+      "content_hash": "34cd1e902f7485ba9068184d75a109ff560d51f015ca3d560f7fa0762773cf36"
+    }
+  },
+  {
+    "expected": "exclude",
+    "rationale": "The object is radiopharmaceutical synthesis equipment. Development of new applications describes clinical uses, not software applications.",
+    "reviewer": "Codex source-scope review of replay changes; requires human calibration",
+    "used_for_policy": true,
+    "scope_exclusion_required": false,
+    "signal": {
+      "id": "sig_5d2861077a5633cf17a8",
+      "ocid": "ocds-mnwr74-ea68a2c1-b8b0-46fc-899f-b4233aca1741",
+      "source": "germany",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://oeffentlichevergabe.de/ui/de/notices/7200ba4c-ec47-46cd-8b3c-c1d71e3da122"
+      ],
+      "primary_source_url": "https://oeffentlichevergabe.de/ui/de/notices/7200ba4c-ec47-46cd-8b3c-c1d71e3da122",
+      "title": "Syntheseanlagen zur Herstellung radioaktiv markierter Arzneimittel",
+      "description": "Beschaffung von drei Syntheseanlagen (hier Modul a) mit zwei Geräten und Modul b) mit einem Gerät) zur Herstellung radioaktiv markierter Arzeneimittel. Lot LOT-0001: Syntheseanlagen zur Herstellung radioaktiv markierter Arzneimittel. Aktuell nimmt die Nuklearmedizin in Bonn national sowie international eine führende Position ein. Mit der grundlegenden Anpassung im vorhandenen Gebäudebestand kann ein optimaler Ablauf in Verknüpfung der bereits vorhandenen Funktionsbereiche erreicht werden. Das Nuklidlabor kann hierdurch die Versorgung mit modernsten radioaktiv markierten Substanzen für Diagnostik und Therapie von Patientinnen und Patienten dauerhaft sicherstellen. Das neue Heißlabor ermöglicht zudem die Entwicklung und den Einsatz neuer radioaktiver Arzneimittel für die Behandlung. Modul a) dient der automatisierten Herstellung radioaktiv markierter Arzneimittel für die nuklearmedizinische Diagnostik und Therapie. Die Anlage führt die einzelnen Herstellungsschritte in einem geschlossenen System selbstständig durch und trägt dadurch zu einer gleichbleibend hohen Herstellungsqualität sowie zum Schutz des Personals vor radioaktiver Strahlung bei. Die Anlage ermöglicht die reproduzierbare Herstellung etablierter Standardradiopharmaka und bildet einen zentralen Bestandteil der routinemäßigen Patientenversorgung sowie der Entwicklung neuer Anwendungen. Modul b) dient ebenfalls der automatisierten Herstellung radioaktiv markierter Arzneimittel. Für bestimmte, insbesondere komplexe radioaktiv markierte Arzneimittel ist zusätzlich eine chromatographische Aufreinigung erforderlich. Hierzu verfügt die Anlage über ein integriertes Aufreinigungssystem (semi-präparative HPLC), das den gewünschten radioaktiven Wirkstoff von Neben- und Ausgangsstoffen trennt. Dadurch kann das Arzneimittel in der für den späteren Einsatz erforderlichen Reinheit hergestellt werden. Die Kombination aus Herstellung und Aufreinigung in einem System ermöglicht einen sicheren und standardisierten Produktionsablauf. Der Umfang des Auftragsvolumens ist in den Vergabeunterlagen dargestellt.",
+      "buyer_name": "Universitätsklinikum Bonn AöR",
+      "procedure_id": null,
+      "signal_type": "LIVE_TENDER",
+      "procurement_stage": "tender",
+      "status": "active",
+      "published_at": "2026-09-11T02:06:26+00:00",
+      "updated_at": "2026-09-11T02:06:26+00:00",
+      "cpv_codes": [
+        "33100000"
+      ],
+      "countries": [
+        "DE"
+      ],
+      "first_seen_at": "2026-09-18T19:14:50+00:00",
+      "last_seen_at": "2026-09-18T19:14:50+00:00",
+      "last_material_update": "2026-09-11T02:06:26+00:00",
+      "raw_source_hash": "22f11a87aaaed9ac4fd3dfdeec693653fc6bd070a74cf94723a74b1acbb79eee",
+      "content_hash": "83961ad849a69b7a5793e102997ed72439c96d550762265c75452f497e7bd66a"
+    }
+  },
+  {
+    "expected": "exclude",
+    "rationale": "The described equipment supports investment-casting research. Industrial applications describes uses of manufacturing processes, not software development.",
+    "reviewer": "Codex source-scope review of replay changes; requires human calibration",
+    "used_for_policy": true,
+    "scope_exclusion_required": false,
+    "signal": {
+      "id": "sig_96be5ac49f8245120196",
+      "ocid": "ocds-mnwr74-505df4ce-7ebd-441f-ac41-57ee0df2b7c7",
+      "source": "germany",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://oeffentlichevergabe.de/ui/de/notices/3f166815-e167-4b94-b752-7390dabbe64a"
+      ],
+      "primary_source_url": "https://oeffentlichevergabe.de/ui/de/notices/3f166815-e167-4b94-b752-7390dabbe64a",
+      "title": "Access - EcoCastAero Aufstockung II WH Los 7",
+      "description": "EcoCastAero Aufstockung II - WH Los 7: Druckerhöhungspumpe Lot LOT-0001: Access - EcoCastAero Aufstockung II WH Los 7. Gegenstand dieser Ausschreibung ist die Beschaffung von FuE-Infrastruktur zur Erweiterung und Stärkung einer Feingussentwicklungskette. Die auszuschreibenden Systeme dienen insbesondere der additiven Herstellung keramischer Strukturen, der materialanalytischen Charakterisierung, der thermomechanischen Untersuchung sowie der mechanischen Bearbeitung und prozesstechnischen Unterstützung im Rahmen feingussbezogener Forschungs- und Entwicklungsarbeiten. Die ausgeschriebenen Anlagen ermöglichen die Entwicklung, Herstellung, Analyse und Weiterbearbeitung von Komponenten, Werkzeugen, Formen, Kernen und Proben entlang einer modernen Feingussprozesskette. Der Schwerpunkt liegt dabei auf keramischen 3D-Druckverfahren, der Phasen- und Gefügeanalyse mittels Röntgendiffraktometrie, der thermomechanischen und rheologischen Bewertung von Werkstoffen sowie auf ergänzenden Fertigungs- und Bearbeitungstechnologien wie Drehen, Drahterodieren und druckgestützter Medien- bzw. Prozessversorgung. Die Anlagen werden in der anwendungsnahen Forschung und Entwicklung eingesetzt und bilden eine zentrale Grundlage für die Weiterentwicklung feingussrelevanter Werkstoff- und Prozessrouten. Sie dienen der Qualifizierung innovativer keramischer und metallurgischer Prozessschritte, der Herstellung präziser Proben und Bauteilstrukturen sowie der Bewertung prozess- und werkstoffabhängiger Eigenschaften. Damit leisten sie einen wesentlichen Beitrag zur Entwicklung leistungsfähiger Feingussverfahren für industrielle Anwendungen, insbesondere in technisch anspruchsvollen und qualitätskritischen Einsatzfeldern.",
+      "buyer_name": "Access e.V.",
+      "procedure_id": null,
+      "signal_type": "LIVE_TENDER",
+      "procurement_stage": "tender",
+      "status": "active",
+      "published_at": "2026-09-11T02:08:36+00:00",
+      "updated_at": "2026-09-11T02:08:36+00:00",
+      "cpv_codes": [
+        "42123000"
+      ],
+      "countries": [
+        "DE"
+      ],
+      "first_seen_at": "2026-09-18T19:14:50+00:00",
+      "last_seen_at": "2026-09-18T19:14:50+00:00",
+      "last_material_update": "2026-09-11T02:08:36+00:00",
+      "raw_source_hash": "1bf682c6efb8452711f7999fa04c62ff07cb28ccde72b7fba13e45698d231b7f",
+      "content_hash": "c17f7830aff2533a8322ab59a18ea8c74a5d56008d7e85c853feddaf97e0a9ea"
+    }
+  },
+  {
+    "expected": "exclude",
+    "rationale": "A single humanoid robot supply. Repeated checklist headings for software and development are equipment specifications, not a commissioned application-development task.",
+    "reviewer": "Codex source-scope review of replay changes; requires human calibration",
+    "used_for_policy": true,
+    "scope_exclusion_required": false,
+    "signal": {
+      "id": "sig_a2f3c2cfabd236b70001",
+      "ocid": "ocds-mnwr74-25812918",
+      "source": "germany",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://oeffentlichevergabe.de/ui/de/notices/25812918"
+      ],
+      "primary_source_url": "https://oeffentlichevergabe.de/ui/de/notices/25812918",
+      "title": "Humanoides Robotersystem",
+      "description": "Nationale Ausschreibung nach UVgO Öffentliche Ausschreibung Vergabenr.: BA2-2026-27b-E 1. Zur Angebotsabgabe auffordernde Stelle, zuschlagserteilende Stelle: Name und Anschrift: Martin-Luther-Universität Halle-Wittenberg, Abteilung 2 - Finanzen Universitätsplatz 9 06108 Halle (Saale) Deutschland Telefonnummer: +49 3455521330 Telefaxnummer: +49 3455527047 E-Mail-Adresse: lydia.wunderlich@verwaltung.uni-halle.de Internet-Adresse: https://www.uni-halle.de Zuschlagserteilende Stelle: Siehe oben 2. Verfahrensart (§ 8 UVgO): Verfahrensart: Öffentliche Ausschreibung 3. Angebote können abgegeben werden: elektronisch in Textform elektronisch mit fortgeschrittener Signatur elektronisch mit qualifizierter Signatur Anschrift zur Einreichung schriftlicher Angebote: ENTFÄLLT- (es sind ausschließlich elektronische Angebote zugelassen) 4. Zugriff auf Vergabeunterlagen: Maßnahmen zum Schutz der Vertraulichkeit und die Informationen zum Zugriff auf die Vergabeunterlagen (§ 29 Abs. 3 UVgO): Entfällt (siehe 9.). 5. Art und Umfang sowie Ort der Leistung: Art der Leistung: Humanoides Robotersystem Menge und Umfang: 1x Humanoides Robotersystem siehe Leistungsverzeichnis Ort der Leistung: Martin-Luther-Universität Halle-Wittenberg Institut für Physik Heinrich-Damerow-Straße 4 06120 Halle (Saale) Deutschland 6. Losaufteilung: Losweise Vergabe: Nein 7. Nebenangebote sind nicht zugelassen 8. Etwaige Bestimmungen über die Ausführungsfrist: Beginn der Ausführungsfrist: Ende der Ausführungsfrist: Bemerkung zur Ausführungsfrist: Lieferung erfolgt schnellstmöglich, spätestens innerhalb der im Angebot des Auftragnehmers genannten Lieferfrist. 9. Elektronische Adresse, unter der die Teilnahmewettbewerbsunterlagen/Vergabeunterlagen abgerufen werden können: unter (URL:): https://www.evergabe.de/unterlagen/54321-Tender-1a08b7a7773-4dae78120c3df82 10. Ablauf der Angebots- und Bindefrist: Angebote sind einzureichen bis: 21.09.2026 12:00 Ablauf der Bindefrist: 30.11.2026 11. Höhe der etwa geforderten Sicherheitsleistungen: : 12. Wesentliche Zahlungsbedingungen: : Es werden keine Vorauszahlungen geleistet.Teilrechnung für Teillieferung nach Absprache möglich.Es wird akzeptiert:Zahlung unter Abzug von Skonto innerhalb von 14 Tagen,welcher im Preisblatt anzugeben ist, bzw. bei Zahlung innerhalbvon 30 Tagen ohne Abzug. 13. Ggf. mit dem Angebot vorzulegende Unterlagen zur Eignungsprüfung des Bewerbers: : Mit Angebotsabgabe sind zur Ermittlung der Eignung folgende Unterlagen einzureichen: Eigenerklärung zur Eignung Erklärung der Bieter-/Arbeitsgemeinschaft (falls zutreffend) Eigenerklärung Russland Sanktionen Bewerbererklärung Eigenerklärung zu Tariftreue, Mindeststundenentgelt und Entgeltgleichheit Eigenerklärung zum Nachunternehmereinsatz (falls zutreffend) bietereigenes Angebot 14. Angabe der Zuschlagskriterien: Der niedrigste Preis: Nein Wirtschaftlich günstigstes Angebot in Bezug auf die nachstehenden Kriterien: 1 Preis (100%), 2 A-Kriterium - Beschaffungsgegenstand, 3 A-Kriterium - Beschaffungsgegenstand, 4 A-Kriterium - Bauform und Mobilität, 5 A-Kriterium - Bauform und Mobilität, 6 A-Kriterium - Bauform und Mobilität, 7 A-Kriterium - Bauform und Mobilität, 8 A-Kriterium - Bauform und Mobilität, 9 A-Kriterium - Arme und taktile Fünffingerhände, 10 A-Kriterium - Arme und taktile Fünffingerhände, 11 A-Kriterium - Arme und taktile Fünffingerhände, 12 A-Kriterium - Arme und taktile Fünffingerhände, 13 A-Kriterium - Arme und taktile Fünffingerhände, 14 A-Kriterium - Wahrnehmung, Rechner und Schnittstellen, 15 A-Kriterium - Wahrnehmung, Rechner und Schnittstellen, 16 A-Kriterium - Wahrnehmung, Rechner und Schnittstellen, 17 A-Kriterium - Software und Entwicklung, 18 A-Kriterium - Software und Entwicklung, 19 A-Kriterium - Software und Entwicklung, 20 A-Kriterium - Sicherheit, Lieferung und Service, 21 A-Kriterium - Sicherheit, Lieferung und Service, 22 A-Kriterium - Sicherheit, Lieferung und Service, 23 A-Kriterium - Sicherheit, Lieferung und Service, 24 A-Kriterium - Abnahmeprüfungen, 25 A-Kriterium - Abnahmeprüfungen, 26 A-Kriterium - Abnahmeprüfungen, 27 A-Kriterium - Abnahmeprüfungen, 28 A-Kriterium - Abnahmeprüfungen, 29 A-Kriterium - Abnahmeprüfungen, 30 A-Kriterium - Lieferung 15. Sonstiges: Ab einem Auftragswert von 30.000 € netto wird vor Zuschlagserteilung durch den Auftraggeber ein Auszug aus dem Wettbewerbsregister beim Bundesamt für Justiz abgerufen. Änderungen und Ergänzungen an den Ihnen übersendeten Vergabeunterlagen sind unzulässig und führen zum Ausschluss des Angebotes von der Wertung. Dies gilt auch für die dem Angebot beigefügten Allgemeinen Geschäfts-, Liefer- oder Zahlungsbedingungen des Bieters oder des möglicherweise eingesetzten Unterauftragnehmers. Industrietechnische Anlagen/ Ausrüstung,Hardware Lot LOT-0000: Humanoides Robotersystem. Nationale Ausschreibung nach UVgO Öffentliche Ausschreibung Vergabenr.: BA2-2026-27b-E 1. Zur Angebotsabgabe auffordernde Stelle, zuschlagserteilende Stelle: Name und Anschrift: Martin-Luther-Universität Halle-Wittenberg, Abteilung 2 - Finanzen Universitätsplatz 9 06108 Halle (Saale) Deutschland Telefonnummer: +49 3455521330 Telefaxnummer: +49 3455527047 E-Mail-Adresse: lydia.wunderlich@verwaltung.uni-halle.de Internet-Adresse: https://www.uni-halle.de Zuschlagserteilende Stelle: Siehe oben 2. Verfahrensart (§ 8 UVgO): Verfahrensart: Öffentliche Ausschreibung 3. Angebote können abgegeben werden: elektronisch in Textform elektronisch mit fortgeschrittener Signatur elektronisch mit qualifizierter Signatur Anschrift zur Einreichung schriftlicher Angebote: ENTFÄLLT- (es sind ausschließlich elektronische Angebote zugelassen) 4. Zugriff auf Vergabeunterlagen: Maßnahmen zum Schutz der Vertraulichkeit und die Informationen zum Zugriff auf die Vergabeunterlagen (§ 29 Abs. 3 UVgO): Entfällt (siehe 9.). 5. Art und Umfang sowie Ort der Leistung: Art der Leistung: Humanoides Robotersystem Menge und Umfang: 1x Humanoides Robotersystem siehe Leistungsverzeichnis Ort der Leistung: Martin-Luther-Universität Halle-Wittenberg Institut für Physik Heinrich-Damerow-Straße 4 06120 Halle (Saale) Deutschland 6. Losaufteilung: Losweise Vergabe: Nein 7. Nebenangebote sind nicht zugelassen 8. Etwaige Bestimmungen über die Ausführungsfrist: Beginn der Ausführungsfrist: Ende der Ausführungsfrist: Bemerkung zur Ausführungsfrist: Lieferung erfolgt schnellstmöglich, spätestens innerhalb der im Angebot des Auftragnehmers genannten Lieferfrist. 9. Elektronische Adresse, unter der die Teilnahmewettbewerbsunterlagen/Vergabeunterlagen abgerufen werden können: unter (URL:): https://www.evergabe.de/unterlagen/54321-Tender-1a08b7a7773-4dae78120c3df82 10. Ablauf der Angebots- und Bindefrist: Angebote sind einzureichen bis: 21.09.2026 12:00 Ablauf der Bindefrist: 30.11.2026 11. Höhe der etwa geforderten Sicherheitsleistungen: : 12. Wesentliche Zahlungsbedingungen: : Es werden keine Vorauszahlungen geleistet.Teilrechnung für Teillieferung nach Absprache möglich.Es wird akzeptiert:Zahlung unter Abzug von Skonto innerhalb von 14 Tagen,welcher im Preisblatt anzugeben ist, bzw. bei Zahlung innerhalbvon 30 Tagen ohne Abzug. 13. Ggf. mit dem Angebot vorzulegende Unterlagen zur Eignungsprüfung des Bewerbers: : Mit Angebotsabgabe sind zur Ermittlung der Eignung folgende Unterlagen einzureichen: Eigenerklärung zur Eignung Erklärung der Bieter-/Arbeitsgemeinschaft (falls zutreffend) Eigenerklärung Russland Sanktionen Bewerbererklärung Eigenerklärung zu Tariftreue, Mindeststundenentgelt und Entgeltgleichheit Eigenerklärung zum Nachunternehmereinsatz (falls zutreffend) bietereigenes Angebot 14. Angabe der Zuschlagskriterien: Der niedrigste Preis: Nein Wirtschaftlich günstigstes Angebot in Bezug auf die nachstehenden Kriterien: 1 Preis (100%), 2 A-Kriterium - Beschaffungsgegenstand, 3 A-Kriterium - Beschaffungsgegenstand, 4 A-Kriterium - Bauform und Mobilität, 5 A-Kriterium - Bauform und Mobilität, 6 A-Kriterium - Bauform und Mobilität, 7 A-Kriterium - Bauform und Mobilität, 8 A-Kriterium - Bauform und Mobilität, 9 A-Kriterium - Arme und taktile Fünffingerhände, 10 A-Kriterium - Arme und taktile Fünffingerhände, 11 A-Kriterium - Arme und taktile Fünffingerhände, 12 A-Kriterium - Arme und taktile Fünffingerhände, 13 A-Kriterium - Arme und taktile Fünffingerhände, 14 A-Kriterium - Wahrnehmung, Rechner und Schnittstellen, 15 A-Kriterium - Wahrnehmung, Rechner und Schnittstellen, 16 A-Kriterium - Wahrnehmung, Rechner und Schnittstellen, 17 A-Kriterium - Software und Entwicklung, 18 A-Kriterium - Software und Entwicklung, 19 A-Kriterium - Software und Entwicklung, 20 A-Kriterium - Sicherheit, Lieferung und Service, 21 A-Kriterium - Sicherheit, Lieferung und Service, 22 A-Kriterium - Sicherheit, Lieferung und Service, 23 A-Kriterium - Sicherheit, Lieferung und Service, 24 A-Kriterium - Abnahmeprüfungen, 25 A-Kriterium - Abnahmeprüfungen, 26 A-Kriterium - Abnahmeprüfungen, 27 A-Kriterium - Abnahmeprüfungen, 28 A-Kriterium - Abnahmeprüfungen, 29 A-Kriterium - Abnahmeprüfungen, 30 A-Kriterium - Lieferung 15. Sonstiges: Ab einem Auftragswert von 30.000 € netto wird vor Zuschlagserteilung durch den Auftraggeber ein Auszug aus dem Wettbewerbsregister beim Bundesamt für Justiz abgerufen. Änderungen und Ergänzungen an den Ihnen übersendeten Vergabeunterlagen sind unzulässig und führen zum Ausschluss des Angebotes von der Wertung. Dies gilt auch für die dem Angebot beigefügten Allgemeinen Geschäfts-, Liefer- oder Zahlungsbedingungen des Bieters oder des möglicherweise eingesetzten Unterauftragnehmers. Industrietechnische Anlagen/ Ausrüstung,Hardware",
+      "buyer_name": "Martin-Luther-Universität Halle-Wittenberg, Abteilung 2 - Finanzen",
+      "procedure_id": null,
+      "signal_type": "LIVE_TENDER",
+      "procurement_stage": "tender",
+      "status": "active",
+      "published_at": "2026-09-12T07:01:10+00:00",
+      "updated_at": "2026-09-12T07:01:10+00:00",
+      "cpv_codes": [],
+      "countries": [
+        "DE"
+      ],
+      "first_seen_at": "2026-09-18T17:53:22+00:00",
+      "last_seen_at": "2026-09-18T17:53:22+00:00",
+      "last_material_update": "2026-09-12T07:01:10+00:00",
+      "raw_source_hash": "926d6ff1d313e2ef70520b1a06980bf38bcc70b1cd3aef17988f05bea198f45a",
+      "content_hash": "96af1bf1346cafaf41f64c6b3e12186b41e002ad6e0d7cfbf7f73452b9a3c094"
+    }
+  },
+  {
+    "expected": "exclude",
+    "rationale": "LAN/WLAN hardware and licence components expanding an existing network, without separately specified application development or integration services.",
+    "reviewer": "Codex source-scope review of replay changes; requires human calibration",
+    "used_for_policy": true,
+    "scope_exclusion_required": false,
+    "signal": {
+      "id": "sig_ae5b51c8c83915325e7e",
+      "ocid": "ocds-mnwr74-f0ee81ac-7ae1-4568-86d5-28f393037026",
+      "source": "germany",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://oeffentlichevergabe.de/ui/de/notices/7704d622-8a77-4ad5-9e43-c99b18fbb8b7"
+      ],
+      "primary_source_url": "https://oeffentlichevergabe.de/ui/de/notices/7704d622-8a77-4ad5-9e43-c99b18fbb8b7",
+      "title": "Hardware/Software - Erweiterung der bestehenden LAN/WLAN-Infrastruktur einschließlich Network Access Control (NAC) mit Aruba ClearPass",
+      "description": "Gegenstand der Beschaffung ist die Lieferung von Hardware, Software und Lizenzkomponenten zur Erweiterung der bestehenden LAN-/WLAN- Infrastruktur des Landratsamtes Saale-Holzland-Kreis. Die zu beschaffenden Komponenten dienen dem Aufbau und Betrieb einer leistungsfähigen, sicheren und zentral verwaltbaren Netzwerkumgebung für die neu errichteten Arbeitsplätze und Funktionsbereiche im Dienstleistungszentrum des Landratsamtes. Lot LOT-0001: Lieferung von Hardware, Software und Lizenzkomponenten. Komponenten für die LAN-Infrastruktur Lot LOT-0002: Lieferung von Hardware, Software und Lizenzkomponenten. Lieferung von Komponenten für die WLAN-Infrastruktur",
+      "buyer_name": "Landratsamt Saale-Holzland-Kreis",
+      "procedure_id": null,
+      "signal_type": "AWARD",
+      "procurement_stage": "award",
+      "status": "complete",
+      "published_at": "2026-09-06T08:12:05+00:00",
+      "updated_at": "2026-09-06T08:12:05+00:00",
+      "cpv_codes": [
+        "32422000"
+      ],
+      "countries": [
+        "DE"
+      ],
+      "first_seen_at": "2026-09-18T21:57:07+00:00",
+      "last_seen_at": "2026-09-18T21:57:07+00:00",
+      "last_material_update": "2026-09-06T08:12:05+00:00",
+      "raw_source_hash": "4b4f54f0893c3754609e83dbfb8f51ef8b91a1efada44e595888f2912c5257b0",
+      "content_hash": "f32e4b817d0ee0683b803e05c1f0325de547aea96762577fe38dc9e80d8d0817"
+    }
+  },
+  {
+    "expected": "exclude",
+    "rationale": "Infrared camera systems include an SDK that allows integration into the buyer’s applications; the supplier is not commissioned to build those applications.",
+    "reviewer": "Codex source-scope review of replay changes; requires human calibration",
+    "used_for_policy": true,
+    "scope_exclusion_required": false,
+    "signal": {
+      "id": "sig_fa701a10a4b46fea4726",
+      "ocid": null,
+      "source": "ted",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://ted.europa.eu/en/notice/-/detail/614870-2026"
+      ],
+      "primary_source_url": "https://ted.europa.eu/en/notice/-/detail/614870-2026",
+      "title": "Beschaffung eines Infrarot-Kamerasystems (Thermografie) inkl. SDK",
+      "description": "Der Auftraggeber beschafft 8 Infrarot-Kamerasysteme für den stationären bzw. mobilen Einsatz in der messtechnischen Thermografie zur Verkehrsdatenerfassung. Gefordert ist ein einsatzfertiges System aus radiometrischer IR-Kamera inkl. Optik sowie einem Software-Entwicklungskit (SDK) zur Integration in eigene Anwendungen. Der Leistungsumfang umfasst Lieferung, Dokumentation, Gewährleistung sowie deutschsprachigen Hard- und Software-Support.",
+      "buyer_name": "Deutsches Zentrum für Luft- und Raumfahrt e.V. (DLR)",
+      "procedure_id": null,
+      "signal_type": "LIVE_TENDER",
+      "procurement_stage": "tender",
+      "status": "active",
+      "published_at": "2026-09-06T22:00:00+00:00",
+      "updated_at": "2026-09-06T22:00:00+00:00",
+      "cpv_codes": [
+        "42000000",
+        "42000000"
+      ],
+      "countries": [
+        "DE"
+      ],
+      "first_seen_at": "2026-09-18T21:57:07+00:00",
+      "last_seen_at": "2026-09-18T21:57:07+00:00",
+      "last_material_update": "2026-09-06T22:00:00+00:00",
+      "raw_source_hash": "973b245eaca82323cd8a8dd4c9176329ce78ba8ee18fe644c8966f6b526d5bca",
+      "content_hash": "a870eb4c07e4ba7660f5445914396ba7d99fd359424cdc3b165c8211dae9dc0a"
+    }
+  },
+  {
+    "expected": "retain",
+    "rationale": "The licence maintenance is combined with explicitly commissioned migration of the SAP ERP from on-premise to cloud, version upgrade and application support.",
+    "reviewer": "Codex source-scope review of replay changes; requires human calibration",
+    "used_for_policy": true,
+    "scope_exclusion_required": false,
+    "signal": {
+      "id": "sig_e25109c5d2518de7fe02",
+      "ocid": null,
+      "source": "ted",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://ted.europa.eu/en/notice/-/detail/136540-2026",
+        "https://ted.europa.eu/en/notice/-/detail/206243-2026"
+      ],
+      "primary_source_url": "https://ted.europa.eu/en/notice/-/detail/206243-2026",
+      "title": "(07/2026) Procedura aperta, ai sensi dell'art. 71 del D.Lgs. n. 36/2023, con aggiudicazione secondo il criterio dell'offerta economicamente più vantaggiosa, ai sensi dell'art. 108, comma 2 del D.lgs. n. 36/2023, per la scelta del contraente cui affidare le attività di esecuzione dei seguenti servizi inerenti all'ERP aziendale SAP: manutenzione delle licenze, migrazione on-premise verso cloud e agg",
+      "description": "(07/2026) Procedura aperta, ai sensi dell'art. 71 del D.Lgs. n. 36/2023, con aggiudicazione secondo il criterio dell'offerta economicamente più vantaggiosa, ai sensi dell'art. 108, comma 2 del D.lgs. n. 36/2023, per la scelta del contraente cui affidare le attività di esecuzione dei seguenti servizi inerenti all'ERP aziendale SAP: manutenzione delle licenze, migrazione on-premise verso cloud e aggiornamento versione, cloud service,supporto Basis e supporto applicativo AMS.",
+      "buyer_name": "Gare Amiu Genova",
+      "procedure_id": "proc_3fe977a9b2f321b283c3",
+      "signal_type": "LIVE_TENDER",
+      "procurement_stage": "tender",
+      "status": "active",
+      "published_at": "2026-02-25T23:00:00+00:00",
+      "updated_at": "2026-03-24T23:00:00+00:00",
+      "cpv_codes": [
+        "72260000",
+        "72260000"
+      ],
+      "countries": [
+        "IT"
+      ],
+      "first_seen_at": "2026-09-17T20:35:45+00:00",
+      "last_seen_at": "2026-09-18T21:57:07+00:00",
+      "last_material_update": "2026-09-18T21:57:07+00:00",
+      "raw_source_hash": "64a12d6f9a2e2a49ea4c69934daf09088253eca193819668ac928644850715b2",
+      "content_hash": "86cd226cb179fb4dc55f0c395e49785962baae3955047a67afa79284c36d613d"
+    }
+  },
+  {
+    "expected": "uncertain",
+    "rationale": "The source renews specialist support services, not explicitly licence entitlements; preserve the sparse plausible IT service for review.",
+    "reviewer": "Codex source-scope review of replay changes; requires human calibration",
+    "used_for_policy": true,
+    "scope_exclusion_required": false,
+    "signal": {
+      "id": "sig_f624233585c620e4ea25",
+      "ocid": null,
+      "source": "ted",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://ted.europa.eu/en/notice/-/detail/662789-2025"
+      ],
+      "primary_source_url": "https://ted.europa.eu/en/notice/-/detail/662789-2025",
+      "title": "Rinnovo del servizio di supporto specialistico a completamento del servizio SAP RISE",
+      "description": "Rinnovo del servizio di supporto specialistico a completamento del servizio SAP RISE",
+      "buyer_name": "Gestore dei Servizi Energetici GSE S.p.A",
+      "signal_type": "PIPELINE",
+      "procurement_stage": "planning",
+      "status": "active",
+      "published_at": "2025-10-08T22:00:00+00:00",
+      "updated_at": "2025-10-08T22:00:00+00:00",
+      "cpv_codes": [
+        "72500000",
+        "72500000"
+      ],
+      "countries": [
+        "IT"
+      ],
+      "first_seen_at": "2026-09-12T18:48:39+00:00",
+      "last_seen_at": "2026-09-12T21:01:36+00:00",
+      "last_material_update": "2025-10-08T22:00:00+00:00",
+      "raw_source_hash": "63658a8172646173d06072c0e4b81189a2c5222dfaa734c04705b1ddd785dfe8",
+      "content_hash": "2f8fe69ab88c231ceacb361cb39c9301f50c8c9c2261f48a67698ee6b17f5e6a"
+    }
+  },
+  {
+    "expected": "retain",
+    "rationale": "The source renews specialist evolutionary maintenance and proactive work on computer systems; service renewal is not proof of licence resale.",
+    "reviewer": "Codex source-scope review of replay changes; requires human calibration",
+    "used_for_policy": true,
+    "scope_exclusion_required": false,
+    "signal": {
+      "id": "sig_7294fafb27d3d84f31dd",
+      "ocid": null,
+      "source": "ted",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://ted.europa.eu/en/notice/-/detail/106029-2026"
+      ],
+      "primary_source_url": "https://ted.europa.eu/en/notice/-/detail/106029-2026",
+      "title": "Rinnovo servizi triennali di supporto specialistico per la manutenzione evolutiva e gli interventi proattivi sui sistemi informatici basati su prodotti Oracle - 2026 - 2028",
+      "description": "Rinnovo servizi triennali di supporto specialistico per la manutenzione evolutiva e gli interventi proattivi sui sistemi informatici basati su prodotti Oracle - 2026 - 2028",
+      "buyer_name": "Gestore dei Servizi Energetici GSE S.p.A",
+      "signal_type": "AWARD",
+      "procurement_stage": "award",
+      "status": "closed",
+      "published_at": "2026-02-12T23:00:00+00:00",
+      "updated_at": "2026-02-12T23:00:00+00:00",
+      "cpv_codes": [
+        "72250000",
+        "72250000"
+      ],
+      "countries": [
+        "IT"
+      ],
+      "first_seen_at": "2026-09-17T06:47:00+00:00",
+      "last_seen_at": "2026-09-17T12:14:17+00:00",
+      "last_material_update": "2026-02-12T23:00:00+00:00",
+      "raw_source_hash": "2669964e73963ca83e7312c7d7f9fef439aefa48c0c9f8c9a36178a7f3b6839a",
+      "content_hash": "4813b785045cdda6d8d8a4b92ae8b4e87c442c87c1c39b57ca7535e22a9a9495"
+    }
+  },
+  {
+    "expected": "exclude",
+    "rationale": "The purchased object is Adobe licence entitlements, without separately stated implementation, migration or customisation work.",
+    "reviewer": "Codex source-scope review of replay changes; requires human calibration",
+    "used_for_policy": true,
+    "scope_exclusion_required": false,
+    "signal": {
+      "id": "sig_15cbbf797e9680440865",
+      "ocid": null,
+      "source": "ted",
+      "source_type": "official_notice",
+      "source_urls": [
+        "https://ted.europa.eu/en/notice/-/detail/138652-2026"
+      ],
+      "primary_source_url": "https://ted.europa.eu/en/notice/-/detail/138652-2026",
+      "title": "PROCEDURA APERTA AI SENSI DELL&#8217;ART. 71 DEL D.LGS. N. 36/2023, PER LA FORNITURA DI LICENZE SOFTWARE ADOBE ENTERPRISE EDUCATIONAL &#8211; NAMED USER PER 36 MESI.",
+      "description": "PROCEDURA APERTA, AI SENSI DELL’ART. 71 DEL D.LGS. N. 36/2023, CON IL CRITERIO DI AGGIUDICAZIONE DEL MINOR PREZZO, IN MODALITA' TELEMATICA, PER LA FORNITURA DI LICENZE SOFTWARE ADOBE ENTERPRISE EDUCATIONAL. CUI AC06838821004202600004 PROCEDURA APERTA AI SENSI DELL&#8217;ART. 71 DEL D.LGS. N. 36/2023, PER LA FORNITURA DI LICENZE SOFTWARE ADOBE ENTERPRISE EDUCATIONAL &#8211; NAMED USER PER 36 MESI.",
+      "buyer_name": "Istituto Nazionale di Geofisica e Vulcanologia",
+      "signal_type": "LIVE_TENDER",
+      "procurement_stage": "tender",
+      "status": "active",
+      "published_at": "2026-02-26T23:00:00+00:00",
+      "updated_at": "2026-02-26T23:00:00+00:00",
+      "cpv_codes": [
+        "48000000",
+        "48800000"
+      ],
+      "countries": [
+        "IT"
+      ],
+      "first_seen_at": "2026-09-17T23:09:17+00:00",
+      "last_seen_at": "2026-09-17T23:09:17+00:00",
+      "last_material_update": "2026-02-26T23:00:00+00:00",
+      "raw_source_hash": "b369cc51891b4911ffbb4b6d33e480a311e3047b8e8f4cafc14d9f0f98ba9ae9",
+      "content_hash": "6e107d66d7de215395ad76ccdfeb16fc6ee18e16d24e6d39400d28e9e911e58b"
+    }
+  }
+]

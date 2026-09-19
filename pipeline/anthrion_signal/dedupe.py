@@ -4,7 +4,7 @@ from rapidfuzz.fuzz import ratio
 
 from .models import Change, Signal
 from .normalise import MATERIAL_FIELDS, material_payload, set_hashes
-from .utils import normal_text, parse_date, unique
+from .utils import digest, normal_text, parse_date, unique
 
 
 def exact_keys(s):
@@ -12,10 +12,13 @@ def exact_keys(s):
     return [key + suffix for key in unique([
         "ocid:" + s.ocid if s.ocid else None,
         *["ref:" + ref for ref in s.external_ids],
-        *["url:" + url for url in s.source_urls], "fingerprint:" + s.fingerprint])]
+        *["url:" + url for url in s.source_urls]])]
 
 
 def compatible_identifiers(left, right):
+    if left.signal_type != "AWARD" and len(left.lot_ids) > 1 and right.signal_type == "AWARD":
+        if not right.lot_id or set(right.lot_ids) != set(left.lot_ids):
+            return False
     return left.lot_id == right.lot_id and not (
         left.source == right.source and left.ocid and right.ocid and left.ocid != right.ocid)
 
@@ -59,13 +62,27 @@ def merge(old, incoming):
         parse_date(old.updated_at) or parse_date(old.first_seen_at))
     if not older:
         for field in MATERIAL_FIELDS + ["updated_at", "buyer_identifiers", "countries", "regions", "notice_type"]:
+            if incoming.amount is not None and field in {"amount", "value_min", "value_max", "currency"}:
+                continue
             value = getattr(incoming, field)
             if value not in (None, "", [], "unknown"):
                 setattr(merged, field, value)
+        if incoming.amount is not None and (incoming.amount.minimum is not None or incoming.amount.maximum is not None):
+            # A sparse revision has no new financial fact. When a value is
+            # published, replace its bounds, currency and provenance together;
+            # retaining an old upper bound/currency would invent a mixed range.
+            merged.amount = incoming.amount.model_copy(deep=True)
+            merged.value_min, merged.value_max = incoming.amount.minimum, incoming.amount.maximum
+            merged.currency = incoming.amount.currency
         # NYC sometimes retains a placeholder date after explicitly postponing bids.
         if incoming.source == "nyc_city_record" and incoming.status == "postponed" and incoming.deadline_at is None:
             merged.deadline_at = None
         merged.raw_source_hash = incoming.raw_source_hash
+        if incoming.deadlines and old.deadlines:
+            current = {(d.kind, d.lot_id, d.source_text) for d in incoming.deadlines}
+            superseded = [d.model_copy(update={"status": "superseded"}) for d in old.deadlines
+                          if (d.kind, d.lot_id, d.source_text) not in current]
+            merged.deadlines = incoming.deadlines + superseded[-20:]
         # Prefer current official notice facts over derivative publications.
         if incoming.source_type == "official_notice" or old.source_type != "official_notice":
             merged.source, merged.source_type = incoming.source, incoming.source_type
@@ -78,7 +95,7 @@ def merge(old, incoming):
     if incoming.published_at:
         merged.published_at = min(filter(None, [old.published_at, incoming.published_at]))
     merged.documents = list({d.url: d for d in old.documents + incoming.documents}.values())[-40:]
-    provenance = {(p.source, p.release_id): p for p in old.provenance + incoming.provenance}
+    provenance = {(p.source, p.release_id or p.url): p for p in old.provenance + incoming.provenance}
     merged.provenance = sorted(provenance.values(), key=lambda p: p.retrieved_at)[-60:]
     set_hashes(merged)
     changed = [k for k in old_payload if old_payload[k] != material_payload(merged)[k]]
@@ -96,6 +113,15 @@ def merge(old, incoming):
 
 def reconcile(previous: list[Signal], incoming: list[Signal]):
     records = {s.id: s.model_copy(deep=True) for s in previous if not s.related_signal_id}
+    # Re-evaluate derived lot outcomes every run, including award cancellations.
+    # Keep source statuses separate so withdrawing an award never invents a new
+    # source status or leaves a previously inferred whole-process closure behind.
+    for record in records.values():
+        baseline = record.lot_award_baseline
+        record.status = baseline.get("status", record.status)
+        for lot in record.lots:
+            lot.status = baseline.get("lot:" + lot.id, lot.status)
+        record.lot_award_baseline = {}
     index = {key: s.id for s in records.values() for key in exact_keys(s)}
     buyer_index = {}
     for s in records.values():
@@ -104,9 +130,7 @@ def reconcile(previous: list[Signal], incoming: list[Signal]):
     for signal in sorted(incoming, key=lambda s: s.updated_at or s.first_seen_at):
         match_id = next((index[k] for k in exact_keys(signal) if k in index
                          and compatible_identifiers(records[index[k]], signal)), None)
-        if not match_id:
-            candidates = buyer_index.get(normal_text(signal.buyer_name), set())
-            match_id = next((sid for sid in candidates if is_fuzzy_duplicate(records[sid], signal)), None)
+        # Similar names, amounts and closing days do not establish legal identity.
         if match_id:
             merged, changed = merge(records[match_id], signal)
             records[match_id] = merged
@@ -114,10 +138,32 @@ def reconcile(previous: list[Signal], incoming: list[Signal]):
             stats["duplicates_merged"] += 1
             signal = merged
         else:
+            if signal.id in records:
+                # Source IDs sometimes identify a whole OCDS process. A partial
+                # result cannot overwrite that process merely by reusing its ID.
+                release = signal.provenance[-1].release_id if signal.provenance else signal.raw_source_hash
+                signal = signal.model_copy(update={"id": "sig_" + digest([signal.id, signal.source, release])[:20]})
             records[signal.id] = signal
             signal.changes = [Change(at=signal.first_seen_at, kind="discovered", fields=[], source_url=signal.primary_source_url)]
             stats["new_signals"] += 1
         for key in exact_keys(signal):
             index[key] = signal.id
         buyer_index.setdefault(normal_text(signal.buyer_name), set()).add(signal.id)
+    by_procedure = {}
+    for signal in records.values():
+        if signal.ocid:
+            by_procedure.setdefault(signal.ocid, []).append(signal)
+    for family in by_procedure.values():
+        for award in (s for s in family if s.signal_type == "AWARD"
+                      and s.status.lower() not in {"cancelled", "canceled", "withdrawn", "unsuccessful"}
+                      and (not s.award_statuses or "active" in s.award_statuses)):
+            awarded = {str(lot) for winner in award.winners for lot in winner.get("lot_ids", [])}
+            for original in (s for s in family if s.signal_type != "AWARD"):
+                for lot in original.lots:
+                    if lot.id in awarded and lot.status != "awarded":
+                        original.lot_award_baseline["lot:" + lot.id] = lot.status
+                        lot.status = "awarded"
+                if original.lots and all(lot.status == "awarded" for lot in original.lots):
+                    original.lot_award_baseline.setdefault("status", original.status)
+                    original.status = "complete"
     return list(records.values()), index, stats

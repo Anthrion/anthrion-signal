@@ -1,0 +1,134 @@
+{
+  "artifacts": {
+    "before": "pre-final-rescore-data.zip",
+    "integrity_report": "final-source-integrity.json",
+    "rejected_versions": "2026-09-18.jsonl.gz",
+    "retained_raw": "inventory-raw.json.gz",
+    "retained_raw_sha256": "b46ad56aeb863396d289d92704e78e4d1bdf58ecec841dd32bfba76b157e9006"
+  },
+  "decisions": [
+    {
+      "accepted_exact_deltas": {
+        "primary_source_url": {
+          "after": "https://ted.europa.eu/en/notice/-/detail/624846-2026",
+          "before": "https://ted.europa.eu/en/notice/-/detail/623090-2026"
+        },
+        "raw_source_hash": {
+          "after": "f23a99c374d366e7626fddf0b9b1d88b597c23506624b61e4894b10ea5be7fb5",
+          "before": "748c5cd8152f5bd155ed3c91155dba5270b91906fe979670c4d0eb0d813afc0c"
+        }
+      },
+      "conclusion": "Accept equivalent retained primary URL and its matching raw hash. This is equal-date reconciliation, not a newer publication or changed procurement scope. No record/source rollback recommended.",
+      "field_parity": {
+        "all_raw_fields_equal_except": [
+          "publication-number",
+          "links"
+        ],
+        "all_three_raw_hashes_retained_in_final_provenance": true,
+        "all_three_source_urls_present_before": true,
+        "equal_nonlink_fields_hash": "3d0512063ff198e0731e316e502798fdf9247570e5e83e9adbdb1d499328b99f",
+        "same_publication_instant": "2026-09-09T22:00:00+00:00",
+        "source_notice_same_calendar_date": "2026-09-10"
+      },
+      "mechanism": "Exact shared notice identifier matches. Equal updated_at dates are permitted to replace the primary source; replay order ends at 624846-2026. Different raw hashes arise solely from publication-number and notice-specific links.",
+      "signal_id": "sig_16b64acc4b8a3a21e8ab",
+      "source_versions": [
+        {
+          "change_notice_version_identifier": null,
+          "lot_identifiers": [
+            "LOT-0001"
+          ],
+          "notice_identifier": "965bf8ef-fee2-49dc-aa0e-eaf4b26571c4",
+          "procedure_identifier": "0356e41c-019f-4123-a3a1-1b6013026554",
+          "publication_date_source": "2026-09-10+02:00",
+          "publication_number": "623090-2026",
+          "raw_hash_recomputed": "748c5cd8152f5bd155ed3c91155dba5270b91906fe979670c4d0eb0d813afc0c",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/623090-2026"
+        },
+        {
+          "change_notice_version_identifier": null,
+          "lot_identifiers": [
+            "LOT-0001"
+          ],
+          "notice_identifier": "965bf8ef-fee2-49dc-aa0e-eaf4b26571c4",
+          "procedure_identifier": "0356e41c-019f-4123-a3a1-1b6013026554",
+          "publication_date_source": "2026-09-10+02:00",
+          "publication_number": "624828-2026",
+          "raw_hash_recomputed": "24f064631b05d3ce0c6d72ff4f8970727f6b9ee6f37fc2584126c6460d6ed907",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/624828-2026"
+        },
+        {
+          "change_notice_version_identifier": null,
+          "lot_identifiers": [
+            "LOT-0001"
+          ],
+          "notice_identifier": "965bf8ef-fee2-49dc-aa0e-eaf4b26571c4",
+          "procedure_identifier": "0356e41c-019f-4123-a3a1-1b6013026554",
+          "publication_date_source": "2026-09-10+02:00",
+          "publication_number": "624846-2026",
+          "raw_hash_recomputed": "f23a99c374d366e7626fddf0b9b1d88b597c23506624b61e4894b10ea5be7fb5",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/624846-2026"
+        }
+      ]
+    },
+    {
+      "accepted_exact_deltas": {
+        "published_at": {
+          "after": "2026-08-18T22:00:00+00:00",
+          "before": "2026-09-03T22:00:00+00:00"
+        }
+      },
+      "conclusion": "Accept earlier published_at as the original publication date of the explicitly linked procedure. The newer German primary source, updated_at and raw hash remain unchanged. No repair recommended.",
+      "exact_version_link": {
+        "change_notice_version_identifier": "d1503ef8-81b4-4b90-85ba-6fc09926bea1-01",
+        "replaced_notice": "575342-2026",
+        "replaced_notice_identifier": "d1503ef8-81b4-4b90-85ba-6fc09926bea1",
+        "replacing_notice": "610437-2026"
+      },
+      "mechanism": "Replay matches the original TED notice through the explicit amendment identifier already retained on the current record. merge keeps newer source facts but takes the earliest published_at among established aliases.",
+      "newer_source_preserved": {
+        "primary_source_url": "https://oeffentlichevergabe.de/ui/de/notices/f218aec8-27e1-412f-9dff-ee3f7edd9ac3",
+        "raw_hash_basis": "Unchanged pre-rescore/final canonical and German source provenance, not independently recomputed from an unavailable German raw payload.",
+        "raw_source_hash": "76a8fdc6bb4fb54454ab72b7472459986f35fb07c380d6e91c2f3a5e9b0d6a6d",
+        "source": "germany",
+        "updated_at": "2026-09-04T02:24:08+00:00"
+      },
+      "publication_chronology": {
+        "amendment_normalized_instant": "2026-09-03T22:00:00+00:00",
+        "amendment_source_day": "2026-09-04+02:00",
+        "original_normalized_instant": "2026-08-18T22:00:00+00:00",
+        "original_source_day": "2026-08-19+02:00"
+      },
+      "signal_id": "sig_eaf79cba6ee5f201b58d",
+      "source_versions": [
+        {
+          "change_notice_version_identifier": null,
+          "lot_identifiers": [
+            "LOT-0001"
+          ],
+          "notice_identifier": "d1503ef8-81b4-4b90-85ba-6fc09926bea1",
+          "procedure_identifier": "d54eef77-40ca-4a2b-ad71-e6ceef25de4b",
+          "publication_date_source": "2026-08-19+02:00",
+          "publication_number": "575342-2026",
+          "raw_hash_recomputed": "14da4d600236ae37f0d5b015db941c454ad4f68935a154d42861a4601d7f089f",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/575342-2026"
+        },
+        {
+          "change_notice_version_identifier": "d1503ef8-81b4-4b90-85ba-6fc09926bea1-01",
+          "lot_identifiers": [
+            "LOT-0001"
+          ],
+          "notice_identifier": "f218aec8-27e1-412f-9dff-ee3f7edd9ac3",
+          "procedure_identifier": "d54eef77-40ca-4a2b-ad71-e6ceef25de4b",
+          "publication_date_source": "2026-09-04+02:00",
+          "publication_number": "610437-2026",
+          "raw_hash_recomputed": "564f70f85d53e2b1262671784e33ee61646b4b0dc8df0f8583c37cc2bbab293f",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/610437-2026"
+        }
+      ]
+    }
+  ],
+  "generated_at": "2026-09-19T00:05:19.736734+00:00",
+  "method": "Read-only comparison of immutable pre-rescore canonical backup, retained official TED API snapshot, rejected normalized source versions and final canonical records; no network calls or source-data edits.",
+  "recommendation": "Accept only the three metadata field deltas above under the strict integrity check. No code or canonical/public data changes are needed for these records."
+}

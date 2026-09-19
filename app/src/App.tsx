@@ -20,6 +20,8 @@ import {
   FileText,
   Globe2,
   Layers3,
+  PanelTopClose,
+  PanelTopOpen,
   Radar,
   RefreshCw,
   Search,
@@ -27,7 +29,7 @@ import {
   Target,
   X,
 } from 'lucide-react'
-import type { Dataset, DisplayLanguage, Filters, Signal } from './types'
+import type { Dataset, DisplayLanguage, EnglishText, Filters, Signal } from './types'
 import { TranslationProvider, useSignalText } from './Translation'
 import {
   AmbientGlass,
@@ -42,13 +44,31 @@ import { DiscoveryCarousel } from './DiscoveryCarousel'
 import { VirtualSignalList } from './VirtualSignalList'
 import { DismissDust } from './DismissDust'
 import { useAwardHistory } from './useAwardHistory'
+import { useOpportunityData, useSignalDetail } from './useOpportunityData'
+import { usePersonalWorkspace } from './personalWorkspace'
+import { deadlineEventCalendarURL } from './publicFacts'
 import {
-  amount,
+  BuyerLink,
+  CapabilityEvidenceList,
+  DecisionBrief,
+  DeadlineEvents,
+  deadlineFact,
+  PaneDivider,
+  ProcurementHistory,
+  ResearchPage,
+  ResearchProvider,
+  ResearchTitle,
+  SearchWorkspace,
+  SourceDocuments,
+  valueFact,
+} from './ResearchUI'
+import {
   csv,
   currencyOptions,
   date,
   defaults,
   download,
+  explainSearch,
   filterSignals,
   gmailDraftURL,
   googleCalendarURL,
@@ -64,6 +84,7 @@ import {
   readFilters,
   normaliseFilters,
   safeURL,
+  selectedResponseDeadlineEvent,
   typeLabels,
 } from './lib'
 
@@ -231,10 +252,24 @@ function WorkspaceProviders({
 }
 
 export default function App() {
-  const [data, setData] = useState<Dataset | null>(null)
-  const [error, setError] = useState('')
-  const [loading, setLoading] = useState(true)
   const [filters, setFilters] = useState<Filters>(readFilters)
+  const { data, error, loading, reload: load } = useOpportunityData({ market: filters.market })
+  const personal = usePersonalWorkspace()
+  const [research, setResearch] = useState<{
+    kind: 'buyer' | 'related'
+    signal: Signal
+    translation?: EnglishText
+  } | null>(null)
+  const [compact, setCompact] = useLocal(
+    'anthrion-compact-reading-v1',
+    false,
+    (value): value is boolean => typeof value === 'boolean',
+  )
+  const [paneRatio, setPaneRatio] = useLocal(
+    'anthrion-pane-ratio-v1',
+    50,
+    (value): value is number => typeof value === 'number' && value >= 30 && value <= 70,
+  )
   const [language, setLanguage] = useLocal<DisplayLanguage>(
     'anthrion-language-v1',
     'en',
@@ -269,7 +304,13 @@ export default function App() {
   const viewingSaved = filters.view === 'saved'
   const needsSavedHistory =
     viewingSaved && saved.some((id) => !data?.signals.some((s) => s.id === id))
-  const awards = useAwardHistory(data, viewingAwards || needsSavedHistory, filters.market)
+  const awards = useAwardHistory(
+    data,
+    viewingAwards || needsSavedHistory || research?.kind === 'related',
+    filters.market,
+  )
+  const feedHistoryLoading = (viewingAwards || needsSavedHistory) && awards.loading
+  const feedHistoryError = viewingAwards || needsSavedHistory ? awards.error : ''
   const activeSignals = useMemo(
     () =>
       viewingAwards
@@ -285,50 +326,14 @@ export default function App() {
   )
   const searchRef = useRef<HTMLInputElement>(null)
   const feedRef = useRef<HTMLDivElement>(null)
-  const abortRef = useRef<AbortController | null>(null)
   useEffect(() => () => pendingDepartures.current.forEach(({ timer }) => clearTimeout(timer)), [])
   useEffect(() => {
     if (reducedMotion) pendingDepartures.current.forEach(({ complete }) => complete())
   }, [reducedMotion])
-  const load = useCallback(async () => {
-    abortRef.current?.abort()
-    const controller = new AbortController()
-    abortRef.current = controller
-    setLoading(true)
-    setError('')
-    try {
-      const response = await fetch(`${import.meta.env.BASE_URL}data/current.json`, {
-        cache: 'no-cache',
-        signal: controller.signal,
-      })
-      if (!response.ok) throw new Error('The latest opportunity feed is temporarily unavailable.')
-      const value: Dataset = await response.json()
-      if (
-        !['1.0', '2.0'].includes(value.schema_version) ||
-        !Array.isArray(value.signals) ||
-        !Array.isArray(value.sources) ||
-        !value.evidence_catalog
-      )
-        throw new Error('The opportunity feed could not be verified.')
-      setData({ ...value, signals: value.signals.filter((s) => isAvailableOpportunity(s)) })
-    } catch (e) {
-      if (!controller.signal.aborted)
-        setError(e instanceof Error ? e.message : 'Could not load the opportunity feed.')
-    } finally {
-      if (!controller.signal.aborted) setLoading(false)
-    }
-  }, [])
   useEffect(() => {
-    void load()
-    const interval = setInterval(() => {
-      setTime(Date.now())
-      if (!document.hidden) void load()
-    }, 5 * 60000)
-    return () => {
-      clearInterval(interval)
-      abortRef.current?.abort()
-    }
-  }, [load])
+    const interval = setInterval(() => setTime(Date.now()), 60000)
+    return () => clearInterval(interval)
+  }, [])
   useEffect(() => {
     const params = new URLSearchParams()
     Object.entries(filters).forEach(([key, value]) => {
@@ -432,9 +437,11 @@ export default function App() {
     : filters.market === 'GB'
   const fresh = !!data && time - Date.parse(data.generated_at) < 26 * 3600000
   const activeFilterCount = Object.entries(filters).filter(
-    ([k, v]) => !['q', 'view', 'sort', 'market'].includes(k) && v !== '',
+    ([k, v]) =>
+      !['q', 'view', 'sort', 'market', 'searchMode', 'match'].includes(k) &&
+      v !== defaults[k as keyof Filters],
   ).length
-  const selectedSignal = selected
+  const selectedSummary = selected
     ? visibleSignals.find(
         (s) =>
           s.id === selected &&
@@ -443,6 +450,40 @@ export default function App() {
             : isAvailableOpportunity(s, time) || (viewingSaved && isHistoricalAward(s, time))),
       )
     : filtered[0]
+  const detail = useSignalDetail(data, selectedSummary || selected)
+  const selectedSignal = detail.signal || selectedSummary
+  const displayTranslations = useMemo(
+    () => ({
+      ...translations,
+      ...(detail.translation && selectedSignal ? { [selectedSignal.id]: detail.translation } : {}),
+    }),
+    [translations, detail.translation, selectedSignal],
+  )
+  const researchTranslations = useMemo(() => {
+    const result = { ...translations }
+    if (research) {
+      delete result[research.signal.id]
+      if (research.translation) result[research.signal.id] = research.translation
+    }
+    return result
+  }, [translations, research])
+  useEffect(() => {
+    if (
+      !research ||
+      detail.loading ||
+      detail.error ||
+      !detail.signal ||
+      detail.signal.is_summary ||
+      detail.signal.id !== research.signal.id ||
+      detail.signal === research.signal
+    )
+      return
+    setResearch({
+      ...research,
+      signal: detail.signal,
+      translation: detail.translation || translations[detail.signal.id],
+    })
+  }, [research, detail.signal, detail.translation, detail.loading, detail.error, translations])
   useEffect(() => {
     if (
       selected &&
@@ -506,6 +547,16 @@ export default function App() {
     }
   }
   useEffect(() => {
+    if (
+      selected &&
+      selectedSignal &&
+      isHistoricalAward(selectedSignal) &&
+      !viewingAwards &&
+      !viewingSaved
+    ) {
+      setFilters((current) => ({ ...current, view: 'awards' }))
+      return
+    }
     if (!selected || !selectedSignal || matchesMarket(selectedSignal, filters.market)) return
     const market = markets.find((m) =>
       selectedSignal.countries.some((c) => (m.countries as readonly string[]).includes(c)),
@@ -515,7 +566,7 @@ export default function App() {
       market: market?.id || selectedSignal.countries[0] || 'GB',
       view: isHistoricalAward(selectedSignal) ? 'awards' : 'all',
     })
-  }, [selected, selectedSignal, filters.market])
+  }, [selected, selectedSignal, filters.market, viewingAwards, viewingSaved])
   const listTitle =
     navItems.find((n) => n.id === filters.view)?.label ||
     { saved: 'Saved opportunities', awards: 'Awarded contracts' }[filters.view] ||
@@ -548,368 +599,466 @@ export default function App() {
   }
 
   return (
-    <WorkspaceProviders language={language} translations={translations}>
-      <div className="app-shell console-shell">
-        <AmbientGlass />
-        <a className="skip-link" href="#main">
-          Skip to opportunities
-        </a>
+    <WorkspaceProviders language={language} translations={displayTranslations}>
+      <ResearchProvider
+        open={(value) => {
+          setDetailOpen(false)
+          setResearch({ ...value, translation: displayTranslations[value.signal.id] })
+        }}
+      >
+        <div className={`app-shell console-shell ${compact ? 'compact-reading' : ''}`}>
+          <AmbientGlass />
+          <a className="skip-link" href="#main">
+            Skip to opportunities
+          </a>
 
-        <main id="main" className="workspace-main">
-          <header className="workspace-header">
-            <BrandSignature onHome={() => update({ ...defaults, market: filters.market })} />
-            <div className="workspace-search" role="search" aria-label="Opportunity search">
-              <label className="search-box">
-                <Search size={16} />
-                <input
-                  ref={searchRef}
-                  aria-label="Search opportunities"
-                  value={filters.q}
-                  onChange={(e) => update({ q: e.target.value })}
-                  placeholder="Search opportunities, buyers, keywords..."
-                />
-                {filters.q && (
-                  <IconButton label="Clear search" onClick={() => update({ q: '' })}>
-                    <X size={13} />
-                  </IconButton>
-                )}
-              </label>
-              <button
-                aria-label="Filters"
-                title="Filters"
-                className={`button filter-button ${activeFilterCount ? 'has-filters' : ''}`}
-                onClick={() => setShowFilters(true)}
-              >
-                <SlidersHorizontal size={16} />
-                <span>Filters</span>
-                {activeFilterCount > 0 && <span className="filter-count">{activeFilterCount}</span>}
-              </button>
-              <SortMenu
-                value={viewingAwards ? 'awarded' : filters.sort}
-                onChange={(sort) =>
-                  update(
-                    sort === 'awarded'
-                      ? { view: 'awards', sort: 'recent', type: '', deadline: '', change: '' }
-                      : { sort, ...(viewingAwards ? { view: 'all' } : {}) },
-                  )
-                }
-                showHidden={showHidden}
-                onShowHidden={(value) => {
-                  setShowHidden(value)
-                  setSelected(null)
-                  setDetailOpen(false)
-                }}
-              />
-            </div>
-            <nav className="workspace-nav" aria-label="Workspace">
-              <button
-                title="Saved opportunities"
-                aria-current={filters.view === 'saved' ? 'page' : undefined}
-                onClick={() => navigate('saved')}
-              >
-                <Bookmark size={17} />
-                <span className="workspace-nav-label">Saved opportunities</span>
-                <small>
-                  {
-                    saved.filter(
-                      (id) =>
-                        marketSignals.some((s) => s.id === id) ||
-                        awards.knownSignals.some(
-                          (s) =>
-                            s.id === id &&
-                            matchesMarket(s, filters.market) &&
-                            hiddenIds.has(id) === showHidden,
-                        ),
-                    ).length
-                  }
-                </small>
-              </button>
-            </nav>
-            <div className="workspace-tools">
-              <IconButton label="Check for updates" onClick={() => void load()} disabled={loading}>
-                <RefreshCw size={17} className={loading ? 'spin' : ''} />
-              </IconButton>
-            </div>
-          </header>
-          <div className="workspace-content">
-            <MarketSection
-              selected={filters.market}
-              onSelect={switchMarket}
-              language={language}
-              onLanguage={setLanguage}
-            />
-            {(error || (!fresh && data)) && (
-              <div className="alert" role="status">
-                <Clock3 size={17} />
-                <span>
-                  {error ||
-                    `The feed was last refreshed ${date(data!.generated_at)}. Confirm current availability in the source notice.`}
-                </span>
-                <button onClick={() => void load()}>
-                  Retry <RefreshCw size={13} />
-                </button>
-              </div>
-            )}
-            {(storageError || hiddenStorageError) && (
-              <div className="alert" role="status">
-                {hiddenStorageError
-                  ? 'Hidden opportunities could not be saved in this browser. They may reappear after reloading.'
-                  : 'Your browser could not save these opportunities. Export them to keep a copy.'}
-              </div>
-            )}
-
-            <div className="discovery-band">
-              <DiscoveryCarousel
-                items={navItems}
-                counts={counts}
-                selected={filters.view}
-                loading={!data}
-                onSelect={(view) => {
-                  setSelected(null)
-                  setFilters({
-                    ...defaults,
-                    market: filters.market,
-                    view,
-                    sort: view === 'closing' ? 'deadline' : 'recent',
-                  })
-                }}
-              />
-              <div className="discovery-export">
-                <IconButton
-                  label="Export signals"
-                  disabled={!data || !filtered.length}
-                  onClick={() => {
-                    download(
-                      `anthrion-signals-${new Date().toISOString().slice(0, 10)}.csv`,
-                      csv(filtered),
-                      'text/csv;charset=utf-8',
-                    )
-                    setToast(`${filtered.length} signals exported`)
-                  }}
+          <main id="main" className="workspace-main">
+            <header className="workspace-header">
+              <BrandSignature onHome={() => update({ ...defaults, market: filters.market })} />
+              <div className="workspace-search" role="search" aria-label="Opportunity search">
+                <label className="search-box">
+                  <Search size={16} />
+                  <input
+                    ref={searchRef}
+                    aria-label="Search opportunities"
+                    value={filters.q}
+                    onChange={(e) => update({ q: e.target.value })}
+                    placeholder="Search opportunities, buyers, keywords..."
+                  />
+                  {filters.q && (
+                    <IconButton label="Clear search" onClick={() => update({ q: '' })}>
+                      <X size={13} />
+                    </IconButton>
+                  )}
+                </label>
+                <button
+                  aria-label="Filters"
+                  title="Filters"
+                  className={`button filter-button ${activeFilterCount ? 'has-filters' : ''}`}
+                  onClick={() => setShowFilters(true)}
                 >
-                  <ArrowDownToLine size={18} />
+                  <SlidersHorizontal size={16} />
+                  <span>Filters</span>
+                  {activeFilterCount > 0 && (
+                    <span className="filter-count">{activeFilterCount}</span>
+                  )}
+                </button>
+                <SortMenu
+                  value={viewingAwards ? 'awarded' : filters.sort}
+                  onChange={(sort) =>
+                    update(
+                      sort === 'awarded'
+                        ? { view: 'awards', sort: 'recent', type: '', deadline: '', change: '' }
+                        : { sort, ...(viewingAwards ? { view: 'all' } : {}) },
+                    )
+                  }
+                  showHidden={showHidden}
+                  onShowHidden={(value) => {
+                    setShowHidden(value)
+                    setSelected(null)
+                    setDetailOpen(false)
+                  }}
+                />
+              </div>
+              <nav className="workspace-nav" aria-label="Workspace">
+                <button
+                  title="Saved opportunities"
+                  aria-current={filters.view === 'saved' ? 'page' : undefined}
+                  onClick={() => navigate('saved')}
+                >
+                  <Bookmark size={17} />
+                  <span className="workspace-nav-label">Saved opportunities</span>
+                  <small>
+                    {
+                      saved.filter(
+                        (id) =>
+                          marketSignals.some((s) => s.id === id) ||
+                          (data?.current_feed?.records[id]?.view === 'awards' &&
+                            (!filters.market ||
+                              data.current_feed.records[id].markets.includes(filters.market)) &&
+                            hiddenIds.has(id) === showHidden) ||
+                          awards.knownSignals.some(
+                            (s) =>
+                              s.id === id &&
+                              matchesMarket(s, filters.market) &&
+                              hiddenIds.has(id) === showHidden,
+                          ),
+                      ).length
+                    }
+                  </small>
+                </button>
+              </nav>
+              <div className="workspace-tools">
+                <IconButton
+                  label={compact ? 'Exit compact reading mode' : 'Compact reading mode'}
+                  aria-pressed={compact}
+                  onClick={() => setCompact(!compact)}
+                >
+                  {compact ? <PanelTopOpen size={17} /> : <PanelTopClose size={17} />}
+                </IconButton>
+                <IconButton
+                  label="Check for updates"
+                  onClick={() => void load()}
+                  disabled={loading}
+                >
+                  <RefreshCw size={17} className={loading ? 'spin' : ''} />
                 </IconButton>
               </div>
-            </div>
-            <div className="feed-layout">
-              <div
-                className="feed-heading screen-reader-only"
-                aria-live="polite"
-                aria-atomic="true"
-              >
-                <h1>{listTitle}</h1>
-                <span className="count-badge">{filtered.length}</span>
-              </div>
-              {activeFilterCount > 0 && (
-                <div className="results-line">
-                  <button
-                    className="clear-filters"
-                    onClick={() => {
+            </header>
+            <div className="workspace-content">
+              <MarketSection
+                selected={filters.market}
+                onSelect={switchMarket}
+                language={language}
+                onLanguage={setLanguage}
+                preferences={personal.marketPreferences}
+                onArrange={personal.arrangeMarkets}
+              />
+              {(error || (!fresh && data)) && (
+                <div className="alert" role="status">
+                  <Clock3 size={17} />
+                  <span>
+                    {error ||
+                      `The feed was last refreshed ${date(data!.generated_at)}. Confirm current availability in the source notice.`}
+                  </span>
+                  <button onClick={() => void load()}>
+                    Retry <RefreshCw size={13} />
+                  </button>
+                </div>
+              )}
+              {(storageError || hiddenStorageError) && (
+                <div className="alert" role="status">
+                  {hiddenStorageError
+                    ? 'Hidden opportunities could not be saved in this browser. They may reappear after reloading.'
+                    : 'Your browser could not save these opportunities. Export them to keep a copy.'}
+                </div>
+              )}
+              {personal.storageError && (
+                <div className="alert" role="status">
+                  {personal.storageError}
+                </div>
+              )}
+
+              <div className="discovery-band">
+                {compact ? (
+                  <nav className="compact-refiners" aria-label="Opportunity views">
+                    {navItems.map(({ id, label }) => (
+                      <button
+                        key={id}
+                        aria-pressed={filters.view === id}
+                        onClick={() => {
+                          setSelected(null)
+                          setFilters({
+                            ...defaults,
+                            market: filters.market,
+                            view: id,
+                            sort: id === 'closing' ? 'deadline' : 'recent',
+                          })
+                        }}
+                      >
+                        {label}
+                        <small>{counts[id] || 0}</small>
+                      </button>
+                    ))}
+                  </nav>
+                ) : (
+                  <DiscoveryCarousel
+                    items={navItems}
+                    counts={counts}
+                    selected={filters.view}
+                    loading={!data}
+                    onSelect={(view) => {
                       setSelected(null)
                       setFilters({
                         ...defaults,
-                        view: filters.view,
-                        q: filters.q,
                         market: filters.market,
+                        view,
+                        sort: view === 'closing' ? 'deadline' : 'recent',
                       })
                     }}
+                  />
+                )}
+                <div className="discovery-export">
+                  <IconButton
+                    label="Export signals"
+                    disabled={!data || !filtered.length}
+                    onClick={() => {
+                      download(
+                        `anthrion-signals-${new Date().toISOString().slice(0, 10)}.csv`,
+                        csv(filtered),
+                        'text/csv;charset=utf-8',
+                      )
+                      setToast(`${filtered.length} signals exported`)
+                    }}
                   >
-                    <X size={12} />
-                    Clear {activeFilterCount} filters
-                  </button>
-                  <span>{filtered.length} matching signals</span>
+                    <ArrowDownToLine size={18} />
+                  </IconButton>
                 </div>
-              )}
-              <section className="opportunity-console" aria-label="Opportunity feed">
+              </div>
+              <div className="feed-layout">
+                <SearchWorkspace
+                  filters={filters}
+                  update={update}
+                  showHidden={showHidden}
+                  onRestore={(restored, hiddenView) => {
+                    update(restored)
+                    setShowHidden(hiddenView)
+                  }}
+                  personal={personal}
+                  data={data}
+                  count={filtered.length}
+                />
                 <div
-                  ref={feedRef}
-                  className="signal-feed"
-                  role="region"
-                  aria-label="Opportunity records"
-                  tabIndex={0}
+                  className="feed-heading screen-reader-only"
+                  aria-live="polite"
+                  aria-atomic="true"
                 >
-                  {(loading && !data) || awards.loading ? (
-                    <div className="loading-feed" aria-label="Loading opportunities">
-                      {[1, 2, 3, 4, 5].map((i) => (
-                        <div key={i} className="skeleton signal-skeleton" />
-                      ))}
-                    </div>
-                  ) : (
-                    <VirtualSignalList
-                      signals={renderedFiltered}
-                      scrollRef={feedRef}
-                      resetKey={`${JSON.stringify(filters)}:${showHidden}`}
-                      shiftKey={hidden.join('|')}
-                      renderRow={(signal) => (
-                        <SignalRow
-                          key={signal.id}
-                          signal={signal}
-                          selected={selectedSignal?.id === signal.id}
-                          saved={saved.includes(signal.id)}
-                          hidden={
-                            departing[signal.id]
-                              ? departing[signal.id] === 'unhide'
-                              : hiddenIds.has(signal.id)
-                          }
-                          departure={departing[signal.id]}
-                          onDepartureEnd={() =>
-                            pendingDepartures.current.get(signal.id)?.complete()
-                          }
-                          onSave={() => toggleSave(signal.id)}
-                          onOpen={(tab) => open(signal.id, tab)}
-                          onHide={() => dismiss(signal.id)}
-                          now={time}
-                        />
-                      )}
-                    />
-                  )}
-                  {awards.error && (
-                    <div className="empty-state" role="alert">
-                      <h3>{awards.error}</h3>
-                      <button
-                        className="button secondary"
-                        onClick={() => {
-                          awards.retry()
-                          void load()
-                        }}
-                      >
-                        Try again
-                      </button>
-                    </div>
-                  )}
-                  {!loading &&
-                    !awards.loading &&
-                    !awards.error &&
-                    renderedFiltered.length === 0 && (
-                      <div className="empty-state">
-                        {marketEnabled ? <FileSearch size={30} /> : <Globe2 size={30} />}
-                        <h3>
-                          {!marketEnabled
-                            ? `No signals for ${marketName}`
-                            : showHidden
-                              ? 'No hidden signals'
-                              : filters.view === 'saved'
-                                ? 'No saved opportunities'
-                                : 'No matching signals'}
-                        </h3>
-                        <p>
-                          {!marketEnabled
-                            ? 'There are no monitored sources in this market yet.'
-                            : showHidden
-                              ? 'No hidden signals match this market and these filters.'
-                              : filters.view === 'saved'
-                                ? 'Your saved opportunities will appear here.'
-                                : 'Try a broader search or adjust your filters.'}
-                        </p>
+                  <h1>{listTitle}</h1>
+                  <span className="count-badge">{filtered.length}</span>
+                </div>
+                <section
+                  className="opportunity-console"
+                  aria-label="Opportunity feed"
+                  style={{ '--feed-ratio': paneRatio } as React.CSSProperties}
+                >
+                  <div
+                    ref={feedRef}
+                    className="signal-feed"
+                    role="region"
+                    aria-label="Opportunity records"
+                    tabIndex={0}
+                  >
+                    {(loading && !data) || feedHistoryLoading ? (
+                      <div className="loading-feed" aria-label="Loading opportunities">
+                        {[1, 2, 3, 4, 5].map((i) => (
+                          <div key={i} className="skeleton signal-skeleton" />
+                        ))}
+                      </div>
+                    ) : (
+                      <VirtualSignalList
+                        signals={renderedFiltered}
+                        scrollRef={feedRef}
+                        resetKey={`${JSON.stringify(filters)}:${showHidden}`}
+                        shiftKey={hidden.join('|')}
+                        renderRow={(signal) => (
+                          <SignalRow
+                            key={signal.id}
+                            signal={signal}
+                            filters={filters}
+                            data={data}
+                            selected={selectedSignal?.id === signal.id}
+                            saved={saved.includes(signal.id)}
+                            hidden={
+                              departing[signal.id]
+                                ? departing[signal.id] === 'unhide'
+                                : hiddenIds.has(signal.id)
+                            }
+                            departure={departing[signal.id]}
+                            onDepartureEnd={() =>
+                              pendingDepartures.current.get(signal.id)?.complete()
+                            }
+                            onSave={() => toggleSave(signal.id)}
+                            onOpen={(tab) => open(signal.id, tab)}
+                            onHide={() => dismiss(signal.id)}
+                            now={time}
+                          />
+                        )}
+                      />
+                    )}
+                    {feedHistoryError && (
+                      <div className="empty-state" role="alert">
+                        <h3>{feedHistoryError}</h3>
                         <button
                           className="button secondary"
-                          onClick={() =>
-                            showHidden
-                              ? setShowHidden(false)
-                              : !marketEnabled
-                                ? switchMarket('GB')
-                                : update({ ...defaults, market: filters.market, view: 'all' })
-                          }
+                          onClick={() => {
+                            awards.retry()
+                            void load()
+                          }}
                         >
-                          {showHidden
-                            ? 'Return to signals'
-                            : marketEnabled
-                              ? 'Explore all signals'
-                              : 'Explore United Kingdom'}
-                          <ArrowRight size={14} />
+                          Try again
                         </button>
                       </div>
                     )}
-                </div>
-                <aside
-                  className="console-inspector"
-                  id="selected-opportunity"
-                  aria-label="Selected opportunity"
-                  tabIndex={0}
-                >
-                  {selectedSignal && data ? (
-                    <ConsoleDetail
-                      signal={selectedSignal}
-                      data={data}
-                      onInspect={(tab) => {
-                        setSelected(selectedSignal.id)
-                        setDetailTab(tab)
-                        setDetailOpen(true)
-                      }}
-                    />
-                  ) : (
-                    <div className="inspector-empty">
-                      <FileSearch size={30} />
-                      <span>{loading ? 'Loading opportunities' : 'No opportunity selected'}</span>
-                    </div>
-                  )}
-                </aside>
-              </section>
-            </div>
-          </div>
-        </main>
-        <AnimatePresence>
-          {toast && (
-            <motion.div
-              role="status"
-              className="toast"
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-            >
-              <Check size={16} />
-              {toast}
-            </motion.div>
-          )}
-        </AnimatePresence>
-        {showFilters && data && (
-          <Modal title="Refine opportunities" onClose={() => setShowFilters(false)}>
-            <FilterPanel
-              filters={filters}
-              update={update}
-              data={viewingAwards || viewingSaved ? { ...data, signals: activeSignals } : data}
-              count={filtered.length}
-              onClose={() => setShowFilters(false)}
-              onReset={() => update({ ...defaults, view: filters.view, market: filters.market })}
-            />
-          </Modal>
-        )}
-        {detailOpen && selectedSignal && data && (
-          <Modal title="Opportunity intelligence" onClose={() => setDetailOpen(false)} wide drawer>
-            {detailTab === 'preview' ? (
-              <ConsoleDetail signal={selectedSignal} data={data} onInspect={setDetailTab} />
-            ) : (
-              <SignalDetail
-                signal={selectedSignal}
-                data={data}
-                tab={detailTab}
-                setTab={setDetailTab}
-                onShare={() => void share()}
-                onBack={() => {
-                  if (window.matchMedia('(max-width: 900px)').matches) setDetailTab('preview')
-                  else setDetailOpen(false)
-                }}
-              />
-            )}
-          </Modal>
-        )}
-        {selected &&
-          data &&
-          !awards.loading &&
-          !awards.error &&
-          !selectedSignal &&
-          !activeSignals.some((s) => s.id === selected) && (
-            <Modal title="Opportunity unavailable" onClose={() => setSelected(null)}>
-              <div className="empty-state">
-                <FileSearch size={30} />
-                <h3>This signal is no longer in the current feed</h3>
-                <button className="button primary" onClick={() => setSelected(null)}>
-                  Back to opportunities
-                </button>
+                    {!loading &&
+                      !feedHistoryLoading &&
+                      !feedHistoryError &&
+                      renderedFiltered.length === 0 && (
+                        <div className="empty-state">
+                          {marketEnabled ? <FileSearch size={30} /> : <Globe2 size={30} />}
+                          <h3>
+                            {!marketEnabled
+                              ? `No signals for ${marketName}`
+                              : showHidden
+                                ? 'No hidden signals'
+                                : filters.view === 'saved'
+                                  ? 'No saved opportunities'
+                                  : 'No matching signals'}
+                          </h3>
+                          <p>
+                            {!marketEnabled
+                              ? 'There are no monitored sources in this market yet.'
+                              : showHidden
+                                ? 'No hidden signals match this market and these filters.'
+                                : filters.view === 'saved'
+                                  ? 'Your saved opportunities will appear here.'
+                                  : 'Try a broader search or adjust your filters.'}
+                          </p>
+                          <button
+                            className="button secondary"
+                            onClick={() =>
+                              showHidden
+                                ? setShowHidden(false)
+                                : !marketEnabled
+                                  ? switchMarket('GB')
+                                  : update({ ...defaults, market: filters.market, view: 'all' })
+                            }
+                          >
+                            {showHidden
+                              ? 'Return to signals'
+                              : marketEnabled
+                                ? 'Explore all signals'
+                                : 'Explore United Kingdom'}
+                            <ArrowRight size={14} />
+                          </button>
+                        </div>
+                      )}
+                  </div>
+                  <PaneDivider value={paneRatio} onChange={setPaneRatio} />
+                  <aside
+                    className="console-inspector"
+                    id="selected-opportunity"
+                    aria-label="Selected opportunity"
+                    tabIndex={0}
+                  >
+                    {detail.loading ? (
+                      <div className="inspector-empty" role="status">
+                        <FileSearch size={25} />
+                        <span>Loading full record…</span>
+                      </div>
+                    ) : detail.error ? (
+                      <div className="inspector-empty" role="alert">
+                        <span>{detail.error}</span>
+                        <button className="button secondary" onClick={detail.retry}>
+                          Try again
+                        </button>
+                      </div>
+                    ) : selectedSignal && data ? (
+                      <ConsoleDetail
+                        signal={selectedSignal}
+                        data={data}
+                        onInspect={(tab) => {
+                          setSelected(selectedSignal.id)
+                          setDetailTab(tab)
+                          setDetailOpen(true)
+                        }}
+                      />
+                    ) : (
+                      <div className="inspector-empty">
+                        <FileSearch size={30} />
+                        <span>{loading ? 'Loading opportunities' : 'No opportunity selected'}</span>
+                      </div>
+                    )}
+                  </aside>
+                </section>
               </div>
+            </div>
+          </main>
+          <AnimatePresence>
+            {toast && (
+              <motion.div
+                role="status"
+                className="toast"
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+              >
+                <Check size={16} />
+                {toast}
+              </motion.div>
+            )}
+          </AnimatePresence>
+          {showFilters && data && (
+            <Modal title="Refine opportunities" onClose={() => setShowFilters(false)}>
+              <FilterPanel
+                filters={filters}
+                update={update}
+                data={viewingAwards || viewingSaved ? { ...data, signals: activeSignals } : data}
+                count={filtered.length}
+                onClose={() => setShowFilters(false)}
+                onReset={() => update({ ...defaults, view: filters.view, market: filters.market })}
+              />
             </Modal>
           )}
-      </div>
+          {research && data && (
+            <TranslationProvider language={language} translations={researchTranslations}>
+              <ResearchPage
+                state={research}
+                data={data}
+                awards={awards.signals}
+                loading={awards.loading}
+                error={awards.error}
+                onRetry={awards.retry}
+                onBack={() => setResearch(null)}
+              />
+            </TranslationProvider>
+          )}
+          {detailOpen && selectedSignal && data && (
+            <Modal
+              title="Opportunity intelligence"
+              onClose={() => setDetailOpen(false)}
+              wide
+              drawer
+            >
+              {detail.loading ? (
+                <div className="inspector-empty" role="status">
+                  <FileSearch size={25} />
+                  <span>Loading full record…</span>
+                </div>
+              ) : detail.error ? (
+                <div className="inspector-empty" role="alert">
+                  <span>{detail.error}</span>
+                  <button className="button secondary" onClick={detail.retry}>
+                    Try again
+                  </button>
+                </div>
+              ) : detailTab === 'preview' ? (
+                <ConsoleDetail signal={selectedSignal} data={data} onInspect={setDetailTab} />
+              ) : (
+                <SignalDetail
+                  signal={selectedSignal}
+                  data={data}
+                  tab={detailTab}
+                  setTab={setDetailTab}
+                  onShare={() => void share()}
+                  onBack={() => {
+                    if (window.matchMedia('(max-width: 900px)').matches) setDetailTab('preview')
+                    else setDetailOpen(false)
+                  }}
+                />
+              )}
+            </Modal>
+          )}
+          {selected &&
+            data &&
+            !awards.loading &&
+            !awards.error &&
+            !detail.loading &&
+            !loading &&
+            !selectedSignal &&
+            !data.current_feed?.records[selected] &&
+            !activeSignals.some((s) => s.id === selected) && (
+              <Modal title="Opportunity unavailable" onClose={() => setSelected(null)}>
+                <div className="empty-state">
+                  <FileSearch size={30} />
+                  <h3>This signal is no longer in the current feed</h3>
+                  <button className="button primary" onClick={() => setSelected(null)}>
+                    Back to opportunities
+                  </button>
+                </div>
+              </Modal>
+            )}
+        </div>
+      </ResearchProvider>
     </WorkspaceProviders>
   )
 }
@@ -923,6 +1072,8 @@ function recordTypeLabel(signal: Signal) {
 
 function SignalRow({
   signal: s,
+  filters,
+  data,
   selected,
   saved,
   hidden,
@@ -934,6 +1085,8 @@ function SignalRow({
   now,
 }: {
   signal: Signal
+  filters: Filters
+  data: Dataset | null
   selected: boolean
   saved: boolean
   hidden: boolean
@@ -945,6 +1098,12 @@ function SignalRow({
   now: number
 }) {
   const text = useSignalText(s)
+  const searchMatch = filters.q
+    ? explainSearch(s, filters.q, data?.capabilities, data?.translations?.[s.id], {
+        mode: filters.searchMode,
+        match: filters.match,
+      })
+    : null
   return (
     <div className="row-motion" data-signal-id={s.id} data-departure={departure}>
       <article
@@ -975,11 +1134,29 @@ function SignalRow({
               <Building2 size={12} />
               <span>{text.buyerName}</span>
             </span>
+            {searchMatch?.basis === 'capability' && (
+              <span className="row-search-match">
+                Matched capability:{' '}
+                {searchMatch.capabilities
+                  .map(
+                    (id) =>
+                      data?.capabilities.find((capability) => capability.id === id)?.label || id,
+                  )
+                  .join(', ')}
+              </span>
+            )}
           </span>
           <span className="row-numbers">
-            {s.value_max !== null && <strong>{amount(s.value_max, s.currency)}</strong>}
+            {(s.value_max !== null || s.value_min !== null || s.amount) && (
+              <>
+                <strong>{valueFact(s).value}</strong>
+                <small>{valueFact(s).label}</small>
+              </>
+            )}
             {isHistoricalAward(s) ? (
-              <span>{date(s.updated_at || s.published_at)}</span>
+              <span>
+                {s.award_date ? `Awarded ${date(s.award_date)}` : `Notice ${date(s.published_at)}`}
+              </span>
             ) : (
               responseDeadline(s) && <span>{date(responseDeadline(s))}</span>
             )}
@@ -1072,11 +1249,13 @@ function RecordIntegrations({ signal }: { signal: Signal }) {
 
 function DeadlineCalendarButton({ signal }: { signal: Signal }) {
   const text = useSignalText(signal)
-  const href = googleCalendarURL(
-    signal,
-    new URL(import.meta.env.BASE_URL, window.location.origin).href,
-    text,
-  )
+  const event = selectedResponseDeadlineEvent(signal)
+  const appURL = new URL(import.meta.env.BASE_URL, window.location.origin).href
+  const href = event
+    ? deadlineEventCalendarURL(signal, event, appURL, text)
+    : signal.deadlines?.length
+      ? null
+      : googleCalendarURL(signal, appURL, text)
   if (!href) return null
   return (
     <a
@@ -1112,9 +1291,6 @@ function ConsoleDetail({
   )
     .split(/\n\s*\n/)
     .filter((paragraph) => paragraph.trim())
-  const capabilities = s.matched_capabilities
-    .map((id) => data.capabilities.find((item) => item.id === id)?.label)
-    .filter(Boolean)
   return (
     <div className="console-detail">
       <div
@@ -1127,10 +1303,12 @@ function ConsoleDetail({
         <div className="inspector-content">
           <div className="inspector-heading">
             <div>
-              <h2>{text.title}</h2>
+              <h2>
+                <ResearchTitle signal={s}>{text.title}</ResearchTitle>
+              </h2>
               <div className="inspector-buyerline">
                 <p className="inspector-buyer">
-                  <span>{text.buyerName}</span>
+                  <BuyerLink signal={s} />
                 </p>
               </div>
             </div>
@@ -1146,42 +1324,45 @@ function ConsoleDetail({
                   </dd>
                 </div>
                 <div>
-                  <dt>Value</dt>
+                  <dt>{valueFact(s).label}</dt>
                   <dd>
                     <Layers3 size={20} />
-                    <span>{amount(s.value_max, s.currency)}</span>
+                    <span>{valueFact(s).value}</span>
                   </dd>
                 </div>
                 <div>
-                  <dt>{isHistoricalAward(s) ? 'Award notice' : 'Deadline'}</dt>
+                  <dt>
+                    {isHistoricalAward(s)
+                      ? s.award_date
+                        ? 'Awarded'
+                        : 'Award notice published'
+                      : deadlineFact(s).label}
+                  </dt>
                   <dd className="inspector-deadline">
                     <DeadlineCalendarButton signal={s} />
                     <span>
                       {isHistoricalAward(s)
-                        ? date(s.updated_at || s.published_at)
-                        : responseDeadline(s)
-                          ? date(responseDeadline(s))
-                          : 'Deadline not published'}
+                        ? date(s.award_date || s.published_at)
+                        : deadlineFact(s).value}
+                      {!isHistoricalAward(s) && deadlineFact(s).dateOnly && (
+                        <small className="cutoff-note">Cutoff time unconfirmed</small>
+                      )}
                     </span>
                   </dd>
                 </div>
               </dl>
               <section className="inspector-capabilities">
                 <h3>Capabilities</h3>
-                {capabilities.length > 0 ? (
-                  <ul className="capability-line">
-                    {capabilities.map((capability) => (
-                      <li key={capability}>{capability}</li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p className="muted">Not specified</p>
-                )}
+                <CapabilityEvidenceList signal={s} data={data} />
               </section>
               {isHistoricalAward(s) && (
                 <section className="inspector-capabilities">
                   <h3>Awarded supplier</h3>
-                  <p>{s.incumbent_supplier || 'Not published'}</p>
+                  <p>
+                    {s.winners?.map((winner) => winner.name).join(', ') ||
+                      s.incumbent_supplier ||
+                      'Not published'}
+                  </p>
                 </section>
               )}
             </div>
@@ -1198,6 +1379,11 @@ function ConsoleDetail({
               </span>
             </p>
           )}
+          <DecisionBrief signal={s} compact />
+          <details className="original-notice">
+            <summary>Read original notice text</summary>
+            <p>{s.description}</p>
+          </details>
           <div className="inspector-summary">
             {text.original && (
               <span className="translation-status" title="English translation is not available yet">
@@ -1303,6 +1489,45 @@ function FilterPanel({
             onChange={(e) => update({ buyer: e.target.value })}
           />
         </label>
+        {f.view === 'awards' && (
+          <>
+            <label>
+              Awarded supplier
+              <input
+                value={f.supplier}
+                placeholder="Supplier name"
+                onChange={(e) => update({ supplier: e.target.value })}
+              />
+            </label>
+            <div className="filter-value-range">
+              <label>
+                Awarded from
+                <input
+                  type="date"
+                  value={f.awardFrom}
+                  onChange={(e) => update({ awardFrom: e.target.value })}
+                />
+              </label>
+              <label>
+                Awarded to
+                <input
+                  type="date"
+                  value={f.awardTo}
+                  onChange={(e) => update({ awardTo: e.target.value })}
+                />
+              </label>
+            </div>
+          </>
+        )}
+        {select('Amount type', 'amountType', [
+          { value: 'estimated_contract', label: 'Estimated contract value' },
+          { value: 'framework_ceiling', label: 'Framework ceiling' },
+          { value: 'grant_range', label: 'Published grant range' },
+          { value: 'programme_funding', label: 'Programme funding' },
+          { value: 'award', label: 'Award value' },
+          { value: 'annual_spend', label: 'Annual spend' },
+          { value: 'unknown', label: 'Unspecified amount type' },
+        ])}
         <label>
           Region
           <input
@@ -1381,12 +1606,17 @@ function SignalDetail({
     contentRef.current?.scrollTo({ top: 0 })
   }, [activeTab, s.id])
   const facts = [
-    ['Published value', amount(s.value_max, s.currency, false)],
-    ['Closing date', date(responseDeadline(s))],
+    [valueFact(s).label, valueFact(s, false).value],
+    [deadlineFact(s).label, deadlineFact(s).value],
     ...(isHistoricalAward(s)
       ? [
-          ['Awarded supplier', s.incumbent_supplier || 'Not published'],
-          ['Award notice updated', date(s.updated_at || s.published_at)],
+          [
+            'Awarded supplier',
+            s.winners?.map((winner) => winner.name).join(', ') ||
+              s.incumbent_supplier ||
+              'Not published',
+          ],
+          ['Award date', s.award_date ? date(s.award_date) : 'Not published'],
         ]
       : []),
     ['Published', date(s.published_at)],
@@ -1401,19 +1631,18 @@ function SignalDetail({
     ['Procurement lots', s.lot_ids.join(', ') || 'Not published'],
     ['CPV classifications', s.cpv_codes.join(', ') || 'Not published'],
   ]
-  const capabilities = s.matched_capabilities
-    .map((id) => data.capabilities.find((c) => c.id === id)?.label)
-    .filter(Boolean)
   return (
     <>
       <div className="detail-heading" tabIndex={0} role="region" aria-label="Opportunity heading">
         <div className="detail-eyebrow">
           <span className="type-label">{recordTypeLabel(s)}</span>
         </div>
-        <h2>{text.title}</h2>
+        <h2>
+          <ResearchTitle signal={s}>{text.title}</ResearchTitle>
+        </h2>
         <div className="buyer">
           <Building2 size={14} />
-          <span>{text.buyerName}</span>
+          <BuyerLink signal={s} />
         </div>
         <div className="detail-actions">
           <DeadlineCalendarButton signal={s} />
@@ -1464,8 +1693,21 @@ function SignalDetail({
       >
         {activeTab === 'overview' ? (
           <>
+            <DecisionBrief signal={s} />
+            <section className="detail-section">
+              <h3>Capabilities</h3>
+              <CapabilityEvidenceList signal={s} data={data} />
+            </section>
+            <section className="detail-section">
+              <h3>Published deadlines</h3>
+              <DeadlineEvents signal={s} />
+            </section>
             <section className="detail-section">
               <h3>Opportunity scope</h3>
+              <details className="original-notice">
+                <summary>Read original notice text</summary>
+                <p>{s.description}</p>
+              </details>
               {text.original && (
                 <span
                   className="translation-status"
@@ -1494,16 +1736,6 @@ function SignalDetail({
                 ))}
               </dl>
             </section>
-            {!!capabilities.length && (
-              <section className="detail-section">
-                <h3>Capabilities</h3>
-                <div className="capability-tags large">
-                  {capabilities.map((label) => (
-                    <span key={label}>{label}</span>
-                  ))}
-                </div>
-              </section>
-            )}
           </>
         ) : (
           <>
@@ -1543,21 +1775,10 @@ function SignalDetail({
             </section>
             <section className="detail-section">
               <h3>Documents</h3>
-              {s.documents.length ? (
-                <div className="documents">
-                  {s.documents.map((d) => (
-                    <OutLink key={d.url} href={d.url}>
-                      <FileText size={16} />
-                      <span>{d.title}</span>
-                      <ArrowUpRight size={14} />
-                    </OutLink>
-                  ))}
-                </div>
-              ) : (
-                <p className="muted">
-                  No supporting documents were linked in the collected notice.
-                </p>
-              )}
+              <SourceDocuments signal={s} />
+            </section>
+            <section className="detail-section">
+              <ProcurementHistory signal={s} />
             </section>
             <section className="detail-section">
               <h3>Timeline</h3>

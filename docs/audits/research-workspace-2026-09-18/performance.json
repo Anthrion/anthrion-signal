@@ -1,0 +1,24 @@
+{
+  "comparison": "Same production build and 5,529-current-record dataset; indexed UK loading versus legacy current.json fallback",
+  "environment": "Headless Chromium, 390x844, fresh context/cache disabled, 4x CPU, 60ms latency, 1.6MB/s download; local Vite preview with observed compression, not a real phone or production transfer measurement",
+  "samples_per_mode": 3,
+  "measurement_limits": "Emulated Chromium, not a physical phone, real-user percentile, or production-network measurement. Search input uses two animation frames as a responsiveness proxy.",
+  "indexed": {
+    "firstRecordsMs": 3622,
+    "inputToTwoFramesMs": 624.8999999761581,
+    "jsHeapUsed": 27361424,
+    "dataDecodedBytes": 8795834,
+    "dataTransferredBytes": 1307552,
+    "browserErrors": []
+  },
+  "legacy": {
+    "firstRecordsMs": 9472,
+    "inputToTwoFramesMs": 759.8999999761581,
+    "jsHeapUsed": 77436320,
+    "dataDecodedBytes": 70275072,
+    "dataTransferredBytes": 8978324,
+    "browserErrors": []
+  },
+  "first_record_improvement_percent": 61.8,
+  "heap_reduction_percent": 64.7
+}

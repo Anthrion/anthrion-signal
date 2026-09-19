@@ -18,6 +18,7 @@ async function ready(page: Page) {
 }
 
 test.beforeEach(async ({ page }) => {
+  await page.route('**/data/manifest.json', (route) => route.fulfill({ status: 404 }))
   await page.emulateMedia({ reducedMotion: 'reduce' })
   await page.clock.setFixedTime(new Date('2026-09-11T12:00:00Z'))
   const dataset = await (await page.request.get('./data/current.json')).json()
@@ -102,7 +103,7 @@ test('export is centred beside the refiners and remains clear of carousel naviga
   await expect(page.getByText('No hidden signals', { exact: true })).toBeVisible()
 })
 
-test('the slim action dock increases reading space while keeping both controls usable', async ({
+test('default reading stays clear and compact mode gains space above the usable action dock', async ({
   page,
 }, info) => {
   const desktop = info.project.name === 'desktop'
@@ -111,6 +112,15 @@ test('the slim action dock increases reading space while keeping both controls u
   if (!desktop) await page.locator('.row-select').first().click()
   const panel = page.locator('.console-detail:visible')
   const dock = panel.locator('.record-action-dock')
+  if (desktop) {
+    const standardReading = (await panel.locator('.inspector-scroll').boundingBox())!
+    const standardDock = (await dock.boundingBox())!
+    const searchControls = (await page.locator('.search-workspace').boundingBox())!
+    expect(standardReading.height).toBeGreaterThanOrEqual(450)
+    expect(standardReading.y).toBeGreaterThanOrEqual(searchControls.y + searchControls.height)
+    expect(standardReading.y + standardReading.height).toBeLessThanOrEqual(standardDock.y + 1)
+    await page.getByRole('button', { name: 'Compact reading mode', exact: true }).click()
+  }
   const before = (await dock.boundingBox())!
   expect(before.height).toBe(57)
   expect(before.y + before.height).toBeLessThanOrEqual(page.viewportSize()!.height)

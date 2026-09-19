@@ -97,7 +97,10 @@ def test_mixed_lot_deadlines_are_conservative_and_retained():
     enriched = enrich_release(release, eforms(second_deadline="2026-10-12"), IDENTIFIER + "-01")
     assert enriched["tender"]["tenderPeriod"]["endDate"].startswith("2026-10-12")
     assert enriched["tender"]["lots"][0]["tenderPeriod"]["endDate"].startswith("2026-10-15")
-    assert "earliest" in enriched["tender"]["eligibilityCriteria"]
+    assert "eligibilityCriteria" not in enriched["tender"]
+    signal = normalise_german_notice(RawRecord(enriched, SOURCE, FROZEN.isoformat(), "german_ocds"))
+    assert len(signal.response_deadlines) == 2
+    assert {d.lot_id for d in signal.deadlines if d.lot_id} == {"LOT-0001", "LOT-0002"}
 
 
 def test_result_notice_keeps_procedure_identity_and_is_not_a_live_lead():

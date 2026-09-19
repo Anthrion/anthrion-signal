@@ -6,7 +6,7 @@ we never manufacture a clock time or infer a missing year. Initial submission
 stages take priority over invitation-only final tenders.
 """
 import re
-from datetime import datetime, time
+from datetime import datetime, time, timedelta, timezone
 from zoneinfo import ZoneInfo
 
 from .utils import parse_date
@@ -98,4 +98,20 @@ def digital_deadline_instant(value):
     parsed = parse_date(value)
     if parsed and re.fullmatch(r'\d{4}-\d{2}-\d{2}', value):
         return datetime.combine(parsed.date(), time.max, tzinfo=ZoneInfo('Europe/London'))
+    return parsed
+
+
+def response_deadline_instant(value, source_timezone=None):
+    """Comparison only: never publish an invented cutoff for an untimed date.
+
+    Unknown timezones stay reviewable through the last timezone's calendar day.
+    Source-local timed values without an offset also cannot establish an instant.
+    """
+    parsed = parse_date(value)
+    if not parsed:
+        return None
+    if re.fullmatch(r"\d{4}-\d{2}-\d{2}(?:[+-]\d{2}:\d{2})?", value) or not re.search(r"(?:Z|[+-]\d{2}:\d{2})$", value):
+        zone = ZoneInfo(source_timezone) if source_timezone else timezone(timedelta(hours=-12))
+        day = datetime.strptime(value[:10], "%Y-%m-%d").date()
+        return datetime.combine(day, time.max, tzinfo=zone)
     return parsed

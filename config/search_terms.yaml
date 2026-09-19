@@ -12,13 +12,34 @@ exclusions: [road resurfacing, building construction, catering services, grounds
 govuk_queries: [commercial pipeline digital, procurement pipeline technology, Salesforce, CRM transformation, case management, contact centre, citizen services, digital transformation procurement, data platform, artificial intelligence procurement, generative AI, AI agents, automation integration]
 markets:
   GB: {name: United Kingdom, enabled: true, ted_codes: [GBR]}
-  US: {name: United States, enabled: true, ted_codes: [], coverage: 'Federal funding and contract awards. Live federal tenders are not connected.'}
+  US: {name: United States, enabled: true, ted_codes: [], coverage: 'Grants.gov funding, NYC City Record and LA RAMP notices. Live federal tenders are not connected.'}
   IT: {name: Italy, enabled: true, ted_codes: [ITA], coverage: 'TED notices; national-only procurement is not included.'}
   SE: {name: Sweden, enabled: true, ted_codes: [SWE], coverage: 'TED notices; national-only procurement is not included.'}
   FI: {name: Finland, enabled: true, ted_codes: [FIN], coverage: 'TED notices; national-only procurement is not included.'}
   DK: {name: Denmark, enabled: true, ted_codes: [DNK], coverage: 'TED notices; national-only procurement is not included.'}
   'NO': {name: Norway, enabled: true, ted_codes: [NOR], coverage: 'TED notices; national-only procurement is not included.'}
   IS: {name: Iceland, enabled: true, ted_codes: [ISL], coverage: 'TED notices; national-only procurement is not included.'}
-  DE: {name: Germany, enabled: true, ted_codes: [DEU], coverage: 'TED notices; national-only procurement is not included.'}
-  ES: {name: Spain, enabled: true, ted_codes: [ESP], coverage: 'TED notices; national-only procurement is not included.'}
+  DE: {name: Germany, enabled: true, ted_codes: [DEU], coverage: 'TED and completed German national notice exports. Collection and historical recovery are bounded.'}
+  ES: {name: Spain, enabled: true, ted_codes: [ESP], coverage: 'TED and PLACSP contracting profiles, excluding minor contracts. Collection and historical recovery are bounded.'}
   GR: {name: Greece, enabled: true, ted_codes: [GRC], coverage: 'TED notices; national-only procurement is not included.'}
+  BE: {name: Belgium, enabled: true, ted_codes: [BEL], coverage: 'TED notices; national-only procurement is not included. Collection and historical recovery are bounded.'}
+  NL: {name: Netherlands, enabled: true, ted_codes: [NLD], coverage: 'TED notices; national-only procurement is not included. Collection and historical recovery are bounded.'}
+  FR: {name: France, enabled: true, ted_codes: [FRA], coverage: 'TED notices; national-only procurement is not included. Collection and historical recovery are bounded.'}
+  CH: {name: Switzerland, enabled: true, ted_codes: [CHE], coverage: 'TED notices only; Swiss national portals are not connected. Collection and historical recovery are bounded.'}
+  AT: {name: Austria, enabled: true, ted_codes: [AUT], coverage: 'TED notices; national-only procurement is not included. Collection and historical recovery are bounded.'}
+  IE: {name: Ireland, enabled: true, ted_codes: [IRL], coverage: 'TED notices; national-only procurement is not included. Collection and historical recovery are bounded.'}
+  PT: {name: Portugal, enabled: true, ted_codes: [PRT], coverage: 'TED notices; national-only procurement is not included.'}
+  PL: {name: Poland, enabled: true, ted_codes: [POL], coverage: 'TED notices; national-only procurement is not included.'}
+  EE: {name: Estonia, enabled: true, ted_codes: [EST], coverage: 'TED notices; national-only procurement is not included.'}
+  LV: {name: Latvia, enabled: true, ted_codes: [LVA], coverage: 'TED notices; national-only procurement is not included.'}
+  LT: {name: Lithuania, enabled: true, ted_codes: [LTU], coverage: 'TED notices; national-only procurement is not included.'}
+  CZ: {name: Czechia, enabled: true, ted_codes: [CZE], coverage: 'TED notices; national-only procurement is not included.'}
+  RO: {name: Romania, enabled: true, ted_codes: [ROU], coverage: 'TED notices; national-only procurement is not included.'}
+  BG: {name: Bulgaria, enabled: true, ted_codes: [BGR], coverage: 'TED notices; national-only procurement is not included.'}
+  HR: {name: Croatia, enabled: true, ted_codes: [HRV], coverage: 'TED notices; national-only procurement is not included.'}
+  HU: {name: Hungary, enabled: true, ted_codes: [HUN], coverage: 'TED notices; national-only procurement is not included.'}
+  LU: {name: Luxembourg, enabled: true, ted_codes: [LUX], coverage: 'TED notices; national-only procurement is not included.'}
+  CY: {name: Cyprus, enabled: true, ted_codes: [CYP], coverage: 'TED notices; national-only procurement is not included.'}
+  MT: {name: Malta, enabled: true, ted_codes: [MLT], coverage: 'TED notices; national-only procurement is not included.'}
+  SI: {name: Slovenia, enabled: true, ted_codes: [SVN], coverage: 'TED notices; national-only procurement is not included.'}
+  SK: {name: Slovakia, enabled: true, ted_codes: [SVK], coverage: 'TED notices; national-only procurement is not included.'}

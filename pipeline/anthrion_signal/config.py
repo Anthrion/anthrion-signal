@@ -5,9 +5,23 @@ import yaml
 from dotenv import load_dotenv
 
 
+class UniqueKeyLoader(yaml.SafeLoader):
+    """Reject accidental overwrites, especially duplicated language packs."""
+
+    def construct_mapping(self, node, deep=False):
+        self.flatten_mapping(node)
+        seen = set()
+        for key_node, _ in node.value:
+            key = self.construct_object(key_node, deep=deep)
+            if key in seen:
+                raise ValueError(f"Duplicate configuration key: {key}")
+            seen.add(key)
+        return super().construct_mapping(node, deep=deep)
+
+
 def load_config(root: Path):
     load_dotenv(root / ".env", override=False)
-    result = {name: yaml.safe_load((root / "config" / f"{name}.yaml").read_text(encoding="utf-8"))
+    result = {name: yaml.load((root / "config" / f"{name}.yaml").read_text(encoding="utf-8"), Loader=UniqueKeyLoader)
               for name in ("sources", "company_profile", "scoring", "search_terms", "capabilities", "discovery_languages")}
     if sum(result["scoring"]["weights"].values()) != 100:
         raise ValueError("Scoring weights must sum to 100")

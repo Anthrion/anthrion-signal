@@ -3426,8 +3426,8 @@
     "translation": {}
   },
   {
-    "expected": "exclude",
-    "rationale": "Purchased scope reviewed as physical goods, human services, content access or incidental software use.",
+    "expected": "retain",
+    "rationale": "The original Italian title explicitly purchases an IT platform to deliver employee-welfare services. Preserve this software-platform procurement despite its inconsistent hardware CPV; supplier suitability and participation rights still require checking.",
     "signal": {
       "id": "sig_8edb4ce4033c2a91d8a6",
       "source": "ted",
@@ -3457,7 +3457,8 @@
       "raw_source_hash": "19b46d8c9995b398aa154458348189914b335bd7e588997bedc2ba448becf073",
       "content_hash": "69286b8a434553b3bdd01abdf14ba61c694d3c6912a991869c1459ae59947722"
     },
-    "translation": {}
+    "translation": {},
+    "review_note": "Corrected during native-scope challenge review: the prior exclusion was inconsistent with the actual purchased object. Original source facts are unchanged."
   },
   {
     "expected": "exclude",

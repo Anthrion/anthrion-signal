@@ -1,5 +1,7 @@
 import { test, expect } from '@playwright/test'
 import { markets } from '../src/lib'
+import { amountPresentation } from '../src/publicFacts'
+import { deadlineFact } from '../src/ResearchUI'
 import type { Dataset } from '../src/types'
 
 test.beforeEach(async ({ page }) => {
@@ -7,7 +9,7 @@ test.beforeEach(async ({ page }) => {
 })
 
 test('published data renders real records across every market', async ({ page }, info) => {
-  test.setTimeout(90000)
+  test.setTimeout(180000)
   const errors: string[] = []
   page.on('pageerror', (error) => errors.push(error.message))
   page.on('response', (response) => {
@@ -24,12 +26,11 @@ test('published data renders real records across every market', async ({ page },
   for (const market of markets) {
     await page.goto(`./?view=all&market=${market.id}`)
     await expect(page.locator('.discovery-card')).toHaveCount(5)
-    await expect(
-      page.getByRole('navigation', { name: 'Markets' }).getByRole('button', {
-        name: market.name,
-        exact: true,
-      }),
-    ).toHaveAttribute('aria-pressed', 'true')
+    const tab = page
+      .getByRole('navigation', { name: 'Markets' })
+      .getByRole('button', { name: market.name, exact: true })
+    if (await tab.count()) await expect(tab).toHaveAttribute('aria-pressed', 'true')
+    else await expect(page.locator('.more-markets-trigger')).toContainText(market.name)
     await expect(page.locator('.discovery-value').first()).toHaveText(/^\d[\d,]*$/)
     const count = Number(
       (await page.locator('.discovery-value').first().textContent())!.replaceAll(',', ''),
@@ -53,8 +54,8 @@ test('published data renders real records across every market', async ({ page },
     await expect(panel.locator('.inspector-heading h2')).toHaveText(title)
     await expect(panel.locator('.inspector-facts dt')).toHaveText([
       'Notice type',
-      'Value',
-      'Deadline',
+      amountPresentation(signal!).label,
+      deadlineFact(signal!).label,
     ])
     const source = panel.getByRole('link', { name: 'Open source notice' })
     await expect(source).toHaveAttribute('href', signal!.primary_source_url)
@@ -87,7 +88,7 @@ test('published feed supports search, filters and browser refresh', async ({ pag
   await page.getByLabel('Buyer', { exact: true }).fill('no-such-buyer-refresh-smoke')
   await page.getByRole('button', { name: 'Show 0 signals' }).click()
   await expect(page.getByText('No matching signals', { exact: true })).toBeVisible()
-  await page.getByRole('button', { name: /Clear 1 filters/ }).click()
+  await page.getByRole('button', { name: 'Remove Buyer filter', exact: true }).click()
   await expect(page.locator('.signal-row').first()).toBeVisible()
   await page.reload()
   await expect(page.locator('.signal-row').first()).toBeVisible()

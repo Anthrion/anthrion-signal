@@ -46,8 +46,9 @@ def test_ted_multiple_lots_do_not_guess_time_pairing_or_mixed_currency(config, n
         'total-value-cur': ['EUR', 'NOK'], 'deadline-receipt-tender-date-lot': ['2026-10-06+02:00', '2026-10-07+02:00'],
         'deadline-receipt-tender-time-lot': ['10:00:00+02:00', '14:00:00+02:00']})))
     assert s.currency is None and s.value_max == 800
-    assert 'Multiple lot deadlines' in s.eligibility_text
-    assert s.deadline_at == '2026-10-05T22:00:00+00:00'
+    assert len(s.deadlines) == 2 and s.eligibility_text is None
+    assert s.deadline_at == '2026-10-06'
+    assert all(deadline.precision == 'date' and deadline.instant is None for deadline in s.deadlines)
 
 
 def test_ted_iteration_exhaustion_and_country_query(config, now):

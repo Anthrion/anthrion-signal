@@ -735,10 +735,10 @@ def ted_keyword_groups(terms):
     return keyword_groups(terms.get("discovery_phrases", []), "FT ~ ")
 
 
-def collect_ted_discovery(source, state, frozen, http, settings, terms):
+def _collect_ted_publication(source, state, frozen, http, settings, terms):
     groups = ted_keyword_groups(terms)
     budget = settings["max_pages"]
-    reserve = max(1, budget // 5) if groups and budget >= 5 else 0
+    reserve = max(1, budget // 5) if groups and budget >= 3 else 0
     result = collect_ted(source, state, frozen, http, {**settings, "max_pages": budget - reserve}, terms)
     if not reserve or result.state.get("retry_at"):
         return result
@@ -776,6 +776,25 @@ def collect_ted_discovery(source, state, frozen, http, settings, terms):
            parse_date(lanes[key]["watermark"]) < frozen - timedelta(days=1) for key in active):
         result.complete = False
         result.message = "Classification search retained; additional keyword windows are catching up within the page budget."
+    return result
+
+
+def collect_ted_discovery(source, state, frozen, http, settings, terms):
+    from .current_inventory import collect_ted_inventory
+    budget = settings["max_pages"]
+    reserve = 2 if budget >= 4 else 0
+    result = _collect_ted_publication(source, state, frozen, http, {**settings, "max_pages": budget - reserve}, terms)
+    if reserve and not result.state.get("retry_at"):
+        inventory = collect_ted_inventory(source, state.get("ted_inventory", {}), frozen, http,
+                                          {**settings, "max_pages": reserve}, terms)
+        result.state["ted_inventory"] = inventory.state
+        result.records.extend(inventory.records)
+        result.pages += inventory.pages
+        if inventory.state.get("retry_at"):
+            result.state["retry_at"] = inventory.state["retry_at"]
+        if not inventory.complete:
+            result.complete = False
+            result.message = inventory.message
     return result
 
 
@@ -878,10 +897,19 @@ def collect_grants(source, state, frozen, http, settings, terms):
                 facts = detail.get("synopsis") or detail.get("forecast") or {}
                 fields = ("synopsisDesc", "forecastDesc", "agencyName", "postingDateStr", "responseDateStr",
                           "createTimeStampStr", "awardCeiling", "awardFloor", "applicantEligibilityDesc",
-                          "applicantTypes", "fundingDescLinkUrl", "fundingDescLinkDesc", "responseDateDesc")
+                          "applicantTypes", "fundingDescLinkUrl", "fundingDescLinkDesc", "responseDateDesc",
+                          "agencyContactName", "agencyContactDesc", "agencyContactEmail")
                 record = {"id": ident, "title": detail["opportunityTitle"], "number": detail.get("opportunityNumber"),
                           "status": hit["oppStatus"], "openDate": hit.get("openDate"), "closeDate": hit.get("closeDate"),
                           "agency": hit.get("agency"), "facts": {k: facts[k] for k in fields if k in facts}}
+                for field in ("agencyDetails", "topAgencyDetails"):
+                    organisation = detail.get(field) or facts.get(field) or {}
+                    record[field] = {key: organisation[key] for key in ("code", "agencyCode", "agencyName", "topAgencyCode") if organisation.get(key)}
+                record["owningAgencyCode"] = detail.get("owningAgencyCode")
+                record["document_links"] = [{"url": link.get("documentURL") or link.get("url"),
+                    "title": link.get("description") or link.get("documentDescription")}
+                    for link in detail.get("synopsisDocumentURLs", []) if isinstance(link, dict)
+                    and (link.get("documentURL") or link.get("url"))]
                 cache[ident] = {"record": record, "signature": signature, "fetched_at": frozen.isoformat()}
                 result.records.append(RawRecord(record, source, frozen.isoformat(), "grants"))
             except SourceUnavailable:

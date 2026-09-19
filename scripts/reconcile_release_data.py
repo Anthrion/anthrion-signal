@@ -60,7 +60,9 @@ def records(body, compressed=False):
     if not body:
         return {}
     text = gzip.decompress(body).decode() if compressed else body.decode()
-    return {record["id"]: record for line in jsonl_lines(text) if (record := json.loads(line))}
+    # Compare source facts, not whether a canonical writer included empty defaults.
+    return {record.id: record.model_dump(mode="json") for line in jsonl_lines(text)
+            for record in [Signal.model_validate_json(line)]}
 
 
 def main():
