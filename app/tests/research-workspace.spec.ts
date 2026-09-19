@@ -254,6 +254,12 @@ async function fixture(page: Page, changeRecord?: (record: Signal) => void) {
   ]
   const history: HistoryRecord[] = Array.from({ length: 55 }, (_, i) => ({
     signal_id: `history-${i}`,
+    source: record.source,
+    countries: record.countries,
+    buyer_id: record.buyer_id,
+    buyer_name: record.buyer_name,
+    signal_type: 'AWARD',
+    award_statuses: ['active'],
     procedure_id: `history-proc-${i}`,
     title: `Council digital service ${i + 1}`,
     status: 'awarded',
@@ -309,7 +315,7 @@ async function fixture(page: Page, changeRecord?: (record: Signal) => void) {
       })
     return route.fulfill({ status: 404 })
   })
-  return { record, manifest }
+  return { record, manifest, history }
 }
 async function openRecord(page: Page) {
   await page.goto('./')
@@ -384,17 +390,22 @@ test('simplified record keeps the same response stage as its calendar', async ({
 })
 
 test('document revisions and page-linked evidence remain source traceable', async ({ page }) => {
+  await fixture(page, (record) => {
+    record.provenance = [{ ...record.provenance[0], url: source }]
+    record.documents.push({ title: 'Notice listing', url: source, kind: 'notice' })
+  })
   const panel = await openRecord(page)
   await panel.getByRole('button', { name: 'Full details', exact: true }).click()
   const dialog = page.getByRole('dialog', { name: 'Opportunity intelligence' })
   await dialog.getByRole('tab', { name: 'Sources & timeline' }).click()
-  await expect(dialog.locator('.source-document')).toContainText('Revision 2')
+  await expect(dialog.locator('.source-document').first()).toContainText('Revision 2')
   await dialog.getByText('Read page evidence', { exact: true }).click()
   await expect(dialog.getByRole('link', { name: 'Page 7' })).toHaveAttribute(
     'href',
     'https://example.com/specification.pdf#page=7',
   )
   await expect(dialog.locator('.document-pages')).toContainText('preserve audit records')
+  await expect(dialog.locator(`a[href="${source}"]`)).toHaveCount(1)
 })
 
 test('buyer page loads all collected history and restores the prior working view', async ({
@@ -425,6 +436,80 @@ test('buyer page loads all collected history and restores the prior working view
     'aria-pressed',
     'true',
   )
+})
+
+test('buyer history links retained supplier awards outside the main feed and returns to the clicked row', async ({
+  page,
+}) => {
+  const { history } = await fixture(page)
+  history[52].supplier = history[0].supplier
+  history[52].award_date = '2023-05-12'
+  const panel = await openRecord(page)
+  await panel.getByRole('button', { name: 'View buyer history for Northbridge Council' }).click()
+  const buyer = page.getByRole('dialog', { name: 'Buyer history' })
+  const company = buyer.getByRole('button', {
+    name: 'View awarded contracts for Winner 1 Ltd',
+    exact: true,
+  })
+  await expect(company).toHaveCount(1)
+  await company.click()
+  const supplier = page.getByRole('dialog', { name: 'Supplier history' })
+  await expect(supplier.locator('.research-timeline > li')).toHaveCount(2)
+  await expect(supplier.locator('.research-timeline')).toContainText('Council digital service 1')
+  await expect(supplier.locator('.research-timeline')).toContainText('Council digital service 53')
+  await expect(supplier.locator('.research-surface > .metal-edge')).toHaveCount(1)
+  await expect(supplier.locator(`a[href="${source}?notice=0"]`)).toHaveCount(1)
+  await supplier.getByRole('button', { name: 'Back', exact: true }).click()
+  await expect(company).toBeFocused()
+  await expect(buyer.locator('.research-surface > .metal-edge')).toHaveCount(2)
+})
+
+test('label-only lots and repeated listing links collapse while separate historical sources remain', async ({
+  page,
+}) => {
+  const { record, history } = await fixture(page)
+  record.lot_ids = ['LOT-0001', 'LOT-0002']
+  record.lots = record.lot_ids.map((id, i) => ({
+    id,
+    title: `Lot ${i + 1}`,
+    description: '',
+    status: 'unknown',
+    source_url: `${source}#lot-${i + 1}`,
+  }))
+  record.procedure_history = [
+    {
+      signal_id: record.id,
+      title,
+      status: 'active',
+      source_url: `${source}#history`,
+      lot_ids: record.lot_ids,
+      lots: record.lots,
+    },
+    {
+      signal_id: record.id,
+      title: '',
+      status: 'unknown',
+      source_url: 'https://other.example.org/notice/12',
+      lot_ids: [],
+    },
+  ]
+  history.splice(0, history.length, record.procedure_history[0], {
+    ...history[0],
+    lots: record.lots,
+  })
+  record.buyer_history_ref!.count = 2
+  const panel = await openRecord(page)
+  await panel.getByRole('button', { name: 'View buyer history for Northbridge Council' }).click()
+  const buyer = page.getByRole('dialog', { name: 'Buyer history' })
+  const selected = buyer.locator('.buyer-context > .research-surface').first()
+  await expect(selected.locator('.lot-summary')).toHaveText('Lots LOT-0001 · LOT-0002')
+  await expect(selected.locator('.lot-grid, .research-timeline')).toHaveCount(0)
+  await expect(buyer.getByRole('heading', { name: 'Published lots', exact: true })).toHaveCount(0)
+  await expect(buyer.locator(`a[href="${source}"]`)).toHaveCount(1)
+  await expect(buyer.locator(`a[href="${source}?notice=0"]`)).toHaveCount(1)
+  await expect(selected.locator('a[href="https://other.example.org/notice/12"]')).toHaveCount(1)
+  await expect(buyer.locator('.research-page-header .glass-source-button')).toHaveCount(0)
+  await expect(buyer.locator('.research-surface > .metal-edge')).toHaveCount(2)
 })
 
 test('title research compares source-linked awards with explicit relationship and filters', async ({
@@ -671,6 +756,7 @@ test('nested buyer and supplier timelines return to the same Context filters and
   const context = page.getByRole('dialog', { name: 'Opportunity research' })
   await expect(context.getByRole('heading', { name: 'Context', exact: true })).toBeVisible()
   await expect(context.locator('.research-current > .metal-edge')).toHaveCount(1)
+  await expect(context.locator('.research-surface > .metal-edge')).toHaveCount(2)
   await expect(context.locator('.decision-brief, .original-notice, .evidence-sheet')).toHaveCount(0)
   await expect(context.locator('.research-description')).toContainText(quote)
   await expect(context.locator('.workspace-brand img')).toHaveAttribute('src', /anthrion-logo.svg$/)

@@ -13,13 +13,29 @@ import { relatedAwards } from './research'
 import { useBuyerHistory } from './useBuyerHistory'
 import { useSignalText } from './Translation'
 import { BrandSignature, MetalEdge, SourceNoticeLink } from './WorkspaceUI'
-import { awardHistoryRecord, publishedSuppliers, supplierAwards } from './supplierResearch'
+import {
+  awardHistoryRecord,
+  historySuppliers,
+  historySupplierAwards,
+  publishedSuppliers,
+  supplierAwards,
+} from './supplierResearch'
 import type { PublishedSupplier } from './supplierResearch'
+import {
+  descriptiveLotText,
+  distinctSources,
+  historySources,
+  lotIds,
+  meaningfulLots,
+  sourceKey,
+} from './researchPresentation'
 export type ResearchState = {
   kind: 'buyer' | 'related' | 'supplier'
   signal: Signal
   opener: HTMLElement
   supplier?: PublishedSupplier
+  supplierRecord?: HistoryRecord
+  supplierRecords?: HistoryRecord[]
 }
 const ResearchContext = createContext<{ open: (value: ResearchState) => void }>({ open: () => {} })
 export function ResearchProvider({
@@ -89,7 +105,79 @@ export function SourceLink({ href, children = 'Source' }: { href: string; childr
   )
 }
 
-function RelatedAwardCard({ award, reason }: { award: Signal; reason: string }) {
+function ResearchSurface({
+  className = '',
+  children,
+}: {
+  className?: string
+  children: ReactNode
+}) {
+  return (
+    <section className={`research-surface ${className}`}>
+      <MetalEdge />
+      {children}
+    </section>
+  )
+}
+
+function SourceLinks({
+  urls,
+  excluded = [],
+}: {
+  urls: (string | null | undefined)[]
+  excluded?: string[]
+}) {
+  const links = distinctSources(urls, excluded)
+  return links.length ? (
+    <div className="research-source-links">
+      {links.map((href, index) => (
+        <SourceLink key={sourceKey(href)} href={href}>
+          {links.length === 1 ? 'Source' : `Source ${index + 1}`}
+        </SourceLink>
+      ))}
+    </div>
+  ) : null
+}
+
+function LotSummary({ record }: { record: Pick<Signal, 'lot_ids' | 'lots'> | HistoryRecord }) {
+  const ids = lotIds(record)
+  return ids.length ? (
+    <p className="lot-summary">
+      {ids.length === 1 ? 'Lot' : 'Lots'} {ids.join(' · ')}
+    </p>
+  ) : null
+}
+
+function LotDetails({ lots }: { lots: NonNullable<Signal['lots']> }) {
+  return (
+    <div className="lot-grid">
+      {meaningfulLots(lots).map((lot) => (
+        <article key={lot.id}>
+          <span className="section-eyebrow">
+            Lot {lot.id}
+            {lot.status !== 'unknown' ? ` · ${lot.status.replaceAll('_', ' ')}` : ''}
+          </span>
+          {descriptiveLotText(lot.title, lot.id) && <h4>{lot.title}</h4>}
+          {descriptiveLotText(lot.description, lot.id) && <p>{lot.description}</p>}
+          {lot.deadline_at && <small>Deadline {date(lot.deadline_at)}</small>}
+          {(lot.value_min != null || lot.value_max != null) && (
+            <small>{amount(lot.value_max ?? lot.value_min ?? null, lot.currency || null)}</small>
+          )}
+        </article>
+      ))}
+    </div>
+  )
+}
+
+function RelatedAwardCard({
+  award,
+  reason,
+  excludedSources = [],
+}: {
+  award: Signal
+  reason: string
+  excludedSources?: string[]
+}) {
   const text = useSignalText(award)
   const financial = valueFact(award)
   return (
@@ -112,7 +200,7 @@ function RelatedAwardCard({ award, reason }: { award: Signal; reason: string }) 
         </span>
       </div>
       {!!award.lot_ids?.length && <small>Lots {award.lot_ids.join(', ')}</small>}
-      <SourceLink href={award.primary_source_url} />
+      <SourceLinks urls={[award.primary_source_url]} excluded={excludedSources} />
     </article>
   )
 }
@@ -179,7 +267,13 @@ export function DeadlineEvents({ signal }: { signal: Signal }) {
               </small>
             </div>
             <div className="deadline-event-links">
-              <SourceLink href={event.source_url} />
+              <SourceLinks
+                urls={[event.source_url]}
+                excluded={[
+                  signal.primary_source_url,
+                  ...events.slice(0, index).map((previous) => previous.source_url),
+                ]}
+              />
               {href && (
                 <a href={href} target="_blank" rel="noopener noreferrer" className="text-action">
                   Add to calendar
@@ -194,7 +288,13 @@ export function DeadlineEvents({ signal }: { signal: Signal }) {
   )
 }
 
-export function SourceDocuments({ signal }: { signal: Signal }) {
+export function SourceDocuments({
+  signal,
+  excludedSources = [],
+}: {
+  signal: Signal
+  excludedSources?: string[]
+}) {
   if (!signal.documents.length)
     return <p className="muted">No supporting documents were linked in the collected notice.</p>
   const status: Record<string, string> = {
@@ -209,11 +309,22 @@ export function SourceDocuments({ signal }: { signal: Signal }) {
   }
   return (
     <div className="source-document-list">
-      {signal.documents.map((doc) => (
-        <article className="source-document" key={doc.url}>
+      {signal.documents.map((doc, index) => (
+        <article className="source-document" key={`${doc.url}-${index}`}>
           <div className="document-title">
             <FileText size={18} />
-            <SourceLink href={doc.url}>{doc.title}</SourceLink>
+            {distinctSources(
+              [doc.url],
+              [
+                signal.primary_source_url,
+                ...excludedSources,
+                ...signal.documents.slice(0, index).map((previous) => previous.url),
+              ],
+            ).length ? (
+              <SourceLink href={doc.url}>{doc.title}</SourceLink>
+            ) : (
+              <strong>{doc.title}</strong>
+            )}
           </div>
           <div className="document-meta">
             <span>{status[doc.status || 'linked'] || 'Linked document'}</span>
@@ -255,31 +366,53 @@ export function SourceDocuments({ signal }: { signal: Signal }) {
   )
 }
 
-export function ProcurementHistory({ signal }: { signal: Signal }) {
+export function ProcurementHistory({
+  signal,
+  showLotSummary = true,
+  excludedSources = [],
+}: {
+  signal: Signal
+  showLotSummary?: boolean
+  excludedSources?: string[]
+}) {
+  const lots = meaningfulLots(signal.lots)
+  const history = (signal.procedure_history || []).filter(
+    (record) => record.signal_id !== signal.id,
+  )
+  const lotSources = distinctSources(
+    [
+      ...(signal.lots || []).map((lot) => lot.source_url),
+      ...(signal.procedure_history || [])
+        .filter((record) => record.signal_id === signal.id)
+        .flatMap(historySources),
+    ],
+    [signal.primary_source_url, ...excludedSources],
+  )
   return (
     <div className="procurement-history">
-      {!!signal.lots?.length && (
+      {showLotSummary && <LotSummary record={signal} />}
+      {(signal.contract_start || signal.contract_end) && (
+        <p>
+          Contract period: {date(signal.contract_start || null)} to{' '}
+          {date(signal.contract_end || null)}
+        </p>
+      )}
+      {signal.extension_end && <p>Extension end: {date(signal.extension_end)}</p>}
+      {!!lots.length && (
         <>
           <h3>Published lots</h3>
-          <div className="lot-grid">
-            {signal.lots.map((lot) => (
-              <article key={lot.id}>
-                <span className="section-eyebrow">
-                  Lot {lot.id} · {lot.status.replaceAll('_', ' ')}
-                </span>
-                <h4>{lot.title || `Lot ${lot.id}`}</h4>
-                {lot.description && <p>{lot.description}</p>}
-                <SourceLink href={lot.source_url} />
-                {lot.deadline_at && <small>Deadline {date(lot.deadline_at)}</small>}
-              </article>
-            ))}
-          </div>
+          <LotDetails lots={lots} />
         </>
       )}
-      {!!signal.procedure_history?.length && (
+      <SourceLinks urls={lotSources} />
+      {!!history.length && (
         <>
           <h3>Procurement history</h3>
-          <HistoryTimeline records={signal.procedure_history} />
+          <HistoryTimeline
+            records={history}
+            origin={signal}
+            excludedSources={[signal.primary_source_url, ...excludedSources, ...lotSources]}
+          />
         </>
       )}
     </div>
@@ -289,14 +422,60 @@ function HistorySignalTitle({ signal }: { signal: Signal }) {
   return <>{useSignalText(signal).title}</>
 }
 
+function HistorySupplierLinks({
+  record,
+  records,
+  origin,
+}: {
+  record: HistoryRecord
+  records: HistoryRecord[]
+  origin: Signal
+}) {
+  const { open } = useContext(ResearchContext)
+  const suppliers = historySuppliers(record)
+  return suppliers.length ? (
+    <span className="supplier-links">
+      {suppliers.map((supplier, index) => (
+        <button
+          key={`${supplier.name}-${index}`}
+          className="supplier-history-link"
+          aria-label={`View awarded contracts for ${supplier.name}`}
+          onClick={(event) =>
+            open({
+              kind: 'supplier',
+              signal: origin,
+              supplier,
+              supplierRecord: record,
+              supplierRecords: records,
+              opener: event.currentTarget,
+            })
+          }
+        >
+          {supplier.name}
+          <ArrowUpRight size={13} aria-hidden="true" />
+        </button>
+      ))}
+    </span>
+  ) : (
+    <strong>{record.winners?.map((winner) => winner.name).join(', ') || record.supplier}</strong>
+  )
+}
+
 function HistoryTimeline({
   records,
   signals = [],
+  origin,
+  supplierRecords = records,
+  excludedSources = [],
 }: {
   records: HistoryRecord[]
   signals?: Signal[]
+  origin?: Signal
+  supplierRecords?: HistoryRecord[]
+  excludedSources?: string[]
 }) {
   const byId = new Map(signals.map((signal) => [signal.id, signal]))
+  const seenSources = [...excludedSources]
   return (
     <ol className="research-timeline">
       {[...records]
@@ -305,90 +484,90 @@ function HistoryTimeline({
             a.award_date || a.published_at || '',
           ),
         )
-        .map((record, index) => (
-          <li key={`${record.signal_id}-${index}`}>
-            <div className="timeline-marker" />
-            <div>
-              <div className="history-date">
-                {record.award_date
-                  ? `Awarded ${date(record.award_date)}`
-                  : record.published_at
-                    ? `Published ${date(record.published_at)}`
-                    : 'Date not published'}
-                <span>{record.status.replaceAll('_', ' ')}</span>
-              </div>
-              <h3>
-                {byId.has(record.signal_id) ? (
-                  <HistorySignalTitle signal={byId.get(record.signal_id)!} />
-                ) : (
-                  record.title
-                )}
-              </h3>
-              {byId.has(record.signal_id) && (
-                <p>
-                  <BuyerLink signal={byId.get(record.signal_id)!} />
-                </p>
-              )}
-              {!!(record.supplier || record.winners?.length) && (
-                <p className="award-winner">
+        .map((record, index) => {
+          const sources = distinctSources(historySources(record), seenSources)
+          seenSources.push(...sources)
+          const lots = meaningfulLots(record.lots)
+          return (
+            <li key={`${record.signal_id}-${index}`}>
+              <div className="timeline-marker" />
+              <div>
+                <div className="history-date">
+                  {record.award_date
+                    ? `Awarded ${date(record.award_date)}`
+                    : record.published_at
+                      ? `Published ${date(record.published_at)}`
+                      : 'Date not published'}
+                  <span>{record.status.replaceAll('_', ' ')}</span>
+                </div>
+                <h3>
                   {byId.has(record.signal_id) ? (
-                    <SupplierLinks signal={byId.get(record.signal_id)!} />
+                    <HistorySignalTitle signal={byId.get(record.signal_id)!} />
                   ) : (
-                    <strong>
-                      {record.winners?.map((winner) => winner.name).join(', ') || record.supplier}
-                    </strong>
+                    record.title
                   )}
-                </p>
-              )}
-              {record.amount && (
-                <p className="history-amount">
-                  {amountLabels[record.amount.kind]}{' '}
-                  <strong>
-                    {record.amount.minimum != null &&
-                    record.amount.maximum != null &&
-                    record.amount.minimum !== record.amount.maximum
-                      ? `${amount(record.amount.minimum, record.amount.currency || null)}–${amount(record.amount.maximum, record.amount.currency || null)}`
-                      : amount(
-                          record.amount.maximum ?? record.amount.minimum ?? null,
-                          record.amount.currency || null,
-                        )}
-                  </strong>
-                </p>
-              )}
-              {!!record.lot_ids?.length && (
-                <p className="muted">Lots {record.lot_ids.join(', ')}</p>
-              )}
-              {!!(
-                record.contract_start ||
-                record.contract_end ||
-                record.extension_end ||
-                record.lots?.length
-              ) && (
-                <details className="history-contract">
-                  <summary>Contract & lot details</summary>
-                  {(record.contract_start || record.contract_end) && (
-                    <p>
-                      Contract period: {date(record.contract_start || null)} to{' '}
-                      {date(record.contract_end || null)}
-                    </p>
-                  )}
-                  {record.extension_end && <p>Extension end: {date(record.extension_end)}</p>}
-                  {record.lots?.map((lot) => (
-                    <div className="history-lot" key={lot.id}>
+                </h3>
+                <LotSummary record={record} />
+                {byId.has(record.signal_id) && (
+                  <p>
+                    <BuyerLink signal={byId.get(record.signal_id)!} />
+                  </p>
+                )}
+                {!!(record.supplier || record.winners?.length) && (
+                  <p className="award-winner">
+                    {byId.has(record.signal_id) ? (
+                      <SupplierLinks signal={byId.get(record.signal_id)!} />
+                    ) : origin ? (
+                      <HistorySupplierLinks
+                        record={record}
+                        records={supplierRecords}
+                        origin={origin}
+                      />
+                    ) : (
                       <strong>
-                        Lot {lot.id}: {lot.title}
+                        {record.winners?.map((winner) => winner.name).join(', ') || record.supplier}
                       </strong>
-                      <span>{lot.status.replaceAll('_', ' ')}</span>
-                      {lot.description && <p>{lot.description}</p>}
-                      <SourceLink href={lot.source_url} />
-                    </div>
-                  ))}
-                </details>
-              )}
-              <SourceLink href={record.source_url} />
-            </div>
-          </li>
-        ))}
+                    )}
+                  </p>
+                )}
+                {record.amount && (
+                  <p className="history-amount">
+                    {amountLabels[record.amount.kind]}{' '}
+                    <strong>
+                      {record.amount.minimum != null &&
+                      record.amount.maximum != null &&
+                      record.amount.minimum !== record.amount.maximum
+                        ? `${amount(record.amount.minimum, record.amount.currency || null)}–${amount(record.amount.maximum, record.amount.currency || null)}`
+                        : amount(
+                            record.amount.maximum ?? record.amount.minimum ?? null,
+                            record.amount.currency || null,
+                          )}
+                    </strong>
+                  </p>
+                )}
+                {!!(
+                  record.contract_start ||
+                  record.contract_end ||
+                  record.extension_end ||
+                  lots.length
+                ) && (
+                  <details className="history-contract">
+                    <summary>Contract & lot details</summary>
+                    {(record.contract_start || record.contract_end) && (
+                      <p>
+                        Contract period: {date(record.contract_start || null)} to{' '}
+                        {date(record.contract_end || null)}
+                      </p>
+                    )}
+                    {record.extension_end && <p>Extension end: {date(record.extension_end)}</p>}
+                    {!!lots.length && <LotDetails lots={lots} />}
+                  </details>
+                )}
+                <SourceLinks urls={sources} />
+              </div>
+            </li>
+          )
+        })}
     </ol>
   )
 }
@@ -652,10 +831,26 @@ export function ResearchPage({
         (!to || (!!award.award_date && award.award_date.slice(0, 10) <= to)),
     )
   const history = buyer.records
-  const won =
+  const supplierSignals =
     state.kind === 'supplier' && state.supplier
       ? supplierAwards(signal, state.supplier, awards)
       : []
+  const won =
+    state.supplierRecord && state.supplier
+      ? historySupplierAwards(
+          state.supplierRecord,
+          state.supplier,
+          state.supplierRecords || [],
+          awards,
+        )
+      : supplierSignals.map((award) => awardHistoryRecord(award))
+  const visibleBuyerHistory = history.slice(0, visibleHistory)
+  const buyerSources = visibleBuyerHistory.flatMap(historySources)
+  const selectedSources = distinctSources([
+    signal.primary_source_url,
+    ...(signal.lots || []).map((lot) => lot.source_url),
+    ...(signal.procedure_history || []).flatMap(historySources),
+  ])
   return (
     <dialog
       ref={ref}
@@ -678,7 +873,6 @@ export function ResearchPage({
           {nested ? 'Back' : 'Back to results'}
         </button>
         <BrandSignature onHome={onHome} />
-        <SourceLink href={signal.primary_source_url}>Open source notice</SourceLink>
       </header>
       <div className="research-page-body">
         {state.kind === 'supplier' ? (
@@ -686,10 +880,12 @@ export function ResearchPage({
             <div className="research-hero">
               <h1>{state.supplier?.name}</h1>
             </div>
-            <section className="research-surface supplier-timeline">
+            <ResearchSurface className="supplier-timeline">
               <div className="surface-heading">
                 <h2>Awarded contracts</h2>
-                <span>{loading ? 'Loading…' : `${won.length} awards`}</span>
+                <span>
+                  {loading ? 'Loading…' : `${won.length} ${won.length === 1 ? 'award' : 'awards'}`}
+                </span>
               </div>
               {loading ? (
                 <div className="research-empty" role="status">
@@ -705,8 +901,10 @@ export function ResearchPage({
               ) : (
                 <>
                   <HistoryTimeline
-                    records={won.slice(0, visibleHistory).map((award) => awardHistoryRecord(award))}
-                    signals={won}
+                    records={won.slice(0, visibleHistory)}
+                    signals={state.supplierRecord ? awards : supplierSignals}
+                    origin={signal}
+                    supplierRecords={won}
                   />
                   {visibleHistory < won.length && (
                     <button
@@ -718,7 +916,7 @@ export function ResearchPage({
                   )}
                 </>
               )}
-            </section>
+            </ResearchSurface>
           </>
         ) : state.kind === 'buyer' ? (
           <>
@@ -732,7 +930,7 @@ export function ResearchPage({
               )}
             </div>
             <div className="buyer-research-grid">
-              <section className="research-surface">
+              <ResearchSurface>
                 <div className="surface-heading">
                   <h2>Contracts & notices</h2>
                   <span>{buyer.count} collected</span>
@@ -750,7 +948,12 @@ export function ResearchPage({
                   </div>
                 ) : history.length ? (
                   <>
-                    <HistoryTimeline records={history.slice(0, visibleHistory)} />
+                    <HistoryTimeline
+                      records={visibleBuyerHistory}
+                      supplierRecords={history}
+                      origin={signal}
+                      excludedSources={[signal.primary_source_url]}
+                    />
                     {visibleHistory < history.length && (
                       <button
                         className="button secondary research-load-more"
@@ -766,30 +969,36 @@ export function ResearchPage({
                     <Building2 size={30} />
                     <h3>No earlier history linked</h3>
                     <p>Check the buyer’s procurement source for other contracts.</p>
-                    <SourceLink href={signal.primary_source_url} />
                   </div>
                 )}
-              </section>
+              </ResearchSurface>
               <aside className="buyer-context">
-                <section className="research-surface">
-                  <div className="section-eyebrow">Selected procurement</div>
+                <ResearchSurface>
                   <h2>{text.title}</h2>
+                  <LotSummary record={signal} />
                   <p>{deadlineFact(signal).value}</p>
+                  <ProcurementHistory
+                    signal={signal}
+                    showLotSummary={false}
+                    excludedSources={buyerSources}
+                  />
                   <SourceLink href={signal.primary_source_url} />
-                  <ProcurementHistory signal={signal} />
-                </section>
+                </ResearchSurface>
                 {!!signal.contacts?.length && (
-                  <section className="research-surface">
+                  <ResearchSurface>
                     <h2>Published contacts</h2>
                     {signal.contacts.map((contact, i) => (
                       <div className="published-contact" key={i}>
                         <strong>{contact.name || 'Contact'}</strong>
                         {contact.role && <p>{contact.role}</p>}
                         {contact.email && <p>{contact.email}</p>}
-                        <SourceLink href={contact.source_url} />
                       </div>
                     ))}
-                  </section>
+                    <SourceLinks
+                      urls={signal.contacts.map((contact) => contact.source_url)}
+                      excluded={[...selectedSources, ...buyerSources]}
+                    />
+                  </ResearchSurface>
                 )}
               </aside>
             </div>
@@ -800,8 +1009,7 @@ export function ResearchPage({
               <h1>Context</h1>
             </div>
             <div className="research-split">
-              <section className="research-surface research-current">
-                <MetalEdge />
+              <ResearchSurface className="research-current">
                 <div className="research-current-content">
                   <h2>{text.title}</h2>
                   <p className="muted">
@@ -828,8 +1036,8 @@ export function ResearchPage({
                   </div>
                   <SourceLink href={signal.primary_source_url} />
                 </div>
-              </section>
-              <section className="research-surface research-awards">
+              </ResearchSurface>
+              <ResearchSurface className="research-awards">
                 <div className="surface-heading">
                   <h2>Related awards</h2>
                   <span>{related.length} matches</span>
@@ -865,8 +1073,18 @@ export function ResearchPage({
                   </div>
                 ) : related.length ? (
                   <>
-                    {related.slice(0, visibleAwards).map(({ award, reason }) => (
-                      <RelatedAwardCard key={award.id} award={award} reason={reason} />
+                    {related.slice(0, visibleAwards).map(({ award, reason }, index) => (
+                      <RelatedAwardCard
+                        key={award.id}
+                        award={award}
+                        reason={reason}
+                        excludedSources={[
+                          signal.primary_source_url,
+                          ...related
+                            .slice(0, index)
+                            .map(({ award: previous }) => previous.primary_source_url),
+                        ]}
+                      />
                     ))}
                     {visibleAwards < related.length && (
                       <button
@@ -900,7 +1118,7 @@ export function ResearchPage({
                     )}
                   </div>
                 )}
-              </section>
+              </ResearchSurface>
             </div>
           </>
         )}

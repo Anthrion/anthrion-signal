@@ -6,7 +6,7 @@ from anthrion_signal.dedupe import merge, reconcile
 from anthrion_signal.discovery import lifecycle, prefilter
 from anthrion_signal.normalise import normalise_grants, normalise_ocds, normalise_ted
 from anthrion_signal.notice_dates import response_deadline_instant
-from anthrion_signal.public_context import attach_history, buyer_identity, public_signal
+from anthrion_signal.public_context import attach_history, buyer_identity, history_entry, public_signal
 from anthrion_signal.utils import digest
 
 
@@ -172,6 +172,19 @@ def test_buyer_history_keeps_all_known_awards_and_source_facts(signal):
     attach_history([signal], history)
     assert len(signal.buyer_history) == 61
     assert all("amount" in item and "source_url" in item and "contract_end" in item for item in signal.buyer_history)
+    assert all(item["source"] == signal.source and item["countries"] == signal.countries
+               and item["buyer_name"] == signal.buyer_name and item["buyer_id"] == signal.buyer_id
+               for item in signal.buyer_history)
+
+
+def test_history_supplier_scope_and_cancellation_come_from_each_actual_notice(signal):
+    cancelled = signal.model_copy(update={"id": "cancelled-award", "source": "other-source",
+        "countries": ["CH"], "buyer_id": "other-buyer", "buyer_name": "Another buyer",
+        "signal_type": "AWARD", "award_statuses": ["cancelled"]})
+    item = history_entry(cancelled)
+    assert item["source"] == "other-source" and item["countries"] == ["CH"]
+    assert item["buyer_id"] == "other-buyer" and item["buyer_name"] == "Another buyer"
+    assert item["award_statuses"] == ["cancelled"]
 
 
 def test_native_french_and_dutch_delivery_aliases_survive_public_evidence(signal, config):

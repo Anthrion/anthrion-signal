@@ -179,8 +179,11 @@ def public_signal(signal, translation=None):
 
 def history_entry(signal):
     return {"signal_id": signal.id, "procedure_id": signal.procedure_id, "title": signal.title,
+        "source": signal.source, "countries": signal.countries,
+        "buyer_name": signal.buyer_name, "buyer_id": signal.buyer_id,
         "signal_type": signal.signal_type, "notice_type": signal.notice_type, "published_at": signal.published_at,
-        "award_date": signal.award_date, "supplier": signal.incumbent_supplier, "status": signal.status,
+        "award_date": signal.award_date, "award_statuses": signal.award_statuses,
+        "supplier": signal.incumbent_supplier, "status": signal.status,
         "source_url": signal.primary_source_url, "lot_ids": signal.lot_ids or ([signal.lot_id] if signal.lot_id else []),
         "amount": signal.amount.model_dump() if signal.amount else None, "contract_start": signal.contract_start,
         "contract_end": signal.contract_end, "extension_end": signal.extension_end,
