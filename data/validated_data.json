@@ -1,15 +1,15 @@
 {
   "version": 1,
-  "generation": 5,
+  "generation": 6,
   "data_code": "bb457899a79c5f257c805d4aa119359ece87638dd618b80cc8e7023b72667342",
-  "sha256": "5c929c591649c8e4df015129a50c8841f8630963994f07ac1da7488d68303976",
-  "key": "signal-public-v1-5c929c591649c8e4df015129a50c8841f8630963994f07ac1da7488d68303976-35533081617-1",
-  "inputs": "7507f31b1d066bb168832d0ad40508e78cd163495ba4db2b3435bea80155dda1",
-  "validated_at": "2026-09-20T19:53:30.429926+00:00",
+  "sha256": "b15bf6df90910a1e87ea038f4a58770ab9e86bc9ec4812ea378b6ed6c4250e1f",
+  "key": "signal-public-v1-b15bf6df90910a1e87ea038f4a58770ab9e86bc9ec4812ea378b6ed6c4250e1f-35540081781-1",
+  "inputs": "adecfdb98bdddfbd2339c39516d0713f0615abbd0dba0de63715e3a89c49b8e7",
+  "validated_at": "2026-09-20T22:13:30.724105+00:00",
   "signature": {
     "code": "a500c4eff424307aa6903853c9bc63298e4721c6c5d9ff0330ec6ebd8a0e1e08",
-    "content": "f7ae8e4ea6c3b570a9e941ac2e7e9f1e46b7044eaadb26d798dcaa447cf0db82",
-    "translations": "48aac525f7fa415ce95e8ea6b138a6c4274ef00cd1f48a47d70474d56ae55e95",
+    "content": "4d806676c92fdfb5184f479168c118022a2c105f8b668f384269169bb63d3238",
+    "translations": "c75e285aa406f5d1605de873e82d46940f248b95866c3058752dedfaf904799a",
     "health": [
       [
         "find_tender",
@@ -65,7 +65,7 @@
       ],
       [
         "grants",
-        "partial"
+        "healthy"
       ],
       [
         "etenders_ni",
