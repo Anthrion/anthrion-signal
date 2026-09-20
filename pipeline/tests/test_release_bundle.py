@@ -14,6 +14,9 @@ SHA = "a" * 64
 
 @pytest.fixture
 def bundle(monkeypatch):
+    # Temporary test folders have no production Git checkout. Tests exercising
+    # workflow revision checks set their own revision explicitly below.
+    monkeypatch.delenv("EXECUTION_WORKFLOW_SHA", raising=False)
     monkeypatch.syspath_prepend(str(ROOT / "scripts"))
     module = importlib.import_module("release_bundle")
     monkeypatch.setattr(module, "data_digest", lambda root: "data-code")
