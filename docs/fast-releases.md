@@ -12,6 +12,8 @@ UI changes should not wait for procurement collection or reclassify unchanged so
 
 The existing required PR status is still `test`. The redundant `Tests` run on a main push is removed because the production workflow verifies the code it actually publishes. A cold first rollout still needs the full path to seed a trusted cache. Warm release timings must be measured after that rollout; 5–10 minutes is a target, not a guarantee.
 
+A newer commit cancels superseded checks for that PR only. Production collection and publication are never cancelled by a newer commit. A manual run with both collection and forced full tests disabled uses the same warm UI-publication path as a presentation-only push; a cache miss still takes the full path.
+
 ## Cache boundaries
 
 `data/validated_data.json` binds a compressed public export to its SHA-256, data-code fingerprint, input fingerprint and monotonically increasing generation. Only the validated dependency graph enters this cache, not older unreferenced assets or canonical/private inputs. Extraction rejects unsafe paths, links, duplicates, missing roots and excessive sizes. PRs select a receipt from their trusted base commit and cannot certify their own proposed data changes.

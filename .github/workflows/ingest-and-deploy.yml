@@ -28,7 +28,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     outputs:
-      needs_data: ${{ github.event_name != 'push' || inputs.full_tests || steps.cache-check.outcome != 'success' }}
+      needs_data: ${{ github.event_name == 'schedule' || inputs.collect == true || inputs.full_tests == true || steps.cache-check.outcome != 'success' }}
     steps:
       - uses: actions/checkout@v4
         with:

@@ -193,3 +193,6 @@ def test_release_workflows_keep_trusted_data_validation_and_tested_publication_s
     assert set(tests["on"]) == {"pull_request"}  # production gates replace the duplicate push job
     assert set(tests["jobs"]) == {"test"}  # retain the required status check
     assert tests["permissions"] == {"contents": "read"}
+    assert tests["concurrency"] == {
+        "group": "signal-pr-${{ github.event.pull_request.number }}", "cancel-in-progress": "true",
+    }
