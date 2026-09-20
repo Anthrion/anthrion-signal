@@ -1,4 +1,11 @@
+import { datasetFixture } from './fixtures/dataset'
 import { test, expect } from '@playwright/test'
+
+test.beforeEach(async ({ page }) => {
+  const data = datasetFixture()
+  await page.route('**/data/manifest.json', (route) => route.fulfill({ status: 404 }))
+  await page.route('**/data/current.json', (route) => route.fulfill({ json: data }))
+})
 
 test('scrolling the virtual record list does not redraw stationary glass or restart its light', async ({
   page,

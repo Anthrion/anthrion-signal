@@ -14,7 +14,7 @@ if path.exists():
     if plan_path.exists():
         plan = json.loads(plan_path.read_text(encoding="utf-8"))
         body += f"{plan['collection_reason']}. Collection step: {os.getenv('COLLECTION_OUTCOME', 'not reported')}.\n\n"
-        body += f"Browser verification planned: **{plan['test_mode']}**.\n\n"
+        body += f"Pipeline verification planned: **{plan['test_mode']}**. Browser checks run in the publication job.\n\n"
     body += f"Latest completed collection statistics ({run.get('finished_at', 'unknown time')}):\n\n"
     body += "| Metric | Count |\n| --- | ---: |\n" + "\n".join(f"| {label} | {run.get(key, 0)} |" for key, label in labels.items())
     translation_path = Path("data/translation/summary.json")

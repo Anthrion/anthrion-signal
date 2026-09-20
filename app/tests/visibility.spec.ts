@@ -1,10 +1,11 @@
+import { datasetFixture } from './fixtures/dataset'
 import { test, expect, type Locator, type Page } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 import type { Dataset } from '../src/types'
 
 async function fixture(page: Page) {
   await page.route('**/data/manifest.json', (route) => route.fulfill({ status: 404 }))
-  const data: Dataset = await (await page.request.get('./data/current.json')).json()
+  const data: Dataset = datasetFixture()
   const base = data.signals[0]
   const now = Date.now()
   data.generated_at = new Date(now).toISOString()

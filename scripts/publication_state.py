@@ -23,23 +23,28 @@ def signature_for(root):
     }
 
 
-root = Path.cwd()
-previous_path = root / "data/publication_state.json"
-if sys.argv[1] == "deployed":
-    deployed = json.loads(os.environ["DEPLOYED_SIGNATURE"])
-    if set(deployed) != {"code", "content", "translations", "health", "day"}:
-        raise SystemExit("Invalid publication signature")
-    previous_path.write_text(json.dumps(deployed, indent=2) + "\n", encoding="utf-8")
-    print("Successful publication recorded.")
-elif sys.argv[1] == "before":
-    root.joinpath("tmp").mkdir(exist_ok=True)
-    root.joinpath("tmp/publication-before.json").write_text(previous_path.read_text(encoding="utf-8") if previous_path.exists() else "{}", encoding="utf-8")
-else:
-    signature = signature_for(root)
-    previous = json.loads(root.joinpath("tmp/publication-before.json").read_text(encoding="utf-8"))
-    changed = signature != previous or os.getenv("FORCE_DEPLOY") == "true"
-    if os.getenv("GITHUB_OUTPUT"):
-        with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
-            output.write(f"deploy={str(changed).lower()}\n")
-            output.write("signature=" + json.dumps(signature, separators=(",", ":")) + "\n")
-    print("Publishing updated intelligence." if changed else "Content and health unchanged; daily freshness publication already completed.")
+def main():
+    root = Path.cwd()
+    previous_path = root / "data/publication_state.json"
+    if sys.argv[1] == "deployed":
+        deployed = json.loads(os.environ["DEPLOYED_SIGNATURE"])
+        if set(deployed) != {"code", "content", "translations", "health", "day"}:
+            raise SystemExit("Invalid publication signature")
+        previous_path.write_text(json.dumps(deployed, indent=2) + "\n", encoding="utf-8")
+        print("Successful publication recorded.")
+    elif sys.argv[1] == "before":
+        root.joinpath("tmp").mkdir(exist_ok=True)
+        root.joinpath("tmp/publication-before.json").write_text(previous_path.read_text(encoding="utf-8") if previous_path.exists() else "{}", encoding="utf-8")
+    else:
+        signature = signature_for(root)
+        previous = json.loads(root.joinpath("tmp/publication-before.json").read_text(encoding="utf-8"))
+        changed = signature != previous or os.getenv("FORCE_DEPLOY") == "true"
+        if os.getenv("GITHUB_OUTPUT"):
+            with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
+                output.write(f"deploy={str(changed).lower()}\n")
+                output.write("signature=" + json.dumps(signature, separators=(",", ":")) + "\n")
+        print("Publishing updated intelligence." if changed else "Content and health unchanged; daily freshness publication already completed.")
+
+
+if __name__ == "__main__":
+    main()

@@ -339,7 +339,8 @@ test('default summary selection loads full evidence and precise commercial facts
   const panel = await openRecord(page)
   await expect(panel.locator('.inspector-facts')).toContainText('Estimated contract value')
   await expect(panel.locator('.inspector-facts')).toContainText('14:00 Europe/London')
-  await page.screenshot({ path: `../artifacts/research-overview-${info.project.name}.png` })
+  if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
+    await page.screenshot({ path: `../artifacts/research-overview-${info.project.name}.png` })
   await expect(panel.locator('.capability-tags')).toContainText('Salesforce platform')
   await expect(
     panel.locator('.capability-tags button, .evidence-sheet, .decision-brief, .original-notice'),
@@ -349,10 +350,11 @@ test('default summary selection loads full evidence and precise commercial facts
   expect(requests.some((url) => url.includes('/records/panel-a-'))).toBe(true)
   expect(requests.some((url) => url.includes('/current/FR-'))).toBe(false)
   await expect(page.getByRole('button', { name: /Mark working/ })).toHaveCount(0)
-  await page.screenshot({
-    path: `../artifacts/research-record-${info.project.name}.png`,
-    fullPage: false,
-  })
+  if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
+    await page.screenshot({
+      path: `../artifacts/research-record-${info.project.name}.png`,
+      fullPage: false,
+    })
   expect(
     (await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze())
       .violations,
@@ -424,10 +426,11 @@ test('buyer page loads all collected history and restores the prior working view
   expect(await sparseRecord.innerText()).not.toMatch(/(?:^|\n)0(?:\n|$)/)
   await research.getByText('Contract & lot details').first().click()
   await expect(research.locator('.history-contract').first()).toContainText('2027')
-  await page.screenshot({
-    path: `../artifacts/research-buyer-${info.project.name}.png`,
-    fullPage: false,
-  })
+  if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
+    await page.screenshot({
+      path: `../artifacts/research-buyer-${info.project.name}.png`,
+      fullPage: false,
+    })
   await research.getByRole('button', { name: 'Back to results' }).click()
   await expect(page.locator('.row-select').first()).toBeVisible()
   if (info.project.name === 'mobile')
@@ -530,10 +533,11 @@ test('title research compares source-linked awards with explicit relationship an
   await research.getByLabel('Awarded from').fill('2025-01-01')
   await expect(research.getByText('No matching awards found')).toBeVisible()
   await research.getByRole('button', { name: 'Clear award filters' }).click()
-  await page.screenshot({
-    path: `../artifacts/research-comparison-${info.project.name}.png`,
-    fullPage: false,
-  })
+  if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
+    await page.screenshot({
+      path: `../artifacts/research-comparison-${info.project.name}.png`,
+      fullPage: false,
+    })
 })
 
 test('last view remembers search and matching while shared URLs and UK startup stay predictable', async ({
@@ -635,7 +639,8 @@ test('market dragging previews the drop and saves order without changing pins or
     'true',
   )
   await expect(organizer.locator('.market-drag-preview')).toContainText('All markets')
-  await page.screenshot({ path: `../artifacts/market-drag-${info.project.name}.png` })
+  if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
+    await page.screenshot({ path: `../artifacts/market-drag-${info.project.name}.png` })
   await page.mouse.up()
   await expect(organizer.locator('.market-drag-preview')).toHaveCount(0)
   await expect(organizer.getByRole('listitem').nth(3)).toHaveAttribute('data-market-id', '')
@@ -1013,6 +1018,7 @@ test('long source records retain readable widths and dock actions in compact and
       dock.getByRole('link', { name: 'Open source notice', exact: true }),
     ).toBeInViewport()
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
-    await page.screenshot({ path: `../artifacts/research-long-${width}x${height}.png` })
+    if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
+      await page.screenshot({ path: `../artifacts/research-long-${width}x${height}.png` })
   }
 })

@@ -44,7 +44,7 @@ def test_remote_reservation_failure_cannot_make_api_calls(command, tmp_path, mon
 
     def run(args, **kwargs):
         calls.append(args)
-        if args[1] == "push":
+        if Path(args[1]).name == "push_data.py":
             raise subprocess.CalledProcessError(1, args)
 
     monkeypatch.setattr(command.subprocess, "run", run)
@@ -55,7 +55,7 @@ def test_remote_reservation_failure_cannot_make_api_calls(command, tmp_path, mon
     assert sum(ledger.state["allocations"]["123-1"]["limits"].values()) == 60
     assert not ledger.state["allocations"]["123-1"].get("started")
     assert not (tmp_path / "data/.translation.lock").exists()
-    assert calls[-1] == ["git", "push", "origin", "HEAD:main"]
+    assert Path(calls[-1][1]).name == "push_data.py"
 
 
 def test_idle_translation_checks_make_no_requests_or_timestamp_only_commits(command, tmp_path, monkeypatch):

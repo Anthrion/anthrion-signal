@@ -17,7 +17,15 @@ def read_state(path):
         return {}
 
 
-def code_digest(root):
+def is_ui_path(path):
+    """Conservative boundary: data contracts, dependencies and automation stay full."""
+    contracts = {"app/src/types.ts", "app/src/dataClient.ts", "app/src/useOpportunityData.ts",
+                 "app/src/useAwardHistory.ts", "app/src/useBuyerHistory.ts"}
+    return (path.startswith(("app/src/", "app/tests/", "app/design/")) and path not in contracts
+            or path.startswith("app/public/") and not path.startswith("app/public/data/"))
+
+
+def code_digest(root, *, data_only=False):
     # Data-only bot commits must not invalidate an already-tested application.
     tree = subprocess.run(
         ["git", "ls-tree", "-r", "-z", "HEAD"], cwd=root, check=True, capture_output=True,
@@ -27,15 +35,20 @@ def code_digest(root):
         if not entry:
             continue
         path = entry.split(b"\t", 1)[1]
-        if not path.startswith((b"data/", b"docs/")) and not path.endswith(b".md"):
+        if (not path.startswith((b"data/", b"docs/")) and not path.endswith(b".md")
+                and not (data_only and is_ui_path(path.decode("utf-8")))):
             entries.append(entry)
     if not entries:
         raise ValueError("No versioned application files found")
     return hashlib.sha256(b"\0".join(entries)).hexdigest()
 
 
+def data_digest(root):
+    return code_digest(root, data_only=True)
+
+
 def make_plan(root, now, event, collect_requested=False, force_full=False, schedule="50 * * * *"):
-    signature = {"code": code_digest(root), "day": now.astimezone(ZoneInfo("Europe/London")).date().isoformat()}
+    signature = {"code": data_digest(root), "day": now.astimezone(ZoneInfo("Europe/London")).date().isoformat()}
     full = force_full or event == "push" or read_state(root / "data/verification_state.json") != signature
     collect = (event == "schedule" and schedule == "50 * * * *") or (event == "workflow_dispatch" and collect_requested)
     reason = "Collection requested" if collect else "Existing-data deployment"

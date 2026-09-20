@@ -1,3 +1,4 @@
+import { datasetFixture } from './fixtures/dataset'
 import { test, expect, type Locator, type Page } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 import type { Dataset, Signal } from '../src/types'
@@ -8,7 +9,7 @@ import {
 } from './fixtures/record'
 
 async function fixture(page: Page, overrides: Partial<Signal> = {}) {
-  const dataset: Dataset = await (await page.request.get('./data/current.json')).json()
+  const dataset: Dataset = datasetFixture()
   await page.route('**/data/current.json', (route) =>
     route.fulfill({ json: recordDataset(dataset, overrides) }),
   )
@@ -80,17 +81,20 @@ test('selected design presents compact source facts before untruncated text', as
     expect(box.x).toBeGreaterThanOrEqual(facts.x + facts.width)
     expect(box.y).toBeGreaterThanOrEqual(previousBottom)
     previousBottom = box.y + box.height
-    expect(
-      await button
-        .locator('img')
-        .evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0),
-    ).toBe(true)
+    await expect
+      .poll(() =>
+        button
+          .locator('img')
+          .evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0),
+      )
+      .toBe(true)
   }
   expect(prose.y).toBeGreaterThanOrEqual(previousBottom)
   expect(capabilities.y).toBeGreaterThanOrEqual(facts.y + facts.height - 1)
   expect(prose.y).toBeGreaterThanOrEqual(capabilities.y + capabilities.height)
   await dockInViewport(page, panel)
-  await page.screenshot({ path: `../artifacts/record-panel-${info.project.name}.png` })
+  if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
+    await page.screenshot({ path: `../artifacts/record-panel-${info.project.name}.png` })
   const results = await new AxeBuilder({ page })
     .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
     .analyze()
@@ -186,7 +190,8 @@ test('long records keep the dock visible before and after scrolling at compact a
     const last = (await panel.locator('.inspector-summary p').last().boundingBox())!
     expect(last.y + last.height).toBeLessThanOrEqual(before!.y)
     await expect(panel.getByRole('button', { name: 'Full details', exact: true })).toBeEnabled()
-    await page.screenshot({ path: `../artifacts/record-panel-long-${width}x${height}.png` })
+    if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
+      await page.screenshot({ path: `../artifacts/record-panel-long-${width}x${height}.png` })
     await panel.getByRole('button', { name: 'Full details', exact: true }).click()
     const dialog = page.getByRole('dialog')
     await dockInViewport(page, dialog)
@@ -303,15 +308,4 @@ test('missing descriptions, capabilities and deadlines retain usable dock contro
     (await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze())
       .violations,
   ).toEqual([])
-})
-
-test('capture the selected panel at its natural design dimensions', async ({ page }, info) => {
-  test.skip(info.project.name !== 'desktop', 'Reference is a desktop component')
-  await fixture(page)
-  await page.setViewportSize({ width: 1600, height: 1352 })
-  await preview(page)
-  await page.evaluate(() => document.fonts.ready)
-  await page
-    .locator('.console-inspector')
-    .screenshot({ path: '../artifacts/record-panel-design.png' })
 })

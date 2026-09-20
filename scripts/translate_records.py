@@ -101,7 +101,7 @@ def main():
                 [sys.executable, str(Path(__file__).with_name("automation_git_guard.py")), "staged"],
                 ["git", "commit", "-m", "Reserve private translation quota [skip ci]"],
                 [sys.executable, str(Path(__file__).with_name("automation_git_guard.py")), "unpushed"],
-                ["git", "push", "origin", "HEAD:main"],
+                [sys.executable, str(Path(__file__).with_name("push_data.py"))],
             ):
                 subprocess.run(command, cwd=root, check=True)
             ledger.activate(identifier)

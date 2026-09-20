@@ -1,0 +1,139 @@
+name: Publish verified Signal release
+on:
+  workflow_call:
+    inputs:
+      full_tests:
+        type: boolean
+        default: false
+permissions:
+  contents: read
+jobs:
+  publish:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      EXECUTION_WORKFLOW_SHA: ${{ github.workflow_sha }}
+    # Hold one short lock through compilation, checks, deploy and its receipt.
+    concurrency:
+      group: anthrion-signal-publication
+      cancel-in-progress: false
+      queue: max
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Select latest compatible validated export
+        id: data
+        run: python scripts/release_bundle.py select
+      - name: Restore validated export
+        if: steps.data.outputs.eligible == 'true'
+        uses: actions/cache/restore@v4
+        with:
+          path: tmp/public-data.tar.gz
+          key: ${{ steps.data.outputs.key }}
+          fail-on-cache-miss: true
+      - name: Verify and unpack public data
+        if: steps.data.outputs.eligible == 'true'
+        run: python scripts/release_bundle.py restore
+      - name: Plan publication
+        if: steps.data.outputs.eligible == 'true'
+        id: plan
+        env:
+          FORCE_FULL_TESTS: ${{ inputs.full_tests }}
+        run: python scripts/release_bundle.py publish-plan
+      - uses: actions/setup-node@v4
+        if: steps.plan.outputs.deploy == 'true'
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+      - name: Test and build dashboard
+        if: steps.plan.outputs.deploy == 'true'
+        working-directory: app
+        env:
+          VITE_BASE_PATH: /${{ github.event.repository.name }}/
+        run: |
+          npm ci
+          npm test
+          npm run build
+      - uses: actions/cache@v4
+        if: steps.plan.outputs.deploy == 'true'
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('app/package-lock.json') }}
+      - name: Install browser
+        if: steps.plan.outputs.deploy == 'true'
+        working-directory: app
+        run: npx playwright install --with-deps chromium
+      - name: UI desktop and mobile regression
+        if: steps.plan.outputs.deploy == 'true' && steps.plan.outputs.full_ui == 'true'
+        working-directory: app
+        env:
+          SIGNAL_TEST_PREVIEW: 'true'
+        run: npm run test:e2e:ui
+      - name: Published-data desktop and mobile integration
+        if: steps.plan.outputs.deploy == 'true'
+        working-directory: app
+        env:
+          SIGNAL_TEST_PREVIEW: 'true'
+        run: npm run test:e2e:data
+      - name: Upload tested Pages build
+        if: steps.plan.outputs.deploy == 'true'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: app/dist
+          retention-days: 1
+      - name: Deploy GitHub Pages
+        if: steps.plan.outputs.deploy == 'true'
+        id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Create publication receipt token
+        if: steps.deployment.outcome == 'success' && github.repository == 'Anthrion/anthrion-signal'
+        id: receipt-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.ANTHRION_APP_CLIENT_ID }}
+          private-key: ${{ secrets.ANTHRION_APP_PRIVATE_KEY }}
+          owner: Anthrion
+          repositories: anthrion-signal
+          permission-contents: write
+      - name: Record successful publication
+        if: steps.deployment.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ steps.receipt-token.outputs.token || github.token }}
+          APP_SLUG: ${{ steps.receipt-token.outputs.app-slug }}
+        run: |
+          name='github-actions[bot]'
+          id='41898282'
+          if [ -n "$APP_SLUG" ]; then
+            name="$APP_SLUG[bot]"
+            id=$(gh api "users/$name" --jq '.id')
+          fi
+          git config user.name "$name"
+          git config user.email "$id+$name@users.noreply.github.com"
+          gh auth setup-git --hostname github.com
+          python scripts/release_bundle.py record
+          git add -- data/publication_state.json data/published_release.json data/ui_verification_state.json
+          if ! git diff --cached --quiet; then
+            python scripts/automation_git_guard.py staged
+            git commit -m 'Record successful intelligence publication [skip ci]'
+            python scripts/push_data.py
+          fi
+      - name: Preserve failed browser diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-failure-${{ github.run_id }}
+          path: app/test-results/
+          if-no-files-found: ignore
+          retention-days: 3

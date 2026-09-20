@@ -1,4 +1,11 @@
+import { datasetFixture } from './fixtures/dataset'
 import { test, expect } from '@playwright/test'
+
+test.beforeEach(async ({ page }) => {
+  const data = datasetFixture()
+  await page.route('**/data/manifest.json', (route) => route.fulfill({ status: 404 }))
+  await page.route('**/data/current.json', (route) => route.fulfill({ json: data }))
+})
 
 test('production policy permits the app and blocks injected scripts and off-origin requests', async ({
   page,

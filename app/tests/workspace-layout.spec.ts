@@ -1,3 +1,4 @@
+import { datasetFixture } from './fixtures/dataset'
 import { test, expect, type Locator, type Page } from '@playwright/test'
 import { recordDataset } from './fixtures/record'
 
@@ -21,7 +22,7 @@ test.beforeEach(async ({ page }) => {
   await page.route('**/data/manifest.json', (route) => route.fulfill({ status: 404 }))
   await page.emulateMedia({ reducedMotion: 'reduce' })
   await page.clock.setFixedTime(new Date('2026-09-11T12:00:00Z'))
-  const dataset = await (await page.request.get('./data/current.json')).json()
+  const dataset = datasetFixture()
   await page.route('**/data/current.json', (route) =>
     route.fulfill({ json: recordDataset(dataset) }),
   )

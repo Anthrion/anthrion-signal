@@ -10,7 +10,10 @@
     "test": "vitest run",
     "test:e2e": "playwright test",
     "format": "prettier --write src tests *.ts *.json index.html",
-    "format:check": "prettier --check src tests *.ts *.json index.html"
+    "format:check": "prettier --check src tests *.ts *.json index.html",
+    "test:e2e:ui": "playwright test --grep-invert @data",
+    "test:e2e:data": "playwright test --grep @data",
+    "capture:record": "playwright test --config playwright.design.config.ts"
   },
   "dependencies": {
     "@paper-design/shaders-react": "0.0.80",
