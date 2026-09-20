@@ -1,31 +1,80 @@
 name: Tests
 on:
   pull_request:
-  push:
-    branches: [main]
-    paths-ignore: ['data/**', '**.md']
+concurrency:
+  group: signal-pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
+  # This name remains the required repository check.
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Select trusted, compatible public data
+        id: data
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: python scripts/release_bundle.py select --base "$BASE_SHA"
+      - uses: actions/cache/restore@v4
+        id: cache
+        if: steps.data.outputs.eligible == 'true'
+        continue-on-error: true
+        with:
+          path: tmp/public-data.tar.gz
+          key: ${{ steps.data.outputs.key }}
+      - name: Verify and unpack cached public data
+        id: cached-data
+        if: steps.cache.outputs.cache-hit == 'true'
+        continue-on-error: true
+        run: python scripts/release_bundle.py restore
       - uses: actions/setup-python@v5
+        if: steps.cached-data.outcome != 'success'
         with:
           python-version: '3.12'
           cache: pip
           cache-dependency-path: pyproject.toml
+      - name: Full pipeline verification and fresh public export
+        if: steps.cached-data.outcome != 'success'
+        run: |
+          pip install -e '.[test]'
+          python -m pytest -q
+          python scripts/relevance_benchmark.py evaluate --output artifacts/relevance-benchmark.json --fail-on-regression
+          python -m ruff check pipeline scripts/refresh_plan.py scripts/translate_records.py scripts/publication_state.py scripts/reconcile_release_data.py scripts/audit_translations.py scripts/audit_relevance.py scripts/automation_git_guard.py scripts/timestamp_source.py scripts/compress_retained_data.py scripts/release_bundle.py scripts/push_data.py scripts/prune_public_cache.py
+          python -m anthrion_signal.cli validate
+          python -m anthrion_signal.cli export
+          python scripts/check_public_output.py
+          python scripts/audit_translations.py
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: npm
           cache-dependency-path: app/package-lock.json
-      - run: pip install -e '.[test]'
-      - run: python -m pytest -q
-      - run: python scripts/relevance_benchmark.py evaluate --output artifacts/relevance-benchmark.json --fail-on-regression
-      - run: python -m ruff check pipeline scripts/automation_git_guard.py scripts/timestamp_source.py scripts/translate_records.py
-      - run: python -m anthrion_signal.cli export
-      - run: python scripts/check_public_output.py
-      - run: npm ci && npm test && npm run build
+      - name: Test and build dashboard
         working-directory: app
+        run: npm ci && npm test && npm run build
+      - uses: actions/cache/restore@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('app/package-lock.json') }}
+      - name: Install browser
+        working-directory: app
+        run: npx playwright install --with-deps chromium
+      - name: UI regression and public-data compatibility
+        working-directory: app
+        env:
+          SIGNAL_TEST_PREVIEW: 'true'
+        run: npm run test:e2e
+      - name: Preserve failed browser diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-failure-${{ github.run_id }}
+          path: app/test-results/
+          if-no-files-found: ignore
+          retention-days: 3

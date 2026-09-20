@@ -20,26 +20,51 @@ on:
     branches: [main]
     paths-ignore: ['data/**', '**.md']
 
-concurrency:
-  group: anthrion-signal-production
-  cancel-in-progress: false
-  queue: max
-
 permissions:
   contents: read
 
 jobs:
-  build:
+  plan:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    # A fallback for stuck work, not the target runtime. Refresh write tokens
-    # below so valid long runs can still save data after the initial token expires.
+    outputs:
+      needs_data: ${{ github.event_name == 'schedule' || inputs.collect == true || inputs.full_tests == true || steps.cache-check.outcome != 'success' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: false
+      - name: Select compatible verified data
+        id: data
+        run: python scripts/release_bundle.py select
+      - uses: actions/cache/restore@v4
+        id: cache
+        if: steps.data.outputs.eligible == 'true'
+        continue-on-error: true
+        with:
+          path: tmp/public-data.tar.gz
+          key: ${{ steps.data.outputs.key }}
+      - name: Verify cached bytes
+        id: cache-check
+        if: steps.cache.outputs.cache-hit == 'true'
+        continue-on-error: true
+        run: python scripts/release_bundle.py check
+
+  build:
+    needs: plan
+    if: needs.plan.outputs.needs_data == 'true'
+    runs-on: ubuntu-latest
     timeout-minutes: 120
+    env:
+      EXECUTION_WORKFLOW_SHA: ${{ github.workflow_sha }}
+    # Retain the old lock name during migration; only data writers wait here.
+    concurrency:
+      group: anthrion-signal-production
+      cancel-in-progress: false
+      queue: max
     permissions:
       contents: write
-    outputs:
-      deploy: ${{ steps.changed.outputs.deploy }}
-      signature: ${{ steps.changed.outputs.signature }}
+      actions: write
     steps:
       - name: Create company automation token
         if: github.repository == 'Anthrion/anthrion-signal'
@@ -85,8 +110,22 @@ jobs:
           FORCE_FULL_TESTS: ${{ inputs.full_tests }}
           SCHEDULE_TRIGGER: ${{ github.event.schedule }}
         run: python scripts/refresh_plan.py plan
-      - name: Save previous publication signature
-        run: python scripts/publication_state.py before
+      - name: Select validated public data
+        id: previous-data
+        run: python scripts/release_bundle.py select
+      - name: Restore previous validated export
+        if: steps.previous-data.outputs.eligible == 'true'
+        id: previous-cache
+        continue-on-error: true
+        uses: actions/cache/restore@v4
+        with:
+          path: tmp/public-data.tar.gz
+          key: ${{ steps.previous-data.outputs.key }}
+      - name: Check previous export integrity
+        id: previous-check
+        if: steps.previous-cache.outputs.cache-hit == 'true'
+        continue-on-error: true
+        run: python scripts/release_bundle.py check
       - name: Collect public opportunities
         id: collect
         if: steps.plan.outputs.collect == 'true'
@@ -139,59 +178,49 @@ jobs:
           if ! git diff --cached --quiet; then
             python scripts/automation_git_guard.py staged
             git commit -m 'Checkpoint static English translations [skip ci]'
-            python scripts/automation_git_guard.py unpushed
-            git push origin HEAD:main
+            python scripts/push_data.py
           fi
+      - name: Verify pipeline changes
+        if: steps.plan.outputs.full_tests == 'true'
+        run: |
+          python -m pytest -q
+          python scripts/relevance_benchmark.py evaluate --output artifacts/relevance-benchmark.json --fail-on-regression
+          python -m ruff check pipeline scripts/refresh_plan.py scripts/translate_records.py scripts/publication_state.py scripts/reconcile_release_data.py scripts/audit_translations.py scripts/audit_relevance.py scripts/automation_git_guard.py scripts/timestamp_source.py scripts/compress_retained_data.py scripts/release_bundle.py scripts/push_data.py scripts/prune_public_cache.py
+      - name: Compare validated data inputs
+        id: inputs
+        run: python scripts/release_bundle.py unchanged
       - name: Validate pipeline and public dataset
+        id: validate
+        if: steps.inputs.outputs.unchanged != 'true' || steps.previous-check.outcome != 'success' || steps.plan.outputs.full_tests == 'true'
         run: |
           python -m anthrion_signal.cli validate
           python -m anthrion_signal.cli export
           python scripts/check_public_output.py
           python scripts/audit_translations.py
-      - name: Detect meaningful publication changes
-        id: changed
-        env:
-          FORCE_DEPLOY: ${{ github.event_name != 'schedule' }}
-        run: python scripts/publication_state.py after
-      - name: Verify pipeline changes
-        if: steps.plan.outputs.full_tests == 'true'
-        run: |
-          python -m pytest -q
-          python -m ruff check pipeline scripts/refresh_plan.py scripts/translate_records.py scripts/publication_state.py scripts/reconcile_release_data.py scripts/audit_translations.py scripts/audit_relevance.py scripts/automation_git_guard.py scripts/timestamp_source.py scripts/compress_retained_data.py
-      - uses: actions/setup-node@v4
-        if: steps.changed.outputs.deploy == 'true' || steps.plan.outputs.full_tests == 'true'
+      - name: Package validated public data
+        id: bundle
+        if: steps.validate.outcome == 'success'
+        run: python scripts/release_bundle.py pack
+      - name: Cache validated public data
+        if: steps.validate.outcome == 'success'
+        uses: actions/cache/save@v4
         with:
-          node-version: '22'
-          cache: npm
-          cache-dependency-path: app/package-lock.json
-      - run: npm ci
-        if: steps.changed.outputs.deploy == 'true' || steps.plan.outputs.full_tests == 'true'
-        working-directory: app
-      - name: Test and build dashboard
-        if: steps.changed.outputs.deploy == 'true' || steps.plan.outputs.full_tests == 'true'
-        working-directory: app
+          path: tmp/public-data.tar.gz
+          key: ${{ steps.bundle.outputs.key }}
+      - name: Confirm cached data is available
+        id: confirm-cache
+        if: steps.validate.outcome == 'success'
+        uses: actions/cache/restore@v4
+        with:
+          path: tmp/public-data.tar.gz
+          key: ${{ steps.bundle.outputs.key }}
+          lookup-only: true
+      - name: Require the saved cache before recording its receipt
+        if: steps.validate.outcome == 'success'
         env:
-          VITE_BASE_PATH: /${{ github.event.repository.name }}/
-        run: |
-          npm test
-          npm run build
-      - name: Install browser
-        if: steps.changed.outputs.deploy == 'true' || steps.plan.outputs.full_tests == 'true'
-        working-directory: app
-        run: npx playwright install --with-deps chromium
-      - name: Full browser regression against production build
-        if: steps.plan.outputs.full_tests == 'true'
-        working-directory: app
-        env:
-          SIGNAL_TEST_PREVIEW: 'true'
-        run: npx playwright test
-      - name: Data refresh desktop and mobile smoke tests
-        if: steps.changed.outputs.deploy == 'true' && steps.plan.outputs.full_tests != 'true'
-        working-directory: app
-        env:
-          SIGNAL_TEST_PREVIEW: 'true'
-        run: npx playwright test data-refresh.spec.ts
-      - name: Record successful full regression
+          CACHE_HIT: ${{ steps.confirm-cache.outputs.cache-hit }}
+        run: test "$CACHE_HIT" = true
+      - name: Record successful pipeline regression
         if: steps.plan.outputs.full_tests == 'true'
         run: python scripts/refresh_plan.py passed
       - name: Create publication data token
@@ -205,7 +234,6 @@ jobs:
           repositories: anthrion-signal
           permission-contents: write
       - name: Persist canonical state
-        # Publication is still gated on every required check above.
         env:
           GH_TOKEN: ${{ steps.publication-data-token.outputs.token || github.token }}
         run: |
@@ -214,93 +242,30 @@ jobs:
           git add data
           if ! git diff --cached --quiet; then
             python scripts/automation_git_guard.py staged
-            git commit -m 'Update public opportunity intelligence [skip ci]'
-            git pull --rebase origin main
-            python scripts/automation_git_guard.py unpushed
-            git push origin HEAD:main
+            git commit -m 'Update validated public opportunity intelligence [skip ci]'
+            python scripts/push_data.py --validated
           fi
-      - name: Upload Pages build
-        if: steps.changed.outputs.deploy == 'true'
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: app/dist
-          retention-days: 1
+      - name: Bound public export cache storage
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/prune_public_cache.py
       - name: Record run summary
         if: always()
         env:
           COLLECTION_OUTCOME: ${{ steps.collect.outcome }}
           TRANSLATION_OUTCOME: ${{ steps.translate.outcome }}
         run: python scripts/run_summary.py
-      - name: Preserve failed browser diagnostics
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: browser-failure-${{ github.run_id }}
-          path: app/test-results/
-          if-no-files-found: ignore
-          retention-days: 14
 
-  deploy:
-    needs: build
-    if: needs.build.outputs.deploy == 'true'
-    runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-
-  record-publication:
-    needs: [build, deploy]
-    runs-on: ubuntu-latest
+  publish:
+    needs: [plan, build]
+    if: >-
+      always() && !cancelled() && needs.plan.result == 'success' &&
+      (needs.build.result == 'success' || needs.build.result == 'skipped')
+    uses: ./.github/workflows/publish.yml
+    with:
+      full_tests: ${{ inputs.full_tests == true }}
     permissions:
       contents: write
-    steps:
-      - name: Create company automation token
-        id: app-token
-        if: github.repository == 'Anthrion/anthrion-signal'
-        uses: actions/create-github-app-token@v3
-        with:
-          client-id: ${{ vars.ANTHRION_APP_CLIENT_ID }}
-          private-key: ${{ secrets.ANTHRION_APP_PRIVATE_KEY }}
-          owner: Anthrion
-          repositories: anthrion-signal
-          permission-contents: write
-      - uses: actions/checkout@v4
-        with:
-          ref: main
-          fetch-depth: 0
-          token: ${{ steps.app-token.outputs.token || github.token }}
-      - name: Set automation commit identity
-        env:
-          GH_TOKEN: ${{ steps.app-token.outputs.token || github.token }}
-          APP_SLUG: ${{ steps.app-token.outputs.app-slug }}
-        run: |
-          name='github-actions[bot]'
-          id='41898282'
-          if [ -n "$APP_SLUG" ]; then
-            name="$APP_SLUG[bot]"
-            id=$(gh api "users/$name" --jq '.id')
-          fi
-          echo "SIGNAL_GIT_NAME=$name" >> "$GITHUB_ENV"
-          echo "SIGNAL_GIT_EMAIL=$id+$name@users.noreply.github.com" >> "$GITHUB_ENV"
-      - name: Record successful publication
-        env:
-          DEPLOYED_SIGNATURE: ${{ needs.build.outputs.signature }}
-        run: |
-          python scripts/publication_state.py deployed
-          git config user.name "$SIGNAL_GIT_NAME"
-          git config user.email "$SIGNAL_GIT_EMAIL"
-          git add data/publication_state.json
-          if ! git diff --cached --quiet; then
-            python scripts/automation_git_guard.py staged
-            git commit -m 'Record successful intelligence publication [skip ci]'
-            git pull --rebase origin main
-            python scripts/automation_git_guard.py unpushed
-            git push origin HEAD:main
-          fi
+      pages: write
+      id-token: write
+    secrets: inherit

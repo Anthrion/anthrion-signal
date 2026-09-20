@@ -8,7 +8,7 @@ test.beforeEach(async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' })
 })
 
-test('published data renders real records across every market', async ({ page }, info) => {
+test('@data published data renders real records across every market', async ({ page }, info) => {
   test.setTimeout(180000)
   const errors: string[] = []
   page.on('pageerror', (error) => errors.push(error.message))
@@ -72,11 +72,12 @@ test('published data renders real records across every market', async ({ page },
   }
   await page.goto('./?view=all')
   await expect(page.locator('.signal-row').first()).toBeVisible()
-  await page.screenshot({ path: `../artifacts/data-refresh-${info.project.name}.png` })
+  if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
+    await page.screenshot({ path: `../artifacts/data-refresh-${info.project.name}.png` })
   expect(errors).toEqual([])
 })
 
-test('published feed supports search, filters and browser refresh', async ({ page }) => {
+test('@data published feed supports search, filters and browser refresh', async ({ page }) => {
   await page.goto('./?view=all')
   await expect(page.locator('.signal-row').first()).toBeVisible()
   const search = page.getByRole('textbox', { name: 'Search opportunities' })

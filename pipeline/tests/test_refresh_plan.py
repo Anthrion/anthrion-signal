@@ -22,7 +22,7 @@ def write(path, value):
 
 @pytest.fixture
 def root(tmp_path, monkeypatch):
-    monkeypatch.setattr(refresh, "code_digest", lambda root: "tested-code")
+    monkeypatch.setattr(refresh, "data_digest", lambda root: "tested-code")
     return tmp_path
 
 
@@ -39,7 +39,7 @@ def test_full_suite_is_due_until_a_success_is_recorded(root, monkeypatch):
     assert refresh.make_plan(root, NOW + timedelta(days=1), "schedule")["full_tests"]
     assert refresh.make_plan(root, NOW, "push")["full_tests"]
     assert refresh.make_plan(root, NOW, "workflow_dispatch", force_full=True)["full_tests"]
-    monkeypatch.setattr(refresh, "code_digest", lambda root: "changed-code")
+    monkeypatch.setattr(refresh, "data_digest", lambda root: "changed-code")
     assert refresh.make_plan(root, NOW, "schedule")["full_tests"]
 
 
@@ -61,7 +61,7 @@ def test_translation_checks_do_not_increase_source_polling_even_when_delayed(roo
     assert steps["Verify pipeline changes"]["if"] == "steps.plan.outputs.full_tests == 'true'"
     assert "--no-export" in steps["Collect public opportunities"]["run"]
     assert "if" not in steps["Compress retained snapshots"]
-    assert "if" not in steps["Validate pipeline and public dataset"]
+    assert "unchanged" in steps["Validate pipeline and public dataset"]["if"]
 
 
 @pytest.mark.parametrize("value", [None, [], {"code": "tested-code"}, "invalid-json"])
@@ -112,27 +112,34 @@ def test_data_commits_do_not_reset_code_signature_but_any_application_file_does(
         assert expected != digest(app, b"100644 blob xyz\t" + path)
 
 
-def test_every_publication_requires_browser_checks_and_full_success_is_not_recorded_early():
-    workflow = yaml.load((ROOT / ".github/workflows/ingest-and-deploy.yml").read_text(),
-                         Loader=yaml.BaseLoader)
+def test_ui_changes_reuse_data_but_contracts_dependencies_and_unknown_files_do_not(monkeypatch):
+    entries = [b"100644 blob abc\tpipeline/anthrion_signal/cli.py"]
+    monkeypatch.setattr(refresh.subprocess, "run", lambda *a, **kw: SimpleNamespace(stdout=b"\0".join(entries)))
+    original = refresh.data_digest(ROOT)
+    for path in ("app/src/styles.css", "app/src/ResearchUI.tsx", "app/tests/dashboard.spec.ts", "app/public/brand.svg"):
+        entries.append(f"100644 blob ui\t{path}".encode())
+        assert refresh.data_digest(ROOT) == original
+    for path in ("app/src/types.ts", "app/src/dataClient.ts", "app/src/useOpportunityData.ts",
+                 "app/package-lock.json", "app/build/publicData.mjs", "config/sources.yaml",
+                 "scripts/check_public_output.py", ".github/workflows/publish.yml", "new-export-config.json"):
+        entries.append(f"100644 blob changed\t{path}".encode())
+        assert refresh.data_digest(ROOT) != original
+        entries.pop()
+
+
+def test_data_validation_precedes_the_cache_receipt_and_only_pipeline_success_is_recorded():
+    workflow = yaml.load((ROOT / ".github/workflows/ingest-and-deploy.yml").read_text(), Loader=yaml.BaseLoader)
     steps = workflow["jobs"]["build"]["steps"]
     by_name = {step.get("name"): step for step in steps}
-    full = by_name["Full browser regression against production build"]
-    smoke = by_name["Data refresh desktop and mobile smoke tests"]
-    passed = by_name["Record successful full regression"]
-    assert full["if"] == passed["if"] == "steps.plan.outputs.full_tests == 'true'"
-    assert smoke["if"] == "steps.changed.outputs.deploy == 'true' && steps.plan.outputs.full_tests != 'true'"
-    assert full["env"]["SIGNAL_TEST_PREVIEW"] == smoke["env"]["SIGNAL_TEST_PREVIEW"] == "true"
-    assert steps.index(full) < steps.index(passed) < steps.index(by_name["Persist canonical state"])
-    assert steps.index(smoke) < steps.index(by_name["Upload Pages build"])
-    optional = {"Create translation checkpoint token", "Translate new and outstanding records",
-                "Checkpoint private translation progress"}
-    assert {step.get("name") for step in steps if step.get("continue-on-error") == "true"} == optional
-    assert steps.index(by_name["Translate new and outstanding records"]) < steps.index(by_name["Validate pipeline and public dataset"])
+    order = ["Verify pipeline changes", "Validate pipeline and public dataset", "Package validated public data",
+             "Cache validated public data", "Require the saved cache before recording its receipt",
+             "Record successful pipeline regression", "Persist canonical state"]
+    assert [steps.index(by_name[name]) for name in order] == sorted(steps.index(by_name[name]) for name in order)
+    assert "steps.plan.outputs.full_tests == 'true'" in by_name["Validate pipeline and public dataset"]["if"]
+    assert "--validated" in by_name["Persist canonical state"]["run"]
     assert "--github-checkpoint" in by_name["Translate new and outstanding records"]["run"]
-    assert workflow["concurrency"]["cancel-in-progress"] == "false"
-    assert workflow["concurrency"]["queue"] == "max"
-    assert workflow["concurrency"]["group"] == "anthrion-signal-production"
+    assert steps.index(by_name["Translate new and outstanding records"]) < steps.index(by_name["Validate pipeline and public dataset"])
+    assert workflow["jobs"]["build"]["concurrency"]["queue"] == "max"
 
 
 def test_long_builds_refresh_scoped_credentials_before_each_write_phase():
@@ -162,8 +169,7 @@ def test_long_builds_refresh_scoped_credentials_before_each_write_phase():
     for name in ("Translate new and outstanding records", "Checkpoint private translation progress"):
         assert steps.index(translation_token) < steps.index(by_name[name])
         assert by_name[name]["env"]["GH_TOKEN"] == "${{ steps.translation-token.outputs.token || github.token }}"
-    for name in ("Validate pipeline and public dataset", "Full browser regression against production build",
-                 "Data refresh desktop and mobile smoke tests"):
+    for name in ("Validate pipeline and public dataset", "Verify pipeline changes"):
         assert steps.index(by_name[name]) < steps.index(publication_token)
     assert "continue-on-error" not in publication_token
     assert steps.index(publication_token) < steps.index(by_name["Persist canonical state"])

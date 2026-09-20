@@ -1,9 +1,12 @@
+import { datasetFixture } from './fixtures/dataset'
 import { test, expect } from '@playwright/test'
 import type { Dataset } from '../src/types'
 import type { Page } from '@playwright/test'
 
 test.beforeEach(async ({ page }) => {
   await page.route('**/data/manifest.json', (route) => route.fulfill({ status: 404 }))
+  const data = datasetFixture()
+  await page.route('**/data/current.json', (route) => route.fulfill({ json: data }))
 })
 
 async function chooseLanguage(page: Page, label: 'English' | 'Original') {
@@ -15,7 +18,7 @@ async function chooseLanguage(page: Page, label: 'English' | 'Original') {
 test('English is default; original text, search, hides and refresh retain their own state', async ({
   page,
 }) => {
-  const data: Dataset = await (await page.request.get('./data/current.json')).json()
+  const data: Dataset = datasetFixture()
   const now = new Date().toISOString()
   data.signals = [
     {
@@ -99,7 +102,7 @@ test('English is default; original text, search, hides and refresh retain their 
 test('pending translations retain the original opportunity and compact market controls fit', async ({
   page,
 }) => {
-  const data: Dataset = await (await page.request.get('./data/current.json')).json()
+  const data: Dataset = datasetFixture()
   data.translations = {}
   await page.route('**/data/current.json', (route) => route.fulfill({ json: data }))
   await page.goto('./?view=all')
@@ -113,10 +116,11 @@ test('pending translations retain the original opportunity and compact market co
   const menuBounds = await menu.boundingBox()
   expect(menuBounds!.x).toBeGreaterThanOrEqual(0)
   expect(menuBounds!.x + menuBounds!.width).toBeLessThanOrEqual(page.viewportSize()!.width)
-  await page.screenshot({
-    path: `test-results/translation-${test.info().project.name}.png`,
-    animations: 'disabled',
-  })
+  if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
+    await page.screenshot({
+      path: `test-results/translation-${test.info().project.name}.png`,
+      animations: 'disabled',
+    })
 })
 
 test('glass language menu supports keyboard navigation, selection and dismissal', async ({

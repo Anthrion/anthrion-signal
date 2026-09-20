@@ -81,7 +81,7 @@ def evidence_checked(item, translation):
     return signal
 
 
-def check_public_output(path):
+def check_public_output(path, inventory_path=None):
     raw = json.loads(path.read_text(encoding="utf-8"))
     data = Dataset.model_validate(raw)
     loaded = {}
@@ -151,12 +151,20 @@ def check_public_output(path):
                     raise ValueError("Current index lost complete source/English search text")
                 if market not in data.current_feed["records"][signal.id]["markets"]:
                     raise ValueError("Current index market membership mismatch")
+    if inventory_path:
+        # Export retains old content-addressed files for readers already in flight.
+        # Cache only the validated graph, never unrelated or obsolete files.
+        files = ["current.json", *loaded]
+        if data.current_feed:
+            files.append("manifest.json")
+        inventory_path.parent.mkdir(parents=True, exist_ok=True)
+        inventory_path.write_text(json.dumps(sorted(files)) + "\n", encoding="utf-8")
     return len(data.signals), len(award_ids), len(loaded)
 
 
 if __name__ == "__main__":
     try:
-        current, awards, pages = check_public_output(Path("app/public/data/current.json"))
+        current, awards, pages = check_public_output(Path("app/public/data/current.json"), Path("tmp/public-data-files.json"))
     except (OSError, ValueError, KeyError) as exc:
         raise SystemExit(str(exc)) from None
     print(f"Public output checked: {current} current records, {awards} awards and {pages} hashed data files; evidence and links verified.")

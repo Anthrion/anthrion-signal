@@ -40,7 +40,14 @@ def test_indexes_keep_original_english_search_and_lazy_full_evidence(tmp_path, s
     buyer = json.loads((root / detail["signal"]["buyer_history_ref"]["url"]).read_text(encoding="utf-8"))
     assert buyer["records"][0]["signal_id"] == signal.id
     checker = runpy.run_path(str(Path(__file__).resolve().parents[2] / "scripts/check_public_output.py"))["check_public_output"]
-    assert checker(root / "current.json")[0] == 1
+    atomic_json(root / "obsolete.json", {"old": "unreferenced export"})
+    inventory = tmp_path / "tmp/public-data-files.json"
+    assert checker(root / "current.json", inventory)[0] == 1
+    assert set(json.loads(inventory.read_text())) == {
+        "current.json", "manifest.json", detail["signal"]["buyer_history_ref"]["url"],
+        *[p["url"] for p in data.current_feed["markets"].values()],
+        *[p["url"] for p in data.current_feed["records"].values()],
+    }
 
 
 def test_content_change_preserves_previous_manifest_dependencies(tmp_path, signal, config):

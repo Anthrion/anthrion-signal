@@ -1,3 +1,4 @@
+import { datasetFixture } from './fixtures/dataset'
 import { test, expect, type Page } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 import type { Dataset, Signal } from '../src/types'
@@ -8,7 +9,7 @@ const gbPath = 'awards/GB-0123456789abcdef.json'
 const nordicPath = 'awards/NORDICS-fedcba9876543210.json'
 
 async function fixture(page: Page, fail: boolean | 'malformed' = false) {
-  const original: Dataset = await (await page.request.get('./data/current.json')).json()
+  const original: Dataset = datasetFixture()
   const data = recordDataset(original, { deadline_at: '2099-10-01' })
   const base: Signal = {
     ...data.signals[0],
@@ -116,7 +117,8 @@ test('Awarded is below Capability A-Z, lazy loads and preserves capability prior
       .getAttribute('href'))!,
   )
   expect(gmail.searchParams.get('body')).toContain('view=awards')
-  await page.screenshot({ path: `../artifacts/awarded-${info.project.name}.png` })
+  if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
+    await page.screenshot({ path: `../artifacts/awarded-${info.project.name}.png` })
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([])
   // A menu sort choice returns to the normal feed. Mobile detail is closed first.
   if (info.project.name === 'mobile')
@@ -174,7 +176,7 @@ for (const failure of [true, 'malformed'] as const)
     await expect(page.locator('.row-title').first()).toHaveText('Customer platform implementation')
   })
 
-test('published historical records match every market manifest and stay out of live data', async ({
+test('@data published historical records match every market manifest and stay out of live data', async ({
   page,
 }) => {
   test.setTimeout(180000)

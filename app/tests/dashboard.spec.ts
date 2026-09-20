@@ -1,3 +1,4 @@
+import { datasetFixture } from './fixtures/dataset'
 import { test, expect, type Download, type Locator, type Page } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 import type { Dataset, Signal } from '../src/types'
@@ -72,9 +73,8 @@ const sourceFixture = (dataset: Dataset): Dataset => {
 }
 
 const isolatedDataset = async (page: Page) => {
-  const response = await page.request.get('./data/current.json')
-  expect(response.ok()).toBe(true)
-  return sourceFixture(await response.json())
+  void page
+  return sourceFixture(datasetFixture())
 }
 const installDataset = (page: Page, dataset: Dataset) =>
   page.route('**/data/current.json', (route) => route.fulfill({ json: dataset }))
@@ -133,26 +133,30 @@ const detail = async (page: Page, index = 0) => {
   await page.getByRole('button', { name: 'Full details', exact: true }).click()
   await expect(page.getByRole('dialog', { name: 'Opportunity intelligence' })).toBeVisible()
 }
-test.beforeEach(async ({ page }) => {
-  await page.route('**/data/manifest.json', (route) => route.fulfill({ status: 404 }))
+test.beforeEach(async ({ page }, info) => {
   await page.emulateMedia({ reducedMotion: 'reduce' })
+  if (info.title.includes('@data')) return
+  await page.route('**/data/manifest.json', (route) => route.fulfill({ status: 404 }))
   // Deterministic source facts exercise every optional category without API calls.
   // These in-memory records never change canonical data or production assets.
-  const dataset = sourceFixture(await (await page.request.get('./data/current.json')).json())
+  const dataset = sourceFixture(datasetFixture())
   await page.route('**/data/current.json', (route) => route.fulfill({ json: dataset }))
 })
 
-test('real feed, logo, filtering, saving, evidence and search', async ({ page }, info) => {
+test('source facts, logo, filtering, saving, evidence and search', async ({ page }, info) => {
   const errors: string[] = []
   page.on('pageerror', (e) => errors.push(e.message))
   await page.goto('./')
   await ready(page)
   await expectMarket(page, 'United Kingdom')
   await expect(page.locator('.workspace-brand img')).toHaveAttribute('src', /anthrion-logo.svg/)
-  expect(
-    await page.locator('.workspace-brand img').evaluate((el: HTMLImageElement) => el.naturalWidth),
-  ).toBeGreaterThan(0)
-  await page.screenshot({ path: `../artifacts/console-${info.project.name}.png` })
+  await expect
+    .poll(() =>
+      page.locator('.workspace-brand img').evaluate((el: HTMLImageElement) => el.naturalWidth),
+    )
+    .toBeGreaterThan(0)
+  if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
+    await page.screenshot({ path: `../artifacts/console-${info.project.name}.png` })
   await page
     .locator('.signal-row')
     .first()
@@ -355,7 +359,8 @@ test('every discovery label fits its card at compact and wide sizes', async ({ p
   }
   await page.setViewportSize({ width: 1262, height: 920 })
   await selectDiscovery(page, 'Live Opportunities')
-  await page.screenshot({ path: `../artifacts/console-compact-fixed-${info.project.name}.png` })
+  if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
+    await page.screenshot({ path: `../artifacts/console-compact-fixed-${info.project.name}.png` })
 })
 
 test('market and language controls form a centred row and remain keyboard accessible', async ({
@@ -462,7 +467,8 @@ test('carousel typography stays fixed throughout dragging in dark mode', async (
         reflectionBefore,
       )
       if (width === 1139)
-        await page.screenshot({ path: `../artifacts/drag-${theme}-${info.project.name}.png` })
+        if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
+          await page.screenshot({ path: `../artifacts/drag-${theme}-${info.project.name}.png` })
       await page.mouse.up()
       await expect(page.locator('.feed-heading h1')).toHaveText('Live Opportunities')
     }
@@ -505,7 +511,7 @@ test('reduced-motion glass stays still and the source dock stays anchored during
   }
 })
 
-test('all market tabs have real, correctly scoped records and opportunity counts', async ({
+test('@data all market tabs have real, correctly scoped records and opportunity counts', async ({
   page,
 }, info) => {
   test.setTimeout(180000)
@@ -541,7 +547,8 @@ test('all market tabs have real, correctly scoped records and opportunity counts
   await page.reload()
   await ready(page)
   await expectMarket(page, 'Greece')
-  await page.screenshot({ path: `../artifacts/market-greece-${info.project.name}.png` })
+  if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
+    await page.screenshot({ path: `../artifacts/market-greece-${info.project.name}.png` })
   await page.goto('./?view=sources&market=US')
   await ready(page)
   await expectMarket(page, 'United States')
@@ -851,7 +858,8 @@ test('universal value labels, both sort directions and adjacent range controls',
   const maximum = await page.getByLabel('Maximum value', { exact: true }).boundingBox()
   expect(Math.abs(minimum!.y - maximum!.y)).toBeLessThan(2)
   expect(minimum!.x + minimum!.width).toBeLessThan(maximum!.x)
-  await page.screenshot({ path: `../artifacts/currency-filters-${info.project.name}.png` })
+  if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
+    await page.screenshot({ path: `../artifacts/currency-filters-${info.project.name}.png` })
   await page.getByRole('button', { name: /^Show \d+ signals$/ }).click()
   await ready(page)
   expect(page.url()).toContain('currency=USD')
@@ -975,7 +983,7 @@ test('compact and wide layouts have no horizontal overflow', async ({ page }, in
 
 test('long headings, deep links and missing signals remain usable', async ({ page }, info) => {
   await page.setViewportSize({ width: info.project.name === 'mobile' ? 320 : 1440, height: 568 })
-  const data = await (await page.request.get('./data/current.json')).json()
+  const data = sourceFixture(datasetFixture())
   const longest = [...data.signals].sort((a, b) => b.title.length - a.title.length)[0]
   await page.goto(`./?signal=${encodeURIComponent(longest.id)}`)
   await page.getByRole('button', { name: 'Full details', exact: true }).click()
@@ -987,7 +995,8 @@ test('long headings, deep links and missing signals remain usable', async ({ pag
   })
   expect(box.height).toBeGreaterThan(150)
   expect(box.width).toBeLessThanOrEqual(box.available)
-  await page.screenshot({ path: `../artifacts/long-title-${info.project.name}.png` })
+  if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
+    await page.screenshot({ path: `../artifacts/long-title-${info.project.name}.png` })
   await page.goto('./?signal=nonexistent')
   await expect(page.getByRole('dialog', { name: 'Opportunity unavailable' })).toBeVisible()
   await page.getByRole('button', { name: 'Back to opportunities' }).click()
@@ -1027,7 +1036,8 @@ test('sort menu supports keyboard selection, dismissal and clean positioning', a
   await trigger.click()
   const menu = page.getByRole('menu', { name: 'Sort opportunities' })
   await expect(menu.getByRole('menuitemradio', { name: 'Most recent', exact: true })).toBeFocused()
-  await page.screenshot({ path: `../artifacts/sort-menu-${info.project.name}.png` })
+  if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
+    await page.screenshot({ path: `../artifacts/sort-menu-${info.project.name}.png` })
   const box = await menu.boundingBox()
   expect(box!.x).toBeGreaterThanOrEqual(0)
   expect(box!.x + box!.width).toBeLessThanOrEqual(page.viewportSize()!.width)
@@ -1122,10 +1132,9 @@ test('straight discovery cards stay fixed on desktop and navigate manually on mo
   await expect(discoveryCard(page, 'Live Opportunities')).toHaveAttribute('aria-pressed', 'true')
 })
 
-test('unmodified actionable feed has a compact inspector and hidden, working scrollbars', async ({
+test('actionable feed has a compact inspector and hidden, working scrollbars', async ({
   page,
 }, info) => {
-  await page.unroute('**/data/current.json')
   const desktop = info.project.name === 'desktop'
   if (desktop) await page.setViewportSize({ width: 1139, height: 920 })
   await page.goto('./?view=live')
@@ -1169,7 +1178,8 @@ test('unmodified actionable feed has a compact inspector and hidden, working scr
     ;(document.activeElement as HTMLElement)?.blur()
     window.scrollTo(0, 0)
   })
-  await page.screenshot({ path: `../artifacts/actionable-cleanup-${info.project.name}.png` })
+  if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
+    await page.screenshot({ path: `../artifacts/actionable-cleanup-${info.project.name}.png` })
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
 })
 
@@ -1244,7 +1254,8 @@ test('liquid metal has nonblank changing pixels and respects reduced motion', as
   await expect.poll(async () => (await pixels()).colors).toBeGreaterThan(20)
   const first = await pixels()
   await expect.poll(async () => (await pixels()).hash).not.toBe(first.hash)
-  await card.screenshot({ path: `../artifacts/liquid-metal-${info.project.name}.png` })
+  if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
+    await card.screenshot({ path: `../artifacts/liquid-metal-${info.project.name}.png` })
   await page.emulateMedia({ reducedMotion: 'reduce' })
   await page.waitForTimeout(350)
   await expect(card.locator('.metal-edge')).toHaveAttribute('data-motion', 'paused')
@@ -1274,7 +1285,8 @@ test('ambient glass stays subtle, non-interactive and motion-aware', async ({ pa
   await expect.poll(async () => (await shaderPixels(canvas)).colors).toBeGreaterThan(12)
   const first = await shaderPixels(canvas)
   await expect.poll(async () => (await shaderPixels(canvas)).hash).not.toBe(first.hash)
-  await page.screenshot({ path: `../artifacts/ambient-glass-${info.project.name}.png` })
+  if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
+    await page.screenshot({ path: `../artifacts/ambient-glass-${info.project.name}.png` })
   await page.emulateMedia({ reducedMotion: 'reduce' })
   await expect(background).toHaveAttribute('data-motion', 'paused')
   await page.waitForTimeout(350)
@@ -1309,7 +1321,8 @@ test('brand materials respond to hover and keyboard focus without shifting or id
   await expect.poll(async () => (await shaderPixels(canvas)).hash).not.toBe(frame.hash)
   expect(await brand.boundingBox()).toEqual(bounds)
   expect((await signature.screenshot()).equals(signatureAtRest)).toBe(true)
-  await brand.screenshot({ path: `../artifacts/brand-metal-${info.project.name}.png` })
+  if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
+    await brand.screenshot({ path: `../artifacts/brand-metal-${info.project.name}.png` })
   await page.emulateMedia({ reducedMotion: 'reduce' })
   await page.waitForTimeout(300)
   const still = await canvas.screenshot()
@@ -1319,7 +1332,8 @@ test('brand materials respond to hover and keyboard focus without shifting or id
   await expect(canvas).toHaveCount(0)
   await expect(signature).toHaveCSS('background-clip', 'text')
   await expect(signature).toHaveCSS('animation-name', 'none')
-  await brand.screenshot({ path: `../artifacts/brand-glass-${info.project.name}.png` })
+  if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
+    await brand.screenshot({ path: `../artifacts/brand-glass-${info.project.name}.png` })
   await page.emulateMedia({ reducedMotion: 'no-preference' })
   await expect(signature).toHaveCSS('animation-name', 'signature-light-sweep')
   const sweep = await signature.evaluate((el) => getComputedStyle(el).backgroundPositionX)
@@ -1393,7 +1407,8 @@ test('dark console, menus, evidence and sources pass accessibility checks', asyn
     await page.keyboard.press('Escape')
     await page.getByRole('button', { name: 'Filters', exact: true }).click()
     await audit(`${theme} filters`)
-    await page.screenshot({ path: `../artifacts/filters-${theme}-${info.project.name}.png` })
+    if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
+      await page.screenshot({ path: `../artifacts/filters-${theme}-${info.project.name}.png` })
     await page.getByRole('button', { name: 'Close panel' }).click()
     await detail(page)
     for (const section of ['Overview', 'Sources & timeline']) {
@@ -1407,7 +1422,7 @@ test('dark console, menus, evidence and sources pass accessibility checks', asyn
   }
 })
 
-test('unmodified public feed retains real records and exposes source facts without AI assessments', async ({
+test('@data unmodified public feed retains real records and exposes source facts without AI assessments', async ({
   page,
 }, info) => {
   await page.unroute('**/data/current.json')
@@ -1424,15 +1439,17 @@ test('unmodified public feed retains real records and exposes source facts witho
       .map((s: { id: string; title: string }) => dataset.translations?.[s.id]?.title ?? s.title),
   )
   shown.forEach((title) => expect(actual.has(title)).toBe(true))
-  await page.screenshot({ path: `../artifacts/discovery-v2-real-${info.project.name}.png` })
+  if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
+    await page.screenshot({ path: `../artifacts/discovery-v2-real-${info.project.name}.png` })
   await detail(page)
   await expect(page.getByRole('tab', { name: 'Score & evidence' })).toHaveCount(0)
   await expect(page.getByRole('tab', { name: 'Requirements' })).toHaveCount(0)
   await page.getByRole('tab', { name: 'Sources & timeline' }).click()
   await expect(page.getByRole('tabpanel')).toContainText('Source provenance')
-  await page.screenshot({
-    path: `../artifacts/discovery-v2-real-evidence-${info.project.name}.png`,
-  })
+  if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
+    await page.screenshot({
+      path: `../artifacts/discovery-v2-real-evidence-${info.project.name}.png`,
+    })
   await page.getByRole('button', { name: 'Close panel' }).click()
   await page.goto('./?view=all')
   await ready(page)
