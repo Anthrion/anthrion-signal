@@ -194,7 +194,13 @@ export async function copyPublicAssets(options) {
       'Public manifest and current.json are from different publications; finish export before building',
     )
   const buyerReferences = new Map()
-  const buyersOf = (signal) => {
+  const historyIds = new Set()
+  const anchoredBuyers = new Set()
+  const buyersOf = (signal, anchor = false) => {
+    if (anchor) {
+      for (const event of [...(signal.procedure_history || []), ...(signal.buyer_history || [])])
+        if (event.signal_id) historyIds.add(ident(event.signal_id))
+    }
     if (!signal.buyer_history_ref) return
     const reference = pointer(signal.buyer_history_ref, 'buyer history')
     if (!patterns.buyers.test(reference.url)) throw new Error('Unsafe buyer history path')
@@ -202,11 +208,12 @@ export async function copyPublicAssets(options) {
     if (previous && (previous.buyerId !== signal.buyer_id || previous.count !== reference.count))
       throw new Error('Conflicting buyer history references')
     buyerReferences.set(reference.url, { buyerId: signal.buyer_id, count: reference.count })
+    if (anchor) anchoredBuyers.add(reference.url)
   }
   const currentRows = rows(current.signals, 'current signals')
   const currentIds = new Set(currentRows.map((signal) => ident(signal.id)))
   if (currentIds.size !== currentRows.length) throw new Error('Duplicate current record identity')
-  currentRows.forEach(buyersOf)
+  currentRows.forEach((signal) => buyersOf(signal, true))
   const copiedPages = new Set()
   const loadPage = async (path, kind) => {
     if (!patterns[kind].test(path)) throw new Error(`Unsafe ${kind} data path: ${path}`)
@@ -231,7 +238,7 @@ export async function copyPublicAssets(options) {
     if (signals.length !== reference.count) throw new Error('Award market count mismatch')
     for (const signal of signals) {
       awardIds.add(ident(signal.id))
-      buyersOf(signal)
+      buyersOf(signal, true)
     }
   }
   if (hasFeed) {
@@ -245,12 +252,17 @@ export async function copyPublicAssets(options) {
       if (signals.length !== reference.count) throw new Error('Current market count mismatch')
       for (const signal of signals) {
         indexedIds.add(ident(signal.id))
-        buyersOf(signal)
+        buyersOf(signal, true)
       }
     }
     if (!sameIds(indexedIds, currentIds)) throw new Error('Current indexes omit or add records')
     const records = object(feed.records, 'record details')
-    if (!sameIds(new Set(Object.keys(records)), new Set([...currentIds, ...awardIds])))
+    const baseIds = new Set([...currentIds, ...awardIds])
+    const contextIds = new Set(Object.keys(records).filter((id) => records[id].view === 'history'))
+    if (
+      !sameIds(new Set(Object.keys(records)), new Set([...baseIds, ...contextIds])) ||
+      [...contextIds].some((id) => baseIds.has(id))
+    )
       throw new Error('Record manifest does not cover exactly the published records')
     await boundedEach(Object.entries(records), async ([id, value]) => {
       const reference = object(value, id)
@@ -260,11 +272,12 @@ export async function copyPublicAssets(options) {
       if (ident(signal.id) !== id) throw new Error('Record detail identity mismatch')
       if (
         (reference.view !== undefined &&
-          reference.view !== (currentIds.has(id) ? 'opportunities' : 'awards')) ||
+          reference.view !==
+            (currentIds.has(id) ? 'opportunities' : awardIds.has(id) ? 'awards' : 'history')) ||
         !reference.url.startsWith(`records/${id}-`)
       )
         throw new Error('Record detail reference does not match its identity or view')
-      buyersOf(signal)
+      buyersOf(signal, baseIds.has(id))
     })
   }
   await boundedEach([...buyerReferences], async ([path, reference]) => {
@@ -276,7 +289,16 @@ export async function copyPublicAssets(options) {
       !path.startsWith(`buyers/${page.buyer_id}-`)
     )
       throw new Error('Buyer history identity or count mismatch')
+    if (anchoredBuyers.has(path))
+      for (const record of records) historyIds.add(ident(record.signal_id))
   })
+  if (
+    hasFeed &&
+    Object.entries(current.current_feed.records).some(
+      ([id, ref]) => ref.view === 'history' && !historyIds.has(id),
+    )
+  )
+    throw new Error('Record manifest includes history unlinked to a published record')
   for (const entry of await readdir(publicDir, { withFileTypes: true })) {
     if (entry.name === 'data') continue
     const path = join(publicDir, entry.name)

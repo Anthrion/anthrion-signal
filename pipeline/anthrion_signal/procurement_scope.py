@@ -227,6 +227,12 @@ def addressable_delivery(segments):
 # Title, corroborating description, CPV support. Neither a CPV nor a word in an
 # unrelated paragraph can trigger exclusion by itself. This is a taxonomy of work.
 RULES = (
+    ("physical_uncrewed_equipment", r"\buncrewed (?:air|ground) (?:system|vehicle)\b",
+     r"\b(?:prototype|original equipment manufacturer|aircraft|on board computer)\b", (),
+     "Development or supply of specialist uncrewed equipment"),
+    ("retail_goods_fulfilment", r"\b(?:inmate purchasing plan|commissary supplies)\b",
+     r"\b(?:consumer goods|retail|clothing|personal effects)\b", (),
+     "Retail goods fulfilment rather than delivery of an ordering application"),
     ("ai_compute_capacity", r"\bai system\b",
      r"\b(?:artificial intelligence computing system|gpu computing resources|gpu cluster)\b",
      (), "Computing capacity and its bundled software rather than an AI application"),
@@ -259,8 +265,8 @@ RULES = (
      r"\b(?:subscription|access|copyright|publisher|publications|printed|books|periodicals)\b",
      ("22", "7998"), "Access to published books or journals rather than delivery of a digital system"),
     ("physical_security", r"\b(?:security and reception services|surveillance service|video control system|"
-     r"modernisation of physical security systems|electronic door locks)\b",
-     r"\b(?:guard|guards|cctv|camera|cameras|locking|locks|cabling|physical security)\b",
+     r"modernisation of physical security systems|electronic door locks|alarm system monitoring|drive actuator replacement)\b",
+     r"\b(?:guard|guards|cctv|camera|cameras|locking|locks|cabling|physical security|equipment parts|gates)\b",
      ("351", "445", "453", "506", "7971"), "Physical security, cameras or access hardware"),
     ("physical_works", r"\b(?:scaffolding|roofing|roof insulation|construction auxiliary services|"
      r"construction support services|new construction of|general refurbishment|"

@@ -154,6 +154,23 @@ test('content hashing preserves Python numeric lexemes, Unicode and quoted punct
     '011589d420650effab8c23d43298e8d641aa153da3cebc35cb47c22b38ce22ff',
   )
 })
+test('linked history details are copied but cannot authorize unrelated retained records', async () => {
+  const source = await fixture()
+  const olderUrl = await page(source.publicDir, 'records/sig_older', {
+    schema_version: '1.0',
+    signal: { ...source.signal, id: 'sig_older' },
+  })
+  source.current.current_feed.records.sig_older = { url: olderUrl, view: 'history' }
+  await source.roots()
+  await copyPublicAssets(source)
+  expect(JSON.parse(await readFile(join(source.outDir, 'data', olderUrl), 'utf8')).signal.id).toBe(
+    'sig_older',
+  )
+  const bad = await fixture()
+  bad.current.current_feed.records.sig_orphan = { url: bad.orphanUrl, view: 'history' }
+  await bad.roots()
+  await expect(copyPublicAssets(bad)).rejects.toThrow('unlinked')
+})
 test('a production copy preserves the whole referenced graph, history and non-data assets without changing public files', async () => {
   const source = await fixture()
   const before = await snapshot(source.publicDir)

@@ -148,7 +148,8 @@ export function isCurrentFeed(value: unknown): value is CurrentFeedManifest {
         !object(entry) ||
         typeof entry.url !== 'string' ||
         !strings(entry.markets) ||
-        (entry.view !== undefined && !['opportunities', 'awards'].includes(String(entry.view)))
+        (entry.view !== undefined &&
+          !['opportunities', 'awards', 'history'].includes(String(entry.view)))
       )
         return false
       try {
@@ -319,7 +320,7 @@ export async function loadCurrentDataset(
       merged.signals.some(
         (s) =>
           !manifest.current_feed!.records[s.id] ||
-          manifest.current_feed!.records[s.id].view === 'awards',
+          ['awards', 'history'].includes(manifest.current_feed!.records[s.id].view || ''),
       )
     )
       throw new Error('The search index and record manifest disagree.')

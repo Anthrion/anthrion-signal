@@ -123,20 +123,32 @@ def check_public_output(path, inventory_path=None):
             raise ValueError("Initial manifest and legacy dataset disagree")
         check_page(root_manifest)
         details = {}
+        history_ids = set()
+        public_ids = {s.id for s in data.signals}
+        anchor_ids = public_ids | award_ids
         for ident, pointer in data.current_feed["records"].items():
             page = load(pointer["url"])
             if page["signal"]["id"] != ident:
                 raise ValueError("Record detail identity mismatch")
             signal = evidence_checked(page["signal"], page.get("translation"))
+            if pointer.get("view") not in {"opportunities", "awards", "history", None}:
+                raise ValueError("Unknown record detail view")
+            expected_view = "opportunities" if ident in public_ids else "awards" if ident in award_ids else "history"
+            if pointer.get("view") not in {expected_view, None}:
+                raise ValueError("Record detail view does not match its published role")
+            if ident in anchor_ids:
+                history_ids.update(event["signal_id"] for event in signal.procedure_history + signal.buyer_history if event.get("signal_id"))
             if signal.buyer_history_ref:
                 reference = signal.buyer_history_ref
                 buyer = load(reference["url"])
                 if buyer["buyer_id"] != signal.buyer_id or len(buyer["records"]) != reference["count"]:
                     raise ValueError("Buyer history identity/count mismatch")
+                if ident in anchor_ids:
+                    history_ids.update(event["signal_id"] for event in buyer["records"])
             details[ident] = (signal, page.get("translation"))
-        public_ids = {s.id for s in data.signals}
-        if set(details) != public_ids | award_ids:
-            raise ValueError("Detail manifest is missing public records or includes unpublished records")
+        context_ids = {ident for ident, pointer in data.current_feed["records"].items() if pointer.get("view") == "history"}
+        if set(details) != public_ids | award_ids | context_ids or context_ids - history_ids or context_ids & (public_ids | award_ids):
+            raise ValueError("Detail manifest is missing public records or includes unlinked history")
         for market, pointer in data.current_feed["markets"].items():
             page = load(pointer["url"])
             if len(page["signals"]) != pointer["count"]:

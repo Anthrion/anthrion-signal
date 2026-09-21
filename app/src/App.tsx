@@ -70,6 +70,8 @@ import {
 import type { ResearchState } from './ResearchUI'
 import {
   csv,
+  countryLabels,
+  isCombinedMarket,
   currencyOptions,
   date,
   defaults,
@@ -80,6 +82,7 @@ import {
   googleCalendarURL,
   isAvailableOpportunity,
   isHistoricalAward,
+  hasAwardOutcome,
   isUpdated,
   lifecycleLabels,
   lifecycleState,
@@ -630,7 +633,9 @@ export default function App() {
             {
               ...value,
               translation:
-                displayTranslations[value.signal.id] || researchTranslations[value.signal.id],
+                value.translation ||
+                displayTranslations[value.signal.id] ||
+                researchTranslations[value.signal.id],
             },
           ])
         }}
@@ -1021,7 +1026,12 @@ export default function App() {
               >
                 <ResearchPage
                   state={page}
+                  now={time}
+                  active={index === researchStack.length - 1}
                   data={data}
+                  language={language}
+                  onLanguage={setLanguage}
+                  renderRecord={(signal) => <ResearchRecord signal={signal} data={data} />}
                   awards={page.kind === 'supplier' ? supplierHistory.signals : awards.signals}
                   loading={page.kind === 'supplier' ? supplierHistory.loading : awards.loading}
                   error={page.kind === 'supplier' ? supplierHistory.error : awards.error}
@@ -1161,6 +1171,9 @@ function SignalRow({
             <span className="row-meta">
               <span>{recordTypeLabel(s)}</span>
               {isUpdated(s, now) && <span className="row-updated">Updated</span>}
+              {isCombinedMarket(filters.market) && (
+                <span className="row-country">{countryLabels(s)}</span>
+              )}
             </span>
             <span className="row-title">{text.title}</span>
             <span className="row-buyer">
@@ -1222,6 +1235,32 @@ function SignalRow({
   )
 }
 
+function ResearchRecord({ signal, data }: { signal: Signal; data: Dataset }) {
+  const [tab, setTab] = useState('preview')
+  return (
+    <div className="research-full-record">
+      {tab === 'preview' ? (
+        <ConsoleDetail signal={signal} data={data} onInspect={setTab} />
+      ) : (
+        <SignalDetail
+          signal={signal}
+          data={data}
+          tab={tab}
+          setTab={setTab}
+          onBack={() => setTab('preview')}
+          onShare={() => {
+            const url = new URL(import.meta.env.BASE_URL, location.origin)
+            url.searchParams.set('signal', signal.id)
+            url.searchParams.set('market', '')
+            url.searchParams.set('view', hasAwardOutcome(signal) ? 'awards' : 'all')
+            void navigator.clipboard?.writeText(url.href).catch(() => {})
+          }}
+        />
+      )}
+    </div>
+  )
+}
+
 function RecordIntegrations({ signal }: { signal: Signal }) {
   const text = useSignalText(signal)
   const assetRoot = `${import.meta.env.BASE_URL}assets/integrations/`
@@ -1232,15 +1271,17 @@ function RecordIntegrations({ signal }: { signal: Signal }) {
   )
   return (
     <div className="record-integrations" role="group" aria-label="Record integrations">
-      <button
-        type="button"
-        className="record-integration"
-        disabled
-        aria-label="Salesforce (coming soon)"
-        title="Salesforce — coming soon"
-      >
-        <img src={`${assetRoot}salesforce.svg`} alt="" width="34" height="24" />
-      </button>
+      {isAvailableOpportunity(signal, Date.now()) && (
+        <button
+          type="button"
+          className="record-integration"
+          disabled
+          aria-label="Salesforce (coming soon)"
+          title="Salesforce — coming soon"
+        >
+          <img src={`${assetRoot}salesforce.svg`} alt="" width="34" height="24" />
+        </button>
+      )}
       <a
         className="record-integration record-integration-gmail"
         href={gmailURL}
@@ -1355,7 +1396,7 @@ function ConsoleDetail({
                 </div>
                 <div>
                   <dt>
-                    {isHistoricalAward(s)
+                    {hasAwardOutcome(s)
                       ? s.award_date
                         ? 'Awarded'
                         : 'Award notice published'
@@ -1364,10 +1405,10 @@ function ConsoleDetail({
                   <dd className="inspector-deadline">
                     <DeadlineCalendarButton signal={s} />
                     <span>
-                      {isHistoricalAward(s)
+                      {hasAwardOutcome(s)
                         ? date(s.award_date || s.published_at)
                         : deadlineFact(s).value}
-                      {!isHistoricalAward(s) && deadlineFact(s).dateOnly && (
+                      {!hasAwardOutcome(s) && deadlineFact(s).dateOnly && (
                         <small className="cutoff-note">Cutoff time unconfirmed</small>
                       )}
                     </span>
@@ -1378,7 +1419,7 @@ function ConsoleDetail({
                 <h3>Capabilities</h3>
                 <CapabilityTags signal={s} data={data} />
               </section>
-              {isHistoricalAward(s) && (
+              {hasAwardOutcome(s) && (
                 <section className="inspector-capabilities">
                   <h3>Awarded supplier</h3>
                   <p>
@@ -1393,11 +1434,7 @@ function ConsoleDetail({
             !!s.exclusion_reasons?.length) && (
             <p className="lifecycle-note">
               <Clock3 size={14} />
-              <span>
-                {s.exclusion_reasons?.join(' ') ||
-                  s.lifecycle_reason ||
-                  lifecycleLabels[lifecycleState(s)]}
-              </span>
+              <span>{s.lifecycle_reason || lifecycleLabels[lifecycleState(s)]}</span>
             </p>
           )}
           <div className="inspector-summary">
@@ -1624,7 +1661,7 @@ function SignalDetail({
   const facts = [
     [valueFact(s).label, valueFact(s, false).value],
     [deadlineFact(s).label, deadlineFact(s).value],
-    ...(isHistoricalAward(s)
+    ...(hasAwardOutcome(s)
       ? [
           [
             'Awarded supplier',

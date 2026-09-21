@@ -1,9 +1,16 @@
 """Immutable current indexes and record details, published before their manifest."""
+import json
 import re
 
 from .markets import MARKETS
 from .public_context import public_signal
-from .utils import atomic_json, digest
+from .utils import atomic_bytes, digest
+
+
+def atomic_public_json(path, payload):
+    # Identical source facts and content hashes, without indentation repeated in
+    # every immutable public shard. Canonical storage retains its existing format.
+    atomic_bytes(path, json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False).encode("utf-8"))
 
 DETAIL_FIELDS = {"description", "documents", "changes", "capability_evidence", "eligibility_text",
                  "buyer_history", "procedure_history", "participation_requirements", "delivery_role", "lots",
@@ -20,7 +27,7 @@ def record_file(root, signal, translation=None, view="opportunities", buyer_refs
             buyer = {"schema_version": "1.0", "buyer_id": signal.buyer_id, "buyer_name": signal.buyer_name,
                      "identity_basis": signal.buyer_identity_basis, "records": signal.buyer_history}
             relative = f"buyers/{signal.buyer_id}-{digest(buyer)[:16]}.json"
-            atomic_json(root / "app/public/data" / relative, buyer)
+            atomic_public_json(root / "app/public/data" / relative, buyer)
             signal.buyer_history_ref = {"url": relative, "count": len(signal.buyer_history),
                                         "identity_basis": signal.buyer_identity_basis}
             if buyer_refs is not None:
@@ -30,7 +37,7 @@ def record_file(root, signal, translation=None, view="opportunities", buyer_refs
     if translation:
         payload["translation"] = translation.model_dump() if hasattr(translation, "model_dump") else translation
     relative = f"records/{signal.id}-{digest(payload)[:16]}.json"
-    atomic_json(root / "app/public/data" / relative, payload)
+    atomic_public_json(root / "app/public/data" / relative, payload)
     return item, {"url": relative, "markets": [market for market, countries in MARKETS.items()
                                                if set(countries).intersection(signal.countries)], "view": view}
 
@@ -67,7 +74,7 @@ def export_current(root, dataset, award_records=None):
         payload = {"schema_version": "1.0", "signals": selected,
                    "translations": {key: value for key, value in translations.items() if key in ids}}
         relative = f"current/{market}-{digest(payload)[:16]}.json"
-        atomic_json(root / "app/public/data" / relative, payload)
+        atomic_public_json(root / "app/public/data" / relative, payload)
         manifest["markets"][market] = {"url": relative, "count": len(selected)}
     # No shards are deleted during generation: a failed/parallel reader of the
     # previous manifest must retain all of its content-addressed dependencies.

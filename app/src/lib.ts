@@ -30,7 +30,15 @@ export const defaults: Filters = {
 }
 export const markets = [
   { id: 'GB', name: 'United Kingdom', short: 'UK', countries: ['GB'], region: 'Europe' },
+  {
+    id: 'NORTHAMERICA',
+    name: 'North America',
+    short: 'NA',
+    countries: ['US', 'CA'],
+    region: 'North America',
+  },
   { id: 'US', name: 'United States', short: 'US', countries: ['US'], region: 'North America' },
+  { id: 'CA', name: 'Canada', short: 'CA', countries: ['CA'], region: 'North America' },
   { id: 'IT', name: 'Italy', short: 'IT', countries: ['IT'], region: 'Europe' },
   {
     id: 'NORDICS',
@@ -89,9 +97,25 @@ export const markets = [
 ] as const
 
 export const marketGroups: Record<string, readonly string[]> = {
+  NORTHAMERICA: ['US', 'CA'],
   NORDICS: ['SE', 'FI', 'DK', 'NO', 'IS'],
   BENELUX: ['BE', 'NL', 'LU'],
   DACH: ['DE', 'AT', 'CH'],
+}
+export function countryLabels(signal: Pick<Signal, 'countries'>) {
+  return [...new Set(signal.countries)]
+    .map(
+      (id) =>
+        markets.find((market) => market.id === id && market.countries.length === 1)?.name || id,
+    )
+    .join(' · ')
+}
+export function isCombinedMarket(market: string) {
+  return (
+    !market ||
+    market === 'ALL' ||
+    (markets.find((item) => item.id === market)?.countries.length || 0) > 1
+  )
 }
 /** Country IDs remain supported in existing links and source facts. */
 export function defaultMarketGroup(id: string) {
@@ -326,13 +350,14 @@ export function isAvailableOpportunity(s: Signal, now = Date.now()) {
 }
 export const isLive = (s: Signal, now = Date.now()) =>
   !s.exclusion_reasons?.length && lifecycleState(s, now) === 'OPEN'
-export const isHistoricalAward = (s: Signal, now = Date.now()) =>
+export const hasAwardOutcome = (s: Signal, now = Date.now()) =>
   s.signal_type !== 'RENEWAL_SIGNAL' &&
   !s.related_signal_id &&
   (!s.award_statuses?.length || s.award_statuses.includes('active')) &&
   s.notice_type?.toUpperCase() !== 'UK5' &&
-  !s.exclusion_reasons?.length &&
   lifecycleState(s, now) === 'AWARDED'
+export const isHistoricalAward = (s: Signal, now = Date.now()) =>
+  !s.exclusion_reasons?.length && hasAwardOutcome(s, now)
 export const isEarly = (s: Signal, now = Date.now()) =>
   !s.exclusion_reasons?.length && lifecycleState(s, now) === 'EARLY_ENGAGEMENT'
 
@@ -693,7 +718,7 @@ function recordShareText(
   const recordURL = new URL(appURL)
   recordURL.search = ''
   recordURL.hash = ''
-  recordURL.searchParams.set('view', isHistoricalAward(signal) ? 'awards' : 'all')
+  recordURL.searchParams.set('view', hasAwardOutcome(signal) ? 'awards' : 'all')
   recordURL.searchParams.set(
     'market',
     markets.find((market) => matchesMarket(signal, market.id))?.id || '',
@@ -708,19 +733,21 @@ function recordShareText(
     `Buyer: ${text.buyerName || 'Not published'}`,
     `Notice type: ${typeLabels[signal.signal_type] || signal.signal_type}`,
     `${signal.amount ? financial.label : 'Value'}: ${financial.value}`,
-    `Deadline: ${
-      deadline
-        ? date(deadline, {
-            day: 'numeric',
-            month: 'short',
-            year: 'numeric',
-            timeZone: 'UTC',
-            ...(/^\d{4}-\d{2}-\d{2}$/.test(deadline)
-              ? {}
-              : { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' }),
-          })
-        : 'Not published'
-    }`,
+    hasAwardOutcome(signal)
+      ? `Awarded: ${signal.award_date ? date(signal.award_date) : 'Date not published'}`
+      : `Deadline: ${
+          deadline
+            ? date(deadline, {
+                day: 'numeric',
+                month: 'short',
+                year: 'numeric',
+                timeZone: 'UTC',
+                ...(/^\d{4}-\d{2}-\d{2}$/.test(deadline)
+                  ? {}
+                  : { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' }),
+              })
+            : 'Not published'
+        }`,
     '',
     `View in Anthrion Signal: ${recordURL.href}`,
     ...(sourceURL === '#' ? [] : [`Source notice: ${sourceURL}`]),

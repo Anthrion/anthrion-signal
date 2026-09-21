@@ -60,6 +60,7 @@ export interface ParticipationRequirement {
   company_evidence: null
 }
 export interface HistoryRecord {
+  title_en?: string
   signal_id: string
   source?: string
   countries?: string[]
@@ -308,7 +309,10 @@ export interface Dataset {
 export interface CurrentFeedManifest {
   version: string
   markets: Record<string, { url: string; count: number }>
-  records: Record<string, { url: string; markets: string[]; view?: 'opportunities' | 'awards' }>
+  records: Record<
+    string,
+    { url: string; markets: string[]; view?: 'opportunities' | 'awards' | 'history' }
+  >
 }
 export interface Filters {
   q: string

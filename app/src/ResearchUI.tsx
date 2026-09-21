@@ -1,18 +1,29 @@
-import { createContext, useContext, useEffect, useRef, useState } from 'react'
+import { createContext, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
 import { ArrowLeft, ArrowUpRight, Building2, FileText, GripVertical, Search, X } from 'lucide-react'
-import type { Dataset, Filters, HistoryRecord, Signal } from './types'
-import { amount, date, defaults, responseDeadline, selectedResponseDeadlineEvent } from './lib'
+import type { Dataset, DisplayLanguage, Filters, HistoryRecord, Signal } from './types'
+import {
+  amount,
+  countryLabels,
+  date,
+  defaults,
+  hasAwardOutcome,
+  responseDeadline,
+  selectedResponseDeadlineEvent,
+} from './lib'
 import {
   amountLabels,
   amountPresentation,
   deadlinePresentation,
   deadlineEventCalendarURL,
 } from './publicFacts'
-import { relatedAwards } from './research'
+import { useRelatedMatches } from './useRelatedMatches'
+import type { RelatedMatch } from './relatedSearch'
+import { emptyRelatedFilters, filterRelated, RelatedFilters } from './RelatedFilters'
 import { useBuyerHistory } from './useBuyerHistory'
-import { useSignalText } from './Translation'
-import { BrandSignature, MetalEdge, SourceNoticeLink } from './WorkspaceUI'
+import { TranslationProvider, useHistoryText, useSignalText, useTranslations } from './Translation'
+import { useSignalDetail } from './useOpportunityData'
+import { BrandSignature, LanguageMenu, MetalEdge, SourceNoticeLink } from './WorkspaceUI'
 import {
   awardHistoryRecord,
   historySuppliers,
@@ -30,14 +41,24 @@ import {
   sourceKey,
 } from './researchPresentation'
 export type ResearchState = {
-  kind: 'buyer' | 'related' | 'supplier'
+  kind: 'buyer' | 'related' | 'supplier' | 'record'
   signal: Signal
   opener: HTMLElement
   supplier?: PublishedSupplier
   supplierRecord?: HistoryRecord
   supplierRecords?: HistoryRecord[]
+  record?: HistoryRecord
+  translation?: NonNullable<Dataset['translations']>[string]
 }
 const ResearchContext = createContext<{ open: (value: ResearchState) => void }>({ open: () => {} })
+function useResearchOpen() {
+  const { open } = useContext(ResearchContext)
+  const { translations } = useTranslations()
+  return {
+    open: (value: ResearchState) =>
+      open({ ...value, translation: translations?.[value.signal.id] }),
+  }
+}
 export function ResearchProvider({
   open,
   children,
@@ -48,20 +69,40 @@ export function ResearchProvider({
   return <ResearchContext.Provider value={{ open }}>{children}</ResearchContext.Provider>
 }
 export function ResearchTitle({ signal, children }: { signal: Signal; children: ReactNode }) {
-  const { open } = useContext(ResearchContext)
+  const { open } = useResearchOpen()
   return (
     <button
       className="research-title-link"
       onClick={(event) => open({ kind: 'related', signal, opener: event.currentTarget })}
-      title="Research this opportunity and related awards"
+      title="View related signals and awards"
     >
       {children}
       <ArrowUpRight size={17} aria-hidden="true" />
     </button>
   )
 }
+export function RecordLink({
+  signal,
+  record,
+  children,
+}: {
+  signal: Signal
+  record?: HistoryRecord
+  children: ReactNode
+}) {
+  const { open } = useResearchOpen()
+  return (
+    <button
+      className="research-title-link record-title-link"
+      onClick={(event) => open({ kind: 'record', signal, record, opener: event.currentTarget })}
+    >
+      {children}
+      <ArrowUpRight size={13} aria-hidden="true" />
+    </button>
+  )
+}
 export function BuyerLink({ signal }: { signal: Signal }) {
-  const { open } = useContext(ResearchContext)
+  const { open } = useResearchOpen()
   const text = useSignalText(signal)
   return (
     <button
@@ -75,7 +116,7 @@ export function BuyerLink({ signal }: { signal: Signal }) {
   )
 }
 export function SupplierLinks({ signal }: { signal: Signal }) {
-  const { open } = useContext(ResearchContext)
+  const { open } = useResearchOpen()
   const winners = publishedSuppliers(signal)
   return winners.length ? (
     <span className="supplier-links">
@@ -107,14 +148,16 @@ export function SourceLink({ href, children = 'Source' }: { href: string; childr
 
 function ResearchSurface({
   className = '',
+  metal = false,
   children,
 }: {
   className?: string
+  metal?: boolean
   children: ReactNode
 }) {
   return (
-    <section className={`research-surface ${className}`}>
-      <MetalEdge />
+    <section className={`research-surface ${metal ? 'has-metal-edge' : ''} ${className}`}>
+      {metal && <MetalEdge />}
       {children}
     </section>
   )
@@ -130,10 +173,11 @@ function SourceLinks({
   const links = distinctSources(urls, excluded)
   return links.length ? (
     <div className="research-source-links">
-      {links.map((href, index) => (
-        <SourceLink key={sourceKey(href)} href={href}>
-          {links.length === 1 ? 'Source' : `Source ${index + 1}`}
-        </SourceLink>
+      {links.map((href) => (
+        <span className="research-source" key={sourceKey(href)}>
+          <SourceLink href={href} />
+          <span className="source-origin">– {new URL(href).hostname.replace(/^www\./, '')}</span>
+        </span>
       ))}
     </div>
   ) : null
@@ -183,7 +227,9 @@ function RelatedAwardCard({
   return (
     <article className="related-award">
       <div className="award-reason">{reason}</div>
-      <h3>{text.title}</h3>
+      <h3>
+        <RecordLink signal={award}>{text.title}</RecordLink>
+      </h3>
       <p className="muted">
         <BuyerLink signal={award} />
       </p>
@@ -418,8 +464,8 @@ export function ProcurementHistory({
     </div>
   )
 }
-function HistorySignalTitle({ signal }: { signal: Signal }) {
-  return <>{useSignalText(signal).title}</>
+function HistoryTitle({ record }: { record: HistoryRecord }) {
+  return <>{useHistoryText(record)}</>
 }
 
 function HistorySupplierLinks({
@@ -431,7 +477,7 @@ function HistorySupplierLinks({
   records: HistoryRecord[]
   origin: Signal
 }) {
-  const { open } = useContext(ResearchContext)
+  const { open } = useResearchOpen()
   const suppliers = historySuppliers(record)
   return suppliers.length ? (
     <span className="supplier-links">
@@ -501,10 +547,19 @@ function HistoryTimeline({
                   <span>{record.status.replaceAll('_', ' ')}</span>
                 </div>
                 <h3>
-                  {byId.has(record.signal_id) ? (
-                    <HistorySignalTitle signal={byId.get(record.signal_id)!} />
+                  {origin || byId.has(record.signal_id) ? (
+                    <RecordLink
+                      signal={byId.get(record.signal_id) || origin!}
+                      record={byId.has(record.signal_id) ? undefined : record}
+                    >
+                      {byId.has(record.signal_id) ? (
+                        <HistoryTitle record={record} />
+                      ) : (
+                        <HistoryTitle record={record} />
+                      )}
+                    </RecordLink>
                   ) : (
-                    record.title
+                    <HistoryTitle record={record} />
                   )}
                 </h3>
                 <LotSummary record={record} />
@@ -761,17 +816,7 @@ export function PaneDivider({
   )
 }
 
-export function ResearchPage({
-  state,
-  data,
-  awards,
-  loading,
-  error,
-  onBack,
-  onRetry,
-  onHome,
-  nested = false,
-}: {
+type ResearchPageProps = {
   state: ResearchState
   data: Dataset
   awards: Signal[]
@@ -780,17 +825,234 @@ export function ResearchPage({
   onBack: () => void
   onRetry: () => void
   onHome: () => void
+  language: DisplayLanguage
+  onLanguage: (value: DisplayLanguage) => void
+  renderRecord: (signal: Signal) => ReactNode
   nested?: boolean
+  now: number
+  active?: boolean
+}
+
+function RelatedSignalCard({ signal, reason }: { signal: Signal; reason: string }) {
+  const text = useSignalText(signal)
+  return (
+    <article className="related-award related-signal">
+      {reason && <div className="award-reason">{reason}</div>}
+      <h3>
+        <RecordLink signal={signal}>{text.title}</RecordLink>
+      </h3>
+      <p className="muted">
+        <BuyerLink signal={signal} />
+      </p>
+      <small className="related-country">{countryLabels(signal)}</small>
+      <div className="award-facts">
+        <span>{deadlineFact(signal).value}</span>
+        <span className="award-amount">
+          <small>{valueFact(signal).label}</small>
+          <strong>{valueFact(signal).value}</strong>
+        </span>
+      </div>
+      <SourceLinks urls={[signal.primary_source_url]} />
+    </article>
+  )
+}
+
+function RelatedColumn({
+  kind,
+  matches,
+  data,
+  loading = false,
+  error = '',
+  onRetry,
+}: {
+  kind: 'signals' | 'awards'
+  matches: RelatedMatch[]
+  data: Dataset
+  loading?: boolean
+  error?: string
+  onRetry: () => void
+}) {
+  const [filters, setFilters] = useState({ ...emptyRelatedFilters })
+  const [visible, setVisible] = useState(12)
+  const { translations } = useTranslations()
+  const results = useMemo(
+    () =>
+      matches.filter(({ signal }) =>
+        filterRelated(signal, filters, kind, translations?.[signal.id]),
+      ),
+    [matches, filters, kind, translations],
+  )
+  const currencies = useMemo(
+    () =>
+      [
+        ...new Set(
+          matches
+            .map(({ signal }) => signal.amount?.currency || signal.currency)
+            .filter((v): v is string => !!v),
+        ),
+      ].sort(),
+    [matches],
+  )
+  const reason = (match: RelatedMatch) =>
+    match.relationship === 'same_procedure'
+      ? 'Same procurement'
+      : match.relationship === 'same_buyer'
+        ? 'Same buyer'
+        : match.capabilityIds.length
+          ? match.capabilityIds
+              .map((id) => data.capabilities.find((c) => c.id === id)?.label || id)
+              .join(' · ')
+          : match.terms.join(' · ')
+  return (
+    <ResearchSurface className={kind === 'awards' ? 'research-awards' : 'research-signals'}>
+      <div className="surface-heading">
+        <h2>Related {kind}</h2>
+        <span>{loading ? 'Loading…' : results.length + ' matches'}</span>
+      </div>
+      <RelatedFilters
+        value={filters}
+        onChange={(value) => {
+          setFilters(value)
+          setVisible(12)
+        }}
+        kind={kind}
+        currencies={currencies}
+      />
+      {loading && !matches.length ? (
+        <div className="research-empty" role="status">
+          Loading {kind}…
+        </div>
+      ) : error ? (
+        <div className="research-empty" role="alert">
+          <p>{error}</p>
+          <button className="button secondary" onClick={onRetry}>
+            Try again
+          </button>
+        </div>
+      ) : results.length ? (
+        <>
+          {results
+            .slice(0, visible)
+            .map((match) =>
+              kind === 'awards' ? (
+                <RelatedAwardCard
+                  key={match.signal.id}
+                  award={match.signal}
+                  reason={reason(match)}
+                />
+              ) : (
+                <RelatedSignalCard
+                  key={match.signal.id}
+                  signal={match.signal}
+                  reason={reason(match)}
+                />
+              ),
+            )}
+          {visible < results.length && (
+            <button
+              className="button secondary research-load-more"
+              onClick={() => setVisible((n) => n + 12)}
+            >
+              Show more · {visible} of {results.length}
+            </button>
+          )}
+        </>
+      ) : (
+        <div className="research-empty">
+          <Search size={25} />
+          <h3>No matching {kind}</h3>
+          {Object.values(filters).some(Boolean) && (
+            <button
+              className="button secondary"
+              onClick={() => setFilters({ ...emptyRelatedFilters })}
+            >
+              Clear filters
+            </button>
+          )}
+        </div>
+      )}
+    </ResearchSurface>
+  )
+}
+
+export function ResearchPage(props: ResearchPageProps) {
+  const { translations } = useTranslations()
+  // Full pages carry the source/translation pair captured when opened. The main
+  // view refreshes that pair together; a new index must not translate old scope.
+  const detail = useSignalDetail(
+    props.data,
+    props.state.record?.signal_id || (props.state.signal.is_summary ? props.state.signal : null),
+  )
+  const signal = detail.signal || props.state.signal
+  const merged = useMemo(
+    () => ({
+      ...translations,
+      ...(detail.translation
+        ? {
+            [signal.id]: {
+              ...detail.translation,
+              description:
+                detail.translation.description || translations?.[signal.id]?.description || '',
+            },
+          }
+        : {}),
+    }),
+    [translations, detail.translation, signal.id],
+  )
+  return (
+    <TranslationProvider language={props.language} translations={merged}>
+      <ResearchContent
+        {...props}
+        signal={signal}
+        detailLoading={detail.loading}
+        detailError={detail.error}
+        retryDetail={detail.retry}
+      />
+    </TranslationProvider>
+  )
+}
+
+function ResearchContent({
+  state,
+  signal,
+  data,
+  awards,
+  loading,
+  error,
+  onBack,
+  onRetry,
+  onHome,
+  language,
+  onLanguage,
+  renderRecord,
+  now,
+  nested = false,
+  active = true,
+  detailLoading,
+  detailError,
+  retryDetail,
+}: ResearchPageProps & {
+  signal: Signal
+  detailLoading: boolean
+  detailError: string
+  retryDetail: () => void
 }) {
   const ref = useRef<HTMLDialogElement>(null)
-  const signal = state.signal
   const text = useSignalText(signal)
-  const [supplier, setSupplier] = useState('')
-  const [from, setFrom] = useState('')
-  const [to, setTo] = useState('')
-  const [visibleAwards, setVisibleAwards] = useState(12)
+  const { translations } = useTranslations()
   const [visibleHistory, setVisibleHistory] = useState(50)
   const buyer = useBuyerHistory(signal, state.kind === 'buyer')
+  const relatedRecords = useMemo(
+    () => (state.kind === 'related' ? [signal, ...data.signals, ...awards] : []),
+    [state.kind, signal, data.signals, awards],
+  )
+  const related = useRelatedMatches(
+    relatedRecords,
+    translations,
+    signal.id,
+    now,
+    state.kind === 'related' && active && !detailLoading && !loading,
+  )
   useEffect(() => {
     const el = ref.current
     const previous = state.opener
@@ -802,34 +1064,12 @@ export function ResearchPage({
       if (document.activeElement !== previous) {
         const restore =
           document.querySelector<HTMLElement>(
-            `[data-signal-id="${CSS.escape(signal.id)}"] .row-select`,
+            '[data-signal-id="' + CSS.escape(state.signal.id) + '"] .row-select',
           ) || document.querySelector<HTMLElement>('.signal-feed')
         restore?.focus({ preventScroll: true })
       }
     }
   }, [])
-  const related = (
-    state.kind === 'related' ? relatedAwards(signal, awards, Number.MAX_SAFE_INTEGER) : []
-  )
-    .map((match) => ({
-      award: match.signal,
-      reason:
-        match.relationship === 'shared_capability'
-          ? match.capabilityIds
-              .map((id) => data.capabilities.find((c) => c.id === id)?.label || id)
-              .join(' · ')
-          : match.reason,
-    }))
-    .filter(
-      ({ award }) =>
-        (!supplier ||
-          [award.incumbent_supplier, ...(award.winners || []).map((w) => w.name)]
-            .join(' ')
-            .toLowerCase()
-            .includes(supplier.toLowerCase())) &&
-        (!from || (!!award.award_date && award.award_date.slice(0, 10) >= from)) &&
-        (!to || (!!award.award_date && award.award_date.slice(0, 10) <= to)),
-    )
   const history = buyer.records
   const supplierSignals =
     state.kind === 'supplier' && state.supplier
@@ -845,22 +1085,25 @@ export function ResearchPage({
         )
       : supplierSignals.map((award) => awardHistoryRecord(award))
   const visibleBuyerHistory = history.slice(0, visibleHistory)
-  const buyerSources = visibleBuyerHistory.flatMap(historySources)
   const selectedSources = distinctSources([
     signal.primary_source_url,
     ...(signal.lots || []).map((lot) => lot.source_url),
-    ...(signal.procedure_history || []).flatMap(historySources),
+    ...(signal.procedure_history || [])
+      .filter((event) => event.signal_id === signal.id)
+      .flatMap(historySources),
   ])
   return (
     <dialog
       ref={ref}
-      className="research-page"
+      className={'research-page' + (state.kind === 'record' ? ' research-record-page' : '')}
       aria-label={
         state.kind === 'buyer'
           ? 'Buyer history'
           : state.kind === 'supplier'
             ? 'Supplier history'
-            : 'Opportunity research'
+            : state.kind === 'record'
+              ? 'Full record'
+              : 'Opportunity research'
       }
       onCancel={(e) => {
         e.preventDefault()
@@ -873,18 +1116,32 @@ export function ResearchPage({
           {nested ? 'Back' : 'Back to results'}
         </button>
         <BrandSignature onHome={onHome} />
+        <LanguageMenu value={language} onChange={onLanguage} />
       </header>
       <div className="research-page-body">
-        {state.kind === 'supplier' ? (
+        {detailLoading ? (
+          <div className="research-empty" role="status">
+            Loading full record…
+          </div>
+        ) : detailError ? (
+          <div className="research-empty" role="alert">
+            <p>{detailError}</p>
+            <button className="button secondary" onClick={retryDetail}>
+              Try again
+            </button>
+          </div>
+        ) : state.kind === 'record' ? (
+          renderRecord(signal)
+        ) : state.kind === 'supplier' ? (
           <>
             <div className="research-hero">
               <h1>{state.supplier?.name}</h1>
             </div>
-            <ResearchSurface className="supplier-timeline">
+            <ResearchSurface className="supplier-timeline" metal>
               <div className="surface-heading">
                 <h2>Awarded contracts</h2>
                 <span>
-                  {loading ? 'Loading…' : `${won.length} ${won.length === 1 ? 'award' : 'awards'}`}
+                  {loading ? 'Loading…' : won.length + (won.length === 1 ? ' award' : ' awards')}
                 </span>
               </div>
               {loading ? (
@@ -925,12 +1182,12 @@ export function ResearchPage({
               {signal.agency_name && (
                 <p className="muted">
                   {signal.agency_name}
-                  {signal.department_name ? ` · ${signal.department_name}` : ''}
+                  {signal.department_name ? ' · ' + signal.department_name : ''}
                 </p>
               )}
             </div>
             <div className="buyer-research-grid">
-              <ResearchSurface>
+              <ResearchSurface metal>
                 <div className="surface-heading">
                   <h2>Contracts & notices</h2>
                   <span>{buyer.count} collected</span>
@@ -950,17 +1207,17 @@ export function ResearchPage({
                   <>
                     <HistoryTimeline
                       records={visibleBuyerHistory}
+                      signals={[signal, ...data.signals, ...awards]}
                       supplierRecords={history}
                       origin={signal}
-                      excludedSources={[signal.primary_source_url]}
+                      excludedSources={selectedSources}
                     />
                     {visibleHistory < history.length && (
                       <button
                         className="button secondary research-load-more"
                         onClick={() => setVisibleHistory((n) => n + 50)}
                       >
-                        Show more history · {Math.min(visibleHistory, history.length)} of{' '}
-                        {history.length}
+                        Show more history · {visibleHistory} of {history.length}
                       </button>
                     )}
                   </>
@@ -968,21 +1225,38 @@ export function ResearchPage({
                   <div className="research-empty">
                     <Building2 size={30} />
                     <h3>No earlier history linked</h3>
-                    <p>Check the buyer’s procurement source for other contracts.</p>
                   </div>
                 )}
               </ResearchSurface>
               <aside className="buyer-context">
                 <ResearchSurface>
-                  <h2>{text.title}</h2>
+                  <h2>
+                    <RecordLink signal={signal}>{text.title}</RecordLink>
+                  </h2>
                   <LotSummary record={signal} />
-                  <p>{deadlineFact(signal).value}</p>
+                  <dl className="research-key-facts">
+                    <div>
+                      <dt>{valueFact(signal).label}</dt>
+                      <dd>{valueFact(signal).value}</dd>
+                    </div>
+                    <div>
+                      <dt>{hasAwardOutcome(signal) ? 'Awarded' : deadlineFact(signal).label}</dt>
+                      <dd>
+                        {hasAwardOutcome(signal)
+                          ? date(signal.award_date || signal.published_at)
+                          : deadlineFact(signal).value}
+                      </dd>
+                    </div>
+                  </dl>
                   <ProcurementHistory
                     signal={signal}
                     showLotSummary={false}
-                    excludedSources={buyerSources}
+                    excludedSources={[
+                      ...selectedSources,
+                      ...visibleBuyerHistory.flatMap(historySources),
+                    ]}
                   />
-                  <SourceLink href={signal.primary_source_url} />
+                  <SourceLinks urls={selectedSources} />
                 </ResearchSurface>
                 {!!signal.contacts?.length && (
                   <ResearchSurface>
@@ -996,7 +1270,7 @@ export function ResearchPage({
                     ))}
                     <SourceLinks
                       urls={signal.contacts.map((contact) => contact.source_url)}
-                      excluded={[...selectedSources, ...buyerSources]}
+                      excluded={selectedSources}
                     />
                   </ResearchSurface>
                 )}
@@ -1009,9 +1283,11 @@ export function ResearchPage({
               <h1>Context</h1>
             </div>
             <div className="research-split">
-              <ResearchSurface className="research-current">
+              <ResearchSurface className="research-current" metal>
                 <div className="research-current-content">
-                  <h2>{text.title}</h2>
+                  <h2>
+                    <RecordLink signal={signal}>{text.title}</RecordLink>
+                  </h2>
                   <p className="muted">
                     <BuyerLink signal={signal} />
                   </p>
@@ -1021,8 +1297,12 @@ export function ResearchPage({
                       <dd>{valueFact(signal).value}</dd>
                     </div>
                     <div>
-                      <dt>{deadlineFact(signal).label}</dt>
-                      <dd>{deadlineFact(signal).value}</dd>
+                      <dt>{hasAwardOutcome(signal) ? 'Awarded' : deadlineFact(signal).label}</dt>
+                      <dd>
+                        {hasAwardOutcome(signal)
+                          ? date(signal.award_date || signal.published_at)
+                          : deadlineFact(signal).value}
+                      </dd>
                     </div>
                   </dl>
                   <CapabilityTags signal={signal} data={data} />
@@ -1034,91 +1314,28 @@ export function ResearchPage({
                         <p key={index}>{paragraph}</p>
                       ))}
                   </div>
-                  <SourceLink href={signal.primary_source_url} />
+                  <SourceLinks urls={[signal.primary_source_url]} />
                 </div>
               </ResearchSurface>
-              <ResearchSurface className="research-awards">
-                <div className="surface-heading">
-                  <h2>Related awards</h2>
-                  <span>{related.length} matches</span>
-                </div>
-                <div className="research-award-filters">
-                  <label>
-                    Supplier
-                    <input
-                      value={supplier}
-                      onChange={(e) => setSupplier(e.target.value)}
-                      placeholder="Search awarded suppliers"
-                    />
-                  </label>
-                  <label>
-                    Awarded from
-                    <input type="date" value={from} onChange={(e) => setFrom(e.target.value)} />
-                  </label>
-                  <label>
-                    To
-                    <input type="date" value={to} onChange={(e) => setTo(e.target.value)} />
-                  </label>
-                </div>
-                {loading ? (
-                  <div className="research-empty" role="status">
-                    Loading awarded contracts…
-                  </div>
-                ) : error ? (
-                  <div className="research-empty" role="alert">
-                    <p>{error}</p>
-                    <button className="button secondary" onClick={onRetry}>
-                      Try again
-                    </button>
-                  </div>
-                ) : related.length ? (
-                  <>
-                    {related.slice(0, visibleAwards).map(({ award, reason }, index) => (
-                      <RelatedAwardCard
-                        key={award.id}
-                        award={award}
-                        reason={reason}
-                        excludedSources={[
-                          signal.primary_source_url,
-                          ...related
-                            .slice(0, index)
-                            .map(({ award: previous }) => previous.primary_source_url),
-                        ]}
-                      />
-                    ))}
-                    {visibleAwards < related.length && (
-                      <button
-                        className="button secondary research-load-more"
-                        onClick={() => setVisibleAwards((n) => n + 12)}
-                      >
-                        Show more awards · {Math.min(visibleAwards, related.length)} of{' '}
-                        {related.length}
-                      </button>
-                    )}
-                  </>
-                ) : (
-                  <div className="research-empty">
-                    <Search size={28} />
-                    <h3>No matching awards found</h3>
-                    <p>
-                      Try a broader supplier or date range. History is limited to collected award
-                      notices.
-                    </p>
-                    {(supplier || from || to) && (
-                      <button
-                        className="button secondary"
-                        onClick={() => {
-                          setSupplier('')
-                          setFrom('')
-                          setTo('')
-                        }}
-                      >
-                        Clear award filters
-                      </button>
-                    )}
-                  </div>
-                )}
-              </ResearchSurface>
+              <RelatedColumn
+                kind="signals"
+                matches={related.signals}
+                loading={loading || related.loading}
+                error={related.error}
+                data={data}
+                onRetry={related.retry}
+              />
+              <RelatedColumn
+                kind="awards"
+                matches={related.awards}
+                data={data}
+                loading={loading || related.loading}
+                error={error || related.error}
+                onRetry={() => {
+                  related.retry()
+                  if (error) onRetry()
+                }}
+              />
             </div>
           </>
         )}

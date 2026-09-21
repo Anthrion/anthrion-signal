@@ -437,7 +437,7 @@ const languageOptions = [
   { value: 'original', label: 'Original', icon: Globe2 },
 ] as const
 
-function LanguageMenu({
+export function LanguageMenu({
   value,
   onChange,
 }: {

@@ -809,6 +809,17 @@ describe('team workflows', () => {
     expect(
       new URL(gmailDraftURL(award, 'https://example.org/')).searchParams.get('body'),
     ).toContain('view=awards')
+    const retainedAward = {
+      ...award,
+      award_date: '2026-08-14',
+      exclusion_reasons: ['Physical supplies'],
+    }
+    const draft = new URL(gmailDraftURL(retainedAward, 'https://example.org/')).searchParams.get(
+      'body',
+    )
+    expect(draft).toContain('view=awards')
+    expect(draft).toContain('Awarded: 14 Aug 2026')
+    expect(draft).not.toContain('Deadline:')
   })
   test('uncertain digital call-offs stay reviewable without being presented as live', () => {
     const uncertain = {
