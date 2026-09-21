@@ -7,7 +7,7 @@ test.beforeEach(async ({ page }) => {
   await page.route('**/data/current.json', (route) => route.fulfill({ json: data }))
 })
 
-test('production policy permits the app and blocks injected scripts and off-origin requests', async ({
+test('@pr production policy permits the app and blocks injected scripts and off-origin requests', async ({
   page,
 }) => {
   test.skip(

@@ -56,7 +56,9 @@ def archive(bundle, root, entries=None):
 
 
 def test_validated_archive_restores_exactly_without_stale_output(bundle, tmp_path):
-    proof = archive(bundle, tmp_path)
+    historical = f"history/abc-{'a' * 16}.json.gz"
+    proof = archive(bundle, tmp_path, [("current.json", "file"), ("manifest.json", "file"),
+                                      ("records/notice-1.json", "file"), (historical, "file")])
     old = tmp_path / "app/public/data/old.json"
     old.parent.mkdir(parents=True)
     old.write_text("{}")
@@ -64,6 +66,7 @@ def test_validated_archive_restores_exactly_without_stale_output(bundle, tmp_pat
     assert not old.exists()
     assert sorted(p.relative_to(old.parent).as_posix() for p in old.parent.rglob("*.json")) == [
         "current.json", "manifest.json", "records/notice-1.json"]
+    assert (old.parent / historical).read_bytes() == b"{}"
 
 
 @pytest.mark.parametrize("entries", [
@@ -71,6 +74,8 @@ def test_validated_archive_restores_exactly_without_stale_output(bundle, tmp_pat
     [("C:/windows.json", "file")], [("..\\escaped.json", "file")],
     [("current.json", "link")], [("current.json", "file"), ("current.json", "file")],
     [("private.pem", "file")], [("manifest.json", "file")],
+    [("current.json", "file"), ("private.json.gz", "file")],
+    [("current.json", "file"), ("history/unhashed.json.gz", "file")],
 ])
 def test_unsafe_or_incomplete_archive_preserves_existing_output(bundle, tmp_path, entries):
     proof = archive(bundle, tmp_path, entries)
@@ -196,6 +201,21 @@ def test_release_workflows_keep_trusted_data_validation_and_tested_publication_s
     assert set(tests["on"]) == {"pull_request"}  # production gates replace the duplicate push job
     assert set(tests["jobs"]) == {"test"}  # retain the required status check
     assert tests["permissions"] == {"contents": "read"}
+    pr_commands = "\n".join(step.get("run", "") for step in tests["jobs"]["test"]["steps"])
+    assert "python -m pytest -q" in pr_commands and "npm test" in pr_commands
+    assert "npm run test:e2e:pr" in pr_commands and "node build/preparePrData.mjs" in pr_commands
+    assert "cli export" not in pr_commands and "release_bundle.py pack" not in pr_commands
+    validation = next(s for s in collect["jobs"]["build"]["steps"] if s.get("name") == "Validate pipeline and public dataset")
+    assert "check_public_output.py" in validation["run"] and "continue-on-error" not in validation
     assert tests["concurrency"] == {
         "group": "signal-pr-${{ github.event.pull_request.number }}", "cancel-in-progress": "true",
     }
+
+
+def test_pr_routing_keeps_contracts_collectors_data_and_unknown_changes_on_pipeline_checks(monkeypatch):
+    monkeypatch.syspath_prepend(str(ROOT / "scripts"))
+    checks = importlib.import_module("pr_checks")
+    assert not checks.pipeline_required(["app/src/styles.css", "app/src/ResearchUI.tsx", "docs/plan.md"])
+    for path in ("app/src/dataClient.ts", "pipeline/anthrion_signal/adapters/canada_buys.py",
+                 "app/package-lock.json", ".github/workflows/publish.yml", "data/current.json.gz", "new-policy.json"):
+        assert checks.pipeline_required(["app/src/styles.css", path])

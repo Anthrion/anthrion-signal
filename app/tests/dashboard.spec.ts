@@ -143,7 +143,7 @@ test.beforeEach(async ({ page }, info) => {
   await page.route('**/data/current.json', (route) => route.fulfill({ json: dataset }))
 })
 
-test('source facts, logo, filtering, saving, evidence and search', async ({ page }, info) => {
+test('@pr source facts, logo, filtering, saving, evidence and search', async ({ page }, info) => {
   const errors: string[] = []
   page.on('pageerror', (e) => errors.push(e.message))
   await page.goto('./')

@@ -11,7 +11,7 @@ from .discovery_retention import read_rejected
 from .models import Signal
 from .markets import MARKETS
 from .public_context import attach_history, backfill_retained_facts, enrich_signal, public_signal
-from .public_feed import atomic_public_json, record_file
+from .public_feed import atomic_public_json, history_files, record_file
 from .translation import available_translations
 from .utils import atomic_bytes, digest, jsonl_lines, parse_date, read_json
 
@@ -96,15 +96,10 @@ def export_awards(root, canonical, config, now, record_manifest=None, context_si
         for signal in public_records:
             _, record_manifest[signal.id] = record_file(root, signal, context_translations.get(signal.id),
                 "awards" if signal.id in award_ids else "opportunities", buyer_refs)
-        for signal in context:
-            if signal.id in record_manifest:
-                continue
-            # History is browsable, not promoted into current opportunities or
-            # the relevant-awards list. Share its buyer page without recursively
-            # duplicating the buyer's entire history inside every detail file.
-            detail = signal.model_copy(update={"buyer_history": [], "procedure_history": [],
-                "buyer_history_ref": buyer_refs.get(signal.buyer_id)})
-            _, record_manifest[signal.id] = record_file(root, detail, context_translations.get(signal.id), "history")
+        # Linked history retains complete text without thousands of additional
+        # uncompressed files or recursively repeated buyer/procedure histories.
+        record_manifest.update(history_files(root, [s for s in context if s.id not in record_manifest],
+            context_translations, buyer_refs))
     manifest = {}
     for market, countries in MARKETS.items():
         records = [s for s in awards if set(countries).intersection(s.countries)]

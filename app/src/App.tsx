@@ -1415,10 +1415,12 @@ function ConsoleDetail({
                   </dd>
                 </div>
               </dl>
-              <section className="inspector-capabilities">
-                <h3>Capabilities</h3>
-                <CapabilityTags signal={s} data={data} />
-              </section>
+              {!!s.matched_capabilities.length && (
+                <section className="inspector-capabilities">
+                  <h3>Capabilities</h3>
+                  <CapabilityTags signal={s} data={data} />
+                </section>
+              )}
               {hasAwardOutcome(s) && (
                 <section className="inspector-capabilities">
                   <h3>Awarded supplier</h3>

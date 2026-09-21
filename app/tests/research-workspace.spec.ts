@@ -1,5 +1,6 @@
 import { test, expect, type Page } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
+import { gzipSync } from 'node:zlib'
 import type { Dataset, HistoryRecord, Signal } from '../src/types'
 import { recordDataset } from './fixtures/record'
 
@@ -292,7 +293,7 @@ async function fixture(page: Page, changeRecord?: (record: Signal) => void) {
   }
   for (const item of history)
     manifest.current_feed!.records[item.signal_id] = {
-      url: `records/${item.signal_id}-${hash}.json`,
+      url: `history/abc-${hash}.json.gz`,
       markets: ['GB'],
       view: 'history',
     }
@@ -307,37 +308,44 @@ async function fixture(page: Page, changeRecord?: (record: Signal) => void) {
       return route.fulfill({ json: { schema_version: '1.0', signal: record } })
     if (path.includes('/records/panel-b-'))
       return route.fulfill({ json: { schema_version: '1.0', signal: other } })
-    const historical = history.find((item) =>
-      path.endsWith(`/records/${item.signal_id}-${hash}.json`),
-    )
-    if (historical)
+    if (path.endsWith(`/history/abc-${hash}.json.gz`))
       return route.fulfill({
-        json: {
-          schema_version: '1.0',
-          signal: {
-            ...record,
-            id: historical.signal_id,
-            title: historical.title,
-            description: 'Complete retained scope for this historical contract.',
-            signal_type: 'AWARD',
-            status: 'awarded',
-            lifecycle_state: 'AWARDED',
-            award_statuses: ['active'],
-            incumbent_supplier: historical.supplier,
-            winners: historical.winners || [],
-            award_date: historical.award_date,
-            primary_source_url: historical.source_url,
-            exclusion_reasons: ['outside_current_delivery_scope'],
-          },
-          translation: historical.title_en
-            ? {
-                source_hash: 'history-source',
-                version: 'test',
-                title: historical.title_en,
-                description: 'Complete retained scope for this historical contract.',
-              }
-            : undefined,
-        },
+        contentType: 'application/gzip',
+        body: gzipSync(
+          JSON.stringify({
+            schema_version: '1.0',
+            records: Object.fromEntries(
+              history.map((historical) => [
+                historical.signal_id,
+                {
+                  signal: {
+                    ...record,
+                    id: historical.signal_id,
+                    title: historical.title,
+                    description: 'Complete retained scope for this historical contract.',
+                    signal_type: 'AWARD',
+                    status: 'awarded',
+                    lifecycle_state: 'AWARDED',
+                    award_statuses: ['active'],
+                    incumbent_supplier: historical.supplier,
+                    winners: historical.winners || [],
+                    award_date: historical.award_date,
+                    primary_source_url: historical.source_url,
+                    exclusion_reasons: ['outside_current_delivery_scope'],
+                  },
+                  translation: historical.title_en
+                    ? {
+                        source_hash: 'history-source',
+                        version: 'test',
+                        title: historical.title_en,
+                        description: 'Complete retained scope for this historical contract.',
+                      }
+                    : undefined,
+                },
+              ]),
+            ),
+          }),
+        ),
       })
     if (path.includes('/awards/GB-'))
       return route.fulfill({ json: { schema_version: '1.0', signals: awards } })
@@ -592,7 +600,7 @@ test('title research compares source-linked awards with explicit relationship an
     })
 })
 
-test('history titles open their own full record, keep language across pages, and hide Salesforce for completed awards', async ({
+test('@pr history titles open their own full record, keep language across pages, and hide Salesforce for completed awards', async ({
   page,
 }) => {
   const { history } = await fixture(page)
@@ -622,6 +630,13 @@ test('history titles open their own full record, keep language across pages, and
   await expect(
     buyer.getByRole('button', { name: 'Dossierdienst voor de gemeente', exact: true }),
   ).toBeFocused()
+  // Both records share a compressed bucket; a cached bucket must resolve the new identity.
+  await buyer.getByRole('button', { name: 'Council digital service 3', exact: true }).click()
+  await expect(
+    record.getByRole('heading', { name: 'Council digital service 3', exact: true }),
+  ).toBeVisible()
+  await expect(record.locator('.supplier-links')).toContainText('Winner 3 Ltd')
+  await record.getByRole('button', { name: 'Back', exact: true }).click()
   await buyer.getByRole('button', { name: 'Back to results', exact: true }).click()
   await page.reload()
   await expect(page.getByRole('button', { name: 'Record language: Original' })).toBeVisible()
@@ -634,7 +649,7 @@ test('history titles open their own full record, keep language across pages, and
   await expect(sharedRecord.getByRole('button', { name: /Salesforce/ })).toHaveCount(0)
 })
 
-test('related live and awarded titles open full details and awarded context points back to open signals', async ({
+test('@pr related live and awarded titles open full details and awarded context points back to open signals', async ({
   page,
 }, info) => {
   await page.goto('./?market=&view=all')
@@ -701,7 +716,7 @@ test('last view remembers search and matching while shared URLs and UK startup s
   )
 })
 
-test('All leads UK; groups and individual countries can be pinned together and moved', async ({
+test('@pr All leads UK; groups and individual countries can be pinned together and moved', async ({
   page,
 }) => {
   await page.goto('./')

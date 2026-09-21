@@ -3,6 +3,7 @@ import { mkdtemp, mkdir, readFile, readdir, rm, symlink, writeFile } from 'node:
 import { tmpdir } from 'node:os'
 import { basename, dirname, join, relative, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { gzipSync, gunzipSync } from 'node:zlib'
 import { afterEach, expect, test } from 'vitest'
 import { build, resolveConfig } from 'vite'
 import { copyPublicAssets, publicContentHash, SITE_LIMIT_BYTES } from './publicData.mjs'
@@ -38,6 +39,13 @@ async function page(publicDir, prefix, value) {
   const path = `${prefix}-${publicContentHash(body).slice(0, 16)}.json`
   await mkdir(dirname(join(publicDir, 'data', path)), { recursive: true })
   await writeFile(join(publicDir, 'data', path), body)
+  return path
+}
+async function historyPage(publicDir, records) {
+  const body = JSON.stringify(sorted({ schema_version: '1.0', records }))
+  const path = `history/abc-${publicContentHash(body).slice(0, 16)}.json.gz`
+  await mkdir(dirname(join(publicDir, 'data', path)), { recursive: true })
+  await writeFile(join(publicDir, 'data', path), gzipSync(body))
   return path
 }
 async function snapshot(root) {
@@ -170,6 +178,26 @@ test('linked history details are copied but cannot authorize unrelated retained 
   bad.current.current_feed.records.sig_orphan = { url: bad.orphanUrl, view: 'history' }
   await bad.roots()
   await expect(copyPublicAssets(bad)).rejects.toThrow('unlinked')
+})
+test('compressed history keeps its source bytes and rejects extra records hidden in a shared bucket', async () => {
+  const source = await fixture()
+  const records = { sig_older: { signal: { ...source.signal, id: 'sig_older' } } }
+  const path = await historyPage(source.publicDir, records)
+  source.current.current_feed.records.sig_older = { url: path, view: 'history' }
+  await source.roots()
+  await copyPublicAssets(source)
+  expect(JSON.parse(gunzipSync(await readFile(join(source.outDir, 'data', path))))).toEqual({
+    schema_version: '1.0',
+    records,
+  })
+  const bad = await fixture()
+  const extra = await historyPage(bad.publicDir, {
+    ...records,
+    sig_hidden: { signal: { id: 'sig_hidden' } },
+  })
+  bad.current.current_feed.records.sig_older = { url: extra, view: 'history' }
+  await bad.roots()
+  await expect(copyPublicAssets(bad)).rejects.toThrow('outside its manifest')
 })
 test('a production copy preserves the whole referenced graph, history and non-data assets without changing public files', async () => {
   const source = await fixture()

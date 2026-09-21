@@ -1,3 +1,4 @@
+import gzip
 import json
 import runpy
 from pathlib import Path
@@ -74,7 +75,7 @@ def test_linked_history_gets_full_details_without_becoming_a_live_lead(tmp_path,
     assert unrelated.id not in records
     data.current_feed = export_current(tmp_path, data, records)
     root = tmp_path / "app/public/data"
-    detail = json.loads((root / records[earlier.id]["url"]).read_text(encoding="utf-8"))
+    detail = json.loads(gzip.decompress((root / records[earlier.id]["url"]).read_bytes()))["records"][earlier.id]
     assert detail["signal"]["description"] == earlier.description
     current = json.loads((root / data.current_feed["markets"]["GB"]["url"]).read_text(encoding="utf-8"))
     assert [s["id"] for s in current["signals"]] == [signal.id]
@@ -85,6 +86,17 @@ def test_linked_history_gets_full_details_without_becoming_a_live_lead(tmp_path,
         atomic_json(root / "manifest.json", {**body, "signals": [], "translations": {}})
     roots()
     checker(root / "current.json")
+    # A shared, correctly hashed bucket must not carry additional unpublished records.
+    history_url = records[earlier.id]["url"]
+    bucket = json.loads(gzip.decompress((root / history_url).read_bytes()))
+    bucket["records"][unrelated.id] = {"signal": {**detail["signal"], "id": unrelated.id}}
+    extra_url = f"history/abc-{digest(bucket)[:16]}.json.gz"
+    (root / extra_url).write_bytes(gzip.compress(json.dumps(bucket).encode()))
+    data.current_feed["records"][earlier.id]["url"] = extra_url
+    roots()
+    with pytest.raises(ValueError, match="outside its manifest"):
+        checker(root / "current.json")
+    data.current_feed["records"][earlier.id]["url"] = history_url
     # A retained record cannot publish itself by referring to its own buyer page.
     attach_history([unrelated], [unrelated])
     _, pointer = record_file(tmp_path, unrelated, view="history")
@@ -101,6 +113,35 @@ def test_history_titles_only_reuse_translations_for_the_same_original_source(sig
     signal.title += " Revised"
     attach_history([signal], [signal], {signal.id: translation})
     assert "title_en" not in signal.buyer_history[0]
+
+
+def test_history_buckets_preserve_full_records_and_split_without_overwriting_old_versions(tmp_path, signal):
+    from anthrion_signal.public_feed import history_files
+    prefixes = {}
+    for number in range(4097):
+        ident = f"history-{number}"
+        prefix = digest(ident)[:3]
+        if prefix in prefixes:
+            identifiers = [prefixes[prefix], ident]
+            break
+        prefixes[prefix] = ident
+    signals = [signal.model_copy(deep=True, update={"id": ident, "description": "Portail français — complete source. " * 30}) for ident in identifiers]
+    manifest = history_files(tmp_path, signals, {}, {})
+    assert len({ref["url"] for ref in manifest.values()}) == 1
+    path = tmp_path / "app/public/data" / manifest[identifiers[0]]["url"]
+    original = path.read_bytes()
+    decoded = gzip.decompress(original)
+    payload = json.loads(decoded)
+    assert set(payload["records"]) == set(identifiers)
+    assert all(payload["records"][item.id]["signal"]["description"] == item.description for item in signals)
+    assert history_files(tmp_path, list(reversed(signals)), {}, {}) == manifest
+    assert path.read_bytes() == original
+    split = history_files(tmp_path, signals, {}, {}, max_bytes=len(decoded) - 1)
+    assert len({ref["url"] for ref in split.values()}) == 2
+    assert path.read_bytes() == original
+    signals[0].description += " Published amendment."
+    assert history_files(tmp_path, signals, {}, {})[identifiers[0]]["url"] != manifest[identifiers[0]]["url"]
+    assert path.read_bytes() == original
 
 
 def test_corrupt_hashed_detail_fails_publication_validation(tmp_path, signal, config):

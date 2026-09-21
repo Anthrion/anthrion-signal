@@ -153,6 +153,8 @@ export function isCurrentFeed(value: unknown): value is CurrentFeedManifest {
       )
         return false
       try {
+        if (entry.view === 'history' && entry.url.startsWith('history/'))
+          return !!safeDataPath(entry.url, 'history')
         return safeDataPath(entry.url, 'records').startsWith(`records/${id}-`)
       } catch {
         return false
@@ -160,15 +162,63 @@ export function isCurrentFeed(value: unknown): value is CurrentFeedManifest {
     })
   )
 }
-export function safeDataPath(path: string, kind: 'current' | 'awards' | 'records' | 'buyers') {
+export function safeDataPath(
+  path: string,
+  kind: 'current' | 'awards' | 'records' | 'buyers' | 'history',
+) {
   const patterns = {
     current: /^current\/[A-Z]+-[a-f0-9]{16}\.json$/,
     awards: /^awards\/[A-Z]+-[a-f0-9]{16}\.json$/,
     records: /^records\/[A-Za-z0-9_-]+-[a-f0-9]{16}\.json$/,
     buyers: /^buyers\/buyer_[A-Za-z0-9_-]+-[a-f0-9]{16}\.json$/,
+    history: /^history\/[a-f0-9]{3,64}-[a-f0-9]{16}\.json\.gz$/,
   }
   if (!patterns[kind].test(path)) throw new Error('The data file reference could not be verified.')
   return path
+}
+export function recordDetail(value: unknown, id: string): DetailPage | null {
+  if (!object(value) || !['1.0', '2.0'].includes(String(value.schema_version))) return null
+  const detail = object(value.records) ? value.records[id] : value
+  if (
+    !object(detail) ||
+    !isSignal(detail.signal) ||
+    detail.signal.id !== id ||
+    (detail.translation !== undefined && !isEnglishText(detail.translation))
+  )
+    return null
+  return {
+    schema_version: String(value.schema_version),
+    signal: detail.signal,
+    translation: detail.translation,
+  }
+}
+async function boundedBytes(stream: ReadableStream<Uint8Array>, signal: AbortSignal) {
+  const reader = stream.getReader()
+  const chunks: Uint8Array[] = []
+  let size = 0
+  try {
+    while (true) {
+      if (signal.aborted) throw new DOMException('Aborted', 'AbortError')
+      const next = await reader.read()
+      if (next.done) break
+      size += next.value.length
+      if (size > 16 * 1024 * 1024)
+        throw new Error('Historical detail download exceeds its size limit.')
+      chunks.push(next.value)
+    }
+  } catch (error) {
+    await reader.cancel().catch(() => {})
+    throw error
+  } finally {
+    reader.releaseLock()
+  }
+  const bytes = new Uint8Array(size)
+  let offset = 0
+  for (const chunk of chunks) {
+    bytes.set(chunk, offset)
+    offset += chunk.length
+  }
+  return bytes
 }
 export async function fetchJSON(
   path: string,
@@ -182,7 +232,18 @@ export async function fetchJSON(
     ...(fresh ? { cache: 'no-cache' as const } : {}),
   })
   if (!response.ok) throw new Error(`Data request failed (${response.status}).`)
-  const value: unknown = await response.json()
+  let value: unknown
+  if (path.endsWith('.json.gz')) {
+    safeDataPath(path, 'history')
+    if (!response.body) throw new Error('Historical detail response is empty.')
+    let bytes = await boundedBytes(response.body, signal)
+    // Some hosts apply Content-Encoding themselves; avoid decoding twice.
+    if (bytes[0] === 0x1f && bytes[1] === 0x8b) {
+      const stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'))
+      bytes = await boundedBytes(stream, signal)
+    }
+    value = JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(bytes))
+  } else value = await response.json()
   if (signal.aborted) throw new DOMException('Aborted', 'AbortError')
   return value
 }

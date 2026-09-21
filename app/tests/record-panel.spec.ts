@@ -101,7 +101,7 @@ test('selected design presents compact source facts before untruncated text', as
   expect(results.violations).toEqual([])
 })
 
-test('Gmail opens an unsent draft for the current record and its link reopens that record', async ({
+test('@pr Gmail opens an unsent draft for the current record and its link reopens that record', async ({
   page,
 }) => {
   const shareTitle = 'CRM & service / café + €'
@@ -141,7 +141,10 @@ test('Gmail opens an unsent draft for the current record and its link reopens th
   const next = page.locator('.console-detail:visible')
   const nextURL = new URL(
     (await next
-      .getByRole('link', { name: 'Share this opportunity in Gmail (opens a new tab)', exact: true })
+      .getByRole('link', {
+        name: 'Share this opportunity in Gmail (opens a new tab)',
+        exact: true,
+      })
       .getAttribute('href'))!,
   )
   expect(nextURL.searchParams.get('su')).toBe('Anthrion Signal: Customer platform implementation')
@@ -289,7 +292,7 @@ test('record actions open Google Calendar while save and hide remain in the resu
   expect(errors).toEqual([])
 })
 
-test('missing descriptions, capabilities and deadlines retain usable dock controls', async ({
+test('@pr missing descriptions, capabilities and deadlines retain usable dock controls', async ({
   page,
 }) => {
   await fixture(page, { description: '  \n ', deadline_at: null, matched_capabilities: [] })
@@ -301,7 +304,7 @@ test('missing descriptions, capabilities and deadlines retain usable dock contro
       exact: true,
     }),
   ).toHaveCount(0)
-  await expect(panel.locator('.inspector-capabilities')).toContainText('Not specified')
+  await expect(panel.locator('.inspector-capabilities')).toHaveCount(0)
   await expect(panel.locator('.inspector-summary')).toContainText('No description was published')
   await dockInViewport(page, panel)
   expect(
