@@ -433,3 +433,155 @@ sources:
     coverage: Federal open/new tenders and current fiscal-year tender and award notices; provincial and municipal portals are not included.
     max_records_per_feed: 1000
     minimum_open_rows: 100
+
+  # Research candidates only; no collector or additional coverage is enabled.
+  # See docs/north-america-sources-2026-09-21.md for evidence and checks before activation.
+  - id: seao_qc
+    name: SEAO (Quebec)
+    enabled: false
+    collector: external_adapter
+    country: CA
+    website: https://www.donneesquebec.ca
+    docs: https://www.donneesquebec.ca/recherche/dataset/systeme-electronique-dappel-doffres-seao
+    access_notes: >-
+      The official catalogue labels the distribution CC BY 4.0 and lists ongoing tender notices in JSON,
+      alongside contract history. Evaluate weekly/monthly update semantics, corrections, completeness
+      and French translations; absence from one file must not close a retained notice.
+  - id: sasktenders
+    name: SaskTenders (Saskatchewan)
+    enabled: false
+    collector: external_adapter
+    country: CA
+    website: https://www.sasktenders.ca
+    access_notes: >-
+      PR18 reported public notices and award details. Supported automated access and the applicable
+      reuse terms remain unverified; failure to locate a licence does not settle the rights position.
+  - id: ns_tenders
+    name: Nova Scotia awarded tenders
+    enabled: false
+    collector: external_adapter
+    country: CA
+    website: https://data.novascotia.ca
+    docs: https://open.canada.ca/data/en/dataset/d8a4e021-434d-709f-b135-4e282987d09c
+    access_notes: >-
+      Official catalogue links awarded-tenders dataset m6ps-8j6u. Candidate award history, not new
+      competitions. Verify the current licence and update semantics; awarded_date alone is not
+      a reliable modification cursor for corrected historical awards.
+  - id: bcbid
+    name: BC Bid
+    enabled: false
+    collector: external_adapter
+    country: CA
+    website: https://www.bcbid.gov.bc.ca
+    access_notes: >-
+      Candidate provincial source. PR18 reported access restrictions on the tested browser route.
+      A supported distribution and its reuse terms remain unverified; do not bypass CAPTCHA.
+  - id: alberta_apc
+    name: Alberta Purchasing Connection
+    enabled: false
+    collector: external_adapter
+    country: CA
+    website: https://purchasing.alberta.ca
+    access_notes: >-
+      Candidate provincial source. PR18 reported failures on a tested anonymous search endpoint.
+      Verify supported access, schemas and reuse terms independently; those failures do not establish
+      the absence of every authorized route.
+  - id: ontario_tenders
+    name: Ontario Tenders Portal
+    enabled: false
+    collector: external_adapter
+    country: CA
+    website: https://ontariotenders.app.jaggaer.com
+    access_notes: >-
+      Candidate provincial source. PR18 reported crawler restrictions on application paths.
+      Supported automated access and reuse remain unresolved; this is not a province-wide exclusion.
+  - id: merx
+    name: MERX
+    enabled: false
+    collector: external_adapter
+    country: CA
+    website: https://www.merx.com
+    access_notes: >-
+      PR18 reported client/path-specific crawl restrictions and did not verify applicable terms.
+      Respect those restrictions and investigate an authorized distribution or agreement separately.
+      Neither a subscription nor a reseller establishes republication rights without its terms.
+  - id: bids_and_tenders
+    name: bids&tenders
+    enabled: false
+    collector: external_adapter
+    country: CA
+    website: https://opportunities.bidsandtenders.com
+    docs: https://bidsandtenders.com/terms-of-service/
+    access_notes: >-
+      Candidate municipal coverage. Published terms restrict automated commercial extraction;
+      establish an authorized supply route and reuse scope before collecting.
+  - id: bzp_pl
+    name: BZP e-Zamowienia (Poland)
+    enabled: false
+    collector: external_adapter
+    country: PL
+    website: https://ezamowienia.gov.pl
+    docs: https://ezamowienia.gov.pl/pl/integracja/
+    access_notes: >-
+      Official guidance documents the notice read API without the integration procedure required
+      for other platform APIs. Reproduce reported PageSize saturation and CPV substring behavior;
+      verify complete paging, lifecycle updates and republication scope before activation.
+  - id: kommers_annons
+    name: Kommers Annons (Sweden)
+    enabled: false
+    collector: external_adapter
+    country: SE
+    website: https://www.kommersannons.se
+    docs: https://www.kommersannons.se/elite/Info/TermsOfUse.aspx
+    access_notes: >-
+      eLite terms section 3.4 require prior written approval for systematic automated extraction
+      unless a designated interface expressly permits it. Verify that route and the redistribution
+      and attribution conditions before activation; free reading is not clearance for bulk collection.
+  - id: mercell_se
+    name: Mercell annonsdatabas (Sweden)
+    enabled: false
+    collector: external_adapter
+    country: SE
+    website: https://app.mercell.com
+    docs: https://www.mercell.com/en/82175855/terms-and-conditions.aspx
+    access_notes: >-
+      Candidate national notices. The regulator confirmed improved free public access, but this
+      does not establish bulk extraction or republication permission. Verify current terms for
+      the exact service and obtain an authorized collection route.
+  - id: e_avrop
+    name: e-Avrop (Sweden)
+    enabled: false
+    collector: external_adapter
+    country: SE
+    website: https://www.e-avrop.com
+    access_notes: >-
+      Candidate national notices. PR18 reported crawl and reuse restrictions on tested services.
+      Confirm the applicable terms and a supported bulk route; no extra coverage is enabled.
+  - id: texas_esbd
+    name: Texas ESBD
+    enabled: false
+    collector: external_adapter
+    country: US
+    website: https://www.txsmartbuy.gov
+    access_notes: >-
+      PR18 reported a JSON search interface and crawler restrictions. Verify supported access,
+      publication/revision semantics and reuse terms with the operator before implementation.
+  - id: virginia_eva
+    name: Virginia eVA
+    enabled: false
+    collector: external_adapter
+    country: US
+    website: https://mvendor.cgieva.com
+    access_notes: >-
+      PR18 reported a Solr interface and a lastupdatedate field. Supported automated access,
+      permission and the field's reliability for amendments/cancellations remain to be verified.
+  - id: comprasmx
+    name: ComprasMX (Mexico)
+    enabled: false
+    collector: external_adapter
+    country: MX
+    website: https://buengobierno.gob.mx
+    access_notes: >-
+      Research candidate only. Establish the exact distribution's licence, lifecycle, fields and
+      retrieval contract before collection. General website terms do not establish every dataset's
+      terms. Mexico is not enabled as a market or added to the North America group.
