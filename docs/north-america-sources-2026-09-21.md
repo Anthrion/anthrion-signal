@@ -8,6 +8,16 @@ United States, and two open questions.
 build decisions rest on measurements rather than assumptions. Every endpoint quoted was called; where
 a claim could not be verified it says so.
 
+> **Corrections, 21 September 2026.** An adversarial review of the first revision found six claims
+> that went beyond the evidence. All six were checked independently, all six held, and all six are
+> corrected in place rather than argued: the Kommers Annons permission claim (§8.2 — the terms do exist and require prior written
+> approval), the US recall inference (§1 — one phrase list is not the discovery gate), the CanadaBuys
+> permalink claim (§4.4 gotcha 5 — the collector already derives a working canonical URL), the Irish
+> licence scope (§7.2 — the CC-BY distribution and the live export are different interfaces), the SAM
+> API quota (§2.1 — no rate limit is documented and none was measured), and the MERX conclusion (§6 —
+> robots policy withholds a crawler, it does not prove no authorised route exists). Each correction
+> says what was wrong so the earlier reasoning is not repeated.
+
 ## Deduplication against the market-expansion build
 
 Research began before the market-expansion work landed on `main`. Four of its intended
@@ -53,9 +63,20 @@ And the text-only fallback is measurably weak:
 
 - On Canadian notices, a keyword gate recovered 59 records carrying no UNSPSC at all, but used alone
   it over-fired to **25%** of the file and missed **42%** of UNSPSC-confirmed IT.
-- On US notices the vocabulary pack is worse: **`BUSINESS_OBJECTS` matched 46 of 463 open
-  software/IT leads — 10% recall — and only 3 in the title.** A US-flavoured term list reached 31%.
-  Without an `en_US` vocabulary pass the North America tab surfaces roughly 46 leads where 463 exist.
+- On US notices, **`BUSINESS_OBJECTS` phrases appeared in 46 of 463 open software/IT leads, and in
+  only 3 titles**; a US-flavoured term list reached 31%. **That is an isolated measurement of one
+  phrase list, not a pipeline recall figure**, and an earlier draft of this document wrongly presented
+  it as one. `BUSINESS_OBJECTS` is the *last* branch of `addressable_delivery()` in
+  `procurement_scope.py` — `delivered_software`, `native_software_delivery()` and the `ai_service`
+  regex all return before it — and `addressable_delivery()` is itself one input among
+  `capability_hits`, generic digital scope, hints and scope exclusions.
+
+  The counterexample is in the shipped data: of 244 US records in the current snapshot, **151 (61.9%)
+  contain no `BUSINESS_OBJECTS` phrase in title or description** under the production matcher
+  (`vocabulary.phrase_hits`), and 100 of 186 SAM records likewise. They were admitted by other paths.
+  So the phrase list is *not* the binding constraint on US admission, and no claim about leads the
+  product is missing can rest on it. Establishing a real recall gap needs stable source IDs, an
+  independently reviewed set of suitable records, and a full classifier replay.
 
 ### 1.1 The obvious fix is a trap
 
@@ -121,16 +142,24 @@ alternatives are all worse:
 - It is the **sanctioned** path: SAM's terms name `open.gsa.gov/api/` and `sam.gov/data-services` as
   the two automated-access routes and prohibit gathering outside them.
 
-### 2.1 The documented API is a dead end
+### 2.1 The documented API could not be exercised without a key
 
 `api.sam.gov/opportunities/v2/search` returned an **empty-bodied 404 to every request** — no key, bad
 key, `X-Api-Key` header, browser UA, `/prod/` variant, and via a second HTTP client. The TLS peer is
 genuinely GSA (DigiCert EV, `CN=api.sam.gov`, verify ok), so this is the real gateway rather than a
 proxy artefact. **Whether a valid key changes that is unverified** — no registration was performed.
 
-Its own documentation gives no rate-limit numbers; sibling SAM docs state *"Rate limit for Non-Federal
-User is 10 requests/day"* against *"Federal User is 1000 requests/day"*. Ten requests a day cannot
-serve a pipeline, which is why the extract is the correct choice.
+**The official documentation states no rate limit at all** — re-checked on 21 September 2026, it
+documents `api_key` as required, date bounds as mandatory, and `limit` valid from 0 to 1000 per
+request. An earlier draft of this document quoted *"Rate limit for Non-Federal User is 10
+requests/day"* from unspecified sibling SAM material and concluded the API could not serve a
+pipeline. **That conclusion is withdrawn**: a quota for another API or account class does not
+establish this one's, and at 1,000 records per request even a modest daily allowance would need a
+workload calculation before any such claim.
+
+What stands is narrower and still sufficient: **the keyless extract needs no account and is one of
+the two routes SAM's own terms sanction**, so it was the right choice regardless of what a key would
+do. Keyed access and its assigned quota are **untested**.
 
 A keyless incremental endpoint (`sam.gov/api/prod/sgs/v1/search`) does exist and works well —
 `modified_date.from`, `size=1000`, `naics=` filtering, 1,101 notices/day, plus a keyless detail route
@@ -299,9 +328,15 @@ user-agent block.
 4. **`referenceNumber` has three incompatible formats** from three upstream systems:
    `MX-443841357513` (MERX), `cb-544-27650487` (native), `WS5885557102-Doc5895002657` (Ariba).
    `solicitationNumber` is **not unique** — 885 unique across 898 records.
-5. **`noticeURL` is empty for 474 of 898 (53%)** and otherwise points off-site — Ariba 266, MERX 101.
-   **There is no stable CanadaBuys permalink in the data**, so for half of all notices there is no
-   link to show a salesperson. A UX decision, not a parsing detail.
+5. **`noticeURL` is empty for 474 of 898 (53%)** in the CSV and otherwise points off-site — Ariba
+   266, MERX 101. This is a gap in an *optional upstream* field only. An earlier draft of this
+   document concluded there was "no stable CanadaBuys permalink" and no link to show a salesperson;
+   **that was wrong and is withdrawn.** `canada_buys.py:156-160` derives the canonical
+   `/en/tender-opportunities/tender-notice/<reference>` path from `referenceNumber` (including the SSC
+   colon normalisation) and passes it as `url=`. Verified in the shipped data: **16 of 16 Canadian
+   signals carry a `primary_source_url`, and sampled permalinks return HTTP 200** — including a
+   MERX-sourced reference, where the upstream `noticeURL` would have pointed off-site. Do not remove
+   the derived link.
 6. **Two of three federal hosts fail TLS, differently** — `donnees-data.tpsgc-pwgsc.gc.ca` gives
    "self signed certificate in certificate chain", `sosa.canadabuys.canada.ca` "unable to get local
    issuer certificate". Behaviour depends on the client's trust store. Do not repair with
@@ -460,9 +495,21 @@ No content was fetched from either host beyond `robots.txt`, so **MERX's terms-o
 unverified** — deliberately, because reaching it via a sibling host would circumvent a signal the
 operator stated plainly on the primary host.
 
-Several third-party "MERX API" products exist (Apify, Anakin.io, Parse.bot) selling scraped MERX data.
-**These are a risk, not an option** — they resell data from a site whose robots.txt forbids exactly
-that. Much of what MERX carries for Quebec is the same SEAO data available free under CC-BY, and its
+**What this does and does not establish.** [RFC 9309](https://www.rfc-editor.org/rfc/rfc9309.html#section-2.2.1)
+matches robots rules by crawler identity and path, and explicitly distinguishes them from access
+authorisation. So this is conclusive grounds to withhold *this* crawler from *these* paths, and it is
+**not** evidence that no authorised route exists. A documented API, a separately licensed
+distribution or a written data agreement could all exist; MERX's terms were not read, so whether one
+does is **unresolved rather than closed**. An earlier draft of `api-backlog.md` said Manitoba had no
+legitimate automated route and that these should not be revisited — **that overstated the evidence
+and is withdrawn**. The correct status is: withhold automated access, and treat authorised access as
+an open question for whoever wants Manitoba coverage.
+
+Several third-party "MERX API" products exist (Apify, Anakin.io, Parse.bot) selling MERX data.
+**Treat these as a diligence risk rather than a ready option.** Their own agreements with MERX were
+not examined, so no conclusion is drawn about their licensing position; what can be said is that
+buying access to data this repository is not itself permitted to crawl would need the reseller's
+right to supply it established first. Much of what MERX carries for Quebec is the same SEAO data available free under CC-BY, and its
 federal content duplicates CanadaBuys open data.
 
 ## 7. National sources for the newly enabled European markets
@@ -529,8 +576,16 @@ The body is verbatim the hidden inputs of `searchCfTWorkspaceForm` on
 `prepareCurrentOpportunities.do`. CPV 72 for 1–18 September returned **22 rows / 16.6 KB** with full
 descriptions, in English, live to the minute — ~23 notices a day, 410 in the window. The platform is
 **European Dynamics EPPS**, not Jaggaer or EU-Supply (EU-Supply is the legacy platform in historical
-rows). The companion data.gov.ie CSV is **CC-BY-4.0**, the only clean licence of the three. English,
-so no vocabulary pack is needed.
+rows). English, so no vocabulary pack is needed.
+
+**Two distinct interfaces, with distinct terms — do not conflate them.** The data.gov.ie catalogue
+distribution is labelled **CC-BY-4.0**, and that licence covers the material the licensor placed under
+it; its data ended 2026-06-30 when measured. The **live `POST` export is a different interface**, and
+nothing found establishes that its current descriptions or its automated access are covered by that
+grant. The existing `etenders_ie` registry entry already records that the site *"publishes no terms
+and no reuse licence - resolve with the OGP first"*, which is the more careful statement and is
+retained. **Treat the live endpoint's applicable terms as unverified** until an authoritative grant
+covering it is linked.
 
 Two gotchas: **`isQuickSearch=false` is mandatory** or every advanced filter is ignored and you get
 the 10,000-row 7.6 MB dump, and `cpvArray` must be paired with `cpvLabels`. And **the data.gov.ie CKAN
@@ -574,7 +629,7 @@ instead. **No vendor sells redistribution rights, and Mercell has no API and a 2
 
 | Route | IT notices/yr | Terms position |
 | --- | --- | --- |
-| **Kommers Annons** direct | **70** | `allow: /` and **no terms document exists at all** — the cleanest thing found |
+| **Kommers Annons** direct | **70** | `allow: /`, but **eLite terms §3.4 require prior written approval for systematic automated extraction** unless expressly permitted via an API or designated interface; §3.3 permits free onward sharing while forbidding resale without approval |
 | Mercell aggregate | **361** | `Allow: /` plus a nightly notice sitemap, **but ToS §2.5 forbids crawling** |
 | e-Avrop direct | 180 | `Disallow: /` **and** Pabliq §2.2 forbids *"bygga upp parallella databaser"* |
 
@@ -596,9 +651,19 @@ Free **human** access is regulator-enforced and durable. Free **machine** access
 
 ### 8.2 Recommendation
 
-1. **Start with Kommers Annons** — roughly a 34% uplift on the ~203 TED-sourced Swedish IT notices,
-   free, and with no legal question to resolve. Cost: CPV arrives as Swedish text labels rather than
-   codes, so it needs a label→code map.
+1. **Kommers Annons needs a permission request too.** An earlier draft of this document claimed no
+   terms document existed and recommended it as having "no legal question to resolve". **That was
+   false and is withdrawn.** The
+   [eLite terms](https://www.kommersannons.se/elite/Info/TermsOfUse.aspx) are public, and §3.4 reads:
+   *"Systematisk automatiserad extraktion av information från Tjänsten kräver Systemleverantörens
+   skriftliga förhandsgodkännande, om det inte uttryckligen är tillåtet via ett API eller annat
+   anvisat gränssnitt."* §3.3 separately permits passing public information to third parties free of
+   charge while forbidding resale without approval, and §5.4 governs attribution. The earlier probe
+   checked `/Home/Terms`, `/Home/Privacy` and `/Terms`, all of which 404 — **the absence of a terms
+   page at guessed paths is not the absence of terms**, the same error class as guessing blob
+   filenames in §4.4. It remains the smallest ask of the three, and §3.3 is favourable to a public
+   dataset, but it is an ask. Cost if granted: CPV arrives as Swedish text labels rather than codes,
+   so it needs a label→code map.
 2. **Request written permission from Mercell** for the full 361/yr. The case is strong — their own
    `Allow: /`, their sitemap, ToS §3.2, and dnr 880/2024. **This is outbound contact and therefore the
    owner's decision; no such request was made.** Note for whoever writes it: Konkurrensverket
@@ -627,10 +692,11 @@ anything built should **degrade rather than break**, with TED remaining the floo
 | SAM.gov extract | US public domain; sanctioned data-services path | ✅ in use |
 | CanadaBuys open data | OGL – Canada 2.0, commercial use permitted | ✅ in use, owner decision recorded (§4.1) |
 | **SEAO (Quebec)** | **CC-BY 4.0, commercial redistribution explicit** | ✅ best unbuilt source |
-| eTenders (Ireland) | data.gov.ie companion CSV is CC-BY-4.0 | ✅ |
+| eTenders (Ireland) — data.gov.ie distribution | CC-BY-4.0 on that distribution; data ended 2026-06-30 | ✅ that interface only |
+| eTenders (Ireland) — live `POST` export | no terms or reuse licence published; a different interface from the above | ⚠️ unverified, ask the OGP |
 | dados.gov.pt | unnamed `"Outra (Domínio Público)"` | ⚠️ legal sign-off |
 | BZP (Poland) | free to use, **no affirmative reuse grant** | ⚠️ legal sign-off |
-| Kommers Annons | `allow: /`, no terms document exists | ✅ cleanest Swedish route |
+| Kommers Annons | eLite terms §3.4 require prior written approval for systematic automated extraction | 🚩 permission first |
 | Nova Scotia Socrata | `OGL_NOVA_SCOTIA`, **text unreachable** | ⚠️ unverified |
 | SaskTenders | **no licence grant exists**; Crown copyright by default | 🚩 written permission |
 | Texas ESBD / Virginia eVA | good keyless feeds, both `Disallow: /` | 🚩 written permission |
@@ -638,7 +704,7 @@ anything built should **degrade rather than break**, with TED remaining the floo
 | Alberta APC | `Disallow: /` bar four search engines; API unusable | 🚩 blocked |
 | Ontario / Jaggaer | `Disallow: /esop` — the whole application | 🚩 blocked |
 | bids&tenders | ToS clause 13 forbids automated extraction | 🚩 blocked |
-| **MERX, gov.mb.ca** | **name `anthropic-ai`, `ClaudeBot`, `Claude-Web` under `Disallow: /`** | 🚩 targeted refusal |
+| **MERX, gov.mb.ca** | **name `anthropic-ai`, `ClaudeBot`, `Claude-Web` under `Disallow: /`**; terms not read, so an authorised route is unresolved rather than excluded | 🚩 withhold crawling |
 | Mercell | `Allow: /` but **ToS §2.5 forbids crawling** | 🚩 permission first |
 | e-Avrop, Clira | terms forbid parallel databases / registering information | 🚩 blocked |
 | New York state | forbids copying **and** inbound linking | 🚩 blocked |
@@ -647,10 +713,15 @@ anything built should **degrade rather than break**, with TED remaining the floo
 ## 10. Suggested order
 
 1. **The classification adapter (§1.2)** — highest value and unblocks everything else in North
-   America. Without it Canada and the US score on text alone, which measures at 10% recall on US
-   notices.
-2. **A `en_US` vocabulary pass** — `BUSINESS_OBJECTS` matches 46 of 463 open US IT leads.
-3. **Kommers Annons** (§8.2) — small, free, legally clean.
+   America. Canada and the US currently score with no classification signal at all. Note that a broad
+   IT code evidences *subject matter*, not delivery fit, so an admission rule built on one still needs
+   the existing scope and exclusion checks downstream — and native codes must never be written into
+   `cpv_codes`.
+2. **Measure US recall properly before changing admission rules** (§1) — the 46-of-463 figure is a
+   single-phrase-list observation, and 61.9% of admitted US records match no `BUSINESS_OBJECTS`
+   phrase at all. This is a measurement task first, not a vocabulary task.
+3. **Kommers Annons** (§8.2) — the smallest Swedish ask, but a permission request, not a free
+   option.
 4. **Ireland eTenders** (§7.2) — CC-BY, English, keyless, verified request in hand.
 5. **Poland BZP** (§7.1) — largest volume, but write the `len == 500` assertion first.
 6. **SEAO** (§5.1) — best unbuilt source, but needs delta accumulation and French translation.
