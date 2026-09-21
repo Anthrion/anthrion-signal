@@ -154,7 +154,10 @@ def normalise_canada_buys(raw):
     description = row.get(description_key + "-" + language) or row.get(description_key + "-eng") or row.get(description_key + "-fra", "")
     buyer = clean(row.get("contractingEntityName-nomEntitContractante-eng") or row.get("contractingEntityName-nomEntitContractante-" + language)) or None
     ref = row[REFERENCE]
-    url = f"https://canadabuys.canada.ca/en/tender-opportunities/{'award' if kind == 'award' else 'tender'}-notice/{quote(ref.lower(), safe='')}"
+    # The official listing removes ':' from SSC references in its notice paths,
+    # while source identifiers retain the colon (for example SSC-22-00020507:T).
+    slug = ref.lower().replace(":", "")
+    url = f"https://canadabuys.canada.ca/en/tender-opportunities/{'award' if kind == 'award' else 'tender'}-notice/{quote(slug, safe='/')}"
     status = row["awardStatus-attributionStatut-eng" if kind == "award" else "tenderStatus-appelOffresStatut-eng"].lower().strip()
     notice = row.get("noticeType-avisType-eng", "")
     stage, signal_type = ("award", "AWARD") if kind == "award" else ("tender", "LIVE_TENDER")
@@ -177,12 +180,15 @@ def normalise_canada_buys(raw):
         fact.source_text = row[CLOSING]
     value = money(row.get("contractAmount-montantContrat")) if kind == "award" else None
     currency = (row.get("contractCurrency-contratMonnaie") or "CAD").strip() if kind == "award" else None
-    supplier = clean(row.get("supplierLegalName-nomLegalFournisseur-" + language)) or None
+    supplier = clean(row.get("supplierLegalName-nomLegalFournisseur-" + language) or
+                     row.get("supplierLegalName-nomLegalFournisseur-eng") or
+                     row.get("supplierLegalName-nomLegalFournisseur-fra")) or None
     docs = []
-    notice_url = row.get("noticeURL-URLavis-" + language) or row.get("noticeURL-URLavis-eng", "")
+    notice_url = row.get("noticeURL-URLavis-" + language) or row.get("noticeURL-URLavis-eng") or row.get("noticeURL-URLavis-fra", "")
     if notice_url.startswith("https://") and notice_url != url:
         docs.append(Document(title="Published award link" if kind == "award" else "Published tender link", url=notice_url, kind="notice"))
-    for attachment in re.split(r"[,\n]", row.get("attachment-piecesJointes-" + language, "")):
+    attachments = row.get("attachment-piecesJointes-" + language) or row.get("attachment-piecesJointes-eng") or row.get("attachment-piecesJointes-fra", "")
+    for attachment in re.split(r"[,\n]", attachments):
         if attachment.strip().startswith("https://"):
             docs.append(Document(title="Tender document", url=attachment.strip(), kind="tenderDocument"))
     eligibility = "\n".join(filter(None, [notice, row.get("procurementMethod-methodeApprovisionnement-" + language), row.get("limitedTenderingReason-raisonAppelOffresLimite-" + language), row.get("tradeAgreements-accordsCommerciaux-" + language)]))

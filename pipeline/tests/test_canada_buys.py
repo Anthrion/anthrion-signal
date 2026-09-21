@@ -71,6 +71,9 @@ def test_fixed_est_deadline_and_source_membership_survive_normalization(config, 
     assert signal.value_max is None and signal.amount.kind == 'unknown'
     assert signal.primary_source_url.endswith('/tender-notice/cb-100-123')
     assert signal.documents[0].url == 'https://example.gov/submit'
+    ssc = normalise(config, now, row(**{REFERENCE: 'SSC-22-00020507:T'}))
+    assert ssc.primary_source_url.endswith('/ssc-22-00020507t')
+    assert ssc.external_ids == ['canadabuys:tender:SSC-22-00020507:T']
     changed = normalise(config, now, row(**{'title-titre-eng': 'Revised platform', CLOSING: '2026-11-01T14:00:00'}))
     assert changed.id == signal.id
     assert changed.procedure_id == signal.procedure_id
@@ -97,6 +100,15 @@ def test_award_is_historical_and_retains_amount_currency_supplier_and_distinct_i
     assert signal.winners[0]['name'] == 'Example Ltd' and signal.deadline_at is None
     assert signal.id != normalise(config, now).id
     assert signal.procedure_id == normalise(config, now).procedure_id
+    french = {**value, 'awardDescription-descriptionAttribution-eng': '',
+              'awardDescription-descriptionAttribution-fra': 'Mise en œuvre de la plateforme',
+              'noticeURL-URLavis-eng': 'https://example.gov/award',
+              'attachment-piecesJointes-eng': 'https://example.gov/specification.pdf'}
+    translated = normalise_canada_buys(RawRecord(french, source(config), now.isoformat(), 'canada_buys'))
+    assert translated.source_language == 'fr' and translated.winners[0]['name'] == 'Example Ltd'
+    assert {document.url for document in translated.documents} == {'https://example.gov/award', 'https://example.gov/specification.pdf'}
+    legacy = normalise_canada_buys(RawRecord({**value, REFERENCE: '23240-220799/001/IM'}, source(config), now.isoformat(), 'canada_buys'))
+    assert legacy.primary_source_url.endswith('/award-notice/23240-220799/001/im')
 
 
 def test_csv_reads_multiline_quotes_and_latest_amendment_without_keyword_gate():
