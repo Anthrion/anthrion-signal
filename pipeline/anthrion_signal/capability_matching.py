@@ -60,6 +60,11 @@ PHYSICAL_SYSTEMS = ("pipework", "ventilation", "air handling", "compressed air",
                     "gate actuators", "drive actuator", "sally port", "magnetic locks")
 DIGITAL_SYSTEMS = ("software", "application", "database", "crm", "salesforce", "api", "middleware",
                    "information system", "information systems", "data platform", "customer portal", "ai agent")
+COMMUNICATIONS_SOFTWARE = (
+    "call queue management system", "call queue management solution", "call queue management solutions",
+    "media monitoring software", "social media management software", "social media listening software",
+    "press office management system",
+)
 
 
 def physical_integration(text, phrase, title_context=""):
@@ -75,7 +80,13 @@ def operational_software_use(text, phrase):
     itself, or a separate implementation sentence, remains positive evidence.
     """
     hits = list(re.finditer(r"(?<!\w)" + re.escape(phrase) + r"(?!\w)", text))
-    if phrase in {"reporting system", "ordering system", "order management", "tracking system"} and hits and all(
+    if phrase in {"graphrag", "graph rag"} and hits and all(
+            re.search(r"\b(?:servers?|hardware|computers?|laptops?|gpus?)\s+"
+                      r"(?:for|to run|capable of running)\s+(?:\w+\s+){0,4}$",
+                      text[max(0, hit.start() - 120):hit.start()]) for hit in hits):
+        return True
+    own_tools = {"reporting system", "ordering system", "order management", "tracking system", *COMMUNICATIONS_SOFTWARE}
+    if phrase in own_tools and hits and all(
             re.search(r"\b(?:supplier|contractor|offeror|bidder)\s+(?:must|shall)\s+have\s+(?:an?|its own)\s+$",
                       text[max(0, hit.start() - 100):hit.start()]) for hit in hits):
         return True

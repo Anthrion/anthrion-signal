@@ -7,7 +7,7 @@ or sparse scope remains a candidate. Original and exact-hash English use the sam
 """
 import re
 
-from .capability_matching import (GENERIC_INTEGRATION, affirmed, ai_software_delivery, business_application_development, operational_software_use,
+from .capability_matching import (COMMUNICATIONS_SOFTWARE, GENERIC_INTEGRATION, affirmed, ai_software_delivery, business_application_development, operational_software_use,
                                   physical_integration, procedural_system)
 from .vocabulary import phrase_hits
 
@@ -32,7 +32,7 @@ BUSINESS_OBJECTS = (
     "it platform", "saas based platform", "software platform", "digital platform",
     "technology support services", "it support services", "computer systems", "reporting system",
     "data space", "data spaces", "software components",
-) + DIGITAL_SERVICE_OBJECTS
+) + DIGITAL_SERVICE_OBJECTS + COMMUNICATIONS_SOFTWARE
 DELIVERY = re.compile(r"\b(?:develop\w*|deploy\w*|moderni[sz]\w*|consolidat\w*|implement\w*|build\w*|creat\w*|design\w*|deliver\w*|provi\w*|"
                       r"procur\w*|purchas\w*|suppl\w*|configur\w*|integrat\w*|migrat\w*|replac\w*|"
                       r"maintain\w*|maintenance|support|evolution|requires?|seeking|commission\w*|"
@@ -244,6 +244,9 @@ RULES = (
      r"building consultancy services|construction consultant)\b",
      r"\b(?:reservoir|construction|civil engineering|building surveying|riba|highways|land acquisition)\b",
      (), "Engineering or surveying advice for physical infrastructure"),
+    ("cleaning_contract_oversight", r"\b(?:amo|assistance a (?:la )?maitrise d ouvrage)\b.{0,140}"
+     r"\b(?:suivi|controle) des prestations de nettoyage\b",
+     r"\bmarche de nettoyage\b", (), "Oversight of physical cleaning contracts"),
     ("legal_insurance", r"\b(?:legal advisory|legal advice|legal counsel|employment law|liability insurance|"
      r"insurance broker|insurance brokerage|legal services|asesoramiento juridico|seguro de responsabilidad)\b",
      r"\b(?:legal|law|insurance|claims|juridico|letrado|seguro|liability)\b",
@@ -435,6 +438,13 @@ def scope_exclusion(segments, cpv_codes):
                 continue
             if key not in ("licence_resale", "hardware", "equipment_maintenance") and phrase_hits(title["text"], ("software", "platform", "application", "crm")):
                 continue
+            # This narrow oversight rule must not remove a sparse software lot
+            # merely because its contract also discusses physical cleaning.
+            if key == "cleaning_contract_oversight" and (
+                    any(str(code).startswith(("48", "72")) for code in cpv_codes)
+                    or phrase_hits(scope_text, ("software", "logiciel", "logiciels", "logicielle", "saas",
+                                               "crm", "application informatique", "plateforme numerique"))):
+                continue
             # Maintenance/support of a licence is not implementation. Conversely,
             # a genuine new deployment/migration keeps a mixed licence procurement.
             if key == "licence_resale" and any(affirmed(s["text"], match.group()) for s in segments
@@ -493,7 +503,7 @@ def generic_digital_scope(segments):
                "reporting system", "registration system", "ticketing system", "archive system",
                "contract management system", "invoicing system", "billing system",
                "rostering system", "referral tool",
-               "self service portal", "customer portal", "citizen portal", "tenant portal")
+               "self service portal", "customer portal", "citizen portal", "tenant portal") + COMMUNICATIONS_SOFTWARE
     matches = [p for s in segments for p in phrase_hits(s["text"], phrases)
                              if affirmed(s["text"], p) and not physical_payment_equipment(s["text"], p)
                              and business_system_scope(s["text"], p, scope_text)
