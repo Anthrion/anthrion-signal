@@ -1,15 +1,15 @@
 {
   "version": 1,
-  "generation": 19,
+  "generation": 20,
   "data_code": "b4fc4d702ef40e93ef509a7984cb1c9b69168726983e73f2401445877a5add7f",
-  "sha256": "09d2a3a6383a7fa7444031a17ea3ff0cc4bf9ad8a66948cec3ca6fe55ffa6fcd",
-  "key": "signal-public-v1-09d2a3a6383a7fa7444031a17ea3ff0cc4bf9ad8a66948cec3ca6fe55ffa6fcd-35654112983-1",
-  "inputs": "1b774d70e5035a1febb4438a1617dd517b5523317eb4d5b207493d410a65910d",
-  "validated_at": "2026-09-21T21:22:35.246983+00:00",
+  "sha256": "327916037d623a58cf2e97e8aa86b4bcc8e4d3a68afb85707205b1f294e25d5f",
+  "key": "signal-public-v1-327916037d623a58cf2e97e8aa86b4bcc8e4d3a68afb85707205b1f294e25d5f-35656083610-1",
+  "inputs": "d5fe1f1650a8eaf13e229b74e4fcf7ba583efb854cbe7940badcbabdcb7a705f",
+  "validated_at": "2026-09-21T21:50:01.190069+00:00",
   "signature": {
     "code": "108528d287599c6f4a6779264903986c7095655ef26c38b02f5af7e1ab91e5e1",
-    "content": "27704c8c9ffc00b457706725d380d05d9acdbe0c8c148338e29bee703ad80820",
-    "translations": "b8a28e7ae3c10e4cdafafa1a9b2a6972e6da0ee8477b45392ff3f4e218b5bf1e",
+    "content": "554146fec357ce57a47c9ee83b9333d21de9e5b12da0301ef19e8501a0b84041",
+    "translations": "a81e50955b64b55afec484327138d64af12fdd3174777f0005cdb7c70aee2862",
     "health": [
       [
         "find_tender",
@@ -21,7 +21,7 @@
       ],
       [
         "scotland",
-        "failed"
+        "healthy"
       ],
       [
         "wales",
@@ -49,7 +49,7 @@
       ],
       [
         "germany",
-        "healthy"
+        "partial"
       ],
       [
         "spain",
@@ -65,7 +65,7 @@
       ],
       [
         "grants",
-        "healthy"
+        "partial"
       ],
       [
         "etenders_ni",
@@ -230,6 +230,66 @@
       [
         "canada_buys",
         "partial"
+      ],
+      [
+        "seao_qc",
+        "disabled"
+      ],
+      [
+        "sasktenders",
+        "disabled"
+      ],
+      [
+        "ns_tenders",
+        "disabled"
+      ],
+      [
+        "bcbid",
+        "disabled"
+      ],
+      [
+        "alberta_apc",
+        "disabled"
+      ],
+      [
+        "ontario_tenders",
+        "disabled"
+      ],
+      [
+        "merx",
+        "disabled"
+      ],
+      [
+        "bids_and_tenders",
+        "disabled"
+      ],
+      [
+        "bzp_pl",
+        "disabled"
+      ],
+      [
+        "kommers_annons",
+        "disabled"
+      ],
+      [
+        "mercell_se",
+        "disabled"
+      ],
+      [
+        "e_avrop",
+        "disabled"
+      ],
+      [
+        "texas_esbd",
+        "disabled"
+      ],
+      [
+        "virginia_eva",
+        "disabled"
+      ],
+      [
+        "comprasmx",
+        "disabled"
       ]
     ],
     "day": "2026-09-21"
