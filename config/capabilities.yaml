@@ -164,7 +164,7 @@ capabilities:
   - id: genai
     label: Generative AI & language models
     family: AI & automation
-    needs: [generative AI, GenAI, LLM, large language model, foundation model, LLM implementation, retrieval augmented generation, AI summarisation, AI summarization, AI transcription, natural language interface, conversational interface, generate responses]
+    needs: [generative AI, GenAI, LLM, large language model, foundation model, LLM implementation, retrieval augmented generation, GraphRAG, Graph RAG, AI summarisation, AI summarization, AI transcription, natural language interface, conversational interface, generate responses]
     contextual: [RAG]
     products: [OpenAI, Claude, Gemini, customer-approved models]
     patterns: [Grounded generation, summarisation and retrieval with evaluation and access controls]

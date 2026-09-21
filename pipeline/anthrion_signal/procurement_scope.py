@@ -7,7 +7,7 @@ or sparse scope remains a candidate. Original and exact-hash English use the sam
 """
 import re
 
-from .capability_matching import (GENERIC_INTEGRATION, affirmed, ai_software_delivery, business_application_development, operational_software_use,
+from .capability_matching import (COMMUNICATIONS_SOFTWARE, GENERIC_INTEGRATION, affirmed, ai_software_delivery, business_application_development, operational_software_use,
                                   physical_integration, procedural_system)
 from .vocabulary import phrase_hits
 
@@ -32,7 +32,7 @@ BUSINESS_OBJECTS = (
     "it platform", "saas based platform", "software platform", "digital platform",
     "technology support services", "it support services", "computer systems", "reporting system",
     "data space", "data spaces", "software components",
-) + DIGITAL_SERVICE_OBJECTS
+) + DIGITAL_SERVICE_OBJECTS + COMMUNICATIONS_SOFTWARE
 DELIVERY = re.compile(r"\b(?:develop\w*|deploy\w*|moderni[sz]\w*|consolidat\w*|implement\w*|build\w*|creat\w*|design\w*|deliver\w*|provi\w*|"
                       r"procur\w*|purchas\w*|suppl\w*|configur\w*|integrat\w*|migrat\w*|replac\w*|"
                       r"maintain\w*|maintenance|support|evolution|requires?|seeking|commission\w*|"
@@ -493,7 +493,7 @@ def generic_digital_scope(segments):
                "reporting system", "registration system", "ticketing system", "archive system",
                "contract management system", "invoicing system", "billing system",
                "rostering system", "referral tool",
-               "self service portal", "customer portal", "citizen portal", "tenant portal")
+               "self service portal", "customer portal", "citizen portal", "tenant portal") + COMMUNICATIONS_SOFTWARE
     matches = [p for s in segments for p in phrase_hits(s["text"], phrases)
                              if affirmed(s["text"], p) and not physical_payment_equipment(s["text"], p)
                              and business_system_scope(s["text"], p, scope_text)
