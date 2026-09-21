@@ -42,6 +42,7 @@ export function useRelatedMatches(
   enabled: boolean,
 ) {
   const worker = useRef<Worker | null>(null)
+  const requestedTime = useRef(now)
   const [attempt, setAttempt] = useState(0)
   const [result, setResult] = useState<Result>({
     signals: [],
@@ -86,13 +87,28 @@ export function useRelatedMatches(
       // Preserve complete matching text, but avoid copying document/history trees
       // into a worker. Results carry identities back to the full source records.
       instance.postMessage({
-        records: records.map((signal) =>
-          Object.fromEntries(fields.map((field) => [field, signal[field]])),
+        records: records.map((signal) => {
+          const projected: Record<string, unknown> = {}
+          for (const field of fields) projected[field] = signal[field]
+          projected.analysis = signal.analysis && {
+            eligibility_checks: signal.analysis.eligibility_checks?.map(({ status }) => ({
+              status,
+            })),
+          }
+          return projected
+        }),
+        translations: Object.fromEntries(
+          records.flatMap((signal) => {
+            const english = translations?.[signal.id]
+            return english
+              ? [[signal.id, { title: english.title, description: english.description }]]
+              : []
+          }),
         ),
-        translations,
         selectedId,
         now,
       })
+      requestedTime.current = now
     } catch {
       failed()
     }
@@ -103,7 +119,10 @@ export function useRelatedMatches(
     }
   }, [records, byId, translations, selectedId, enabled, attempt])
   useEffect(() => {
-    worker.current?.postMessage({ now })
+    if (worker.current && requestedTime.current !== now) {
+      worker.current.postMessage({ now })
+      requestedTime.current = now
+    }
   }, [now])
   return { ...result, retry: () => setAttempt((value) => value + 1) }
 }

@@ -24,6 +24,7 @@ import {
   displayBuyer,
   gmailDraftURL,
   googleCalendarURL,
+  searchText,
 } from './lib'
 const now = Date.parse('2026-09-09T12:00:00Z')
 const signal = {
@@ -58,6 +59,33 @@ const signal = {
   first_seen_at: '2026-09-08T14:00:00Z',
   last_material_update: '2026-09-08T14:00:00Z',
 } as unknown as Signal
+test('fast text normalization preserves Unicode, punctuation, combining marks and short-token boundaries', () => {
+  const original = (value: string) =>
+    value
+      .normalize('NFKD')
+      .replace(/\p{M}/gu, '')
+      .toLocaleLowerCase()
+      .replace(/[^\p{L}\p{N}]+/gu, ' ')
+      .trim()
+  for (const value of [
+    'Salesforce – CRM “portal”',
+    'Portail citoyen Équipe',
+    'Å ø Ł ß İ I ı',
+    'Σ ΟΣ ΟΣΑ',
+    'Управление данными',
+    'نظام إدارة العلاقات',
+    '中文合同 日本語',
+    '한글 가',
+    'ＡＩ ① ﬁ 𝒮alesforce',
+    'a\u0301\u0345 I\u0307\u0323',
+    'a\uD800z\uDC00 𐐀 𞤀 𝟙 😊',
+    'A + . — _ / B',
+    '',
+  ])
+    expect(searchText(value)).toBe(original(value))
+  expect(matchesSearch({ ...signal, title: 'a b', description: '' }, 'a-b')).toBe(false)
+  expect(matchesSearch({ ...signal, title: 'a b', description: '' }, '"a-b"')).toBe(true)
+})
 describe('explicit research search', () => {
   const catalog = [
     {

@@ -17,7 +17,8 @@ self.onmessage = (
     selected = records.find((record) => record.id === selectedId)
   }
   if (!find || !selected) return
-  const matches = (kind: 'signals' | 'awards') =>
-    find!(selected!, kind, now).map(({ signal, ...match }) => ({ id: signal.id, ...match }))
-  self.postMessage({ signals: matches('signals'), awards: matches('awards') })
+  const result = find.both(selected, now)
+  const identities = (kind: 'signals' | 'awards') =>
+    result[kind].map(({ signal, ...match }) => ({ id: signal.id, ...match }))
+  self.postMessage({ signals: identities('signals'), awards: identities('awards') })
 }

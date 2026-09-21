@@ -763,6 +763,52 @@ test('@pr related live and awarded titles open full details and awarded context 
   ).toEqual([])
 })
 
+test('@pr reopening All context reuses verified awards after shard eviction and revalidates changed manifests', async ({
+  page,
+}, info) => {
+  const { manifest } = await fixture(page)
+  const awardHistory: NonNullable<Dataset['award_history']> = { ...manifest.award_history }
+  for (const market of 'AT BE BG CA CH CY CZ DE DK EE ES FI FR GR HR HU IE IT LT LU LV MT NL NO PL PT RO SE SI SK US'.split(
+    ' ',
+  ))
+    awardHistory[market] = { url: `awards/${market}-${hash}.json`, count: 0 }
+  Object.assign(manifest, { award_history: awardHistory })
+  await page.route('**/data/awards/*', (route) =>
+    route.request().url().includes('/GB-')
+      ? route.fallback()
+      : route.fulfill({ json: { schema_version: '1.0', signals: [] } }),
+  )
+  let downloads = 0
+  page.on('request', (request) => {
+    if (request.url().includes('/data/awards/')) downloads++
+  })
+  await page.goto('./?market=&view=all')
+  const open = async () => {
+    if (info.project.name === 'mobile') await page.locator('.row-select').first().click()
+    await page
+      .locator('.console-detail:visible')
+      .getByRole('button', { name: title, exact: true })
+      .click()
+  }
+  const context = page.getByRole('dialog', { name: 'Opportunity research' })
+  await open()
+  await expect(context.locator('.research-awards .surface-heading')).toContainText('2 matches')
+  const initialDownloads = downloads
+  expect(initialDownloads).toBeGreaterThan(12)
+  await context.getByRole('button', { name: 'Back to results', exact: true }).click()
+  await open()
+  await expect(context.locator('.research-awards .surface-heading')).toContainText('2 matches')
+  expect(downloads).toBe(initialDownloads)
+  await context.getByRole('button', { name: 'Back to results', exact: true }).click()
+  awardHistory.GB = { ...awardHistory.GB, count: 3 }
+  await page.getByRole('button', { name: 'Check for updates', exact: true }).click()
+  await expect(page.getByRole('button', { name: 'Check for updates', exact: true })).toBeEnabled()
+  await open()
+  await expect(context.locator('.research-awards')).toContainText(
+    'Awarded records are temporarily unavailable',
+  )
+})
+
 test('last view remembers search and matching while shared URLs and UK startup stay predictable', async ({
   page,
 }) => {

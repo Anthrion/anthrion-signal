@@ -91,6 +91,43 @@ test('cached translations connect original-language records and exact procedure 
   expect(find(base, 'signals', now)[0].relationship).toBe('same_procedure')
 })
 
+test('combined related results preserve ordering, scores, duplicate precedence and time-sensitive eligibility', () => {
+  const live = record('live', { deadline_at: '2026-09-22T12:00:00Z' })
+  const award = record('award', {
+    signal_type: 'AWARD',
+    status: 'awarded',
+    award_statuses: ['active'],
+  })
+  const duplicate = {
+    ...live,
+    title: 'Unrelated duplicate',
+    description: '',
+    matched_capabilities: [],
+  }
+  const blocked = record('blocked', {
+    analysis: {
+      ...base.analysis!,
+      eligibility_checks: [{ status: 'CONFIRMED_BLOCKER' }],
+    } as Signal['analysis'],
+  })
+  const find = createRelatedIndex([base, live, duplicate, award, blocked])
+  expect(find.both(base, now)).toEqual({
+    signals: find(base, 'signals', now),
+    awards: find(base, 'awards', now),
+  })
+  expect(find.both(base, now).signals.map((m) => m.signal)).toEqual([live])
+  expect(find.both(base, Date.parse('2026-09-23')).signals).toEqual([])
+  const outside = record('outside', {
+    title: 'Grant assessment xyznewterm',
+    description: 'Citizen casework and xyznewterm.',
+  })
+  expect(find.both(outside, now)).toEqual({
+    signals: find(outside, 'signals', now),
+    awards: find(outside, 'awards', now),
+  })
+  expect(find(base, 'signals', now)[0].signal).toBe(live)
+})
+
 test('related filters use inclusive award/deadline dates, require known values and keep currencies separate', () => {
   const award = record('a', {
     award_date: '2026-09-21',

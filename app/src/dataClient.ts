@@ -288,13 +288,11 @@ export function selectMarketEntries<T>(entries: [string, T][], market: string): 
 }
 export function mergeSignalPages(pages: SignalPage[]) {
   const signals = new Map<string, Signal>()
-  const versions = new Map<string, string>()
   for (const signal of pages.flatMap((page) => page.signals)) {
-    const version = JSON.stringify(signal)
-    if (versions.has(signal.id) && versions.get(signal.id) !== version)
+    const previous = signals.get(signal.id)
+    if (previous && previous !== signal && JSON.stringify(previous) !== JSON.stringify(signal))
       throw new Error('The market indexes contain incompatible record versions.')
     signals.set(signal.id, signal)
-    versions.set(signal.id, version)
   }
   return {
     signals: [...signals.values()],
