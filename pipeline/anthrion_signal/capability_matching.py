@@ -80,6 +80,11 @@ def operational_software_use(text, phrase):
     itself, or a separate implementation sentence, remains positive evidence.
     """
     hits = list(re.finditer(r"(?<!\w)" + re.escape(phrase) + r"(?!\w)", text))
+    if phrase in {"graphrag", "graph rag"} and hits and all(
+            re.search(r"\b(?:servers?|hardware|computers?|laptops?|gpus?)\s+"
+                      r"(?:for|to run|capable of running)\s+(?:\w+\s+){0,4}$",
+                      text[max(0, hit.start() - 120):hit.start()]) for hit in hits):
+        return True
     own_tools = {"reporting system", "ordering system", "order management", "tracking system", *COMMUNICATIONS_SOFTWARE}
     if phrase in own_tools and hits and all(
             re.search(r"\b(?:supplier|contractor|offeror|bidder)\s+(?:must|shall)\s+have\s+(?:an?|its own)\s+$",

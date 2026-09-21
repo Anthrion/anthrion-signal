@@ -15,6 +15,9 @@ from anthrion_signal.discovery import prefilter
     ("PR agency services", "Provide PR staff using the supplier's media monitoring software.", False),
     ("Telephone answering service", "The contractor must have its own call queue management system.", False),
     ("Print services", "Media monitoring software and GraphRAG are not required.", False),
+    ("GPU server for GraphRAG", "Supply a GPU server. No software development is required.", False),
+    ("GPU server and GraphRAG application",
+     "Lot 1: Supply server hardware. Lot 2: Develop a GraphRAG application for knowledge retrieval.", True),
     ("Servers and customer communications",
      "Lot 1: Supply server hardware. Lot 2: Implement a call queue management system.", True),
 ])
