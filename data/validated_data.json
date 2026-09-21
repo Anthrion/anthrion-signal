@@ -1,15 +1,15 @@
 {
   "version": 1,
-  "generation": 13,
-  "data_code": "bb457899a79c5f257c805d4aa119359ece87638dd618b80cc8e7023b72667342",
-  "sha256": "4144b2ef45d38c95df2b330ba0080219b405523ff12406a896c406156f6a5e2c",
-  "key": "signal-public-v1-4144b2ef45d38c95df2b330ba0080219b405523ff12406a896c406156f6a5e2c-35592517346-1",
-  "inputs": "f4342c1eaa1cc5b2d3db7e2d016aa0a1b572241f2038348e3e843d5a900ff4a5",
-  "validated_at": "2026-09-21T11:29:35.031988+00:00",
+  "generation": 14,
+  "data_code": "c2fc4b2fc6902d282fc53802a4b373c5b35323ec805ccbe455f6998fa842c58b",
+  "sha256": "8a6e07b17ca5eeb638605b5b4ecf97d7e0650d2815a7458570d36e154b9f1d1f",
+  "key": "signal-public-v1-8a6e07b17ca5eeb638605b5b4ecf97d7e0650d2815a7458570d36e154b9f1d1f-35599835645-1",
+  "inputs": "4bc0c02181aee115062cc4f4808a957fb4264eb4763b9cd1c761abe370db44e8",
+  "validated_at": "2026-09-21T13:19:04.678996+00:00",
   "signature": {
-    "code": "a500c4eff424307aa6903853c9bc63298e4721c6c5d9ff0330ec6ebd8a0e1e08",
-    "content": "fa713f3df0a166f4c6ec351704ac4d17ff0532d0b69fe2429a50fca90a07d44e",
-    "translations": "2bfd279b5cc45323d49a2e80eb0132b2b1d762b6fe33d5b5868b5bf88e3457c2",
+    "code": "449053726e93ae405382d7bc953530bf4734ac81d71d6978ea0c40bbcce63c29",
+    "content": "ed4afe93871b3bed1a5f2c2396bc583b41b1996ec2a56e9e22ac1ba63235dafb",
+    "translations": "3fcc2c2789271ea278b503cae79815c6050ed1d9017059d67d3801989140a7b7",
     "health": [
       [
         "find_tender",
@@ -226,6 +226,10 @@
       [
         "dados_gov_pt",
         "disabled"
+      ],
+      [
+        "canada_buys",
+        "partial"
       ]
     ],
     "day": "2026-09-21"
