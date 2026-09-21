@@ -252,12 +252,12 @@ function RelatedAwardCard({
 }
 
 export function CapabilityTags({ signal, data }: { signal: Signal; data: Dataset }) {
+  if (!signal.matched_capabilities.length) return null
   return (
     <div className="capability-tags" aria-label="Capabilities">
       {signal.matched_capabilities.map((id) => (
         <span key={id}>{data.capabilities.find((c) => c.id === id)?.label || id}</span>
       ))}
-      {!signal.matched_capabilities.length && <span className="muted">Not specified</span>}
     </div>
   )
 }
@@ -902,7 +902,7 @@ function RelatedColumn({
           ? match.capabilityIds
               .map((id) => data.capabilities.find((c) => c.id === id)?.label || id)
               .join(' · ')
-          : match.terms.join(' · ')
+          : 'Similar scope'
   return (
     <ResearchSurface className={kind === 'awards' ? 'research-awards' : 'research-signals'}>
       <div className="surface-heading">

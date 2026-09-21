@@ -10,6 +10,20 @@ const stop = new Set(
     /\s+/,
   ),
 )
+for (const word of `application applications standard maintenance consultant consultants estimated quantity
+  digital digitale digitaal government council municipality municipal ministry department organisation organization
+  gemeente gemeenten gemeentelijke overheid gemeinde stadt verwaltung behörde kommune kommun kommunal
+  opdracht opdrachten opdrachtgever opdrachtnemer overeenkomst overeenkomsten aanbesteding aanbestedingen
+  levering leveringen leveren dienst diensten dienstverlening onderhoud standaard algemene betreft tevens
+  medewerker medewerkers projectleider aanpak aantal geraamd geraamde omvang waarde exclusief bestaat
+  aanvang gedurende jaarlijks inclusief onderstaande nadere bedoeld beschreven eisen voorwaarden
+  auftrag aufträge auftraggeber auftragnehmer ausschreibung vergabe angebot angebote leistung leistungen
+  lieferung bereitstellung rahmenvereinbarung gegenstand anforderungen leistungsbeschreibung vertrag verträge
+  marché marchés prestation prestations fourniture fournitures titulaire acheteur contrat contrats
+  notamment montant estimé estimée objet cadre durée conditions exigences
+  appalto appalti fornitura forniture servizio servizi contratto contratti offerta offerte importo durata
+  applicatie applicaties anwendung anwendungen applicazione applicazioni`.split(/\s+/))
+  stop.add(searchText(word))
 const tokens = (value: string) =>
   searchText(value)
     .match(/[\p{L}][\p{L}\p{N}]{2,}/gu)
@@ -115,7 +129,9 @@ export function createRelatedIndex(
       const similarity = similarities.get(id)
       const textScore = (similarity?.dot || 0) / (norm * (norms.get(id) || 1) || 1)
       const shared = similarity?.terms || []
-      const meaningful = shared.length >= 2 && textScore >= 0.035
+      const titleConnection = shared.some((term) => query.title.has(term) || doc.title.has(term))
+      const meaningful =
+        shared.length >= 2 && textScore >= 0.035 && (titleConnection || textScore >= 0.12)
       const procedure = !!record.procedure_id && record.procedure_id === signal.procedure_id
       const buyer = samePublishedBuyer(record, signal)
       if (!procedure && !buyer && !(sameCountry && capabilityIds.length) && !meaningful) continue

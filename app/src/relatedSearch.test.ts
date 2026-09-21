@@ -52,6 +52,23 @@ test('related search finds substantive text without capability tags, excludes bo
   expect(find(base, 'awards', now).map((m) => m.signal.id)).toEqual(['award'])
   expect(find(award, 'signals', now).map((m) => m.signal.id)).toContain('live')
   expect(find(base, 'signals', now)[0].relationship).toBe('similar_text')
+  const boilerplate =
+    'De gemeente zoekt medewerkers en een projectleider voor een standaard digitale overeenkomst. De geraamde omvang betreft onderhoud en dienstverlening.'
+  const tax = record('tax', {
+    title: 'Belastingapplicatie',
+    description: `${boilerplate} Belastingapplicatie voor WOZ bezwaar en aanslagen.`,
+  })
+  const propertyTax = record('woz', {
+    title: 'WOZ applicatie',
+    description: `${boilerplate} WOZ bezwaar en belastingaanslagen.`,
+  })
+  const unrelated = record('drupal', {
+    title: 'Drupalspecialist',
+    description: `${boilerplate} Bouw een website met Drupal.`,
+  })
+  expect(
+    createRelatedIndex([tax, propertyTax, unrelated])(tax, 'signals', now).map((m) => m.signal.id),
+  ).toEqual(['woz'])
 })
 
 test('cached translations connect original-language records and exact procedure links rank first', () => {
