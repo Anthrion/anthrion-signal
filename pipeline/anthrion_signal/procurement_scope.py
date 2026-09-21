@@ -244,6 +244,9 @@ RULES = (
      r"building consultancy services|construction consultant)\b",
      r"\b(?:reservoir|construction|civil engineering|building surveying|riba|highways|land acquisition)\b",
      (), "Engineering or surveying advice for physical infrastructure"),
+    ("cleaning_contract_oversight", r"\b(?:amo|assistance a (?:la )?maitrise d ouvrage)\b.{0,140}"
+     r"\b(?:suivi|controle) des prestations de nettoyage\b",
+     r"\bmarche de nettoyage\b", (), "Oversight of physical cleaning contracts"),
     ("legal_insurance", r"\b(?:legal advisory|legal advice|legal counsel|employment law|liability insurance|"
      r"insurance broker|insurance brokerage|legal services|asesoramiento juridico|seguro de responsabilidad)\b",
      r"\b(?:legal|law|insurance|claims|juridico|letrado|seguro|liability)\b",
@@ -434,6 +437,13 @@ def scope_exclusion(segments, cpv_codes):
             if not title_pattern.search(title["text"]):
                 continue
             if key not in ("licence_resale", "hardware", "equipment_maintenance") and phrase_hits(title["text"], ("software", "platform", "application", "crm")):
+                continue
+            # This narrow oversight rule must not remove a sparse software lot
+            # merely because its contract also discusses physical cleaning.
+            if key == "cleaning_contract_oversight" and (
+                    any(str(code).startswith(("48", "72")) for code in cpv_codes)
+                    or phrase_hits(scope_text, ("software", "logiciel", "logiciels", "logicielle", "saas",
+                                               "crm", "application informatique", "plateforme numerique"))):
                 continue
             # Maintenance/support of a licence is not implementation. Conversely,
             # a genuine new deployment/migration keeps a mixed licence procurement.

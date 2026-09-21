@@ -1,6 +1,6 @@
 # Relevance follow-up — 21 September 2026
 
-This follow-up recognises two specific kinds of software opportunity that were retained but did not reach the candidate threshold. It is separate from the Context/Canada release. It changes neither source data nor publication timing, and introduces no broader exclusions.
+This follow-up recognises two specific kinds of software opportunity that were retained but did not reach the candidate threshold, and suppresses an evidenced physical-cleaning oversight notice. It is separate from the Context/Canada release. It changes neither source data nor publication timing.
 
 ## Confirmed gaps
 
@@ -15,13 +15,20 @@ The [Senedd media-monitoring procurement](https://www.find-tender.service.gov.uk
 
 [Microsoft's GraphRAG documentation](https://microsoft.github.io/graphrag/) supports the technical alias. Procurement scope, dates and buying stage come from the official source records, not from this technical documentation. None of these matches confirms Anthrion's bidder eligibility.
 
+## Confirmed noise case
+
+[Crous de Nice Toulon's cleaning-contract oversight notice](https://ted.europa.eu/en/notice/-/detail/566653-2026), `sig_6c82bc947b012fa5be86`, was admitted through a broad consultancy classification. Its retained official description commissions supervision of physical cleaning and preparation of the next cleaning procurement, with no digital delivery. A narrow rule now requires both the specific French oversight title and corroborating cleaning-contract scope. It preserves the original record underneath.
+
+Explicit digital delivery, a software/IT classification, or even a sparse stated software component prevents this new exclusion. This is deliberately conservative: a cleaning, catering or care-service domain does not itself make a software purchase irrelevant. Six current UK notices with those domain words were checked and retained because their scope includes operational systems, ordering or scheduling. Two Italian qualification notices also retain their separately listed software and ICT categories.
+
 ## Replay and validation
 
 - Inspected canonical records, monthly archives and retained rejections across the available markets. An initial scan covered 208,847 stored versions and reclassified 468 scope-like candidates. This was a discovery aid, not a manually labelled census.
 - Resolved source versions to 149,459 unique retained IDs, including the separately collected Canadian snapshot. Scanned original text and valid cached English text for every newly introduced phrase.
 - Replayed all 11 affected records with both the merged baseline and this change, using the same 21 September 2026, 12:00 UTC availability cutoff. Admissions increased from 7 to 11: the three US postings of one call, and the Canadian RFI. No previously admitted affected record was lost; original text, IDs, source links and lifecycle results were identical. Unaffected records were not all manually reviewed.
+- A separate scan of the 146,558 retained IDs in the baseline found six French cleaning-related titles. Replaying all six changed only the confirmed Crous oversight notice; the other five already had physical-service exclusions. No source facts or lifecycle results changed. The new rule does not impose a general cleaning-industry exclusion.
 - The existing benchmark passed all 397 reviewed cases: 155 true positives, 242 true negatives, no false positives or false negatives. Six uncertain/unlabelled cases remain outside those metrics. These results do not establish perfect recall across every market.
-- All 1,619 Python tests passed. Seven focused cases cover the new needs, negation, suppliers using their own tools, and a separately commissioned software lot alongside hardware. Ruff and whitespace checks passed. The local pytest cache warning concerned a Windows cache-directory permission; it did not affect test execution.
+- The vocabulary revision passed all 1,619 Python tests locally and its full PR check. The final revision passed 10 focused recall/noise cases locally, including negation, suppliers using their own tools, mixed software/equipment lots and both detailed and sparse software scope in cleaning-related contracts. Ruff and whitespace checks passed. The complete Python suite also runs on the final PR revision. The earlier local pytest cache warning concerned a Windows cache-directory permission; it did not affect test execution.
 
 The existing discovery signature includes both policy contents and classifier source. After this change is merged, the next collection invalidates the classification cache and replays retained rejections before reconciling the latest source updates. A newly recognised notice therefore does not need to be newly published or rediscovered by a source query. Normal availability and terminal-status checks still apply. Original and English source evidence is preserved.
 

@@ -24,3 +24,18 @@ def test_specific_digital_terms_preserve_use_negation_and_mixed_lots(signal, con
     prefilter([signal], config["company_profile"], config["search_terms"], config["capabilities"])
     assert (signal.prefilter_score >= 12 and not signal.exclusion_reasons) is accepted
     assert (signal.id, signal.title, signal.description) == original
+
+
+@pytest.mark.parametrize("additional_scope,accepted", [
+    ("", False),
+    (" Lot 2: Developpement d'un logiciel pour le suivi des controles.", True),
+    (" La prestation comprend un logiciel de suivi des controles.", True),
+])
+def test_cleaning_contract_oversight_keeps_commissioned_or_sparse_software(signal, config, additional_scope, accepted):
+    signal.title = "AMO - Assistance a maitrise d'ouvrage pour le suivi des prestations de nettoyage des sites"
+    signal.description = "Suivi et controle du marche de nettoyage des locaux." + additional_scope
+    signal.cpv_codes = ["79311000", "90900000"]
+    original = (signal.id, signal.title, signal.description)
+    prefilter([signal], config["company_profile"], config["search_terms"], config["capabilities"])
+    assert (signal.prefilter_score >= 12 and not signal.exclusion_reasons) is accepted
+    assert (signal.id, signal.title, signal.description) == original
