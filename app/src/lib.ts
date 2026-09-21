@@ -362,11 +362,14 @@ export const isEarly = (s: Signal, now = Date.now()) =>
   !s.exclusion_reasons?.length && lifecycleState(s, now) === 'EARLY_ENGAGEMENT'
 
 export function searchText(value: string) {
-  return value
-    .normalize('NFKD')
-    .replace(/\p{M}/gu, '')
+  const folded = value
+    .replace(/[\u0080-\uffff]+/g, (part) => part.normalize('NFKD').replace(/\p{M}/gu, ''))
     .toLocaleLowerCase()
-    .replace(/[^\p{L}\p{N}]+/gu, ' ')
+  // Apply Unicode classification only to non-ASCII runs. One curly quote must
+  // not force the slower Unicode expression over an entire English notice.
+  return folded
+    .replace(/[\u0080-\uffff]+/g, (part) => part.replace(/[^\p{L}\p{N}]+/gu, ' '))
+    .replace(/[^a-z0-9\u0080-\uffff]+/g, ' ')
     .trim()
 }
 
@@ -382,64 +385,84 @@ export function explainSearch(
   english?: NonNullable<Dataset['translations']>[string],
   intent: SearchIntent = {},
 ) {
+  return prepareSearch(query, capabilities, intent)(s, english)
+}
+
+// Compile the query and its capability aliases once for the whole feed. Neither
+// language matching nor query parsing depends on the record being examined.
+export function prepareSearch(
+  query: string,
+  capabilities: Dataset['capabilities'] = [],
+  intent: SearchIntent = {},
+) {
   const q = searchText(query)
-  if (!q) return { matched: true, basis: 'text' as const, capabilities: [] as string[] }
-  const text = searchText(
-    [
-      s.title,
-      s.description,
-      english?.title,
-      english?.description,
-      s.buyer_name,
-      translatedBuyer(s, english),
-      s.search_text,
-      s.ocid,
-      ...(s.external_ids || []),
-    ]
-      .filter(Boolean)
-      .join(' '),
-  )
-  const matched = new Set([...(s.discovery_families || []), ...s.matched_capabilities])
-  const words = new Set(text.split(' '))
-  const literal = (term: string, phrase = false) =>
-    phrase || intent.mode === 'exact'
-      ? ` ${text} `.includes(` ${term} `)
-      : term.length <= 3
-        ? words.has(term)
-        : text.includes(term)
-  const aliases = (term: string) =>
-    intent.mode === 'exact'
-      ? []
-      : capabilities
-          .filter(
-            (c) =>
-              matched.has(c.id) &&
-              [c.id, c.label, ...(c.search_terms || [])].some(
-                (alias) => searchText(alias) === term,
-              ),
-          )
-          .map((c) => c.id)
   const terms =
     intent.match === 'phrase'
       ? [{ text: q, phrase: true }]
       : [...query.matchAll(/"([^"]+)"|(\S+)/gu)]
           .map((m) => ({ text: searchText(m[1] || m[2]), phrase: !!m[1] }))
           .filter((t) => t.text)
-  const results = terms.map((term) => ({
-    text: literal(term.text, term.phrase),
-    aliases: aliases(term.text),
-  }))
-  const direct = intent.match === 'any' ? results.some((r) => r.text) : results.every((r) => r.text)
-  if (direct) return { matched: true, basis: 'text' as const, capabilities: [] as string[] }
-  const wholeAliases = aliases(q)
-  const expanded =
-    intent.match === 'any'
-      ? results.some((r) => r.text || r.aliases.length)
-      : results.every((r) => r.text || r.aliases.length)
-  return {
-    matched: !!wholeAliases.length || expanded,
-    basis: 'capability' as const,
-    capabilities: [...new Set([...wholeAliases, ...results.flatMap((r) => r.aliases)])],
+  const aliases = new Map<string, string[]>()
+  if (q && intent.mode !== 'exact') {
+    const requested = new Set([q, ...terms.map((term) => term.text)])
+    for (const capability of capabilities) {
+      const names = new Set(
+        [capability.id, capability.label, ...(capability.search_terms || [])].map(searchText),
+      )
+      for (const name of names) {
+        if (!requested.has(name)) continue
+        const ids = aliases.get(name) || []
+        ids.push(capability.id)
+        aliases.set(name, ids)
+      }
+    }
+  }
+  return (s: Signal, english?: NonNullable<Dataset['translations']>[string]) => {
+    if (!q) return { matched: true, basis: 'text' as const, capabilities: [] as string[] }
+    const text = searchText(
+      [
+        s.title,
+        s.description,
+        english?.title,
+        english?.description,
+        s.buyer_name,
+        translatedBuyer(s, english),
+        s.search_text,
+        s.ocid,
+        ...(s.external_ids || []),
+      ]
+        .filter(Boolean)
+        .join(' '),
+    )
+    const boundaryText = ` ${text} `
+    const literal = (term: string, phrase = false) =>
+      phrase || intent.mode === 'exact'
+        ? boundaryText.includes(` ${term} `)
+        : term.length <= 3
+          ? !term.includes(' ') && boundaryText.includes(` ${term} `)
+          : text.includes(term)
+    const literalMatches = terms.map((term) => literal(term.text, term.phrase))
+    const direct =
+      intent.match === 'any' ? literalMatches.some(Boolean) : literalMatches.every(Boolean)
+    if (direct) return { matched: true, basis: 'text' as const, capabilities: [] as string[] }
+    const recordAliases = (term: string) =>
+      (aliases.get(term) || []).filter(
+        (id) => s.matched_capabilities.includes(id) || s.discovery_families?.includes(id),
+      )
+    const results = terms.map((term, index) => ({
+      text: literalMatches[index],
+      aliases: recordAliases(term.text),
+    }))
+    const wholeAliases = recordAliases(q)
+    const expanded =
+      intent.match === 'any'
+        ? results.some((r) => r.text || r.aliases.length)
+        : results.every((r) => r.text || r.aliases.length)
+    return {
+      matched: !!wholeAliases.length || expanded,
+      basis: 'capability' as const,
+      capabilities: [...new Set([...wholeAliases, ...results.flatMap((r) => r.aliases)])],
+    }
   }
 }
 
@@ -556,6 +579,7 @@ export function filterSignals(
   translations: Dataset['translations'] = {},
 ) {
   const currentViews = ['live', 'closing', 'early', 'pipeline', 'frameworks', 'funding']
+  const search = prepareSearch(f.q, capabilities, { mode: f.searchMode, match: f.match })
   const result = signals.filter((s) => {
     if (
       f.view === 'awards'
@@ -594,13 +618,7 @@ export function filterSignals(
         if (!isAddedToday(s, now)) return false
         break
     }
-    if (
-      !matchesSearch(s, f.q, capabilities, translations[s.id], {
-        mode: f.searchMode,
-        match: f.match,
-      })
-    )
-      return false
+    if (!search(s, translations[s.id]).matched) return false
     if (f.source && !s.provenance.some((p) => p.source === f.source)) return false
     if (f.type && s.signal_type !== f.type) return false
     if (f.capability && !s.matched_capabilities.includes(f.capability)) return false

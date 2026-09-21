@@ -15,19 +15,24 @@ export function useAwardHistory(data: Dataset | null, active: boolean, market: s
   const cache = useRef(new BoundedCache<SignalPage>(12, 40 * 1024 * 1024))
   const [attempt, setAttempt] = useState(0)
   const [result, setResult] = useState({ key: '', ...empty, error: '' })
-  const paths = useMemo(
-    () => (active ? awardMarketPaths(data, market) : []),
-    [active, data, market],
+  const paths = useMemo(() => awardMarketPaths(data, market), [data?.award_history, market])
+  const counts = useMemo(
+    () =>
+      Object.fromEntries(
+        Object.values(data?.award_history || {}).map((page) => [page.url, page.count]),
+      ),
+    [data?.award_history],
   )
-  const key = JSON.stringify([market, paths])
+  const key = JSON.stringify([market, paths.map((path) => [path, counts[path]])])
   useEffect(() => {
     if (!active || !data) return
+    // The merged result already owns these records even when the shard LRU has
+    // evicted some of them. Reopening Context need not download/parse them again.
+    // Content-addressed paths AND manifest counts invalidate this reuse.
+    if (result.key === key && !result.error) return
     const controller = new AbortController()
     const load = async () => {
       try {
-        const counts = Object.fromEntries(
-          Object.values(data.award_history || {}).map((page) => [page.url, page.count]),
-        )
         const pages = await loadPages(
           paths,
           'awards',
