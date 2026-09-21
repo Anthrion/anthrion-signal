@@ -34,7 +34,8 @@ def retained_history(root, canonical):
     return list(latest.values())
 
 
-def export_awards(root, canonical, config, now, record_manifest=None, context_signals=None):
+def prepare_awards(root, canonical, config, now):
+    """Select the same relevant, retained awards for publication and translation."""
     history = retained_history(root, canonical)
     backfill_retained_facts(history, read_json(root / "data/source_state.json", {}))
     candidates = [s for s in history if is_public_award(s.model_copy(update={"exclusion_reasons": []}), now)]
@@ -80,6 +81,11 @@ def export_awards(root, canonical, config, now, record_manifest=None, context_si
         atomic_bytes(path, gzip.compress(json.dumps(new_cache, ensure_ascii=False, sort_keys=True).encode(), mtime=0))
     threshold = config["capabilities"]["discovery"]["minimum_candidate_score"]
     awards = sorted((s for s in candidates if is_public_award(s, now) and s.prefilter_score >= threshold), key=lambda s: ranking_key(s, now))
+    return awards, history, translations
+
+
+def export_awards(root, canonical, config, now, record_manifest=None, context_signals=None):
+    awards, history, translations = prepare_awards(root, canonical, config, now)
     public_records = awards + (context_signals or [])
     for signal in history + public_records:
         enrich_signal(signal)

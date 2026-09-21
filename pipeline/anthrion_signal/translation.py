@@ -19,7 +19,7 @@ from zoneinfo import ZoneInfo
 import httpx
 from lingua import Language, LanguageDetectorBuilder
 
-from .utils import atomic_json, digest, read_json
+from .utils import atomic_json, atomic_retained_json, digest, read_json, retained_path
 
 VERSION = "en-procurement-2"
 RETRY_PROFILE = "decoded-entities-and-source-site-names-3"
@@ -617,7 +617,7 @@ def available_translations(root, signals):
                         for field in ("title", "description")))
 
     missing = [s for s in sources if not valid(s, entries.get(s["id"]))]
-    if missing and cache_path.exists():
+    if missing and retained_path(cache_path).exists():
         try:
             queue = TranslationQueue(cache_path)
         except (OSError, ValueError, TypeError):
@@ -741,22 +741,24 @@ class TranslationQueue:
             return translation_text("".join(p["source"] for p in parts))
         return "\n\n".join(p["result"]["text"].strip() for p in parts)
 
-    def prepare(self, signals):
+    def prepare(self, signals, *, awards=()):
         # Reconstruct the outstanding queue from current text; metadata-only edits reuse translations.
         # Interleave source countries so a large recent import cannot put every
         # other market behind its entire backlog. Keep recent notices first in
         # each country, preserve multi-country notices once, and reuse field keys.
-        markets = {}
-        for signal in sorted(signals, key=lambda s: (s.last_material_update, s.id), reverse=True):
-            key = tuple(sorted(set(getattr(signal, "countries", []) or [])))
-            markets.setdefault(key, deque()).append(signal)
-        pending = deque(markets.values())
         ordered = []
-        while pending:
-            market = pending.popleft()
-            ordered.append(market.popleft())
-            if market:
-                pending.append(market)
+        for group in (signals, awards):
+            markets = {}
+            for signal in sorted(group, key=lambda s: (s.last_material_update, s.id), reverse=True):
+                key = tuple(sorted(set(getattr(signal, "countries", []) or [])))
+                markets.setdefault(key, deque()).append(signal)
+            pending = deque(markets.values())
+            while pending:
+                market = pending.popleft()
+                ordered.append(market.popleft())
+                if market:
+                    pending.append(market)
+        # Current opportunities retain first priority; awards use remaining work.
         for signal in ordered:
             for text in (signal.title, signal.description):
                 if text.strip():
@@ -907,4 +909,4 @@ class TranslationQueue:
         return {"version": 1, "target": "en", "signals": result}
 
     def save(self):
-        atomic_json(self.path, self.state)
+        atomic_retained_json(self.path, self.state)

@@ -1,7 +1,9 @@
 import importlib.util
+import gzip
 import subprocess
 import sys
 from pathlib import Path
+from types import SimpleNamespace
 
 import pytest
 
@@ -87,3 +89,53 @@ def test_spent_daily_quota_does_not_make_empty_reservation_commits(command, tmp_
     command.main()
     assert ledger.path.read_bytes() == before
     assert '"stop_reason": "daily_budget"' in capsys.readouterr().out
+
+
+def test_translation_selects_exact_published_awards_including_archive(command, tmp_path, monkeypatch, signal, config, now):
+    from anthrion_signal.award_history import export_awards
+
+    (tmp_path / "config").mkdir()
+    (tmp_path / "config/capabilities.yaml").touch()
+    award = signal.model_copy(update={"id": "award", "signal_type": "AWARD", "status": "complete"})
+    cancelled = award.model_copy(update={"id": "cancelled", "status": "cancelled"})
+    unrelated = award.model_copy(update={"id": "unrelated", "title": "Outdoor sauna operation",
+        "description": "Provide a sauna service.", "cpv_codes": ["98330000"]})
+    archive = tmp_path / "data/archive/2026-08.jsonl.gz"
+    archive.parent.mkdir(parents=True)
+    retained = gzip.compress("\n".join(s.model_dump_json() for s in
+        [award, unrelated, cancelled.model_copy(update={"status": "complete"})]).encode())
+    archive.write_bytes(retained)
+    monkeypatch.setattr("anthrion_signal.cli.prepare_current",
+        lambda *a, **kw: (SimpleNamespace(signals=[signal]), [cancelled], config))
+    current, awards = command.translation_records(tmp_path, now)
+    assert [s.id for s in current] == [signal.id]
+    assert [s.id for s in awards] == ["award"]
+    manifest = export_awards(tmp_path, [cancelled], config, now)
+    published = read_json(tmp_path / "app/public/data" / manifest["GB"]["url"], {})
+    assert [s["id"] for s in published["signals"]] == [s.id for s in awards]
+    assert archive.read_bytes() == retained
+
+
+def test_completed_awards_are_checkpointed_without_another_api_request(command, tmp_path, monkeypatch, capsys):
+    data = read_json(tmp_path / "data/current.json", {})
+    award = {**data["signals"][0], "id": "completed-award", "signal_type": "AWARD", "status": "complete",
+             "title": "Customer platform support contract", "description": "Support for the customer platform."}
+    data["signals"].append(award)
+    atomic_json(tmp_path / "data/current.json", data)
+    records = command.Dataset.model_validate(data).signals
+    queue = TranslationQueue(tmp_path / "data/translation/cache.json")
+    queue.prepare(records[:1], awards=records[1:])
+    for field in queue.state["fields"].values():
+        for part in field["parts"]:
+            part["result"] = {"text": part["source"], "language": "en"}
+    queue.save()
+    monkeypatch.delenv("GEMINI_API_KEY", raising=False)
+    monkeypatch.setattr(command.subprocess, "run", lambda *a, **k: pytest.fail("Completed work must not reserve quota"))
+    monkeypatch.setattr(command.GeminiTranslator, "translate", lambda *a, **k: pytest.fail("Cached awards must not be translated again"))
+    command.main()
+    overlay = read_json(tmp_path / "data/translation/translations.en.json", {})
+    assert set(overlay["signals"]) == {s.id for s in records}
+    summary = read_json(tmp_path / "data/translation/summary.json", {})
+    assert summary["notice_coverage"] == {"current": {"records": 1, "complete": 1}, "awards": {"records": 1, "complete": 1}}
+    assert summary["api_calls"] == 0
+    assert '"awards": {"records": 1, "complete": 1}' in capsys.readouterr().out

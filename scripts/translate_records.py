@@ -13,7 +13,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-from anthrion_signal.discovery import is_public_opportunity
+from anthrion_signal.discovery import is_public_award, is_public_opportunity
 from anthrion_signal.models import Dataset
 from anthrion_signal.translation import (
     DEFAULT_MODELS,
@@ -24,7 +24,28 @@ from anthrion_signal.translation import (
     field_key,
     translation_lock,
 )
-from anthrion_signal.utils import atomic_bytes, atomic_json, read_json, read_retained_bytes, jsonl_lines
+from anthrion_signal.utils import atomic_bytes, atomic_json, atomic_retained_json, read_json, read_retained_bytes, jsonl_lines
+
+
+def translation_records(root, now):
+    if (root / "config/capabilities.yaml").exists():
+        from anthrion_signal.award_history import prepare_awards
+        from anthrion_signal.cli import prepare_current
+
+        data, canonical, config = prepare_current(root, save_cache=True)
+        awards = prepare_awards(root, canonical, config, now)[0]
+        candidates = data.signals
+    else:
+        candidates = Dataset.model_validate(read_json(root / "data/current.json", {})).signals
+        awards = [signal for signal in candidates if is_public_award(signal, now)]
+    current = [signal for signal in candidates if is_public_opportunity(signal, now)]
+    return current, awards
+
+
+def notice_coverage(queue, groups):
+    return {name: {"records": len(records),
+                   "complete": sum(bool(queue.overlay([signal])["signals"]) for signal in records)}
+            for name, records in groups.items()}
 
 
 def main():
@@ -49,7 +70,7 @@ def main():
     output = args.output_dir or (root / "artifacts/translation-benchmark/gemini" / "+".join(names) / "benchmark"
                                  if args.mode == "benchmark" else root / "data/translation")
     load_dotenv(root / ".env")
-    records, corpus = [], []
+    records, corpus, groups = [], [], {}
     with translation_lock(root / "data"):
         queue = TranslationQueue(output / "cache.json")
         if args.mode == "benchmark":
@@ -63,18 +84,15 @@ def main():
                 queue.add(entry["source"], [buyers.get(entry["id"])])
         else:
             now = datetime.now(UTC)
-            if (root / "config/capabilities.yaml").exists():
-                from anthrion_signal.cli import prepare_current
-                candidates = prepare_current(root, save_cache=True)[0].signals
-            else:
-                candidates = Dataset.model_validate(read_json(root / "data/current.json", {})).signals
-            records = [signal for signal in candidates
-                       if is_public_opportunity(signal, now)]
-            queue.prepare(records)
+            current, awards = translation_records(root, now)
+            groups = {"current": current, "awards": awards}
+            records = current + awards
+            queue.prepare(current, awards=awards)
         characters = sum(sum(len(part["source"]) for part in queue.state["fields"][key]["parts"])
                          for key in queue.active if queue.completed(key) is None)
         print(json.dumps({"mode": args.mode, "unique_fields": len(queue.active),
-                          "pending_characters": characters, "models": names}), flush=True)
+                          "pending_characters": characters, "models": names,
+                          "notice_coverage": notice_coverage(queue, groups)}), flush=True)
         if args.mode == "plan":
             return
         ledger = QuotaLedger(root / "data/translation_quota.json")
@@ -83,14 +101,14 @@ def main():
         key = os.getenv("GEMINI_API_KEY")
         if pending and not key:
             if args.mode == "records":
-                atomic_json(output / "translations.en.json", queue.overlay(records))
+                atomic_retained_json(output / "translations.en.json", queue.overlay(records))
             raise SystemExit("GEMINI_API_KEY is missing; existing translations retained")
         if args.github_checkpoint and pending:
             identifier = f"{os.environ['GITHUB_RUN_ID']}-{os.environ['GITHUB_RUN_ATTEMPT']}"
             try:
                 ledger.allocate(identifier, models, args.max_calls, minimum_calls=2)
             except RunFinished as exc:
-                atomic_json(output / "translations.en.json", queue.overlay(records))
+                atomic_retained_json(output / "translations.en.json", queue.overlay(records))
                 print(json.dumps({"stop_reason": exc.reason, "api_calls": 0}), flush=True)
                 return
             for command in (
@@ -115,13 +133,14 @@ def main():
         ledger.finish_allowance()
         summary.update(input_characters=sum(sum(len(p["source"]) for p in queue.state["fields"][key]["parts"])
                                             for key in queue.active), models=names,
-                       finished_at=datetime.now(UTC).isoformat())
+                       finished_at=datetime.now(UTC).isoformat(),
+                       notice_coverage=notice_coverage(queue, groups))
         if corpus:
             rows = [{**entry, "previous_english": entry["english"],
                      "english": queue.completed(field_key(entry["source"]))} for entry in corpus]
             atomic_bytes(output / "results.jsonl", ("\n".join(json.dumps(row) for row in rows) + "\n").encode())
         else:
-            atomic_json(output / "translations.en.json", queue.overlay(records))
+            atomic_retained_json(output / "translations.en.json", queue.overlay(records))
         previous = read_json(output / "summary.json", {})
         # Idle checks should not create timestamp-only commits every fifteen minutes.
         def meaningful(value):

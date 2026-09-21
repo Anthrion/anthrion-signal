@@ -24,6 +24,10 @@ if path.exists():
         body += f"Last completed pass: {translation.get('finished_at', 'not recorded')}.\n\n"
         body += f"Completed fields: {translation.get('completed_fields', 0)}; outstanding fields: {translation.get('pending_fields', 0)}; "
         body += f"HTTP attempts: {translation.get('api_calls', 0)}; stop reason: {translation.get('stop_reason', 'unknown')}.\n"
+        for group, label in (("current", "Current opportunities"), ("awards", "Awarded records")):
+            coverage = translation.get("notice_coverage", {}).get(group)
+            if coverage:
+                body += f"{label}: {coverage['complete']} / {coverage['records']} complete titles and descriptions.\n"
         body += "Original notices remain available for any outstanding translations.\n"
     body += "\n\nDeployment outcome is reported by the GitHub Pages deployment job.\n"
     print(body)
