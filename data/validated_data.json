@@ -1,15 +1,15 @@
 {
   "version": 1,
-  "generation": 12,
+  "generation": 13,
   "data_code": "bb457899a79c5f257c805d4aa119359ece87638dd618b80cc8e7023b72667342",
-  "sha256": "c6d9fa26009ad2e2c732a4582aeffe273dd5d90e8f1396ea7a05e31bcc5a3588",
-  "key": "signal-public-v1-c6d9fa26009ad2e2c732a4582aeffe273dd5d90e8f1396ea7a05e31bcc5a3588-35590542257-1",
-  "inputs": "5b5147fdcef8ca14da6b0f5acffcbd50bfab788bfa01403f589d7ad6b593794e",
-  "validated_at": "2026-09-21T10:57:27.715744+00:00",
+  "sha256": "4144b2ef45d38c95df2b330ba0080219b405523ff12406a896c406156f6a5e2c",
+  "key": "signal-public-v1-4144b2ef45d38c95df2b330ba0080219b405523ff12406a896c406156f6a5e2c-35592517346-1",
+  "inputs": "f4342c1eaa1cc5b2d3db7e2d016aa0a1b572241f2038348e3e843d5a900ff4a5",
+  "validated_at": "2026-09-21T11:29:35.031988+00:00",
   "signature": {
     "code": "a500c4eff424307aa6903853c9bc63298e4721c6c5d9ff0330ec6ebd8a0e1e08",
-    "content": "24d3fca0d68ac6d14350d46914fb043935b50a7eda4c7013058dbb6423cc4ecf",
-    "translations": "187ca72d71f7b4e8dc0de98dba4f7846fc3f6d2cfe7480b4928b8dbe223dd904",
+    "content": "fa713f3df0a166f4c6ec351704ac4d17ff0532d0b69fe2429a50fca90a07d44e",
+    "translations": "2bfd279b5cc45323d49a2e80eb0132b2b1d762b6fe33d5b5868b5bf88e3457c2",
     "health": [
       [
         "find_tender",
@@ -21,7 +21,7 @@
       ],
       [
         "scotland",
-        "partial"
+        "failed"
       ],
       [
         "wales",
