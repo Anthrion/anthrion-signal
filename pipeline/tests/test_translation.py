@@ -29,7 +29,7 @@ from anthrion_signal.translation import (
     untranslated_prose,
     validate_translation,
 )
-from anthrion_signal.utils import atomic_json, digest
+from anthrion_signal.utils import atomic_json, atomic_retained_bytes, digest, read_retained_bytes
 
 
 class Clock:
@@ -62,6 +62,55 @@ def test_translation_queue_interleaves_markets_without_losing_records_or_repeati
     resumed = TranslationQueue(tmp_path / "cache.json")
     resumed.prepare(list(reversed(records)))
     assert resumed.active == saved
+
+
+def test_award_backfill_follows_current_content_and_reuses_completed_source_fields(tmp_path):
+    current = SimpleNamespace(id="current", title="Customer platform", description="Live description",
+        buyer_name="Shared buyer", countries=["FR"], last_material_update="2026-09-01")
+    awards = [SimpleNamespace(id=f"award-{i}", title=f"Award {i}",
+        description="Live description" if i == 0 else f"Award description {i}",
+        buyer_name="Shared buyer", countries=countries, last_material_update=f"2026-09-{20-i:02d}")
+        for i, countries in enumerate([["DE"], ["DE"], ["FR"]])]
+    queue = TranslationQueue(tmp_path / "cache.json")
+    queue.prepare([current])
+    for field in queue.state["fields"].values():
+        for part in field["parts"]:
+            part["result"] = {"text": part["source"], "language": "en"}
+    queue.save()
+
+    resumed = TranslationQueue(queue.path)
+    resumed.prepare([current], awards=awards)
+    content = [resumed.state["fields"][key]["parts"][0]["source"] for key in resumed.active]
+    assert content == ["Customer platform", "Live description", "Award 0", "Award 2",
+                       "Award description 2", "Award 1", "Award description 1", "Shared buyer"]
+    assert resumed.completed(field_key("Live description")) == "Live description"
+    assert all(part["source"] not in {current.title, current.description, current.buyer_name}
+               for _, _, part in resumed.pending(DEFAULT_MODELS[0]))
+    assert resumed.overlay([current]) == queue.overlay([current])
+
+
+def test_compressed_translation_cache_and_overlay_retain_completed_awards(tmp_path):
+    record = SimpleNamespace(id="award", title="Kundenplattform", description="", buyer_name=None,
+                             countries=["DE"], last_material_update="2026-09-21")
+    cache = tmp_path / "data/translation/cache.json"
+    queue = TranslationQueue(cache)
+    queue.prepare([], awards=[record])
+    queue.state["fields"][field_key(record.title)]["parts"][0]["result"] = {
+        "text": "Customer platform", "language": "de"}
+    queue.save()
+    original = cache.read_bytes()
+    atomic_retained_bytes(cache, original, threshold=1)
+    assert not cache.exists()
+    resumed = TranslationQueue(cache)
+    resumed.prepare([], awards=[record])
+    assert read_retained_bytes(cache) == original
+    # Export can recover from the compressed field cache without a display overlay.
+    english = available_translations(tmp_path, [vars(record)])
+    assert english[record.id]["title"] == "Customer platform"
+    overlay = tmp_path / "data/translation/translations.en.json"
+    atomic_retained_bytes(overlay, json.dumps(resumed.overlay([record])).encode(), threshold=1)
+    assert not overlay.exists()
+    assert available_translations(tmp_path, [vars(record)]) == english
 
 
 def test_verified_limits_use_full_project_capacity_without_resetting_previous_usage(tmp_path):
