@@ -323,15 +323,18 @@ async function fixture(page: Page, changeRecord?: (record: Signal) => void) {
                     id: historical.signal_id,
                     title: historical.title,
                     description: 'Complete retained scope for this historical contract.',
-                    signal_type: 'AWARD',
-                    status: 'awarded',
-                    lifecycle_state: 'AWARDED',
-                    award_statuses: ['active'],
+                    signal_type: historical.signal_type || 'AWARD',
+                    status: historical.status,
+                    lifecycle_state: historical.signal_type === 'LIVE_TENDER' ? 'OPEN' : 'AWARDED',
+                    award_statuses: historical.award_statuses,
                     incumbent_supplier: historical.supplier,
                     winners: historical.winners || [],
                     award_date: historical.award_date,
                     primary_source_url: historical.source_url,
-                    exclusion_reasons: ['outside_current_delivery_scope'],
+                    exclusion_reasons:
+                      historical.signal_type === 'LIVE_TENDER'
+                        ? []
+                        : ['outside_current_delivery_scope'],
                   },
                   translation: historical.title_en
                     ? {
@@ -565,6 +568,72 @@ test('label-only lots and repeated listing links collapse while separate histori
   ])
 })
 
+test('buyer lots reuse exact cached text and separate notice revisions have distinct labels', async ({
+  page,
+}, info) => {
+  const { record } = await fixture(page)
+  record.title = 'Belastingapplicatie'
+  record.description = 'De gemeente zoekt een nieuwe belastingapplicatie.'
+  record.primary_source_url = 'https://ted.europa.eu/en/notice/-/detail/635439-2026'
+  record.source_urls = [
+    record.primary_source_url,
+    'https://ted.europa.eu/en/notice/-/detail/434650-2026',
+  ]
+  record.provenance = record.provenance.map((item) => ({ ...item, url: record.primary_source_url }))
+  record.provenance.push({ ...record.provenance[0], url: record.source_urls[1] })
+  record.procedure_history = record.source_urls.map((source_url) => ({
+    signal_id: record.id,
+    title: record.title,
+    status: 'active',
+    source_url,
+    lot_ids: [],
+  }))
+  record.lots = [
+    {
+      id: '1',
+      title: record.title,
+      description: record.description,
+      status: 'active',
+      source_url: record.primary_source_url,
+    },
+    {
+      id: '2',
+      title: 'Apart perceel',
+      description: 'Een andere opdracht zonder vertaling.',
+      status: 'active',
+      source_url: record.primary_source_url,
+    },
+  ]
+  await page.route('**/data/records/panel-a-*', (route) =>
+    route.fulfill({
+      json: {
+        schema_version: '1.0',
+        signal: record,
+        translation: {
+          source_hash: 'exact-original',
+          version: 'test',
+          title: 'Tax application',
+          description: 'The council needs a new tax application.',
+        },
+      },
+    }),
+  )
+  await page.goto('./')
+  if (info.project.name === 'mobile') await page.locator('.row-select').first().click()
+  await page.locator('.console-detail:visible .buyer-history-link').click()
+  const buyer = page.getByRole('dialog', { name: 'Buyer history', exact: true })
+  const aside = buyer.locator('.buyer-context')
+  await expect(aside.locator('.lot-grid')).toContainText('The council needs a new tax application.')
+  await expect(aside.locator('.lot-grid')).toContainText('Een andere opdracht zonder vertaling.')
+  await expect(aside.locator('.source-origin')).toContainText(['635439-2026', '434650-2026'])
+  await buyer.getByRole('button', { name: 'Record language: English' }).click()
+  await buyer.getByRole('menuitemradio', { name: 'Original', exact: true }).click()
+  await expect(aside.locator('.lot-grid')).toContainText(record.description)
+  await expect(aside.locator('.lot-grid')).not.toContainText(
+    'The council needs a new tax application.',
+  )
+})
+
 test('title research compares source-linked awards with explicit relationship and filters', async ({
   page,
 }, info) => {
@@ -606,6 +675,12 @@ test('@pr history titles open their own full record, keep language across pages,
   const { history } = await fixture(page)
   history[0].title = 'Dossierdienst voor de gemeente'
   history[0].title_en = 'Council casework service'
+  history[2].signal_type = 'LIVE_TENDER'
+  history[2].status = 'active'
+  history[2].award_statuses = []
+  history[2].supplier = ''
+  history[2].winners = []
+  history[2].award_date = undefined
   const panel = await openRecord(page)
   await panel.getByRole('button', { name: 'View buyer history for Northbridge Council' }).click()
   const buyer = page.getByRole('dialog', { name: 'Buyer history' })
@@ -635,7 +710,10 @@ test('@pr history titles open their own full record, keep language across pages,
   await expect(
     record.getByRole('heading', { name: 'Council digital service 3', exact: true }),
   ).toBeVisible()
-  await expect(record.locator('.supplier-links')).toContainText('Winner 3 Ltd')
+  await expect(
+    record.getByRole('link', { name: 'Open source notice', exact: true }),
+  ).toHaveAttribute('href', history[2].source_url!)
+  await expect(record.getByRole('button', { name: /Salesforce/ })).toHaveCount(0)
   await record.getByRole('button', { name: 'Back', exact: true }).click()
   await buyer.getByRole('button', { name: 'Back to results', exact: true }).click()
   await page.reload()

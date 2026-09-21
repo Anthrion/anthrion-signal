@@ -1261,7 +1261,7 @@ function ResearchRecord({ signal, data }: { signal: Signal; data: Dataset }) {
   )
 }
 
-function RecordIntegrations({ signal }: { signal: Signal }) {
+function RecordIntegrations({ signal, data }: { signal: Signal; data: Dataset }) {
   const text = useSignalText(signal)
   const assetRoot = `${import.meta.env.BASE_URL}assets/integrations/`
   const gmailURL = gmailDraftURL(
@@ -1271,17 +1271,18 @@ function RecordIntegrations({ signal }: { signal: Signal }) {
   )
   return (
     <div className="record-integrations" role="group" aria-label="Record integrations">
-      {isAvailableOpportunity(signal, Date.now()) && (
-        <button
-          type="button"
-          className="record-integration"
-          disabled
-          aria-label="Salesforce (coming soon)"
-          title="Salesforce — coming soon"
-        >
-          <img src={`${assetRoot}salesforce.svg`} alt="" width="34" height="24" />
-        </button>
-      )}
+      {data.current_feed?.records[signal.id]?.view !== 'history' &&
+        isAvailableOpportunity(signal, Date.now()) && (
+          <button
+            type="button"
+            className="record-integration"
+            disabled
+            aria-label="Salesforce (coming soon)"
+            title="Salesforce — coming soon"
+          >
+            <img src={`${assetRoot}salesforce.svg`} alt="" width="34" height="24" />
+          </button>
+        )}
       <a
         className="record-integration record-integration-gmail"
         href={gmailURL}
@@ -1430,7 +1431,7 @@ function ConsoleDetail({
                 </section>
               )}
             </div>
-            <RecordIntegrations signal={s} />
+            <RecordIntegrations signal={s} data={data} />
           </div>
           {(!['OPEN', 'EARLY_ENGAGEMENT'].includes(lifecycleState(s)) ||
             !!s.exclusion_reasons?.length) && (

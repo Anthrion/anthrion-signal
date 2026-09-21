@@ -171,12 +171,21 @@ function SourceLinks({
   excluded?: string[]
 }) {
   const links = distinctSources(urls, excluded)
+  const label = (href: string) => {
+    const url = new URL(href)
+    const host = url.hostname.replace(/^www\./, '')
+    const notice = url.pathname.match(/\/(\d+-\d{4})\/?$/)?.[1]
+    return notice &&
+      links.some((other) => other !== href && new URL(other).hostname === url.hostname)
+      ? `${host} · ${notice}`
+      : host
+  }
   return links.length ? (
     <div className="research-source-links">
       {links.map((href) => (
         <span className="research-source" key={sourceKey(href)}>
           <SourceLink href={href} />
-          <span className="source-origin">– {new URL(href).hostname.replace(/^www\./, '')}</span>
+          <span className="source-origin">– {label(href)}</span>
         </span>
       ))}
     </div>
@@ -192,7 +201,9 @@ function LotSummary({ record }: { record: Pick<Signal, 'lot_ids' | 'lots'> | His
   ) : null
 }
 
-function LotDetails({ lots }: { lots: NonNullable<Signal['lots']> }) {
+function LotDetails({ lots, record }: { lots: NonNullable<Signal['lots']>; record?: Signal }) {
+  const { language, translations } = useTranslations()
+  const english = language === 'en' && record ? translations?.[record.id] : undefined
   return (
     <div className="lot-grid">
       {meaningfulLots(lots).map((lot) => (
@@ -201,8 +212,16 @@ function LotDetails({ lots }: { lots: NonNullable<Signal['lots']> }) {
             Lot {lot.id}
             {lot.status !== 'unknown' ? ` · ${lot.status.replaceAll('_', ' ')}` : ''}
           </span>
-          {descriptiveLotText(lot.title, lot.id) && <h4>{lot.title}</h4>}
-          {descriptiveLotText(lot.description, lot.id) && <p>{lot.description}</p>}
+          {descriptiveLotText(lot.title, lot.id) && (
+            <h4>{lot.title === record?.title ? english?.title || lot.title : lot.title}</h4>
+          )}
+          {descriptiveLotText(lot.description, lot.id) && (
+            <p>
+              {lot.description === record?.description
+                ? english?.description || lot.description
+                : lot.description}
+            </p>
+          )}
           {lot.deadline_at && <small>Deadline {date(lot.deadline_at)}</small>}
           {(lot.value_min != null || lot.value_max != null) && (
             <small>{amount(lot.value_max ?? lot.value_min ?? null, lot.currency || null)}</small>
@@ -447,7 +466,7 @@ export function ProcurementHistory({
       {!!lots.length && (
         <>
           <h3>Published lots</h3>
-          <LotDetails lots={lots} />
+          <LotDetails lots={lots} record={signal} />
         </>
       )}
       <SourceLinks urls={lotSources} />
@@ -615,7 +634,15 @@ function HistoryTimeline({
                       </p>
                     )}
                     {record.extension_end && <p>Extension end: {date(record.extension_end)}</p>}
-                    {!!lots.length && <LotDetails lots={lots} />}
+                    {!!lots.length && (
+                      <LotDetails
+                        lots={lots}
+                        record={
+                          byId.get(record.signal_id) ||
+                          (origin?.id === record.signal_id ? origin : undefined)
+                        }
+                      />
+                    )}
                   </details>
                 )}
                 <SourceLinks urls={sources} />
