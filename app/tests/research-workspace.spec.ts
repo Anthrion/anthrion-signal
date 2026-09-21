@@ -1,5 +1,6 @@
 import { test, expect, type Page } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
+import { gzipSync } from 'node:zlib'
 import type { Dataset, HistoryRecord, Signal } from '../src/types'
 import { recordDataset } from './fixtures/record'
 
@@ -290,6 +291,12 @@ async function fixture(page: Page, changeRecord?: (record: Signal) => void) {
     contract_start: undefined,
     contract_end: undefined,
   }
+  for (const item of history)
+    manifest.current_feed!.records[item.signal_id] = {
+      url: `history/abc-${hash}.json.gz`,
+      markets: ['GB'],
+      view: 'history',
+    }
   await page.route('**/data/**', (route) => {
     const path = new URL(route.request().url()).pathname
     if (path.endsWith('/manifest.json')) return route.fulfill({ json: manifest })
@@ -301,6 +308,48 @@ async function fixture(page: Page, changeRecord?: (record: Signal) => void) {
       return route.fulfill({ json: { schema_version: '1.0', signal: record } })
     if (path.includes('/records/panel-b-'))
       return route.fulfill({ json: { schema_version: '1.0', signal: other } })
+    if (path.endsWith(`/history/abc-${hash}.json.gz`))
+      return route.fulfill({
+        contentType: 'application/gzip',
+        body: gzipSync(
+          JSON.stringify({
+            schema_version: '1.0',
+            records: Object.fromEntries(
+              history.map((historical) => [
+                historical.signal_id,
+                {
+                  signal: {
+                    ...record,
+                    id: historical.signal_id,
+                    title: historical.title,
+                    description: 'Complete retained scope for this historical contract.',
+                    signal_type: historical.signal_type || 'AWARD',
+                    status: historical.status,
+                    lifecycle_state: historical.signal_type === 'LIVE_TENDER' ? 'OPEN' : 'AWARDED',
+                    award_statuses: historical.award_statuses,
+                    incumbent_supplier: historical.supplier,
+                    winners: historical.winners || [],
+                    award_date: historical.award_date,
+                    primary_source_url: historical.source_url,
+                    exclusion_reasons:
+                      historical.signal_type === 'LIVE_TENDER'
+                        ? []
+                        : ['outside_current_delivery_scope'],
+                  },
+                  translation: historical.title_en
+                    ? {
+                        source_hash: 'history-source',
+                        version: 'test',
+                        title: historical.title_en,
+                        description: 'Complete retained scope for this historical contract.',
+                      }
+                    : undefined,
+                },
+              ]),
+            ),
+          }),
+        ),
+      })
     if (path.includes('/awards/GB-'))
       return route.fulfill({ json: { schema_version: '1.0', signals: awards } })
     if (path.includes('/buyers/'))
@@ -464,7 +513,7 @@ test('buyer history links retained supplier awards outside the main feed and ret
   await expect(supplier.locator(`a[href="${source}?notice=0"]`)).toHaveCount(1)
   await supplier.getByRole('button', { name: 'Back', exact: true }).click()
   await expect(company).toBeFocused()
-  await expect(buyer.locator('.research-surface > .metal-edge')).toHaveCount(2)
+  await expect(buyer.locator('.research-surface > .metal-edge')).toHaveCount(1)
 })
 
 test('label-only lots and repeated listing links collapse while separate historical sources remain', async ({
@@ -512,7 +561,77 @@ test('label-only lots and repeated listing links collapse while separate histori
   await expect(buyer.locator(`a[href="${source}?notice=0"]`)).toHaveCount(1)
   await expect(selected.locator('a[href="https://other.example.org/notice/12"]')).toHaveCount(1)
   await expect(buyer.locator('.research-page-header .glass-source-button')).toHaveCount(0)
-  await expect(buyer.locator('.research-surface > .metal-edge')).toHaveCount(2)
+  await expect(buyer.locator('.research-surface > .metal-edge')).toHaveCount(1)
+  await expect(selected.locator('.source-origin')).toContainText([
+    'example.com',
+    'other.example.org',
+  ])
+})
+
+test('buyer lots reuse exact cached text and separate notice revisions have distinct labels', async ({
+  page,
+}, info) => {
+  const { record } = await fixture(page)
+  record.title = 'Belastingapplicatie'
+  record.description = 'De gemeente zoekt een nieuwe belastingapplicatie.'
+  record.primary_source_url = 'https://ted.europa.eu/en/notice/-/detail/635439-2026'
+  record.source_urls = [
+    record.primary_source_url,
+    'https://ted.europa.eu/en/notice/-/detail/434650-2026',
+  ]
+  record.provenance = record.provenance.map((item) => ({ ...item, url: record.primary_source_url }))
+  record.provenance.push({ ...record.provenance[0], url: record.source_urls[1] })
+  record.procedure_history = record.source_urls.map((source_url) => ({
+    signal_id: record.id,
+    title: record.title,
+    status: 'active',
+    source_url,
+    lot_ids: [],
+  }))
+  record.lots = [
+    {
+      id: '1',
+      title: record.title,
+      description: record.description,
+      status: 'active',
+      source_url: record.primary_source_url,
+    },
+    {
+      id: '2',
+      title: 'Apart perceel',
+      description: 'Een andere opdracht zonder vertaling.',
+      status: 'active',
+      source_url: record.primary_source_url,
+    },
+  ]
+  await page.route('**/data/records/panel-a-*', (route) =>
+    route.fulfill({
+      json: {
+        schema_version: '1.0',
+        signal: record,
+        translation: {
+          source_hash: 'exact-original',
+          version: 'test',
+          title: 'Tax application',
+          description: 'The council needs a new tax application.',
+        },
+      },
+    }),
+  )
+  await page.goto('./')
+  if (info.project.name === 'mobile') await page.locator('.row-select').first().click()
+  await page.locator('.console-detail:visible .buyer-history-link').click()
+  const buyer = page.getByRole('dialog', { name: 'Buyer history', exact: true })
+  const aside = buyer.locator('.buyer-context')
+  await expect(aside.locator('.lot-grid')).toContainText('The council needs a new tax application.')
+  await expect(aside.locator('.lot-grid')).toContainText('Een andere opdracht zonder vertaling.')
+  await expect(aside.locator('.source-origin')).toContainText(['635439-2026', '434650-2026'])
+  await buyer.getByRole('button', { name: 'Record language: English' }).click()
+  await buyer.getByRole('menuitemradio', { name: 'Original', exact: true }).click()
+  await expect(aside.locator('.lot-grid')).toContainText(record.description)
+  await expect(aside.locator('.lot-grid')).not.toContainText(
+    'The council needs a new tax application.',
+  )
 })
 
 test('title research compares source-linked awards with explicit relationship and filters', async ({
@@ -521,23 +640,127 @@ test('title research compares source-linked awards with explicit relationship an
   const panel = await openRecord(page)
   await panel.getByRole('button', { name: title, exact: true }).click()
   const research = page.getByRole('dialog', { name: 'Opportunity research' })
+  await expect(research.locator('.research-split > section')).toHaveCount(3)
+  await expect(research.locator('.research-current > .metal-edge')).toHaveCount(1)
+  await expect(
+    research.locator('.research-signals > .metal-edge, .research-awards > .metal-edge'),
+  ).toHaveCount(0)
   await expect(research.locator('.related-award')).toHaveCount(2)
-  await expect(research.locator('.related-award').first()).toContainText(
-    'Same published buyer identifier',
-  )
+  await expect(research.locator('.related-award').first()).toContainText('Same buyer')
   await expect(research.locator('.related-award').last().locator('.award-reason')).toHaveText(
     'Salesforce platform · Case management & service',
   )
-  await research.getByLabel('Supplier', { exact: true }).fill('Example Delivery')
+  const awards = research.locator('.research-awards')
+  await awards.locator('.related-filter-menu > summary').click()
+  await awards.getByLabel('Supplier', { exact: true }).fill('Example Delivery')
   await expect(research.locator('.related-award')).toHaveCount(1)
-  await research.getByLabel('Awarded from').fill('2025-01-01')
-  await expect(research.getByText('No matching awards found')).toBeVisible()
-  await research.getByRole('button', { name: 'Clear award filters' }).click()
+  await awards.getByLabel('Award date filter').selectOption('from')
+  await awards.getByLabel('From', { exact: true }).fill('2025-01-01')
+  await expect(awards.getByText('No matching awards', { exact: true })).toBeVisible()
+  await awards
+    .locator('.related-filter-panel')
+    .getByRole('button', { name: 'Clear filters' })
+    .click()
+  await awards.getByRole('button', { name: 'Done', exact: true }).click()
   if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
     await page.screenshot({
       path: `../artifacts/research-comparison-${info.project.name}.png`,
       fullPage: false,
     })
+})
+
+test('@pr history titles open their own full record, keep language across pages, and hide Salesforce for completed awards', async ({
+  page,
+}) => {
+  const { history } = await fixture(page)
+  history[0].title = 'Dossierdienst voor de gemeente'
+  history[0].title_en = 'Council casework service'
+  history[2].signal_type = 'LIVE_TENDER'
+  history[2].status = 'active'
+  history[2].award_statuses = []
+  history[2].supplier = ''
+  history[2].winners = []
+  history[2].award_date = undefined
+  const panel = await openRecord(page)
+  await panel.getByRole('button', { name: 'View buyer history for Northbridge Council' }).click()
+  const buyer = page.getByRole('dialog', { name: 'Buyer history' })
+  const titleLink = buyer.getByRole('button', { name: 'Council casework service', exact: true })
+  await titleLink.click()
+  const record = page.getByRole('dialog', { name: 'Full record', exact: true })
+  await expect(record.locator('.inspector-summary')).toContainText(
+    'Complete retained scope for this historical contract.',
+  )
+  await expect(record.getByRole('button', { name: /Salesforce/ })).toHaveCount(0)
+  await expect(record.getByRole('link', { name: /Gmail/ })).toBeVisible()
+  const draft = new URL((await record.getByRole('link', { name: /Gmail/ }).getAttribute('href'))!)
+  const sharedURL = draft.searchParams.get('body')!.match(/View in Anthrion Signal: (.+)/)![1]
+  await expect(record.getByRole('button', { name: /Slack/ })).toBeVisible()
+  await expect(record.locator('.supplier-links')).toContainText('Winner 1 Ltd')
+  await record.getByRole('button', { name: 'Record language: English' }).click()
+  await record.getByRole('menuitemradio', { name: 'Original', exact: true }).click()
+  await expect(
+    record.getByRole('heading', { name: 'Dossierdienst voor de gemeente' }),
+  ).toBeVisible()
+  await record.getByRole('button', { name: 'Back', exact: true }).click()
+  await expect(
+    buyer.getByRole('button', { name: 'Dossierdienst voor de gemeente', exact: true }),
+  ).toBeFocused()
+  // Both records share a compressed bucket; a cached bucket must resolve the new identity.
+  await buyer.getByRole('button', { name: 'Council digital service 3', exact: true }).click()
+  await expect(
+    record.getByRole('heading', { name: 'Council digital service 3', exact: true }),
+  ).toBeVisible()
+  await expect(
+    record.getByRole('link', { name: 'Open source notice', exact: true }),
+  ).toHaveAttribute('href', history[2].source_url!)
+  await expect(record.getByRole('button', { name: /Salesforce/ })).toHaveCount(0)
+  await record.getByRole('button', { name: 'Back', exact: true }).click()
+  await buyer.getByRole('button', { name: 'Back to results', exact: true }).click()
+  await page.reload()
+  await expect(page.getByRole('button', { name: 'Record language: Original' })).toBeVisible()
+  await page.goto(sharedURL)
+  const sharedRecord = page.locator('.console-detail:visible')
+  await expect(sharedRecord.locator('.inspector-summary')).toContainText(
+    'Complete retained scope for this historical contract.',
+  )
+  await expect(sharedRecord.locator('.supplier-links')).toContainText('Winner 1 Ltd')
+  await expect(sharedRecord.getByRole('button', { name: /Salesforce/ })).toHaveCount(0)
+})
+
+test('@pr related live and awarded titles open full details and awarded context points back to open signals', async ({
+  page,
+}, info) => {
+  await page.goto('./?market=&view=all')
+  if (info.project.name === 'mobile') await page.locator('.row-select').first().click()
+  await page
+    .locator('.console-detail:visible')
+    .getByRole('button', { name: title, exact: true })
+    .click()
+  const context = page.getByRole('dialog', { name: 'Opportunity research' })
+  await expect(context.locator('.research-signals .related-signal')).toHaveCount(1)
+  await context
+    .locator('.research-signals')
+    .getByRole('button', { name: 'Portail citoyen', exact: true })
+    .click()
+  const full = page.getByRole('dialog', { name: 'Full record', exact: true })
+  await expect(full.getByRole('button', { name: /Salesforce/ })).toBeVisible()
+  await full.getByRole('button', { name: 'Back', exact: true }).click()
+  await context
+    .locator('.research-awards')
+    .getByRole('button', { name: 'Customer platform implementation 2024', exact: true })
+    .click()
+  await expect(full.getByRole('button', { name: /Salesforce/ })).toHaveCount(0)
+  await full
+    .getByRole('button', { name: 'Customer platform implementation 2024', exact: true })
+    .click()
+  const awardedContext = page.getByRole('dialog', { name: 'Opportunity research' }).last()
+  await expect(awardedContext.locator('.research-signals')).toContainText(title)
+  await expect(awardedContext.locator('.research-current > .metal-edge')).toHaveCount(1)
+  await expect(awardedContext.locator('.research-awards > .metal-edge')).toHaveCount(0)
+  expect(
+    (await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze())
+      .violations,
+  ).toEqual([])
 })
 
 test('last view remembers search and matching while shared URLs and UK startup stay predictable', async ({
@@ -571,7 +794,7 @@ test('last view remembers search and matching while shared URLs and UK startup s
   )
 })
 
-test('All leads UK; groups and individual countries can be pinned together and moved', async ({
+test('@pr All leads UK; groups and individual countries can be pinned together and moved', async ({
   page,
 }) => {
   await page.goto('./')
@@ -620,6 +843,9 @@ test('All leads UK; groups and individual countries can be pinned together and m
     await expect(page.getByRole('button', { name: market, exact: true })).toBeAttached()
   await page.getByRole('button', { name: 'All markets', exact: true }).click()
   await expect(page.locator('.row-select')).toHaveCount(2)
+  await expect(page.locator('.row-country')).toHaveText(['United Kingdom', 'France'])
+  await page.getByRole('button', { name: 'United Kingdom', exact: true }).click()
+  await expect(page.locator('.row-country')).toHaveCount(0)
 })
 
 test('market dragging previews the drop and saves order without changing pins or selection', async ({
@@ -643,7 +869,10 @@ test('market dragging previews the drop and saves order without changing pins or
     await page.screenshot({ path: `../artifacts/market-drag-${info.project.name}.png` })
   await page.mouse.up()
   await expect(organizer.locator('.market-drag-preview')).toHaveCount(0)
-  await expect(organizer.getByRole('listitem').nth(3)).toHaveAttribute('data-market-id', '')
+  await expect(organizer.locator('[data-market-id="IT"] + li')).toHaveAttribute(
+    'data-market-id',
+    '',
+  )
   await expect(
     organizer.getByRole('checkbox', { name: 'Pin All markets', exact: true }),
   ).toBeChecked()
@@ -719,7 +948,7 @@ test('touch can reorder a market and a cancelled touch leaves the order intact',
   await expect(organizer.getByRole('listitem').first()).toHaveAttribute('data-market-id', '')
   await touch.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x, y }] })
   await touch.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x, y: end }] })
-  await expect(organizer.locator('[data-market-id="US"]')).toHaveAttribute(
+  await expect(organizer.locator('[data-market-id="NORTHAMERICA"]')).toHaveAttribute(
     'data-drop-before',
     'true',
   )
@@ -761,11 +990,16 @@ test('nested buyer and supplier timelines return to the same Context filters and
   const context = page.getByRole('dialog', { name: 'Opportunity research' })
   await expect(context.getByRole('heading', { name: 'Context', exact: true })).toBeVisible()
   await expect(context.locator('.research-current > .metal-edge')).toHaveCount(1)
-  await expect(context.locator('.research-surface > .metal-edge')).toHaveCount(2)
+  await expect(context.locator('.research-surface > .metal-edge')).toHaveCount(1)
   await expect(context.locator('.decision-brief, .original-notice, .evidence-sheet')).toHaveCount(0)
   await expect(context.locator('.research-description')).toContainText(quote)
   await expect(context.locator('.workspace-brand img')).toHaveAttribute('src', /anthrion-logo.svg$/)
+  await context.locator('.research-awards .related-filter-menu > summary').click()
   await context.getByLabel('Supplier', { exact: true }).fill('Example Delivery')
+  await context
+    .locator('.research-awards')
+    .getByRole('button', { name: 'Done', exact: true })
+    .click()
   const winner = context.getByRole('button', {
     name: 'View awarded contracts for Example Delivery Ltd',
   })

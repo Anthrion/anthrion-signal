@@ -15,7 +15,7 @@ async function chooseLanguage(page: Page, label: 'English' | 'Original') {
   await expect(page.getByRole('button', { name: `Record language: ${label}` })).toBeFocused()
 }
 
-test('English is default; original text, search, hides and refresh retain their own state', async ({
+test('@pr English is default; original text, search, hides and refresh retain their own state', async ({
   page,
 }) => {
   const data: Dataset = datasetFixture()

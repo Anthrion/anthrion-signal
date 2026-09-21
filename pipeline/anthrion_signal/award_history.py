@@ -10,10 +10,10 @@ from .discovery import discovery_signature, is_public_award, lifecycle, prefilte
 from .discovery_retention import read_rejected
 from .models import Signal
 from .markets import MARKETS
-from .public_context import attach_history, backfill_retained_facts, public_signal
-from .public_feed import record_file
+from .public_context import attach_history, backfill_retained_facts, enrich_signal, public_signal
+from .public_feed import atomic_public_json, history_files, record_file
 from .translation import available_translations
-from .utils import atomic_bytes, atomic_json, digest, jsonl_lines, parse_date, read_json
+from .utils import atomic_bytes, digest, jsonl_lines, parse_date, read_json
 
 DECISION_FIELDS = ("prefilter_score", "prefilter_matches", "discovery_families", "delivery_priority",
                    "matched_capabilities", "discovery_version", "exclusion_reasons", "capability_evidence", "scope_evidence", "categories")
@@ -80,12 +80,26 @@ def export_awards(root, canonical, config, now, record_manifest=None, context_si
         atomic_bytes(path, gzip.compress(json.dumps(new_cache, ensure_ascii=False, sort_keys=True).encode(), mtime=0))
     threshold = config["capabilities"]["discovery"]["minimum_candidate_score"]
     awards = sorted((s for s in candidates if is_public_award(s, now) and s.prefilter_score >= threshold), key=lambda s: ranking_key(s, now))
-    attach_history(awards, history)
-    attach_history(canonical + (context_signals or []), history)
+    public_records = awards + (context_signals or [])
+    for signal in history + public_records:
+        enrich_signal(signal)
+    buyer_ids = {s.buyer_id for s in public_records if s.buyer_id}
+    procedure_ids = {s.procedure_id for s in public_records if s.procedure_id}
+    context = [s for s in history if s.buyer_id in buyer_ids or s.procedure_id in procedure_ids]
+    context_translations = available_translations(root, context)
+    context_translations.update(translations)
+    attach_history(awards, history, context_translations)
+    attach_history(canonical + (context_signals or []), history, context_translations)
     if record_manifest is not None:
         buyer_refs = {}
-        for signal in awards:
-            _, record_manifest[signal.id] = record_file(root, signal, translations.get(signal.id), "awards", buyer_refs)
+        award_ids = {s.id for s in awards}
+        for signal in public_records:
+            _, record_manifest[signal.id] = record_file(root, signal, context_translations.get(signal.id),
+                "awards" if signal.id in award_ids else "opportunities", buyer_refs)
+        # Linked history retains complete text without thousands of additional
+        # uncompressed files or recursively repeated buyer/procedure histories.
+        record_manifest.update(history_files(root, [s for s in context if s.id not in record_manifest],
+            context_translations, buyer_refs))
     manifest = {}
     for market, countries in MARKETS.items():
         records = [s for s in awards if set(countries).intersection(s.countries)]
@@ -93,7 +107,7 @@ def export_awards(root, canonical, config, now, record_manifest=None, context_si
         payload = {"schema_version": "1.0", "signals": [public_signal(s, translations.get(s.id)) for s in records],
                    "translations": {sid: value for sid, value in translations.items() if sid in ids}}
         relative = f"awards/{market}-{digest(payload)[:16]}.json"
-        atomic_json(root / "app/public/data" / relative, payload)
+        atomic_public_json(root / "app/public/data" / relative, payload)
         manifest[market] = {"url": relative, "count": len(records)}
     # Old manifests must remain readable until the new root manifest is published.
     return manifest

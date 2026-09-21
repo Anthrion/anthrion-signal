@@ -53,7 +53,7 @@ describe('personal views and market preferences', () => {
     expect(emptyPersonalWorkspace().marketPreferences.pinned).toEqual([
       '',
       'GB',
-      'US',
+      'NORTHAMERICA',
       'IT',
       'NORDICS',
       'DACH',
@@ -78,6 +78,21 @@ describe('personal views and market preferences', () => {
       '',
       'FR',
       'BENELUX',
+    ])
+  })
+  test('North America replaces the former US pin once while independent choices remain persistent', () => {
+    const migrated = normaliseMarketPreferences({
+      pinned: ['', 'GB', 'US'],
+      order: ['', 'GB', 'US', 'FR'],
+    })
+    expect(migrated.pinned).toEqual(['', 'GB', 'NORTHAMERICA'])
+    expect(migrated.order.slice(0, 5)).toEqual(['', 'GB', 'NORTHAMERICA', 'US', 'FR'])
+    expect(
+      normaliseMarketPreferences({ ...migrated, pinned: ['CA', 'US', 'NORTHAMERICA'] }).pinned,
+    ).toEqual(['CA', 'US', 'NORTHAMERICA'])
+    expect(normaliseMarketPreferences({ ...migrated, pinned: ['CA', 'US'] }).pinned).toEqual([
+      'CA',
+      'US',
     ])
   })
   test('a named view restores all search, market, financial and award filters', () => {

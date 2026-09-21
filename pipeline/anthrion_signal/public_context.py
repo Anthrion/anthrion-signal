@@ -190,12 +190,16 @@ def history_entry(signal):
         "winners": signal.winners, "lots": [lot.model_dump() for lot in signal.lots]}
 
 
-def attach_history(signals, history):
+def attach_history(signals, history, translations=None):
     buyers, procedures = defaultdict(list), defaultdict(list)
     latest = {s.id: enrich_signal(s) for s in history}
     latest.update({s.id: enrich_signal(s) for s in signals})
     for signal in latest.values():
         item = history_entry(signal)
+        translation = (translations or {}).get(signal.id)
+        translated = translation.model_dump() if hasattr(translation, "model_dump") else translation or {}
+        if translated.get("source_hash") == digest([signal.title, signal.description]) and translated.get("title"):
+            item["title_en"] = translated["title"]
         if signal.buyer_id:
             buyers[signal.buyer_id].append(item)
         procedures[signal.procedure_id].append(item)

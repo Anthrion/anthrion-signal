@@ -459,7 +459,12 @@ def normalise_sam(raw):
     return normalise_sam_opportunity(raw)
 
 
+def normalise_canada(raw):
+    from .canada_buys import normalise_canada_buys
+    return normalise_canada_buys(raw)
+
+
 NORMALISERS = {"ocds": normalise_ocds, "govuk": normalise_govuk, "html": normalise_html, "ted": normalise_ted,
                "usaspending": normalise_usaspending, "grants": normalise_grants,
                "german_ocds": normalise_german, "nyc_city_record": normalise_nyc, "spain_placsp": normalise_spain,
-               "la_ramp": normalise_ramp, "sam_csv": normalise_sam}
+               "la_ramp": normalise_ramp, "sam_csv": normalise_sam, "canada_buys": normalise_canada}

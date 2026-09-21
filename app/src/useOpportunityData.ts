@@ -4,12 +4,11 @@ import { isAvailableOpportunity } from './lib'
 import {
   BoundedCache,
   fetchJSON,
-  isEnglishText,
-  isSignal,
+  recordDetail,
   loadCurrentDataset,
   safeDataPath,
 } from './dataClient'
-import type { DetailPage, SignalPage } from './dataClient'
+import type { SignalPage } from './dataClient'
 
 export function resolveSignalSelection(
   data: Dataset | null,
@@ -27,7 +26,7 @@ export function useSignalDetail(
   data: Dataset | null,
   selected: Signal | string | null | undefined,
 ) {
-  const cache = useRef(new BoundedCache<DetailPage>(40, 16 * 1024 * 1024))
+  const cache = useRef(new BoundedCache<unknown>(40, 16 * 1024 * 1024))
   const [attempt, setAttempt] = useState(0)
   const { id, summary, path } = resolveSignalSelection(data, selected)
   const key = `${id}|${path}`
@@ -42,21 +41,12 @@ export function useSignalDetail(
     const controller = new AbortController()
     const load = async () => {
       try {
-        safeDataPath(path, 'records')
-        let page = cache.current.get(path)
-        if (!page) {
-          const value = (await fetchJSON(path, controller.signal)) as DetailPage
-          if (
-            !value ||
-            !['1.0', '2.0'].includes(value.schema_version) ||
-            !isSignal(value.signal) ||
-            value.signal.id !== id ||
-            (value.translation !== undefined && !isEnglishText(value.translation))
-          )
-            throw new Error('Invalid detail')
-          page = value
-          if (!controller.signal.aborted) cache.current.set(path, page)
-        }
+        safeDataPath(path, path.startsWith('history/') ? 'history' : 'records')
+        const cached = cache.current.get(path)
+        const value = cached ?? (await fetchJSON(path, controller.signal))
+        const page = recordDetail(value, id)
+        if (!page) throw new Error('Invalid detail')
+        if (!cached && !controller.signal.aborted) cache.current.set(path, value)
         if (!controller.signal.aborted)
           setResult({ key, signal: page.signal, translation: page.translation, error: '' })
       } catch {

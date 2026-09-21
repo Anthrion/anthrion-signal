@@ -1,4 +1,6 @@
 """Validate every public manifest dependency, source passage and URL."""
+import gzip
+import io
 import json
 import re
 from datetime import UTC, datetime
@@ -12,7 +14,7 @@ from anthrion_signal.public_context import PUBLIC_EXCLUDE
 from anthrion_signal.public_feed import search_text
 from anthrion_signal.utils import clean, digest
 
-PATHS = re.compile(r"(?:awards|current)/[A-Z]+-[a-f0-9]{16}\.json|records/[A-Za-z0-9_-]{1,100}-[a-f0-9]{16}\.json|buyers/buyer_[a-f0-9]{20}-[a-f0-9]{16}\.json")
+PATHS = re.compile(r"(?:awards|current)/[A-Z]+-[a-f0-9]{16}\.json|records/[A-Za-z0-9_-]{1,100}-[a-f0-9]{16}\.json|buyers/buyer_[a-f0-9]{20}-[a-f0-9]{16}\.json|history/[a-f0-9]{3,64}-[a-f0-9]{16}\.json\.gz")
 SECRETS = re.compile(r"AIza[0-9A-Za-z_-]{30,}|gh[pousr]_[A-Za-z0-9_]{20,}|-----BEGIN .*PRIVATE KEY-----")
 
 
@@ -95,8 +97,17 @@ def check_public_output(path, inventory_path=None):
         if not PATHS.fullmatch(relative):
             raise ValueError("Unsafe public data path")
         if relative not in loaded:
-            page = json.loads((path.parent / relative).read_text(encoding="utf-8"))
-            if page.get("schema_version") != "1.0" or not relative.endswith(digest(page)[:16] + ".json"):
+            body = (path.parent / relative).read_bytes()
+            compressed = relative.endswith(".json.gz")
+            if compressed:
+                if len(body) > 16 * 1024 * 1024:
+                    raise ValueError("Historical detail bucket exceeds its download size limit")
+                with gzip.GzipFile(fileobj=io.BytesIO(body)) as stream:
+                    body = stream.read(16 * 1024 * 1024 + 1)
+                if len(body) > 16 * 1024 * 1024:
+                    raise ValueError("Historical detail bucket exceeds its decoded size limit")
+            page = json.loads(body)
+            if page.get("schema_version") != "1.0" or not relative.endswith(digest(page)[:16] + (".json.gz" if compressed else ".json")):
                 raise ValueError("Public content hash/schema mismatch")
             check_page(page)
             loaded[relative] = page
@@ -123,20 +134,41 @@ def check_public_output(path, inventory_path=None):
             raise ValueError("Initial manifest and legacy dataset disagree")
         check_page(root_manifest)
         details = {}
+        history_ids = set()
+        public_ids = {s.id for s in data.signals}
+        anchor_ids = public_ids | award_ids
+        bucket_ids = {}
         for ident, pointer in data.current_feed["records"].items():
             page = load(pointer["url"])
+            if pointer["url"].startswith("history/"):
+                if pointer.get("view") != "history" or not isinstance(page.get("records"), dict) or ident not in page["records"]:
+                    raise ValueError("Historical bucket does not match the requested record")
+                bucket_ids.setdefault(pointer["url"], set()).add(ident)
+                page = page["records"][ident]
             if page["signal"]["id"] != ident:
                 raise ValueError("Record detail identity mismatch")
             signal = evidence_checked(page["signal"], page.get("translation"))
+            if pointer.get("view") not in {"opportunities", "awards", "history", None}:
+                raise ValueError("Unknown record detail view")
+            expected_view = "opportunities" if ident in public_ids else "awards" if ident in award_ids else "history"
+            if pointer.get("view") not in {expected_view, None}:
+                raise ValueError("Record detail view does not match its published role")
+            if ident in anchor_ids:
+                history_ids.update(event["signal_id"] for event in signal.procedure_history + signal.buyer_history if event.get("signal_id"))
             if signal.buyer_history_ref:
                 reference = signal.buyer_history_ref
                 buyer = load(reference["url"])
                 if buyer["buyer_id"] != signal.buyer_id or len(buyer["records"]) != reference["count"]:
                     raise ValueError("Buyer history identity/count mismatch")
+                if ident in anchor_ids:
+                    history_ids.update(event["signal_id"] for event in buyer["records"])
             details[ident] = (signal, page.get("translation"))
-        public_ids = {s.id for s in data.signals}
-        if set(details) != public_ids | award_ids:
-            raise ValueError("Detail manifest is missing public records or includes unpublished records")
+        context_ids = {ident for ident, pointer in data.current_feed["records"].items() if pointer.get("view") == "history"}
+        if set(details) != public_ids | award_ids | context_ids or context_ids - history_ids or context_ids & (public_ids | award_ids):
+            raise ValueError("Detail manifest is missing public records or includes unlinked history")
+        for relative, identifiers in bucket_ids.items():
+            if set(loaded[relative]["records"]) != identifiers:
+                raise ValueError("Historical bucket includes records outside its manifest")
         for market, pointer in data.current_feed["markets"].items():
             page = load(pointer["url"])
             if len(page["signals"]) != pointer["count"]:

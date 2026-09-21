@@ -7,7 +7,8 @@ TED_COUNTRIES = {
     "CZE": "CZ", "ROU": "RO", "BGR": "BG", "HRV": "HR", "HUN": "HU", "LUX": "LU", "CYP": "CY",
     "MLT": "MT", "SVN": "SI", "SVK": "SK",
 }
-MARKETS = {country: [country] for country in ["GB", "US", *TED_COUNTRIES.values()]}
+MARKETS = {country: [country] for country in ["GB", "US", "CA", *TED_COUNTRIES.values()]}
+MARKETS["NORTHAMERICA"] = ["US", "CA"]
 MARKETS["NORDICS"] = ["SE", "FI", "DK", "NO", "IS"]
 MARKETS["BENELUX"] = ["BE", "NL", "LU"]
 MARKETS["DACH"] = ["DE", "AT", "CH"]

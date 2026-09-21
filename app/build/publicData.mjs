@@ -1,12 +1,14 @@
 import { createHash } from 'node:crypto'
 import { lstat, mkdir, readdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname, isAbsolute, join, relative, resolve, sep } from 'node:path'
+import { gunzipSync } from 'node:zlib'
 export const SITE_LIMIT_BYTES = 950 * 1024 * 1024
 const patterns = {
   current: /^current\/[A-Z]+-[a-f0-9]{16}\.json$/,
   awards: /^awards\/[A-Z]+-[a-f0-9]{16}\.json$/,
   records: /^records\/[A-Za-z0-9_-]{1,100}-[a-f0-9]{16}\.json$/,
   buyers: /^buyers\/buyer_[a-f0-9]{20}-[a-f0-9]{16}\.json$/,
+  history: /^history\/[a-f0-9]{3,64}-[a-f0-9]{16}\.json\.gz$/,
 }
 function object(value, context) {
   if (!value || typeof value !== 'object' || Array.isArray(value))
@@ -194,7 +196,13 @@ export async function copyPublicAssets(options) {
       'Public manifest and current.json are from different publications; finish export before building',
     )
   const buyerReferences = new Map()
-  const buyersOf = (signal) => {
+  const historyIds = new Set()
+  const anchoredBuyers = new Set()
+  const buyersOf = (signal, anchor = false) => {
+    if (anchor) {
+      for (const event of [...(signal.procedure_history || []), ...(signal.buyer_history || [])])
+        if (event.signal_id) historyIds.add(ident(event.signal_id))
+    }
     if (!signal.buyer_history_ref) return
     const reference = pointer(signal.buyer_history_ref, 'buyer history')
     if (!patterns.buyers.test(reference.url)) throw new Error('Unsafe buyer history path')
@@ -202,19 +210,26 @@ export async function copyPublicAssets(options) {
     if (previous && (previous.buyerId !== signal.buyer_id || previous.count !== reference.count))
       throw new Error('Conflicting buyer history references')
     buyerReferences.set(reference.url, { buyerId: signal.buyer_id, count: reference.count })
+    if (anchor) anchoredBuyers.add(reference.url)
   }
   const currentRows = rows(current.signals, 'current signals')
   const currentIds = new Set(currentRows.map((signal) => ident(signal.id)))
   if (currentIds.size !== currentRows.length) throw new Error('Duplicate current record identity')
-  currentRows.forEach(buyersOf)
+  currentRows.forEach((signal) => buyersOf(signal, true))
   const copiedPages = new Set()
   const loadPage = async (path, kind) => {
     if (!patterns[kind].test(path)) throw new Error(`Unsafe ${kind} data path: ${path}`)
     const body = await safeRead(join(publicDir, 'data', path))
-    const page = parse(body, path)
+    const compressed = kind === 'history'
+    if (compressed && body.length > 16 * 1024 * 1024)
+      throw new Error('Historical bucket is too large')
+    const decoded = compressed ? gunzipSync(body, { maxOutputLength: 16 * 1024 * 1024 }) : body
+    const page = parse(decoded, path)
     if (
       page.schema_version !== '1.0' ||
-      !path.endsWith(`${publicContentHash(body.toString('utf8')).slice(0, 16)}.json`)
+      !path.endsWith(
+        `${publicContentHash(decoded.toString('utf8')).slice(0, 16)}.json${compressed ? '.gz' : ''}`,
+      )
     )
       throw new Error(`Public content hash or schema mismatch: ${path}`)
     if (!copiedPages.has(path)) {
@@ -231,7 +246,7 @@ export async function copyPublicAssets(options) {
     if (signals.length !== reference.count) throw new Error('Award market count mismatch')
     for (const signal of signals) {
       awardIds.add(ident(signal.id))
-      buyersOf(signal)
+      buyersOf(signal, true)
     }
   }
   if (hasFeed) {
@@ -245,26 +260,51 @@ export async function copyPublicAssets(options) {
       if (signals.length !== reference.count) throw new Error('Current market count mismatch')
       for (const signal of signals) {
         indexedIds.add(ident(signal.id))
-        buyersOf(signal)
+        buyersOf(signal, true)
       }
     }
     if (!sameIds(indexedIds, currentIds)) throw new Error('Current indexes omit or add records')
     const records = object(feed.records, 'record details')
-    if (!sameIds(new Set(Object.keys(records)), new Set([...currentIds, ...awardIds])))
+    const baseIds = new Set([...currentIds, ...awardIds])
+    const contextIds = new Set(Object.keys(records).filter((id) => records[id].view === 'history'))
+    if (
+      !sameIds(new Set(Object.keys(records)), new Set([...baseIds, ...contextIds])) ||
+      [...contextIds].some((id) => baseIds.has(id))
+    )
       throw new Error('Record manifest does not cover exactly the published records')
-    await boundedEach(Object.entries(records), async ([id, value]) => {
-      const reference = object(value, id)
-      if (typeof reference.url !== 'string') throw new Error('Invalid record detail reference')
-      const page = await loadPage(reference.url, 'records')
+    const checkDetail = (id, reference, page, compressed = false) => {
       const signal = object(page.signal, reference.url)
       if (ident(signal.id) !== id) throw new Error('Record detail identity mismatch')
       if (
         (reference.view !== undefined &&
-          reference.view !== (currentIds.has(id) ? 'opportunities' : 'awards')) ||
-        !reference.url.startsWith(`records/${id}-`)
+          reference.view !==
+            (currentIds.has(id) ? 'opportunities' : awardIds.has(id) ? 'awards' : 'history')) ||
+        (compressed ? reference.view !== 'history' : !reference.url.startsWith(`records/${id}-`))
       )
         throw new Error('Record detail reference does not match its identity or view')
-      buyersOf(signal)
+      buyersOf(signal, baseIds.has(id))
+    }
+    const individual = []
+    const buckets = new Map()
+    for (const [id, value] of Object.entries(records)) {
+      const reference = object(value, id)
+      if (typeof reference.url !== 'string') throw new Error('Invalid record detail reference')
+      if (reference.url.startsWith('history/')) {
+        if (reference.view !== 'history') throw new Error('Historical bucket has an incorrect view')
+        if (!buckets.has(reference.url)) buckets.set(reference.url, new Map())
+        buckets.get(reference.url).set(id, reference)
+      } else individual.push([id, reference])
+    }
+    await boundedEach(individual, async ([id, reference]) => {
+      checkDetail(id, reference, await loadPage(reference.url, 'records'))
+    })
+    await boundedEach([...buckets], async ([path, references]) => {
+      const page = await loadPage(path, 'history')
+      const details = object(page.records, path)
+      if (!sameIds(new Set(Object.keys(details)), new Set(references.keys())))
+        throw new Error('Historical bucket includes records outside its manifest')
+      for (const [id, reference] of references)
+        checkDetail(id, reference, object(details[id], id), true)
     })
   }
   await boundedEach([...buyerReferences], async ([path, reference]) => {
@@ -276,7 +316,16 @@ export async function copyPublicAssets(options) {
       !path.startsWith(`buyers/${page.buyer_id}-`)
     )
       throw new Error('Buyer history identity or count mismatch')
+    if (anchoredBuyers.has(path))
+      for (const record of records) historyIds.add(ident(record.signal_id))
   })
+  if (
+    hasFeed &&
+    Object.entries(current.current_feed.records).some(
+      ([id, ref]) => ref.view === 'history' && !historyIds.has(id),
+    )
+  )
+    throw new Error('Record manifest includes history unlinked to a published record')
   for (const entry of await readdir(publicDir, { withFileTypes: true })) {
     if (entry.name === 'data') continue
     const path = join(publicDir, entry.name)

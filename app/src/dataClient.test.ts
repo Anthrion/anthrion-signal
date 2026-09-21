@@ -2,12 +2,23 @@ import { afterEach, describe, expect, test, vi } from 'vitest'
 import {
   BoundedCache,
   currentMarketPaths,
+  fetchJSON,
+  isCurrentFeed,
   loadManifest,
   loadPages,
   mergeSignalPages,
+  recordDetail,
   safeDataPath,
 } from './dataClient'
 import type { SignalPage } from './dataClient'
+
+async function gzip(body: string) {
+  return new Uint8Array(
+    await new Response(
+      new Blob([body]).stream().pipeThrough(new CompressionStream('gzip')),
+    ).arrayBuffer(),
+  )
+}
 import type { Dataset } from './types'
 import { recordDataset } from '../tests/fixtures/record'
 import { awardMarketPaths } from './useAwardHistory'
@@ -89,6 +100,54 @@ describe('versioned static data', () => {
       '/signal/data/manifest.json',
       '/signal/data/current.json',
     ])
+  })
+  test('compressed history selects the requested record, preserves Unicode and accepts HTTP-decoded content', async () => {
+    const url = 'history/abc-0123456789abcdef.json.gz'
+    const payload = {
+      schema_version: '1.0',
+      records: {
+        first: { signal: { ...record, id: 'first', title: 'Other notice' } },
+        second: { signal: { ...record, id: 'second', title: 'Portail français' } },
+      },
+    }
+    const body = JSON.stringify(payload)
+    for (const bytes of [await gzip(body), new TextEncoder().encode(body)]) {
+      vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response(bytes)))
+      const result = await fetchJSON(url, new AbortController().signal, '/')
+      expect(recordDetail(result, 'second')?.signal.title).toBe('Portail français')
+      expect(recordDetail(result, 'missing')).toBeNull()
+      expect(recordDetail({ schema_version: '1.0', signal: record }, record.id)?.signal).toEqual(
+        record,
+      )
+    }
+    expect(
+      isCurrentFeed({
+        version: '1.0',
+        markets: {},
+        records: {
+          second: { url, markets: ['FR'], view: 'history' },
+        },
+      }),
+    ).toBe(true)
+    expect(
+      isCurrentFeed({
+        version: '1.0',
+        markets: {},
+        records: {
+          second: { url, markets: ['FR'], view: 'opportunities' },
+        },
+      }),
+    ).toBe(false)
+  })
+  test('corrupt and oversized compressed history cannot be decoded into an unbounded page', async () => {
+    const url = 'history/abc-0123456789abcdef.json.gz'
+    for (const bytes of [
+      new Uint8Array([0x1f, 0x8b, 0]),
+      await gzip('x'.repeat(16 * 1024 * 1024 + 1)),
+    ]) {
+      vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response(bytes)))
+      await expect(fetchJSON(url, new AbortController().signal, '/')).rejects.toThrow()
+    }
   })
   test('cancelled market requests cannot populate caches after their response arrives', async () => {
     let deliver: (value: unknown) => void = () => {}

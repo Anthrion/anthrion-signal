@@ -1,9 +1,18 @@
 """Immutable current indexes and record details, published before their manifest."""
+import gzip
+import json
 import re
+from collections import defaultdict
 
 from .markets import MARKETS
 from .public_context import public_signal
-from .utils import atomic_json, digest
+from .utils import atomic_bytes, digest
+
+
+def atomic_public_json(path, payload):
+    # Identical source facts and content hashes, without indentation repeated in
+    # every immutable public shard. Canonical storage retains its existing format.
+    atomic_bytes(path, json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False).encode("utf-8"))
 
 DETAIL_FIELDS = {"description", "documents", "changes", "capability_evidence", "eligibility_text",
                  "buyer_history", "procedure_history", "participation_requirements", "delivery_role", "lots",
@@ -20,7 +29,7 @@ def record_file(root, signal, translation=None, view="opportunities", buyer_refs
             buyer = {"schema_version": "1.0", "buyer_id": signal.buyer_id, "buyer_name": signal.buyer_name,
                      "identity_basis": signal.buyer_identity_basis, "records": signal.buyer_history}
             relative = f"buyers/{signal.buyer_id}-{digest(buyer)[:16]}.json"
-            atomic_json(root / "app/public/data" / relative, buyer)
+            atomic_public_json(root / "app/public/data" / relative, buyer)
             signal.buyer_history_ref = {"url": relative, "count": len(signal.buyer_history),
                                         "identity_basis": signal.buyer_identity_basis}
             if buyer_refs is not None:
@@ -30,9 +39,49 @@ def record_file(root, signal, translation=None, view="opportunities", buyer_refs
     if translation:
         payload["translation"] = translation.model_dump() if hasattr(translation, "model_dump") else translation
     relative = f"records/{signal.id}-{digest(payload)[:16]}.json"
-    atomic_json(root / "app/public/data" / relative, payload)
+    atomic_public_json(root / "app/public/data" / relative, payload)
     return item, {"url": relative, "markets": [market for market, countries in MARKETS.items()
                                                if set(countries).intersection(signal.countries)], "view": view}
+
+
+def history_files(root, signals, translations, buyer_refs, max_bytes=8 * 1024 * 1024):
+    """Small stable buckets preserve full history with bounded download/decode costs."""
+    groups = defaultdict(list)
+    for signal in signals:
+        groups[digest(signal.id)[:3]].append(signal)
+    manifest = {}
+
+    def write(prefix, records):
+        details = {}
+        for signal in records:
+            if not re.fullmatch(r"[A-Za-z0-9_-]{1,100}", signal.id):
+                raise ValueError("Unsafe historical record identifier")
+            translation = translations.get(signal.id)
+            detail = signal.model_copy(update={"buyer_history": [], "procedure_history": [],
+                "buyer_history_ref": buyer_refs.get(signal.buyer_id)})
+            details[signal.id] = {"signal": public_signal(detail, translation)}
+            if translation:
+                details[signal.id]["translation"] = translation.model_dump() if hasattr(translation, "model_dump") else translation
+        payload = {"schema_version": "1.0", "records": details}
+        body = json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False).encode("utf-8")
+        if len(body) > max_bytes:
+            if len(records) == 1 or len(prefix) >= 64:
+                raise ValueError("A historical notice exceeds the bounded detail download size")
+            children = defaultdict(list)
+            for signal in records:
+                children[digest(signal.id)[:len(prefix) + 1]].append(signal)
+            for child, values in sorted(children.items()):
+                write(child, values)
+            return
+        relative = f"history/{prefix}-{digest(payload)[:16]}.json.gz"
+        atomic_bytes(root / "app/public/data" / relative, gzip.compress(body, compresslevel=6, mtime=0))
+        for signal in records:
+            manifest[signal.id] = {"url": relative, "view": "history", "markets": [market for market, countries in MARKETS.items()
+                if set(countries).intersection(signal.countries)]}
+
+    for prefix, records in sorted(groups.items()):
+        write(prefix, records)
+    return manifest
 
 
 def search_text(signal, translation):
@@ -67,7 +116,7 @@ def export_current(root, dataset, award_records=None):
         payload = {"schema_version": "1.0", "signals": selected,
                    "translations": {key: value for key, value in translations.items() if key in ids}}
         relative = f"current/{market}-{digest(payload)[:16]}.json"
-        atomic_json(root / "app/public/data" / relative, payload)
+        atomic_public_json(root / "app/public/data" / relative, payload)
         manifest["markets"][market] = {"url": relative, "count": len(selected)}
     # No shards are deleted during generation: a failed/parallel reader of the
     # previous manifest must retain all of its content-addressed dependencies.

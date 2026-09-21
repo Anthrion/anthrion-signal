@@ -421,3 +421,15 @@ sources:
     access_notes: >-
       Official IMPIC announcements catalogue labels this dataset public domain.
       Verify resource freshness, notice lifecycle and deadline fields before bounded downloads; announcements differ from awarded-contract registers.
+  - id: canada_buys
+    name: CanadaBuys
+    enabled: true
+    collector: canada_buys
+    source_type: official_notice
+    country: CA
+    url: https://canadabuys.canada.ca/opendata/pub/openTenderNotice-ouvertAvisAppelOffres.csv
+    website: https://canadabuys.canada.ca
+    docs: https://donnees-data.tpsgc-pwgsc.gc.ca/ba2/ac-cb/soutien-support-eng.html
+    coverage: Federal open/new tenders and current fiscal-year tender and award notices; provincial and municipal portals are not included.
+    max_records_per_feed: 1000
+    minimum_open_rows: 100

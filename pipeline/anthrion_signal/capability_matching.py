@@ -56,7 +56,8 @@ PHYSICAL_SYSTEMS = ("pipework", "ventilation", "air handling", "compressed air",
                     "high voltage", "switchgear", "electrical installations", "building management system",
                     "building management systems", "mechanical systems", "tiefengeothermie", "gas systems",
                     "welding power sources", "rigging", "deck and fittings", "launching and trials",
-                    "structural hardware", "jarcias", "maquinaria", "herraje estructural", "tow line", "synthetic fiber")
+                    "structural hardware", "jarcias", "maquinaria", "herraje estructural", "tow line", "synthetic fiber",
+                    "gate actuators", "drive actuator", "sally port", "magnetic locks")
 DIGITAL_SYSTEMS = ("software", "application", "database", "crm", "salesforce", "api", "middleware",
                    "information system", "information systems", "data platform", "customer portal", "ai agent")
 
@@ -74,6 +75,10 @@ def operational_software_use(text, phrase):
     itself, or a separate implementation sentence, remains positive evidence.
     """
     hits = list(re.finditer(r"(?<!\w)" + re.escape(phrase) + r"(?!\w)", text))
+    if phrase in {"reporting system", "ordering system", "order management", "tracking system"} and hits and all(
+            re.search(r"\b(?:supplier|contractor|offeror|bidder)\s+(?:must|shall)\s+have\s+(?:an?|its own)\s+$",
+                      text[max(0, hit.start() - 100):hit.start()]) for hit in hits):
+        return True
     if (hits and all(re.search(r"\blicen[cs]es?\s+(?:which|that)\s+support\b",
                               text[max(0, hit.start() - 150):hit.start()]) for hit in hits)
             and not phrase_hits(text, ("implement", "implementation", "configure", "configuration", "migrate", "migration", "develop", "development"))):

@@ -143,7 +143,7 @@ test.beforeEach(async ({ page }, info) => {
   await page.route('**/data/current.json', (route) => route.fulfill({ json: dataset }))
 })
 
-test('source facts, logo, filtering, saving, evidence and search', async ({ page }, info) => {
+test('@pr source facts, logo, filtering, saving, evidence and search', async ({ page }, info) => {
   const errors: string[] = []
   page.on('pageerror', (e) => errors.push(e.message))
   await page.goto('./')
@@ -524,7 +524,7 @@ test('@data all market tabs have real, correctly scoped records and opportunity 
   const dataset = await page.evaluate(async () => (await fetch('./data/current.json')).json())
   for (const [id, name, countries] of [
     ['GB', 'United Kingdom', ['GB']],
-    ['US', 'United States', ['US']],
+    ['NORTHAMERICA', 'North America', ['US', 'CA']],
     ['IT', 'Italy', ['IT']],
     ['NORDICS', 'Nordics', ['SE', 'FI', 'DK', 'NO', 'IS']],
     ['DACH', 'DACH', ['DE', 'AT', 'CH']],
@@ -551,7 +551,8 @@ test('@data all market tabs have real, correctly scoped records and opportunity 
     await page.screenshot({ path: `../artifacts/market-greece-${info.project.name}.png` })
   await page.goto('./?view=sources&market=US')
   await ready(page)
-  await expectMarket(page, 'United States')
+  await expect(page.locator('.more-markets-trigger')).toContainText('United States')
+  expect(new URL(page.url()).searchParams.get('market')).toBe('US')
   await expect(page.locator('.feed-heading h1')).toHaveText('All Signals')
   await expect(page.locator('.source-page')).toHaveCount(0)
   expect(dataset.sources.find((s: { id: string }) => s.id === 'usaspending').enabled).toBe(false)

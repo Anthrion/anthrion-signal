@@ -22,6 +22,11 @@ BOOKKEEPING = {RECEIPT, "data/publication_state.json", "data/published_release.j
                "data/verification_state.json", "data/ui_verification_state.json", "data/translation_quota.json"}
 
 
+def public_json_path(name):
+    return PurePosixPath(name).suffix == ".json" or bool(re.fullmatch(
+        r"history/[a-f0-9]{3,64}-[a-f0-9]{16}\.json\.gz", name))
+
+
 def digest_file(path):
     with path.open("rb") as stream:
         return hashlib.file_digest(stream, "sha256").hexdigest()
@@ -116,7 +121,7 @@ def restore(root, receipt):
         for member in members:
             path = PurePosixPath(member.name)
             if (not member.isfile() or path.is_absolute() or ".." in path.parts
-                    or "\\" in member.name or ":" in member.name or path.suffix != ".json"
+                    or "\\" in member.name or ":" in member.name or not public_json_path(member.name)
                     or member.name in paths or not path.parts or path.parts[0] == "."):
                 raise ValueError("Unsafe public data archive member")
             paths.add(member.name)
@@ -162,7 +167,7 @@ def pack(root):
     for name in names:
         path = public / name
         if (PurePosixPath(name).is_absolute() or ".." in PurePosixPath(name).parts
-                or "\\" in name or ":" in name or path.suffix != ".json"
+                or "\\" in name or ":" in name or not public_json_path(name)
                 or not path.resolve().is_relative_to(public.resolve())
                 or path.is_symlink() or not path.is_file()):
             raise ValueError("Only regular public JSON exports may be cached")

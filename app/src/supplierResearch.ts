@@ -1,4 +1,4 @@
-import { isHistoricalAward } from './lib'
+import { hasAwardOutcome } from './lib'
 import type { Dataset, HistoryRecord, Signal } from './types'
 
 export type PublishedSupplier = NonNullable<Signal['winners']>[number]
@@ -8,7 +8,7 @@ const exactName = (value: string) =>
   value.normalize('NFKC').trim().replace(/\s+/g, ' ').toLocaleLowerCase('en')
 
 export function publishedSuppliers(signal: Signal): PublishedSupplier[] {
-  if (!isHistoricalAward(signal)) return []
+  if (!hasAwardOutcome(signal)) return []
   const winners = signal.winners?.filter((winner) => winner.name?.trim()) || []
   return winners.length
     ? winners

@@ -71,13 +71,20 @@ export function emptyPersonalWorkspace(): PersonalWorkspace {
     version: 1,
     savedViews: [],
     marketPreferences: {
-      pinned: ['', 'GB', 'US', 'IT', 'NORDICS', 'DACH', 'ES', 'GR', 'BENELUX', 'FR'],
+      pinned: ['', 'GB', 'NORTHAMERICA', 'IT', 'NORDICS', 'DACH', 'ES', 'GR', 'BENELUX', 'FR'],
       order: defaultMarketOptions.map((m) => m.id),
     },
   }
 }
 export function normaliseMarketPreferences(value: MarketPreferences): MarketPreferences {
   const known = new Set<string>(defaultMarketOptions.map((m) => m.id))
+  // Migrate the former US tab once. Subsequent arrangements can pin either country
+  // alongside the group, or unpin the group without it being added back.
+  if (!value.order.includes('NORTHAMERICA'))
+    value = {
+      order: value.order.flatMap((id) => (id === 'US' ? ['NORTHAMERICA', 'US'] : [id])),
+      pinned: value.pinned.map((id) => (id === 'US' ? 'NORTHAMERICA' : id)),
+    }
   return {
     order: [
       ...new Set([

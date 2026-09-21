@@ -607,7 +607,7 @@
   justify-self: end;
 }
 .research-page-body {
-  max-width: 1510px;
+  max-width: 1760px;
   margin: 0 auto;
   padding: 36px 40px 70px;
 }
@@ -630,8 +630,8 @@
 .research-split,
 .buyer-research-grid {
   display: grid;
-  grid-template-columns: minmax(350px, 0.95fr) minmax(440px, 1.2fr);
-  gap: 22px;
+  grid-template-columns: minmax(320px, 1.12fr) repeat(2, minmax(270px, 1fr));
+  gap: 18px;
   align-items: start;
 }
 .buyer-research-grid {
@@ -656,6 +656,165 @@
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 10px;
+}
+.research-source {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: 100%;
+}
+.source-origin {
+  font-size: 10px;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+.research-page-header > .language-control {
+  justify-self: end;
+}
+.related-controls {
+  display: flex;
+  gap: 8px;
+  align-items: start;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+  z-index: 3 !important;
+}
+.related-search {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0 10px;
+  color: var(--muted);
+  background: var(--bg);
+}
+.related-search input {
+  width: 100%;
+  min-width: 0;
+  height: 38px;
+  font-size: 12px;
+  background: transparent;
+  border: 0;
+  color: var(--text);
+}
+.related-filter-menu {
+  position: relative;
+}
+.related-filter-menu > summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  padding: 11px 8px;
+  font-size: 11px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+.related-filter-menu > summary::-webkit-details-marker {
+  display: none;
+}
+.related-filter-menu[open] > summary {
+  border-color: var(--mint);
+  color: var(--mint);
+}
+.related-filter-panel {
+  position: absolute;
+  top: 46px;
+  right: 0;
+  z-index: 8;
+  width: 280px;
+  max-width: calc(100vw - 68px);
+  padding: 18px;
+  border: 1px solid var(--line-strong);
+  border-radius: 9px;
+  background: var(--surface);
+  box-shadow: 0 16px 40px #0007;
+}
+.related-filter-panel label {
+  display: grid;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--muted);
+  min-width: 0;
+}
+.related-filter-panel input,
+.related-filter-panel select {
+  min-width: 0;
+  width: 100%;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--text);
+  border-radius: 5px;
+  padding: 8px;
+  font: inherit;
+  min-height: 36px;
+  color-scheme: dark;
+}
+.related-filter-panel select {
+  margin-bottom: 8px;
+  font-size: 11px;
+}
+.related-filter-panel fieldset {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 16px 0 0;
+  padding: 10px 0 0;
+  min-width: 0;
+}
+.related-filter-panel legend {
+  padding: 0 6px 0 0;
+  font-size: 11px;
+  color: var(--ice);
+}
+.related-range {
+  display: flex;
+  gap: 8px;
+}
+.related-range > label {
+  flex: 1;
+}
+.related-filter-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 18px;
+}
+.related-filter-actions button {
+  min-height: 34px;
+  font-size: 11px;
+  color: var(--mint);
+  padding: 6px;
+}
+.related-filter-panel p {
+  color: var(--amber);
+  font-size: 11px;
+}
+.related-filter-panel :disabled {
+  opacity: 0.5;
+}
+.related-country {
+  color: var(--muted);
+  font-size: 10px;
+}
+.research-full-record {
+  max-width: 1000px;
+  margin: 0 auto;
+  min-width: 0;
+}
+.research-full-record .console-detail {
+  min-height: min(700px, calc(100dvh - 140px));
+  height: calc(100dvh - 170px);
+}
+.research-full-record .inspector-content {
+  padding: 24px;
+}
+.research-record-page .research-page-body {
+  padding-top: 20px;
 }
 .lot-summary {
   margin: 5px 0 12px;
@@ -1230,6 +1389,17 @@
   }
 }
 @media (max-width: 1100px) {
+  .research-split {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .research-split .research-current {
+    grid-column: 1 / -1;
+    position: relative;
+    top: auto;
+  }
+  .research-split .research-current-content {
+    max-height: 460px;
+  }
   .research-page-body {
     padding: 27px 24px 50px;
   }
@@ -1271,6 +1441,16 @@
     grid-template-columns: 1fr auto;
     min-height: 65px;
     gap: 10px;
+  }
+  .research-page-header > .language-control {
+    grid-column: 2;
+    grid-row: 2;
+  }
+  .research-split .research-current {
+    grid-column: auto;
+  }
+  .research-split .research-current-content {
+    max-height: none;
   }
   .research-page-header > .glass-source-button {
     display: none;

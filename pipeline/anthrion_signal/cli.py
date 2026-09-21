@@ -18,7 +18,7 @@ from .models import Dataset, EnglishText, Signal, SourceHealth
 from .normalise import NORMALISERS, set_hashes
 from .notice_dates import response_deadline_instant
 from .public_context import backfill_retained_facts, public_signal
-from .public_feed import export_current
+from .public_feed import atomic_public_json, export_current
 from .retention import archive_expired, restore_matching
 from .translation import available_translations
 from .utils import (atomic_json, atomic_retained_bytes, atomic_retained_json, digest,
@@ -66,6 +66,13 @@ def _collect(source, previous_state, now, config, previous_signals=None):
         elif source["collector"] == "sam_csv" and next_state.get("snapshot_etag") != state.get("snapshot_etag"):
             from .sam_opportunities import removed_sam_records
             normalised.extend(removed_sam_records(previous_signals or [], next_state, now.isoformat()))
+        elif (source["collector"] == "canada_buys" and
+              next_state.get("feeds", {}).get("open", {}).get("etag") != state.get("feeds", {}).get("open", {}).get("etag")):
+            from .canada_buys import removed_canada_records
+            received = {signal.id for signal in normalised}
+            # A newly published revision or explicit cancellation takes precedence
+            # over absence from the independently refreshed daily open list.
+            normalised.extend(removed_canada_records([s for s in previous_signals or [] if s.id not in received], next_state, now.isoformat()))
         return source["id"], normalised, next_state, health, len(result.records) + len(result.rejected_records)
     except Exception as exc:
         health.status = "failed"
@@ -158,8 +165,8 @@ def export(root):
     target = root / "app/public/data"
     target.mkdir(parents=True, exist_ok=True)
     public = public_data(data)
-    atomic_json(target / "current.json", public)
-    atomic_json(target / "manifest.json", {**public, "signals": [], "translations": {}})
+    atomic_public_json(target / "current.json", public)
+    atomic_public_json(target / "manifest.json", {**public, "signals": [], "translations": {}})
     return data
 
 
