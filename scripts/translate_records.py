@@ -42,9 +42,10 @@ def translation_records(root, now):
     return current, awards
 
 
-def notice_coverage(queue, groups):
+def notice_coverage(queue, groups, reviewed=()):
     return {name: {"records": len(records),
-                   "complete": sum(bool(queue.overlay([signal])["signals"]) for signal in records)}
+                   "complete": sum(signal.id in reviewed or bool(queue.overlay([signal])["signals"])
+                                   for signal in records)}
             for name, records in groups.items()}
 
 
@@ -70,7 +71,7 @@ def main():
     output = args.output_dir or (root / "artifacts/translation-benchmark/gemini" / "+".join(names) / "benchmark"
                                  if args.mode == "benchmark" else root / "data/translation")
     load_dotenv(root / ".env")
-    records, corpus, groups = [], [], {}
+    records, corpus, groups, reviewed = [], [], {}, {}
     with translation_lock(root / "data"):
         queue = TranslationQueue(output / "cache.json")
         if args.mode == "benchmark":
@@ -88,11 +89,13 @@ def main():
             groups = {"current": current, "awards": awards}
             records = current + awards
             queue.prepare(current, awards=awards)
+            from anthrion_signal.translation_reviews import prioritize_unreviewed_translations
+            reviewed = prioritize_unreviewed_translations(root, records, queue)
         characters = sum(sum(len(part["source"]) for part in queue.state["fields"][key]["parts"])
                          for key in queue.active if queue.completed(key) is None)
         print(json.dumps({"mode": args.mode, "unique_fields": len(queue.active),
                           "pending_characters": characters, "models": names,
-                          "notice_coverage": notice_coverage(queue, groups)}), flush=True)
+                          "notice_coverage": notice_coverage(queue, groups, reviewed)}), flush=True)
         if args.mode == "plan":
             return
         ledger = QuotaLedger(root / "data/translation_quota.json")
@@ -134,7 +137,7 @@ def main():
         summary.update(input_characters=sum(sum(len(p["source"]) for p in queue.state["fields"][key]["parts"])
                                             for key in queue.active), models=names,
                        finished_at=datetime.now(UTC).isoformat(),
-                       notice_coverage=notice_coverage(queue, groups))
+                       notice_coverage=notice_coverage(queue, groups, reviewed))
         if corpus:
             rows = [{**entry, "previous_english": entry["english"],
                      "english": queue.completed(field_key(entry["source"]))} for entry in corpus]

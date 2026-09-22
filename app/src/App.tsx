@@ -30,6 +30,7 @@ import {
 } from 'lucide-react'
 import type { Dataset, DisplayLanguage, EnglishText, Filters, Signal } from './types'
 import { TranslationProvider, useSignalText } from './Translation'
+import { RecommendedApproach } from './RecommendedApproach'
 import {
   AmbientGlass,
   BrandSignature,
@@ -1422,6 +1423,7 @@ function ConsoleDetail({
                   <CapabilityTags signal={s} data={data} />
                 </section>
               )}
+              <RecommendedApproach signal={s} />
               {hasAwardOutcome(s) && (
                 <section className="inspector-capabilities">
                   <h3>Awarded supplier</h3>
@@ -1753,6 +1755,7 @@ function SignalDetail({
               <h3>Capabilities</h3>
               <CapabilityTags signal={s} data={data} />
             </section>
+            <RecommendedApproach signal={s} />
             <section className="detail-section">
               <h3>Published deadlines</h3>
               <DeadlineEvents signal={s} />

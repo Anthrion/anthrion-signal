@@ -165,7 +165,10 @@ jobs:
           GH_TOKEN: ${{ steps.translation-token.outputs.token || github.token }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           PYTHONUNBUFFERED: '1'
-        run: python scripts/translate_records.py records --github-checkpoint --max-calls 150 --max-seconds 300
+          # Catch-up passes have time to use their existing call allowance. Keep
+          # hourly collection's translation window short; neither quota changes.
+          TRANSLATION_SECONDS: ${{ steps.plan.outputs.collect == 'true' && '300' || '900' }}
+        run: python scripts/translate_records.py records --github-checkpoint --max-calls 150 --max-seconds "$TRANSLATION_SECONDS"
       - name: Checkpoint private translation progress
         if: always() && steps.translate.outcome != 'skipped'
         continue-on-error: true

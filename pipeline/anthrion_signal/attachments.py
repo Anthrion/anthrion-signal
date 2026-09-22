@@ -112,11 +112,25 @@ def fetch_document(client, url, policy, headers=None):
     return "inaccessible", None, None
 
 
+def _compatible_cached_document(document, value):
+    cached = Document.model_validate(value)
+    # A stable URL can point to revised procurement documents. Never attach an
+    # earlier extraction to a new source revision or replace fresh source labels.
+    if cached.url != document.url or cached.source_revision != document.source_revision:
+        return None
+    current_time, cached_time = parse_date(document.retrieved_at), parse_date(cached.retrieved_at)
+    if document.content_hash and (not cached.content_hash or current_time and
+                                  (not cached_time or current_time > cached_time)):
+        return None
+    return cached.model_copy(update={"title": document.title, "kind": document.kind,
+                                     "source_revision": document.source_revision})
+
+
 def hydrate_cached_documents(root, signals):
     cache = read_json(root / "data/documents/index.json", {})
     for signal in signals:
-        signal.documents = [Document.model_validate(cache[d.url]["document"]) if d.url in cache else d
-                            for d in signal.documents]
+        signal.documents = [(_compatible_cached_document(d, cache[d.url]["document"]) or d)
+                            if d.url in cache else d for d in signal.documents]
 
 
 def enrich_documents(root, signals, sources, now, *, limit=2, client=None, extractor=_extract_file):
@@ -134,9 +148,19 @@ def enrich_documents(root, signals, sources, now, *, limit=2, client=None, extra
             for index, document in enumerate(signal.documents):
                 previous = cache.get(document.url, {})
                 checked = parse_date(previous.get("checked_at"))
+                retained_revision = None
                 if previous:
-                    document = Document.model_validate(previous["document"])
-                    signal.documents[index] = document
+                    cached = _compatible_cached_document(document, previous["document"])
+                    if cached is not None:
+                        document = cached
+                        signal.documents[index] = document
+                    else:
+                        # The weekly check and conditional request belong to the
+                        # cached revision, not this newly published source scope.
+                        # Keep its history separately: rejecting its extraction
+                        # must not orphan the retained source-document revisions.
+                        retained_revision = Document.model_validate(previous["document"])
+                        previous, checked = {}, None
                 if not permitted(document.url, policy) or attempted >= limit:
                     continue
                 if checked and checked > now - timedelta(days=7):
@@ -169,6 +193,17 @@ def enrich_documents(root, signals, sources, now, *, limit=2, client=None, extra
                             "media_type": metadata["media_type"], "reuse_basis": policy["reuse_basis"]})
                 else:
                     document.status = status
+                if retained_revision is not None:
+                    revisions = list(retained_revision.previous_revisions)
+                    if retained_revision.content_hash:
+                        revisions.append({"content_hash": retained_revision.content_hash,
+                            "revision": retained_revision.revision or retained_revision.content_hash[:16],
+                            "retrieved_at": retained_revision.retrieved_at or "", "status": "superseded"})
+                    revisions.extend(document.previous_revisions)
+                    document = document.model_copy(update={"previous_revisions": list({
+                        revision["content_hash"]: revision for revision in revisions
+                        if revision.get("content_hash") and revision["content_hash"] != document.content_hash
+                    }.values())})
                 signal.documents[index] = document
                 cache[document.url] = {"document": document.model_dump(), "checked_at": now.isoformat(),
                                        **(metadata or {})}

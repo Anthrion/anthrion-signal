@@ -20,6 +20,7 @@ from .notice_dates import response_deadline_instant
 from .public_context import backfill_retained_facts, public_signal
 from .public_feed import atomic_public_json, export_current
 from .retention import archive_expired, restore_matching
+from .record_reviews import apply_reviews, load_reviews
 from .translation import available_translations
 from .utils import (atomic_json, atomic_retained_bytes, atomic_retained_json, digest,
                     jsonl_lines, parse_date, read_json, read_retained_bytes, retained_path)
@@ -153,6 +154,13 @@ def prepare_current(root, *, save_cache=False):
             health.message = "Expanded country coverage is awaiting collection; retained records remain available."
     for signal in data.signals:
         signal.lifecycle_state, signal.lifecycle_reason = lifecycle(signal, datetime.now(UTC))
+    hydrate_cached_documents(root, data.signals)
+    before_reviews = len(data.signals)
+    data.signals = apply_reviews(data.signals, load_reviews(root))
+    visible_ids = {signal.id for signal in data.signals}
+    data.translations = {key: value for key, value in data.translations.items() if key in visible_ids}
+    data.run["reviewed_exclusions"] = before_reviews - len(data.signals)
+    data.run["public_signals"] = len(data.signals)
     return data, canonical_signals, config
 
 
@@ -160,7 +168,6 @@ def export(root):
     data, canonical_signals, config = prepare_current(root, save_cache=True)
     award_records = {}
     data.award_history = export_awards(root, canonical_signals, config, datetime.now(UTC), award_records, data.signals)
-    hydrate_cached_documents(root, data.signals)
     data.current_feed = export_current(root, data, award_records)
     target = root / "app/public/data"
     target.mkdir(parents=True, exist_ok=True)

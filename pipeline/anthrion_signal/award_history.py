@@ -6,12 +6,14 @@ archive and rejection stores. No translation/model requests are made here.
 import gzip
 import json
 
+from .attachments import hydrate_cached_documents
 from .discovery import discovery_signature, is_public_award, lifecycle, prefilter, ranking_key
 from .discovery_retention import read_rejected
 from .models import Signal
 from .markets import MARKETS
 from .public_context import attach_history, backfill_retained_facts, enrich_signal, public_signal
 from .public_feed import atomic_public_json, history_files, record_file
+from .record_reviews import apply_reviews, load_reviews
 from .translation import available_translations
 from .utils import atomic_bytes, digest, jsonl_lines, parse_date, read_json
 
@@ -38,6 +40,14 @@ def prepare_awards(root, canonical, config, now):
     """Select the same relevant, retained awards for publication and translation."""
     history = retained_history(root, canonical)
     backfill_retained_facts(history, read_json(root / "data/source_state.json", {}))
+    reviews = load_reviews(root)
+    # Use the same document facts as current-record decisions without hydrating
+    # tens of thousands of unrelated history rows or changing canonical objects.
+    history = [s.model_copy() if s.id in reviews else s for s in history]
+    reviewed = [s for s in history if s.id in reviews]
+    if reviewed:
+        hydrate_cached_documents(root, reviewed)
+    history = apply_reviews(history, reviews, now=now, guidance=False)
     candidates = [s for s in history if is_public_award(s.model_copy(update={"exclusion_reasons": []}), now)]
     translations = available_translations(root, candidates)
     path = root / "data/discovery/award_classification.json.gz"
@@ -95,7 +105,8 @@ def export_awards(root, canonical, config, now, record_manifest=None, context_si
     context_translations = available_translations(root, context)
     context_translations.update(translations)
     attach_history(awards, history, context_translations)
-    attach_history(canonical + (context_signals or []), history, context_translations)
+    history_ids = {s.id for s in history}
+    attach_history([s for s in canonical if s.id in history_ids] + (context_signals or []), history, context_translations)
     if record_manifest is not None:
         buyer_refs = {}
         award_ids = {s.id for s in awards}

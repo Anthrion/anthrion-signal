@@ -19,7 +19,7 @@ from zoneinfo import ZoneInfo
 import httpx
 from lingua import Language, LanguageDetectorBuilder
 
-from .utils import atomic_json, atomic_retained_json, digest, read_json, retained_path
+from .utils import atomic_json, atomic_retained_bytes, digest, read_json, retained_path
 
 VERSION = "en-procurement-2"
 RETRY_PROFILE = "decoded-entities-and-source-site-names-3"
@@ -645,6 +645,9 @@ def available_translations(root, signals):
                 and isinstance(entry.get("buyer_name"), str) and entry["buyer_name"].strip()
                 and not untranslated_prose(entry["buyer_name"])):
             result[source["id"]].update(buyer_name=entry["buyer_name"], buyer_original=source["buyer_name"])
+    from .translation_reviews import reviewed_translations
+    for ident, reviewed in reviewed_translations(Path(root), sources).items():
+        result[ident] = {**result.get(ident, {}), **reviewed}
     return result
 
 
@@ -909,4 +912,9 @@ class TranslationQueue:
         return {"version": 1, "target": "en", "signals": result}
 
     def save(self):
-        atomic_retained_json(self.path, self.state)
+        # Every batch remains a durable checkpoint. The growing private cache does
+        # not need indentation: compact JSON preserves exactly the same fields and
+        # substantially reduces serialization work inside the provider time budget.
+        body = json.dumps(self.state, ensure_ascii=False, sort_keys=True,
+                          separators=(",", ":"), allow_nan=False) + "\n"
+        atomic_retained_bytes(self.path, body.encode("utf-8"))

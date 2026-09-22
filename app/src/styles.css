@@ -3193,6 +3193,30 @@ blockquote a {
     margin-left: auto;
   }
 }
+.recommended-approach {
+  margin: 20px 0;
+  line-height: 1.65;
+  font-size: 13px;
+}
+.recommended-approach h3 {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--mint);
+}
+.recommended-approach p {
+  margin: 0 0 10px;
+  overflow-wrap: anywhere;
+}
+.recommended-approach p:last-child {
+  margin-bottom: 0;
+}
+.approach-problems {
+  margin-top: 15px;
+}
+.approach-problems h3 {
+  color: var(--text);
+}
 @media (prefers-reduced-motion: reduce) {
   .modal.drawer {
     animation: none;

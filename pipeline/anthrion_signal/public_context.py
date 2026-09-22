@@ -174,6 +174,8 @@ def public_signal(signal, translation=None):
             else "direct_supplier" if delivery and signal.procurement_stage == "tender" else "unknown")
     result["delivery_role"] = {"kind": role, "evidence": (component or delivery)[:4]}
     result["participation_requirements"] = participation_requirements(signal, translation)
+    if not signal.reviewed_guidance:
+        result.pop("reviewed_guidance", None)
     return result
 
 

@@ -232,6 +232,7 @@ class Signal(StrictModel):
         return data
 
     id: str
+    reviewed_guidance: dict[str, Any] | None = None
     fingerprint: str = ""
     ocid: str | None = None
     lot_id: str | None = None
