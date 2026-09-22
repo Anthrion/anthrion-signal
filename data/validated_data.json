@@ -1,15 +1,15 @@
 {
   "version": 1,
-  "generation": 28,
+  "generation": 29,
   "data_code": "00c91b5418738e1498e2f2cff8ff6a2126c996503868a270ae8ac81e2532693c",
-  "sha256": "3b484a8d60c186154eaebba73acb36f2dc0509f583612d515a834f5e21c8d7e8",
-  "key": "signal-public-v1-3b484a8d60c186154eaebba73acb36f2dc0509f583612d515a834f5e21c8d7e8-35738173256-1",
-  "inputs": "2e29b664b8e9c5a438f088bc3565e34dbaff496cd9971eab90bd9f3840f6fa93",
-  "validated_at": "2026-09-22T14:34:56.287956+00:00",
+  "sha256": "c45795674675112c518167343d5141c5f6afd8d92768e0c9874ed68f3824f3b9",
+  "key": "signal-public-v1-c45795674675112c518167343d5141c5f6afd8d92768e0c9874ed68f3824f3b9-35745578893-1",
+  "inputs": "324b259a81aa602f4de7ef1acef60d50cdcf63617a244f25f758ed78edbd13fe",
+  "validated_at": "2026-09-22T15:34:55.532643+00:00",
   "signature": {
     "code": "f7c7f640c8a746f05294b3f07054e019488781c521694a53b9f80728a666e4e0",
-    "content": "c05bc4fcd64acb72c2d9f43ca9a76bccc9ca72073c840266c3f35a62437783fb",
-    "translations": "dcd23dc1d44ce6ef76ba5752c7b4be9d15e97ec58f20fc8080b8f04270077ddb",
+    "content": "5fd465d5e9dce8770f81a05f25c37beb0fa22d432dd93ffcd1fcb1551b766a6c",
+    "translations": "e713849741a9db951ffafb6c122a4cdc5181da055bdc613422a4e5c31b184036",
     "health": [
       [
         "find_tender",
@@ -49,7 +49,7 @@
       ],
       [
         "germany",
-        "partial"
+        "healthy"
       ],
       [
         "spain",
