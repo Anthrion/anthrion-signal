@@ -125,6 +125,13 @@ export interface ScoreComponent {
   company_evidence_ids: string[]
 }
 export interface Signal {
+  reviewed_guidance?: {
+    source_hash: string
+    approach: { text: string; lot_id?: string | null }[]
+    problems: { text: string; lot_id?: string | null }[]
+    complexity: number
+    problem_level: number
+  } | null
   id: string
   title: string
   description: string

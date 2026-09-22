@@ -113,6 +113,30 @@ def test_compressed_translation_cache_and_overlay_retain_completed_awards(tmp_pa
     assert available_translations(tmp_path, [vars(record)]) == english
 
 
+def test_compact_checkpoints_preserve_existing_progress_and_source_exactly(tmp_path):
+    record = SimpleNamespace(id="notice", title="Kundenplattform 25", description="",
+                             buyer_name=None, countries=["DE"], last_material_update="2026-09-21")
+    cache = tmp_path / "cache.json"
+    queue = TranslationQueue(cache)
+    key = queue.add(record.title)
+    field = queue.state["fields"][key]
+    field["parts"][0]["result"] = {"text": "Customer platform 25", "language": "de"}
+    # Migrate a pre-existing indented cache, including retained failed-attempt facts.
+    field["parts"][0]["failures"] = {"previous-model": 1}
+    atomic_json(cache, queue.state)
+    before = json.loads(cache.read_text(encoding="utf-8"))
+    resumed = TranslationQueue(cache)
+    resumed.save()
+    checkpoint = read_retained_bytes(cache)
+    assert json.loads(checkpoint) == before
+    assert len(checkpoint) < len(json.dumps(before, ensure_ascii=False, indent=2).encode())
+    resumed = TranslationQueue(cache)
+    resumed.prepare([record])
+    assert resumed.completed(key) == "Customer platform 25"
+    assert not list(resumed.pending(DEFAULT_MODELS[0]))
+    assert resumed.overlay([record])["signals"][record.id]["source_hash"] == source_key(record)
+
+
 def test_verified_limits_use_full_project_capacity_without_resetting_previous_usage(tmp_path):
     clock = Clock()
     ledger = QuotaLedger(tmp_path / "quota.json", clock)

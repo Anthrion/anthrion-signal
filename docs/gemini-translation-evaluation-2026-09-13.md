@@ -145,13 +145,24 @@ stale `data/.translation.lock` file. Keep cached quota state across restarts.
 ## Production Integration
 
 The hourly `:50` workflow runs a bounded translation pass after collection, with
-at most 150 HTTP attempts and five minutes per pass, matching the two verified
-models' combined minute capacity. Translation-only checks also run at :05, :20
-and :35, including overnight. The per-day project ledger still applies across all
-runs; this is not 150 new calls regardless of prior usage.
+at most 150 HTTP attempts and five minutes per pass. Translation-only checks also
+run at :05, :20 and :35, including overnight, and allow fifteen minutes with the
+same 150-attempt ceiling. The longer catch-up window accommodates provider
+latency; it does not increase either model's minute or daily quota. These passes
+can occupy the collection queue longer, while the publisher has its own queue.
+The per-day project ledger still applies across all runs; this is not 150 new
+calls regardless of prior usage.
 Before the first HTTP request, a run commits and pushes its entire allowance.
 A lost runner therefore leaves those calls accounted for. Normal completion
 returns only the unused allowance. Actual requests are never refunded.
+
+Private field-cache checkpoints use compact JSON without dropping any fields,
+source text, failed-attempt state or validation evidence. Each batch still writes
+and fsyncs its complete checkpoint atomically. On the 22 September snapshot,
+compact encoding reduced a checkpoint from 78.3 MB to 65.1 MB before compression
+(18.22 MB to 17.87 MB after compression). Local serialization plus compression
+took 2.50 seconds instead of 3.68 seconds. This is an encoding improvement, not a
+change to language/literal validation or the frequency of durable checkpoints.
 
 Cache and quota checkpoints are independent of subsequent build/test failures.
 Translation failures do not bypass mandatory collection validation, tests or

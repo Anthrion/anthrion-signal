@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useMemo, useRef, useState } from 
 import type { ReactNode } from 'react'
 import { ArrowLeft, ArrowUpRight, Building2, FileText, GripVertical, Search, X } from 'lucide-react'
 import type { Dataset, DisplayLanguage, Filters, HistoryRecord, Signal } from './types'
+import { RecommendedApproach } from './RecommendedApproach'
 import {
   amount,
   countryLabels,
@@ -1333,6 +1334,7 @@ function ResearchContent({
                     </div>
                   </dl>
                   <CapabilityTags signal={signal} data={data} />
+                  <RecommendedApproach signal={signal} />
                   <div className="research-description">
                     {text.description
                       .split(/\n\s*\n/)

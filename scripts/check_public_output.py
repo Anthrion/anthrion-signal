@@ -12,6 +12,7 @@ from anthrion_signal.models import Dataset, Signal
 from anthrion_signal.discovery import is_public_award
 from anthrion_signal.public_context import PUBLIC_EXCLUDE
 from anthrion_signal.public_feed import search_text
+from anthrion_signal.record_reviews import validate_guidance
 from anthrion_signal.utils import clean, digest
 
 PATHS = re.compile(r"(?:awards|current)/[A-Z]+-[a-f0-9]{16}\.json|records/[A-Za-z0-9_-]{1,100}-[a-f0-9]{16}\.json|buyers/buyer_[a-f0-9]{20}-[a-f0-9]{16}\.json|history/[a-f0-9]{3,64}-[a-f0-9]{16}\.json\.gz")
@@ -41,6 +42,10 @@ def evidence_checked(item, translation):
     signal = Signal.model_validate(item)
     if PUBLIC_EXCLUDE.intersection(item):
         raise ValueError("Retired model analysis detected in public output")
+    if signal.reviewed_guidance:
+        validate_guidance(signal, signal.reviewed_guidance)
+        if "GB" not in signal.countries or signal.signal_type in {"AWARD", "RENEWAL_SIGNAL"} or signal.exclusion_reasons:
+            raise ValueError("Guidance is only published for reviewed UK opportunities")
     evidenced = set()
     for evidence in signal.capability_evidence:
         field = evidence.get("field")

@@ -16,7 +16,7 @@ def atomic_public_json(path, payload):
 
 DETAIL_FIELDS = {"description", "documents", "changes", "capability_evidence", "eligibility_text",
                  "buyer_history", "procedure_history", "participation_requirements", "delivery_role", "lots",
-                 "contacts", "buyer_name_conflicts"}
+                 "contacts", "buyer_name_conflicts", "reviewed_guidance"}
 
 
 def record_file(root, signal, translation=None, view="opportunities", buyer_refs=None):

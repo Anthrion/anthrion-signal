@@ -12,11 +12,12 @@ _ENRICHMENT_FIELDS = frozenset({
 
 
 def canonical_signal_json(signal: Signal) -> str:
-    """Omit only empty enrichment defaults added with the research workspace.
+    """Omit empty enrichment defaults and the separate editorial review layer.
 
     Signal validation restores these defaults. Older fields and nested documents
     retain their existing representation; populated source facts are never omitted.
+    Reviewed guidance is reapplied from its source-bound ledger during export.
     """
     excluded = {name for name in _ENRICHMENT_FIELDS
                 if getattr(signal, name) == Signal.model_fields[name].get_default(call_default_factory=True)}
-    return signal.model_dump_json(exclude=excluded)
+    return signal.model_dump_json(exclude=excluded | {"reviewed_guidance"})

@@ -46,13 +46,14 @@ def assert_equivalent(signal):
 
 def test_only_new_top_level_defaults_are_omitted_and_explicit_defaults_match(signal):
     full = {**signal.model_dump(), **DEFAULT_ENRICHMENT}
-    legacy = {key: value for key, value in full.items() if key not in DEFAULT_ENRICHMENT}
+    legacy = {key: value for key, value in full.items()
+              if key not in DEFAULT_ENRICHMENT and key != "reviewed_guidance"}
     explicit = Signal.model_validate(full)
     implicit = Signal.model_validate(legacy)
     assert explicit.model_fields_set != implicit.model_fields_set
     assert canonical_signal_json(explicit) == canonical_signal_json(implicit)
     payload = assert_equivalent(explicit)
-    assert set(payload) == set(full) - set(DEFAULT_ENRICHMENT)
+    assert set(payload) == set(full) - set(DEFAULT_ENRICHMENT) - {"reviewed_guidance"}
     assert payload == legacy
     assert payload["documents"] == full["documents"]
     assert payload["documents"][0]["status"] == "linked"
