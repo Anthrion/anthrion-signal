@@ -1,15 +1,15 @@
 {
   "version": 1,
-  "generation": 23,
+  "generation": 24,
   "data_code": "b4fc4d702ef40e93ef509a7984cb1c9b69168726983e73f2401445877a5add7f",
-  "sha256": "20243d65c933fc02a6f73134642971b042feeea953eece36073424aa540f8977",
-  "key": "signal-public-v1-20243d65c933fc02a6f73134642971b042feeea953eece36073424aa540f8977-35686893245-1",
-  "inputs": "e95d08815332864c7beb44a773ac397d5785b245ac5747732e2383bec19d10b7",
-  "validated_at": "2026-09-22T04:42:47.808700+00:00",
+  "sha256": "4a15254af13c50a9fb4655657530d280c5aa67d651d827ebee1e49fb9dd4678c",
+  "key": "signal-public-v1-4a15254af13c50a9fb4655657530d280c5aa67d651d827ebee1e49fb9dd4678c-35690848866-1",
+  "inputs": "ec952bb3e477f9a35f453025e6a0d11e04cdc9865cd004215f9aab69daa54b34",
+  "validated_at": "2026-09-22T05:57:16.887468+00:00",
   "signature": {
     "code": "108528d287599c6f4a6779264903986c7095655ef26c38b02f5af7e1ab91e5e1",
-    "content": "d0fa42ed4b85c520fd3df6387517184c91028c91cee05d070439bda40c27ad64",
-    "translations": "816ddc517d674224a9cb1e9a795a066bb4320595a61fb50474947db6d1359190",
+    "content": "116d160ca6e075881874afb77cf333f3049dc078368534ae4d41cafc1ae046c2",
+    "translations": "047700051ff0764e4a51ba2ca422b67e51f4c41b3d1d7383823c62e9d08f06b6",
     "health": [
       [
         "find_tender",
@@ -21,7 +21,7 @@
       ],
       [
         "scotland",
-        "healthy"
+        "partial"
       ],
       [
         "wales",
@@ -229,7 +229,7 @@
       ],
       [
         "canada_buys",
-        "partial"
+        "healthy"
       ],
       [
         "seao_qc",
