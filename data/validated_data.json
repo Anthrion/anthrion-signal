@@ -1,15 +1,15 @@
 {
   "version": 1,
-  "generation": 41,
+  "generation": 42,
   "data_code": "36077ca5940fbc2b85f519a8360e6d5855e504aca1353e16e85d14d484e2a449",
-  "sha256": "dec6e5e37ee65c7a91b97ad7c2952490bba11da5cce1600d549203fbb6453d66",
-  "key": "signal-public-v1-dec6e5e37ee65c7a91b97ad7c2952490bba11da5cce1600d549203fbb6453d66-35873431972-1",
-  "inputs": "6201a73bb523a26de888d67e615f0567d7a7d89680041f03ef0573a6ff176223",
-  "validated_at": "2026-09-23T14:48:48.095265+00:00",
+  "sha256": "9e1f3162ac0ced2bbc0a4ab8b97eba495ae324fba5d2cc4961d6e2f44641bece",
+  "key": "signal-public-v1-9e1f3162ac0ced2bbc0a4ab8b97eba495ae324fba5d2cc4961d6e2f44641bece-35896002340-1",
+  "inputs": "17e03ae249082f7b62c16c7b786561615dc908a3ccd1d6dc6d6b5df0651b02c1",
+  "validated_at": "2026-09-23T17:57:52.092801+00:00",
   "signature": {
     "code": "22d1381e1209a5abf0d6c3ee97e2162e0174dc529388d043659c268c35162999",
-    "content": "2f8811e64a9b858c42a6233d200ef74fdd5f8206ba8fcecf0eebfe498116d41d",
-    "translations": "34c411c25b3bd1002857d6480363f1d32481ec8e4f192fb5a3e7a0de781f7848",
+    "content": "8934620c3444693dd2e638b334a99dc4d8bb5abf3707df91a89ab8ca0fd3913e",
+    "translations": "7eaa3bbbd4f19695ef45c0b8c45c7f1221fdb1af8ab5bda8aa4d63470efd270a",
     "health": [
       [
         "find_tender",
@@ -229,7 +229,7 @@
       ],
       [
         "canada_buys",
-        "partial"
+        "healthy"
       ],
       [
         "seao_qc",
