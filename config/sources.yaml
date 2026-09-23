@@ -147,7 +147,9 @@ sources:
     docs: https://www.hacienda.gob.es/es-ES/GobiernoAbierto/Datos%20Abiertos/Paginas/LicitacionesContratante.aspx
     country: ES
     initial_lookback_days: 7
-    max_pages_per_run: 3
+    # Archive pages are 15-16 MB. Beyond the head poll, pages are read only while windows are pending,
+    # so this bounds catch-up speed, not steady load: about 3 new pages a day, 42 per 14-day replay.
+    max_pages_per_run: 8
     coverage: PLACSP contracting profiles excluding minor contracts. Source-local deadlines without an offset require notice verification.
   - id: nyc_city_record
     name: NYC City Record
