@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 from .models import Amount, Document, Lot, Provenance, Signal
 from .markets import TED_COUNTRIES
 from .public_context import deadline_fact, deadline_value, enrich_signal
-from .utils import canonical_url, clean, digest, iso, official_notice_url, parse_date, unique
+from .utils import calendar_day, canonical_url, clean, digest, iso, official_notice_url, parse_date, unique
 
 
 MATERIAL_FIELDS = ["title", "description", "buyer_name", "deadline_at", "contract_start", "contract_end",
@@ -345,6 +345,8 @@ def normalise_ted(raw):
     lot_ids = unique(r.get("identifier-lot") if isinstance(r.get("identifier-lot"), list) else [r.get("identifier-lot")])
     original_titles = r.get("title-proc") or r.get("notice-title") or {}
     language = ("en" if "eng" in original_titles else next(iter(original_titles), "und")) if isinstance(original_titles, dict) else "und"
+    # The Official Journal publication day, e.g. "2026-07-02+02:00": a date, not midnight UTC.
+    published = calendar_day(ted_text(r.get("publication-date")))
     return base(raw, title=title, description=description or title, url=url,
         buyer_name=ted_text(r.get("buyer-name")) or None, signal_type=classify(stage, title, description, framework=framework) if stage != "unknown" else "STRATEGIC_INTENT", procurement_stage=stage,
         external_ids=unique(aliases),
@@ -352,7 +354,7 @@ def normalise_ted(raw):
         lot_ids=lot_ids, lots=[Lot(id=str(ident), title="", description=ted_text(r.get("description-lot")) if len(lot_ids) == 1 else "",
             status="unknown", source_url=url) for ident in lot_ids],
         notice_type=notice_type, status="cancelled" if terminated else "closed" if direct_award else "awarded" if stage == "award" else "active",
-        published_at=iso(ted_text(r.get("publication-date"))), updated_at=iso(ted_text(r.get("publication-date"))),
+        published_at=published, updated_at=published,
         deadline_at=deadline, response_deadlines=deadlines, deadlines=facts,
         value_max=value, currency=currencies, framework=framework, incumbent_supplier=ted_text(r.get("winner-name")) or None,
         amount=Amount(kind=("award" if stage == "award" else "estimated_contract") if value is not None else "unknown",

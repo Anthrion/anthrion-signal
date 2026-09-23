@@ -2,6 +2,8 @@ from typing import Any, Literal
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from .utils import brussels_midnight_day, utc_midnight_day
+
 MatchLevel = Literal["DIRECT", "STRONG_ADJACENT", "WEAK_ADJACENT", "NONE", "UNKNOWN"]
 SignalType = Literal[
     "LIVE_TENDER", "EARLY_MARKET_ENGAGEMENT", "PIPELINE", "FUTURE_OPPORTUNITY", "FRAMEWORK",
@@ -220,6 +222,61 @@ class Change(StrictModel):
     source_url: str
 
 
+def _item_value(item, name):
+    return item.get(name) if isinstance(item, dict) else getattr(item, name, None)
+
+
+def _strings(values):
+    # Malformed rows must reach normal schema validation, not fail inside a set.
+    return {value for value in values if isinstance(value, str)}
+
+
+def migrate_ted_calendar_days(data):
+    """Restore TED publication days that earlier releases stored as UTC instants.
+
+    TED's publication-date is a calendar day ("2026-07-02+02:00"); its local
+    midnight was stored as "2026-07-01T22:00:00+00:00". A value is restored when
+    this record's own TED provenance recorded it, or, for lineage whose older TED
+    provenance was not retained, when it is exactly Brussels midnight, recorded by
+    no other source and not a retrieval time. These fields are outside the material,
+    reviewed-scope and translation hashes, so no update, review or translation follows.
+    """
+    if not isinstance(data, dict):
+        return data
+    provenance = data.get("provenance") or []
+    ted = [item for item in provenance if _item_value(item, "source") == "ted"]
+    if data.get("source") != "ted" and not ted:
+        return data
+    recorded = {}
+    for item in ted:
+        value = _item_value(item, "published_at")
+        if day := brussels_midnight_day(value) or utc_midnight_day(value):
+            recorded[value] = day
+    other_sources = _strings(_item_value(item, "published_at") for item in provenance
+                             if _item_value(item, "source") != "ted") - set(recorded)
+    observed = _strings([data.get("first_seen_at"), data.get("last_seen_at"),
+                         *(_item_value(item, "retrieved_at") for item in provenance),
+                         *(_item_value(change, "at") for change in data.get("changes") or [])])
+    updates = {}
+    for field in ("published_at", "updated_at", "last_material_update"):
+        value = data.get(field)
+        if not isinstance(value, str) or value in observed:
+            continue
+        day = recorded.get(value) or (None if value in other_sources else brussels_midnight_day(value))
+        if day:
+            updates[field] = day
+    if recorded:
+        def restored(item):
+            value = _item_value(item, "published_at")
+            if _item_value(item, "source") != "ted" or not isinstance(value, str) or value not in recorded:
+                return item
+            if isinstance(item, dict):
+                return {**item, "published_at": recorded[value]}
+            return item.model_copy(update={"published_at": recorded[value]})
+        updates["provenance"] = [restored(item) for item in provenance]
+    return {**data, **updates} if updates else data
+
+
 class Signal(StrictModel):
     @model_validator(mode="before")
     @classmethod
@@ -230,6 +287,13 @@ class Signal(StrictModel):
                 return {**data, "analysis": None, "fit_score": None, "known_weight": 0,
                         "score_components": [], "analysis_cache_key": None, "ai_status": "pending"}
         return data
+
+    @model_validator(mode="before")
+    @classmethod
+    def migrate_ted_publication_days(cls, data):
+        # Every retained store is read through this model, so canonical, current,
+        # archived and rejected versions agree before any merge compares them.
+        return migrate_ted_calendar_days(data)
 
     id: str
     reviewed_guidance: dict[str, Any] | None = None
