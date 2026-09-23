@@ -358,16 +358,6 @@
   min-width: 0;
   width: 100%;
 }
-.source-name {
-  min-width: 0;
-}
-.source-name small {
-  display: block;
-  margin-top: 8px;
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.6;
-}
 .market-tabs {
   display: flex;
   width: min(100%, 1040px);
@@ -579,8 +569,7 @@
   font-weight: 400;
   overflow-wrap: normal;
 }
-.carousel-arrow,
-.carousel-play {
+.carousel-arrow {
   position: absolute;
   border: 1px solid var(--line-strong);
   border-radius: 50%;
@@ -597,12 +586,6 @@
 }
 .carousel-arrow.next {
   right: 0;
-}
-.carousel-play {
-  bottom: 10px;
-  right: 0;
-  width: 29px;
-  height: 29px;
 }
 .carousel-pagination {
   display: flex;
@@ -1079,20 +1062,6 @@
   font-weight: 500;
   font-variant-numeric: tabular-nums;
 }
-.row-numbers .row-evidence {
-  color: var(--ice);
-}
-.row-score {
-  display: grid;
-  place-items: center;
-  width: 37px;
-  height: 37px;
-  border: 1.5px solid var(--mint);
-  border-radius: 50%;
-  color: var(--mint);
-  font-size: 17px;
-  font-variant-numeric: tabular-nums;
-}
 .row-utilities {
   width: 71px;
   flex-shrink: 0;
@@ -1235,85 +1204,6 @@
 .inspector-buyer svg {
   margin-top: 1px;
 }
-.inspector-metrics {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-}
-.inspector-metrics .score-badge {
-  padding: 0;
-  width: 54px;
-  color: var(--mint);
-  gap: 6px;
-}
-.inspector-metrics .score-badge strong {
-  width: 49px;
-  height: 49px;
-  font-size: 24px;
-  border: 1.5px solid var(--mint);
-  background: none;
-}
-.inspector-metrics .score-badge strong::before {
-  content: none;
-}
-.inspector-metrics .score-badge.pending strong {
-  border-color: var(--line-strong);
-  border-style: dashed;
-}
-.inspector-metrics .score-badge > span {
-  font-size: 10px;
-  color: var(--muted);
-}
-.inspector-confidence {
-  padding: 6px 0 0 14px;
-  min-height: 59px;
-  border-left: 1px solid var(--line-strong);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 6px;
-  text-align: left;
-  max-width: 98px;
-}
-.inspector-confidence strong {
-  font-size: 22px;
-  font-weight: 500;
-  color: var(--ice);
-  line-height: 1.2;
-}
-.inspector-confidence span {
-  font-size: 9px;
-  line-height: 1.4;
-  color: var(--muted);
-}
-.inspector-solution {
-  margin: 0 0 22px;
-  padding: 18px 0;
-  border-block: 1px solid var(--line);
-}
-.inspector-solution h3 {
-  margin: 0 0 10px;
-  color: var(--mint);
-  font-size: 13px;
-  font-weight: 500;
-}
-.inspector-solution p,
-.solution-assessment p {
-  margin: 0 0 12px;
-  font-size: 14px;
-  line-height: 1.65;
-  overflow-wrap: anywhere;
-}
-.inspector-solution button {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 0;
-  background: none;
-  border: 0;
-  color: var(--ice);
-  font-size: 12px;
-}
 .lifecycle-note {
   display: flex;
   align-items: baseline;
@@ -1321,11 +1211,6 @@
   color: var(--muted);
   font-size: 12px;
   line-height: 1.6;
-}
-.solution-assessment {
-  margin-block: 22px;
-  padding-block: 12px;
-  border-block: 1px solid var(--line);
 }
 .inspector-summary {
   margin: 20px 0 0;
@@ -1548,11 +1433,6 @@
   padding: 0;
   font-size: 13px;
 }
-.source-page .feed-heading h1 {
-  font-size: 17px;
-  font-weight: 600;
-  line-height: 1.4;
-}
 .inspector-capabilities {
   padding: 0;
 }
@@ -1564,25 +1444,6 @@
   font-weight: 450;
   color: var(--ice);
   margin-bottom: 8px;
-}
-.capability-line {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px 0;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.6;
-}
-.capability-line li {
-  overflow-wrap: anywhere;
-  min-width: 0;
-}
-.capability-line li:not(:last-child)::after {
-  content: '\00b7';
-  margin-inline: 12px;
 }
 .inspector-content > .lifecycle-note {
   margin-top: 18px;
@@ -1609,8 +1470,7 @@
   .inspector-capabilities h3 {
     font-size: 14px;
   }
-  .inspector-facts dd,
-  .capability-line {
+  .inspector-facts dd {
     font-size: 16px;
   }
   .inspector-summary {
@@ -1698,27 +1558,6 @@
     padding-inline: 6px;
   }
 }
-.inspector-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 20px;
-  padding-top: 16px;
-  border-top: 1px solid var(--line);
-}
-.inspector-links button {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  padding: 5px 0;
-  color: var(--muted);
-  font-size: 11px;
-}
-.inspector-links button:hover {
-  color: var(--ice);
-}
-.inspector-links button > svg:last-child {
-  display: none;
-}
 .inspector-empty {
   display: flex;
   flex-direction: column;
@@ -1728,56 +1567,10 @@
   min-height: 350px;
   color: var(--dim);
 }
-.opportunity-console .pagination {
-  font-size: 11px;
-  padding: 15px 6px;
-  gap: 10px;
-}
-.workspace-content .page-footer {
-  margin: 0;
-  min-height: 46px;
-  border: 0;
-  padding: 12px 4px;
-  font-size: 10px;
-  color: var(--dim);
-}
-.workspace-content .page-footer > span {
-  font-size: 10px;
-  font-weight: 400;
-}
-.console-shell .compare-tray {
-  left: 50%;
-}
 .console-shell .signal-skeleton {
   height: 84px;
   margin-bottom: 4px;
   border-radius: 6px;
-}
-.saved-view-library {
-  padding: 0 28px 28px;
-}
-.saved-view-library h2 {
-  font-size: 14px;
-  margin-bottom: 12px;
-}
-.saved-view-library > div {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  border-top: 1px solid var(--line);
-}
-.saved-view-library > div > button:first-child {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex: 1;
-  min-width: 0;
-  min-height: 46px;
-  text-align: left;
-  overflow-wrap: anywhere;
-}
-.saved-view-library > div > button:first-child > svg:last-child {
-  margin-left: auto;
 }
 @media (min-width: 901px) {
   .workspace-main {
@@ -1868,9 +1661,6 @@
   }
   .console-detail {
     --record-padding: 20px;
-  }
-  .inspector-metrics {
-    align-items: center;
   }
   .inspector-summary {
     margin-top: 20px;
@@ -2011,9 +1801,6 @@
     height: 32px;
     top: 58px;
   }
-  .carousel-play {
-    bottom: 5px;
-  }
   .carousel-pagination {
     gap: 0;
   }
@@ -2054,11 +1841,6 @@
     gap: 9px;
     font-size: 10px;
   }
-  .row-score {
-    width: 25px;
-    height: 25px;
-    font-size: 12px;
-  }
   .row-numbers strong {
     font-size: 12px;
   }
@@ -2070,17 +1852,9 @@
   .signal-row {
     min-height: 103px;
   }
-  .opportunity-console .pagination {
-    flex-wrap: wrap;
-  }
   .sort-trigger {
     min-height: 39px;
     font-size: 12px;
-  }
-  .workspace-content .page-footer {
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 12px;
   }
 }
 @media (max-width: 380px) {
