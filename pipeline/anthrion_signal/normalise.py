@@ -85,6 +85,24 @@ def documents_in(release):
     return result
 
 
+def lot_text(lot):
+    """Describe one OCDS lot for the notice description, or return "" for a lot without text.
+
+    Publishers can send ``"title": null``: a ``dict.get`` default does not apply to a
+    present key, so null or empty parts are omitted rather than printed. Present text
+    keeps the established "Lot <id>: <title>. <description>" wording. The identifier of
+    a lot without text remains in ``lot_ids``, the structured lots and the search index.
+    """
+    title, description = lot.get("title"), lot.get("description")
+    has_title, has_description = bool(clean(title)), bool(clean(description))
+    if not has_title and not has_description:
+        return ""
+    label = f"Lot {lot.get('id')}:"
+    if has_title and has_description:
+        return f"{label} {title}. {description}"
+    return f"{label} {title}." if has_title else f"{label} {description}"
+
+
 def classify(stage, title, description, notice_type=None, framework=None):
     text = (title + " " + description[:1000]).lower()
     if stage in ("award", "implementation", "contract"):
@@ -115,9 +133,9 @@ def normalise_ocds(raw, prior=None):
         return None
     description = tender.get("description") or ""
     lots = tender.get("lots") or []
-    if lots:
-        lot_text = " ".join(f"Lot {lot.get('id')}: {lot.get('title', '')}. {lot.get('description', '')}" for lot in lots)
-        description = description + " " + lot_text
+    lot_texts = [text for text in map(lot_text, lots) if text]
+    if lot_texts:
+        description = description + " " + " ".join(lot_texts)
     if not description.strip() and prior:
         description = prior.description
     party = next((p for p in r.get("parties", []) if "buyer" in (p.get("roles") or [])), {})
