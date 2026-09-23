@@ -124,6 +124,29 @@ def test_validation_distinguishes_active_stale_and_missing_without_refreshing_ha
     assert {path: path.read_bytes() for path in before} == before
 
 
+@pytest.mark.parametrize(("language", "status"), [("fra", "stale"), ("ger-DE", "active")])
+def test_language_metadata_drift_is_reported_without_rewriting_review(command, tmp_path, signal, language, status):
+    signal.source_language = "und"
+    write_records(tmp_path / "data/signals.jsonl", [signal])
+    source = command.load_selected(tmp_path, {signal.id})[signal.id]
+    row = review(source)
+    row["guidance"]["original_language"] = "de"
+    row["guidance"]["localized"] = {"de": {"approach": [{
+        "text": "Die vorhandenen Abläufe konfigurieren und freigegebene Systeme über APIs anbinden."
+    }], "problems": []}}
+    atomic_json(tmp_path / "config/record_reviews.json", {"version": 1, "records": [row]})
+    source.source_language = language
+    assert source_hash(source) == row["source_hash"]
+    write_records(tmp_path / "data/signals.jsonl", [source])
+    before = {path: path.read_bytes() for path in tmp_path.rglob("*") if path.is_file()}
+    result = command.validate_ledgers(tmp_path)
+    assert result["valid"]
+    assert result["record_reviews"][status] == 1
+    assert result["record_reviews"]["invalid"] == 0
+    assert result["record_reviews"]["records"] == [{"id": signal.id, "status": status}]
+    assert {path: path.read_bytes() for path in before} == before
+
+
 @pytest.mark.parametrize("failure", ["evidence", "rating", "duplicate-review", "duplicate-translation", "translation"])
 def test_invalid_proposed_reviews_and_translations_fail_without_mutating_sources(command, tmp_path, signal, failure, capsys):
     write_records(tmp_path / "data/signals.jsonl", [signal])

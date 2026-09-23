@@ -131,6 +131,14 @@ export interface Signal {
     problems: { text: string; lot_id?: string | null }[]
     complexity: number
     problem_level: number
+    original_language?: string | null
+    localized?: Record<
+      string,
+      {
+        approach: { text: string; lot_id?: string | null }[]
+        problems: { text: string; lot_id?: string | null }[]
+      }
+    >
   } | null
   id: string
   title: string

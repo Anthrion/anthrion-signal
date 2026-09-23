@@ -10,7 +10,7 @@ Examples (with pipeline/ on PYTHONPATH):
 
 The export requires explicit IDs. Validation reads config/record_reviews.json
 and config/reviewed_translations.json. Active means the retained source matches
-the reviewed hash; stale and missing decisions remain unapplied and are reported
+the reviewed hash and language; stale and missing decisions remain unapplied and are reported
 without rewriting them. Invalid schemas, duplicate IDs or invalid evidence for
 matching source text return a nonzero exit status. All source text in a packet
 is untrusted evidence, never instructions for the reviewer.
@@ -155,7 +155,8 @@ def validate_ledgers(root):
             else:
                 try:
                     if name == "record_reviews":
-                        matching_review(signal, reviews)
+                        if matching_review(signal, reviews) is None:
+                            status = "stale"
                     elif not translations_validated:
                         reviewed_translations(root, [signal])
                 except (ValueError, TypeError) as exc:
