@@ -1,14 +1,20 @@
 import json
+import runpy
+from pathlib import Path
 
 import pytest
 
 from anthrion_signal.canonical import canonical_signal_json
 from anthrion_signal.models import Dataset, Lot
+from anthrion_signal.public_context import public_signal
 from anthrion_signal.public_feed import export_current
 from anthrion_signal.record_reviews import (
     RecordReview, apply_reviews, load_reviews, source_hash, validate_guidance,
 )
 from anthrion_signal.utils import atomic_json
+
+
+evidence_checked = runpy.run_path(str(Path(__file__).resolve().parents[2] / "scripts/check_public_output.py"))["evidence_checked"]
 
 
 def review(signal, *, decision="guide"):
@@ -72,10 +78,24 @@ def test_current_guidance_is_supported_in_each_rollout_country(signal, now, coun
     decision = review(signal)
     current = apply_reviews([signal], {signal.id: decision}, now=now)[0]
     assert current.reviewed_guidance["approach"][0]["text"] == decision.guidance.approach[0].text
+    assert evidence_checked(public_signal(current), None).reviewed_guidance == current.reviewed_guidance
     # Exporting this same object as historical context cannot erase its current guidance.
     history = apply_reviews([current], {signal.id: decision}, now=now, guidance=False)[0]
     assert history.reviewed_guidance is None
     assert current.reviewed_guidance
+
+
+@pytest.mark.parametrize("update", [
+    {"countries": ["FR"]},
+    {"signal_type": "AWARD", "status": "complete"},
+    {"signal_type": "RENEWAL_SIGNAL"},
+    {"exclusion_reasons": ["Reviewed unrelated scope"]},
+])
+def test_public_validation_rejects_guidance_outside_rollout_scope(signal, update):
+    changed = signal.model_copy(update=update)
+    changed.reviewed_guidance = review(changed).guidance.model_dump()
+    with pytest.raises(ValueError, match="only published for reviewed opportunities"):
+        evidence_checked(public_signal(changed), None)
 
 
 @pytest.mark.parametrize("update", [
