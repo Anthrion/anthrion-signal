@@ -188,7 +188,7 @@ jobs:
         run: |
           python -m pytest -q
           python scripts/relevance_benchmark.py evaluate --output artifacts/relevance-benchmark.json --fail-on-regression
-          python -m ruff check pipeline scripts/refresh_plan.py scripts/translate_records.py scripts/publication_state.py scripts/reconcile_release_data.py scripts/audit_translations.py scripts/audit_relevance.py scripts/automation_git_guard.py scripts/timestamp_source.py scripts/compress_retained_data.py scripts/release_bundle.py scripts/push_data.py scripts/prune_public_cache.py
+          python -m ruff check pipeline scripts/refresh_plan.py scripts/translate_records.py scripts/publication_state.py scripts/reconcile_release_data.py scripts/audit_translations.py scripts/audit_relevance.py scripts/automation_git_guard.py scripts/timestamp_source.py scripts/compress_retained_data.py scripts/release_bundle.py scripts/push_data.py scripts/prune_public_cache.py scripts/maintain_rejected.py
       - name: Compare validated data inputs
         id: inputs
         run: python scripts/release_bundle.py unchanged
@@ -200,6 +200,11 @@ jobs:
           python -m anthrion_signal.cli export
           python scripts/check_public_output.py
           python scripts/audit_translations.py
+      - name: Compact retained versions and prune unused inactive notices
+        if: steps.validate.outcome == 'success'
+        run: |
+          python scripts/maintain_rejected.py compact --apply
+          python scripts/maintain_rejected.py prune --apply --daily
       - name: Package validated public data
         id: bundle
         if: steps.validate.outcome == 'success'

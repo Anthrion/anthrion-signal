@@ -131,11 +131,15 @@ def test_data_validation_precedes_the_cache_receipt_and_only_pipeline_success_is
     workflow = yaml.load((ROOT / ".github/workflows/ingest-and-deploy.yml").read_text(), Loader=yaml.BaseLoader)
     steps = workflow["jobs"]["build"]["steps"]
     by_name = {step.get("name"): step for step in steps}
-    order = ["Verify pipeline changes", "Validate pipeline and public dataset", "Package validated public data",
+    order = ["Verify pipeline changes", "Validate pipeline and public dataset",
+             "Compact retained versions and prune unused inactive notices", "Package validated public data",
              "Cache validated public data", "Require the saved cache before recording its receipt",
              "Record successful pipeline regression", "Persist canonical state"]
     assert [steps.index(by_name[name]) for name in order] == sorted(steps.index(by_name[name]) for name in order)
     assert "steps.plan.outputs.full_tests == 'true'" in by_name["Validate pipeline and public dataset"]["if"]
+    retention = by_name["Compact retained versions and prune unused inactive notices"]
+    assert retention["if"] == "steps.validate.outcome == 'success'"
+    assert "prune --apply --daily" in retention["run"]
     assert "--validated" in by_name["Persist canonical state"]["run"]
     assert "--github-checkpoint" in by_name["Translate new and outstanding records"]["run"]
     assert steps.index(by_name["Translate new and outstanding records"]) < steps.index(by_name["Validate pipeline and public dataset"])

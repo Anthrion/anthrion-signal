@@ -43,13 +43,17 @@ def translation(signal):
             "reviewed_by": "Independent reviewer", "reviewed_at": "2026-09-22T10:00:00Z"}
 
 
-def test_packets_preserve_retained_precedence_and_only_hydrate_selected_sources(command, tmp_path, signal, monkeypatch):
+@pytest.mark.parametrize("compact", [False, True])
+def test_packets_preserve_retained_precedence_and_only_hydrate_selected_sources(command, tmp_path, signal, monkeypatch, compact):
     archive_only = signal.model_copy(deep=True, update={"id": "archive-only", "title": "Latest archived scope",
         "updated_at": "2026-09-21T10:00:00Z", "description": "Full source scope including an embedded\u2028separator."})
     stale = archive_only.model_copy(update={"title": "Older rejected scope", "updated_at": "2026-09-01T10:00:00Z"})
     canonical = signal.model_copy(deep=True)
     canonical.documents = [Document(title="Specification", url="https://example.org/spec.pdf", source_revision="r1")]
     write_records(tmp_path / "data/discovery/rejected/day.jsonl.gz", [stale])
+    if compact:
+        from anthrion_signal.rejected_compaction import migrate
+        migrate(tmp_path, apply=True)
     write_records(tmp_path / "data/archive/month.jsonl.gz", [archive_only,
         canonical.model_copy(update={"title": "Superseded archive", "updated_at": "2099-01-01T00:00:00Z"})])
     write_records(tmp_path / "data/signals.jsonl.gz", [canonical])
