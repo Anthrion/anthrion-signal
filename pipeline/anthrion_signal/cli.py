@@ -172,7 +172,9 @@ def export(root):
     target = root / "app/public/data"
     target.mkdir(parents=True, exist_ok=True)
     public = public_data(data)
-    atomic_public_json(target / "current.json", public)
+    atomic_public_json(target / "current.json.gz", public)
+    # Remove only the obsolete mutable root; immutable dependencies stay available.
+    (target / "current.json").unlink(missing_ok=True)
     atomic_public_json(target / "manifest.json", {**public, "signals": [], "translations": {}})
     return data
 

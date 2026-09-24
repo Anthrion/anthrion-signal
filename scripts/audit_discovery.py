@@ -8,12 +8,13 @@ from pathlib import Path
 from anthrion_signal.config import load_config
 from anthrion_signal.discovery import discovery_text, prefilter, search_text
 from anthrion_signal.models import Signal
-from anthrion_signal.utils import digest
+from anthrion_signal.utils import digest, read_retained_bytes, retained_path
 
 
 def inspect_dataset(root, path, record_ids=()):
+    path = retained_path(path)
     body = path.read_bytes()
-    data = json.loads(body)
+    data = json.loads(read_retained_bytes(path))
     config = load_config(root)
     originals = [Signal.model_validate(row) for row in data["signals"]]
     by_id = {row.id: row for row in originals}

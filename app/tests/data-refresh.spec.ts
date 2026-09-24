@@ -1,3 +1,4 @@
+import { publicJSON } from './fixtures/publicData'
 import { test, expect } from '@playwright/test'
 import { markets } from '../src/lib'
 import { amountPresentation } from '../src/publicFacts'
@@ -15,9 +16,7 @@ test('@data published data renders real records across every market', async ({ p
   page.on('response', (response) => {
     if (response.status() >= 400) errors.push(`${response.status()} ${response.url()}`)
   })
-  const response = await page.request.get('./data/current.json')
-  expect(response.ok()).toBe(true)
-  const dataset: Dataset = await response.json()
+  const dataset: Dataset = await publicJSON(page.request)
   expect(dataset.schema_version).toBe('2.0')
   expect(dataset.signals.length).toBeGreaterThan(0)
   expect(dataset.run.scheduled_times).toEqual(

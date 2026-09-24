@@ -167,13 +167,13 @@ export function safeDataPath(
   kind: 'current' | 'awards' | 'records' | 'buyers' | 'history',
 ) {
   const patterns = {
-    current: /^current\/[A-Z]+-[a-f0-9]{16}\.json$/,
-    awards: /^awards\/[A-Z]+-[a-f0-9]{16}\.json$/,
-    records: /^records\/[A-Za-z0-9_-]+-[a-f0-9]{16}\.json$/,
-    buyers: /^buyers\/buyer_[A-Za-z0-9_-]+-[a-f0-9]{16}\.json$/,
+    current: /^current\/[A-Z]+-[a-f0-9]{16}\.json(?:\.gz)?$/,
+    awards: /^awards\/[A-Z]+-[a-f0-9]{16}\.json(?:\.gz)?$/,
+    records: /^records\/[A-Za-z0-9_-]+-[a-f0-9]{16}\.json(?:\.gz)?$/,
+    buyers: /^buyers\/buyer_[A-Za-z0-9_-]+-[a-f0-9]{16}\.json(?:\.gz)?$/,
     history: /^history\/[a-f0-9]{3,64}-[a-f0-9]{16}\.json\.gz$/,
   }
-  if (!patterns[kind].test(path)) throw new Error('The data file reference could not be verified.')
+  if (!patterns[kind]?.test(path)) throw new Error('The data file reference could not be verified.')
   return path
 }
 export function recordDetail(value: unknown, id: string): DetailPage | null {
@@ -192,7 +192,11 @@ export function recordDetail(value: unknown, id: string): DetailPage | null {
     translation: detail.translation,
   }
 }
-async function boundedBytes(stream: ReadableStream<Uint8Array>, signal: AbortSignal) {
+async function boundedBytes(
+  stream: ReadableStream<Uint8Array>,
+  signal: AbortSignal,
+  limit: number,
+) {
   const reader = stream.getReader()
   const chunks: Uint8Array[] = []
   let size = 0
@@ -202,8 +206,7 @@ async function boundedBytes(stream: ReadableStream<Uint8Array>, signal: AbortSig
       const next = await reader.read()
       if (next.done) break
       size += next.value.length
-      if (size > 16 * 1024 * 1024)
-        throw new Error('Historical detail download exceeds its size limit.')
+      if (size > limit) throw new Error('Data download exceeds its size limit.')
       chunks.push(next.value)
     }
   } catch (error) {
@@ -227,23 +230,39 @@ export async function fetchJSON(
   fresh = false,
 ): Promise<unknown> {
   if (signal.aborted) throw new DOMException('Aborted', 'AbortError')
+  const compressed = path.endsWith('.json.gz')
+  if (compressed && path !== 'current.json.gz')
+    safeDataPath(path, path.split('/')[0] as Parameters<typeof safeDataPath>[1])
   const response = await fetch(`${base}data/${path}`, {
     signal,
     ...(fresh ? { cache: 'no-cache' as const } : {}),
   })
+  // Retain support for old deployments and plain development fixtures.
+  if (path === 'current.json' && response.status === 404)
+    return fetchJSON('current.json.gz', signal, base, fresh)
   if (!response.ok) throw new Error(`Data request failed (${response.status}).`)
   let value: unknown
-  if (path.endsWith('.json.gz')) {
-    safeDataPath(path, 'history')
-    if (!response.body) throw new Error('Historical detail response is empty.')
-    let bytes = await boundedBytes(response.body, signal)
+  if (compressed) {
+    const index = path === 'current.json.gz' || /^(current|awards)\//.test(path)
+    const limit = (index ? 256 : 16) * 1024 * 1024
+    if (!response.body) throw new Error('Data response is empty.')
+    let bytes = await boundedBytes(response.body, signal, limit)
     // Some hosts apply Content-Encoding themselves; avoid decoding twice.
     if (bytes[0] === 0x1f && bytes[1] === 0x8b) {
       const stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'))
-      bytes = await boundedBytes(stream, signal)
+      bytes = await boundedBytes(stream, signal, limit)
     }
     value = JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(bytes))
-  } else value = await response.json()
+  } else {
+    try {
+      value = await response.json()
+    } catch (error) {
+      // Development servers may return their HTML shell for a missing JSON path.
+      if (path === 'current.json' && !signal.aborted)
+        return fetchJSON('current.json.gz', signal, base, fresh)
+      throw error
+    }
+  }
   if (signal.aborted) throw new DOMException('Aborted', 'AbortError')
   return value
 }

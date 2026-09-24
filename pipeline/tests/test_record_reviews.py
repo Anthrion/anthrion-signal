@@ -4,6 +4,7 @@ from pathlib import Path
 
 import pytest
 
+from anthrion_signal.utils import read_json
 from anthrion_signal.canonical import canonical_signal_json
 from anthrion_signal.models import Dataset, Lot
 from anthrion_signal.public_context import public_signal
@@ -287,8 +288,8 @@ def test_guidance_lives_in_details_without_growing_search_indexes(tmp_path, sign
                    evidence_catalog={}, signals=[signal])
     manifest = export_current(tmp_path, data)
     root = tmp_path / "app/public/data"
-    detail = json.loads((root / manifest["records"][signal.id]["url"]).read_text(encoding="utf-8"))
-    index = json.loads((root / manifest["markets"]["DE"]["url"]).read_text(encoding="utf-8"))
+    detail = read_json(root / manifest["records"][signal.id]["url"], {})
+    index = read_json(root / manifest["markets"]["DE"]["url"], {})
     assert detail["signal"]["reviewed_guidance"]["complexity"] == 5
     assert detail["signal"]["reviewed_guidance"]["original_language"] == "de"
     assert detail["signal"]["reviewed_guidance"]["localized"]["de"]["approach"][0]["text"].startswith("Salesforce-Prozesse")

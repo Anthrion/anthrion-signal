@@ -5,6 +5,7 @@ import yaml
 
 from anthrion_signal.cli import SCHEDULED_TIMES, export
 from anthrion_signal.models import Dataset
+from anthrion_signal.utils import read_json
 
 
 def test_workflow_and_published_refresh_times_match():
@@ -34,7 +35,7 @@ def test_export_publishes_current_schedule_without_claiming_a_new_collection(tmp
     path = tmp_path / "data/current.json"
     path.write_text(dataset.model_dump_json(), encoding="utf-8")
     export(tmp_path)
-    published = json.loads((tmp_path / "app/public/data/current.json").read_text(encoding="utf-8"))
+    published = read_json(tmp_path / "app/public/data/current.json", {})
     assert published["run"]["scheduled_times"] == SCHEDULED_TIMES
     assert published["run"]["scheduled_timezone"] == "Europe/London"
     assert published["generated_at"] == dataset.generated_at

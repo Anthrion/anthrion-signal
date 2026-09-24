@@ -137,7 +137,7 @@ async function fixture(page: Page, changeRecord?: (record: Signal) => void) {
       },
     ],
     buyer_history_ref: {
-      url: `buyers/buyer_northbridge-${hash}.json`,
+      url: `buyers/buyer_northbridge-${hash}.json.gz`,
       count: 55,
       identity_basis: 'identifier',
     },
@@ -199,19 +199,23 @@ async function fixture(page: Page, changeRecord?: (record: Signal) => void) {
     current_feed: {
       version: '1.0',
       markets: {
-        GB: { url: `current/GB-${hash}.json`, count: 1 },
-        FR: { url: `current/FR-${hash}.json`, count: 1 },
+        GB: { url: `current/GB-${hash}.json.gz`, count: 1 },
+        FR: { url: `current/FR-${hash}.json.gz`, count: 1 },
       },
       records: {
         [record.id]: {
-          url: `records/panel-a-${hash}.json`,
+          url: `records/panel-a-${hash}.json.gz`,
           markets: ['GB'],
           view: 'opportunities',
         },
-        [other.id]: { url: `records/panel-b-${hash}.json`, markets: ['FR'], view: 'opportunities' },
+        [other.id]: {
+          url: `records/panel-b-${hash}.json.gz`,
+          markets: ['FR'],
+          view: 'opportunities',
+        },
       },
     },
-    award_history: { GB: { url: `awards/GB-${hash}.json`, count: 2 } },
+    award_history: { GB: { url: `awards/GB-${hash}.json.gz`, count: 2 } },
   }
   const awards: Signal[] = [
     {
@@ -300,14 +304,19 @@ async function fixture(page: Page, changeRecord?: (record: Signal) => void) {
   await page.route('**/data/**', (route) => {
     const path = new URL(route.request().url()).pathname
     if (path.endsWith('/manifest.json')) return route.fulfill({ json: manifest })
+    const compressed = (value: unknown) =>
+      route.fulfill({
+        contentType: 'application/gzip',
+        body: gzipSync(JSON.stringify(value)),
+      })
     if (path.includes('/current/GB-'))
-      return route.fulfill({ json: { schema_version: '1.0', signals: [summary] } })
+      return compressed({ schema_version: '1.0', signals: [summary] })
     if (path.includes('/current/FR-'))
-      return route.fulfill({ json: { schema_version: '1.0', signals: [other] } })
+      return compressed({ schema_version: '1.0', signals: [other] })
     if (path.includes('/records/panel-a-'))
-      return route.fulfill({ json: { schema_version: '1.0', signal: record } })
+      return compressed({ schema_version: '1.0', signal: record })
     if (path.includes('/records/panel-b-'))
-      return route.fulfill({ json: { schema_version: '1.0', signal: other } })
+      return compressed({ schema_version: '1.0', signal: other })
     if (path.endsWith(`/history/abc-${hash}.json.gz`))
       return route.fulfill({
         contentType: 'application/gzip',
@@ -350,17 +359,14 @@ async function fixture(page: Page, changeRecord?: (record: Signal) => void) {
           }),
         ),
       })
-    if (path.includes('/awards/GB-'))
-      return route.fulfill({ json: { schema_version: '1.0', signals: awards } })
+    if (path.includes('/awards/GB-')) return compressed({ schema_version: '1.0', signals: awards })
     if (path.includes('/buyers/'))
-      return route.fulfill({
-        json: {
-          schema_version: '1.0',
-          buyer_id: record.buyer_id,
-          buyer_name: record.buyer_name,
-          identity_basis: 'identifier',
-          records: history,
-        },
+      return compressed({
+        schema_version: '1.0',
+        buyer_id: record.buyer_id,
+        buyer_name: record.buyer_name,
+        identity_basis: 'identifier',
+        records: history,
       })
     return route.fulfill({ status: 404 })
   })

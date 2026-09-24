@@ -149,6 +149,38 @@ describe('versioned static data', () => {
       await expect(fetchJSON(url, new AbortController().signal, '/')).rejects.toThrow()
     }
   })
+  test('all compressed public families preserve source, translation and search text', async () => {
+    const signal = { ...record, title: 'Bürgerportal — Québec', search_text: 'unabridged search' }
+    const payload = { ...page, signals: [signal], translations: { retained: { title: 'English' } } }
+    const body = JSON.stringify(payload)
+    for (const url of [
+      'current/GB-0123456789abcdef.json.gz',
+      'awards/DACH-0123456789abcdef.json.gz',
+      'records/sig_example-0123456789abcdef.json.gz',
+      'buyers/buyer_example-0123456789abcdef.json.gz',
+      'current.json.gz',
+    ]) {
+      for (const bytes of [await gzip(body), new TextEncoder().encode(body)]) {
+        vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response(bytes)))
+        expect(await fetchJSON(url, new AbortController().signal, '/')).toEqual(payload)
+      }
+    }
+    vi.stubGlobal('fetch', vi.fn())
+    await expect(
+      fetchJSON('../outside.json.gz', new AbortController().signal, '/'),
+    ).rejects.toThrow()
+    expect(fetch).not.toHaveBeenCalled()
+  })
+  test('missing plain complete feed loads its compressed replacement', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi
+        .fn()
+        .mockResolvedValueOnce(new Response('', { status: 404 }))
+        .mockResolvedValueOnce(new Response(await gzip(JSON.stringify(dataset)))),
+    )
+    expect(await fetchJSON('current.json', new AbortController().signal, '/')).toEqual(dataset)
+  })
   test('cancelled market requests cannot populate caches after their response arrives', async () => {
     let deliver: (value: unknown) => void = () => {}
     vi.stubGlobal(

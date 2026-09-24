@@ -13,7 +13,7 @@ def signature_for(root):
 
     data = read_json(root / "data/current.json", {})
     exported = root / "app/public/data/current.json"
-    public = json.loads(exported.read_text(encoding="utf-8")) if exported.exists() else data
+    public = read_json(exported, data)
     return {
         "code": os.getenv("BUILD_CODE_DIGEST") or code_digest(root),
         "content": digest([data["run"]["content_digest"], public.get("award_history", {})]),

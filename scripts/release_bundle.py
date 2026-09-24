@@ -14,7 +14,9 @@ from refresh_plan import code_digest, data_digest, is_ui_path, read_state
 
 PREFIX = "signal-public-v1-"
 MAX_BYTES = 900 * 1024 * 1024
-MAX_ARCHIVE = 250 * 1024 * 1024
+# Already-compressed members no longer shrink much inside the tarball. Keep the
+# cache bounded by the same actual-byte budget as its validated publication.
+MAX_ARCHIVE = MAX_BYTES
 MAX_FILES = 100_000
 RECEIPT = "data/validated_data.json"
 ARCHIVE = "tmp/public-data.tar.gz"
@@ -24,7 +26,11 @@ BOOKKEEPING = {RECEIPT, "data/publication_state.json", "data/published_release.j
 
 def public_json_path(name):
     return PurePosixPath(name).suffix == ".json" or bool(re.fullmatch(
-        r"history/[a-f0-9]{3,64}-[a-f0-9]{16}\.json\.gz", name))
+        r"(?:current|manifest)\.json\.gz|(?:current|awards)/[A-Z]+-[a-f0-9]{16}\.json\.gz|records/[A-Za-z0-9_-]{1,100}-[a-f0-9]{16}\.json\.gz|buyers/buyer_[a-f0-9]{20}-[a-f0-9]{16}\.json\.gz|history/[a-f0-9]{3,64}-[a-f0-9]{16}\.json\.gz", name))
+
+
+def complete_roots(names):
+    return "manifest.json" in names and len({"current.json", "current.json.gz"}.intersection(names)) == 1
 
 
 def digest_file(path):
@@ -125,7 +131,7 @@ def restore(root, receipt):
                     or member.name in paths or not path.parts or path.parts[0] == "."):
                 raise ValueError("Unsafe public data archive member")
             paths.add(member.name)
-        if not {"manifest.json", "current.json"}.issubset(paths):
+        if not complete_roots(paths):
             raise ValueError("Public data archive is incomplete")
         # Resolve and check every deletion target before touching local directories.
         workspace = root.resolve()
@@ -160,7 +166,7 @@ def pack(root):
     archive.parent.mkdir(exist_ok=True)
     public = root / "app/public/data"
     names = json.loads((root / "tmp/public-data-files.json").read_text(encoding="utf-8"))
-    if (not isinstance(names, list) or not {"current.json", "manifest.json"}.issubset(names)
+    if (not isinstance(names, list) or not complete_roots(names)
             or len(names) != len(set(names))):
         raise ValueError("A complete validated export inventory is required")
     files = []

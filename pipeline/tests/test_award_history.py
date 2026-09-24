@@ -1,5 +1,4 @@
 import gzip
-import json
 from datetime import UTC, datetime
 
 import pytest
@@ -13,7 +12,7 @@ from anthrion_signal.dedupe import exact_keys
 from anthrion_signal.models import Dataset
 from anthrion_signal.normalise import normalise_ocds
 from anthrion_signal.notice_dates import digital_deadline
-from anthrion_signal.utils import atomic_json
+from anthrion_signal.utils import atomic_json, read_json
 
 
 @pytest.mark.parametrize('text, expected', [
@@ -75,7 +74,7 @@ def test_awards_use_archive_and_cache_without_reviving_cancellations(tmp_path, s
     archive.parent.mkdir(parents=True)
     archive.write_bytes(gzip.compress((old.model_dump_json() + '\n' + award.model_copy(update={'id': 'cancelled'}).model_dump_json()).encode()))
     def read(manifest, market):
-        return json.loads((tmp_path / 'app/public/data' / manifest[market]['url']).read_text(encoding='utf-8'))
+        return read_json(tmp_path / 'app/public/data' / manifest[market]['url'], {})
     first = export_awards(tmp_path, [award, cancelled], config, now)
     assert first['GB']['count'] == 1
     assert [s['id'] for s in read(first, 'NORDICS')['signals']] == ['archived']

@@ -55,17 +55,20 @@ def archive(bundle, root, entries=None):
     return receipt(sha256=sha, key=f"signal-public-v1-{sha}-100-1")
 
 
-def test_validated_archive_restores_exactly_without_stale_output(bundle, tmp_path):
+@pytest.mark.parametrize("compressed", [False, True])
+def test_validated_archive_restores_exactly_without_stale_output(bundle, tmp_path, compressed):
     historical = f"history/abc-{'a' * 16}.json.gz"
-    proof = archive(bundle, tmp_path, [("current.json", "file"), ("manifest.json", "file"),
-                                      ("records/notice-1.json", "file"), (historical, "file")])
+    root_name = "current.json.gz" if compressed else "current.json"
+    record_name = f"records/notice-{'a' * 16}.json.gz" if compressed else "records/notice-1.json"
+    proof = archive(bundle, tmp_path, [(root_name, "file"), ("manifest.json", "file"),
+                                      (record_name, "file"), (historical, "file")])
     old = tmp_path / "app/public/data/old.json"
     old.parent.mkdir(parents=True)
     old.write_text("{}")
     bundle.restore(tmp_path, proof)
     assert not old.exists()
-    assert sorted(p.relative_to(old.parent).as_posix() for p in old.parent.rglob("*.json")) == [
-        "current.json", "manifest.json", "records/notice-1.json"]
+    assert {p.relative_to(old.parent).as_posix() for p in old.parent.rglob("*") if p.is_file()} == {
+        root_name, "manifest.json", record_name, historical}
     assert (old.parent / historical).read_bytes() == b"{}"
 
 
@@ -76,6 +79,7 @@ def test_validated_archive_restores_exactly_without_stale_output(bundle, tmp_pat
     [("private.pem", "file")], [("manifest.json", "file")],
     [("current.json", "file"), ("private.json.gz", "file")],
     [("current.json", "file"), ("history/unhashed.json.gz", "file")],
+    [("current.json", "file"), ("current.json.gz", "file"), ("manifest.json", "file")],
 ])
 def test_unsafe_or_incomplete_archive_preserves_existing_output(bundle, tmp_path, entries):
     proof = archive(bundle, tmp_path, entries)
