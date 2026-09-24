@@ -6,7 +6,7 @@ from collections import defaultdict
 
 from .markets import MARKETS
 from .public_context import public_signal
-from .utils import atomic_bytes, digest
+from .utils import atomic_bytes, digest, unique
 
 
 def atomic_public_json(path, payload):
@@ -88,8 +88,11 @@ def search_text(signal, translation):
     translated = translation.model_dump() if hasattr(translation, "model_dump") else translation or {}
     if translated.get("source_hash") != digest([signal.title, signal.description]):
         translated = {}
+    # A lot without title or description adds no description text, so its published
+    # identifier would otherwise leave the index. Keep every lot label searchable.
+    lot_labels = [f"Lot {ident}" for ident in unique([*signal.lot_ids, *(lot.id for lot in signal.lots)])]
     return "\n".join(str(value) for value in [signal.title, signal.description, signal.buyer_name or "",
-        signal.incumbent_supplier or "", signal.id, signal.ocid or "", *signal.external_ids,
+        signal.incumbent_supplier or "", signal.id, signal.ocid or "", *signal.external_ids, *lot_labels,
         *signal.cpv_codes, *signal.categories, *signal.regions, *signal.countries,
         translated.get("title", ""), translated.get("description", ""), translated.get("buyer_name", "")] if value)
 
