@@ -28,6 +28,7 @@ from anthrion_signal.attachments import hydrate_cached_documents
 from anthrion_signal.models import Signal
 from anthrion_signal.public_context import backfill_retained_facts
 from anthrion_signal.record_reviews import load_reviews, matching_review, source_hash
+from anthrion_signal.rejected_store import current_paths, current_rows
 from anthrion_signal.translation import VERSION, source_key
 from anthrion_signal.translation_reviews import TranslationLedger, reviewed_translations
 from anthrion_signal.utils import atomic_json, parse_date, read_json, retained_path
@@ -45,6 +46,11 @@ PACKET_FIELDS = {
 
 def selected_lines(path, identifiers):
     """Stream JSONL and validate only requested records; retain full source text."""
+    if path.parent.name == "compact" and path.parent.parent.name == "rejected":
+        for value in current_rows(path):
+            if value.get("id") in identifiers:
+                yield Signal.model_validate(value)
+        return
     opener = gzip.open if path.suffix == ".gz" else open
     with opener(path, "rt", encoding="utf-8") as stream:
         for line in stream:
@@ -66,7 +72,7 @@ def load_selected(root, identifiers):
     if not identifiers:
         return {}
     latest = {}
-    paths = sorted((root / "data/discovery/rejected").glob("*.jsonl.gz"))
+    paths = current_paths(root)
     paths += sorted((root / "data/archive").glob("*.jsonl.gz"))
     for path in paths:
         for signal in selected_lines(path, identifiers):

@@ -34,7 +34,7 @@ jobs:
           python -m pytest -q
           python scripts/review_records.py validate --output artifacts/reviewed-records.json
           python scripts/relevance_benchmark.py evaluate --output artifacts/relevance-benchmark.json --fail-on-regression
-          python -m ruff check pipeline scripts/refresh_plan.py scripts/translate_records.py scripts/publication_state.py scripts/reconcile_release_data.py scripts/audit_translations.py scripts/audit_relevance.py scripts/automation_git_guard.py scripts/timestamp_source.py scripts/compress_retained_data.py scripts/release_bundle.py scripts/push_data.py scripts/prune_public_cache.py scripts/check_public_output.py scripts/pr_checks.py
+          python -m ruff check pipeline scripts/refresh_plan.py scripts/translate_records.py scripts/publication_state.py scripts/reconcile_release_data.py scripts/audit_translations.py scripts/audit_relevance.py scripts/automation_git_guard.py scripts/timestamp_source.py scripts/compress_retained_data.py scripts/release_bundle.py scripts/push_data.py scripts/prune_public_cache.py scripts/check_public_output.py scripts/pr_checks.py scripts/maintain_rejected.py
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
