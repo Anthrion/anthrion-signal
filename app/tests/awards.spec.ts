@@ -1,3 +1,4 @@
+import { publicJSON } from './fixtures/publicData'
 import { datasetFixture } from './fixtures/dataset'
 import { test, expect, type Page } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
@@ -181,13 +182,11 @@ test('@data published historical records match every market manifest and stay ou
 }) => {
   test.setTimeout(180000)
   await page.unroute('**/data/manifest.json')
-  const data: Dataset = await (await page.request.get('./data/current.json')).json()
+  const data: Dataset = await publicJSON(page.request)
   expect(data.signals.every((s) => !isHistoricalAward(s))).toBe(true)
   expect(Object.keys(data.award_history || {}).sort()).toEqual(markets.map((m) => m.id).sort())
   for (const [market, manifest] of Object.entries(data.award_history!)) {
-    const response = await page.request.get(`./data/${manifest.url}`)
-    expect(response.ok()).toBe(true)
-    const payload: { signals: Signal[] } = await response.json()
+    const payload: { signals: Signal[] } = await publicJSON(page.request, manifest.url)
     expect(payload.signals).toHaveLength(manifest.count)
     expect(payload.signals.every((s) => isHistoricalAward(s) && matchesMarket(s, market))).toBe(
       true,

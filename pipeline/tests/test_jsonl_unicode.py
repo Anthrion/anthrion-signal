@@ -63,7 +63,7 @@ def test_ingest_then_export_and_rescore_preserve_supplier_name(tmp_path, signal,
     cli.run(tmp_path, args)  # Reads canonical data again without any collection.
     saved = [Signal.model_validate_json(line) for line in jsonl_lines((tmp_path / 'data/signals.jsonl').read_text(encoding='utf-8'))]
     assert any(s.incumbent_supplier == award.incumbent_supplier for s in saved)
-    assert (tmp_path / 'app/public/data/current.json').exists()
+    assert (tmp_path / 'app/public/data/current.json.gz').exists()
 
 
 def test_genuinely_truncated_json_is_not_silently_discarded(tmp_path):

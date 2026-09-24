@@ -1,6 +1,4 @@
 """Validate every public manifest dependency, source passage and URL."""
-import gzip
-import io
 import json
 import re
 from datetime import UTC, datetime
@@ -12,10 +10,11 @@ from anthrion_signal.models import Dataset, Signal
 from anthrion_signal.discovery import is_public_award
 from anthrion_signal.public_context import PUBLIC_EXCLUDE
 from anthrion_signal.public_feed import search_text
+from anthrion_signal.public_compression import decode_public_bytes
 from anthrion_signal.record_reviews import GUIDANCE_COUNTRIES, validate_guidance
-from anthrion_signal.utils import clean, digest
+from anthrion_signal.utils import clean, digest, retained_path
 
-PATHS = re.compile(r"(?:awards|current)/[A-Z]+-[a-f0-9]{16}\.json|records/[A-Za-z0-9_-]{1,100}-[a-f0-9]{16}\.json|buyers/buyer_[a-f0-9]{20}-[a-f0-9]{16}\.json|history/[a-f0-9]{3,64}-[a-f0-9]{16}\.json\.gz")
+PATHS = re.compile(r"(?:(?:awards|current)/[A-Z]+-[a-f0-9]{16}|records/[A-Za-z0-9_-]{1,100}-[a-f0-9]{16}|buyers/buyer_[a-f0-9]{20}-[a-f0-9]{16})\.json(?:\.gz)?|history/[a-f0-9]{3,64}-[a-f0-9]{16}\.json\.gz")
 SECRETS = re.compile(r"AIza[0-9A-Za-z_-]{30,}|gh[pousr]_[A-Za-z0-9_]{20,}|-----BEGIN .*PRIVATE KEY-----")
 
 
@@ -89,7 +88,8 @@ def evidence_checked(item, translation):
 
 
 def check_public_output(path, inventory_path=None):
-    raw = json.loads(path.read_text(encoding="utf-8"))
+    path = retained_path(path)
+    raw = json.loads(decode_public_bytes(path.read_bytes(), path.name))
     data = Dataset.model_validate(raw)
     loaded = {}
 
@@ -104,13 +104,7 @@ def check_public_output(path, inventory_path=None):
         if relative not in loaded:
             body = (path.parent / relative).read_bytes()
             compressed = relative.endswith(".json.gz")
-            if compressed:
-                if len(body) > 16 * 1024 * 1024:
-                    raise ValueError("Historical detail bucket exceeds its download size limit")
-                with gzip.GzipFile(fileobj=io.BytesIO(body)) as stream:
-                    body = stream.read(16 * 1024 * 1024 + 1)
-                if len(body) > 16 * 1024 * 1024:
-                    raise ValueError("Historical detail bucket exceeds its decoded size limit")
+            body = decode_public_bytes(body, relative)
             page = json.loads(body)
             if page.get("schema_version") != "1.0" or not relative.endswith(digest(page)[:16] + (".json.gz" if compressed else ".json")):
                 raise ValueError("Public content hash/schema mismatch")
@@ -191,7 +185,7 @@ def check_public_output(path, inventory_path=None):
     if inventory_path:
         # Export retains old content-addressed files for readers already in flight.
         # Cache only the validated graph, never unrelated or obsolete files.
-        files = ["current.json", *loaded]
+        files = [path.name, *loaded]
         if data.current_feed:
             files.append("manifest.json")
         inventory_path.parent.mkdir(parents=True, exist_ok=True)

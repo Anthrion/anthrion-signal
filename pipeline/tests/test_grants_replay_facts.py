@@ -1,6 +1,5 @@
 """Retained source corrections survive legacy replay before availability checks."""
 import gzip
-import json
 from datetime import datetime, timedelta
 from types import SimpleNamespace
 
@@ -11,7 +10,7 @@ from anthrion_signal.collectors import RawRecord
 from anthrion_signal.discovery import lifecycle
 from anthrion_signal.models import Dataset, Signal
 from anthrion_signal.normalise import material_payload, normalise_grants, set_hashes
-from anthrion_signal.utils import atomic_json, digest, jsonl_lines
+from anthrion_signal.utils import atomic_json, digest, jsonl_lines, read_json
 
 
 @pytest.mark.parametrize("operation", ["rescore", "export"])
@@ -90,6 +89,6 @@ def test_same_day_grant_remains_public_after_equal_timestamp_legacy_replay(tmp_p
     assert (stored.title, stored.description, stored.raw_source_hash, stored.updated_at) == (
         legacy.title, legacy.description, legacy.raw_source_hash, legacy.updated_at)
     assert stored.content_hash == stored.material_change_hash == digest(material_payload(stored))
-    published = json.loads((tmp_path / "app/public/data/current.json").read_text(encoding="utf-8"))["signals"]
+    published = read_json(tmp_path / "app/public/data/current.json", {})["signals"]
     assert [s["id"] for s in published] == [corrected.id]
     assert published[0]["buyer_name"] == "Office of Science" and published[0]["deadline_at"] == now.date().isoformat()

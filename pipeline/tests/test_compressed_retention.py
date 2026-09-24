@@ -59,7 +59,8 @@ def test_ingest_rescore_export_and_validation_preserve_compressed_source_facts(t
     assert [public_signal(s) for s in repeated.signals] == [public_signal(s) for s in initial.signals]
     assert cli.export(tmp_path).signals
     assert utils.read_json(tmp_path / "app/public/data/current.json", {})["signals"]
-    assert not (tmp_path / "app/public/data/current.json.gz").exists()
+    assert (tmp_path / "app/public/data/current.json.gz").exists()
+    assert not (tmp_path / "app/public/data/current.json").exists()
 
 
 def test_deferred_export_and_translation_preparation_do_not_build_assets(tmp_path, signal, source, config, monkeypatch):

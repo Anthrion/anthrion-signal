@@ -4,11 +4,18 @@ import { dirname, isAbsolute, join, relative, resolve, sep } from 'node:path'
 import { gunzipSync } from 'node:zlib'
 export const SITE_LIMIT_BYTES = 950 * 1024 * 1024
 const patterns = {
-  current: /^current\/[A-Z]+-[a-f0-9]{16}\.json$/,
-  awards: /^awards\/[A-Z]+-[a-f0-9]{16}\.json$/,
-  records: /^records\/[A-Za-z0-9_-]{1,100}-[a-f0-9]{16}\.json$/,
-  buyers: /^buyers\/buyer_[a-f0-9]{20}-[a-f0-9]{16}\.json$/,
+  current: /^current\/[A-Z]+-[a-f0-9]{16}\.json(?:\.gz)?$/,
+  awards: /^awards\/[A-Z]+-[a-f0-9]{16}\.json(?:\.gz)?$/,
+  records: /^records\/[A-Za-z0-9_-]{1,100}-[a-f0-9]{16}\.json(?:\.gz)?$/,
+  buyers: /^buyers\/buyer_[a-f0-9]{20}-[a-f0-9]{16}\.json(?:\.gz)?$/,
   history: /^history\/[a-f0-9]{3,64}-[a-f0-9]{16}\.json\.gz$/,
+}
+function decode(body, path) {
+  if (!path.endsWith('.json.gz')) return body
+  const index = path === 'current.json.gz' || /^(current|awards)\//.test(path)
+  const limit = (index ? 256 : 16) * 1024 * 1024
+  if (body.length > limit) throw new Error('Public JSON exceeds its download size limit')
+  return gunzipSync(body, { maxOutputLength: limit })
 }
 function object(value, context) {
   if (!value || typeof value !== 'object' || Array.isArray(value))
@@ -176,8 +183,16 @@ export async function copyPublicAssets(options) {
     if (name.startsWith(`data${sep}`)) dataFiles += 1
   }
   const parse = (body, context) => object(JSON.parse(body.toString('utf8')), context)
-  const currentBytes = await safeRead(join(publicDir, 'data', 'current.json'))
-  const current = parse(currentBytes, 'current.json')
+  let currentName = 'current.json.gz'
+  let currentBytes
+  try {
+    currentBytes = await safeRead(join(publicDir, 'data', currentName))
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error
+    currentName = 'current.json'
+    currentBytes = await safeRead(join(publicDir, 'data', currentName))
+  }
+  const current = parse(decode(currentBytes, currentName), currentName)
   reserve(currentBytes.length)
   let manifestBytes
   let manifest
@@ -220,10 +235,8 @@ export async function copyPublicAssets(options) {
   const loadPage = async (path, kind) => {
     if (!patterns[kind].test(path)) throw new Error(`Unsafe ${kind} data path: ${path}`)
     const body = await safeRead(join(publicDir, 'data', path))
-    const compressed = kind === 'history'
-    if (compressed && body.length > 16 * 1024 * 1024)
-      throw new Error('Historical bucket is too large')
-    const decoded = compressed ? gunzipSync(body, { maxOutputLength: 16 * 1024 * 1024 }) : body
+    const compressed = path.endsWith('.json.gz')
+    const decoded = decode(body, path)
     const page = parse(decoded, path)
     if (
       page.schema_version !== '1.0' ||
@@ -334,7 +347,7 @@ export async function copyPublicAssets(options) {
       await write(relative(publicDir, asset.path), await safeRead(asset.path))
     }
   }
-  await write(join('data', 'current.json'), currentBytes, true)
+  await write(join('data', currentName), currentBytes, true)
   if (manifestBytes) await write(join('data', 'manifest.json'), manifestBytes, true)
   return { files, dataFiles, bytes }
 }

@@ -34,11 +34,11 @@ async function directory() {
   await writeFile(join(outDir, 'index.html'), '<html>Built application</html>')
   return { root, publicDir, outDir }
 }
-async function page(publicDir, prefix, value) {
+async function page(publicDir, prefix, value, compressed = false) {
   const body = JSON.stringify(sorted(value), null, 2) + '\n'
-  const path = `${prefix}-${publicContentHash(body).slice(0, 16)}.json`
+  const path = `${prefix}-${publicContentHash(body).slice(0, 16)}.json${compressed ? '.gz' : ''}`
   await mkdir(dirname(join(publicDir, 'data', path)), { recursive: true })
-  await writeFile(join(publicDir, 'data', path), body)
+  await writeFile(join(publicDir, 'data', path), compressed ? gzipSync(body) : body)
   return path
 }
 async function historyPage(publicDir, records) {
@@ -63,15 +63,16 @@ async function snapshot(root) {
   await walk(root)
   return result
 }
-async function fixture() {
+async function fixture(compressed = false) {
   const paths = await directory()
+  const writePage = (prefix, value) => page(paths.publicDir, prefix, value, compressed)
   const buyerId = `buyer_${'1'.repeat(20)}`
   const buyer = {
     schema_version: '1.0',
     buyer_id: buyerId,
     records: [{ signal_id: 'sig_current' }, { signal_id: 'sig_award' }, { signal_id: 'sig_older' }],
   }
-  const buyerUrl = await page(paths.publicDir, `buyers/${buyerId}`, buyer)
+  const buyerUrl = await writePage(`buyers/${buyerId}`, buyer)
   const signal = {
     id: 'sig_current',
     title: 'CRM delivery',
@@ -80,23 +81,23 @@ async function fixture() {
     buyer_history_ref: { url: buyerUrl, count: 3 },
   }
   const award = { ...signal, id: 'sig_award', title: 'Previous CRM award' }
-  const recordUrl = await page(paths.publicDir, 'records/sig_current', {
+  const recordUrl = await writePage('records/sig_current', {
     schema_version: '1.0',
     signal,
   })
-  const awardRecordUrl = await page(paths.publicDir, 'records/sig_award', {
+  const awardRecordUrl = await writePage('records/sig_award', {
     schema_version: '1.0',
     signal: award,
   })
-  const currentUrl = await page(paths.publicDir, 'current/GB', {
+  const currentUrl = await writePage('current/GB', {
     schema_version: '1.0',
     signals: [{ ...signal, description: '', search_text: signal.description }],
   })
-  const awardUrl = await page(paths.publicDir, 'awards/GB', {
+  const awardUrl = await writePage('awards/GB', {
     schema_version: '1.0',
     signals: [award],
   })
-  const orphanUrl = await page(paths.publicDir, 'records/sig_orphan', {
+  const orphanUrl = await writePage('records/sig_orphan', {
     schema_version: '1.0',
     signal: { id: 'sig_orphan' },
   })
@@ -116,7 +117,12 @@ async function fixture() {
     },
   }
   const roots = async () => {
-    await json(join(paths.publicDir, 'data/current.json'), current)
+    if (compressed)
+      await writeFile(
+        join(paths.publicDir, 'data/current.json.gz'),
+        gzipSync(JSON.stringify(current)),
+      )
+    else await json(join(paths.publicDir, 'data/current.json'), current)
     await json(join(paths.publicDir, 'data/manifest.json'), {
       ...current,
       signals: [],
@@ -150,6 +156,30 @@ afterEach(async () => {
       throw new Error('Refusing cleanup outside the exact test temporary directories')
     await rm(absolute, { recursive: true, force: true })
   }
+})
+
+test('compressed publication preserves every referenced family and counts stored bytes', async () => {
+  const source = await fixture(true)
+  const before = await snapshot(source.publicDir)
+  const result = await copyPublicAssets(source)
+  expect(result.bytes).toBeLessThan(20_000)
+  expect(
+    JSON.parse(gunzipSync(await readFile(join(source.outDir, 'data/current.json.gz')))),
+  ).toEqual(source.current)
+  for (const url of [
+    source.currentUrl,
+    source.awardUrl,
+    source.recordUrl,
+    source.awardRecordUrl,
+    source.buyerUrl,
+  ]) {
+    const input = await readFile(join(source.publicDir, 'data', url))
+    expect(await readFile(join(source.outDir, 'data', url))).toEqual(input)
+    expect(JSON.parse(gunzipSync(input)).schema_version).toBe('1.0')
+  }
+  expect(await snapshot(source.publicDir)).toEqual(before)
+  expect(await readFile(join(source.outDir, 'data/manifest.json'))).toBeTruthy()
+  await expect(readFile(join(source.outDir, 'data', source.orphanUrl))).rejects.toThrow()
 })
 test('content hashing preserves Python numeric lexemes, Unicode and quoted punctuation', () => {
   const source = String.raw`{

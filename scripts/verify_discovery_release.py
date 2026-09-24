@@ -7,12 +7,13 @@ from pathlib import Path
 from anthrion_signal.config import load_config
 from anthrion_signal.discovery import prefilter
 from anthrion_signal.models import Signal
-from anthrion_signal.utils import atomic_json, digest
+from anthrion_signal.utils import atomic_json, digest, read_retained_bytes, retained_path
 
 
 def compare(path, root):
+    path = retained_path(path)
     source = path.read_bytes()
-    data = json.loads(source)
+    data = json.loads(read_retained_bytes(path))
     old = {s["id"]: s for s in data["signals"]}
     signals = [Signal.model_validate(s) for s in old.values()]
     config = load_config(root)

@@ -104,7 +104,7 @@ def read_retained_bytes(path: Path) -> bytes:
 
 
 def atomic_retained_bytes(path: Path, body: bytes, *, threshold=32 * 1024 * 1024) -> bool:
-    """Compress growing Git snapshots atomically; public web assets stay ordinary JSON.
+    """Compress growing Git snapshots atomically; public exports use their own codec.
 
     Write and fsync the replacement before removing the old representation. Gzip's
     fixed timestamp makes unchanged records byte-stable across collection runs.

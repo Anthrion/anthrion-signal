@@ -12,7 +12,7 @@ from anthrion_signal.translation import (
     untranslated_prose,
     validate_translation,
 )
-from anthrion_signal.utils import digest
+from anthrion_signal.utils import digest, read_json
 
 
 def audit_dataset(dataset):
@@ -61,7 +61,7 @@ def main():
     parser.add_argument("--dataset", type=Path, default=Path("app/public/data/current.json"))
     parser.add_argument("--require-complete", action="store_true")
     args = parser.parse_args()
-    audit = audit_dataset(json.loads(args.dataset.read_text(encoding="utf-8")))
+    audit = audit_dataset(read_json(args.dataset, {}))
     print(json.dumps(audit, ensure_ascii=True, indent=2))
     if os.getenv("GITHUB_STEP_SUMMARY"):
         with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as stream:

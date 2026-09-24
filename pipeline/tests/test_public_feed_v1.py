@@ -9,8 +9,8 @@ from anthrion_signal.cli import public_data
 from anthrion_signal.discovery import prefilter
 from anthrion_signal.models import Dataset, EnglishText
 from anthrion_signal.public_context import attach_history
-from anthrion_signal.public_feed import export_current
-from anthrion_signal.utils import atomic_json, digest
+from anthrion_signal.public_feed import export_current, atomic_public_json
+from anthrion_signal.utils import atomic_json, digest, read_json
 
 
 def make_feed(tmp_path, signal, config):
@@ -32,13 +32,13 @@ def make_feed(tmp_path, signal, config):
 def test_indexes_keep_original_english_search_and_lazy_full_evidence(tmp_path, signal, config):
     data = make_feed(tmp_path, signal, config)
     root = tmp_path / "app/public/data"
-    summary = json.loads((root / data.current_feed["markets"]["GB"]["url"]).read_text(encoding="utf-8"))["signals"][0]
+    summary = read_json(root / data.current_feed["markets"]["GB"]["url"], {})["signals"][0]
     assert summary["description"] == "" and summary["is_summary"]
     assert "rare final phrase" in summary["search_text"] and "English rare phrase" in summary["search_text"]
-    detail = json.loads((root / data.current_feed["records"][signal.id]["url"]).read_text(encoding="utf-8"))
+    detail = read_json(root / data.current_feed["records"][signal.id]["url"], {})
     assert detail["signal"]["description"] == signal.description
     assert not detail["signal"]["buyer_history"]
-    buyer = json.loads((root / detail["signal"]["buyer_history_ref"]["url"]).read_text(encoding="utf-8"))
+    buyer = read_json(root / detail["signal"]["buyer_history_ref"]["url"], {})
     assert buyer["records"][0]["signal_id"] == signal.id
     checker = runpy.run_path(str(Path(__file__).resolve().parents[2] / "scripts/check_public_output.py"))["check_public_output"]
     atomic_json(root / "obsolete.json", {"old": "unreferenced export"})
@@ -77,7 +77,7 @@ def test_linked_history_gets_full_details_without_becoming_a_live_lead(tmp_path,
     root = tmp_path / "app/public/data"
     detail = json.loads(gzip.decompress((root / records[earlier.id]["url"]).read_bytes()))["records"][earlier.id]
     assert detail["signal"]["description"] == earlier.description
-    current = json.loads((root / data.current_feed["markets"]["GB"]["url"]).read_text(encoding="utf-8"))
+    current = read_json(root / data.current_feed["markets"]["GB"]["url"], {})
     assert [s["id"] for s in current["signals"]] == [signal.id]
     checker = runpy.run_path(str(Path(__file__).resolve().parents[2] / "scripts/check_public_output.py"))["check_public_output"]
     def roots():
@@ -148,9 +148,9 @@ def test_corrupt_hashed_detail_fails_publication_validation(tmp_path, signal, co
     data = make_feed(tmp_path, signal, config)
     root = tmp_path / "app/public/data"
     file = root / data.current_feed["records"][signal.id]["url"]
-    page = json.loads(file.read_text(encoding="utf-8"))
+    page = read_json(file, {})
     page["signal"]["description"] = "Tampered"
-    atomic_json(file, page)
+    atomic_public_json(file, page)
     checker = runpy.run_path(str(Path(__file__).resolve().parents[2] / "scripts/check_public_output.py"))["check_public_output"]
     with pytest.raises(ValueError, match="content hash"):
         checker(root / "current.json")

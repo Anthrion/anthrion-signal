@@ -5,6 +5,7 @@ from datetime import timedelta
 import httpx
 import pytest
 
+from anthrion_signal.utils import read_json
 from anthrion_signal.attachments import enrich_documents, extract_pages, hydrate_cached_documents
 from anthrion_signal.award_history import export_awards
 from anthrion_signal.models import Document
@@ -216,7 +217,7 @@ def test_award_export_does_not_clear_shared_current_guidance(tmp_path, signal, c
     export_awards(tmp_path, [signal], config, now, manifest, [signal])
     assert signal.reviewed_guidance == original_guidance
     assert original_guidance
-    detail = json.loads((tmp_path / "app/public/data" / manifest[signal.id]["url"]).read_text(encoding="utf-8"))
+    detail = read_json(tmp_path / "app/public/data" / manifest[signal.id]["url"], {})
     assert detail["signal"]["reviewed_guidance"] == original_guidance
 
 

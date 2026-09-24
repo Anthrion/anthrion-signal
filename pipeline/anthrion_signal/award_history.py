@@ -123,7 +123,7 @@ def export_awards(root, canonical, config, now, record_manifest=None, context_si
         ids = {s.id for s in records}
         payload = {"schema_version": "1.0", "signals": [public_signal(s, translations.get(s.id)) for s in records],
                    "translations": {sid: value for sid, value in translations.items() if sid in ids}}
-        relative = f"awards/{market}-{digest(payload)[:16]}.json"
+        relative = f"awards/{market}-{digest(payload)[:16]}.json.gz"
         atomic_public_json(root / "app/public/data" / relative, payload)
         manifest[market] = {"url": relative, "count": len(records)}
     # Old manifests must remain readable until the new root manifest is published.
