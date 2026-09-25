@@ -9,8 +9,11 @@ import unicodedata
 from datetime import UTC, datetime
 from pathlib import Path
 from urllib.parse import parse_qsl, urlencode, urlparse, urlunparse
+from zoneinfo import ZoneInfo
 
 from bs4 import BeautifulSoup
+
+BRUSSELS = ZoneInfo("Europe/Brussels")
 
 
 def now_iso() -> str:
@@ -37,6 +40,42 @@ def parse_date(value) -> datetime | None:
 def iso(value) -> str | None:
     dt = parse_date(value)
     return dt.isoformat(timespec="seconds") if dt else None
+
+
+def calendar_day(value) -> str | None:
+    """Keep a published calendar day as YYYY-MM-DD; a clock time keeps its instant.
+
+    A zone designator on a date, as in TED's "2026-07-02+02:00" or "2023-10-30Z",
+    names where that day applies, not a time. Stored as local midnight in UTC, it
+    became the previous date for every reader west of the offset.
+    """
+    if not isinstance(value, str):
+        return None
+    text = value.strip()
+    if match := re.fullmatch(r"(\d{4}-\d{2}-\d{2})(?:Z|[+-]\d{2}:\d{2})", text):
+        text = match[1]
+    if re.search(r"\d:\d{2}", text):
+        return iso(text)
+    parsed = parse_date(text)
+    return parsed.date().isoformat() if parsed else None
+
+
+def utc_midnight_day(value) -> str | None:
+    """The date of an exact UTC-midnight instant, as earlier releases stored "YYYY-MM-DDZ"."""
+    if isinstance(value, str) and re.fullmatch(r"\d{4}-\d{2}-\d{2}T00:00:00\+00:00", value):
+        return value[:10]
+    return None
+
+
+def brussels_midnight_day(value) -> str | None:
+    """The Brussels date of an exact UTC instant at Brussels midnight, or None.
+
+    This is how earlier releases stored a TED day published with +01:00/+02:00.
+    """
+    if not isinstance(value, str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}T2[23]:00:00\+00:00", value):
+        return None
+    local = datetime.fromisoformat(value).astimezone(BRUSSELS)
+    return local.date().isoformat() if local.hour == 0 else None
 
 
 def clean(value, limit=24000) -> str:

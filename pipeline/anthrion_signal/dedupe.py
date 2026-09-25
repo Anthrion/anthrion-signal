@@ -56,6 +56,11 @@ def is_fuzzy_duplicate(left, right):
     return date_anchor and value_anchor
 
 
+def earliest_publication(values):
+    """Compare instants, not text; a calendar day orders at its UTC start."""
+    return min(values, key=lambda value: (parse_date(value) or datetime.max.replace(tzinfo=UTC), value))
+
+
 def merge_provenance(previous, incoming):
     """Keep distinct source versions even when a publisher reuses its release ID."""
     def observed_at(item):
@@ -125,7 +130,7 @@ def merge(old, incoming):
     merged.first_seen_at = min(old.first_seen_at, incoming.first_seen_at)
     merged.last_seen_at = max(old.last_seen_at, incoming.last_seen_at)
     if incoming.published_at:
-        merged.published_at = min(filter(None, [old.published_at, incoming.published_at]))
+        merged.published_at = earliest_publication(filter(None, [old.published_at, incoming.published_at]))
     merged.documents = list({d.url: d for d in old.documents + incoming.documents}.values())[-40:]
     merged.provenance = merge_provenance(old.provenance, incoming.provenance)
     set_hashes(merged)

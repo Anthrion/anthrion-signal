@@ -501,8 +501,13 @@ export function isAddedToday(s: Signal, now = Date.now()) {
     collectionDay.format(collected) === collectionDay.format(now)
   )
 }
+// A calendar day is the source's own publication date, recorded at discovery; observed
+// material changes are collection instants. Parsed as midnight UTC, a TED day can start up
+// to two hours after its Brussels-midnight release was first collected.
 export const isUpdated = (s: Signal, now = Date.now()) =>
-  !isNew(s, now) && now - Date.parse(s.last_material_update) < 86400000
+  !isNew(s, now) &&
+  !/^\d{4}-\d{2}-\d{2}$/.test(s.last_material_update) &&
+  now - Date.parse(s.last_material_update) < 86400000
 export function normaliseFilters(value: Partial<Filters>): Filters {
   const result = Object.fromEntries(
     Object.entries(defaults).map(([key, fallback]) => [

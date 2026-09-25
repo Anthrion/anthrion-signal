@@ -18,6 +18,8 @@ import {
   isAvailableOpportunity,
   isHistoricalAward,
   isAddedToday,
+  isUpdated,
+  date,
   normaliseFilters,
   priorityTier,
   responseDeadline,
@@ -900,5 +902,39 @@ describe('team workflows', () => {
       true,
     )
     expect(isAvailableOpportunity({ ...signal, signal_type: 'PIPELINE' }, now)).toBe(true)
+  })
+})
+describe('published calendar days', () => {
+  const day = { day: 'numeric', month: 'short', year: 'numeric' } as const
+  test('a calendar day reads the same in every time zone; an instant follows the reader', () => {
+    // TED dates notice 453517-2026 2 July 2026. Earlier releases stored that day's
+    // Brussels midnight as an instant, which readers in the UK saw as 1 July.
+    for (const timeZone of [
+      'Europe/London',
+      'Europe/Brussels',
+      'America/Los_Angeles',
+      'Asia/Tokyo',
+    ])
+      expect(date('2026-07-02', { ...day, timeZone })).toBe('2 Jul 2026')
+    expect(date('2026-07-01T22:00:00+00:00', { ...day, timeZone: 'Europe/London' })).toBe(
+      '1 Jul 2026',
+    )
+    expect(date('2026-07-01T22:00:00+00:00', { ...day, timeZone: 'Europe/Brussels' })).toBe(
+      '2 Jul 2026',
+    )
+  })
+  test('a publication day recorded at discovery is not a material update', () => {
+    // Collected at 23:50 UTC, just after TED's Brussels release for 9 September.
+    const collected = { ...signal, first_seen_at: '2026-09-08T23:50:00Z' }
+    const later = Date.parse('2026-09-09T23:55:00Z')
+    const published = { ...collected, id: 'published', last_material_update: '2026-09-09' }
+    const changed = { ...collected, id: 'changed', last_material_update: '2026-09-09T20:00:00Z' }
+    expect(isUpdated(published, later)).toBe(false)
+    expect(isUpdated(changed, later)).toBe(true)
+    expect(
+      filterSignals([published, changed], { ...defaults, change: 'updated' }, [], later).map(
+        (s) => s.id,
+      ),
+    ).toEqual(['changed'])
   })
 })
