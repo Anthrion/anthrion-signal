@@ -275,6 +275,22 @@ def _needs_older(page, lane):
     return bool(page["next"] and (oldest is None or oldest >= _aware(lane["after"])))
 
 
+def _coalesce(pending, lane):
+    """Fold windows waiting at this lane's page into it, so the shared archive is read once.
+
+    Every window walks the same newest-first chain with the current vocabulary. Once
+    two have reached the same page, one walk over their combined bounds does both jobs.
+    """
+    key = _page_key(lane["url"])
+    waiting = [item for item in pending if item is not lane and _page_key(item["url"]) == key]
+    for other in waiting:
+        lane["after"] = min(_aware(lane["after"]), _aware(other["after"])).isoformat()
+        lane["through"] = max(_aware(lane["through"]), _aware(other["through"])).isoformat()
+        lane["seen"] = lane.get("seen", []) + [item for item in other.get("seen", []) if item not in lane.get("seen", [])]
+        lane["reread"] = bool(lane.get("reread") and other.get("reread"))
+    pending[:] = [item for item in pending if not any(item is other for other in waiting)]
+
+
 def collect_spain_notices(source, state, frozen, http, settings, terms):
     """Poll the small head conditionally, then resume chronological archive windows."""
     saved = copy.deepcopy(state) if state.get("query_version") == VERSION else {}
@@ -315,6 +331,10 @@ def collect_spain_notices(source, state, frozen, http, settings, terms):
                 cutoff = min(cutoff, frozen - timedelta(days=settings["lookback_days"]))
             lane = {"url": endpoint, "after": cutoff.isoformat(), "through": page["updated"], "seen": [_page_key(endpoint)]}
             changed = replay or digest(page) != saved.get("head_hash")
+            # Replaying an unchanged head, when every outstanding window is itself a re-read,
+            # covers only notices that have already been collected once.
+            reread = (replay and digest(page) == saved.get("head_hash")
+                      and all(item.get("reread") for item in saved["pending"]))
             if changed:
                 _retain_records(result, page, lane, source, frozen, terms)
             if changed and _needs_older(page, lane):
@@ -325,18 +345,22 @@ def collect_spain_notices(source, state, frozen, http, settings, terms):
                 if existing:
                     existing["after"] = min(_aware(existing["after"]), cutoff).isoformat()
                     existing["through"] = max(_aware(existing["through"]), new_head).isoformat()
+                    existing["reread"] = bool(existing.get("reread") and reread)
                 else:
                     if len(saved["pending"]) >= 32:
                         raise SourceUnavailable("PLACSP pending window limit reached; head checkpoint retained")
-                    saved["pending"].insert(0, {**lane, "url": page["next"]})
+                    saved["pending"].insert(0, {**lane, "url": page["next"], "reread": reread})
             saved["head_updated"] = page["updated"]
             saved["head_hash"] = digest(page)
             saved["head_etag"] = response.headers.get("etag")
             saved["head_last_modified"] = response.headers.get("last-modified")
             if replay:
                 saved["discovery_vocabulary"] = vocabulary
+        # The newest window goes first, so newly archived notices are not delayed. When it
+        # reaches a page where older windows are waiting, it takes over their bounds.
         while saved["pending"] and result.pages < budget:
             lane = saved["pending"][0]
+            _coalesce(saved["pending"], lane)
             key = _page_key(lane["url"])
             if key in lane.get("seen", []):
                 raise SourceUnavailable("PLACSP archive pagination repeated a page; checkpoint retained")
@@ -353,8 +377,15 @@ def collect_spain_notices(source, state, frozen, http, settings, terms):
             else:
                 saved["pending"].pop(0)
         if saved["pending"]:
-            result.complete = False
-            result.message = "PLACSP page budget reached; older notice windows will resume next run."
+            count = len(saved["pending"])
+            windows = (f"{count} older notice window{'s' if count > 1 else ''} from "
+                       f"{min(_aware(item['after']) for item in saved['pending']).date()}")
+            if all(item.get("reread") for item in saved["pending"]):
+                # Every notice has been read at least once; only a vocabulary replay remains.
+                result.message = f"PLACSP is current; re-reading {windows} for changed discovery vocabulary."
+            else:
+                result.complete = False
+                result.message = f"PLACSP page budget reached; {windows} will resume next run."
         else:
             saved["watermark"] = saved.get("head_updated")
         head_time = _aware(saved.get("head_updated"))
