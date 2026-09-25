@@ -1621,20 +1621,23 @@
       }
     },
     "36098039797-1": {
-      "closed": false,
+      "closed": true,
       "day": "2026-09-24",
       "limits": {
         "gemini-3.1-flash-lite": 150,
         "gemini-3.5-flash-lite": 0
       },
-      "used": {}
+      "started": true,
+      "used": {
+        "gemini-3.1-flash-lite": 6
+      }
     }
   },
   "models": {
     "gemini-3.1-flash-lite": {
       "blocked_reason": "transient",
-      "blocked_until": 1790302715.2025704,
-      "consecutive_errors": 1,
+      "blocked_until": 1790314816.6330688,
+      "consecutive_errors": 4,
       "days": {
         "2026-09-12": 9,
         "2026-09-13": 420,
@@ -1648,7 +1651,7 @@
         "2026-09-21": 42,
         "2026-09-22": 161,
         "2026-09-23": 169,
-        "2026-09-24": 274
+        "2026-09-24": 130
       },
       "recent": [],
       "usage": {
