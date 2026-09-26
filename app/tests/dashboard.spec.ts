@@ -92,19 +92,30 @@ const ready = async (page: Page) => {
   await expect(page.locator('.signal-row').first()).toBeVisible()
   await page.evaluate(() => document.fonts.ready)
 }
+const escapeRegExp = (text: string) => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 const discoveryCard = (page: Page, label: string) =>
   page.locator('.discovery-card').filter({ has: page.getByText(label, { exact: true }) })
-const selectDiscovery = async (page: Page, label: string) => {
-  const card = discoveryCard(page, label)
+/** A refiner: a glass card on wide screens, a chip on phones (and with Compact refiners). */
+const refiner = (page: Page, label: string) =>
+  discoveryCard(page, label).or(
+    page
+      .locator('.compact-refiners button')
+      .filter({ hasText: new RegExp(`^${escapeRegExp(label)}[\\d,–]+$`) }),
+  )
+/** The count shown on a refiner card or chip. */
+const refinerValue = (item: Locator) => item.locator('.discovery-value, small')
+const selectRefiner = async (page: Page, label: string) => {
+  const item = refiner(page, label)
   const position = page.getByRole('button', { name: `Show ${label}`, exact: true })
   // A resize can remove pagination between isVisible() and click(). Keep both
   // responsive controls in one retried locator so it resolves the current DOM.
   // Pagination follows the cards in DOM order and safely brings clipped cards
-  // into view. When resize removes it, the same locator resolves to the card.
-  await position.or(card).filter({ visible: true }).last().click({ timeout: 10000 })
-  await card.click({ timeout: 10000 })
-  await expect(card).toHaveAttribute('aria-pressed', 'true')
-  return card
+  // into view. When resize removes it, the same locator resolves to the card,
+  // or to the chip once the refiners become chips.
+  await position.or(item).filter({ visible: true }).last().click({ timeout: 10000 })
+  await item.click({ timeout: 10000 })
+  await expect(item).toHaveAttribute('aria-pressed', 'true')
+  return item
 }
 const expectMarket = (page: Page, name: string) =>
   expect(
@@ -129,10 +140,27 @@ const shaderPixels = (canvas: Locator) =>
         })
       }),
   )
-const detail = async (page: Page, index = 0) => {
-  await page.locator('.row-select').nth(index).click()
-  await page.getByRole('button', { name: 'Full details', exact: true }).click()
-  await expect(page.getByRole('dialog', { name: 'Opportunity intelligence' })).toBeVisible()
+/**
+ * Opens a complete record. Wide screens show it in the inspector beside the results;
+ * phones open it in a dialog named by its notice type.
+ */
+const openRecord = async (page: Page, index = 0) => {
+  const row = page.locator('.row-select').nth(index)
+  const title = (await row.getAttribute('aria-label'))!
+  await row.click()
+  const record = page.locator('.console-detail:visible')
+  await expect(record.locator('.inspector-heading h2')).toHaveText(title)
+  if (page.viewportSize()!.width <= 900)
+    await expect(page.getByRole('dialog').locator('.console-detail')).toBeVisible()
+  return record
+}
+/** The dock's source button opens the source history at the end of the record. */
+const openSourceHistory = async (record: Locator) => {
+  await record.locator('.record-action-dock').getByRole('button').click()
+  const history = record.locator('.record-history')
+  await expect(history).toHaveJSProperty('open', true)
+  await expect(history.locator('.provenance-list')).toBeVisible()
+  return history
 }
 test.beforeEach(async ({ page }, info) => {
   await page.emulateMedia({ reducedMotion: 'reduce' })
@@ -150,12 +178,14 @@ test('@pr source facts, logo, filtering, saving, evidence and search', async ({ 
   await page.goto('./')
   await ready(page)
   await expectMarket(page, 'United Kingdom')
-  await expect(page.locator('.workspace-brand img')).toHaveAttribute('src', /anthrion-logo.svg/)
+  await expect(page.locator('.workspace-brand img')).toHaveAttribute('src', /anthrion-wordmark.svg/)
   await expect
     .poll(() =>
       page.locator('.workspace-brand img').evaluate((el: HTMLImageElement) => el.naturalWidth),
     )
     .toBeGreaterThan(0)
+  // The wordmark carries letters only; the mark's dots are drawn over it so they can light.
+  await expect(page.locator('.workspace-brand .brand-dots circle.brand-dot')).toHaveCount(6)
   if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
     await page.screenshot({ path: `../artifacts/console-${info.project.name}.png` })
   await page
@@ -166,20 +196,37 @@ test('@pr source facts, logo, filtering, saving, evidence and search', async ({ 
   await expect(
     page.locator('.signal-row').first().getByRole('button', { name: 'Unsave opportunity' }),
   ).toBeVisible()
+  await expect(
+    page.getByRole('button', { name: 'Saved opportunities, 1', exact: true }),
+  ).toBeVisible()
   await page.getByRole('button', { name: 'Filters', exact: true }).click()
   await page.getByLabel('Buyer', { exact: true }).fill('no-such-buyer-xyz')
   await page.getByRole('button', { name: 'Show 0 signals' }).click()
   await expect(page.getByText('No matching signals', { exact: true })).toBeVisible()
   await page.getByRole('button', { name: 'Remove Buyer filter', exact: true }).click()
-  await detail(page)
-  await expect(
-    page.getByRole('dialog').getByRole('link', { name: 'Open source notice' }),
-  ).toHaveAttribute('href', /^https:/)
-  for (const name of ['Sources & timeline', 'Overview']) {
-    await page.getByRole('tab', { name, exact: true }).click()
-    await expect(page.getByRole('tabpanel')).toBeVisible()
+  // One complete record: facts and text first, then the source history the dock opens.
+  const record = await openRecord(page)
+  const phone = page.viewportSize()!.width <= 900
+  await expect(record.getByRole('link', { name: 'Open source notice' })).toHaveAttribute(
+    'href',
+    /^https:/,
+  )
+  await expect(record.locator('.inspector-facts')).toContainText('Notice type')
+  await expect(record.locator('.inspector-summary p').first()).toBeVisible()
+  // The dock names the source and when it was checked (phones hide the date on screen only).
+  await expect(record.locator('.record-action-dock').getByRole('button')).toHaveAccessibleName(
+    /^Find a Tender checked \d{1,2} \w+/,
+  )
+  const history = await openSourceHistory(record)
+  await expect(history.locator('.provenance-list')).toContainText('Reference')
+  await expect(history.locator('.record-facts')).toContainText('Last checked')
+  if (phone) {
+    // The opened record can be saved from its dialog; it shows the save made in the list.
+    await expect(
+      page.getByRole('dialog').getByRole('button', { name: 'Unsave opportunity' }),
+    ).toBeVisible()
+    await page.getByRole('button', { name: 'Close panel' }).click()
   }
-  await page.getByRole('button', { name: 'Close panel' }).click()
   await page.getByRole('textbox', { name: 'Search opportunities' }).fill('no-such-opportunity-xyz')
   await expect(page.getByText('No matching signals', { exact: true })).toBeVisible()
   await page.getByRole('button', { name: 'Clear search' }).click()
@@ -205,21 +252,26 @@ test('console selection instantly changes details without navigating away', asyn
   }
 })
 
-test('five discovery categories remain useful filters', async ({ page }) => {
+test('all six refiners, including Awarded, remain useful filters', async ({ page }) => {
   await page.goto('./')
   await ready(page)
-  for (const label of [
-    'All Signals',
-    'Live Opportunities',
-    'Pre-market',
-    'Closing Soon',
-    'Added today',
+  for (const [label, heading] of [
+    ['All Signals', 'All Signals'],
+    ['Live Opportunities', 'Live Opportunities'],
+    ['Pre-market', 'Pre-market'],
+    ['Closing Soon', 'Closing Soon'],
+    ['Added today', 'Added today'],
+    ['Awarded', 'Awarded contracts'],
   ]) {
-    const item = await selectDiscovery(page, label)
-    await expect(page.locator('.feed-heading h1')).toHaveText(label)
+    const item = await selectRefiner(page, label)
+    await expect(page.locator('.feed-heading h1')).toHaveText(heading)
     await expect(item).toHaveAttribute('aria-pressed', 'true')
-    const count = (await item.locator('.discovery-value').textContent())!.replaceAll(',', '')
-    await expect(page.locator('.feed-heading .count-badge')).toHaveText(count)
+    const count = page.locator('.feed-heading .count-badge')
+    await expect(count).toHaveText(/^\d+$/)
+    // A count may still be rolling; its text reads the number throughout.
+    await expect(refinerValue(item)).toHaveText(
+      Number(await count.textContent()).toLocaleString('en-GB'),
+    )
   }
   for (const name of ['Saved opportunities']) {
     await page
@@ -240,29 +292,41 @@ test('optical glass refiners and source links preserve the selected record edge'
 }) => {
   await page.goto('./?view=live')
   await ready(page)
-  const active = page.locator('.discovery-card[aria-pressed="true"]')
-  const glass = page.locator('.discovery-glass[data-selected="true"]')
-  await expect(glass).toHaveClass(/optical-glass/)
-  await expect(active).toHaveCSS('overflow', 'hidden')
-  await expect(page.locator('.discovery-track')).toHaveCSS('transition-property', 'none')
-  await expect(page.locator('.discovery-control').first()).toHaveCSS('transition-property', 'none')
-  await expect(page.locator('.discovery-card .metal-edge')).toHaveCount(0)
+  const phone = page.viewportSize()!.width <= 900
+  if (phone) {
+    // Phones show the refiners as a row of chips, without the optical glass.
+    await expect(page.locator('.discovery-glass, .discovery-card')).toHaveCount(0)
+    await expect(page.locator('.compact-refiners button[aria-pressed="true"]')).toHaveText(
+      /^Live Opportunities\d+$/,
+    )
+  } else {
+    const active = page.locator('.discovery-card[aria-pressed="true"]')
+    const glass = page.locator('.discovery-glass[data-selected="true"]')
+    await expect(glass).toHaveClass(/optical-glass/)
+    await expect(active).toHaveCSS('overflow', 'hidden')
+    await expect(page.locator('.discovery-track')).toHaveCSS('transition-property', 'none')
+    await expect(page.locator('.discovery-control').first()).toHaveCSS(
+      'transition-property',
+      'none',
+    )
+    await expect(page.locator('.discovery-card .metal-edge')).toHaveCount(0)
+    const imageSource = await glass.evaluate(
+      (element) => getComputedStyle(element, '::before').borderImageSource,
+    )
+    expect(imageSource).toContain('optical-glass-material.png')
+    const imageURL = imageSource.slice(5, -2)
+    const asset = await page.request.get(imageURL)
+    expect(asset.ok()).toBe(true)
+    expect(asset.headers()['content-type']).toContain('image/png')
+    const positions = await active.evaluate((element) => {
+      const value = element.querySelector('.discovery-value')!.getBoundingClientRect()
+      const icon = element.querySelector('.discovery-icon')!.getBoundingClientRect()
+      return { value: value.left, icon: icon.left }
+    })
+    expect(positions.value).toBeLessThan(positions.icon)
+  }
   await expect(page.locator('.signal-row.selected .metal-edge')).toBeVisible()
-  const imageSource = await glass.evaluate(
-    (element) => getComputedStyle(element, '::before').borderImageSource,
-  )
-  expect(imageSource).toContain('optical-glass-material.png')
-  const imageURL = imageSource.slice(5, -2)
-  const asset = await page.request.get(imageURL)
-  expect(asset.ok()).toBe(true)
-  expect(asset.headers()['content-type']).toContain('image/png')
-  const positions = await active.evaluate((element) => {
-    const value = element.querySelector('.discovery-value')!.getBoundingClientRect()
-    const icon = element.querySelector('.discovery-icon')!.getBoundingClientRect()
-    return { value: value.left, icon: icon.left }
-  })
-  expect(positions.value).toBeLessThan(positions.icon)
-  if (page.viewportSize()!.width <= 900) await detail(page)
+  if (phone) await openRecord(page)
   const link = page.locator('.glass-source-button:visible').first()
   await expect(link).toHaveAttribute('href', /^https:/)
   await expect(link).toHaveAttribute('target', '_blank')
@@ -290,39 +354,71 @@ test('optical glass refiners and source links preserve the selected record edge'
   await popup.close()
 })
 
-test('every discovery label fits its card at compact and wide sizes', async ({ page }, info) => {
+test('every refiner label fits its card or chip at compact and wide sizes', async ({
+  page,
+}, info) => {
   test.setTimeout(120000)
   await page.goto('./?view=live')
   await ready(page)
-  for (const width of [320, 390, 430, 768, 900, 901, 1024, 1139, 1220, 1262, 1280, 1440, 1920]) {
+  // Up to 900px the refiners are chips; wider bands show four, five or six glass cards.
+  // 901, 1001 and 1141 are the narrowest widths for each number of cards.
+  for (const width of [
+    320, 390, 430, 768, 900, 901, 1001, 1024, 1139, 1141, 1220, 1262, 1280, 1440, 1920,
+  ]) {
     await page.setViewportSize({ width, height: 920 })
+    const chips = width <= 900
+    await expect(page.locator(chips ? '.compact-refiners' : '.discovery-viewport')).toBeVisible()
     for (const label of ['Live Opportunities', 'Added today', 'Pre-market']) {
-      const card = await selectDiscovery(page, label)
+      const card = await selectRefiner(page, label)
       await expect(card).toHaveAttribute('aria-pressed', 'true')
       await expect(card).toHaveCSS('backdrop-filter', 'none')
       await expect(card).toHaveCSS('filter', 'none')
-      const typePlane = await card.evaluate((element) => {
-        const object = element.parentElement!
-        const matrix = new DOMMatrixReadOnly(getComputedStyle(object).transform)
-        const rect = element.getBoundingClientRect()
-        const viewport = document.querySelector('.discovery-viewport')!.getBoundingClientRect()
-        return {
-          scaleX: Math.abs(matrix.m11),
-          scaleY: Math.abs(matrix.m22),
-          pixelX: Math.abs(rect.left - Math.round(rect.left)),
-          pixelY: Math.abs(rect.top - Math.round(rect.top)),
-          fullyVisible: rect.left >= viewport.left - 1 && rect.right <= viewport.right + 1,
-        }
-      })
-      expect(typePlane.fullyVisible, `${width}px selected card is fully visible`).toBe(true)
-      expect(typePlane.scaleX).toBeCloseTo(1, 5)
-      expect(typePlane.scaleY).toBeCloseTo(1, 5)
-      expect(typePlane.pixelX).toBeLessThan(0.01)
-      expect(typePlane.pixelY).toBeLessThan(0.01)
-      const overflow = await page.locator('.discovery-card:visible').evaluateAll((cards) =>
+      if (chips) {
+        // The chip row scrolls sideways and brings the selected chip to its start (clipped
+        // cards come into view through the pagination above instead). The selected chip
+        // shows whole: inside the row and the viewport, clear of export.
+        await expect
+          .poll(
+            () =>
+              card.evaluate((element) => {
+                const rect = element.getBoundingClientRect()
+                const middle = rect.top + rect.height / 2
+                return [rect.left + 1, rect.right - 1].every((x) =>
+                  element.contains(document.elementFromPoint(x, middle)),
+                )
+              }),
+            { message: `${width}px selected chip is fully visible` },
+          )
+          .toBe(true)
+      } else {
+        const typePlane = await card.evaluate((element) => {
+          const object = element.parentElement!
+          const matrix = new DOMMatrixReadOnly(getComputedStyle(object).transform)
+          const rect = element.getBoundingClientRect()
+          const viewport = document.querySelector('.discovery-viewport')!.getBoundingClientRect()
+          return {
+            scaleX: Math.abs(matrix.m11),
+            scaleY: Math.abs(matrix.m22),
+            pixelX: Math.abs(rect.left - Math.round(rect.left)),
+            pixelY: Math.abs(rect.top - Math.round(rect.top)),
+            fullyVisible: rect.left >= viewport.left - 1 && rect.right <= viewport.right + 1,
+          }
+        })
+        expect(typePlane.fullyVisible, `${width}px selected card is fully visible`).toBe(true)
+        expect(typePlane.scaleX).toBeCloseTo(1, 5)
+        expect(typePlane.scaleY).toBeCloseTo(1, 5)
+        expect(typePlane.pixelX).toBeLessThan(0.01)
+        expect(typePlane.pixelY).toBeLessThan(0.01)
+      }
+      const refiners = page.locator('.discovery-card:visible, .compact-refiners button')
+      const overflow = await refiners.evaluateAll((cards) =>
         cards.flatMap((card) => {
           const bounds = card.getBoundingClientRect()
-          return [...card.querySelectorAll('.discovery-name, .discovery-value')].flatMap((node) => {
+          // A card's label and count; everything a chip holds.
+          const parts = card.matches('.discovery-card')
+            ? [...card.querySelectorAll('.discovery-name, .discovery-value')]
+            : [card]
+          return parts.flatMap((node) => {
             const range = document.createRange()
             range.selectNodeContents(node)
             return [...range.getClientRects()]
@@ -340,7 +436,7 @@ test('every discovery label fits its card at compact and wide sizes', async ({ p
         }),
       )
       expect(overflow, `${width}px, ${label}`).toEqual([])
-      const overlaps = await page.locator('.discovery-card:visible').evaluateAll((cards) =>
+      const overlaps = await refiners.evaluateAll((cards) =>
         cards.flatMap((card, index) => {
           const bounds = card.getBoundingClientRect()
           return cards
@@ -359,9 +455,36 @@ test('every discovery label fits its card at compact and wide sizes', async ({ p
     }
   }
   await page.setViewportSize({ width: 1262, height: 920 })
-  await selectDiscovery(page, 'Live Opportunities')
+  await selectRefiner(page, 'Live Opportunities')
   if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
     await page.screenshot({ path: `../artifacts/console-compact-fixed-${info.project.name}.png` })
+})
+
+test('the chosen view shows its whole chip on phones, even where the chip row scrolls', async ({
+  page,
+}) => {
+  const whole = () =>
+    page.locator('.compact-refiners [aria-pressed="true"]').evaluate((chip) => {
+      const row = chip.parentElement!.getBoundingClientRect()
+      const box = chip.getBoundingClientRect()
+      return box.left >= row.left - 0.5 && box.right <= row.right + 0.5
+    })
+  for (const [width, view, label] of [
+    [390, 'awards', 'Awarded'],
+    [320, 'live', 'Live Opportunities'],
+  ] as const) {
+    await page.setViewportSize({ width, height: 844 })
+    await page.goto(`./?view=${view}`)
+    await expect(page.locator('.compact-refiners [aria-pressed="true"]')).toContainText(label)
+    await page.evaluate(() => document.fonts.ready)
+    await expect.poll(whole, { message: `${label} chip is whole at ${width}px` }).toBe(true)
+  }
+  // Choosing a chip at the far end, and then the first again, keeps each one whole.
+  for (const label of ['Awarded', 'All Signals']) {
+    await page.locator('.compact-refiners button', { hasText: label }).dispatchEvent('click')
+    await expect(page.locator('.compact-refiners [aria-pressed="true"]')).toContainText(label)
+    await expect.poll(whole, { message: `${label} chip is whole after choosing it` }).toBe(true)
+  }
 })
 
 test('market and language controls form a centred row and remain keyboard accessible', async ({
@@ -371,13 +494,18 @@ test('market and language controls form a centred row and remain keyboard access
   await ready(page)
   await expect(page.locator('.market-heading, .market-separator, .market-coverage')).toHaveCount(0)
   await expect(page.locator('h1')).toHaveText('Live Opportunities')
+  // English/Original is a switch at the end of the market row (no longer a menu).
+  const languages = page
+    .locator('.market-section')
+    .getByRole('radiogroup', { name: 'Record language' })
+  await expect(page.locator('.market-section .language-control')).toHaveCount(0)
   for (const width of [390, 1139, 1440, 1920]) {
     await page.setViewportSize({ width, height: 920 })
     await expect
       .poll(() =>
         page.locator('.market-section').evaluate((section) => {
           const rail = section.querySelector('.market-tabs')!.getBoundingClientRect()
-          const language = section.querySelector('.language-control')!.getBoundingClientRect()
+          const language = section.querySelector('.language-switch')!.getBoundingClientRect()
           return Math.abs(
             (rail.left + language.right) / 2 - document.documentElement.clientWidth / 2,
           )
@@ -385,7 +513,7 @@ test('market and language controls form a centred row and remain keyboard access
       )
       .toBeLessThan(1)
     const rail = await page.locator('.market-tabs').boundingBox()
-    const language = await page.locator('.language-control').boundingBox()
+    const language = await languages.boundingBox()
     expect(rail!.x + rail!.width).toBeLessThan(language!.x)
   }
   await page.setViewportSize({ width: 390, height: 844 })
@@ -396,6 +524,20 @@ test('market and language controls form a centred row and remain keyboard access
   await page.keyboard.press('Enter')
   await expectMarket(page, 'Greece')
   await expect(page).toHaveURL(/market=GR/)
+  const english = languages.getByRole('radio', { name: 'English', exact: true })
+  const original = languages.getByRole('radio', { name: 'Original', exact: true })
+  await expect(english).toHaveAttribute('aria-checked', 'true')
+  await expect(english).toHaveAttribute('tabindex', '0')
+  await expect(original).toHaveAttribute('tabindex', '-1')
+  await english.focus()
+  await page.keyboard.press('ArrowRight')
+  await expect(original).toBeFocused()
+  await expect(original).toHaveAttribute('aria-checked', 'true')
+  await expect(original).toHaveAttribute('tabindex', '0')
+  await page.keyboard.press('Home')
+  await expect(english).toBeFocused()
+  await expect(english).toHaveAttribute('aria-checked', 'true')
+  await expectMarket(page, 'Greece')
 })
 
 test('carousel typography stays fixed throughout dragging in dark mode', async ({ page }, info) => {
@@ -419,14 +561,16 @@ test('carousel typography stays fixed throughout dragging in dark mode', async (
         }
       }),
     )
-  for (const width of [390, 1139, 1262]) {
+  // Phones show chips rather than the carousel. The cards scroll while fewer than six fit
+  // (901px to 1140px) and stay fixed on wider screens.
+  for (const width of [960, 1139, 1262]) {
     await page.setViewportSize({ width, height: 920 })
     for (const theme of ['dark']) {
       const position = page.getByRole('button', {
         name: 'Show Live Opportunities',
         exact: true,
       })
-      const scrollable = width <= 900
+      const scrollable = width <= 1140
       await expect(position).toHaveCount(scrollable ? 1 : 0)
       if (scrollable) await position.click()
       else await discoveryCard(page, 'Live Opportunities').click()
@@ -572,10 +716,14 @@ test('CSV export retains source facts and comparison is removed', async ({ page 
   expect(headers).toContain('source')
   expect(headers).not.toMatch(/score|confidence|recommendation|requirements|ai_summary/)
   await expect(page.locator('.compare-control, .compare-tray, .comparison-grid')).toHaveCount(0)
-  await expect(page.locator('.signal-row .hide-control').first()).toBeVisible()
+  // Rows keep their own Hide control: an eye button named for the record, not a checkbox.
+  const row = page.locator('.signal-row').first()
+  const title = await row.locator('.row-title').textContent()
+  await expect(row.getByRole('button', { name: `Hide ${title}`, exact: true })).toBeVisible()
+  await expect(page.locator('.signal-row input[type="checkbox"]')).toHaveCount(0)
 })
 
-test('every refiner keeps default priority and explicit values sort across groups', async ({
+test('every opportunity refiner keeps default priority and explicit values sort across groups', async ({
   page,
 }) => {
   test.setTimeout(120000)
@@ -632,7 +780,7 @@ test('every refiner keeps default priority and explicit values sort across group
     await ready(page)
     await expect(page.locator('.feed-heading .count-badge')).toHaveText('6')
     await expect(page.locator('.row-title')).toHaveText(order(false))
-    for (const label of ['Recently updated', 'Closing soon']) {
+    for (const label of ['Recently updated', 'Soonest deadline']) {
       await page.getByRole('button', { name: /^Sort opportunities:/ }).click()
       await page.getByRole('menuitemradio', { name: label, exact: true }).click()
       await expect(page.locator('.row-title')).toHaveText(order(true))
@@ -687,13 +835,19 @@ test('old AI metadata never returns in filters, details or exports', async ({ pa
     /Minimum fit|Minimum confidence|Recommendation/,
   )
   await page.getByRole('button', { name: 'Close panel' }).click()
-  await detail(page)
-  await expect(page.getByRole('tab')).toHaveText(['Overview', 'Sources & timeline'])
-  await expect(page.getByRole('tabpanel')).toContainText(dataset.signals[0].description)
-  await expect(page.getByRole('dialog')).not.toContainText(stale)
-  await page.getByRole('tab', { name: 'Sources & timeline' }).click()
-  await expect(page.getByRole('dialog')).not.toContainText(stale)
-  await page.getByRole('button', { name: 'Close panel' }).click()
+  // The complete record: published facts and text, then the source history, and no
+  // assessment sections anywhere in it.
+  const record = await openRecord(page)
+  await expect(record.locator('.inspector-summary')).toContainText(dataset.signals[0].description)
+  await expect(record.getByRole('tab')).toHaveCount(0)
+  await expect(record).not.toContainText(
+    /Score & evidence|Requirements|Fit score|Evidence confidence|Pursue/,
+  )
+  await expect(record).not.toContainText(stale)
+  await openSourceHistory(record)
+  await expect(record).not.toContainText(stale)
+  if (page.viewportSize()!.width <= 900)
+    await page.getByRole('button', { name: 'Close panel' }).click()
   const download = page.waitForEvent('download')
   await page.getByRole('button', { name: 'Export signals', exact: true }).click()
   const exported = await downloadText(await download)
@@ -766,8 +920,9 @@ test('measured result windows reach every record without pagination or unbounded
   await expect(page.locator('.feed-heading .count-badge')).toHaveText('1')
 })
 
-test('exactly five refiners remain available across markets and empty states', async ({ page }) => {
-  if (page.viewportSize()!.width <= 900) {
+test('exactly six refiners remain available across markets and empty states', async ({ page }) => {
+  const phone = page.viewportSize()!.width <= 900
+  if (phone) {
     const session = await page.context().newCDPSession(page)
     await session.send('Emulation.setCPUThrottlingRate', { rate: 6 })
   }
@@ -777,14 +932,20 @@ test('exactly five refiners remain available across markets and empty states', a
   await installDataset(page, dataset)
   await page.goto('./?market=DE')
   await ready(page)
-  for (const label of [
-    'All Signals',
-    'Live Opportunities',
-    'Pre-market',
-    'Closing Soon',
-    'Added today',
-  ]) {
-    await expect(discoveryCard(page, label)).toHaveCount(1)
+  // The five opportunity refiners, then Awarded, with the heading each one gives the feed.
+  const refiners = [
+    ['All Signals', 'All Signals'],
+    ['Live Opportunities', 'Live Opportunities'],
+    ['Pre-market', 'Pre-market'],
+    ['Closing Soon', 'Closing Soon'],
+    ['Added today', 'Added today'],
+    ['Awarded', 'Awarded contracts'],
+  ] as const
+  await expect(page.locator('.discovery-card, .compact-refiners button')).toHaveCount(
+    refiners.length,
+  )
+  for (const [label] of refiners) {
+    await expect(refiner(page, label)).toHaveCount(1)
   }
   for (const label of [
     'Top Signals',
@@ -794,45 +955,54 @@ test('exactly five refiners remain available across markets and empty states', a
     'Frameworks',
     'Funding & Partnerships',
   ]) {
-    await expect(discoveryCard(page, label)).toHaveCount(0)
+    await expect(refiner(page, label)).toHaveCount(0)
   }
-  if (page.viewportSize()!.width > 900) {
+  if (phone) {
+    // Phones show a row of chips; each chip is its own stop in the tab order.
+    await expect(page.locator('.discovery')).toHaveCount(0)
+    await (await selectRefiner(page, 'All Signals')).focus()
+    for (const [label, heading] of refiners.slice(1)) {
+      await page.keyboard.press('Tab')
+      await expect(refiner(page, label)).toBeFocused()
+      await page.keyboard.press('Enter')
+      await expect(refiner(page, label)).toHaveAttribute('aria-pressed', 'true')
+      await expect(page.locator('.feed-heading h1')).toHaveText(heading)
+    }
+    for (const [label] of refiners.slice(0, -1).reverse()) {
+      await page.keyboard.press('Shift+Tab')
+      await expect(refiner(page, label)).toBeFocused()
+    }
+    await page.keyboard.press('Space')
+    await expect(refiner(page, 'All Signals')).toHaveAttribute('aria-pressed', 'true')
+    await expect(page.locator('.feed-heading h1')).toHaveText('All Signals')
+    // Cards return above 900px and scroll until all six fit; arrow keys must still
+    // reach the cards outside the band.
+    await page.setViewportSize({ width: 1000, height: 844 })
+  } else {
     await expect(page.locator('.carousel-arrow, .carousel-pagination')).toHaveCount(0)
     const viewport = (await page.locator('.discovery-viewport').boundingBox())!
-    for (const label of [
-      'All Signals',
-      'Live Opportunities',
-      'Pre-market',
-      'Closing Soon',
-      'Added today',
-    ]) {
-      const bounds = (await discoveryCard(page, label).boundingBox())!
+    for (const [label] of refiners) {
+      const bounds = (await refiner(page, label).boundingBox())!
       expect(bounds.x).toBeGreaterThanOrEqual(viewport.x - 1)
       expect(bounds.x + bounds.width).toBeLessThanOrEqual(viewport.x + viewport.width + 1)
     }
   }
-  await (await selectDiscovery(page, 'Live Opportunities')).focus()
+  await (await selectRefiner(page, 'Live Opportunities')).focus()
   for (let cycle = 0; cycle < 2; cycle++) {
-    for (const label of [
-      'Pre-market',
-      'Closing Soon',
-      'Added today',
-      'All Signals',
-      'Live Opportunities',
-    ]) {
+    for (const [label, heading] of [...refiners.slice(2), ...refiners.slice(0, 2)]) {
       await page.keyboard.press('ArrowRight')
-      await expect(discoveryCard(page, label)).toBeFocused()
-      await expect(discoveryCard(page, label)).toHaveAttribute('aria-pressed', 'true')
-      await expect(page.locator('.feed-heading h1')).toHaveText(label)
+      await expect(refiner(page, label)).toBeFocused()
+      await expect(refiner(page, label)).toHaveAttribute('aria-pressed', 'true')
+      await expect(page.locator('.feed-heading h1')).toHaveText(heading)
     }
   }
-  await selectDiscovery(page, 'Pre-market')
+  await selectRefiner(page, 'Pre-market')
   await expect(page.locator('.feed-heading h1')).toHaveText('Pre-market')
   await expect(page.locator('.feed-heading .count-badge')).toHaveText('0')
   await expect(page.getByText('No matching signals', { exact: true })).toBeVisible()
 })
 
-test('universal value labels, both sort directions and adjacent range controls', async ({
+test('published currency codes, both sort directions and adjacent value range controls', async ({
   page,
 }, info) => {
   await page.goto('./?view=all&market=US')
@@ -843,23 +1013,40 @@ test('universal value labels, both sort directions and adjacent range controls',
     page.getByRole('button', { name: 'Sort opportunities: Highest value' }),
   ).toBeVisible()
   await page.getByRole('button', { name: 'Filters', exact: true }).click()
-  await expect(
-    page.getByLabel('Currency', { exact: true }).locator('option[value="JPY"]'),
-  ).toHaveCount(1)
-  await expect(
-    page.getByLabel('Currency', { exact: true }).locator('option[value="JPY"]'),
-  ).toHaveText('Japanese Yen')
-  const cpv = await page.getByLabel('CPV code', { exact: true }).boundingBox()
-  const currency = await page.getByLabel('Currency', { exact: true }).boundingBox()
-  expect(Math.abs(cpv!.y - currency!.y)).toBeLessThan(2)
-  expect(cpv!.x + cpv!.width).toBeLessThan(currency!.x)
-  await page.getByLabel('Currency', { exact: true }).selectOption('USD')
+  const currency = page.getByLabel('Currency', { exact: true })
+  // The sheet offers the currencies the records publish: each ISO code with its name.
+  const published = [
+    ...new Set(sourceFixture(datasetFixture()).signals.map((signal) => signal.currency!)),
+  ].sort()
+  expect(published).toEqual(['EUR', 'GBP', 'USD'])
+  await expect(currency.locator('option')).toHaveText([
+    'Any currency',
+    ...published.map((code) => new RegExp(`^${code} · [A-Z]`)),
+  ])
+  await currency.selectOption('USD')
   await page.getByLabel('Minimum value', { exact: true }).fill('100000')
   await page.getByLabel('Maximum value', { exact: true }).fill('900000')
-  const minimum = await page.getByLabel('Minimum value', { exact: true }).boundingBox()
-  const maximum = await page.getByLabel('Maximum value', { exact: true }).boundingBox()
-  expect(Math.abs(minimum!.y - maximum!.y)).toBeLessThan(2)
-  expect(minimum!.x + minimum!.width).toBeLessThan(maximum!.x)
+  const minimum = (await page.getByLabel('Minimum value', { exact: true }).boundingBox())!
+  const maximum = (await page.getByLabel('Maximum value', { exact: true }).boundingBox())!
+  const unit = (await currency.boundingBox())!
+  expect(Math.abs(minimum.y - maximum.y)).toBeLessThan(2)
+  expect(minimum.x + minimum.width).toBeLessThan(maximum.x)
+  const middle = (box: { y: number; height: number }) => box.y + box.height / 2
+  if (page.viewportSize()!.width > 520) {
+    // The currency completes the value range on its row.
+    expect(Math.abs(middle(unit) - middle(maximum))).toBeLessThan(2)
+    expect(maximum.x + maximum.width).toBeLessThan(unit.x)
+  } else {
+    // Narrow sheets give it the full width directly beneath the range.
+    expect(unit.y).toBeGreaterThanOrEqual(maximum.y + maximum.height)
+    expect(unit.y - (maximum.y + maximum.height)).toBeLessThan(20)
+    expect(Math.abs(unit.x - minimum.x)).toBeLessThan(2)
+    expect(Math.abs(unit.x + unit.width - (maximum.x + maximum.width))).toBeLessThan(2)
+  }
+  // Rarer filters such as CPV codes wait under More filters.
+  await expect(page.getByLabel('CPV code', { exact: true })).toBeHidden()
+  await page.getByText('More filters', { exact: true }).click()
+  await expect(page.getByLabel('CPV code', { exact: true })).toBeVisible()
   if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
     await page.screenshot({ path: `../artifacts/currency-filters-${info.project.name}.png` })
   await page.getByRole('button', { name: /^Show \d+ signals$/ }).click()
@@ -933,7 +1120,13 @@ test('failed refresh and malformed storage retain a usable workspace', async ({ 
   await page.route('**/data/current.json', (route) =>
     route.fulfill({ status: 503, body: 'Unavailable' }),
   )
-  await page.getByRole('button', { name: 'Check for updates' }).click()
+  // Refreshing lives in the workspace menu footer, beside when the data was last updated.
+  await page.getByRole('button', { name: 'Workspace menu' }).click()
+  const menu = page.getByRole('dialog', { name: 'Workspace' })
+  await expect(menu.locator('.workspace-menu-footer')).toContainText(/^Updated /)
+  await menu.getByRole('button', { name: 'Check for updates' }).click()
+  await menu.getByRole('button', { name: 'Close workspace menu' }).click()
+  await expect(menu).toBeHidden()
   await expect(
     page.getByText('The latest opportunity feed is temporarily unavailable.'),
   ).toBeVisible()
@@ -984,19 +1177,30 @@ test('compact and wide layouts have no horizontal overflow', async ({ page }, in
 })
 
 test('long headings, deep links and missing signals remain usable', async ({ page }, info) => {
-  await page.setViewportSize({ width: info.project.name === 'mobile' ? 320 : 1440, height: 568 })
+  const phone = info.project.name === 'mobile'
+  await page.setViewportSize({ width: phone ? 320 : 1440, height: 568 })
   const data = sourceFixture(datasetFixture())
   const longest = [...data.signals].sort((a, b) => b.title.length - a.title.length)[0]
   await page.goto(`./?signal=${encodeURIComponent(longest.id)}`)
-  await page.getByRole('button', { name: 'Full details', exact: true }).click()
-  await expect(page.getByRole('dialog')).toBeVisible()
-  await page.getByRole('tab', { name: 'Sources & timeline' }).click()
-  const box = await page.getByRole('dialog').evaluate((el) => {
-    const panel = el.querySelector('.detail-content')!.getBoundingClientRect()
-    return { height: panel.height, width: el.scrollWidth, available: el.clientWidth }
+  // A deep link opens its record directly: in a dialog on phones, the inspector otherwise.
+  const record = page.locator('.console-detail:visible')
+  await expect(record.locator('.inspector-heading h2')).toHaveText(longest.title)
+  if (phone) await expect(page.getByRole('dialog').locator('.console-detail')).toBeVisible()
+  await openSourceHistory(record)
+  const box = await record.evaluate((el) => {
+    const scroll = el.querySelector('.inspector-scroll')!
+    const frame = el.closest('dialog') || el
+    return {
+      height: scroll.getBoundingClientRect().height,
+      sideways: Math.max(
+        scroll.scrollWidth - scroll.clientWidth,
+        frame.scrollWidth - frame.clientWidth,
+      ),
+    }
   })
+  // The long heading leaves a usable reading area and nothing scrolls sideways.
   expect(box.height).toBeGreaterThan(150)
-  expect(box.width).toBeLessThanOrEqual(box.available)
+  expect(box.sideways).toBeLessThanOrEqual(0)
   if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
     await page.screenshot({ path: `../artifacts/long-title-${info.project.name}.png` })
   await page.goto('./?signal=nonexistent')
@@ -1005,28 +1209,83 @@ test('long headings, deep links and missing signals remain usable', async ({ pag
   await ready(page)
 })
 
-test('dark-only UI ignores old light preferences and keeps evidence keyboard navigation', async ({
+test('old light-mode keys stay ignored, the theme preference applies before first paint and source history stays keyboard accessible', async ({
   page,
 }) => {
   await page.addInitScript(() => {
     localStorage.setItem('anthrion-console-theme-v2', JSON.stringify('light'))
     localStorage.setItem('anthrion-theme-v1', JSON.stringify('light'))
+    // The theme as the body is first parsed: before the app's scripts run or anything paints.
+    new MutationObserver((_, observer) => {
+      if (!document.body) return
+      observer.disconnect()
+      const root = document.documentElement
+      Object.assign(window, {
+        themeAtFirstPaint: {
+          theme: root.dataset.theme,
+          scheme: root.style.colorScheme,
+          rendered: !!document.getElementById('root')?.childElementCount,
+        },
+      })
+    }).observe(document, { childList: true, subtree: true })
   })
+  const html = page.locator('html')
+  const firstPaint = () =>
+    page.evaluate(() => (window as unknown as { themeAtFirstPaint: unknown }).themeAtFirstPaint)
+  const storedTheme = () =>
+    page.evaluate(
+      () => JSON.parse(localStorage.getItem('anthrion-preferences-v1') || '{}').theme ?? null,
+    )
   await page.goto('./')
   await ready(page)
-  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark')
-  await expect(page.getByRole('button', { name: /Switch to .* mode/ })).toHaveCount(0)
+  // Dark by default; the retired light-mode keys do not choose the theme.
+  await expect(html).toHaveAttribute('data-theme', 'dark')
+  await expect(page.getByRole('button', { name: 'Switch to light theme' })).toBeVisible()
+  expect(await firstPaint()).toEqual({ theme: 'dark', scheme: 'dark', rendered: false })
   await page.reload()
-  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark')
+  await expect(html).toHaveAttribute('data-theme', 'dark')
   await ready(page)
-  await detail(page)
-  await page.getByRole('tab', { name: 'Overview', exact: true }).focus()
-  await page.keyboard.press('ArrowRight')
-  await expect(page.getByRole('tab', { name: 'Sources & timeline' })).toBeFocused()
-  await page.keyboard.press('End')
-  await expect(page.getByRole('tab', { name: 'Sources & timeline' })).toBeFocused()
-  await page.keyboard.press('Escape')
-  await expect(page.getByRole('dialog')).toBeHidden()
+  expect(await storedTheme()).toBeNull()
+  // The header button stores the light theme as a preference ...
+  await page.getByRole('button', { name: 'Switch to light theme' }).click()
+  await expect(html).toHaveAttribute('data-theme', 'light')
+  await expect(html).toHaveCSS('color-scheme', 'light')
+  await expect(page.getByRole('button', { name: 'Switch to dark theme' })).toBeVisible()
+  expect(await storedTheme()).toBe('light')
+  // ... which the boot script applies before the first paint of the next visit.
+  await page.reload()
+  expect(await firstPaint()).toEqual({ theme: 'light', scheme: 'light', rendered: false })
+  await ready(page)
+  await expect(html).toHaveAttribute('data-theme', 'light')
+  await expect(page.locator('meta[name="theme-color"]')).toHaveAttribute('content', '#f2f4f3')
+  // T switches back; the old keys still say light and still change nothing.
+  await page.keyboard.press('t')
+  await expect(html).toHaveAttribute('data-theme', 'dark')
+  expect(await storedTheme()).toBe('dark')
+  await page.reload()
+  expect(await firstPaint()).toEqual({ theme: 'dark', scheme: 'dark', rendered: false })
+  await ready(page)
+  await expect(html).toHaveAttribute('data-theme', 'dark')
+  // The dock's source button and the history's summary both work from the keyboard.
+  const record = await openRecord(page)
+  const history = record.locator('.record-history')
+  await expect(history).toHaveJSProperty('open', false)
+  await record.locator('.record-action-dock').getByRole('button').focus()
+  await page.keyboard.press('Enter')
+  await expect(history).toHaveJSProperty('open', true)
+  await expect(history.locator('.provenance-list')).toBeVisible()
+  const summary = history.locator('summary')
+  await summary.focus()
+  await page.keyboard.press('Enter')
+  await expect(history).toHaveJSProperty('open', false)
+  await expect(history.locator('.provenance-list')).toHaveCount(0)
+  await page.keyboard.press('Space')
+  await expect(history).toHaveJSProperty('open', true)
+  await expect(history.locator('.provenance-list')).toBeVisible()
+  if (page.viewportSize()!.width <= 900) {
+    await page.keyboard.press('Escape')
+    await expect(page.getByRole('dialog')).toBeHidden()
+  }
 })
 
 test('sort menu supports keyboard selection, dismissal and clean positioning', async ({
@@ -1038,6 +1297,16 @@ test('sort menu supports keyboard selection, dismissal and clean positioning', a
   await trigger.click()
   const menu = page.getByRole('menu', { name: 'Sort opportunities' })
   await expect(menu.getByRole('menuitemradio', { name: 'Most recent', exact: true })).toBeFocused()
+  // The menu only sorts: the hidden lens and Awarded have their own controls now.
+  await expect(menu.getByRole('menuitemradio')).toHaveText([
+    'Most recent',
+    'Recently updated',
+    'Soonest deadline',
+    'Highest value',
+    'Lowest value',
+    'Capability A-Z',
+  ])
+  await expect(menu.getByRole('menuitemcheckbox')).toHaveCount(0)
   if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
     await page.screenshot({ path: `../artifacts/sort-menu-${info.project.name}.png` })
   const box = await menu.boundingBox()
@@ -1046,16 +1315,16 @@ test('sort menu supports keyboard selection, dismissal and clean positioning', a
   await page.keyboard.press('ArrowDown')
   await page.keyboard.press('ArrowDown')
   await page.keyboard.press('Enter')
-  expect(new URL(page.url()).searchParams.get('sort')).toBe('deadline')
-  const closing = page.getByRole('button', { name: 'Sort opportunities: Closing soon' })
-  await expect(closing).toBeFocused()
+  await expect.poll(() => new URL(page.url()).searchParams.get('sort')).toBe('deadline')
+  const deadline = page.getByRole('button', { name: 'Sort opportunities: Soonest deadline' })
+  await expect(deadline).toBeFocused()
   await expect(menu).toBeHidden()
-  await closing.click()
+  await deadline.click()
   await page.keyboard.press('End')
-  await expect(menu.getByRole('menuitemcheckbox', { name: 'Show hidden' })).toBeFocused()
+  await expect(menu.getByRole('menuitemradio', { name: 'Capability A-Z' })).toBeFocused()
   await page.keyboard.press('Home')
   await page.keyboard.press('Enter')
-  expect(new URL(page.url()).searchParams.get('sort') || 'recent').toBe('recent')
+  await expect.poll(() => new URL(page.url()).searchParams.get('sort') || 'recent').toBe('recent')
   const recent = page.getByRole('button', { name: 'Sort opportunities: Most recent' })
   await expect(recent).toBeFocused()
   await recent.click()
@@ -1064,6 +1333,8 @@ test('sort menu supports keyboard selection, dismissal and clean positioning', a
   await recent.click()
   await page.locator('.market-section').click({ position: { x: 5, y: 5 } })
   await expect(menu).toBeHidden()
+  // Hidden records are a lens toggled from the header rather than a Sort menu item.
+  const hiddenLens = page.locator('.workspace-nav').getByRole('button', { name: /^Hidden, \d+$/ })
   for (const width of [320, 390, 620, 900, 1440]) {
     await page.setViewportSize({ width, height: 920 })
     for (const hidden of [false, true]) {
@@ -1071,23 +1342,31 @@ test('sort menu supports keyboard selection, dismissal and clean positioning', a
       const bounds = (await menu.boundingBox())!
       expect(bounds.x, `${width}px menu left`).toBeGreaterThanOrEqual(0)
       expect(bounds.x + bounds.width, `${width}px menu right`).toBeLessThanOrEqual(width)
-      const checkbox = menu.getByRole('menuitemcheckbox', { name: 'Show hidden' })
-      await expect(checkbox).toHaveAttribute('aria-checked', String(hidden))
-      await checkbox.click()
+      await page.keyboard.press('Escape')
+      await expect(menu).toBeHidden()
+      await expect(hiddenLens).toHaveAttribute('aria-pressed', String(hidden))
+      await hiddenLens.click()
     }
   }
 })
 
-test('straight discovery cards stay fixed on desktop and navigate manually on mobile', async ({
+test('straight discovery cards stay fixed when all six fit and navigate manually when they scroll', async ({
   page,
 }) => {
   await page.goto('./')
   await ready(page)
+  if (page.viewportSize()!.width <= 900) {
+    // Phones show chips instead of the carousel. The cards scroll from 901px to 1140px.
+    await expect(page.locator('.discovery, .carousel-arrow, .carousel-pagination')).toHaveCount(0)
+    await expect(page.locator('.compact-refiners')).toBeVisible()
+    await page.setViewportSize({ width: 1000, height: 844 })
+  }
   const allPosition = page.getByRole('button', { name: 'Show All Signals', exact: true })
   const previous = page.getByRole('button', { name: 'Previous categories', exact: true })
   const next = page.getByRole('button', { name: 'Next categories', exact: true })
-  if (!(await allPosition.isVisible())) {
+  if (page.viewportSize()!.width > 1140) {
     await expect(page.locator('.carousel-arrow, .carousel-pagination')).toHaveCount(0)
+    await expect(page.locator('.discovery-object')).toHaveCount(6)
     const bounds = await page.locator('.discovery-object').evaluateAll((elements) =>
       elements.map((el) => {
         const matrix = new DOMMatrix(getComputedStyle(el).transform)
@@ -1108,13 +1387,15 @@ test('straight discovery cards stay fixed on desktop and navigate manually on mo
     await expect(page.locator('.feed-heading h1')).toHaveText('Live Opportunities')
     return
   }
+  await expect(allPosition).toBeVisible()
   await allPosition.click()
   const loops = await previous.isEnabled()
   if (loops) {
     await previous.click()
-    await expect(
-      page.getByRole('button', { name: 'Show Added today', exact: true }),
-    ).toHaveAttribute('aria-pressed', 'true')
+    await expect(page.getByRole('button', { name: 'Show Awarded', exact: true })).toHaveAttribute(
+      'aria-pressed',
+      'true',
+    )
     await next.click()
     await expect(allPosition).toHaveAttribute('aria-pressed', 'true')
   } else {
@@ -1164,7 +1445,7 @@ test('actionable feed has a compact inspector and hidden, working scrollbars', a
     await expect.poll(() => list.evaluate((el) => el.scrollTop)).toBeGreaterThan(before)
     await list.evaluate((el) => el.scrollTo({ top: 0 }))
   } else {
-    await detail(page)
+    await openRecord(page)
   }
   const source = page.locator('.glass-source-button:visible').first()
   expect(
@@ -1238,7 +1519,12 @@ test('old award and renewal links cannot expose unavailable records from a stale
   }
   await page.goto('./?view=saved')
   await expect(page.locator('.signal-row')).toHaveCount(0)
-  await expect(page.locator('.workspace-nav small')).toHaveText('0')
+  // The header shows the Saved count only (no label); the stale saved IDs are not counted.
+  const savedButton = page
+    .locator('.workspace-nav')
+    .getByRole('button', { name: /^Saved opportunities, \d+$/ })
+  await expect(savedButton).toHaveAccessibleName('Saved opportunities, 0')
+  await expect(savedButton.locator('.nav-count')).toHaveText('0')
   await page.goto('./?view=all&q=Unavailable%20incumbent%20award')
   await expect(page.getByText('No matching signals', { exact: true })).toBeVisible()
 })
@@ -1308,16 +1594,35 @@ test('brand materials respond to hover and keyboard focus without shifting or id
   const brand = page.locator('.workspace-brand')
   const wordmark = page.locator('.brand-wordmark')
   const signature = page.locator('.brand-signal')
+  // "signal" never changes its own colour; a copy laid over it carries the flash of light.
+  const flash = signature.locator('.signal-flash')
   const canvas = wordmark.locator('canvas')
+  const dots = wordmark.locator('.brand-dots circle.brand-dot')
+  const fills = () => dots.evaluateAll((items) => items.map((dot) => getComputedStyle(dot).fill))
+  const ink = () =>
+    signature.evaluate((el) => {
+      const style = getComputedStyle(el)
+      return [style.color, style.backgroundImage]
+    })
   const bounds = await brand.boundingBox()
   const signatureAtRest = await signature.screenshot()
+  const inkAtRest = await ink()
+  const dotsAtRest = await fills()
+  expect(dotsAtRest).toHaveLength(6)
   await expect(canvas).toHaveCount(0)
+  await expect(wordmark).toHaveAttribute('data-lit', 'false')
+  await expect(flash).toHaveCSS('opacity', '0')
   await wordmark.hover()
   await expect(wordmark).toHaveAttribute('data-metal', 'true')
+  await expect(wordmark).toHaveAttribute('data-lit', 'true')
   await expect(canvas).toBeVisible()
   expect(
     await wordmark.locator('.brand-metal-layer').evaluate((el) => getComputedStyle(el).maskImage),
-  ).toContain('anthrion-logo.svg')
+  ).toContain('anthrion-wordmark.svg')
+  // Every dot of the mark lights, one after another.
+  await expect
+    .poll(async () => (await fills()).filter((fill, index) => fill !== dotsAtRest[index]).length)
+    .toBe(6)
   await expect.poll(async () => (await shaderPixels(canvas)).colors).toBeGreaterThan(20)
   const frame = await shaderPixels(canvas)
   await expect.poll(async () => (await shaderPixels(canvas)).hash).not.toBe(frame.hash)
@@ -1332,22 +1637,34 @@ test('brand materials respond to hover and keyboard focus without shifting or id
   expect((await canvas.screenshot()).equals(still)).toBe(true)
   await signature.hover()
   await expect(canvas).toHaveCount(0)
-  await expect(signature).toHaveCSS('background-clip', 'text')
-  await expect(signature).toHaveCSS('animation-name', 'none')
+  await expect(signature).toHaveAttribute('data-lit', 'true')
+  await expect(flash).toHaveCSS('opacity', '1')
+  await expect(flash).toHaveCSS('background-clip', 'text')
+  // Without motion the light rests across the middle of the word.
+  await expect(flash).toHaveCSS('background-position-x', '50%')
+  expect(
+    await flash.evaluate(
+      (el) =>
+        el.getAnimations().filter((animation) => !(animation instanceof CSSTransition)).length,
+    ),
+  ).toBe(0)
+  expect(await ink()).toEqual(inkAtRest)
   if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
     await brand.screenshot({ path: `../artifacts/brand-glass-${info.project.name}.png` })
   await page.emulateMedia({ reducedMotion: 'no-preference' })
-  await expect(signature).toHaveCSS('animation-name', 'signature-light-sweep')
-  const sweep = await signature.evaluate((el) => getComputedStyle(el).backgroundPositionX)
+  const sweep = await flash.evaluate((el) => getComputedStyle(el).backgroundPositionX)
   await expect
-    .poll(() => signature.evaluate((el) => getComputedStyle(el).backgroundPositionX))
+    .poll(() => flash.evaluate((el) => getComputedStyle(el).backgroundPositionX))
     .not.toBe(sweep)
+  expect(await ink()).toEqual(inkAtRest)
   expect(await brand.boundingBox()).toEqual(bounds)
   await page.mouse.move(500, 80)
   await page.keyboard.press('Tab')
   await brand.focus()
   await expect(canvas).toBeVisible()
-  await expect(signature).toHaveCSS('background-clip', 'text')
+  await expect(signature).toHaveAttribute('data-lit', 'true')
+  await expect(flash).toHaveCSS('opacity', '1')
+  expect(await ink()).toEqual(inkAtRest)
   await page.keyboard.press('Enter')
   await expect(page.locator('.feed-heading h1')).toHaveText('Live Opportunities')
   await page.getByRole('textbox', { name: 'Search opportunities' }).focus()
@@ -1371,8 +1688,14 @@ test('no WebGL retains a complete functional static-border interface', async ({ 
   await page.locator('.brand-wordmark').hover()
   await expect(page.locator('.brand-metal-layer')).toHaveCSS('opacity', '1')
   await expect(page.locator('.brand-wordmark canvas')).toHaveCount(0)
-  await expect(page.locator('.discovery-card[aria-pressed="true"]')).toBeVisible()
-  await detail(page)
+  await expect(
+    page.locator(
+      '.discovery-card[aria-pressed="true"], .compact-refiners button[aria-pressed="true"]',
+    ),
+  ).toBeVisible()
+  const record = await openRecord(page)
+  await expect(record.getByRole('link', { name: 'Open source notice' })).toBeVisible()
+  await openSourceHistory(record)
   expect(errors).toEqual([])
 })
 
@@ -1407,17 +1730,26 @@ test('dark console, menus, evidence and sources pass accessibility checks', asyn
     await page.getByRole('button', { name: 'Sort opportunities: Most recent' }).click()
     await audit(`${theme} sort`)
     await page.keyboard.press('Escape')
+    await page.getByRole('button', { name: 'Search options', exact: true }).click()
+    await expect(page.getByRole('dialog', { name: 'Search options' })).toBeVisible()
+    await audit(`${theme} search options`)
+    await page.keyboard.press('Escape')
+    await expect(page.getByRole('dialog', { name: 'Search options' })).toBeHidden()
     await page.getByRole('button', { name: 'Filters', exact: true }).click()
     await audit(`${theme} filters`)
     if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
       await page.screenshot({ path: `../artifacts/filters-${theme}-${info.project.name}.png` })
     await page.getByRole('button', { name: 'Close panel' }).click()
-    await detail(page)
-    for (const section of ['Overview', 'Sources & timeline']) {
-      await page.getByRole('tab', { name: section, exact: true }).click()
-      await audit(`${theme} ${section}`)
-    }
-    await page.getByRole('button', { name: 'Close panel' }).click()
+    const record = await openRecord(page)
+    await audit(`${theme} record`)
+    await openSourceHistory(record)
+    await audit(`${theme} source history`)
+    if (page.viewportSize()!.width <= 900)
+      await page.getByRole('button', { name: 'Close panel' }).click()
+    await page.getByRole('button', { name: 'Workspace menu', exact: true }).click()
+    await expect(page.getByRole('dialog', { name: 'Workspace' })).toBeVisible()
+    await audit(`${theme} workspace menu`)
+    await page.getByRole('button', { name: 'Close workspace menu' }).click()
     await page.goto('./?view=all')
     await ready(page)
     await audit(`${theme} all opportunities`)
@@ -1443,16 +1775,24 @@ test('@data unmodified public feed retains real records and exposes source facts
   shown.forEach((title) => expect(actual.has(title)).toBe(true))
   if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
     await page.screenshot({ path: `../artifacts/discovery-v2-real-${info.project.name}.png` })
-  await detail(page)
-  await expect(page.getByRole('tab', { name: 'Score & evidence' })).toHaveCount(0)
-  await expect(page.getByRole('tab', { name: 'Requirements' })).toHaveCount(0)
-  await page.getByRole('tab', { name: 'Sources & timeline' }).click()
-  await expect(page.getByRole('tabpanel')).toContainText('Source provenance')
+  // The complete record carries source facts only: no assessment sections, and the dock
+  // opens the published source history.
+  const record = await openRecord(page)
+  await expect(record.getByRole('tab')).toHaveCount(0)
+  // Source text may use these words; the record just has no such sections.
+  for (const section of ['Score & evidence', 'Requirements', 'Fit score', 'Evidence confidence'])
+    await expect(record.getByRole('heading', { name: section, exact: true })).toHaveCount(0)
+  const history = await openSourceHistory(record)
+  await expect(history.locator('.provenance-list > div').first()).toContainText(
+    /Reference .+Checked /,
+  )
+  await expect(history.locator('.record-facts')).toContainText('Last checked')
   if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
     await page.screenshot({
       path: `../artifacts/discovery-v2-real-evidence-${info.project.name}.png`,
     })
-  await page.getByRole('button', { name: 'Close panel' }).click()
+  if (page.viewportSize()!.width <= 900)
+    await page.getByRole('button', { name: 'Close panel' }).click()
   await page.goto('./?view=all')
   await ready(page)
   await page.getByRole('textbox', { name: 'Search opportunities' }).fill('CRM')

@@ -10,7 +10,6 @@ import {
   matchesMarket,
   marketIsEnabled,
   amount,
-  currencyOptions,
   matchesSearch,
   explainSearch,
   lifecycleState,
@@ -393,9 +392,6 @@ describe('team workflows', () => {
     expect(
       filterSignals(nordic, { ...range, market: 'NORDICS' }, [], now).map((s) => s.id),
     ).toEqual(['large'])
-    expect(currencyOptions(us).map((option) => option.value)).toEqual(
-      expect.arrayContaining(['GBP', 'USD', 'EUR', 'SEK', 'NOK', 'DKK', 'ISK', 'JPY']),
-    )
   })
   test('English search never changes source eligibility or priority', () => {
     const source = {

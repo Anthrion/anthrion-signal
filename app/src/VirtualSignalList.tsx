@@ -27,12 +27,15 @@ export function VirtualSignalList({
   scrollRef,
   resetKey,
   shiftKey,
+  reveal,
   renderRow,
 }: {
   signals: Signal[]
   scrollRef: RefObject<HTMLDivElement | null>
   resetKey: string
   shiftKey: string
+  /** Scrolls a row into view when requested, e.g. by keyboard shortcuts. */
+  reveal?: { index: number; nonce: number } | null
   renderRow: (signal: Signal) => ReactNode
 }) {
   const compact = useSyncExternalStore(subscribeCompact, () => compactQuery.matches)
@@ -93,6 +96,12 @@ export function VirtualSignalList({
       if (top < 0) window.scrollTo({ top: Math.max(0, window.scrollY + top - 16) })
     } else scrollRef.current?.scrollTo({ top: 0 })
   }, [resetKey, compact, scrollRef])
+
+  useEffect(() => {
+    if (reveal && reveal.index >= 0 && reveal.index < signals.length)
+      virtualizer.scrollToIndex(reveal.index, { align: 'auto' })
+    // Only a new request scrolls; list updates alone must not move the reader.
+  }, [reveal])
 
   return (
     <div

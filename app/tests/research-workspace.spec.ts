@@ -380,6 +380,23 @@ async function openRecord(page: Page) {
   await expect(panel.getByRole('heading', { name: title })).toBeVisible()
   return panel
 }
+/** Refresh and preferences such as the Compact refiners live in the workspace menu. */
+async function openWorkspaceMenu(page: Page) {
+  await page.getByRole('button', { name: 'Workspace menu', exact: true }).click()
+  const menu = page.getByRole('dialog', { name: 'Workspace', exact: true })
+  await expect(menu).toBeVisible()
+  return menu
+}
+async function chooseCompactRefiners(page: Page) {
+  const menu = await openWorkspaceMenu(page)
+  const compact = menu
+    .getByRole('radiogroup', { name: 'Refiners' })
+    .getByRole('radio', { name: 'Compact', exact: true })
+  await compact.click()
+  await expect(compact).toBeChecked()
+  await menu.getByRole('button', { name: 'Close workspace menu', exact: true }).click()
+  await expect(menu).toHaveCount(0)
+}
 test.beforeEach(async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' })
   await page.clock.setFixedTime(new Date('2026-09-18T12:00:00Z'))
@@ -452,17 +469,32 @@ test('document revisions and page-linked evidence remain source traceable', asyn
     record.documents.push({ title: 'Notice listing', url: source, kind: 'notice' })
   })
   const panel = await openRecord(page)
-  await panel.getByRole('button', { name: 'Full details', exact: true }).click()
-  const dialog = page.getByRole('dialog', { name: 'Opportunity intelligence' })
-  await dialog.getByRole('tab', { name: 'Sources & timeline' }).click()
-  await expect(dialog.locator('.source-document').first()).toContainText('Revision 2')
-  await dialog.getByText('Read page evidence', { exact: true }).click()
-  await expect(dialog.getByRole('link', { name: 'Page 7' })).toHaveAttribute(
+  // Documents and source history are part of the one complete record, in its single scroll.
+  const record = panel.locator('.inspector-scroll')
+  await expect(record.locator('.source-document').first()).toContainText('Revision 2')
+  await record.getByText('Read page evidence', { exact: true }).click()
+  await expect(record.getByRole('link', { name: 'Page 7' })).toHaveAttribute(
     'href',
     'https://example.com/specification.pdf#page=7',
   )
-  await expect(dialog.locator('.document-pages')).toContainText('preserve audit records')
-  await expect(dialog.locator(`a[href="${source}"]`)).toHaveCount(1)
+  await expect(record.locator('.document-pages')).toContainText('preserve audit records')
+  // The dock names the source and when it was checked, and opens the source history.
+  const history = record.locator('.record-history')
+  const sourceButton = panel.locator('.record-action-dock').getByRole('button', {
+    name: /^Find a Tender/,
+  })
+  await expect(sourceButton).toContainText('checked 11 Sep')
+  await sourceButton.click()
+  await expect(history).toHaveJSProperty('open', true)
+  await expect(history.locator('.provenance-list')).toContainText('Find a Tender')
+  await expect(history.locator('.provenance-list')).toContainText('Reference panel-notice')
+  // The notice, its listing document and its provenance share one link: the dock's source notice.
+  await expect(panel.locator(`a[href="${source}"]`)).toHaveCount(1)
+  await expect(
+    panel
+      .locator('.record-action-dock')
+      .getByRole('link', { name: 'Open source notice', exact: true }),
+  ).toHaveAttribute('href', source)
 })
 
 test('buyer page loads all collected history and restores the prior working view', async ({
@@ -723,7 +755,12 @@ test('@pr history titles open their own full record, keep language across pages,
   await record.getByRole('button', { name: 'Back', exact: true }).click()
   await buyer.getByRole('button', { name: 'Back to results', exact: true }).click()
   await page.reload()
-  await expect(page.getByRole('button', { name: 'Record language: Original' })).toBeVisible()
+  // The results carry the same choice in the market row's English/Original switch.
+  await expect(
+    page
+      .getByRole('radiogroup', { name: 'Record language' })
+      .getByRole('radio', { name: 'Original', exact: true }),
+  ).toBeChecked()
   await page.goto(sharedURL)
   const sharedRecord = page.locator('.console-detail:visible')
   await expect(sharedRecord.locator('.inspector-summary')).toContainText(
@@ -807,8 +844,11 @@ test('@pr reopening All context reuses verified awards after shard eviction and 
   expect(downloads).toBe(initialDownloads)
   await context.getByRole('button', { name: 'Back to results', exact: true }).click()
   awardHistory.GB = { ...awardHistory.GB, count: 3 }
-  await page.getByRole('button', { name: 'Check for updates', exact: true }).click()
-  await expect(page.getByRole('button', { name: 'Check for updates', exact: true })).toBeEnabled()
+  const menu = await openWorkspaceMenu(page)
+  const refresh = menu.getByRole('button', { name: 'Check for updates', exact: true })
+  await refresh.click()
+  await expect(refresh).toBeEnabled()
+  await menu.getByRole('button', { name: 'Close workspace menu', exact: true }).click()
   await open()
   await expect(context.locator('.research-awards')).toContainText(
     'Awarded records are temporarily unavailable',
@@ -821,13 +861,21 @@ test('last view remembers search and matching while shared URLs and UK startup s
   await page.goto('./')
   await page.getByRole('textbox', { name: 'Search opportunities' }).fill('kundenplattform')
   await expect(page.locator('.row-select')).toHaveCount(1)
-  await page.getByRole('combobox', { name: 'Search mode' }).selectOption('exact')
+  // The search scope lives inside the search box, under Search options.
+  await page.getByRole('button', { name: 'Search options', exact: true }).click()
+  const searchIn = page
+    .getByRole('dialog', { name: 'Search options' })
+    .getByRole('radiogroup', { name: 'Search in' })
+  await searchIn.getByRole('radio', { name: 'Exact source text', exact: true }).click()
   await expect(page.getByText('No matching signals', { exact: true })).toBeVisible()
-  await page.getByRole('combobox', { name: 'Search mode' }).selectOption('capability')
+  await searchIn.getByRole('radio', { name: 'Text + capabilities', exact: true }).click()
+  await expect(page.locator('.row-select')).toHaveCount(1)
   await page.goto('./')
   await expect(page.getByRole('textbox', { name: 'Search opportunities' })).toHaveValue(
     'kundenplattform',
   )
+  // The remembered search still matches through capabilities.
+  await expect(page.locator('.row-select')).toHaveCount(1)
   await expect(page.getByRole('button', { name: 'United Kingdom', exact: true })).toHaveAttribute(
     'aria-pressed',
     'true',
@@ -1045,7 +1093,10 @@ test('nested buyer and supplier timelines return to the same Context filters and
   await expect(context.locator('.research-surface > .metal-edge')).toHaveCount(1)
   await expect(context.locator('.decision-brief, .original-notice, .evidence-sheet')).toHaveCount(0)
   await expect(context.locator('.research-description')).toContainText(quote)
-  await expect(context.locator('.workspace-brand img')).toHaveAttribute('src', /anthrion-logo.svg$/)
+  await expect(context.locator('.workspace-brand img')).toHaveAttribute(
+    'src',
+    /anthrion-wordmark.svg$/,
+  )
   await context.locator('.research-awards .related-filter-menu > summary').click()
   await context.getByLabel('Supplier', { exact: true }).fill('Example Delivery')
   await context
@@ -1106,9 +1157,10 @@ test('slow details stay in a loading state before source research can open', asy
   await page.goto('./')
   await expect(page.locator('.row-select').first()).toBeVisible()
   if (info.project.name === 'mobile') await page.locator('.row-select').first().click()
+  // Phones open the record in a drawer titled with its notice type.
   const record =
     info.project.name === 'mobile'
-      ? page.getByRole('dialog', { name: 'Opportunity intelligence' })
+      ? page.getByRole('dialog', { name: 'Live tender', exact: true })
       : page.locator('.console-inspector')
   await expect(record.getByText('Loading full record…')).toBeVisible()
   await expect(record.getByRole('button', { name: title, exact: true })).toHaveCount(0)
@@ -1188,10 +1240,16 @@ test('an open research page updates source and translation together after a dela
     await pending
     await route.fulfill({ json: { schema_version: '1.0', signal: revised, translation: english } })
   })
+  // The refresh lives in the workspace menu, behind the modal research page; the menu opens
+  // above the page, which stays open underneath.
   await page.evaluate(() =>
-    document.querySelector<HTMLButtonElement>('[aria-label="Check for updates"]')!.click(),
+    document.querySelector<HTMLButtonElement>('[aria-label="Workspace menu"]')!.click(),
   )
+  const menu = page.getByRole('dialog', { name: 'Workspace', exact: true })
+  await menu.getByRole('button', { name: 'Check for updates', exact: true }).click()
   await expect(page.locator('.console-inspector')).toContainText('Loading full record…')
+  await menu.getByRole('button', { name: 'Close workspace menu', exact: true }).click()
+  await expect(research).toBeVisible()
   await expect(research.locator('.research-current h2')).toHaveText(title)
   await expect(research.locator('.research-description')).toContainText(quote)
   release()
@@ -1248,7 +1306,7 @@ test('record separator supports keyboard resizing, persistence and compact readi
   await separator.focus()
   await separator.press('ArrowLeft')
   await expect(separator).toHaveAttribute('aria-valuenow', '48')
-  await page.getByRole('button', { name: 'Compact reading mode', exact: true }).click()
+  await chooseCompactRefiners(page)
   await expect(page.locator('.compact-refiners')).toBeVisible()
   await page.reload()
   await expect(separator).toHaveAttribute('aria-valuenow', '48')
@@ -1292,14 +1350,18 @@ test('long source records retain readable widths and dock actions in compact and
     await page.setViewportSize({ width, height })
     await page.goto('./')
     await expect(page.locator('.row-select').first()).toBeVisible()
-    const compact = page.getByRole('button', { name: 'Compact reading mode', exact: true })
-    if (await compact.count()) await compact.click()
+    // The Compact refiners preference persists; narrow screens always use the chips.
+    if (!(await page.locator('.compact-refiners').count())) await chooseCompactRefiners(page)
+    await expect(page.locator('.compact-refiners')).toBeVisible()
     expect((await page.locator('.discovery-band').boundingBox())!.height).toBeLessThan(90)
     if (width <= 900) await page.locator('.row-select').first().click()
     const panel = page.locator('.console-detail:visible')
     await expect(panel).toBeVisible()
     const dock = panel.locator('.record-action-dock')
-    await expect(dock.getByRole('button', { name: 'Full details', exact: true })).toBeInViewport()
+    // The source-history button names the source and when it was checked.
+    const sourceHistory = dock.getByRole('button', { name: /^Find a Tender/ })
+    await expect(sourceHistory).toContainText('checked 11 Sep')
+    await expect(sourceHistory).toBeInViewport()
     await expect(
       dock.getByRole('link', { name: 'Open source notice', exact: true }),
     ).toBeInViewport()

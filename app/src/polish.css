@@ -1,0 +1,732 @@
+/* Polish: theme reveal, header collections, physical switches, the brand's light and glass glints. */
+
+/* Theme change: the new theme spreads as a circle; nothing else animates underneath it. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+:root[data-theme-switching] *,
+:root[data-theme-switching] *::before,
+:root[data-theme-switching] *::after {
+  transition: none !important;
+}
+
+/* Header collections: icon and count, with the theme beside them. */
+.workspace-nav {
+  gap: 6px;
+}
+.workspace-nav > button {
+  justify-content: center;
+  gap: 6px;
+  min-width: 44px;
+  min-height: 38px;
+  padding: 0 9px;
+  border-radius: 8px;
+  transition:
+    color 160ms,
+    background 160ms;
+}
+.workspace-nav > button:hover {
+  background: var(--surface-hover);
+}
+.workspace-nav > button[aria-current='page'],
+.workspace-nav > button[aria-pressed='true'] {
+  box-shadow: inset 0 -2px var(--mint);
+  border-radius: 8px 8px 3px 3px;
+}
+.workspace-nav small {
+  min-width: 0;
+  font-size: 12px;
+  font-weight: 550;
+}
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  min-width: 38px;
+  padding: 0;
+  color: var(--muted);
+}
+.theme-toggle:hover {
+  color: var(--text);
+}
+.theme-toggle svg {
+  overflow: visible;
+}
+.theme-icon-core {
+  fill: currentColor;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 520ms cubic-bezier(0.34, 1.4, 0.5, 1);
+}
+.theme-icon-cut {
+  transform-box: view-box;
+  transition: transform 520ms cubic-bezier(0.34, 1.2, 0.5, 1);
+}
+.theme-icon-rays {
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  transform-origin: 12px 12px;
+  transition:
+    transform 560ms cubic-bezier(0.34, 1.4, 0.5, 1),
+    opacity 300ms;
+}
+/* Dark theme: a crescent, its rays drawn in. */
+.theme-toggle[data-icon='dark'] .theme-icon-core {
+  transform: scale(1.55);
+}
+.theme-toggle[data-icon='dark'] .theme-icon-rays {
+  opacity: 0;
+  transform: rotate(-60deg) scale(0.5);
+}
+/* Light theme: the sun, the moon's shadow moved away. */
+.theme-toggle[data-icon='light'] .theme-icon-cut {
+  transform: translate(9px, -9px);
+}
+.theme-toggle:active svg {
+  transform: scale(0.9);
+}
+.theme-toggle svg {
+  transition: transform 140ms;
+}
+
+/* Physical switches: a recessed track and a raised thumb that slides to the choice. */
+:root {
+  --switch-track: linear-gradient(180deg, #0a0e0d, #121816);
+  --switch-track-edge: rgb(255 255 255 / 7%);
+  --switch-track-shadow:
+    inset 0 1px 3px rgb(0 0 0 / 72%), inset 0 -1px 0 rgb(255 255 255 / 3%),
+    0 1px 0 rgb(255 255 255 / 5%);
+  /* A smooth key in the page's own tone, picked out by a fine lit rim. */
+  --switch-thumb: linear-gradient(180deg, #232c29 0%, #1b2220 100%);
+  --switch-thumb-shadow:
+    inset 0 1px 0 rgb(226 246 236 / 20%), inset 0 0 0 1px rgb(166 197 184 / 16%),
+    inset 0 -1px 0 rgb(0 0 0 / 40%), 0 1px 1px rgb(0 0 0 / 60%), 0 3px 9px rgb(0 0 0 / 45%);
+  --switch-thumb-pressed:
+    inset 0 1px 0 rgb(226 246 236 / 12%), inset 0 0 0 1px rgb(166 197 184 / 16%),
+    inset 0 -1px 0 rgb(0 0 0 / 40%), 0 0 1px rgb(0 0 0 / 70%), 0 1px 3px rgb(0 0 0 / 40%);
+  --switch-ink: #949e9a;
+  --switch-ink-hover: #dde3e0;
+  --switch-ink-on: #fff;
+  --switch-glint: rgb(255 255 255 / 38%);
+}
+:root[data-theme='light'] {
+  --switch-track: linear-gradient(180deg, #e0e5e2, #eaedeb);
+  --switch-track-edge: rgb(18 34 28 / 8%);
+  --switch-track-shadow:
+    inset 0 1px 3px rgb(18 34 28 / 18%), inset 0 -1px 0 rgb(255 255 255 / 60%), 0 1px 0 #fff;
+  --switch-thumb: linear-gradient(180deg, #fff 0%, #fbfcfb 50%, #f1f4f2 100%);
+  --switch-thumb-shadow:
+    inset 0 1px 0 #fff, inset 0 -1px 0 rgb(18 34 28 / 7%), 0 1px 2px rgb(18 34 28 / 22%),
+    0 3px 9px rgb(18 34 28 / 12%);
+  --switch-thumb-pressed:
+    inset 0 1px 0 #fff, inset 0 -1px 0 rgb(18 34 28 / 7%), 0 0 1px rgb(18 34 28 / 30%),
+    0 1px 3px rgb(18 34 28 / 12%);
+  --switch-ink: #5a6661;
+  --switch-ink-hover: #1b2420;
+  --switch-ink-on: #0f1714;
+  --switch-glint: rgb(255 255 255 / 95%);
+}
+.segmented.switch {
+  position: relative;
+  isolation: isolate;
+  gap: 0;
+  padding: 3px;
+  border: 1px solid var(--switch-track-edge);
+  border-radius: 10px;
+  background: var(--switch-track);
+  box-shadow: var(--switch-track-shadow);
+  transform: perspective(520px);
+  /* Released: the rocker springs back past level and settles. */
+  transition: transform 560ms cubic-bezier(0.3, 1.8, 0.45, 1);
+  -webkit-tap-highlight-color: transparent;
+}
+.segmented.switch[data-press] {
+  transition: transform 120ms cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+.segmented.switch[data-press='start'] {
+  transform: perspective(520px) rotateY(-6deg) scale(0.99);
+}
+.segmented.switch[data-press='end'] {
+  transform: perspective(520px) rotateY(6deg) scale(0.99);
+}
+.segmented.switch[data-press='centre'] {
+  transform: perspective(520px) scale(0.975);
+}
+.segmented.switch > button {
+  position: relative;
+  z-index: 1;
+  border-radius: 7px;
+  color: var(--switch-ink);
+  font-weight: 500;
+  background: none;
+  box-shadow: none;
+  transition: color 220ms;
+}
+.segmented.switch > button:hover {
+  color: var(--switch-ink-hover);
+  background: none;
+}
+.segmented.switch > button[aria-checked='true'] {
+  color: var(--switch-ink-on);
+  background: none;
+  box-shadow: none;
+}
+.switch-thumb {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: var(--thumb-w, 0);
+  height: var(--thumb-h, 0);
+  border-radius: 7px;
+  background: var(--switch-thumb);
+  box-shadow: var(--switch-thumb-shadow);
+  transform: translate(var(--thumb-x, 0), var(--thumb-y, 0));
+  overflow: hidden;
+  pointer-events: none;
+}
+.switch[data-thumb='off'] .switch-thumb {
+  opacity: 0;
+}
+.switch[data-ready] .switch-thumb {
+  transition:
+    transform 500ms cubic-bezier(0.32, 1.3, 0.42, 1),
+    width 500ms cubic-bezier(0.32, 1.1, 0.42, 1),
+    height 300ms,
+    opacity 200ms,
+    box-shadow 160ms;
+}
+.switch[data-press] .switch-thumb {
+  box-shadow: var(--switch-thumb-pressed);
+}
+.switch-glint {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 46%;
+  background: linear-gradient(90deg, transparent, var(--switch-glint), transparent);
+  opacity: 0;
+}
+
+/* The Anthrion mark: its two blues at rest; on hover the dots light one by one, tracing the A. */
+:root {
+  --dot-cerulean: #109cd8;
+  --dot-navy: #3552b0;
+  --dot-cerulean-lit: #66d4ff;
+  --dot-navy-lit: #5f82ff;
+  --dot-glow-light: #3dbfff;
+  --dot-glow-dark: #4f73ff;
+  --dot-spark: #f4fbff;
+}
+:root[data-theme='light'] {
+  --dot-navy: #253f8e;
+  --dot-cerulean-lit: #19b3f6;
+  --dot-navy-lit: #3a5fd6;
+  --dot-glow-light: #6ccfff;
+  --dot-glow-dark: #8ea4ff;
+  --dot-spark: #fff;
+}
+.brand-wordmark {
+  contain: none;
+}
+.brand-metal-layer {
+  -webkit-mask-image: url('/assets/anthrion-wordmark.svg');
+  mask-image: url('/assets/anthrion-wordmark.svg');
+  overflow: hidden;
+}
+.brand-dots {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.brand-dot,
+.brand-dot-halo,
+.brand-dot-spark,
+.brand-dot-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.brand-dot {
+  transition:
+    fill 420ms ease,
+    transform 420ms ease;
+}
+.brand-dot[data-tone='light'] {
+  fill: var(--dot-cerulean);
+}
+.brand-dot[data-tone='dark'] {
+  fill: var(--dot-navy);
+}
+.brand-halo-light {
+  stop-color: var(--dot-glow-light);
+}
+.brand-halo-dark {
+  stop-color: var(--dot-glow-dark);
+}
+.brand-dot-halo {
+  opacity: 0;
+  transform: scale(0.5);
+  transition:
+    opacity 380ms ease,
+    transform 380ms ease;
+}
+.brand-dot-spark {
+  fill: var(--dot-spark);
+  opacity: 0;
+}
+.brand-dot-ring {
+  fill: none;
+  stroke: var(--dot-glow-light);
+  stroke-width: 1.4;
+  opacity: 0;
+}
+.brand-wordmark[data-lit='true'] .brand-dot {
+  transform: scale(1.1);
+  transition:
+    fill 700ms ease,
+    transform 760ms cubic-bezier(0.3, 1.7, 0.45, 1);
+  transition-delay: calc(var(--order) * 150ms);
+}
+.brand-wordmark[data-lit='true'] .brand-dot[data-tone='light'] {
+  fill: var(--dot-cerulean-lit);
+}
+.brand-wordmark[data-lit='true'] .brand-dot[data-tone='dark'] {
+  fill: var(--dot-navy-lit);
+}
+.brand-wordmark[data-lit='true'] .brand-dot-halo {
+  opacity: 0.5;
+  transform: scale(1);
+  transition:
+    opacity 900ms ease,
+    transform 900ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-delay: calc(var(--order) * 150ms);
+}
+.brand-wordmark[data-lit='true'] .brand-dot-spark {
+  animation: brand-dot-spark 760ms cubic-bezier(0.2, 0.8, 0.2, 1) calc(var(--order) * 150ms) both;
+}
+.brand-wordmark[data-lit='true'] .brand-dot-ring {
+  animation: brand-dot-ring 1300ms cubic-bezier(0.16, 0.84, 0.3, 1) 880ms both;
+}
+@keyframes brand-dot-spark {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  28% {
+    opacity: 0.95;
+    transform: scale(1.12);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.2);
+  }
+}
+@keyframes brand-dot-ring {
+  0% {
+    opacity: 0.95;
+    transform: scale(1);
+    stroke-width: 1.6;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(3.8);
+    stroke-width: 0.3;
+  }
+}
+
+/* The word signal: on hover a bright flash sweeps left to right. The word itself never changes;
+   a copy laid over it carries the light, so leaving fades the light out instead of snapping. */
+:root {
+  --signal-edge: #a5e6ff;
+  --signal-core: #fff;
+}
+:root[data-theme='light'] {
+  --signal-edge: #3db9f0;
+  --signal-core: #0879b8;
+}
+.brand-signal {
+  display: inline-block;
+}
+.workspace-brand .brand-signal:hover,
+.workspace-brand:focus-visible .brand-signal {
+  color: var(--muted);
+  background: none;
+  animation: none;
+}
+.workspace-brand .brand-signal:hover,
+.workspace-brand:focus-visible .brand-signal,
+:root:not([data-theme='dark']) .brand-signal:hover,
+:root:not([data-theme='dark']) .workspace-brand:focus-visible .brand-signal {
+  -webkit-text-stroke: 0;
+  text-shadow: none;
+}
+.signal-flash {
+  position: absolute;
+  inset: 0;
+  padding: inherit;
+  white-space: nowrap;
+  color: transparent;
+  background-image: linear-gradient(
+    100deg,
+    transparent 0 35%,
+    var(--signal-edge) 42%,
+    var(--signal-core) 47% 53%,
+    var(--signal-edge) 58%,
+    transparent 65% 100%
+  );
+  background-size: 300% 100%;
+  background-position: 100% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 460ms ease;
+}
+.brand-signal[data-lit='true'] .signal-flash {
+  opacity: 1;
+  transition-duration: 120ms;
+}
+/* Without motion the light rests across the middle of the word while it is lit. */
+:root[data-effects='reduced'] .signal-flash {
+  background-position: 50% 50%;
+}
+@media (prefers-reduced-motion: reduce) {
+  .signal-flash {
+    background-position: 50% 50%;
+  }
+}
+
+/* Ambient light behind the workspace, strongest around the brand and the glass. */
+.ambient-glass {
+  opacity: 0.11;
+  -webkit-mask-image: radial-gradient(
+    130% 78% at 22% 4%,
+    #000 0%,
+    rgb(0 0 0 / 62%) 34%,
+    rgb(0 0 0 / 18%) 62%,
+    transparent 86%
+  );
+  mask-image: radial-gradient(
+    130% 78% at 22% 4%,
+    #000 0%,
+    rgb(0 0 0 / 62%) 34%,
+    rgb(0 0 0 / 18%) 62%,
+    transparent 86%
+  );
+}
+:root[data-theme='light'] .ambient-glass {
+  opacity: 1;
+}
+/* Each theme's light rises in after the theme has spread. */
+.ambient-glass-shader {
+  animation: ambient-rise 1200ms ease-out both;
+}
+@keyframes ambient-rise {
+  from {
+    opacity: 0;
+  }
+}
+
+/* Rays reaching the glass: a lit band crosses the face and the rim catches it. */
+.optical-glass > .glass-glint {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  border-radius: inherit;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 85%),
+    inset 0 0 0 1px rgb(220 245 255 / 32%),
+    inset 0 0 20px rgb(190 232 255 / 10%);
+  mix-blend-mode: plus-lighter;
+}
+.glass-glint > i {
+  position: absolute;
+  top: -120%;
+  bottom: -120%;
+  left: 0;
+  width: 56%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(110 200 255 / 8%) 22%,
+    rgb(200 236 255 / 30%) 40%,
+    rgb(248 252 255 / 62%) 50%,
+    rgb(255 228 196 / 24%) 60%,
+    rgb(255 214 170 / 6%) 76%,
+    transparent
+  );
+}
+:root[data-theme='light'] .optical-glass > .glass-glint {
+  mix-blend-mode: normal;
+  box-shadow:
+    inset 0 1px 0 #fff,
+    inset 0 0 0 1px rgb(255 255 255 / 90%);
+}
+:root[data-theme='light'] .glass-glint > i {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(96 190 255 / 16%) 32%,
+    rgb(255 255 255 / 96%) 50%,
+    rgb(255 196 140 / 14%) 66%,
+    transparent
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-dot,
+  .brand-dot-halo,
+  .brand-wordmark[data-lit='true'] .brand-dot,
+  .brand-wordmark[data-lit='true'] .brand-dot-halo,
+  .segmented.switch,
+  .switch[data-ready] .switch-thumb {
+    transition: none;
+  }
+  .brand-wordmark[data-lit='true'] .brand-dot-spark,
+  .brand-wordmark[data-lit='true'] .brand-dot-ring {
+    animation: none;
+  }
+}
+
+/* The source notice button: a press you can feel, the arrow leans out, the rim turns metal. */
+.glass-source-button {
+  transition:
+    background 180ms,
+    box-shadow 180ms,
+    transform 140ms;
+}
+.glass-source-button:active {
+  transform: translateY(1px) scale(0.995);
+}
+.glass-source-button .source-link-icon svg {
+  transition: transform 280ms cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+.glass-source-button:hover .source-link-icon svg,
+.glass-source-button:focus-visible .source-link-icon svg {
+  transform: translate(1.5px, -1.5px);
+}
+.optical-glass > .metal-edge {
+  position: absolute;
+  z-index: 2;
+  inset: -1px;
+  padding: 1.5px;
+  animation: metal-rim-in 360ms ease-out both;
+}
+@keyframes metal-rim-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* Markets: one liquid-metal line glides to the chosen market. */
+.market-tabs {
+  position: relative;
+}
+.market-tabs > .market-indicator {
+  left: 0;
+  right: auto;
+  width: var(--indicator-w, 0);
+  transform: translateX(var(--indicator-x, 0));
+  pointer-events: none;
+}
+.market-tabs[data-ready] > .market-indicator {
+  transition:
+    transform 560ms cubic-bezier(0.3, 1.25, 0.45, 1),
+    width 560ms cubic-bezier(0.3, 1.1, 0.45, 1);
+}
+.market-tabs[data-indicator='off'] > .market-indicator {
+  opacity: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .market-tabs[data-ready] > .market-indicator,
+  .glass-source-button .source-link-icon svg {
+    transition: none;
+  }
+  .optical-glass > .metal-edge {
+    animation: none;
+  }
+}
+
+/* Phones: the brand, both collections, the theme and the menu share one row. */
+@media (max-width: 900px) {
+  .workspace-header {
+    column-gap: 10px;
+  }
+  .workspace-nav {
+    gap: 2px;
+  }
+  .workspace-nav > button {
+    min-width: 0;
+    padding: 0 6px;
+    gap: 5px;
+  }
+  .theme-toggle {
+    width: 34px;
+    min-width: 34px;
+  }
+}
+@media (max-width: 420px) {
+  .workspace-header {
+    padding-inline: 14px;
+  }
+  .workspace-nav > button {
+    padding: 0 4px;
+    gap: 4px;
+  }
+  .theme-toggle {
+    width: 30px;
+    min-width: 30px;
+  }
+}
+@media (max-width: 380px) {
+  .workspace-brand img {
+    width: 110px;
+    height: 24px;
+  }
+  .workspace-brand em {
+    font-size: 21px;
+  }
+}
+@media (max-width: 340px) {
+  .workspace-header {
+    column-gap: 8px;
+  }
+  .workspace-nav > button {
+    padding: 0 3px;
+    gap: 3px;
+  }
+  .theme-toggle {
+    width: 28px;
+    min-width: 28px;
+  }
+  .workspace-brand {
+    gap: 6px;
+  }
+  .workspace-brand img {
+    width: 90px;
+    height: 20px;
+  }
+  .workspace-brand em {
+    font-size: 18px;
+  }
+}
+
+/* Small moments: a saved record springs, the header count ticks, pressed glass ripples light. */
+.nav-count {
+  display: inline-block;
+  animation: count-tick 420ms cubic-bezier(0.3, 1.5, 0.5, 1) both;
+}
+@keyframes count-tick {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+}
+.optical-glass > .glass-ripple {
+  position: absolute;
+  z-index: 1;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(
+    circle,
+    rgb(225 246 255 / 42%) 0%,
+    rgb(160 220 255 / 12%) 38%,
+    transparent 68%
+  );
+  mix-blend-mode: plus-lighter;
+}
+:root[data-theme='light'] .optical-glass > .glass-ripple {
+  background: radial-gradient(
+    circle,
+    rgb(255 255 255 / 95%) 0%,
+    rgb(170 215 245 / 28%) 36%,
+    transparent 66%
+  );
+  mix-blend-mode: normal;
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-count {
+    animation: none;
+  }
+}
+
+/* The record's source button keeps a measured width however wide the panel is dragged. */
+.record-action-dock > .glass-source-button {
+  width: min(292px, 58%);
+}
+
+/* Counts roll to a new value: for a moment each digit turns on its own wheel, as wide as the digit
+   it shows, then the number is plain text again. Wheels move by transform; places arriving or
+   leaving grow or fold their width, so nothing beside them jumps. */
+.rolling-number {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-start;
+  vertical-align: top;
+  transition: opacity 200ms;
+}
+.rolling-number[data-pending] {
+  opacity: 0.55;
+}
+.roll-place {
+  --roll: 820ms cubic-bezier(0.2, 0.9, 0.25, 1) calc(var(--place) * 24ms);
+  display: block;
+  width: calc(var(--advance) * 1em);
+  height: 1lh;
+  overflow: clip;
+  transition:
+    width var(--roll),
+    opacity 420ms ease calc(var(--place) * 24ms);
+}
+.roll-place[data-leaving] {
+  opacity: 0;
+}
+.roll-wheel {
+  display: block;
+  width: 1em;
+  margin-left: calc((var(--advance) - 1) * 0.5em);
+  text-align: center;
+  transform: translateY(calc(var(--digit) * -10%));
+  transition:
+    transform var(--roll),
+    margin-left var(--roll);
+}
+.roll-wheel::before {
+  content: '0\A 1\A 2\A 3\A 4\A 5\A 6\A 7\A 8\A 9';
+  display: block;
+  white-space: pre;
+}
+.roll-wheel[data-mark] {
+  transform: none;
+}
+.roll-wheel[data-mark]::before {
+  content: attr(data-mark);
+}
+@starting-style {
+  .roll-place {
+    width: calc(var(--from-advance) * 1em);
+  }
+  .roll-place[data-arriving] {
+    opacity: 0;
+  }
+  .roll-wheel {
+    margin-left: calc((var(--from-advance) - 1) * 0.5em);
+    transform: translateY(calc(var(--from) * -10%));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .roll-place,
+  .roll-wheel {
+    transition: none;
+  }
+}

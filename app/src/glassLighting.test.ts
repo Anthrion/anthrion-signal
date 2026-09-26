@@ -14,6 +14,18 @@ describe('glass lighting', () => {
     expect(reflectionLamp(lamp, 8016, false)).toEqual(redraw)
   })
 
+  it('travels the whole row of cards at the pace it has always moved', () => {
+    const span = { from: 120, to: 1480 }
+    const xs = Array.from({ length: 600 }, (_, i) => reflectionLamp(lamp, i * 250, false, span).x)
+    expect(Math.min(...xs)).toBeLessThan(span.from + 10)
+    expect(Math.max(...xs)).toBeGreaterThan(span.to - 10)
+    expect(xs.every((x) => x >= span.from - 0.01 && x <= span.to + 0.01)).toBe(true)
+    const before = reflectionLamp(lamp, 8000, false, span)
+    const after = reflectionLamp(lamp, 9000, false, span)
+    expect(Math.abs(after.x - before.x)).toBeLessThanOrEqual(220 * 0.33 + 0.01)
+    expect(reflectionLamp(lamp, 8000, true, span)).toEqual(lamp)
+  })
+
   it('keeps reduced-motion lighting fixed regardless of the clock', () => {
     expect(reflectionLamp(lamp, 8000, true)).toEqual(lamp)
     expect(reflectionLamp(lamp, 50000, true)).toEqual(lamp)

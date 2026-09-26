@@ -1,6 +1,7 @@
 import type { Signal } from './types'
 import { isAvailableOpportunity } from './lib'
 import { useTranslations } from './Translation'
+import { usePreferences } from './preferences'
 
 const countries = new Set(['GB', 'US', 'CA', 'DE', 'AT', 'CH'])
 const languageAliases: Record<string, string> = {
@@ -86,8 +87,10 @@ function aligned(localized: Points, english: Points) {
 
 export function RecommendedApproach({ signal }: { signal: Signal }) {
   const { language } = useTranslations()
+  const { approach } = usePreferences()
   const guidance = signal.reviewed_guidance
   if (
+    approach === 'hide' ||
     !guidance ||
     !signal.countries.some((country) => countries.has(country)) ||
     !isAvailableOpportunity(signal)
