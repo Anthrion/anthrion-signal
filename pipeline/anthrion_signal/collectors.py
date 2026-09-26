@@ -454,6 +454,31 @@ def public_detail(http, url):
     return main
 
 
+# GOV.UK furniture inside the Contract Award Service's <main>: the phase banner, the breadcrumb
+# trail and the help panel. None of it is notice text. The "Search criteria used" box stays: it
+# is the buyer's own supplier search, often naming required technologies.
+PAGE_FURNITURE = ".govuk-phase-banner, .govuk-breadcrumbs, .ccs-help-panel"
+# The same furniture in text read before it was removed from the page, such as cached details.
+FURNITURE_TEXT = (
+    re.compile(r"^Beta This is a new service \S your feedback will help us to improve it\.\s*"),
+    re.compile(r"^Home Digital Outcomes opportunities Procurement details\s*"),
+    re.compile(r"\s*\bHelp You can contact us by email, phone or using the enquiry form "
+               r"\(opens in a new tab\) \..*?\b9am to 5pm\.$"),
+)
+
+
+def notice_text(main):
+    for element in main.select(PAGE_FURNITURE):
+        element.decompose()
+    return main.get_text(" ", strip=True)
+
+
+def without_page_furniture(text):
+    for pattern in FURNITURE_TEXT:
+        text = pattern.sub("", text, count=1)
+    return text.strip()
+
+
 def collect_digital(source, state, frozen, http, settings, terms):
     result = Collection(state=dict(state))
     listing_url = state.get("listing_next_url") or source["url"]
@@ -533,8 +558,7 @@ def collect_digital(source, state, frozen, http, settings, terms):
         elif needs_detail:
             try:
                 result.pages += 1
-                detail = public_detail(http, url)
-                detail_text = detail.get_text(" ", strip=True)
+                detail_text = notice_text(public_detail(http, url))
                 data["description"] = clean(detail_text, 18000)
                 data["deadline"] = digital_deadline(detail_text)
                 cache[ident] = {"data": {k: data[k] for k in ("description", "deadline")},
@@ -545,6 +569,7 @@ def collect_digital(source, state, frozen, http, settings, terms):
                 result.message = "Some opportunity details unavailable; listing facts retained."
                 first_pending = first_pending if first_pending is not None else (position + index) % len(links)
         # Reparse cached source facts when date handling improves, without another request.
+        data["description"] = without_page_furniture(data["description"])
         data["deadline"] = digital_deadline(data["description"]) or data.get("deadline")
         result.records.append(RawRecord(data, source, frozen.isoformat(), "html"))
     if result.state.get("listing_next_url"):
