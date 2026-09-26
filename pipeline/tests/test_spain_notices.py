@@ -1,4 +1,5 @@
 from datetime import UTC, datetime, timedelta
+from urllib.parse import urlsplit
 
 import httpx
 import pytest
@@ -9,12 +10,15 @@ from anthrion_signal.discovery import is_public_opportunity
 from anthrion_signal.spain_notices import (
     FEED_URL,
     NS,
+    VERSION,
     collect_spain_notices,
     normalise_spain_notice,
     parse_placsp_page,
     relevant_placsp_record,
     submission_deadline,
 )
+
+from anthrion_signal.utils import digest
 
 
 FROZEN = datetime(2026, 9, 11, 12, tzinfo=UTC)
@@ -300,3 +304,116 @@ def test_cross_origin_redirect_is_not_followed():
     http = Http(transport=httpx.MockTransport(handler), sleeper=lambda _: None)
     result = collect_spain_notices(SOURCE, {}, FROZEN, http, {"max_pages": 2}, {})
     assert not result.complete and calls == [FEED_URL]
+
+
+DAY0 = datetime(2026, 9, 1, 12, tzinfo=UTC)
+
+
+
+class GrowingFeed:
+    """Newest-first PLACSP archive, one page per step; the head links to the newest page."""
+
+    def __init__(self, pages, step=timedelta(days=1)):
+        self.pages, self.step, self.requests = pages, step, []
+
+    def url(self, number):
+        return ARCHIVE.replace("20260911_120000", f"{DAY0 + self.step * number:%Y%m%d_%H%M%S}")
+
+    def head_time(self):
+        return DAY0 + self.step * self.pages + timedelta(minutes=1)
+
+    def head(self):
+        head = self.head_time()
+        return page(entry(f"9{self.pages}", updated=(head - timedelta(seconds=30)).isoformat()),
+                    self.url(self.pages), updated=head.isoformat())
+
+    def handler(self, request):
+        url = str(request.url)
+        self.requests.append(url)
+        if url == FEED_URL:
+            if request.headers.get("if-none-match") == f'"{self.pages}"':
+                return httpx.Response(304)
+            return httpx.Response(200, content=self.head(), headers={"ETag": f'"{self.pages}"'})
+        number = next(n for n in range(1, self.pages + 1) if self.url(n) == url)
+        stamp, margin = DAY0 + self.step * number, self.step / 24
+        entries = (entry(f"{number}0", updated=(stamp - margin).isoformat())
+                   + entry(f"{number}1", updated=(stamp - self.step + margin).isoformat()))
+        return httpx.Response(200, content=page(entries, self.url(number - 1) if number > 1 else None,
+                                                updated=stamp.isoformat()))
+
+
+
+def drained_state(feed, phrases, pending=()):
+    """A collector that has read everything up to the current head with this vocabulary."""
+    return {"query_version": VERSION, "pending": list(pending), "head_updated": feed.head_time().isoformat(),
+            "head_hash": digest(parse_placsp_page(feed.head())), "head_etag": f'"{feed.pages}"',
+            "discovery_vocabulary": digest(sorted(phrases))}
+
+
+
+def window(feed, cursor, after, through, seen=()):
+    return {"url": feed.url(cursor), "after": (DAY0 + feed.step * after).isoformat(),
+            "through": (DAY0 + feed.step * through).isoformat(),
+            "seen": [urlsplit(FEED_URL).path, *[urlsplit(feed.url(n)).path for n in seen]]}
+
+
+
+def collect_growing(feed, state, budget, runs, *, grow_every=0, replays=(), lookback_days=8):
+    """One collection per run; the feed gains a page every `grow_every` runs."""
+    http = Http(transport=httpx.MockTransport(feed.handler), sleeper=lambda _: None)
+    source, phrases, results = {**SOURCE, "max_pages_per_run": budget}, ["crm"], []
+    for run in range(runs):
+        if grow_every and run and run % grow_every == 0:
+            feed.pages += 1
+        if run in replays:
+            phrases = phrases + [f"phrase {run}"]
+        frozen = feed.head_time() + timedelta(hours=1)
+        result = collect_spain_notices(source, state, frozen, http, {"max_pages": 80, "lookback_days": lookback_days},
+                                       {"discovery_phrases": phrases})
+        state = result.state
+        results.append(result)
+    return results
+
+
+
+def archive_reads(feed):
+    return [url for url in feed.requests if url != FEED_URL]
+
+
+
+def test_windows_meeting_at_one_page_are_read_once_with_combined_bounds():
+    feed = GrowingFeed(6)
+    newer, older = window(feed, 5, after=2, through=6, seen=[6]), window(feed, 3, after=1, through=4, seen=[4])
+    http = Http(transport=httpx.MockTransport(feed.handler), sleeper=lambda _: None)
+    result = collect_spain_notices({**SOURCE, "max_pages_per_run": 6}, drained_state(feed, ["crm"], [newer, older]),
+                                   feed.head_time() + timedelta(hours=1), http, {"max_pages": 80}, {"discovery_phrases": ["crm"]})
+    assert archive_reads(feed) == [feed.url(n) for n in (5, 4, 3, 2, 1)]
+    assert sorted(raw.data["id"] for raw in result.records) == ["20", "21", "30", "31", "40", "41", "50", "51"]
+    assert result.complete and result.state["pending"] == []
+    assert result.state["watermark"] == result.state["head_updated"]
+
+
+
+def test_overlapping_replays_drain_while_the_feed_grows():
+    # The 18-21 September pattern in miniature: vocabulary replays overlap each other while a new
+    # page arrives every two runs, and each run can read two archive pages after the head.
+    feed = GrowingFeed(20)
+    results = collect_growing(feed, drained_state(feed, ["crm"]), 3, 20, grow_every=2, replays=(0, 2, 4, 6))
+    assert max(len(result.state["pending"]) for result in results) <= 4
+    drained = [index for index, result in enumerate(results) if not result.state["pending"]]
+    assert drained and drained[0] <= 15
+    assert drained == list(range(drained[0], len(results)))
+    final = results[-1]
+    assert final.complete and final.message is None
+    assert final.state["watermark"] == final.state["head_updated"] == feed.head_time().isoformat()
+
+
+
+def test_merged_history_still_rejects_a_repeated_archive_page():
+    feed = GrowingFeed(6)
+    pending = [window(feed, 4, after=0, through=6, seen=[6, 5]), window(feed, 3, after=0, through=5, seen=[5, 2])]
+    http = Http(transport=httpx.MockTransport(feed.handler), sleeper=lambda _: None)
+    result = collect_spain_notices({**SOURCE, "max_pages_per_run": 8}, drained_state(feed, ["crm"], pending),
+                                   feed.head_time() + timedelta(hours=1), http, {"max_pages": 80}, {"discovery_phrases": ["crm"]})
+    assert not result.complete and "did not advance safely" in result.message
+    assert [item["url"] for item in result.state["pending"]] == [feed.url(3)]

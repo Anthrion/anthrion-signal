@@ -275,6 +275,17 @@ def _needs_older(page, lane):
     return bool(page["next"] and (oldest is None or oldest >= _aware(lane["after"])))
 
 
+def _coalesce(pending, lane):
+    """Read a shared archive page once, retaining every waiting window's bounds."""
+    key = _page_key(lane["url"])
+    waiting = [item for item in pending if item is not lane and _page_key(item["url"]) == key]
+    for other in waiting:
+        lane["after"] = min(_aware(lane["after"]), _aware(other["after"])).isoformat()
+        lane["through"] = max(_aware(lane["through"]), _aware(other["through"])).isoformat()
+        lane["seen"] = list(dict.fromkeys([*lane.get("seen", []), *other.get("seen", [])]))
+    pending[:] = [item for item in pending if not any(item is other for other in waiting)]
+
+
 def collect_spain_notices(source, state, frozen, http, settings, terms):
     """Poll the small head conditionally, then resume chronological archive windows."""
     saved = copy.deepcopy(state) if state.get("query_version") == VERSION else {}
@@ -337,6 +348,7 @@ def collect_spain_notices(source, state, frozen, http, settings, terms):
                 saved["discovery_vocabulary"] = vocabulary
         while saved["pending"] and result.pages < budget:
             lane = saved["pending"][0]
+            _coalesce(saved["pending"], lane)
             key = _page_key(lane["url"])
             if key in lane.get("seen", []):
                 raise SourceUnavailable("PLACSP archive pagination repeated a page; checkpoint retained")
