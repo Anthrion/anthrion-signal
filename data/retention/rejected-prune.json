@@ -1,34 +1,13 @@
 {
   "applied": true,
-  "at": "2026-09-25T01:02:15.619382+00:00",
-  "candidate_records": 2,
-  "records": [
-    {
-      "bucket": "61.jsonl.gz",
-      "hashes": [
-        "2dea073834aa4967a14b030365ab9b48902f7cb6e332cd96f5fd967b0f4e3d7d"
-      ],
-      "id": "sig_eb75b0a8c6cc7bdc2ec3",
-      "reason": "Every version is old, inactive and explicitly physical/non-technical; no retained dependency.",
-      "title": "EEAST - General Maintenance & Handyman Services",
-      "url": "https://www.find-tender.service.gov.uk/Notice/075776-2025"
-    },
-    {
-      "bucket": "70.jsonl.gz",
-      "hashes": [
-        "aaa6fc910153024fedc30967c066e8c8c5576dd407e243452507927bfc3ef784"
-      ],
-      "id": "sig_5db6c0b0860f8a2318ba",
-      "reason": "Every version is old, inactive and explicitly physical/non-technical; no retained dependency.",
-      "title": "Aberdeen South Harbour Border Force Facility",
-      "url": "https://www.find-tender.service.gov.uk/Notice/074123-2025"
-    }
-  ],
-  "recovery_commit": "ae6ac332fa29b96aa71ff8b215d0d17687db82a9",
-  "removed_bytes": 2584,
-  "retained_heads_sha256": "6b38c50a193ce758d5beec035f5ad6c5573e3e1d28677fabff29201e34507364",
+  "at": "2026-09-26T00:59:34.556467+00:00",
+  "candidate_records": 0,
+  "records": [],
+  "recovery_commit": "54f3a8e726630b6b42191749b641a65f11622f9c",
+  "removed_bytes": 0,
+  "retained_heads_sha256": "eda9831d298e3544d92b5d1d9f3d18f72695d1c85a553287b26f64ea82f739cc",
   "signature": {
-    "day": "2026-09-25",
+    "day": "2026-09-26",
     "discovery": "e13f6ef58bdf5ea367cbc63217d4b2d209c73d844021402d2af67cf952d87630",
     "policy": "unused-physical-inactive-1"
   }
