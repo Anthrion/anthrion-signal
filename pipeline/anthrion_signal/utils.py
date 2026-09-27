@@ -39,6 +39,18 @@ def iso(value) -> str | None:
     return dt.isoformat(timespec="seconds") if dt else None
 
 
+def calendar_day(value) -> str | None:
+    """Keep an explicit publication day; real clock times retain their precision."""
+    if not isinstance(value, str):
+        return None
+    text = value.strip()
+    match = re.fullmatch(r"(\d{4}-\d{2}-\d{2})(?:Z|[+-]\d{2}:\d{2})?", text)
+    if match:
+        parsed = parse_date(match[1])
+        return parsed.date().isoformat() if parsed else None
+    return iso(text)
+
+
 def clean(value, limit=24000) -> str:
     if value is None:
         return ""

@@ -713,6 +713,7 @@ test('@pr history titles open their own full record, keep language across pages,
   const { history } = await fixture(page)
   history[0].title = 'Dossierdienst voor de gemeente'
   history[0].title_en = 'Council casework service'
+  history[0].award_date = undefined
   history[2].signal_type = 'LIVE_TENDER'
   history[2].status = 'active'
   history[2].award_statuses = []
@@ -725,6 +726,7 @@ test('@pr history titles open their own full record, keep language across pages,
   const titleLink = buyer.getByRole('button', { name: 'Council casework service', exact: true })
   await titleLink.click()
   const record = page.getByRole('dialog', { name: 'Full record', exact: true })
+  await expect(record.getByText('Award notice published', { exact: true })).toBeVisible()
   await expect(record.locator('.inspector-summary')).toContainText(
     'Complete retained scope for this historical contract.',
   )

@@ -172,6 +172,24 @@ export const date = (value: string | null, options?: Intl.DateTimeFormatOptions)
         ...(/^\d{4}-\d{2}-\d{2}$/.test(value) ? { timeZone: 'UTC' } : {}),
       }).format(new Date(value))
     : 'Not published'
+// TED's Official Journal day belongs to the publisher's calendar, including
+// older rows stored as Brussels-midnight instants. This changes only rendering;
+// revision timestamps and national-source facts keep their original meaning.
+export function publicationDate(
+  record: Partial<Pick<Signal, 'source' | 'published_at' | 'provenance'>>,
+  options?: Intl.DateTimeFormatOptions,
+) {
+  const fromOtherSource = record.provenance?.some(
+    (item) => item.source !== 'ted' && item.published_at === record.published_at,
+  )
+  return date(record.published_at || null, {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+    ...options,
+    ...(record.source === 'ted' && !fromOtherSource ? { timeZone: 'Europe/Brussels' } : {}),
+  })
+}
 export const amount = (value: number | null, currency: string | null, compact = true) => {
   if (value === null) return 'Value not published'
   if (!currency) return `${value.toLocaleString('en-GB')} (currency not published)`

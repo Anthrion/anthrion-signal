@@ -2,6 +2,7 @@ import { createContext, useContext, useMemo } from 'react'
 import type { ReactNode } from 'react'
 import type { Dataset, DisplayLanguage, HistoryRecord, Signal } from './types'
 import { displayBuyer } from './lib'
+import { noticeDescription } from './noticeDescription'
 
 const TranslationContext = createContext<{
   language: DisplayLanguage
@@ -25,9 +26,14 @@ export function TranslationProvider({
 export function useSignalText(signal: Signal) {
   const { language, translations } = useContext(TranslationContext)
   const english = language === 'en' ? translations?.[signal.id] : undefined
+  const sourceDescription = english?.description || signal.description
+  const description = useMemo(
+    () => noticeDescription(signal, sourceDescription),
+    [signal, sourceDescription],
+  )
   return {
     title: english?.title || signal.title,
-    description: english?.description || signal.description,
+    description,
     buyerName: displayBuyer(signal, english),
     original: language === 'en' && !english,
   }

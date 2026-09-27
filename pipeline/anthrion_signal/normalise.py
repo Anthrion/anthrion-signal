@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 from .models import Amount, Document, Lot, Provenance, Signal
 from .markets import TED_COUNTRIES
 from .public_context import deadline_fact, deadline_value, enrich_signal
-from .utils import canonical_url, clean, digest, iso, official_notice_url, parse_date, unique
+from .utils import calendar_day, canonical_url, clean, digest, iso, official_notice_url, parse_date, unique
 
 
 MATERIAL_FIELDS = ["title", "description", "buyer_name", "deadline_at", "contract_start", "contract_end",
@@ -352,7 +352,9 @@ def normalise_ted(raw):
         lot_ids=lot_ids, lots=[Lot(id=str(ident), title="", description=ted_text(r.get("description-lot")) if len(lot_ids) == 1 else "",
             status="unknown", source_url=url) for ident in lot_ids],
         notice_type=notice_type, status="cancelled" if terminated else "closed" if direct_award else "awarded" if stage == "award" else "active",
-        published_at=iso(ted_text(r.get("publication-date"))), updated_at=iso(ted_text(r.get("publication-date"))),
+        # Publication is a calendar fact; revision ordering must retain the
+        # original instant so a later national cancellation still supersedes it.
+        published_at=calendar_day(ted_text(r.get("publication-date"))), updated_at=iso(ted_text(r.get("publication-date"))),
         deadline_at=deadline, response_deadlines=deadlines, deadlines=facts,
         value_max=value, currency=currencies, framework=framework, incumbent_supplier=ted_text(r.get("winner-name")) or None,
         amount=Amount(kind=("award" if stage == "award" else "estimated_contract") if value is not None else "unknown",

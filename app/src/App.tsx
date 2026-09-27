@@ -95,6 +95,7 @@ import {
   countryLabels,
   isCombinedMarket,
   date,
+  publicationDate,
   daysLeft,
   defaults,
   download,
@@ -1530,7 +1531,7 @@ function SignalRow({
             )}
             {isHistoricalAward(s) ? (
               <span>
-                {s.award_date ? `Awarded ${date(s.award_date)}` : `Notice ${date(s.published_at)}`}
+                {s.award_date ? `Awarded ${date(s.award_date)}` : `Notice ${publicationDate(s)}`}
               </span>
             ) : (
               <RowDeadline signal={s} now={now} />
@@ -1745,12 +1746,18 @@ function RecordDetails({ signal: s }: { signal: Signal }) {
   // Until Signal sees a change, last_material_update carries the notice's own date, which
   // can precede the first collection (a notice published before its market was added).
   const updated = Date.parse(s.last_material_update)
+  const publicationDayOnly =
+    /^\d{4}-\d{2}-\d{2}$/.test(s.published_at || '') &&
+    publicationDate({ ...s, published_at: s.last_material_update }) === publicationDate(s)
   const sourceDates = {
     changed: updated > Date.parse(s.first_seen_at),
-    updatedAtSource: !!s.last_material_update && updated !== Date.parse(s.published_at || ''),
+    updatedAtSource:
+      !!s.last_material_update &&
+      !publicationDayOnly &&
+      updated !== Date.parse(s.published_at || ''),
   }
   const facts = [
-    ['Published', s.published_at ? date(s.published_at) : ''],
+    ['Published', s.published_at ? publicationDate(s) : ''],
     [
       'Contract period',
       s.contract_start || s.contract_end
@@ -2031,7 +2038,9 @@ function ConsoleRecord({
                     <DeadlineCalendarButton signal={s} />
                     <span>
                       {hasAwardOutcome(s)
-                        ? date(s.award_date || s.published_at)
+                        ? s.award_date
+                          ? date(s.award_date)
+                          : publicationDate(s)
                         : deadlineFact(s).value}
                       {!hasAwardOutcome(s) && deadlineFact(s).dateOnly && (
                         <small className="cutoff-note">Cutoff time unconfirmed</small>
