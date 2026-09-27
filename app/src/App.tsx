@@ -75,6 +75,7 @@ import {
   isCombinedMarket,
   currencyOptions,
   date,
+  publicationDate,
   defaults,
   download,
   explainSearch,
@@ -1204,7 +1205,7 @@ function SignalRow({
             )}
             {isHistoricalAward(s) ? (
               <span>
-                {s.award_date ? `Awarded ${date(s.award_date)}` : `Notice ${date(s.published_at)}`}
+                {s.award_date ? `Awarded ${date(s.award_date)}` : `Notice ${publicationDate(s)}`}
               </span>
             ) : (
               responseDeadline(s) && <span>{date(responseDeadline(s))}</span>
@@ -1408,7 +1409,9 @@ function ConsoleDetail({
                     <DeadlineCalendarButton signal={s} />
                     <span>
                       {hasAwardOutcome(s)
-                        ? date(s.award_date || s.published_at)
+                        ? s.award_date
+                          ? date(s.award_date)
+                          : publicationDate(s)
                         : deadlineFact(s).value}
                       {!hasAwardOutcome(s) && deadlineFact(s).dateOnly && (
                         <small className="cutoff-note">Cutoff time unconfirmed</small>
@@ -1677,7 +1680,7 @@ function SignalDetail({
           ['Award date', s.award_date ? date(s.award_date) : 'Not published'],
         ]
       : []),
-    ['Published', date(s.published_at)],
+    ['Published', publicationDate(s)],
     [
       'Contract period',
       s.contract_start || s.contract_end

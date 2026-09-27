@@ -7,6 +7,7 @@ import {
   amount,
   countryLabels,
   date,
+  publicationDate,
   defaults,
   hasAwardOutcome,
   responseDeadline,
@@ -562,7 +563,7 @@ function HistoryTimeline({
                   {record.award_date
                     ? `Awarded ${date(record.award_date)}`
                     : record.published_at
-                      ? `Published ${date(record.published_at)}`
+                      ? `Published ${publicationDate(record)}`
                       : 'Date not published'}
                   <span>{record.status.replaceAll('_', ' ')}</span>
                 </div>
@@ -1271,7 +1272,9 @@ function ResearchContent({
                       <dt>{hasAwardOutcome(signal) ? 'Awarded' : deadlineFact(signal).label}</dt>
                       <dd>
                         {hasAwardOutcome(signal)
-                          ? date(signal.award_date || signal.published_at)
+                          ? signal.award_date
+                            ? date(signal.award_date)
+                            : publicationDate(signal)
                           : deadlineFact(signal).value}
                       </dd>
                     </div>
@@ -1328,7 +1331,9 @@ function ResearchContent({
                       <dt>{hasAwardOutcome(signal) ? 'Awarded' : deadlineFact(signal).label}</dt>
                       <dd>
                         {hasAwardOutcome(signal)
-                          ? date(signal.award_date || signal.published_at)
+                          ? signal.award_date
+                            ? date(signal.award_date)
+                            : publicationDate(signal)
                           : deadlineFact(signal).value}
                       </dd>
                     </div>
