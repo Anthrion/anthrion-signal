@@ -1252,7 +1252,13 @@ function ResearchContent({
                       <dd>{valueFact(signal).value}</dd>
                     </div>
                     <div>
-                      <dt>{hasAwardOutcome(signal) ? 'Awarded' : deadlineFact(signal).label}</dt>
+                      <dt>
+                        {hasAwardOutcome(signal)
+                          ? signal.award_date
+                            ? 'Awarded'
+                            : 'Award notice published'
+                          : deadlineFact(signal).label}
+                      </dt>
                       <dd>
                         {hasAwardOutcome(signal)
                           ? signal.award_date
@@ -1311,7 +1317,13 @@ function ResearchContent({
                       <dd>{valueFact(signal).value}</dd>
                     </div>
                     <div>
-                      <dt>{hasAwardOutcome(signal) ? 'Awarded' : deadlineFact(signal).label}</dt>
+                      <dt>
+                        {hasAwardOutcome(signal)
+                          ? signal.award_date
+                            ? 'Awarded'
+                            : 'Award notice published'
+                          : deadlineFact(signal).label}
+                      </dt>
                       <dd>
                         {hasAwardOutcome(signal)
                           ? signal.award_date
