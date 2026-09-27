@@ -20,16 +20,18 @@ class UniqueKeyLoader(yaml.SafeLoader):
         return super().construct_mapping(node, deep=deep)
 
 
-def reviewed_inclusions(root: Path):
-    """Restoration identities for the discovery signature; other ledger edits never replay.
-
-    Deliberately schema-free: the complete ledger is validated where it is applied.
-    """
+def review_rows(root: Path):
+    """Unvalidated ledger rows for collection-time readers; export validates the whole ledger."""
     path = root / "config/record_reviews.json"
     ledger = json.loads(path.read_bytes()) if path.exists() else {}
-    rows = ledger.get("records", []) if isinstance(ledger, dict) else []
-    return sorted(([row.get("id"), row.get("source_hash"), row.get("priority")] for row in rows
-                   if isinstance(row, dict) and row.get("decision") == "include"), key=json.dumps)
+    rows = ledger.get("records") if isinstance(ledger, dict) else None
+    return [row for row in rows if isinstance(row, dict)] if isinstance(rows, list) else []
+
+
+def reviewed_inclusions(root: Path):
+    """Restoration identities for the discovery signature; other ledger edits never replay."""
+    return sorted(([row.get("id"), row.get("source_hash"), row.get("priority")] for row in review_rows(root)
+                   if row.get("decision") == "include"), key=json.dumps)
 
 
 def load_config(root: Path):

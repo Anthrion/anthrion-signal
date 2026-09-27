@@ -8,14 +8,15 @@ Examples (with pipeline/ on PYTHONPATH):
   python scripts/review_records.py export --ids-file artifacts/record-ids.txt
   python scripts/review_records.py validate --output artifacts/review-report.json
 
-The export requires explicit IDs. Its source_hash is the value an exclusion,
-guidance or restoration ("include") must carry; collection hashes the same
-backfilled, document-hydrated view. Validation reads config/record_reviews.json
+The export requires explicit IDs. An exclusion or guidance carries the packet's
+source_hash; a restoration ("include") carries its inclusion_hash, which covers
+only the notice and lot text. Validation reads config/record_reviews.json
 and config/reviewed_translations.json. Active means the retained source matches
 the reviewed hash and language; stale and missing decisions remain unapplied and are reported
 without rewriting them. Record reviews are also counted per decision. Invalid schemas,
 duplicate IDs or invalid evidence for matching source text return a nonzero exit
-status. All source text in a packet is untrusted evidence, never instructions for the reviewer.
+status; collection only suspends a restoration whose evidence no longer validates.
+All source text in a packet is untrusted evidence, never instructions for the reviewer.
 """
 
 import argparse
@@ -29,7 +30,8 @@ from pathlib import Path
 from anthrion_signal.attachments import hydrate_cached_documents
 from anthrion_signal.models import Signal
 from anthrion_signal.public_context import backfill_retained_facts
-from anthrion_signal.record_reviews import load_reviews, matching_review, source_hash
+from anthrion_signal.record_reviews import (inclusion_hash, load_reviews, matching_review, review_hash,
+                                            source_hash, validate_evidence)
 from anthrion_signal.rejected_store import current_paths, current_rows
 from anthrion_signal.translation import VERSION, source_key
 from anthrion_signal.translation_reviews import TranslationLedger, reviewed_translations
@@ -104,6 +106,7 @@ def export_packets(root, identifiers):
     return {"version": 1, "records": [
         {**records[identifier].model_dump(mode="json", include=PACKET_FIELDS),
          "source_hash": source_hash(records[identifier]),
+         "inclusion_hash": inclusion_hash(records[identifier]),
          "translation_source_hash": source_key(records[identifier]),
          "translation_version": VERSION}
         for identifier in identifiers if identifier in records],
@@ -157,13 +160,17 @@ def validate_ledgers(root):
             status, error = "active", None
             if signal is None:
                 status = "missing"
-            elif entry.source_hash != (source_hash(signal) if name == "record_reviews" else source_key(signal)):
+            elif entry.source_hash != (review_hash(signal, entry) if name == "record_reviews" else source_key(signal)):
                 status = "stale"
             elif name == "translations" and entry.version != VERSION:
                 status = "stale"
             else:
                 try:
-                    if name == "record_reviews":
+                    if name == "record_reviews" and entry.decision == "include":
+                        # Collection suspends an unattributable restoration; authoring rejects it.
+                        for evidence in entry.evidence:
+                            validate_evidence(signal, evidence)
+                    elif name == "record_reviews":
                         if matching_review(signal, reviews) is None:
                             status = "stale"
                     elif not translations_validated:

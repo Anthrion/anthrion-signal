@@ -5,8 +5,8 @@ import json
 from .discovery import discovery_signature, prefilter
 from .models import Signal
 from .notice_dates import digital_deadline
-from .record_reviews import apply_inclusions, load_reviews
-from .utils import atomic_bytes, digest, read_json
+from .record_reviews import apply_inclusions, load_inclusions
+from .utils import atomic_bytes, digest
 
 FIELDS = ("prefilter_score", "prefilter_matches", "discovery_families", "delivery_priority",
           "matched_capabilities", "discovery_version", "exclusion_reasons", "capability_evidence",
@@ -14,14 +14,13 @@ FIELDS = ("prefilter_score", "prefilter_matches", "discovery_families", "deliver
 
 
 class ClassificationCache:
-    def __init__(self, root, config, state=None):
-        self.root, self.config, self.state = root, config, state
+    def __init__(self, root, config):
+        self.config = config
         self.path = root / "data/discovery/current_classification.json.gz"
         self.signature = discovery_signature(config)
         # Restorations are applied after every lookup and never cached: removing
         # or staling one restores the classifier's own decision.
-        self.inclusions = {identifier: review for identifier, review in load_reviews(root).items()
-                           if review.decision == "include"}
+        self.inclusions, self.stale_inclusions = load_inclusions(root), set()
         try:
             previous = json.loads(gzip.decompress(self.path.read_bytes()))
         except (OSError, ValueError, EOFError):
@@ -66,11 +65,11 @@ class ClassificationCache:
                     deadline = digital_deadline(signal.description)
                     if deadline:
                         signal.deadline_at, signal.response_deadlines = deadline, [deadline]
-        if self.inclusions and any(signal.id in self.inclusions for signal in signals):
-            if self.state is None:
-                self.state = read_json(self.root / "data/source_state.json", {})
-            apply_inclusions(self.root, signals, self.inclusions, self.state,
-                             self.config["capabilities"]["discovery"]["minimum_candidate_score"])
+        if self.inclusions:
+            matched, stale = apply_inclusions(signals, self.inclusions,
+                                              self.config["capabilities"]["discovery"]["minimum_candidate_score"])
+            # A later classification of the same notice supersedes an earlier outcome.
+            self.stale_inclusions = (self.stale_inclusions - matched) | stale
         return len(pending)
 
     def save(self):

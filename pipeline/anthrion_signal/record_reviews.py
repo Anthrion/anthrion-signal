@@ -3,20 +3,22 @@
 The versioned ledger is reviewed code/config, not a model's runtime output. A
 changed scope invalidates its decision and restores normal discovery behaviour.
 """
+import re
 from datetime import UTC, datetime
 from typing import Literal
 
 from pydantic import Field, field_validator, model_validator
 
-from .attachments import hydrate_cached_documents
+from .config import review_rows
 from .discovery import is_public_opportunity
 from .models import StrictModel
-from .public_context import backfill_retained_facts
 from .utils import digest, read_json, unique
 
 
 GUIDANCE_COUNTRIES = frozenset({"GB", "US", "CA", "DE", "AT", "CH"})
 INCLUSION_MARKER = "Reviewed inclusion"
+# Restoration evidence may quote only the scope text its inclusion hash binds.
+INCLUSION_EVIDENCE = re.compile(r"title|description|lot:[^:]+:(?:title|description)")
 LANGUAGE_CODES = frozenset((
     "aa ab ae af ak am an ar as av ay az ba be bg bh bi bm bn bo br bs ca ce ch co cr cs cu cv cy "
     "da de dv dz ee el en eo es et eu fa ff fi fj fo fr fy ga gd gl gn gu gv ha he hi ho hr ht hu hy hz "
@@ -108,6 +110,12 @@ class Guidance(StrictModel):
 
 
 class RecordReview(StrictModel):
+    """One source-bound decision per notice.
+
+    source_hash holds source_hash() for an exclusion or guidance. A restoration
+    ("include") holds inclusion_hash() instead: only the notice and lot text it
+    quotes, so documents, dates, values and status can change without staling it.
+    """
     id: str = Field(pattern=r"^[A-Za-z0-9_-]{1,100}$")
     source_hash: str = Field(pattern=r"^[a-f0-9]{64}$")
     decision: Literal["exclude", "guide", "include"]
@@ -129,6 +137,8 @@ class RecordReview(StrictModel):
             raise ValueError("Guidance must refer to the reviewed scope")
         if self.decision == "include" and (not self.evidence or self.priority is None or self.guidance is not None):
             raise ValueError("A restoration needs source evidence and a delivery priority, and cannot recommend delivery")
+        if self.decision == "include" and not all(INCLUSION_EVIDENCE.fullmatch(e.field) for e in self.evidence):
+            raise ValueError("Restoration evidence must quote the title, description or a lot title or description")
         if self.decision != "include" and self.priority is not None:
             raise ValueError("Only a restoration sets a delivery priority")
         return self
@@ -157,6 +167,20 @@ def source_hash(signal):
     return digest(["reviewed-scope-1", values])
 
 
+def inclusion_hash(signal):
+    """A restoration's scope: the notice and lot text its evidence may quote.
+
+    A restoration is recall-first. Availability rules judge dates, status and awards
+    afresh, so only changed scope text (or a new identity) needs a new review.
+    """
+    return digest(["reviewed-inclusion-1", {"id": signal.id, "title": signal.title, "description": signal.description,
+                                            "lots": sorted([lot.id, lot.title, lot.description] for lot in signal.lots)}])
+
+
+def review_hash(signal, review):
+    return inclusion_hash(signal) if review.decision == "include" else source_hash(signal)
+
+
 def load_reviews(root):
     path = root / "config/record_reviews.json"
     if not path.exists():
@@ -166,6 +190,19 @@ def load_reviews(root):
     if len(result) != len(ledger.records):
         raise ValueError("Duplicate reviewed record identifier")
     return result
+
+
+def load_inclusions(root):
+    """Restorations only, so a malformed exclusion or guidance cannot stop collection.
+
+    Identifiers must still be unique across the ledger; export validates every entry.
+    """
+    rows = review_rows(root)
+    identifiers = [row["id"] for row in rows if isinstance(row.get("id"), str)]
+    if len(identifiers) != len(set(identifiers)):
+        raise ValueError("Duplicate reviewed record identifier")
+    return {review.id: review for review in (RecordReview.model_validate(row) for row in rows
+                                              if row.get("decision") == "include")}
 
 
 def evidence_text(signal, evidence):
@@ -220,8 +257,17 @@ def validate_guidance(signal, value):
 
 def matching_review(signal, reviews):
     review = reviews.get(signal.id)
-    if review is None or review.source_hash != source_hash(signal):
+    if review is None or review.source_hash != review_hash(signal, review):
         return None
+    if review.decision == "include":
+        # The inclusion hash binds quoted text, not its URLs, which an amendment can
+        # move. Suspend such a restoration here; authoring validation rejects it.
+        try:
+            for evidence in review.evidence:
+                validate_evidence(signal, evidence)
+        except ValueError:
+            return None
+        return review
     for evidence in review.evidence:
         validate_evidence(signal, evidence)
     if review.guidance:
@@ -256,23 +302,20 @@ def apply_reviews(signals, reviews, *, now=None, guidance=True):
     return selected
 
 
-def apply_inclusions(root, signals, reviews, state, threshold):
-    """Admit exactly reviewed notices as candidates after the classifier has run.
+def apply_inclusions(signals, reviews, threshold):
+    """Admit reviewed notices after classification; return the matched and stale review IDs.
 
-    Reviewers hash exported packets: retained facts backfilled, cached documents
-    hydrated. Classification can hold the raw record, so match that view on a copy.
-    Only relevance changes; lifecycle, status and award rules are applied later.
+    Only relevance changes: lifecycle, status and award rules still decide publication.
     """
-    selected = [signal for signal in signals if signal.id in reviews]
-    if not selected:
-        return
-    views = [signal.model_copy(deep=True) for signal in selected]
-    backfill_retained_facts(views, state)
-    hydrate_cached_documents(root, views)
-    for signal, view in zip(selected, views, strict=True):
-        review = matching_review(view, reviews)
+    matched, stale = set(), set()
+    for signal in signals:
+        review = matching_review(signal, reviews) if signal.id in reviews else None
         if review and review.decision == "include":
+            matched.add(signal.id)
             signal.prefilter_score = max(signal.prefilter_score, threshold)
             signal.exclusion_reasons, signal.scope_evidence = [], []
             signal.delivery_priority = review.priority
             signal.prefilter_matches = unique([INCLUSION_MARKER, *signal.prefilter_matches])[:40]
+        elif signal.id in reviews:
+            stale.add(signal.id)
+    return matched, stale - matched

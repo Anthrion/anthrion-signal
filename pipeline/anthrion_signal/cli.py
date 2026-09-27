@@ -127,7 +127,7 @@ def prepare_current(root, *, save_cache=False):
         data.signals, _, _ = reconcile(canonical_signals + restored, recovered)
         backfill_retained_facts(data.signals, state)
     translations = available_translations(root, data.signals)
-    cache = ClassificationCache(root, config, state)
+    cache = ClassificationCache(root, config)
     cache.classify(data.signals, translations)
     if save_cache:
         cache.save()
@@ -161,6 +161,7 @@ def prepare_current(root, *, save_cache=False):
     data.translations = {key: value for key, value in data.translations.items() if key in visible_ids}
     data.run["reviewed_exclusions"] = before_reviews - len(data.signals)
     data.run["reviewed_inclusions"] = sum(INCLUSION_MARKER in s.prefilter_matches for s in data.signals)
+    data.run["reviewed_inclusions_stale"] = len(cache.stale_inclusions)
     data.run["public_signals"] = len(data.signals)
     return data, canonical_signals, config
 
@@ -239,7 +240,7 @@ def run(root, args):
     replayed = read_rejected(root) if replay else []
     # Current retrieval follows replay so newer status updates remain authoritative.
     incoming = replayed + incoming
-    cache = ClassificationCache(root, config, state)
+    cache = ClassificationCache(root, config)
     cache.classify(incoming, available_translations(root, incoming))
     # Replayed source versions already have durable evidence; do not duplicate
     # the entire rejection history into a new date partition on every release.
@@ -286,6 +287,7 @@ def run(root, args):
         "public_signals": len(current), "suppressed_unavailable_signals": len(signals) - len(available),
         "suppressed_scope_signals": len(available) - len(current),
         "reviewed_inclusions": sum(INCLUSION_MARKER in s.prefilter_matches for s in current),
+        "reviewed_inclusions_stale": len(cache.stale_inclusions),
         "new_public_signals": sum(s.id not in known_ids for s in current),
         **stats, **ai_stats, "high_fit_signals": sum(s.fit_score is not None and s.fit_score >= config["scoring"]["recommendation"]["strong_fit"] for s in current),
         "content_digest": content_digest, "content_changed": not same_content, "deployment_status": "awaiting_build",
