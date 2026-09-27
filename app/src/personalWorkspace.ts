@@ -5,7 +5,9 @@ import type { Filters } from './types'
 export const PERSONAL_WORKSPACE_KEY = 'anthrion-personal-workspace-v1'
 export const LAST_VIEW_KEY = 'anthrion-last-view-v1'
 
-export function readLastView(storage: StorageAccess): Filters {
+/** `startMarket` is a market ID, or 'last' to reopen the remembered market. */
+export function readLastView(storage: StorageAccess, startMarket = defaults.market): Filters {
+  const start = startMarket === 'last' ? defaults.market : startMarket
   try {
     const value: unknown = JSON.parse(storage.getItem(LAST_VIEW_KEY) || 'null')
     if (
@@ -14,21 +16,25 @@ export function readLastView(storage: StorageAccess): Filters {
       object(value.filters) &&
       Object.values(value.filters).every((item) => typeof item === 'string' && item.length <= 2000)
     ) {
-      return normaliseFilters({ ...value.filters, market: defaults.market })
+      const remembered = value.filters.market
+      return normaliseFilters({
+        ...value.filters,
+        market: startMarket === 'last' && typeof remembered === 'string' ? remembered : start,
+      })
     }
   } catch {
     /* Private browsing, invalid data and storage limits keep the defaults usable. */
   }
-  return { ...defaults }
+  return { ...defaults, market: start }
 }
 
-export function initialWorkspaceFilters(): Filters {
-  // Shared URLs always specify their own view; a plain visit starts in the UK.
+export function initialWorkspaceFilters(startMarket = defaults.market): Filters {
+  // Shared URLs always specify their own view; a plain visit opens the preferred market.
   if (window.location.search) return readFilters()
   try {
-    return readLastView(window.localStorage)
+    return readLastView(window.localStorage, startMarket)
   } catch {
-    return { ...defaults }
+    return { ...defaults, market: startMarket === 'last' ? defaults.market : startMarket }
   }
 }
 

@@ -20,6 +20,7 @@ test('scrolling the virtual record list does not redraw stationary glass or rest
     const scene = document.querySelector<HTMLElement>('.discovery-scene')!
     const list = document.querySelector<HTMLElement>('.signal-feed')!
     const glass = document.querySelector<HTMLElement>('.discovery-object[data-category="early"]')!
+    const panes = [...document.querySelectorAll<HTMLElement>('.discovery-object')]
     const source = document.querySelector<HTMLElement>('.console-inspector .glass-source-button')!
     const getWidth = Object.getOwnPropertyDescriptor(Element.prototype, 'clientWidth')!.get!
     const getBounds = source.getBoundingClientRect.bind(source)
@@ -36,13 +37,16 @@ test('scrolling the virtual record list does not redraw stationary glass or rest
       sourceReads++
       return getBounds()
     }
+    // The light travels the whole row of cards on a timer, so it is read across every pane:
+    // a pane far from the light holds its highlight at the edge until the light comes near.
+    const light = () => panes.map((pane) => pane.style.getPropertyValue('--reflection-x')).join()
     const samples = new Set<string>()
     const initialTransform = glass.style.transform
     try {
       for (let frame = 0; frame < 60; frame++) {
         list.scrollTop += 24
         await new Promise(requestAnimationFrame)
-        samples.add(glass.style.getPropertyValue('--reflection-x'))
+        samples.add(light())
       }
       return {
         geometryReads,

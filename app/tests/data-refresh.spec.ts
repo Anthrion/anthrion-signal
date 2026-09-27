@@ -1,5 +1,5 @@
 import { publicJSON } from './fixtures/publicData'
-import { test, expect } from '@playwright/test'
+import { test, expect, type Page } from '@playwright/test'
 import { markets } from '../src/lib'
 import { amountPresentation } from '../src/publicFacts'
 import { deadlineFact } from '../src/ResearchUI'
@@ -8,6 +8,9 @@ import type { Dataset } from '../src/types'
 test.beforeEach(async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' })
 })
+
+/** The refiners: glass cards on wide screens, a row of chips on phones. */
+const refiners = (page: Page) => page.locator('.discovery-card, .compact-refiners > button')
 
 test('@data published data renders real records across every market', async ({ page }, info) => {
   test.setTimeout(180000)
@@ -24,16 +27,16 @@ test('@data published data renders real records across every market', async ({ p
   )
   for (const market of markets) {
     await page.goto(`./?view=all&market=${market.id}`)
-    await expect(page.locator('.discovery-card')).toHaveCount(5)
+    await expect(refiners(page)).toHaveCount(6)
     const tab = page
       .getByRole('navigation', { name: 'Markets' })
       .getByRole('button', { name: market.name, exact: true })
     if (await tab.count()) await expect(tab).toHaveAttribute('aria-pressed', 'true')
     else await expect(page.locator('.more-markets-trigger')).toContainText(market.name)
-    await expect(page.locator('.discovery-value').first()).toHaveText(/^\d[\d,]*$/)
-    const count = Number(
-      (await page.locator('.discovery-value').first().textContent())!.replaceAll(',', ''),
-    )
+    // The first refiner, All Signals, counts the market's current records.
+    const total = refiners(page).first().locator('.discovery-value, small')
+    await expect(total).toHaveText(/^\d[\d,]*$/)
+    const count = Number((await total.textContent())!.replaceAll(',', ''))
     if (count === 0) {
       await expect(page.locator('.signal-row')).toHaveCount(0)
       continue
@@ -62,12 +65,17 @@ test('@data published data renders real records across every market', async ({ p
     expect(['https:', 'http:']).toContain(url.protocol)
     expect(url.username + url.password).toBe('')
     await expect(panel.locator('.record-action-dock')).toBeInViewport()
-    await panel.getByRole('button', { name: 'Full details', exact: true }).click()
-    await expect(page.getByRole('dialog', { name: 'Opportunity intelligence' })).toBeVisible()
-    await expect(page.getByRole('tab', { name: 'Overview', exact: true })).toBeVisible()
-    await expect(
-      page.getByRole('dialog').getByRole('link', { name: 'Open source notice' }),
-    ).toHaveAttribute('href', signal!.primary_source_url)
+    // The record is complete in one scroll: the dock's source button opens its source history.
+    const origin = signal!.provenance[0]
+    const sourceButton = panel.locator('.record-action-dock').getByRole('button')
+    await expect(sourceButton).toContainText(origin?.source_name || 'Source')
+    await sourceButton.click()
+    const history = panel.locator('.record-history')
+    await expect(history).toHaveAttribute('open', '')
+    if (origin)
+      await expect(history.locator('.provenance-list')).toContainText(
+        `Reference ${origin.release_id || 'Not published'}`,
+      )
   }
   await page.goto('./?view=all')
   await expect(page.locator('.signal-row').first()).toBeVisible()

@@ -33,6 +33,15 @@ async function fixture(page: Page) {
   return data
 }
 const row = (page: Page, id: string) => page.locator(`[data-signal-id="visibility-${id}"]`)
+/** A row's eye-icon button: `Hide <title>`, or `Unhide <title>` in the hidden lens. */
+const eye = (page: Page, id: string, action: 'Hide' | 'Unhide' = 'Hide') =>
+  row(page, id).getByRole('button', {
+    name: `${action} CRM implementation ${id.toUpperCase()}`,
+    exact: true,
+  })
+/** The header's Hidden button, named with the number of hidden records in this collection. */
+const hiddenButton = (page: Page) =>
+  page.getByRole('navigation', { name: 'Workspace' }).getByRole('button', { name: /^Hidden, \d+$/ })
 
 async function observeDeparture(target: Locator) {
   return target.evaluateHandle((element) => {
@@ -64,9 +73,12 @@ async function observeDeparture(target: Locator) {
   })
 }
 
-async function hiddenMode(page: Page) {
-  await page.getByRole('button', { name: /^Sort opportunities:/ }).click()
-  await page.getByRole('menuitemcheckbox', { name: 'Show hidden', exact: true }).click()
+/** Turns the hidden-records lens on (or off) with the header's Hidden button. */
+async function hiddenMode(page: Page, on = true) {
+  const button = hiddenButton(page)
+  await expect(button).toHaveAttribute('aria-pressed', String(!on))
+  await button.click()
+  await expect(button).toHaveAttribute('aria-pressed', String(on))
 }
 test.beforeEach(async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' })
@@ -78,12 +90,12 @@ test('hiding removes a record from results, selection and exports and Unhide res
 }) => {
   await page.goto('./?view=all')
   await expect(row(page, 'a')).toBeVisible()
+  await expect(hiddenButton(page)).toHaveAccessibleName('Hidden, 0')
   await row(page, 'a').getByRole('button', { name: 'Save opportunity in this browser' }).click()
-  await row(page, 'a')
-    .getByRole('checkbox', { name: 'Hide CRM implementation A', exact: true })
-    .click()
+  await eye(page, 'a').click()
   await expect(row(page, 'a')).toHaveCount(0)
   await expect(page.locator('.feed-heading .count-badge')).toHaveText('2')
+  await expect(hiddenButton(page)).toHaveAccessibleName('Hidden, 1')
   await expect(row(page, 'b').locator('.row-select')).toBeFocused()
   await expect(page.locator('.dismiss-dust')).toHaveCount(0)
   if (page.viewportSize()!.width > 900)
@@ -103,21 +115,14 @@ test('hiding removes a record from results, selection and exports and Unhide res
   expect(exported).not.toContain('CRM implementation A')
   await hiddenMode(page)
   await expect(page.locator('.row-title')).toHaveText(['CRM implementation A'])
-  await page.getByRole('button', { name: /^Sort opportunities:/ }).click()
-  await expect(page.getByRole('menuitemcheckbox', { name: 'Show hidden' })).toHaveAttribute(
-    'aria-checked',
-    'true',
-  )
   const accessibility = await new AxeBuilder({ page })
     .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
     .analyze()
   expect(accessibility.violations).toEqual([])
-  await page.keyboard.press('Escape')
-  await row(page, 'a')
-    .getByRole('checkbox', { name: 'Unhide CRM implementation A', exact: true })
-    .click()
+  await eye(page, 'a', 'Unhide').click()
   await expect(page.getByRole('heading', { name: 'No hidden signals' })).toBeVisible()
-  await hiddenMode(page)
+  await expect(hiddenButton(page)).toHaveAccessibleName('Hidden, 0')
+  await hiddenMode(page, false)
   await expect(page.locator('.row-title')).toHaveText([
     'CRM implementation A',
     'CRM implementation B',
@@ -137,13 +142,15 @@ test('Added today counts first collection, not updates, and hidden records stay 
     'CRM implementation A',
     'CRM implementation B',
   ])
-  await row(page, 'a').getByRole('checkbox').click()
+  await eye(page, 'a').click()
   await expect(page.locator('.feed-heading .count-badge')).toHaveText('1')
+  await expect(hiddenButton(page)).toHaveAccessibleName('Hidden, 1')
   await page
     .getByRole('navigation', { name: 'Markets' })
     .getByRole('button', { name: 'DACH', exact: true })
     .click()
   await expect(page.locator('.row-title')).toHaveText(['CRM implementation D'])
+  await expect(hiddenButton(page)).toHaveAccessibleName('Hidden, 0')
   await hiddenMode(page)
   await expect(page.getByRole('heading', { name: 'No hidden signals' })).toBeVisible()
   await page
@@ -151,6 +158,7 @@ test('Added today counts first collection, not updates, and hidden records stay 
     .getByRole('button', { name: 'United Kingdom', exact: true })
     .click()
   await expect(page.locator('.row-title')).toHaveText(['CRM implementation A'])
+  await expect(hiddenButton(page)).toHaveAccessibleName('Hidden, 1')
   await page.getByRole('textbox', { name: 'Search opportunities' }).fill('does-not-match')
   await expect(page.getByRole('heading', { name: 'No hidden signals' })).toBeVisible()
   await page.getByRole('button', { name: 'Clear search' }).click()
@@ -160,9 +168,7 @@ test('Added today counts first collection, not updates, and hidden records stay 
 test('Hide and Unhide persist immediately before their animations finish', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'no-preference' })
   await page.goto('./?view=all')
-  await row(page, 'a')
-    .getByRole('checkbox', { name: 'Hide CRM implementation A', exact: true })
-    .click()
+  await eye(page, 'a').click()
   expect(
     await page.evaluate(() => JSON.parse(localStorage.getItem('anthrion-hidden-v1')!)),
   ).toEqual(['visibility-a'])
@@ -170,9 +176,7 @@ test('Hide and Unhide persist immediately before their animations finish', async
   await expect(row(page, 'b')).toBeVisible()
   await expect(row(page, 'a')).toHaveCount(0)
   await hiddenMode(page)
-  await row(page, 'a')
-    .getByRole('checkbox', { name: 'Unhide CRM implementation A', exact: true })
-    .click()
+  await eye(page, 'a', 'Unhide').click()
   expect(
     await page.evaluate(() => JSON.parse(localStorage.getItem('anthrion-hidden-v1')!)),
   ).toEqual([])
@@ -189,7 +193,7 @@ test('hide dust is nonblank, rows close the gap, and Unhide slides the record le
   const initialY = (await row(page, 'b').boundingBox())!.y
   const hideMotion = await observeDeparture(row(page, 'a'))
   try {
-    await row(page, 'a').getByRole('checkbox').click()
+    await eye(page, 'a').click()
     await expect.poll(() => hideMotion.evaluate(({ samples }) => samples.removed)).toBe(true)
     expect(await hideMotion.evaluate(({ samples }) => samples)).toMatchObject({
       dustVisible: true,
@@ -206,7 +210,7 @@ test('hide dust is nonblank, rows close the gap, and Unhide slides the record le
   await expect(row(page, 'a')).toBeVisible()
   const unhideMotion = await observeDeparture(row(page, 'a'))
   try {
-    await row(page, 'a').getByRole('checkbox').click()
+    await eye(page, 'a', 'Unhide').click()
     await expect.poll(() => unhideMotion.evaluate(({ samples }) => samples.removed)).toBe(true)
     expect(await unhideMotion.evaluate(({ samples }) => samples.leftwardTravel)).toBeGreaterThan(8)
   } finally {
@@ -214,13 +218,16 @@ test('hide dust is nonblank, rows close the gap, and Unhide slides the record le
     await unhideMotion.dispose()
   }
   await expect(row(page, 'a')).toHaveCount(0)
-  await hiddenMode(page)
+  await hiddenMode(page, false)
   await expect(row(page, 'a')).toBeVisible()
 })
 
 test('glass reflections drift without rotating or resizing the refiners, and pause for reduced motion', async ({
   page,
 }) => {
+  // Phones show the refiners as a row of chips without glass, so the mobile project checks the
+  // glass at a tablet width.
+  if (page.viewportSize()!.width <= 900) await page.setViewportSize({ width: 1024, height: 768 })
   await page.emulateMedia({ reducedMotion: 'no-preference' })
   await page.goto('./')
   const object = page.locator('.discovery-object[data-category="live"]')
@@ -252,14 +259,14 @@ test('Unhide completes after a delayed animation start', async ({ page }) => {
   })
   const motion = await observeDeparture(row(page, 'a'))
   try {
-    await row(page, 'a').getByRole('checkbox').click()
+    await eye(page, 'a', 'Unhide').click()
     await expect.poll(() => motion.evaluate(({ samples }) => samples.removed)).toBe(true)
     expect(await motion.evaluate(({ samples }) => samples.leftwardTravel)).toBeGreaterThan(8)
   } finally {
     await motion.evaluate((observer) => observer.stop())
     await motion.dispose()
   }
-  await hiddenMode(page)
+  await hiddenMode(page, false)
   await expect(row(page, 'a')).toBeVisible()
 })
 
@@ -274,12 +281,13 @@ test('reduced motion interrupts a pending Unhide animation', async ({ page }) =>
   await page.addStyleTag({
     content: ".row-motion[data-departure='unhide'] > .signal-row { animation-delay: 450ms; }",
   })
-  await row(page, 'a').getByRole('checkbox').click()
+  await eye(page, 'a', 'Unhide').click()
   await expect(row(page, 'a')).toHaveAttribute('data-departure', 'unhide')
   await page.emulateMedia({ reducedMotion: 'reduce' })
-  await expect(page.locator('.discovery')).toHaveAttribute('data-light-motion', 'paused')
+  // The ambient light pauses in every layout (phones have no glass refiners).
+  await expect(page.locator('.ambient-glass')).toHaveAttribute('data-motion', 'paused')
   await expect(row(page, 'a')).toHaveCount(0)
-  await hiddenMode(page)
+  await hiddenMode(page, false)
   await expect(row(page, 'a')).toBeVisible()
 })
 
@@ -293,11 +301,15 @@ test('hidden choices synchronize between tabs without clearing saved opportuniti
   await page.goto('./?view=all')
   await other.goto('./?view=all')
   await expect(row(other, 'a')).toBeVisible()
-  await row(page, 'a').getByRole('checkbox').click()
+  await row(page, 'a').getByRole('button', { name: 'Save opportunity in this browser' }).click()
+  await eye(page, 'a').click()
   await expect(row(other, 'a')).toHaveCount(0)
+  await expect(hiddenButton(other)).toHaveAccessibleName('Hidden, 1')
   await hiddenMode(other)
-  await row(other, 'a').getByRole('checkbox').click()
+  await expect(row(other, 'a').getByRole('button', { name: 'Unsave opportunity' })).toBeVisible()
+  await eye(other, 'a', 'Unhide').click()
   await expect(row(page, 'a')).toBeVisible()
+  await expect(row(page, 'a').getByRole('button', { name: 'Unsave opportunity' })).toBeVisible()
   await other.close()
 })
 
@@ -314,12 +326,12 @@ test('blocked hidden storage and malformed preferences leave a usable workspace'
   })
   await page.goto('./?view=all')
   await expect(row(page, 'a')).toBeVisible()
-  await row(page, 'a').getByRole('checkbox').click()
+  await eye(page, 'a').click()
   await expect(row(page, 'a')).toHaveCount(0)
   await expect(page.getByText(/Hidden opportunities could not be saved/)).toBeVisible()
   await hiddenMode(page)
   await expect(row(page, 'a')).toBeVisible()
-  await row(page, 'a').getByRole('checkbox').click()
-  await hiddenMode(page)
+  await eye(page, 'a', 'Unhide').click()
+  await hiddenMode(page, false)
   await expect(row(page, 'a')).toBeVisible()
 })

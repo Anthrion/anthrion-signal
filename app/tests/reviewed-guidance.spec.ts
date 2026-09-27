@@ -31,9 +31,23 @@ const examples = [
   },
 ]
 
-async function chooseLanguage(scope: Locator, label: 'English' | 'Original') {
+// The results use the market row's English/Original switch.
+function languageOption(page: Page, label: 'English' | 'Original') {
+  return page
+    .getByRole('radiogroup', { name: 'Record language' })
+    .getByRole('radio', { name: label, exact: true })
+}
+
+async function chooseLanguage(page: Page, label: 'English' | 'Original') {
+  await languageOption(page, label).click()
+  await expect(languageOption(page, label)).toBeChecked()
+}
+
+// Research pages keep the glass language menu in their header.
+async function chooseResearchLanguage(scope: Locator, label: 'English' | 'Original') {
   await scope.getByRole('button', { name: /^Record language:/ }).click()
   await scope.getByRole('menuitemradio', { name: label, exact: true }).click()
+  await expect(scope.getByRole('button', { name: `Record language: ${label}` })).toBeVisible()
 }
 
 async function inspector(page: Page) {
@@ -45,7 +59,7 @@ async function inspector(page: Page) {
 }
 
 for (const example of examples) {
-  test(`@pr ${example.country} guidance follows persisted English/Original in the inspector, full details and Context`, async ({
+  test(`@pr ${example.country} guidance follows persisted English/Original in the record panel, Context and its full record`, async ({
     page,
   }) => {
     const data = datasetFixture()
@@ -107,9 +121,9 @@ for (const example of examples) {
     if (page.viewportSize()!.width <= 900)
       await page.getByRole('button', { name: 'Close panel' }).click()
 
-    await chooseLanguage(page.locator('body'), 'Original')
+    await chooseLanguage(page, 'Original')
     await page.reload()
-    await expect(page.getByRole('button', { name: 'Record language: Original' })).toBeVisible()
+    await expect(languageOption(page, 'Original')).toBeChecked()
     panel = await inspector(page)
     const checkOriginal = async (scope: Locator) => {
       const guidance = scope.locator('.recommended-approach')
@@ -119,15 +133,21 @@ for (const example of examples) {
       await expect(guidance).not.toContainText(englishApproach)
       await expect(guidance.locator('p').first()).toHaveAttribute('lang', example.code)
     }
-    await checkOriginal(panel)
-    await panel.getByRole('button', { name: 'Full details', exact: true }).click()
-    const details = page.getByRole('dialog', { name: 'Opportunity intelligence' })
-    await checkOriginal(details)
-    await details.getByRole('button', { name: 'Back to record' }).click()
-    await panel.locator('.research-title-link').click()
+    // The record panel is the one complete record: guidance and source text share one scroll.
+    await checkOriginal(panel.locator('.inspector-scroll'))
+    await expect(panel.locator('.inspector-scroll .inspector-summary')).toContainText(
+      example.description,
+    )
+    await panel.locator('.inspector-heading .research-title-link').click()
     const context = page.getByRole('dialog', { name: 'Opportunity research' }).last()
     await checkOriginal(context.locator('.research-current'))
-    await chooseLanguage(context, 'English')
+    // The complete record also opens as a full page from Context.
+    await context.locator('.research-current .record-title-link').click()
+    const fullRecord = page.getByRole('dialog', { name: 'Full record', exact: true })
+    await checkOriginal(fullRecord.locator('.console-detail'))
+    await fullRecord.getByRole('button', { name: 'Back', exact: true }).click()
+    await expect(fullRecord).toHaveCount(0)
+    await chooseResearchLanguage(context, 'English')
     await expect(context.locator('.research-current .recommended-approach')).toContainText(
       englishApproach,
     )
@@ -139,7 +159,7 @@ for (const example of examples) {
     )
     await context.getByRole('button', { name: 'Back to results' }).click()
     await page.reload()
-    await expect(page.getByRole('button', { name: 'Record language: English' })).toBeVisible()
+    await expect(languageOption(page, 'English')).toBeChecked()
     panel = await inspector(page)
     await expect(panel.locator('.recommended-approach')).toContainText(englishApproach)
     expect(providerRequests).toEqual([])

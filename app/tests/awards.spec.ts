@@ -83,18 +83,46 @@ test.beforeEach(async ({ page }) => {
   await page.clock.setFixedTime(new Date('2026-09-18T12:00:00Z'))
 })
 
-test('Awarded is below Capability A-Z, lazy loads and preserves capability priority', async ({
+/** The refiners: glass cards on wide screens, a row of chips on phones. */
+const refiners = (page: Page) => page.locator('.discovery-card, .compact-refiners > button')
+const refiner = (page: Page, label: string) => refiners(page).filter({ hasText: label })
+/** Each refiner's count, in order. The labels themselves carry no digits. */
+const refinerCounts = async (page: Page) =>
+  (await refiners(page).allTextContents()).map((text) => text.replace(/\D/g, ''))
+
+test('Awarded is the sixth refiner, lazy loads and preserves capability priority', async ({
   page,
 }, info) => {
   const counter = await fixture(page)
   await page.goto('./?view=all')
   await expect(page.locator('.row-select').first()).toBeVisible()
   expect(counter.requests()).toBe(0)
-  const liveCounts = await page.locator('.discovery-value').allTextContents()
+  // Awarded follows the five live refiners and, until its records load, shows the market's
+  // published total. The Sort menu only sorts.
+  await expect(refiners(page)).toHaveText([
+    /All Signals/,
+    /Live Opportunities/,
+    /Pre-market/,
+    /Closing Soon/,
+    /Added today/,
+    /Awarded/,
+  ])
+  await expect(refiner(page, 'Awarded')).toHaveAttribute('aria-pressed', 'false')
+  const counts = await refinerCounts(page)
+  expect(counts[5]).toBe('4')
+  const liveCounts = counts.slice(0, 5)
   await page.getByRole('button', { name: 'Sort opportunities: Most recent' }).click()
-  const labels = await page.getByRole('menuitemradio').allTextContents()
-  expect(labels.indexOf('Awarded')).toBe(labels.indexOf('Capability A-Z') + 1)
-  await page.getByRole('menuitemradio', { name: 'Awarded', exact: true }).click()
+  await expect(page.getByRole('menuitemradio')).toHaveText([
+    'Most recent',
+    'Recently updated',
+    'Soonest deadline',
+    'Highest value',
+    'Lowest value',
+    'Capability A-Z',
+  ])
+  await page.keyboard.press('Escape')
+  expect(counter.requests()).toBe(0)
+  await refiner(page, 'Awarded').click()
   await expect(page.locator('.row-title')).toHaveText([
     'Customer platform implementation',
     'AI support assistant',
@@ -102,7 +130,11 @@ test('Awarded is below Capability A-Z, lazy loads and preserves capability prior
   ])
   expect(counter.requests()).toBe(1)
   await expect(page).toHaveURL(/view=awards/)
-  expect(await page.locator('.discovery-value').allTextContents()).toEqual(liveCounts)
+  await expect(refiner(page, 'Awarded')).toHaveAttribute('aria-pressed', 'true')
+  // The live refiners keep their counts; Awarded now counts the awarded records it lists.
+  await expect.poll(() => refinerCounts(page)).toEqual([...liveCounts, '3'])
+  // Awards have a single meaningful order, so the Sort control names it instead of a menu.
+  await expect(page.getByRole('button', { name: 'Sorted by Latest awards' })).toBeDisabled()
   await page.locator('.row-select').first().click()
   const panel = page.locator('.console-detail:visible')
   await expect(panel).toContainText('Example Delivery Ltd')
@@ -121,7 +153,7 @@ test('Awarded is below Capability A-Z, lazy loads and preserves capability prior
   if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
     await page.screenshot({ path: `../artifacts/awarded-${info.project.name}.png` })
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([])
-  // A menu sort choice returns to the normal feed. Mobile detail is closed first.
+  // Mobile detail is closed before returning to the list.
   if (info.project.name === 'mobile')
     await page.getByRole('button', { name: 'Close panel' }).click()
   await page
@@ -129,18 +161,19 @@ test('Awarded is below Capability A-Z, lazy loads and preserves capability prior
     .first()
     .getByRole('button', { name: 'Save opportunity in this browser' })
     .click()
-  await expect(page.getByRole('button', { name: /Saved opportunities/ })).toContainText('1')
+  await expect(page.getByRole('button', { name: /Saved opportunities/ })).toHaveAccessibleName(
+    'Saved opportunities, 1',
+  )
   await page.getByRole('button', { name: /Saved opportunities/ }).click()
   await expect(page.locator('.row-title')).toHaveText(['Customer platform implementation'])
   await page.reload()
   await expect(page.locator('.row-title')).toHaveText(['Customer platform implementation'])
-  await page.getByRole('button', { name: 'Sort opportunities: Most recent' }).click()
-  await page.getByRole('menuitemradio', { name: 'Awarded', exact: true }).click()
+  await refiner(page, 'Awarded').click()
   await page.getByRole('textbox', { name: 'Search opportunities' }).fill('AI support')
   await expect(page.locator('.row-title')).toHaveText(['AI support assistant'])
   await page.getByRole('button', { name: 'Clear search' }).click()
-  await page.getByRole('button', { name: 'Sort opportunities: Awarded' }).click()
-  await page.getByRole('menuitemradio', { name: 'Most recent', exact: true }).click()
+  // Another refiner returns to the normal feed.
+  await refiner(page, 'All Signals').click()
   await expect(page).not.toHaveURL(/view=awards/)
   await expect(page.locator('.row-title')).toHaveCount(2)
 })

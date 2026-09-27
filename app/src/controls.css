@@ -1,0 +1,240 @@
+/* Shared controls: segmented choices, search options, the filter sheet and reduced effects. */
+.segmented {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  padding: 2px;
+  border: 1px solid var(--line-strong);
+  border-radius: 7px;
+  background: color-mix(in srgb, var(--bg) 70%, transparent);
+}
+.segmented > button {
+  min-height: 30px;
+  padding: 0 11px;
+  border-radius: 5px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.2;
+  white-space: nowrap;
+  transition:
+    background 140ms,
+    color 140ms;
+}
+.segmented > button:hover {
+  color: var(--text);
+  background: var(--surface-hover);
+}
+.segmented > button[aria-checked='true'] {
+  color: var(--mint);
+  background: var(--mint-bg);
+  box-shadow:
+    inset 0 1px 0 #e6ffc51c,
+    inset 0 0 0 1px var(--mint-line);
+}
+.segmented > button:focus-visible {
+  outline-offset: 1px;
+}
+
+.workspace-tools .needs-attention {
+  position: relative;
+}
+.workspace-tools .needs-attention::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  right: 5px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--amber);
+  box-shadow: 0 0 0 2px var(--bg);
+}
+
+/* Search options inside the field */
+.workspace-search .search-box {
+  position: relative;
+  cursor: text;
+}
+.search-scope {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  margin-right: -6px;
+}
+.search-scope-trigger {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  color: var(--dim);
+}
+.search-scope-trigger:hover,
+.search-scope-trigger[aria-expanded='true'] {
+  color: var(--text);
+  background: var(--surface-hover);
+}
+.search-scope-trigger[data-custom]::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  right: 3px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--mint);
+}
+.search-scope-panel {
+  position: absolute;
+  z-index: 30;
+  top: calc(100% + 12px);
+  right: -6px;
+  display: grid;
+  gap: 14px;
+  width: max-content;
+  max-width: calc(100vw - 32px);
+  padding: 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 9px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  cursor: default;
+  animation: language-menu-in 140ms ease-out;
+}
+.search-scope-panel fieldset {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+.search-scope-panel legend {
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+/* Filters sheet */
+.modal.sheet {
+  width: 440px;
+  max-width: 100vw;
+  height: 100dvh;
+  max-height: 100dvh;
+  margin: 0 0 0 auto;
+  border-radius: 0;
+  border-width: 0 0 0 1px;
+  animation: drawer-in 0.22s ease-out;
+}
+.modal.sheet[open] {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.modal.sheet::backdrop {
+  background: #0c110f59;
+  backdrop-filter: none;
+}
+.modal-top-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-right: -8px;
+}
+.filter-sheet {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  display: grid;
+  align-content: start;
+  gap: 22px;
+  padding: 24px 26px 30px;
+}
+.filter-field {
+  display: grid;
+  gap: 9px;
+  min-width: 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+.filter-field > .segmented {
+  justify-self: start;
+}
+.filter-field input,
+.filter-field select {
+  width: 100%;
+  min-width: 0;
+  height: 40px;
+  padding: 0 11px;
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  color: var(--text);
+  background: var(--bg);
+  font-size: 13px;
+}
+.filter-value-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) minmax(128px, auto);
+  align-items: center;
+  gap: 8px;
+}
+.filter-value-row:has(input[type='date']) {
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+}
+.filter-more {
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+}
+.filter-more summary {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 32px;
+  color: var(--text);
+  font-size: 13px;
+  cursor: pointer;
+  list-style: none;
+}
+.filter-more summary::-webkit-details-marker {
+  display: none;
+}
+.filter-more-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 14px;
+  padding-top: 16px;
+}
+.modal.sheet .modal-actions {
+  flex: 0 0 auto;
+  position: static;
+  padding-bottom: max(19px, env(safe-area-inset-bottom));
+}
+
+/* Effects: Reduced mirrors the operating-system reduced-motion rules. */
+:root[data-effects='reduced'] *,
+:root[data-effects='reduced'] *::before,
+:root[data-effects='reduced'] *::after {
+  animation-duration: 0.01ms !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+:root[data-effects='reduced'] .ambient-glass {
+  display: none;
+}
+
+@media (max-width: 520px) {
+  .filter-sheet {
+    padding: 20px 18px 26px;
+  }
+  .filter-value-row {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  }
+  .filter-value-row select {
+    grid-column: 1 / -1;
+  }
+  .filter-more-grid {
+    grid-template-columns: 1fr;
+  }
+}
