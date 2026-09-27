@@ -8,12 +8,15 @@ from typing import Literal
 
 from pydantic import Field, field_validator, model_validator
 
+from .attachments import hydrate_cached_documents
 from .discovery import is_public_opportunity
 from .models import StrictModel
-from .utils import digest, read_json
+from .public_context import backfill_retained_facts
+from .utils import digest, read_json, unique
 
 
 GUIDANCE_COUNTRIES = frozenset({"GB", "US", "CA", "DE", "AT", "CH"})
+INCLUSION_MARKER = "Reviewed inclusion"
 LANGUAGE_CODES = frozenset((
     "aa ab ae af ak am an ar as av ay az ba be bg bh bi bm bn bo br bs ca ce ch co cr cs cu cv cy "
     "da de dv dz ee el en eo es et eu fa ff fi fj fo fr fy ga gd gl gn gu gv ha he hi ho hr ht hu hy hz "
@@ -107,12 +110,14 @@ class Guidance(StrictModel):
 class RecordReview(StrictModel):
     id: str = Field(pattern=r"^[A-Za-z0-9_-]{1,100}$")
     source_hash: str = Field(pattern=r"^[a-f0-9]{64}$")
-    decision: Literal["exclude", "guide"]
+    decision: Literal["exclude", "guide", "include"]
     reviewed_at: datetime
     reviewed_by: str = Field(min_length=3)
     reason: str = Field(min_length=12, max_length=1600)
     evidence: list[ReviewEvidence] = Field(default_factory=list, max_length=12)
     guidance: Guidance | None = None
+    # Feed group for a restored notice; its capability tags stay the classifier's.
+    priority: Literal["platform", "ai", "other"] | None = None
 
     @model_validator(mode="after")
     def valid_decision(self):
@@ -122,6 +127,10 @@ class RecordReview(StrictModel):
             raise ValueError("An exclusion needs source evidence and cannot recommend delivery")
         if self.decision == "guide" and (not self.guidance or self.guidance.source_hash != self.source_hash):
             raise ValueError("Guidance must refer to the reviewed scope")
+        if self.decision == "include" and (not self.evidence or self.priority is None or self.guidance is not None):
+            raise ValueError("A restoration needs source evidence and a delivery priority, and cannot recommend delivery")
+        if self.decision != "include" and self.priority is not None:
+            raise ValueError("Only a restoration sets a delivery priority")
         return self
 
 
@@ -245,3 +254,25 @@ def apply_reviews(signals, reviews, *, now=None, guidance=True):
             signal.reviewed_guidance = review.guidance.model_dump()
         selected.append(signal)
     return selected
+
+
+def apply_inclusions(root, signals, reviews, state, threshold):
+    """Admit exactly reviewed notices as candidates after the classifier has run.
+
+    Reviewers hash exported packets: retained facts backfilled, cached documents
+    hydrated. Classification can hold the raw record, so match that view on a copy.
+    Only relevance changes; lifecycle, status and award rules are applied later.
+    """
+    selected = [signal for signal in signals if signal.id in reviews]
+    if not selected:
+        return
+    views = [signal.model_copy(deep=True) for signal in selected]
+    backfill_retained_facts(views, state)
+    hydrate_cached_documents(root, views)
+    for signal, view in zip(selected, views, strict=True):
+        review = matching_review(view, reviews)
+        if review and review.decision == "include":
+            signal.prefilter_score = max(signal.prefilter_score, threshold)
+            signal.exclusion_reasons, signal.scope_evidence = [], []
+            signal.delivery_priority = review.priority
+            signal.prefilter_matches = unique([INCLUSION_MARKER, *signal.prefilter_matches])[:40]

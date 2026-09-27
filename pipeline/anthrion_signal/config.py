@@ -1,3 +1,4 @@
+import json
 import os
 from pathlib import Path
 
@@ -17,6 +18,18 @@ class UniqueKeyLoader(yaml.SafeLoader):
                 raise ValueError(f"Duplicate configuration key: {key}")
             seen.add(key)
         return super().construct_mapping(node, deep=deep)
+
+
+def reviewed_inclusions(root: Path):
+    """Restoration identities for the discovery signature; other ledger edits never replay.
+
+    Deliberately schema-free: the complete ledger is validated where it is applied.
+    """
+    path = root / "config/record_reviews.json"
+    ledger = json.loads(path.read_bytes()) if path.exists() else {}
+    rows = ledger.get("records", []) if isinstance(ledger, dict) else []
+    return sorted(([row.get("id"), row.get("source_hash"), row.get("priority")] for row in rows
+                   if isinstance(row, dict) and row.get("decision") == "include"), key=json.dumps)
 
 
 def load_config(root: Path):
@@ -42,6 +55,7 @@ def load_config(root: Path):
     result["search_terms"]["discovery_phrases"] = list(dict.fromkeys(
         p for c in capabilities if c["id"] not in ("pipeline", "staffing")
         for p in c.get("explicit", []) + c.get("needs", []) + c.get("aliases", [])))
+    result["reviewed_inclusions"] = reviewed_inclusions(root)
     result["runtime"] = {
         "model": "",
         "max_ai_calls": 0,

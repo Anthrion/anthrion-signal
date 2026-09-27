@@ -20,7 +20,7 @@ from .notice_dates import response_deadline_instant
 from .public_context import backfill_retained_facts, public_signal
 from .public_feed import atomic_public_json, export_current
 from .retention import archive_expired, restore_matching
-from .record_reviews import apply_reviews, load_reviews
+from .record_reviews import INCLUSION_MARKER, apply_reviews, load_reviews
 from .translation import available_translations
 from .utils import (atomic_json, atomic_retained_bytes, atomic_retained_json, digest,
                     jsonl_lines, parse_date, read_json, read_retained_bytes, retained_path)
@@ -127,7 +127,7 @@ def prepare_current(root, *, save_cache=False):
         data.signals, _, _ = reconcile(canonical_signals + restored, recovered)
         backfill_retained_facts(data.signals, state)
     translations = available_translations(root, data.signals)
-    cache = ClassificationCache(root, config)
+    cache = ClassificationCache(root, config, state)
     cache.classify(data.signals, translations)
     if save_cache:
         cache.save()
@@ -160,6 +160,7 @@ def prepare_current(root, *, save_cache=False):
     visible_ids = {signal.id for signal in data.signals}
     data.translations = {key: value for key, value in data.translations.items() if key in visible_ids}
     data.run["reviewed_exclusions"] = before_reviews - len(data.signals)
+    data.run["reviewed_inclusions"] = sum(INCLUSION_MARKER in s.prefilter_matches for s in data.signals)
     data.run["public_signals"] = len(data.signals)
     return data, canonical_signals, config
 
@@ -238,7 +239,7 @@ def run(root, args):
     replayed = read_rejected(root) if replay else []
     # Current retrieval follows replay so newer status updates remain authoritative.
     incoming = replayed + incoming
-    cache = ClassificationCache(root, config)
+    cache = ClassificationCache(root, config, state)
     cache.classify(incoming, available_translations(root, incoming))
     # Replayed source versions already have durable evidence; do not duplicate
     # the entire rejection history into a new date partition on every release.
@@ -284,6 +285,7 @@ def run(root, args):
         "raw_records": raw_count, "canonical_signals": len(signals), "candidates_shortlisted": sum(s.prefilter_score >= runtime["ai_min_score"] and not s.related_signal_id for s in current),
         "public_signals": len(current), "suppressed_unavailable_signals": len(signals) - len(available),
         "suppressed_scope_signals": len(available) - len(current),
+        "reviewed_inclusions": sum(INCLUSION_MARKER in s.prefilter_matches for s in current),
         "new_public_signals": sum(s.id not in known_ids for s in current),
         **stats, **ai_stats, "high_fit_signals": sum(s.fit_score is not None and s.fit_score >= config["scoring"]["recommendation"]["strong_fit"] for s in current),
         "content_digest": content_digest, "content_changed": not same_content, "deployment_status": "awaiting_build",

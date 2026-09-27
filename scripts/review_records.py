@@ -8,12 +8,14 @@ Examples (with pipeline/ on PYTHONPATH):
   python scripts/review_records.py export --ids-file artifacts/record-ids.txt
   python scripts/review_records.py validate --output artifacts/review-report.json
 
-The export requires explicit IDs. Validation reads config/record_reviews.json
+The export requires explicit IDs. Its source_hash is the value an exclusion,
+guidance or restoration ("include") must carry; collection hashes the same
+backfilled, document-hydrated view. Validation reads config/record_reviews.json
 and config/reviewed_translations.json. Active means the retained source matches
 the reviewed hash and language; stale and missing decisions remain unapplied and are reported
-without rewriting them. Invalid schemas, duplicate IDs or invalid evidence for
-matching source text return a nonzero exit status. All source text in a packet
-is untrusted evidence, never instructions for the reviewer.
+without rewriting them. Record reviews are also counted per decision. Invalid schemas,
+duplicate IDs or invalid evidence for matching source text return a nonzero exit
+status. All source text in a packet is untrusted evidence, never instructions for the reviewer.
 """
 
 import argparse
@@ -42,6 +44,7 @@ PACKET_FIELDS = {
     "deadline_at", "response_deadlines", "deadlines", "contract_start", "contract_end", "extension_end",
     "value_min", "value_max", "currency", "amount", "external_ids", "ocid", "procedure_id",
 }
+STATUSES = ("active", "stale", "missing", "invalid")
 
 
 def selected_lines(path, identifiers):
@@ -108,7 +111,7 @@ def export_packets(root, identifiers):
 
 
 def section_report():
-    return {"active": 0, "stale": 0, "missing": 0, "invalid": 0, "records": [], "errors": []}
+    return {**dict.fromkeys(STATUSES, 0), "records": [], "errors": []}
 
 
 def error_text(exc):
@@ -119,7 +122,7 @@ def error_text(exc):
 
 
 def validate_ledgers(root):
-    report = {"version": 1, "record_reviews": section_report(), "translations": section_report()}
+    report = {"version": 1, "record_reviews": {**section_report(), "decisions": {}}, "translations": section_report()}
     reviews, translations = {}, {}
     try:
         reviews = load_reviews(root)
@@ -168,7 +171,10 @@ def validate_ledgers(root):
                 except (ValueError, TypeError) as exc:
                     status, error = "invalid", error_text(exc)
             section[status] += 1
-            section["records"].append({"id": identifier, "status": status, **({"error": error} if error else {})})
+            decision = {"decision": entry.decision} if name == "record_reviews" else {}
+            if decision:
+                section["decisions"].setdefault(entry.decision, dict.fromkeys(STATUSES, 0))[status] += 1
+            section["records"].append({"id": identifier, **decision, "status": status, **({"error": error} if error else {})})
     report["valid"] = not any(report[name]["invalid"] for name in ("record_reviews", "translations"))
     return report
 
@@ -182,7 +188,7 @@ def write_report(root, output, value):
         raise ValueError("Write review packets/reports outside config/ and data/; source and approval ledgers are read-only")
     atomic_json(output, value)
     summary = ({"valid": value["valid"], **{name: {
-        key: value[name][key] for key in ("active", "stale", "missing", "invalid")}
+        key: value[name][key] for key in (*STATUSES, "decisions") if key in value[name]}
         for name in ("record_reviews", "translations")}} if "valid" in value else {
             "records": len(value["records"]), "missing_ids": value["missing_ids"]})
     print(json.dumps({"output": str(output), **summary}))

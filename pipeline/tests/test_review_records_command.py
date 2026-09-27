@@ -147,7 +147,8 @@ def test_language_metadata_drift_is_reported_without_rewriting_review(command, t
     assert result["valid"]
     assert result["record_reviews"][status] == 1
     assert result["record_reviews"]["invalid"] == 0
-    assert result["record_reviews"]["records"] == [{"id": signal.id, "status": status}]
+    assert result["record_reviews"]["records"] == [{"id": signal.id, "decision": "guide", "status": status}]
+    assert result["record_reviews"]["decisions"] == {"guide": {**dict.fromkeys(command.STATUSES, 0), status: 1}}
     assert {path: path.read_bytes() for path in before} == before
 
 

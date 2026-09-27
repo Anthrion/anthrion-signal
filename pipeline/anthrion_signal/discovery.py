@@ -23,10 +23,14 @@ RECIPIENT_ORGANISATION = re.compile(
 
 
 def discovery_signature(config):
-    """Replay after policy or engine changes, even without a manual version bump."""
+    """Replay after policy or engine changes, even without a manual version bump.
+
+    Reviewed restorations are policy: only a replay recovers a rejected notice.
+    """
     directory = Path(__file__).parent
     modules = ("discovery.py", "capability_matching.py", "procurement_scope.py", "vocabulary.py", "translation.py", "notice_dates.py")
-    return digest({"policy": {key: config[key] for key in ("company_profile", "search_terms", "capabilities")},
+    policy = {key: config[key] for key in ("company_profile", "search_terms", "capabilities")}
+    return digest({"policy": {**policy, "reviewed_inclusions": config.get("reviewed_inclusions", [])},
                    "engine": {name: (directory / name).read_text(encoding="utf-8") for name in modules}})
 
 
