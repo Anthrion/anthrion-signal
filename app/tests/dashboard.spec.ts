@@ -1699,7 +1699,7 @@ test('no WebGL retains a complete functional static-border interface', async ({ 
   expect(errors).toEqual([])
 })
 
-test('dark console, menus, evidence and sources pass accessibility checks', async ({
+test('both themes keep the console, menus, evidence and sources accessible', async ({
   page,
 }, info) => {
   test.setTimeout(180000)
@@ -1723,9 +1723,10 @@ test('dark console, menus, evidence and sources pass accessibility checks', asyn
       })),
     ).toEqual([])
   }
-  for (const theme of ['dark']) {
+  for (const theme of ['dark', 'light']) {
     await page.goto('./')
     await ready(page)
+    if (theme === 'light') await page.getByRole('button', { name: 'Switch to light theme' }).click()
     await audit(`${theme} console`)
     await page.getByRole('button', { name: 'Sort opportunities: Most recent' }).click()
     await audit(`${theme} sort`)

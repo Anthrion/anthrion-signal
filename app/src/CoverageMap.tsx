@@ -64,7 +64,7 @@ export default function CoverageMap({
         <svg
           viewBox={`0 0 ${width} ${height}`}
           role="img"
-          aria-label={`Estimated coverage: ${ranked
+          aria-label={`Estimated source reach: ${ranked
             .map((c) => `${c.name} about ${Math.round(c.estimate!)}%`)
             .join(', ')}`}
         >
@@ -161,8 +161,8 @@ export default function CoverageMap({
           </div>
         )}
       </div>
-      <div className="coverage-legend" aria-label="Estimated coverage">
-        <span className="coverage-legend-title">Estimated coverage</span>
+      <div className="coverage-legend" aria-label="Estimated source reach">
+        <span className="coverage-legend-title">Estimated source reach</span>
         <ol>
           {labels.map((label, index) => (
             <li key={label}>
@@ -175,7 +175,9 @@ export default function CoverageMap({
             Not covered
           </li>
         </ol>
-        <small className="coverage-basis">Based on reviewed sources</small>
+        <small className="coverage-basis">
+          Source availability before collection limits and relevance filtering.
+        </small>
       </div>
       <details className="coverage-table">
         <summary>

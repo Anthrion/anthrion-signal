@@ -756,9 +756,16 @@ export default function App() {
   const shortcut = useRef<(event: KeyboardEvent) => void>(() => {})
   const handleShortcut = (event: KeyboardEvent) => {
     const target = event.target as HTMLElement
-    if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.altKey) return
-    if (target.closest?.('input, textarea, select, [contenteditable="true"]')) return
-    if (document.querySelector('dialog[open]')) return
+    if (
+      event.defaultPrevented ||
+      event.isComposing ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.altKey
+    )
+      return
+    if (target.isContentEditable || target.closest?.('input, textarea, select')) return
+    if (document.querySelector('dialog[open], [role="menu"], [role="dialog"]')) return
     const key = event.key.toLowerCase()
     if (key === '/') {
       event.preventDefault()
@@ -1727,9 +1734,14 @@ function RecordDetails({ signal: s }: { signal: Signal }) {
     const panel = historyRef.current
     if (historyFor !== s.id || !panel?.dataset.reveal) return
     delete panel.dataset.reveal
-    panel.scrollIntoView({ block: 'start', behavior: 'smooth' })
+    panel.scrollIntoView({ block: 'start', behavior: calm() ? 'auto' : 'smooth' })
   }, [historyFor, s.id])
   const events = s.deadlines || []
+  const headlineEvent = hasAwardOutcome(s) ? undefined : selectedResponseDeadlineEvent(s)
+  // A single response date already appears above; questions, superseded dates and
+  // lot-specific cutoffs still need their own label, provenance and calendar action.
+  const additionalDates =
+    events.length > 1 || events.some((event) => event !== headlineEvent || event.lot_id)
   // Until Signal sees a change, last_material_update carries the notice's own date, which
   // can precede the first collection (a notice published before its market was added).
   const updated = Date.parse(s.last_material_update)
@@ -1759,7 +1771,7 @@ function RecordDetails({ signal: s }: { signal: Signal }) {
   )
   return (
     <div className="record-details">
-      {events.length > 1 && (
+      {additionalDates && (
         <section className="record-section">
           <h3>Key dates</h3>
           <DeadlineEvents signal={s} />
@@ -1925,7 +1937,8 @@ function ConsoleDetail({ signal: s, data }: { signal: Signal; data: Dataset }) {
               onClick={() => {
                 const panel = ref.current?.querySelector<HTMLDetailsElement>('.record-history')
                 if (!panel) return
-                if (panel.open) panel.scrollIntoView({ block: 'start', behavior: 'smooth' })
+                if (panel.open)
+                  panel.scrollIntoView({ block: 'start', behavior: calm() ? 'auto' : 'smooth' })
                 else {
                   // The history renders when it opens; it scrolls into view once rendered.
                   panel.dataset.reveal = 'true'
@@ -2256,7 +2269,7 @@ function FilterPanel({
               'Source',
               'source',
               data.sources
-                .filter((s) => s.enabled || data.signals.some((record) => record.source === s.id))
+                .filter((s) => s.enabled || facets.source.has(s.id) || f.source === s.id)
                 .map((s) => ({ value: s.id, label: s.name })),
               facets.source,
             )}
