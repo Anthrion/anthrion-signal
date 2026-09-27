@@ -1,13 +1,25 @@
 type Point = { x: number; y: number }
 type GlassPose = Point & { tilt?: number }
 
-export function reflectionLamp(lamp: Point, time: number, reducedMotion: boolean) {
+// The light's travelling speed across the glass, in pixels per second.
+const lampSpeed = 220 * 0.33
+
+/**
+ * Where the moving light is. Given a span (the row of cards), it travels the whole row and
+ * back at the same pace it has always moved; without one it sways around the brand.
+ */
+export function reflectionLamp(
+  lamp: Point,
+  time: number,
+  reducedMotion: boolean,
+  span?: { from: number; to: number },
+) {
   if (reducedMotion) return lamp
   const phase = time / 1000
-  return {
-    x: lamp.x + Math.sin(phase * 0.33) * 220,
-    y: lamp.y + Math.cos(phase * 0.23) * 55,
-  }
+  const y = lamp.y + Math.cos(phase * 0.23) * 55
+  const reach = span ? (span.to - span.from) / 2 : 0
+  if (!span || reach <= 220) return { x: lamp.x + Math.sin(phase * 0.33) * 220, y }
+  return { x: span.from + reach - Math.cos((phase * lampSpeed) / reach) * reach, y }
 }
 
 export function scrollMovesSurface(event: Event, surface: Element, brand: Element | null) {

@@ -1,10 +1,20 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import {
+  lazy,
+  Suspense,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useDeferredValue,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 import type { ReactNode } from 'react'
 import { AnimatePresence, motion, MotionConfig } from 'motion/react'
 import {
   ArrowDownToLine,
-  ArrowLeft,
   ArrowRight,
+  Award,
   Bookmark,
   BookmarkCheck,
   Building2,
@@ -12,46 +22,57 @@ import {
   CalendarPlus,
   CalendarDays,
   Check,
+  ChevronDown,
   Clock3,
-  Copy,
-  ExternalLink,
+  Eye,
+  EyeOff,
   FileSearch,
   FileText,
   Globe2,
+  History,
+  Languages,
   Layers3,
-  PanelTopClose,
-  PanelTopOpen,
+  Link2,
+  Menu,
   Radar,
-  RefreshCw,
   Search,
   SlidersHorizontal,
   Target,
   X,
 } from 'lucide-react'
 import type { Dataset, DisplayLanguage, EnglishText, Filters, Signal } from './types'
-import { TranslationProvider, useSignalText } from './Translation'
+import { TranslationProvider, useSignalText, useTranslations } from './Translation'
 import { RecommendedApproach } from './RecommendedApproach'
 import {
   AmbientGlass,
   BrandSignature,
+  ThemeToggle,
   MarketSection,
   MetalEdge,
+  SearchScope,
   SortMenu,
   SourceNoticeLink,
+  useNarrowScreen,
   useReducedMotion,
 } from './WorkspaceUI'
 import { DiscoveryCarousel } from './DiscoveryCarousel'
+import { RollingNumber } from './RollingNumber'
+import { SwitchGroup } from './Switch'
+import { calm, pop } from './delight'
+import { toggleTheme } from './theme'
 import { VirtualSignalList } from './VirtualSignalList'
 import { DismissDust } from './DismissDust'
 import { useAwardHistory } from './useAwardHistory'
 import { historySupplierScope, supplierHistoryMarket } from './supplierResearch'
 import { distinctSources } from './researchPresentation'
 import { useOpportunityData, useSignalDetail } from './useOpportunityData'
+import { selectMarketEntries } from './dataClient'
 import {
   initialWorkspaceFilters,
   rememberLastView,
   usePersonalWorkspace,
 } from './personalWorkspace'
+import { briefText, getPreferences, usePreferences } from './preferences'
 import { deadlineEventCalendarURL } from './publicFacts'
 import {
   BuyerLink,
@@ -73,14 +94,15 @@ import {
   csv,
   countryLabels,
   isCombinedMarket,
-  currencyOptions,
   date,
+  daysLeft,
   defaults,
   download,
   explainSearch,
   filterSignals,
   gmailDraftURL,
   googleCalendarURL,
+  hasPublishedAmount,
   isAvailableOpportunity,
   isHistoricalAward,
   hasAwardOutcome,
@@ -93,17 +115,25 @@ import {
   marketIsEnabled,
   readFilters,
   normaliseFilters,
+  recordURL,
+  safeURL,
   selectedResponseDeadlineEvent,
   typeLabels,
+  warmSearchText,
 } from './lib'
 
 const navItems = [
   { id: 'all', label: 'All Signals', icon: Layers3 },
-  { id: 'live', label: 'Live Opportunities', icon: Target },
+  { id: 'live', label: 'Live Opportunities', short: 'Live', icon: Target },
   { id: 'early', label: 'Pre-market', icon: Radar },
   { id: 'closing', label: 'Closing Soon', icon: CalendarClock },
   { id: 'today', label: 'Added today', icon: CalendarDays },
 ]
+const refinerItems = [...navItems, { id: 'awards', label: 'Awarded', icon: Award }]
+const appURL = () => new URL(import.meta.env.BASE_URL, window.location.origin).href
+// The menu and its map load on first use; pointing at the menu button prefetches them.
+const loadMenu = () => import('./WorkspaceMenu')
+const WorkspaceMenu = lazy(() => loadMenu().then((module) => ({ default: module.WorkspaceMenu })))
 
 function useLocal<T>(key: string, initial: T, validate: (value: unknown) => value is T) {
   const [value, setValue] = useState<T>(() => {
@@ -168,15 +198,24 @@ const validSaved = (value: unknown): value is string[] =>
   Array.isArray(value) && value.every((id) => typeof id === 'string')
 const validLanguage = (value: unknown): value is DisplayLanguage =>
   value === 'en' || value === 'original'
+const validCompact = (value: unknown): value is boolean => typeof value === 'boolean'
+const validRatio = (value: unknown): value is number =>
+  typeof value === 'number' && value >= 30 && value <= 70
 
 function IconButton({
   label,
   children,
   className = '',
+  title,
   ...props
 }: React.ButtonHTMLAttributes<HTMLButtonElement> & { label: string; children: ReactNode }) {
   return (
-    <button {...props} aria-label={label} title={label} className={`icon-button ${className}`}>
+    <button
+      {...props}
+      aria-label={label}
+      title={title ?? label}
+      className={`icon-button ${className}`}
+    >
       {children}
     </button>
   )
@@ -187,12 +226,17 @@ function Modal({
   onClose,
   wide = false,
   drawer = false,
+  sheet = false,
+  actions,
 }: {
   title: string
   children: ReactNode
   onClose: () => void
   wide?: boolean
   drawer?: boolean
+  /** A right-hand panel that leaves the results visible beside it. */
+  sheet?: boolean
+  actions?: ReactNode
 }) {
   const ref = useRef<HTMLDialogElement>(null)
   useEffect(() => {
@@ -209,7 +253,7 @@ function Modal({
   return (
     <dialog
       ref={ref}
-      className={`modal ${wide ? 'wide' : ''} ${drawer ? 'drawer' : ''}`}
+      className={`modal ${wide ? 'wide' : ''} ${drawer ? 'drawer' : ''} ${sheet ? 'sheet' : ''}`}
       aria-label={title}
       onCancel={onClose}
       onClick={(e) => {
@@ -218,9 +262,12 @@ function Modal({
     >
       <div className="modal-top">
         <span>{title}</span>
-        <IconButton label="Close panel" onClick={onClose}>
-          <X size={20} />
-        </IconButton>
+        <div className="modal-top-actions">
+          {actions}
+          <IconButton label="Close panel" onClick={onClose}>
+            <X size={20} />
+          </IconButton>
+        </div>
       </div>
       {children}
     </dialog>
@@ -236,8 +283,9 @@ function WorkspaceProviders({
   translations: Dataset['translations']
   children: ReactNode
 }) {
+  const reducedMotion = useReducedMotion()
   return (
-    <MotionConfig reducedMotion="user">
+    <MotionConfig reducedMotion={reducedMotion ? 'always' : 'user'}>
       <TranslationProvider language={language} translations={translations}>
         {children}
       </TranslationProvider>
@@ -246,7 +294,17 @@ function WorkspaceProviders({
 }
 
 export default function App() {
-  const [filters, setFilters] = useState<Filters>(initialWorkspaceFilters)
+  const [filters, setFilters] = useState<Filters>(() =>
+    initialWorkspaceFilters(getPreferences().startMarket),
+  )
+  // Typing stays immediate: the feed, its counts and its highlights follow the query at
+  // background priority, and React abandons a stale pass when the next key arrives.
+  const deferredQuery = useDeferredValue(filters.q)
+  const settledFilters = JSON.stringify({ ...filters, q: '' })
+  const listFilters = useMemo(
+    () => ({ ...(JSON.parse(settledFilters) as Filters), q: deferredQuery }),
+    [settledFilters, deferredQuery],
+  )
   const { data, error, loading, reload: load } = useOpportunityData({ market: filters.market })
   const personal = usePersonalWorkspace()
   useEffect(() => {
@@ -260,16 +318,8 @@ export default function App() {
     (ResearchState & { translation?: EnglishText })[]
   >([])
   const research = researchStack.at(-1) || null
-  const [compact, setCompact] = useLocal(
-    'anthrion-compact-reading-v1',
-    false,
-    (value): value is boolean => typeof value === 'boolean',
-  )
-  const [paneRatio, setPaneRatio] = useLocal(
-    'anthrion-pane-ratio-v1',
-    50,
-    (value): value is number => typeof value === 'number' && value >= 30 && value <= 70,
-  )
+  const [compact, setCompact] = useLocal('anthrion-compact-reading-v1', false, validCompact)
+  const [paneRatio, setPaneRatio] = useLocal('anthrion-pane-ratio-v1', 50, validRatio)
   const [language, setLanguage] = useLocal<DisplayLanguage>(
     'anthrion-language-v1',
     'en',
@@ -288,7 +338,10 @@ export default function App() {
   )
   const pendingRowFocus = useRef<number | null>(null)
   const reducedMotion = useReducedMotion()
+  const narrowScreen = useNarrowScreen()
   const [showFilters, setShowFilters] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [reveal, setReveal] = useState<{ index: number; nonce: number } | null>(null)
   const [detailOpen, setDetailOpen] = useState(
     () =>
       !!new URLSearchParams(location.search).get('signal') &&
@@ -297,7 +350,6 @@ export default function App() {
   const [selected, setSelected] = useState<string | null>(() =>
     new URLSearchParams(location.search).get('signal'),
   )
-  const [detailTab, setDetailTab] = useState('preview')
   const [toast, setToast] = useState('')
   const [time, setTime] = useState(Date.now())
   const viewingAwards = filters.view === 'awards'
@@ -379,20 +431,6 @@ export default function App() {
       return () => clearTimeout(timeout)
     }
   }, [toast])
-  useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if (
-        e.key === '/' &&
-        !(e.target instanceof HTMLInputElement) &&
-        !(e.target instanceof HTMLTextAreaElement)
-      ) {
-        e.preventDefault()
-        searchRef.current?.focus()
-      }
-    }
-    window.addEventListener('keydown', handler)
-    return () => window.removeEventListener('keydown', handler)
-  }, [])
   const update = (patch: Partial<Filters>) => {
     setFilters((f) => normaliseFilters({ ...f, ...patch }))
     setSelected(null)
@@ -403,40 +441,15 @@ export default function App() {
   }
   const toggleSave = (id: string) =>
     setSaved((s) => (s.includes(id) ? s.filter((x) => x !== id) : [...s, id]))
-  const open = (id: string, tab = 'overview') => {
+  const open = (id: string) => {
     setSelected(id)
-    setDetailTab(tab === 'overview' ? 'preview' : tab)
-    setDetailOpen(tab !== 'overview' || window.matchMedia('(max-width: 900px)').matches)
+    setDetailOpen(window.matchMedia('(max-width: 900px)').matches)
   }
   const hiddenIds = useMemo(() => new Set(hidden), [hidden])
   const visibleSignals = useMemo(
     () => activeSignals.filter((s) => hiddenIds.has(s.id) === showHidden),
     [activeSignals, hiddenIds, showHidden],
   )
-  const filtered = useMemo(
-    () => filterSignals(visibleSignals, filters, saved, time, data?.capabilities, translations),
-    [data, visibleSignals, filters, saved, time, translations],
-  )
-  // Outgoing rows are visual only; counts, selection and export use saved intent immediately.
-  const renderedFiltered = useMemo(() => {
-    if (!Object.keys(departing).length) return filtered
-    const visual = activeSignals.filter((s) => {
-      const phase = departing[s.id]
-      return (phase ? phase === 'unhide' : hiddenIds.has(s.id)) === showHidden
-    })
-    return filterSignals(visual, filters, saved, time, data?.capabilities, translations)
-  }, [
-    data,
-    activeSignals,
-    departing,
-    filtered,
-    filters,
-    hiddenIds,
-    saved,
-    showHidden,
-    time,
-    translations,
-  ])
   const marketSignals = useMemo(
     () =>
       (data?.signals || []).filter(
@@ -447,6 +460,136 @@ export default function App() {
       ),
     [data, hiddenIds, showHidden, filters.market, time],
   )
+  // The market's search text is prepared while the browser is idle, before anyone types.
+  useEffect(() => warmSearchText(marketSignals, translations), [marketSignals, translations])
+  // One text-search pass serves both the list and the refiner counts: every refiner
+  // counts the opportunities that match the current search and filters.
+  const opportunityMatches = useMemo(
+    () =>
+      filterSignals(
+        marketSignals,
+        { ...listFilters, view: 'all', sort: 'recent', supplier: '', awardFrom: '', awardTo: '' },
+        saved,
+        time,
+        data?.capabilities,
+        translations,
+      ),
+    [marketSignals, listFilters, saved, time, data?.capabilities, translations],
+  )
+  const filtered = useMemo(
+    () =>
+      viewingAwards || viewingSaved
+        ? filterSignals(visibleSignals, listFilters, saved, time, data?.capabilities, translations)
+        : filterSignals(opportunityMatches, { ...listFilters, q: '' }, saved, time),
+    [
+      viewingAwards,
+      viewingSaved,
+      visibleSignals,
+      opportunityMatches,
+      listFilters,
+      saved,
+      time,
+      data?.capabilities,
+      translations,
+    ],
+  )
+  // Outgoing rows are visual only; counts, selection and export use saved intent immediately.
+  const renderedFiltered = useMemo(() => {
+    if (!Object.keys(departing).length) return filtered
+    const visual = activeSignals.filter((s) => {
+      const phase = departing[s.id]
+      return (phase ? phase === 'unhide' : hiddenIds.has(s.id)) === showHidden
+    })
+    return filterSignals(visual, listFilters, saved, time, data?.capabilities, translations)
+  }, [
+    data,
+    activeSignals,
+    departing,
+    filtered,
+    listFilters,
+    hiddenIds,
+    saved,
+    showHidden,
+    time,
+    translations,
+  ])
+  const counts = useMemo(
+    () =>
+      Object.fromEntries(
+        navItems.map((n) => [
+          n.id,
+          filterSignals(
+            opportunityMatches,
+            { ...defaults, market: filters.market, view: n.id },
+            [],
+            time,
+          ).length,
+        ]),
+      ),
+    [opportunityMatches, filters.market, time],
+  )
+  const awardCount = useMemo(
+    () =>
+      selectMarketEntries(Object.entries(data?.award_history || {}), filters.market).reduce(
+        (total, [, page]) => total + page.count,
+        0,
+      ),
+    [data, filters.market],
+  )
+  // Until the awards are loaded the card shows the market's published total.
+  const awardMatches = useMemo(
+    () =>
+      awards.loadedSignals &&
+      filterSignals(
+        awards.loadedSignals.filter((s) => hiddenIds.has(s.id) === showHidden),
+        { ...listFilters, view: 'awards', sort: 'recent', type: '', deadline: '', change: '' },
+        saved,
+        time,
+        data?.capabilities,
+        translations,
+      ).length,
+    [
+      awards.loadedSignals,
+      hiddenIds,
+      showHidden,
+      listFilters,
+      saved,
+      time,
+      data?.capabilities,
+      translations,
+    ],
+  )
+  const refinerCounts = useMemo(
+    (): Record<string, number> => ({ ...counts, awards: awardMatches ?? awardCount }),
+    [counts, awardMatches, awardCount],
+  )
+  // What the Hidden lens will show in this collection.
+  const hiddenCount = useMemo(() => {
+    if (!hiddenIds.size) return 0
+    if (viewingAwards) return (awards.loadedSignals || []).filter((s) => hiddenIds.has(s.id)).length
+    return (data?.signals || []).filter(
+      (s) =>
+        hiddenIds.has(s.id) &&
+        matchesMarket(s, filters.market) &&
+        (viewingSaved ? saved.includes(s.id) : isAvailableOpportunity(s, time)),
+    ).length
+  }, [
+    hiddenIds,
+    viewingAwards,
+    viewingSaved,
+    awards.loadedSignals,
+    data,
+    filters.market,
+    saved,
+    time,
+  ])
+  const marketCounts = useMemo(
+    () =>
+      Object.fromEntries(
+        Object.entries(data?.current_feed?.markets || {}).map(([id, page]) => [id, page.count]),
+      ),
+    [data],
+  )
   const marketName =
     markets.find((m) => m.id === filters.market)?.name ||
     data?.markets[filters.market]?.name ||
@@ -454,7 +597,10 @@ export default function App() {
   const marketEnabled = data
     ? marketIsEnabled(filters.market, data.markets)
     : filters.market === 'GB'
-  const fresh = !!data && time - Date.parse(data.generated_at) < 26 * 3600000
+  // The feed's publication time stays while the next market loads, so its notice does not blink.
+  const [feedTime, setFeedTime] = useState(data?.generated_at ?? '')
+  if (data && data.generated_at !== feedTime) setFeedTime(data.generated_at)
+  const stale = !!feedTime && time - Date.parse(feedTime) >= 26 * 3600000
   const activeFilterCount = Object.entries(filters).filter(
     ([k, v]) =>
       !['q', 'view', 'sort', 'market', 'searchMode', 'match'].includes(k) &&
@@ -487,6 +633,19 @@ export default function App() {
     }
     return result
   }, [translations, supplierHistory.translations, researchStack])
+  const openResearch = (value: ResearchState) => {
+    setDetailOpen(false)
+    setResearchStack((pages) => [
+      ...pages,
+      {
+        ...value,
+        translation:
+          value.translation ||
+          displayTranslations[value.signal.id] ||
+          researchTranslations[value.signal.id],
+      },
+    ])
+  }
   useEffect(() => {
     if (
       !research ||
@@ -593,55 +752,176 @@ export default function App() {
       view: isHistoricalAward(selectedSignal) ? 'awards' : 'all',
     })
   }, [selected, selectedSignal, filters.market, viewingAwards, viewingSaved])
+  // Desktop shortcuts act on the selected record. Typing, menus and pages keep their keys.
+  const shortcut = useRef<(event: KeyboardEvent) => void>(() => {})
+  const handleShortcut = (event: KeyboardEvent) => {
+    const target = event.target as HTMLElement
+    if (
+      event.defaultPrevented ||
+      event.isComposing ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.altKey
+    )
+      return
+    if (target.isContentEditable || target.closest?.('input, textarea, select')) return
+    if (document.querySelector('dialog[open], [role="menu"], [role="dialog"]')) return
+    const key = event.key.toLowerCase()
+    if (key === '/') {
+      event.preventDefault()
+      searchRef.current?.focus()
+      return
+    }
+    if (key === 'l') {
+      event.preventDefault()
+      setLanguage(language === 'en' ? 'original' : 'en')
+      return
+    }
+    if (key === 't') {
+      event.preventDefault()
+      toggleTheme()
+      return
+    }
+    const current = selectedSignal
+    const index = current ? renderedFiltered.findIndex((s) => s.id === current.id) : -1
+    if (key === 'j' || key === 'k') {
+      const next =
+        renderedFiltered[
+          Math.max(0, Math.min(renderedFiltered.length - 1, index + (key === 'j' ? 1 : -1)))
+        ]
+      if (!next) return
+      event.preventDefault()
+      setSelected(next.id)
+      setReveal({ index: renderedFiltered.indexOf(next), nonce: Date.now() })
+      return
+    }
+    if (!current) return
+    const opener =
+      document.activeElement instanceof HTMLElement ? document.activeElement : document.body
+    if (key === 's') toggleSave(current.id)
+    else if (key === 'h') dismiss(current.id)
+    else if (key === 'o')
+      window.open(safeURL(current.primary_source_url), '_blank', 'noopener,noreferrer')
+    else if (key === 'c') openResearch({ kind: 'related', signal: current, opener })
+    else if (key === 'b') openResearch({ kind: 'buyer', signal: current, opener })
+    else return
+    event.preventDefault()
+  }
+  useLayoutEffect(() => {
+    shortcut.current = handleShortcut
+  })
+  useEffect(() => {
+    const handler = (event: KeyboardEvent) => shortcut.current(event)
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [])
   const listTitle =
     navItems.find((n) => n.id === filters.view)?.label ||
     { saved: 'Saved opportunities', awards: 'Awarded contracts' }[filters.view] ||
     'All signals'
-  const share = async () => {
-    try {
-      await navigator.clipboard.writeText(location.href)
-      setToast('View link copied')
-    } catch {
-      setToast('Use the address bar to share this view')
-    }
-  }
-  const counts = useMemo(
-    () =>
-      Object.fromEntries(
-        navItems.map((n) => [
-          n.id,
-          filterSignals(
-            marketSignals,
-            { ...defaults, market: filters.market, view: n.id },
-            [],
-            time,
-          ).length,
-        ]),
-      ),
-    [marketSignals, filters.market, time],
-  )
   const switchMarket = (id: string) => {
     update({ market: id, source: '', region: '', buyer: '', cpv: '' })
   }
+  const selectView = (view: string) => {
+    update({
+      view,
+      sort: view === 'closing' ? 'deadline' : 'recent',
+      ...(view === 'awards'
+        ? { type: '', deadline: '', change: '' }
+        : { supplier: '', awardFrom: '', awardTo: '' }),
+    })
+  }
+  const toggleHidden = () => {
+    if (!showHidden && !viewingAwards && !viewingSaved && filters.view !== 'all')
+      update({ view: 'all', sort: 'recent' })
+    else {
+      setSelected(null)
+      setDetailOpen(false)
+    }
+    setShowHidden(!showHidden)
+  }
+  const savedCount = saved.filter(
+    (id) =>
+      marketSignals.some((s) => s.id === id) ||
+      (data?.current_feed?.records[id]?.view === 'awards' &&
+        (!filters.market || data.current_feed.records[id].markets.includes(filters.market)) &&
+        hiddenIds.has(id) === showHidden) ||
+      awards.knownSignals.some(
+        (s) => s.id === id && matchesMarket(s, filters.market) && hiddenIds.has(id) === showHidden,
+      ),
+  ).length
+  // Records matching the market, collection and search, before the other filters,
+  // so each filter option can show how many results it would leave.
+  const filterPool = useMemo(
+    () =>
+      showFilters
+        ? filterSignals(
+            viewingAwards || viewingSaved ? visibleSignals : marketSignals,
+            {
+              ...defaults,
+              market: filters.market,
+              view: filters.view,
+              q: listFilters.q,
+              searchMode: filters.searchMode,
+              match: filters.match,
+            },
+            saved,
+            time,
+            data?.capabilities,
+            translations,
+          )
+        : [],
+    [
+      showFilters,
+      viewingAwards,
+      viewingSaved,
+      visibleSignals,
+      marketSignals,
+      filters.market,
+      filters.view,
+      listFilters.q,
+      filters.searchMode,
+      filters.match,
+      saved,
+      time,
+      data?.capabilities,
+      translations,
+    ],
+  )
+  const refinerChips = compact || narrowScreen
+  // The chosen view's chip is always shown whole, even where the row scrolls past it.
+  const chipRow = useRef<HTMLElement>(null)
+  const chipsShown = useRef(false)
+  const revealChip = useCallback((smooth: boolean) => {
+    const row = chipRow.current
+    const chip = row?.querySelector<HTMLElement>('[aria-pressed="true"]')
+    if (!row || !chip) return
+    const bounds = row.getBoundingClientRect()
+    const box = chip.getBoundingClientRect()
+    // Chips snap by their start, so a hidden chip is brought to the row's start: the snap keeps it.
+    if (box.left < bounds.left - 0.5 || box.right > bounds.right + 0.5)
+      row.scrollBy({
+        left: box.left - bounds.left,
+        behavior: smooth && !calm() ? 'smooth' : 'auto',
+      })
+  }, [])
+  useLayoutEffect(() => {
+    revealChip(chipsShown.current)
+    chipsShown.current = !!chipRow.current
+  }, [filters.view, refinerChips, revealChip])
+  // A narrower screen can push the chosen chip out of the row again.
+  useEffect(() => {
+    const row = chipRow.current
+    if (!row) return
+    const observer = new ResizeObserver(() => revealChip(false))
+    observer.observe(row)
+    return () => observer.disconnect()
+  }, [refinerChips, revealChip])
 
   return (
     <WorkspaceProviders language={language} translations={displayTranslations}>
-      <ResearchProvider
-        open={(value) => {
-          setDetailOpen(false)
-          setResearchStack((pages) => [
-            ...pages,
-            {
-              ...value,
-              translation:
-                value.translation ||
-                displayTranslations[value.signal.id] ||
-                researchTranslations[value.signal.id],
-            },
-          ])
-        }}
-      >
-        <div className={`app-shell console-shell ${compact ? 'compact-reading' : ''}`}>
+      <ResearchProvider open={openResearch}>
+        <div className={`app-shell console-shell ${refinerChips ? 'compact-reading' : ''}`}>
           <AmbientGlass />
           <a className="skip-link" href="#main">
             Skip to opportunities
@@ -651,8 +931,14 @@ export default function App() {
             <header className="workspace-header">
               <BrandSignature onHome={() => update({ ...defaults, market: filters.market })} />
               <div className="workspace-search" role="search" aria-label="Opportunity search">
-                <label className="search-box">
-                  <Search size={16} />
+                <div
+                  className="search-box"
+                  onPointerDown={(event) => {
+                    if (!(event.target as HTMLElement).closest('button, input'))
+                      requestAnimationFrame(() => searchRef.current?.focus())
+                  }}
+                >
+                  <Search size={16} aria-hidden="true" />
                   <input
                     ref={searchRef}
                     aria-label="Search opportunities"
@@ -665,7 +951,8 @@ export default function App() {
                       <X size={13} />
                     </IconButton>
                   )}
-                </label>
+                  <SearchScope mode={filters.searchMode} match={filters.match} onChange={update} />
+                </div>
                 <button
                   aria-label="Filters"
                   title="Filters"
@@ -679,64 +966,47 @@ export default function App() {
                   )}
                 </button>
                 <SortMenu
-                  value={viewingAwards ? 'awarded' : filters.sort}
-                  onChange={(sort) =>
-                    update(
-                      sort === 'awarded'
-                        ? { view: 'awards', sort: 'recent', type: '', deadline: '', change: '' }
-                        : { sort, ...(viewingAwards ? { view: 'all' } : {}) },
-                    )
-                  }
-                  showHidden={showHidden}
-                  onShowHidden={(value) => {
-                    setShowHidden(value)
-                    setSelected(null)
-                    setDetailOpen(false)
-                  }}
+                  value={filters.sort}
+                  onChange={(sort) => update({ sort })}
+                  fixedLabel={viewingAwards ? 'Latest awards' : undefined}
                 />
               </div>
               <nav className="workspace-nav" aria-label="Workspace">
                 <button
                   title="Saved opportunities"
-                  aria-current={filters.view === 'saved' ? 'page' : undefined}
+                  aria-label={`Saved opportunities, ${savedCount}`}
+                  aria-current={viewingSaved ? 'page' : undefined}
                   onClick={() => navigate('saved')}
                 >
                   <Bookmark size={17} />
-                  <span className="workspace-nav-label">Saved opportunities</span>
-                  <small>
-                    {
-                      saved.filter(
-                        (id) =>
-                          marketSignals.some((s) => s.id === id) ||
-                          (data?.current_feed?.records[id]?.view === 'awards' &&
-                            (!filters.market ||
-                              data.current_feed.records[id].markets.includes(filters.market)) &&
-                            hiddenIds.has(id) === showHidden) ||
-                          awards.knownSignals.some(
-                            (s) =>
-                              s.id === id &&
-                              matchesMarket(s, filters.market) &&
-                              hiddenIds.has(id) === showHidden,
-                          ),
-                      ).length
-                    }
+                  <small key={savedCount} className="nav-count">
+                    {savedCount}
                   </small>
                 </button>
+                <button
+                  title="Hidden"
+                  aria-label={`Hidden, ${hiddenCount}`}
+                  aria-pressed={showHidden}
+                  onClick={toggleHidden}
+                >
+                  <EyeOff size={17} />
+                  <small key={hiddenCount} className="nav-count">
+                    {hiddenCount}
+                  </small>
+                </button>
+                <ThemeToggle />
               </nav>
               <div className="workspace-tools">
                 <IconButton
-                  label={compact ? 'Exit compact reading mode' : 'Compact reading mode'}
-                  aria-pressed={compact}
-                  onClick={() => setCompact(!compact)}
+                  label="Workspace menu"
+                  aria-haspopup="dialog"
+                  aria-expanded={menuOpen}
+                  className={stale ? 'needs-attention' : ''}
+                  onPointerEnter={() => void loadMenu()}
+                  onFocus={() => void loadMenu()}
+                  onClick={() => setMenuOpen(true)}
                 >
-                  {compact ? <PanelTopOpen size={17} /> : <PanelTopClose size={17} />}
-                </IconButton>
-                <IconButton
-                  label="Check for updates"
-                  onClick={() => void load()}
-                  disabled={loading}
-                >
-                  <RefreshCw size={17} className={loading ? 'spin' : ''} />
+                  <Menu size={20} />
                 </IconButton>
               </div>
             </header>
@@ -744,21 +1014,20 @@ export default function App() {
               <MarketSection
                 selected={filters.market}
                 onSelect={switchMarket}
+                counts={marketCounts}
                 language={language}
                 onLanguage={setLanguage}
                 preferences={personal.marketPreferences}
                 onArrange={personal.arrangeMarkets}
               />
-              {(error || (!fresh && data)) && (
+              {(error || stale) && (
                 <div className="alert" role="status">
                   <Clock3 size={17} />
                   <span>
                     {error ||
-                      `The feed was last refreshed ${date(data!.generated_at)}. Confirm current availability in the source notice.`}
+                      `The feed was last refreshed ${date(feedTime)}. Confirm current availability in the source notice.`}
                   </span>
-                  <button onClick={() => void load()}>
-                    Retry <RefreshCw size={13} />
-                  </button>
+                  <button onClick={() => void load()}>Retry</button>
                 </div>
               )}
               {(storageError || hiddenStorageError) && (
@@ -775,47 +1044,42 @@ export default function App() {
               )}
 
               <div className="discovery-band">
-                {compact ? (
-                  <nav className="compact-refiners" aria-label="Opportunity views">
-                    {navItems.map(({ id, label }) => (
+                {refinerChips ? (
+                  <nav className="compact-refiners" aria-label="Opportunity views" ref={chipRow}>
+                    {refinerItems.map(({ id, label, icon: Icon }) => (
                       <button
                         key={id}
                         aria-pressed={filters.view === id}
                         onClick={() => {
-                          setSelected(null)
-                          setFilters({
-                            ...defaults,
-                            market: filters.market,
-                            view: id,
-                            sort: id === 'closing' ? 'deadline' : 'recent',
-                          })
+                          // The chosen chip is the one to reveal; choosing it again still resets it.
+                          if (filters.view === id) revealChip(true)
+                          selectView(id)
                         }}
                       >
+                        <Icon size={15} aria-hidden="true" />
                         {label}
-                        <small>{counts[id] || 0}</small>
+                        <small>
+                          <RollingNumber
+                            value={data ? refinerCounts[id] || 0 : null}
+                            placeholder="–"
+                          />
+                        </small>
                       </button>
                     ))}
                   </nav>
                 ) : (
                   <DiscoveryCarousel
-                    items={navItems}
-                    counts={counts}
+                    items={refinerItems}
+                    counts={refinerCounts}
                     selected={filters.view}
                     loading={!data}
-                    onSelect={(view) => {
-                      setSelected(null)
-                      setFilters({
-                        ...defaults,
-                        market: filters.market,
-                        view,
-                        sort: view === 'closing' ? 'deadline' : 'recent',
-                      })
-                    }}
+                    onSelect={selectView}
                   />
                 )}
                 <div className="discovery-export">
                   <IconButton
                     label="Export signals"
+                    title={`Export ${filtered.length.toLocaleString('en-GB')} signals as CSV`}
                     disabled={!data || !filtered.length}
                     onClick={() => {
                       download(
@@ -835,7 +1099,19 @@ export default function App() {
                   filters={filters}
                   update={update}
                   data={data}
-                  count={filtered.length}
+                  extra={
+                    showHidden && (
+                      <button
+                        className="state-chip"
+                        onClick={() => setShowHidden(false)}
+                        aria-label="Stop showing hidden records"
+                      >
+                        <EyeOff size={12} aria-hidden="true" />
+                        <span>Hidden</span>
+                        <X size={12} aria-hidden="true" />
+                      </button>
+                    )
+                  }
                 />
                 <div
                   className="feed-heading screen-reader-only"
@@ -867,13 +1143,14 @@ export default function App() {
                       <VirtualSignalList
                         signals={renderedFiltered}
                         scrollRef={feedRef}
-                        resetKey={`${JSON.stringify(filters)}:${showHidden}`}
+                        resetKey={`${JSON.stringify(listFilters)}:${showHidden}`}
                         shiftKey={hidden.join('|')}
+                        reveal={reveal}
                         renderRow={(signal) => (
                           <SignalRow
                             key={signal.id}
                             signal={signal}
-                            filters={filters}
+                            filters={listFilters}
                             data={data}
                             selected={selectedSignal?.id === signal.id}
                             saved={saved.includes(signal.id)}
@@ -887,7 +1164,7 @@ export default function App() {
                               pendingDepartures.current.get(signal.id)?.complete()
                             }
                             onSave={() => toggleSave(signal.id)}
-                            onOpen={(tab) => open(signal.id, tab)}
+                            onOpen={() => open(signal.id)}
                             onHide={() => dismiss(signal.id)}
                             now={time}
                           />
@@ -972,15 +1249,7 @@ export default function App() {
                         </button>
                       </div>
                     ) : selectedSignal && data ? (
-                      <ConsoleDetail
-                        signal={selectedSignal}
-                        data={data}
-                        onInspect={(tab) => {
-                          setSelected(selectedSignal.id)
-                          setDetailTab(tab)
-                          setDetailOpen(true)
-                        }}
-                      />
+                      <ConsoleDetail signal={selectedSignal} data={data} />
                     ) : (
                       <div className="inspector-empty">
                         <FileSearch size={30} />
@@ -1006,12 +1275,33 @@ export default function App() {
               </motion.div>
             )}
           </AnimatePresence>
+          {menuOpen && (
+            <Suspense fallback={null}>
+              <WorkspaceMenu
+                data={data}
+                market={filters.market}
+                onMarket={switchMarket}
+                language={language}
+                onLanguage={setLanguage}
+                compact={compact}
+                onCompact={setCompact}
+                loading={loading}
+                onRefresh={() => void load()}
+                onClose={() => setMenuOpen(false)}
+                onNotice={setToast}
+                now={time}
+              />
+            </Suspense>
+          )}
           {showFilters && data && (
-            <Modal title="Refine opportunities" onClose={() => setShowFilters(false)}>
+            <Modal title="Filters" onClose={() => setShowFilters(false)} sheet>
               <FilterPanel
                 filters={filters}
                 update={update}
                 data={viewingAwards || viewingSaved ? { ...data, signals: activeSignals } : data}
+                pool={filterPool}
+                saved={saved}
+                now={time}
                 count={filtered.length}
                 onClose={() => setShowFilters(false)}
                 onReset={() => update({ ...defaults, view: filters.view, market: filters.market })}
@@ -1048,10 +1338,30 @@ export default function App() {
             ))}
           {detailOpen && selectedSignal && data && (
             <Modal
-              title="Opportunity intelligence"
+              title={recordTypeLabel(selectedSignal)}
               onClose={() => setDetailOpen(false)}
               wide
               drawer
+              actions={
+                <IconButton
+                  label={
+                    saved.includes(selectedSignal.id)
+                      ? 'Unsave opportunity'
+                      : 'Save opportunity in this browser'
+                  }
+                  className={saved.includes(selectedSignal.id) ? 'is-saved' : ''}
+                  onClick={(event) => {
+                    if (!saved.includes(selectedSignal.id)) pop(event.currentTarget)
+                    toggleSave(selectedSignal.id)
+                  }}
+                >
+                  {saved.includes(selectedSignal.id) ? (
+                    <BookmarkCheck size={19} />
+                  ) : (
+                    <Bookmark size={19} />
+                  )}
+                </IconButton>
+              }
             >
               {detail.loading ? (
                 <div className="inspector-empty" role="status">
@@ -1065,20 +1375,8 @@ export default function App() {
                     Try again
                   </button>
                 </div>
-              ) : detailTab === 'preview' ? (
-                <ConsoleDetail signal={selectedSignal} data={data} onInspect={setDetailTab} />
               ) : (
-                <SignalDetail
-                  signal={selectedSignal}
-                  data={data}
-                  tab={detailTab}
-                  setTab={setDetailTab}
-                  onShare={() => void share()}
-                  onBack={() => {
-                    if (window.matchMedia('(max-width: 900px)').matches) setDetailTab('preview')
-                    else setDetailOpen(false)
-                  }}
-                />
+                <ConsoleDetail signal={selectedSignal} data={data} />
               )}
             </Modal>
           )}
@@ -1114,6 +1412,35 @@ function recordTypeLabel(signal: Signal) {
   return typeLabels[signal.signal_type]
 }
 
+/** The response date; in its last fifteen days a countdown follows on its own line. */
+function RowDeadline({ signal, now }: { signal: Signal; now: number }) {
+  const deadline = responseDeadline(signal, now)
+  if (!deadline) return null
+  const days = daysLeft(signal, now)
+  const sameYear = new Date(deadline).getFullYear() === new Date(now).getFullYear()
+  const closing = days !== null && days > 0 && days <= 15
+  return (
+    <span className="row-deadline">
+      <span>
+        {date(deadline, {
+          day: 'numeric',
+          month: 'short',
+          ...(sameYear ? {} : { year: 'numeric' }),
+        })}
+      </span>
+      {closing && (
+        <em>
+          <Clock3 size={12} aria-hidden="true" />
+          <span aria-hidden="true">{days}d</span>
+          <span className="screen-reader-only">
+            {days} {days === 1 ? 'day' : 'days'} left
+          </span>
+        </em>
+      )}
+    </span>
+  )
+}
+
 function SignalRow({
   signal: s,
   filters,
@@ -1137,7 +1464,7 @@ function SignalRow({
   departure?: 'hide' | 'unhide'
   onDepartureEnd: () => void
   onSave: () => void
-  onOpen: (tab?: string) => void
+  onOpen: () => void
   onHide: () => void
   now: number
 }) {
@@ -1148,6 +1475,7 @@ function SignalRow({
         match: filters.match,
       })
     : null
+  const amount = hasPublishedAmount(s) ? valueFact(s) : null
   return (
     <div className="row-motion" data-signal-id={s.id} data-departure={departure}>
       <article
@@ -1194,12 +1522,10 @@ function SignalRow({
             )}
           </span>
           <span className="row-numbers">
-            {(s.value_max !== null || s.value_min !== null || s.amount) && (
+            {amount && (
               <>
-                <strong>{valueFact(s).value}</strong>
-                {valueFact(s).label !== 'Estimated contract value' && (
-                  <small>{valueFact(s).label}</small>
-                )}
+                <strong>{amount.value}</strong>
+                {amount.label !== 'Estimated contract value' && <small>{amount.label}</small>}
               </>
             )}
             {isHistoricalAward(s) ? (
@@ -1207,7 +1533,7 @@ function SignalRow({
                 {s.award_date ? `Awarded ${date(s.award_date)}` : `Notice ${date(s.published_at)}`}
               </span>
             ) : (
-              responseDeadline(s) && <span>{date(responseDeadline(s))}</span>
+              <RowDeadline signal={s} now={now} />
             )}
           </span>
         </button>
@@ -1215,20 +1541,22 @@ function SignalRow({
           <IconButton
             label={saved ? 'Unsave opportunity' : 'Save opportunity in this browser'}
             className={saved ? 'is-saved' : ''}
-            onClick={onSave}
+            onClick={(event) => {
+              if (!saved) pop(event.currentTarget)
+              onSave()
+            }}
           >
             {saved ? <BookmarkCheck size={17} /> : <Bookmark size={17} />}
           </IconButton>
-          <label className="hide-control">
-            <input
-              type="checkbox"
-              checked={departure ? departure === 'hide' : hidden}
-              disabled={!!departure}
-              onChange={onHide}
-              aria-label={`${hidden ? 'Unhide' : 'Hide'} ${text.title}`}
-            />
-            <span>{hidden ? 'Unhide' : 'Hide'}</span>
-          </label>
+          <IconButton
+            label={`${hidden ? 'Unhide' : 'Hide'} ${text.title}`}
+            title={hidden ? 'Unhide' : 'Hide'}
+            className="hide-toggle"
+            disabled={!!departure}
+            onClick={onHide}
+          >
+            {hidden ? <Eye size={16} /> : <EyeOff size={16} />}
+          </IconButton>
         </div>
       </article>
       {departure === 'hide' && <DismissDust id={s.id} />}
@@ -1237,39 +1565,22 @@ function SignalRow({
 }
 
 function ResearchRecord({ signal, data }: { signal: Signal; data: Dataset }) {
-  const [tab, setTab] = useState('preview')
   return (
     <div className="research-full-record">
-      {tab === 'preview' ? (
-        <ConsoleDetail signal={signal} data={data} onInspect={setTab} />
-      ) : (
-        <SignalDetail
-          signal={signal}
-          data={data}
-          tab={tab}
-          setTab={setTab}
-          onBack={() => setTab('preview')}
-          onShare={() => {
-            const url = new URL(import.meta.env.BASE_URL, location.origin)
-            url.searchParams.set('signal', signal.id)
-            url.searchParams.set('market', '')
-            url.searchParams.set('view', hasAwardOutcome(signal) ? 'awards' : 'all')
-            void navigator.clipboard?.writeText(url.href).catch(() => {})
-          }}
-        />
-      )}
+      <ConsoleDetail signal={signal} data={data} />
     </div>
   )
 }
 
-function RecordIntegrations({ signal, data }: { signal: Signal; data: Dataset }) {
+function RecordShare({ signal, data }: { signal: Signal; data: Dataset }) {
   const text = useSignalText(signal)
   const assetRoot = `${import.meta.env.BASE_URL}assets/integrations/`
-  const gmailURL = gmailDraftURL(
-    signal,
-    new URL(import.meta.env.BASE_URL, window.location.origin).href,
-    text,
-  )
+  const [copied, setCopied] = useState(false)
+  useEffect(() => {
+    if (!copied) return
+    const timer = setTimeout(() => setCopied(false), 1800)
+    return () => clearTimeout(timer)
+  }, [copied])
   return (
     <div className="record-integrations" role="group" aria-label="Record integrations">
       {data.current_feed?.records[signal.id]?.view !== 'history' &&
@@ -1286,7 +1597,7 @@ function RecordIntegrations({ signal, data }: { signal: Signal; data: Dataset })
         )}
       <a
         className="record-integration record-integration-gmail"
-        href={gmailURL}
+        href={gmailDraftURL(signal, appURL(), text)}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Share this opportunity in Gmail (opens a new tab)"
@@ -1309,6 +1620,20 @@ function RecordIntegrations({ signal, data }: { signal: Signal; data: Dataset })
           height="28"
         />
       </button>
+      <button
+        type="button"
+        className="record-integration record-integration-link"
+        aria-label={copied ? 'Link copied' : 'Copy link to this opportunity'}
+        title={copied ? 'Link copied' : 'Copy link'}
+        onClick={() => {
+          navigator.clipboard
+            ?.writeText(recordURL(signal, appURL()))
+            .then(() => setCopied(true))
+            .catch(() => {})
+        }}
+      >
+        {copied ? <Check size={19} /> : <Link2 size={19} />}
+      </button>
     </div>
   )
 }
@@ -1316,12 +1641,11 @@ function RecordIntegrations({ signal, data }: { signal: Signal; data: Dataset })
 function DeadlineCalendarButton({ signal }: { signal: Signal }) {
   const text = useSignalText(signal)
   const event = selectedResponseDeadlineEvent(signal)
-  const appURL = new URL(import.meta.env.BASE_URL, window.location.origin).href
   const href = event
-    ? deadlineEventCalendarURL(signal, event, appURL, text)
+    ? deadlineEventCalendarURL(signal, event, appURL(), text)
     : signal.deadlines?.length
       ? null
-      : googleCalendarURL(signal, appURL, text)
+      : googleCalendarURL(signal, appURL(), text)
   if (!href) return null
   return (
     <a
@@ -1337,31 +1661,328 @@ function DeadlineCalendarButton({ signal }: { signal: Signal }) {
   )
 }
 
-function ConsoleDetail({
-  signal: s,
-  data,
-  onInspect,
+/** Brief or full source text, with a per-record switch to the other language. */
+function RecordDescription({
+  signal,
+  language,
+  onLanguage,
 }: {
   signal: Signal
-  data: Dataset
-  onInspect: (tab: string) => void
+  language: DisplayLanguage
+  onLanguage: (language: DisplayLanguage) => void
 }) {
+  const text = useSignalText(signal)
+  const { translations } = useTranslations()
+  const { reading } = usePreferences()
+  const [expanded, setExpanded] = useState('')
+  const english = translations?.[signal.id]
+  const bilingual =
+    !!english &&
+    ((!!english.title && english.title !== signal.title) ||
+      (!!english.description && english.description !== signal.description))
+  const full =
+    text.description?.trim() ||
+    'No description was published. Review the source notice for details.'
+  const brief = reading === 'brief' && expanded !== signal.id ? briefText(full) : null
+  const shown = brief?.truncated ? brief.text : full
+  return (
+    <div className="inspector-summary">
+      {(text.original || bilingual) && (
+        <div className="summary-tools">
+          {text.original && (
+            <span className="translation-status" title="English translation is not available yet">
+              Original text
+            </span>
+          )}
+          {bilingual && (
+            <button
+              className="language-peek"
+              onClick={() => onLanguage(language === 'en' ? 'original' : 'en')}
+              title={
+                language === 'en' ? 'Show the original wording' : 'Show the English translation'
+              }
+            >
+              <Languages size={14} aria-hidden="true" />
+              {language === 'en' ? 'Original' : 'English'}
+            </button>
+          )}
+        </div>
+      )}
+      {shown
+        .split(/\n\s*\n/)
+        .filter((paragraph) => paragraph.trim())
+        .map((paragraph, index) => (
+          <p key={index}>{paragraph}</p>
+        ))}
+      {brief?.truncated && (
+        <button className="read-more" onClick={() => setExpanded(signal.id)}>
+          Full text
+          <ChevronDown size={15} aria-hidden="true" />
+        </button>
+      )}
+    </div>
+  )
+}
+
+/** Everything the notice publishes beyond the headline facts, in one scroll. */
+function RecordDetails({ signal: s }: { signal: Signal }) {
+  // Source history renders only once opened, and closes again for the next record.
+  const [historyFor, setHistoryFor] = useState('')
+  const historyRef = useRef<HTMLDetailsElement>(null)
+  // Opened from the dock: brought into view once its contents exist, not while it is still empty.
+  useEffect(() => {
+    const panel = historyRef.current
+    if (historyFor !== s.id || !panel?.dataset.reveal) return
+    delete panel.dataset.reveal
+    panel.scrollIntoView({ block: 'start', behavior: calm() ? 'auto' : 'smooth' })
+  }, [historyFor, s.id])
+  const events = s.deadlines || []
+  const headlineEvent = hasAwardOutcome(s) ? undefined : selectedResponseDeadlineEvent(s)
+  // A single response date already appears above; questions, superseded dates and
+  // lot-specific cutoffs still need their own label, provenance and calendar action.
+  const additionalDates =
+    events.length > 1 || events.some((event) => event !== headlineEvent || event.lot_id)
+  // Until Signal sees a change, last_material_update carries the notice's own date, which
+  // can precede the first collection (a notice published before its market was added).
+  const updated = Date.parse(s.last_material_update)
+  const sourceDates = {
+    changed: updated > Date.parse(s.first_seen_at),
+    updatedAtSource: !!s.last_material_update && updated !== Date.parse(s.published_at || ''),
+  }
+  const facts = [
+    ['Published', s.published_at ? date(s.published_at) : ''],
+    [
+      'Contract period',
+      s.contract_start || s.contract_end
+        ? `${date(s.contract_start)} to ${date(s.contract_end)}`
+        : '',
+    ],
+    ['Extension end', s.extension_end ? date(s.extension_end) : ''],
+    ['Framework', s.framework || ''],
+    ['Region', s.regions.join(', ')],
+    ['Lots', s.lot_ids.join(', ')],
+    ['CPV', s.cpv_codes.join(', ')],
+  ].filter(([, value]) => value)
+  const distinctDocuments = s.documents.filter(
+    (doc) =>
+      !!doc.pages?.length ||
+      !!doc.previous_revisions?.length ||
+      distinctSources([doc.url], [s.primary_source_url]).length,
+  )
+  return (
+    <div className="record-details">
+      {additionalDates && (
+        <section className="record-section">
+          <h3>Key dates</h3>
+          <DeadlineEvents signal={s} />
+        </section>
+      )}
+      {!!facts.length && (
+        <section className="record-section">
+          <h3>Details</h3>
+          <dl className="record-facts">
+            {facts.map(([label, value]) => (
+              <div key={label}>
+                <dt>{label}</dt>
+                <dd>{value}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+      )}
+      <section className="record-section record-procurement">
+        <ProcurementHistory
+          signal={s}
+          showLotSummary={false}
+          showContract={false}
+          excludedSources={[...s.provenance.map((p) => p.url), ...s.documents.map((d) => d.url)]}
+        />
+      </section>
+      {!!distinctDocuments.length && (
+        <section className="record-section">
+          <h3>Documents</h3>
+          <SourceDocuments signal={s} excludedSources={s.provenance.map((p) => p.url)} />
+        </section>
+      )}
+      <details
+        key={s.id}
+        ref={historyRef}
+        className="record-history"
+        onToggle={(event) => setHistoryFor(event.currentTarget.open ? s.id : '')}
+      >
+        <summary>
+          <History size={15} aria-hidden="true" />
+          Source history
+        </summary>
+        {historyFor === s.id && (
+          <>
+            <div className="provenance-list">
+              {s.provenance.map((p, i) => (
+                <div key={`${p.source}-${p.release_id}-${i}`}>
+                  <span className="source-icon">
+                    <FileText size={16} />
+                  </span>
+                  <div>
+                    {distinctSources(
+                      [p.url],
+                      [
+                        s.primary_source_url,
+                        ...s.provenance.slice(0, i).map((previous) => previous.url),
+                      ],
+                    ).length ? (
+                      <SourceNoticeLink href={p.url} compact>
+                        {p.source_name}
+                      </SourceNoticeLink>
+                    ) : (
+                      <strong>{p.source_name}</strong>
+                    )}
+                    <small>Reference {p.release_id || 'Not published'}</small>
+                    <small>
+                      Checked{' '}
+                      {date(p.retrieved_at, {
+                        day: 'numeric',
+                        month: 'short',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                      })}
+                    </small>
+                  </div>
+                </div>
+              ))}
+            </div>
+            {s.ocid && (
+              <p className="ocid">
+                OCID <code>{s.ocid}</code>
+              </p>
+            )}
+            <ol className="timeline">
+              {[...s.changes].reverse().map((c, i) => (
+                <li key={i}>
+                  <span />
+                  <div>
+                    <strong>
+                      {c.kind === 'discovered' ? 'First discovered' : 'Material update'}
+                    </strong>
+                    <time>
+                      {date(c.at, {
+                        day: 'numeric',
+                        month: 'short',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                      })}
+                    </time>
+                    {!!c.fields.length && (
+                      <p>{c.fields.map((f) => f.replaceAll('_', ' ')).join(', ')}</p>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ol>
+            <dl className="record-facts">
+              <div>
+                <dt>First seen</dt>
+                <dd>{date(s.first_seen_at)}</dd>
+              </div>
+              <div>
+                <dt>Last checked</dt>
+                <dd>{date(s.last_seen_at)}</dd>
+              </div>
+              {sourceDates.changed ? (
+                <div>
+                  <dt>Last material update</dt>
+                  <dd>{date(s.last_material_update)}</dd>
+                </div>
+              ) : (
+                sourceDates.updatedAtSource && (
+                  <div>
+                    <dt>Updated at source</dt>
+                    <dd>{date(s.last_material_update)}</dd>
+                  </div>
+                )
+              )}
+            </dl>
+          </>
+        )}
+      </details>
+    </div>
+  )
+}
+
+function ConsoleDetail({ signal: s, data }: { signal: Signal; data: Dataset }) {
   const ref = useRef<HTMLDivElement>(null)
-  const text = useSignalText(s)
+  const { language, translations } = useTranslations()
+  const [peek, setPeek] = useState<{ id: string; language: DisplayLanguage } | null>(null)
+  const shown = peek?.id === s.id ? peek.language : language
   useEffect(() => {
     ref.current?.scrollTo({ top: 0 })
   }, [s.id])
-  const paragraphs = (
-    text.description?.trim() ||
-    'No description was published. Review the source notice for details.'
+  useEffect(() => setPeek(null), [language])
+  const source = s.provenance[0]
+  const history = s.buyer_history_ref?.count ?? s.buyer_history?.length ?? 0
+  return (
+    <TranslationProvider language={shown} translations={translations}>
+      <ConsoleRecord
+        signal={s}
+        data={data}
+        scrollRef={ref}
+        language={shown}
+        onLanguage={(value) => setPeek({ id: s.id, language: value })}
+        history={history}
+        footer={
+          <footer className="record-action-dock" aria-label="Record actions">
+            <button
+              className="record-detail-button"
+              onClick={() => {
+                const panel = ref.current?.querySelector<HTMLDetailsElement>('.record-history')
+                if (!panel) return
+                if (panel.open)
+                  panel.scrollIntoView({ block: 'start', behavior: calm() ? 'auto' : 'smooth' })
+                else {
+                  // The history renders when it opens; it scrolls into view once rendered.
+                  panel.dataset.reveal = 'true'
+                  panel.open = true
+                }
+              }}
+            >
+              <History size={17} aria-hidden="true" />
+              <span>
+                {source?.source_name || 'Source'}
+                <small>checked {date(s.last_seen_at, { day: 'numeric', month: 'short' })}</small>
+              </span>
+            </button>
+            <SourceNoticeLink href={s.primary_source_url} />
+          </footer>
+        }
+      />
+    </TranslationProvider>
   )
-    .split(/\n\s*\n/)
-    .filter((paragraph) => paragraph.trim())
+}
+
+function ConsoleRecord({
+  signal: s,
+  data,
+  scrollRef,
+  language,
+  onLanguage,
+  history,
+  footer,
+}: {
+  signal: Signal
+  data: Dataset
+  scrollRef: React.RefObject<HTMLDivElement | null>
+  language: DisplayLanguage
+  onLanguage: (language: DisplayLanguage) => void
+  history: number
+  footer: ReactNode
+}) {
+  const text = useSignalText(s)
   return (
     <div className="console-detail">
       <div
         className="inspector-scroll"
-        ref={ref}
+        ref={scrollRef}
         tabIndex={0}
         role="region"
         aria-label="Opportunity record"
@@ -1374,7 +1995,7 @@ function ConsoleDetail({
               </h2>
               <div className="inspector-buyerline">
                 <p className="inspector-buyer">
-                  <BuyerLink signal={s} />
+                  <BuyerLink signal={s} count={history > 1 ? history : undefined} />
                 </p>
               </div>
             </div>
@@ -1393,7 +2014,9 @@ function ConsoleDetail({
                   <dt>{valueFact(s).label}</dt>
                   <dd>
                     <Layers3 size={20} />
-                    <span>{valueFact(s).value}</span>
+                    <span className={hasPublishedAmount(s) ? '' : 'fact-absent'}>
+                      {hasPublishedAmount(s) ? valueFact(s).value : 'Not published'}
+                    </span>
                   </dd>
                 </div>
                 <div>
@@ -1433,7 +2056,7 @@ function ConsoleDetail({
                 </section>
               )}
             </div>
-            <RecordIntegrations signal={s} data={data} />
+            <RecordShare signal={s} data={data} />
           </div>
           {(!['OPEN', 'EARLY_ENGAGEMENT'].includes(lifecycleState(s)) ||
             !!s.exclusion_reasons?.length) && (
@@ -1442,33 +2065,30 @@ function ConsoleDetail({
               <span>{s.lifecycle_reason || lifecycleLabels[lifecycleState(s)]}</span>
             </p>
           )}
-          <div className="inspector-summary">
-            {text.original && (
-              <span className="translation-status" title="English translation is not available yet">
-                Original text
-              </span>
-            )}
-            {paragraphs.map((paragraph, index) => (
-              <p key={index}>{paragraph}</p>
-            ))}
-          </div>
+          <RecordDescription signal={s} language={language} onLanguage={onLanguage} />
+          <RecordDetails signal={s} />
         </div>
       </div>
-      <footer className="record-action-dock" aria-label="Record actions">
-        <button className="record-detail-button" onClick={() => onInspect('overview')}>
-          <ExternalLink size={18} />
-          <span>Full details</span>
-        </button>
-        <SourceNoticeLink href={s.primary_source_url} />
-      </footer>
+      {footer}
     </div>
   )
 }
+
+const closingOptions = [
+  { value: '', label: 'Any' },
+  { value: '7', label: '7 days' },
+  { value: '14', label: '14 days' },
+  { value: '30', label: '30 days' },
+  { value: '90', label: '90 days' },
+]
 
 function FilterPanel({
   filters: f,
   update,
   data,
+  pool,
+  saved,
+  now,
   count,
   onClose,
   onReset,
@@ -1476,430 +2096,219 @@ function FilterPanel({
   filters: Filters
   update: (v: Partial<Filters>) => void
   data: Dataset
+  /** Records in the market, collection and search, before the filters below. */
+  pool: Signal[]
+  saved: string[]
+  now: number
   count: number
   onClose: () => void
   onReset: () => void
 }) {
+  const awards = f.view === 'awards'
+  // Each option counts the results it would leave, given every other active filter.
+  const facets = useMemo(() => {
+    const tally = (key: keyof Filters, values: (s: Signal) => string[]) => {
+      const counts = new Map<string, number>()
+      for (const s of filterSignals(pool, { ...f, q: '', [key]: '' }, saved, now))
+        for (const value of new Set(values(s))) counts.set(value, (counts.get(value) || 0) + 1)
+      return counts
+    }
+    return {
+      capability: tally('capability', (s) => s.matched_capabilities),
+      type: tally('type', (s) => [s.signal_type]),
+      source: tally('source', (s) => s.provenance.map((p) => p.source)),
+      sector: tally('sector', (s) => s.categories),
+    }
+  }, [pool, f, saved, now])
+  const currencies = useMemo(
+    () =>
+      [
+        ...new Set(
+          [...data.signals.map((s) => s.currency), f.currency].filter(
+            (c): c is string => !!c && /^[A-Z]{3}$/.test(c),
+          ),
+        ),
+      ].sort(),
+    [data.signals, f.currency],
+  )
+  const currencyNames = useMemo(() => new Intl.DisplayNames('en-GB', { type: 'currency' }), [])
   const select = (
     label: string,
     key: keyof Filters,
     choices: { value: string; label: string }[],
+    counts?: Map<string, number>,
   ) => (
-    <label>
-      {label}
+    <label className="filter-field">
+      <span>{label}</span>
       <select aria-label={label} value={f[key]} onChange={(e) => update({ [key]: e.target.value })}>
         <option value="">Any</option>
-        {choices.map((o) => (
-          <option value={o.value} key={o.value}>
-            {o.label}
-          </option>
-        ))}
+        {choices
+          .filter((o) => !counts || counts.get(o.value) || f[key] === o.value)
+          .map((o) => (
+            <option value={o.value} key={o.value}>
+              {o.label}
+              {counts ? ` (${(counts.get(o.value) || 0).toLocaleString('en-GB')})` : ''}
+            </option>
+          ))}
       </select>
     </label>
   )
+  const text = (label: string, key: keyof Filters, placeholder: string, numeric = false) => (
+    <label className="filter-field">
+      <span>{label}</span>
+      <input
+        value={f[key]}
+        placeholder={placeholder}
+        inputMode={numeric ? 'numeric' : undefined}
+        onChange={(e) => update({ [key]: e.target.value })}
+      />
+    </label>
+  )
+  const moreActive = ['source', 'sector', 'region', 'cpv', 'amountType', 'change'].filter(
+    (key) => f[key as keyof Filters],
+  ).length
   return (
     <>
-      <div className="filter-grid">
-        {f.view !== 'awards' &&
+      <div className="filter-sheet">
+        {select(
+          'Capability',
+          'capability',
+          [...data.capabilities]
+            .sort((a, b) => a.label.localeCompare(b.label, 'en-GB'))
+            .map((c) => ({ value: c.id, label: c.label })),
+          facets.capability,
+        )}
+        {!awards && (
+          <div className="filter-field">
+            <span id="filter-closing">Closing within</span>
+            <SwitchGroup
+              labelledBy="filter-closing"
+              value={f.deadline}
+              options={closingOptions}
+              onChange={(deadline) => update({ deadline })}
+            />
+          </div>
+        )}
+        <div className="filter-field">
+          <span>Value</span>
+          <div className="filter-value-row">
+            <input
+              type="number"
+              min="0"
+              aria-label="Minimum value"
+              value={f.minValue}
+              placeholder="Minimum"
+              onChange={(e) => update({ minValue: e.target.value })}
+            />
+            <span aria-hidden="true">–</span>
+            <input
+              type="number"
+              min="0"
+              aria-label="Maximum value"
+              value={f.maxValue}
+              placeholder="Maximum"
+              onChange={(e) => update({ maxValue: e.target.value })}
+            />
+            <select
+              aria-label="Currency"
+              value={f.currency}
+              onChange={(e) => update({ currency: e.target.value })}
+            >
+              <option value="">Any currency</option>
+              {currencies.map((currency) => {
+                const name = currencyNames.of(currency)
+                return (
+                  <option key={currency} value={currency}>
+                    {name && name !== currency ? `${currency} · ${name}` : currency}
+                  </option>
+                )
+              })}
+            </select>
+          </div>
+        </div>
+        {text('Buyer', 'buyer', 'Buyer name')}
+        {awards && (
+          <>
+            {text('Awarded supplier', 'supplier', 'Supplier name')}
+            <div className="filter-field">
+              <span>Awarded</span>
+              <div className="filter-value-row">
+                <input
+                  type="date"
+                  aria-label="Awarded from"
+                  value={f.awardFrom}
+                  onChange={(e) => update({ awardFrom: e.target.value })}
+                />
+                <span aria-hidden="true">–</span>
+                <input
+                  type="date"
+                  aria-label="Awarded to"
+                  value={f.awardTo}
+                  onChange={(e) => update({ awardTo: e.target.value })}
+                />
+              </div>
+            </div>
+          </>
+        )}
+        {!awards &&
           select(
-            'Opportunity type',
+            'Notice type',
             'type',
             Object.entries(typeLabels)
               .filter(([value]) => !['AWARD', 'RENEWAL_SIGNAL'].includes(value))
               .map(([value, label]) => ({ value, label })),
+            facets.type,
           )}
-        {select(
-          'Source',
-          'source',
-          data.sources
-            .filter((s) => s.enabled || data.signals.some((record) => record.source === s.id))
-            .map((s) => ({ value: s.id, label: s.name })),
-        )}
-        {select(
-          'Capability',
-          'capability',
-          data.capabilities.map((c) => ({ value: c.id, label: c.label })),
-        )}
-        {select(
-          'Sector',
-          'sector',
-          [...new Set(data.signals.flatMap((s) => s.categories))]
-            .sort()
-            .map((s) => ({ value: s, label: s })),
-        )}
-        {f.view !== 'awards' &&
-          select('Deadline', 'deadline', [
-            { value: '7', label: 'Next 7 days' },
-            { value: '14', label: 'Next 14 days' },
-            { value: '30', label: 'Next 30 days' },
-            { value: '90', label: 'Next 90 days' },
-          ])}
-        {f.view !== 'awards' &&
-          select('Freshness', 'change', [
-            { value: 'new', label: 'New in 24 hours' },
-            { value: 'updated', label: 'Updated in 24 hours' },
-          ])}
-        <label>
-          Buyer
-          <input
-            value={f.buyer}
-            placeholder="Buyer name"
-            onChange={(e) => update({ buyer: e.target.value })}
-          />
-        </label>
-        {f.view === 'awards' && (
-          <>
-            <label>
-              Awarded supplier
-              <input
-                value={f.supplier}
-                placeholder="Supplier name"
-                onChange={(e) => update({ supplier: e.target.value })}
-              />
-            </label>
-            <div className="filter-value-range">
-              <label>
-                Awarded from
-                <input
-                  type="date"
-                  value={f.awardFrom}
-                  onChange={(e) => update({ awardFrom: e.target.value })}
-                />
-              </label>
-              <label>
-                Awarded to
-                <input
-                  type="date"
-                  value={f.awardTo}
-                  onChange={(e) => update({ awardTo: e.target.value })}
-                />
-              </label>
-            </div>
-          </>
-        )}
-        {select('Amount type', 'amountType', [
-          { value: 'estimated_contract', label: 'Estimated contract value' },
-          { value: 'framework_ceiling', label: 'Framework ceiling' },
-          { value: 'grant_range', label: 'Published grant range' },
-          { value: 'programme_funding', label: 'Programme funding' },
-          { value: 'award', label: 'Award value' },
-          { value: 'annual_spend', label: 'Annual spend' },
-          { value: 'unknown', label: 'Unspecified amount type' },
-        ])}
-        <label>
-          Region
-          <input
-            value={f.region}
-            placeholder="Region or location code"
-            onChange={(e) => update({ region: e.target.value })}
-          />
-        </label>
-        <div className="filter-value-range">
-          <label>
-            CPV code
-            <input
-              value={f.cpv}
-              inputMode="numeric"
-              placeholder="e.g. 722"
-              onChange={(e) => update({ cpv: e.target.value })}
-            />
-          </label>
-          {select('Currency', 'currency', currencyOptions(data.signals))}
-        </div>
-        <div className="filter-value-range">
-          <label>
-            Minimum value
-            <input
-              type="number"
-              min="0"
-              value={f.minValue}
-              placeholder="No minimum"
-              onChange={(e) => update({ minValue: e.target.value })}
-            />
-          </label>
-          <label>
-            Maximum value
-            <input
-              type="number"
-              min="0"
-              value={f.maxValue}
-              placeholder="No maximum"
-              onChange={(e) => update({ maxValue: e.target.value })}
-            />
-          </label>
-        </div>
+        <details className="filter-more" open={moreActive > 0}>
+          <summary>
+            More filters
+            {moreActive > 0 && <span className="filter-count">{moreActive}</span>}
+          </summary>
+          <div className="filter-more-grid">
+            {select(
+              'Source',
+              'source',
+              data.sources
+                .filter((s) => s.enabled || facets.source.has(s.id) || f.source === s.id)
+                .map((s) => ({ value: s.id, label: s.name })),
+              facets.source,
+            )}
+            {select(
+              'Sector',
+              'sector',
+              [...new Set(data.signals.flatMap((s) => s.categories))]
+                .sort()
+                .map((s) => ({ value: s, label: s })),
+              facets.sector,
+            )}
+            {text('Region', 'region', 'Region or location code')}
+            {text('CPV code', 'cpv', 'e.g. 722', true)}
+            {select('Amount type', 'amountType', [
+              { value: 'estimated_contract', label: 'Estimated contract value' },
+              { value: 'framework_ceiling', label: 'Framework ceiling' },
+              { value: 'grant_range', label: 'Published grant range' },
+              { value: 'programme_funding', label: 'Programme funding' },
+              { value: 'award', label: 'Award value' },
+              { value: 'annual_spend', label: 'Annual spend' },
+              { value: 'unknown', label: 'Unspecified amount type' },
+            ])}
+            {!awards &&
+              select('Freshness', 'change', [
+                { value: 'new', label: 'New in 24 hours' },
+                { value: 'updated', label: 'Updated in 24 hours' },
+              ])}
+          </div>
+        </details>
       </div>
       <div className="modal-actions">
         <button className="button secondary" onClick={onReset}>
-          Reset filters
+          Reset
         </button>
         <button className="button primary" onClick={onClose}>
-          Show {count} signals <ArrowRight size={15} />
+          Show {count.toLocaleString('en-GB')} {awards ? 'awards' : 'signals'}{' '}
+          <ArrowRight size={15} />
         </button>
       </div>
-    </>
-  )
-}
-
-function SignalDetail({
-  signal: s,
-  data,
-  tab,
-  setTab,
-  onShare,
-  onBack,
-}: {
-  signal: Signal
-  data: Dataset
-  tab: string
-  setTab: (tab: string) => void
-  onShare: () => void
-  onBack: () => void
-}) {
-  const contentRef = useRef<HTMLDivElement>(null)
-  const text = useSignalText(s)
-  const tabs = ['overview', 'sources']
-  const activeTab = tabs.includes(tab) ? tab : 'overview'
-  useEffect(() => {
-    contentRef.current?.scrollTo({ top: 0 })
-  }, [activeTab, s.id])
-  const facts = [
-    [valueFact(s).label, valueFact(s, false).value],
-    [deadlineFact(s).label, deadlineFact(s).value],
-    ...(hasAwardOutcome(s)
-      ? [
-          [
-            'Awarded supplier',
-            s.winners?.map((winner) => winner.name).join(', ') ||
-              s.incumbent_supplier ||
-              'Not published',
-          ],
-          ['Award date', s.award_date ? date(s.award_date) : 'Not published'],
-        ]
-      : []),
-    ['Published', date(s.published_at)],
-    [
-      'Contract period',
-      s.contract_start || s.contract_end
-        ? `${date(s.contract_start)} to ${date(s.contract_end)}`
-        : 'Not published',
-    ],
-    ['Framework', s.framework || 'Not specified'],
-    ['Region', s.regions.join(', ') || s.countries.join(', ') || 'Not specified'],
-    ['Procurement lots', s.lot_ids.join(', ') || 'Not published'],
-    ['CPV classifications', s.cpv_codes.join(', ') || 'Not published'],
-  ]
-  return (
-    <>
-      <div className="detail-heading" tabIndex={0} role="region" aria-label="Opportunity heading">
-        <div className="detail-eyebrow">
-          <span className="type-label">{recordTypeLabel(s)}</span>
-        </div>
-        <h2>
-          <ResearchTitle signal={s}>{text.title}</ResearchTitle>
-        </h2>
-        <div className="buyer">
-          <Building2 size={14} />
-          <BuyerLink signal={s} />
-        </div>
-        <div className="detail-actions">
-          <DeadlineCalendarButton signal={s} />
-          <IconButton label="Copy opportunity link" onClick={onShare}>
-            <Copy size={16} />
-          </IconButton>
-        </div>
-      </div>
-      <div className="detail-tabs" role="tablist" aria-label="Opportunity detail sections">
-        {tabs.map((t) => (
-          <button
-            key={t}
-            role="tab"
-            id={`detail-tab-${t}`}
-            aria-controls="detail-panel"
-            aria-selected={activeTab === t}
-            tabIndex={activeTab === t ? 0 : -1}
-            onClick={() => setTab(t)}
-            onKeyDown={(event) => {
-              const current = tabs.indexOf(t)
-              const index =
-                event.key === 'ArrowRight'
-                  ? (current + 1) % tabs.length
-                  : event.key === 'ArrowLeft'
-                    ? (current + tabs.length - 1) % tabs.length
-                    : event.key === 'Home'
-                      ? 0
-                      : event.key === 'End'
-                        ? tabs.length - 1
-                        : -1
-              if (index < 0) return
-              event.preventDefault()
-              setTab(tabs[index])
-              document.getElementById(`detail-tab-${tabs[index]}`)?.focus()
-            }}
-          >
-            {t === 'overview' ? 'Overview' : 'Sources & timeline'}
-          </button>
-        ))}
-      </div>
-      <div
-        ref={contentRef}
-        className="detail-content"
-        role="tabpanel"
-        id="detail-panel"
-        aria-labelledby={`detail-tab-${activeTab}`}
-        tabIndex={0}
-      >
-        {activeTab === 'overview' ? (
-          <>
-            <section className="detail-section">
-              <h3>Capabilities</h3>
-              <CapabilityTags signal={s} data={data} />
-            </section>
-            <RecommendedApproach signal={s} />
-            <section className="detail-section">
-              <h3>Published deadlines</h3>
-              <DeadlineEvents signal={s} />
-            </section>
-            <section className="detail-section">
-              <h3>Opportunity scope</h3>
-              {text.original && (
-                <span
-                  className="translation-status"
-                  title="English translation is not available yet"
-                >
-                  Original text
-                </span>
-              )}
-              <p className="detail-summary">
-                {text.description?.trim() ||
-                  'No description was published. Review the source notice for details.'}
-              </p>
-              <p className="lifecycle-note">
-                {lifecycleLabels[lifecycleState(s)]}:{' '}
-                {s.lifecycle_reason || 'Confirm the latest status in the source notice.'}
-              </p>
-            </section>
-            <section className="detail-section">
-              <h3>Commercial & procurement facts</h3>
-              <dl className="facts-grid">
-                {facts.map(([label, value]) => (
-                  <div key={label}>
-                    <dt>{label}</dt>
-                    <dd>{label === 'Awarded supplier' ? <SupplierLinks signal={s} /> : value}</dd>
-                  </div>
-                ))}
-              </dl>
-            </section>
-          </>
-        ) : (
-          <>
-            <section className="detail-section">
-              <h3>Source provenance</h3>
-              <div className="provenance-list">
-                {s.provenance.map((p, i) => (
-                  <div key={`${p.source}-${p.release_id}-${i}`}>
-                    <span className="source-icon">
-                      <FileText size={16} />
-                    </span>
-                    <div>
-                      {distinctSources(
-                        [p.url],
-                        [
-                          s.primary_source_url,
-                          ...s.provenance.slice(0, i).map((previous) => previous.url),
-                        ],
-                      ).length ? (
-                        <SourceNoticeLink href={p.url} compact>
-                          {p.source_name}
-                        </SourceNoticeLink>
-                      ) : (
-                        <strong>{p.source_name}</strong>
-                      )}
-                      <small>Reference {p.release_id || 'Not published'}</small>
-                      <small>
-                        Checked{' '}
-                        {date(p.retrieved_at, {
-                          day: 'numeric',
-                          month: 'short',
-                          year: 'numeric',
-                          hour: '2-digit',
-                          minute: '2-digit',
-                        })}
-                      </small>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              {s.ocid && (
-                <p className="ocid">
-                  OCID <code>{s.ocid}</code>
-                </p>
-              )}
-            </section>
-            <section className="detail-section">
-              <h3>Documents</h3>
-              <SourceDocuments signal={s} excludedSources={s.provenance.map((p) => p.url)} />
-            </section>
-            <section className="detail-section">
-              <ProcurementHistory
-                signal={s}
-                excludedSources={[
-                  ...s.provenance.map((p) => p.url),
-                  ...s.documents.map((doc) => doc.url),
-                ]}
-              />
-            </section>
-            <section className="detail-section">
-              <h3>Timeline</h3>
-              <ol className="timeline">
-                {[...s.changes].reverse().map((c, i) => (
-                  <li key={i}>
-                    <span />
-                    <div>
-                      <strong>
-                        {c.kind === 'discovered' ? 'First discovered' : 'Material update'}
-                      </strong>
-                      <time>
-                        {date(c.at, {
-                          day: 'numeric',
-                          month: 'short',
-                          year: 'numeric',
-                          hour: '2-digit',
-                          minute: '2-digit',
-                        })}
-                      </time>
-                      {!!c.fields.length && (
-                        <p>{c.fields.map((f) => f.replaceAll('_', ' ')).join(', ')}</p>
-                      )}
-                    </div>
-                  </li>
-                ))}
-              </ol>
-              <dl className="facts-grid">
-                <div>
-                  <dt>First seen</dt>
-                  <dd>{date(s.first_seen_at)}</dd>
-                </div>
-                <div>
-                  <dt>Last checked</dt>
-                  <dd>{date(s.last_seen_at)}</dd>
-                </div>
-                <div>
-                  <dt>Last material update</dt>
-                  <dd>{date(s.last_material_update)}</dd>
-                </div>
-              </dl>
-            </section>
-          </>
-        )}
-      </div>
-      <footer className="record-action-dock" aria-label="Record actions">
-        <button className="record-detail-button" onClick={onBack}>
-          <ArrowLeft size={18} />
-          <span>Back to record</span>
-        </button>
-        <SourceNoticeLink href={s.primary_source_url} />
-      </footer>
     </>
   )
 }

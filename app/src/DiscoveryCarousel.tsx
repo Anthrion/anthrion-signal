@@ -13,8 +13,11 @@ import {
   reflectionLamp,
   scrollMovesSurface,
 } from './glassLighting'
+import { ripple } from './delight'
+import { RollingNumber } from './RollingNumber'
 
-type DiscoveryItem = { id: string; label: string; icon: LucideIcon }
+/** `short` replaces a long label when the card is too narrow for it on one line. */
+type DiscoveryItem = { id: string; label: string; short?: string; icon: LucideIcon }
 
 export function DiscoveryCarousel({
   items,
@@ -73,6 +76,9 @@ export function DiscoveryCarousel({
     mount.appendChild(renderer.domElement)
     objects.forEach((object) => scene.add(object))
     let lamp = brandLightPosition()
+    // The span the reflected light travels. It runs a little past the outer cards: a card
+    // reflects most when the light is beyond it, on the far side from the viewer.
+    let span = { from: 0, to: 0 }
     let focusFrame = 0
     const focusPending = (attempt = 0) => {
       focusFrame = 0
@@ -96,7 +102,6 @@ export function DiscoveryCarousel({
       if (!width || !height) return
       const origin = mount.getBoundingClientRect()
       lamp = brandLightPosition()
-      const movingLamp = reflectionLamp(lamp, now, reducedMotion)
       renderer.setSize(width, height)
       camera.fov = MathUtils.radToDeg(2 * Math.atan(height / 2000))
       camera.aspect = width / height
@@ -104,6 +109,10 @@ export function DiscoveryCarousel({
       camera.updateMatrixWorld()
       const slides = api.slideNodes()
       const cardWidth = Math.max(1, Math.round(slides[0]?.getBoundingClientRect().width - 12))
+      // The face height is a layout token, so density changes stay in CSS.
+      const faceHeight = Number(getComputedStyle(mount).getPropertyValue('--discovery-face')) || 112
+      span = { from: origin.left - cardWidth * 0.4, to: origin.right + cardWidth * 0.4 }
+      const movingLamp = reflectionLamp(lamp, now, reducedMotion, span)
       objects.forEach((object, index) => {
         // Embla may disable looping when all categories fit. Its actual slide
         // positions remain authoritative in both that layout and the looped one.
@@ -111,7 +120,6 @@ export function DiscoveryCarousel({
         if (!slide) return
         const x = slide.left + slide.width / 2 - origin.left - width / 2
         const centred = Math.abs(x) < 0.5
-        const faceHeight = 112
         const left = origin.left + (width - cardWidth) / 2
         const top = origin.top + (height - faceHeight) / 2
         const crispX = Math.round(left) - left
@@ -181,7 +189,7 @@ export function DiscoveryCarousel({
       if (now - lastLight >= 40) {
         lastLight = now
         const origin = mount.getBoundingClientRect()
-        const movingLamp = reflectionLamp(lamp, now, reducedMotion)
+        const movingLamp = reflectionLamp(lamp, now, reducedMotion, span)
         objects.forEach((object) =>
           applyGlassLight(
             object.element,
@@ -209,6 +217,7 @@ export function DiscoveryCarousel({
     window.addEventListener('resize', resumeLight)
     resumeLight()
     select()
+
     return () => {
       requestLayout.current = null
       cancelAnimationFrame(frame)
@@ -247,7 +256,7 @@ export function DiscoveryCarousel({
       aria-label="Discover opportunities"
       aria-roledescription="carousel"
       data-light-motion={reducedMotion ? 'paused' : 'flowing'}
-      style={{ '--discovery-slots': Math.min(5, items.length) } as CSSProperties}
+      style={{ '--discovery-slots': Math.min(6, items.length) } as CSSProperties}
     >
       {(canScroll.previous || canScroll.next) && (
         <button
@@ -292,7 +301,16 @@ export function DiscoveryCarousel({
                 className={`discovery-card category-${id}`}
                 aria-label={`${label}, ${counts[id] || 0} signals`}
                 aria-pressed={selected === id}
-                onClick={() => select(index)}
+                onClick={(event) => {
+                  // A pointer press sends light across the glass from where it landed.
+                  if (event.detail > 0)
+                    ripple(
+                      objects[index].element.querySelector('.discovery-glass'),
+                      event.clientX,
+                      event.clientY,
+                    )
+                  select(index)
+                }}
                 onPointerEnter={() => highlight(index, true)}
                 onPointerLeave={() => highlight(index, false)}
                 onFocus={() => highlight(index, true)}
@@ -314,13 +332,17 @@ export function DiscoveryCarousel({
               >
                 <Icon className="discovery-icon" size={27} strokeWidth={1.6} />
                 <span className="discovery-value">
-                  {loading ? (
-                    <span className="skeleton number" />
-                  ) : (
-                    (counts[id] || 0).toLocaleString('en-GB')
+                  <RollingNumber
+                    value={loading ? null : counts[id] || 0}
+                    placeholder={<span className="skeleton number" />}
+                  />
+                </span>
+                <span className="discovery-name">
+                  <span className="discovery-name-long">{label}</span>
+                  {items[index].short && (
+                    <span className="discovery-name-short">{items[index].short}</span>
                   )}
                 </span>
-                <span className="discovery-name">{label}</span>
               </button>
             </div>
           ))}

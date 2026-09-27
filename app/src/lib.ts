@@ -215,19 +215,6 @@ export function amountPresentation(signal: Signal, compact = true) {
     sourceURL: fact?.source_url || signal.primary_source_url,
   }
 }
-export function currencyOptions(signals: Signal[]) {
-  const currencies = new Set(['GBP', 'USD', 'EUR', 'DKK', 'NOK', 'SEK', 'ISK'])
-  if (typeof Intl.supportedValuesOf === 'function') {
-    for (const currency of Intl.supportedValuesOf('currency')) currencies.add(currency)
-  }
-  for (const signal of signals) {
-    if (signal.currency && /^[A-Z]{3}$/.test(signal.currency)) currencies.add(signal.currency)
-  }
-  const names = new Intl.DisplayNames('en-GB', { type: 'currency' })
-  return [...currencies]
-    .map((currency) => ({ value: currency, label: names.of(currency) || currency }))
-    .sort((a, b) => a.label.localeCompare(b.label, 'en-GB') || a.value.localeCompare(b.value))
-}
 export function responseDeadline(s: Signal, now = Date.now()) {
   const dates = responseValues(s)
     .filter((value) => Number.isFinite(Date.parse(value)))
@@ -252,7 +239,21 @@ export function selectedResponseDeadlineEvent(s: Signal, now = Date.now()) {
   const value = responseDeadline(s, now)
   return value ? responseEvents(s).find((event) => deadlineEventValue(event) === value) : undefined
 }
+// Records are immutable once loaded, so per-record derivations are computed once and reused
+// by every filter pass, count and sort. A reloaded feed brings new objects and new entries.
+const responseValueCache = new WeakMap<Signal, string[]>()
+const instantCache = new WeakMap<Signal, Map<string, number>>()
+const lifecycleCache = new WeakMap<Signal, { now: number; state: string }>()
+const searchTextCache = new WeakMap<Signal, { english: unknown; text: string }>()
+
 function responseValues(s: Signal): string[] {
+  const cached = responseValueCache.get(s)
+  if (cached) return cached
+  const values = computeResponseValues(s)
+  responseValueCache.set(s, values)
+  return values
+}
+function computeResponseValues(s: Signal): string[] {
   if (s.deadlines?.length) {
     return responseEvents(s)
       .map(deadlineEventValue)
@@ -261,6 +262,13 @@ function responseValues(s: Signal): string[] {
   return s.response_deadlines?.length ? s.response_deadlines : s.deadline_at ? [s.deadline_at] : []
 }
 function deadlineInstant(value: string, signal: Signal) {
+  let instants = instantCache.get(signal)
+  if (!instants) instantCache.set(signal, (instants = new Map()))
+  let instant = instants.get(value)
+  if (instant === undefined) instants.set(value, (instant = computeDeadlineInstant(value, signal)))
+  return instant
+}
+function computeDeadlineInstant(value: string, signal: Signal) {
   const instant = Date.parse(value)
   if (!/^\d{4}-\d{2}-\d{2}$/.test(value) || !Number.isFinite(instant)) return instant
   const event = signal.deadlines?.find((d) => d.date === value && d.status === 'current')
@@ -289,6 +297,13 @@ export function deadlineCaption(s: Signal, now = Date.now()) {
   return `${label}${soon ? ` · ${Math.ceil(remaining / 86400000)}d left` : ''}`
 }
 export function lifecycleState(s: Signal, now = Date.now()) {
+  const cached = lifecycleCache.get(s)
+  if (cached?.now === now) return cached.state
+  const state = computeLifecycleState(s, now)
+  lifecycleCache.set(s, { now, state })
+  return state
+}
+function computeLifecycleState(s: Signal, now: number) {
   if (/^(CANCELLED|CANCELED|AVLYST|KESKEYTETTY|PERUTTU)\b/.test(s.title.trim())) return 'CLOSED'
   if (['veat', 'dir-awa-pre'].includes(s.notice_type?.toLowerCase() || '')) return 'CLOSED'
   if (['cancelled', 'canceled', 'unsuccessful'].includes(s.status)) return 'CANCELLED'
@@ -422,21 +437,7 @@ export function prepareSearch(
   }
   return (s: Signal, english?: NonNullable<Dataset['translations']>[string]) => {
     if (!q) return { matched: true, basis: 'text' as const, capabilities: [] as string[] }
-    const text = searchText(
-      [
-        s.title,
-        s.description,
-        english?.title,
-        english?.description,
-        s.buyer_name,
-        translatedBuyer(s, english),
-        s.search_text,
-        s.ocid,
-        ...(s.external_ids || []),
-      ]
-        .filter(Boolean)
-        .join(' '),
-    )
+    const text = recordSearchText(s, english)
     const boundaryText = ` ${text} `
     const literal = (term: string, phrase = false) =>
       phrase || intent.mode === 'exact'
@@ -469,6 +470,49 @@ export function prepareSearch(
   }
 }
 
+// Normalised search text per record, reused across keystrokes until its translation changes.
+function recordSearchText(s: Signal, english?: NonNullable<Dataset['translations']>[string]) {
+  const cached = searchTextCache.get(s)
+  if (cached && cached.english === english) return cached.text
+  const text = searchText(
+    [
+      s.title,
+      s.description,
+      english?.title,
+      english?.description,
+      s.buyer_name,
+      translatedBuyer(s, english),
+      s.search_text,
+      s.ocid,
+      ...(s.external_ids || []),
+    ]
+      .filter(Boolean)
+      .join(' '),
+  )
+  searchTextCache.set(s, { english, text })
+  return text
+}
+
+/** Prepares these records' search text in idle slices; returns a cancel function. */
+export function warmSearchText(signals: Signal[], translations: Dataset['translations'] = {}) {
+  let index = 0
+  let handle = 0
+  const idle = typeof requestIdleCallback === 'function'
+  const schedule = () => {
+    handle = idle ? requestIdleCallback(step) : window.setTimeout(step, 16)
+  }
+  const step = (deadline?: IdleDeadline) => {
+    const until = performance.now() + Math.min(10, deadline?.timeRemaining() ?? 8)
+    while (index < signals.length && performance.now() < until) {
+      const s = signals[index++]
+      recordSearchText(s, translations[s.id])
+    }
+    if (index < signals.length) schedule()
+  }
+  schedule()
+  return () => (idle ? cancelIdleCallback(handle) : window.clearTimeout(handle))
+}
+
 export function matchesSearch(
   s: Signal,
   query: string,
@@ -496,13 +540,16 @@ const collectionDay = new Intl.DateTimeFormat('en-GB', {
   month: '2-digit',
   day: '2-digit',
 })
+// Intl formatting is the slow part: each record's London day, and today's, are formatted once.
+const collectionDayCache = new WeakMap<Signal, string>()
+let today = { now: NaN, day: '' }
 export function isAddedToday(s: Signal, now = Date.now()) {
   const collected = Date.parse(s.first_seen_at)
-  return (
-    Number.isFinite(collected) &&
-    collected <= now &&
-    collectionDay.format(collected) === collectionDay.format(now)
-  )
+  if (!Number.isFinite(collected) || collected > now) return false
+  if (today.now !== now) today = { now, day: collectionDay.format(now) }
+  let day = collectionDayCache.get(s)
+  if (day === undefined) collectionDayCache.set(s, (day = collectionDay.format(collected)))
+  return day === today.day
 }
 export const isUpdated = (s: Signal, now = Date.now()) =>
   !isNew(s, now) && now - Date.parse(s.last_material_update) < 86400000
@@ -732,20 +779,31 @@ export function safeURL(value: string) {
     return '#'
   }
 }
+/** A stable link that reopens this record in its own market and collection. */
+export function recordURL(signal: Signal, appURL: string) {
+  const url = new URL(appURL)
+  url.search = ''
+  url.hash = ''
+  url.searchParams.set('view', hasAwardOutcome(signal) ? 'awards' : 'all')
+  url.searchParams.set(
+    'market',
+    markets.find((market) => matchesMarket(signal, market.id))?.id || '',
+  )
+  url.searchParams.set('signal', signal.id)
+  return url.href
+}
+/** True when the notice publishes a figure, not only an amount type. */
+export function hasPublishedAmount(signal: Signal) {
+  const fact = signal.amount
+  return [fact?.minimum ?? signal.value_min, fact?.maximum ?? signal.value_max].some(
+    (value) => value !== null && value !== undefined,
+  )
+}
 function recordShareText(
   signal: Signal,
   appURL: string,
   text = { title: signal.title, buyerName: signal.buyer_name },
 ) {
-  const recordURL = new URL(appURL)
-  recordURL.search = ''
-  recordURL.hash = ''
-  recordURL.searchParams.set('view', hasAwardOutcome(signal) ? 'awards' : 'all')
-  recordURL.searchParams.set(
-    'market',
-    markets.find((market) => matchesMarket(signal, market.id))?.id || '',
-  )
-  recordURL.searchParams.set('signal', signal.id)
   const deadline = responseDeadline(signal)
   const sourceURL = safeURL(signal.primary_source_url)
   const financial = amountPresentation(signal, false)
@@ -771,7 +829,7 @@ function recordShareText(
             : 'Not published'
         }`,
     '',
-    `View in Anthrion Signal: ${recordURL.href}`,
+    `View in Anthrion Signal: ${recordURL(signal, appURL)}`,
     ...(sourceURL === '#' ? [] : [`Source notice: ${sourceURL}`]),
   ].join('\n')
 }

@@ -78,57 +78,109 @@ test('the header owns search, filters and sort without colliding with brand or s
   }
 })
 
-test('export is centred beside the refiners and remains clear of carousel navigation', async ({
+test('export is centred beside the six refiners and remains clear of carousel navigation', async ({
   page,
 }, info) => {
-  const width = info.project.name === 'desktop' ? 1484 : 320
-  await page.setViewportSize({ width, height: 920 })
-  await ready(page)
+  const desktop = info.project.name === 'desktop'
+  // Six glass cards fit a wide desktop; a narrower one scrolls them with arrows, and phones use
+  // a row of chips.
+  const layouts = desktop
+    ? [
+        { width: 1484, arrows: 0 },
+        { width: 1100, arrows: 2 },
+      ]
+    : [{ width: 320, arrows: 0 }]
   const exportButton = page.getByRole('button', { name: 'Export signals', exact: true })
-  const exportBox = await contained(exportButton, page.locator('.discovery-band'))
-  const glass = (await page.locator('.discovery-viewport').boundingBox())!
-  expect(Math.abs(exportBox.y + exportBox.height / 2 - glass.y - glass.height / 2)).toBeLessThan(1)
-  expect(exportBox.x).toBeGreaterThan(glass.x + glass.width)
-  for (const arrow of await page.locator('.carousel-arrow').all()) {
-    const box = (await arrow.boundingBox())!
-    expect(box.x + box.width).toBeLessThanOrEqual(exportBox.x)
+  for (const { width, arrows } of layouts) {
+    await page.setViewportSize({ width, height: 920 })
+    await ready(page)
+    await expect(
+      page.locator(desktop ? '.discovery-card' : '.compact-refiners button'),
+    ).toHaveCount(6)
+    await expect(page.locator('.carousel-arrow')).toHaveCount(arrows)
+    const exportBox = await contained(exportButton, page.locator('.discovery-band'))
+    // Phone chips scroll edge to edge through their padding; their content stops before export.
+    const refiners = await page
+      .locator(desktop ? '.discovery-viewport' : '.compact-refiners')
+      .evaluate((el) => {
+        const box = el.getBoundingClientRect()
+        return {
+          middle: box.top + box.height / 2,
+          end: box.right - parseFloat(getComputedStyle(el).paddingRight),
+        }
+      })
+    expect(
+      Math.abs(exportBox.y + exportBox.height / 2 - refiners.middle),
+      `centred at ${width}px`,
+    ).toBeLessThan(1)
+    expect(exportBox.x).toBeGreaterThan(refiners.end)
+    for (const arrow of await page.locator('.carousel-arrow').all()) {
+      const box = (await arrow.boundingBox())!
+      expect(box.x + box.width).toBeLessThanOrEqual(exportBox.x)
+    }
   }
   await page.getByRole('textbox', { name: 'Search opportunities' }).fill('Vanguard')
   await expect(page.locator('.row-select').first()).toBeVisible()
   const download = page.waitForEvent('download')
   await exportButton.click()
   expect((await download).suggestedFilename()).toMatch(/\.csv$/)
-  await page.getByRole('button', { name: /Sort opportunities:/ }).click()
-  await page.getByRole('menuitemcheckbox', { name: 'Show hidden' }).click()
+  // Hidden records are a lens in the header now; with none hidden there is nothing to export.
+  const hidden = page.getByRole('button', { name: 'Hidden, 0', exact: true })
+  await hidden.click()
+  await expect(hidden).toHaveAttribute('aria-pressed', 'true')
   await expect(exportButton).toBeDisabled()
   await expect(page.getByText('No hidden signals', { exact: true })).toBeVisible()
 })
 
-test('default reading stays clear and compact mode gains space above the usable action dock', async ({
+test('default reading stays clear and the Compact refiners preference gains space above the usable action dock', async ({
   page,
 }, info) => {
   const desktop = info.project.name === 'desktop'
   await page.setViewportSize({ width: desktop ? 1484 : 390, height: desktop ? 920 : 844 })
   await ready(page)
-  if (!desktop) await page.locator('.row-select').first().click()
+  const band = page.locator('.discovery-band')
+  if (!desktop) {
+    // Phones always show the compact chip row; the Refiners preference is for wider screens.
+    await expect(page.locator('.compact-refiners')).toBeVisible()
+    await page.locator('.row-select').first().click()
+  }
   const panel = page.locator('.console-detail:visible')
   const dock = panel.locator('.record-action-dock')
   if (desktop) {
     const standardReading = (await panel.locator('.inspector-scroll').boundingBox())!
     const standardDock = (await dock.boundingBox())!
-    const searchControls = (await page.locator('.search-workspace').boundingBox())!
+    const cards = (await band.boundingBox())!
     expect(standardReading.height).toBeGreaterThanOrEqual(450)
-    expect(standardReading.y).toBeGreaterThanOrEqual(searchControls.y + searchControls.height)
+    expect(standardReading.y).toBeGreaterThanOrEqual(cards.y + cards.height)
     expect(standardReading.y + standardReading.height).toBeLessThanOrEqual(standardDock.y + 1)
-    await page.getByRole('button', { name: 'Compact reading mode', exact: true }).click()
+    await page.getByRole('button', { name: 'Workspace menu', exact: true }).click()
+    const menu = page.getByRole('dialog', { name: 'Workspace' })
+    const compact = menu
+      .getByRole('radiogroup', { name: 'Refiners' })
+      .getByRole('radio', { name: 'Compact' })
+    await compact.click()
+    await expect(compact).toHaveAttribute('aria-checked', 'true')
+    await menu.getByRole('button', { name: 'Close workspace menu' }).click()
+    await expect(menu).toHaveCount(0)
+    await expect(page.locator('.compact-refiners')).toBeVisible()
+    await expect(page.locator('.discovery-viewport')).toHaveCount(0)
+    // The chip row is shorter than the cards, and the record takes all of the space it frees:
+    // it keeps its distance below the refiners and still ends at the unchanged dock.
+    const chips = (await band.boundingBox())!
+    const reading = (await panel.locator('.inspector-scroll').boundingBox())!
+    expect(reading.y - (chips.y + chips.height)).toBeCloseTo(
+      standardReading.y - (cards.y + cards.height),
+      0,
+    )
+    expect(reading.y + reading.height).toBeCloseTo(standardReading.y + standardReading.height, 0)
+    expect(reading.height - standardReading.height).toBeGreaterThanOrEqual(40)
+    expect(await dock.boundingBox()).toEqual(standardDock)
   }
   const before = (await dock.boundingBox())!
-  expect(before.height).toBe(57)
+  // One row of 44px controls; the source button's second line (when it was checked) adds a little.
+  expect(before.height).toBeLessThanOrEqual(61)
   expect(before.y + before.height).toBeLessThanOrEqual(page.viewportSize()!.height)
-  const reading = (await panel.locator('.inspector-scroll').boundingBox())!
   if (desktop) {
-    expect(reading.y).toBeLessThanOrEqual(305)
-    expect(reading.height).toBeGreaterThanOrEqual(545)
     await expect(page.locator('.console-inspector')).toHaveCSS('border-top-left-radius', '6px')
     await expect(page.locator('.console-inspector')).toHaveCSS('border-bottom-left-radius', '6px')
     await expect(page.locator('.market-section')).toHaveCSS('height', '66px')
@@ -142,11 +194,17 @@ test('default reading stays clear and compact mode gains space above the usable 
   for (const button of [dock.getByRole('button'), dock.getByRole('link')]) {
     expect((await contained(button, dock)).height).toBeGreaterThanOrEqual(44)
   }
+  // The record is one scroll: it ends with the source history, above the dock.
   await panel.locator('.inspector-scroll').evaluate((el) => el.scrollTo(0, el.scrollHeight))
   expect(await dock.boundingBox()).toEqual(before)
-  await expect(panel.locator('.inspector-summary p').last()).toBeInViewport()
-  await dock.getByRole('button', { name: 'Full details', exact: true }).click()
-  await expect(page.getByRole('tab', { name: 'Sources & timeline' })).toBeVisible()
-  const fullDock = page.getByRole('dialog').locator('.record-action-dock')
-  expect((await fullDock.boundingBox())!.height).toBeLessThanOrEqual(61)
+  const history = panel.locator('.record-history')
+  await expect(history).toBeInViewport()
+  const end = (await history.boundingBox())!
+  expect(end.y + end.height).toBeLessThanOrEqual(before.y)
+  // The dock's source button opens that history in place; the dock itself does not change.
+  await dock.getByRole('button', { name: /^Find a Tender/ }).click()
+  await expect(history).toHaveAttribute('open', '')
+  await expect(history.locator('.provenance-list')).toContainText('Reference panel-notice')
+  await expect(page.getByRole('dialog')).toHaveCount(desktop ? 0 : 1)
+  expect(await dock.boundingBox()).toEqual(before)
 })

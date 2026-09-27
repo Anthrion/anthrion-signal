@@ -43,18 +43,21 @@ test.beforeEach(async ({ page }) => {
   await page.clock.setFixedTime(new Date('2026-09-11T12:00:00Z'))
 })
 
-test('selected design presents compact source facts before untruncated text', async ({
+test('selected design presents compact source facts before untruncated text in one scroll, with Brief reading as a menu preference', async ({
   page,
 }, info) => {
   await fixture(page)
   const panel = await preview(page)
+  const paragraphs = description.split('\n\n')
   await expect(panel.locator('.inspector-facts dt')).toHaveText([
     'Notice type',
     'Published amount',
     'Deadline',
   ])
   await expect(panel.locator('.inspector-capabilities')).toContainText('Case management & service')
-  await expect(panel.locator('.inspector-summary p')).toHaveText(description.split('\n\n'))
+  // Full text is the default Reading preference: the whole description, with nothing to expand.
+  await expect(panel.locator('.inspector-summary p')).toHaveText(paragraphs)
+  await expect(panel.getByRole('button', { name: 'Full text', exact: true })).toHaveCount(0)
   expect(
     await panel
       .locator('.inspector-summary p')
@@ -66,6 +69,14 @@ test('selected design presents compact source facts before untruncated text', as
   const prose = (await panel.locator('.inspector-summary').boundingBox())!
   const integrations = panel.getByRole('group', { name: 'Record integrations' })
   const buttons = integrations.locator('button, a')
+  expect(
+    await buttons.evaluateAll((controls) => controls.map((el) => el.getAttribute('aria-label'))),
+  ).toEqual([
+    'Salesforce (coming soon)',
+    'Share this opportunity in Gmail (opens a new tab)',
+    'Slack (coming soon)',
+    'Copy link to this opportunity',
+  ])
   const overview = (await panel.locator('.inspector-overview').boundingBox())!
   const integrationBounds = (await integrations.boundingBox())!
   expect(
@@ -81,17 +92,24 @@ test('selected design presents compact source facts before untruncated text', as
     expect(box.x).toBeGreaterThanOrEqual(facts.x + facts.width)
     expect(box.y).toBeGreaterThanOrEqual(previousBottom)
     previousBottom = box.y + box.height
-    await expect
-      .poll(() =>
-        button
-          .locator('img')
-          .evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0),
-      )
-      .toBe(true)
   }
+  // The three services show their logos; Copy link is a drawn icon.
+  const logos = integrations.locator('img')
+  await expect(logos).toHaveCount(3)
+  for (const logo of await logos.all())
+    await expect
+      .poll(() => logo.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0))
+      .toBe(true)
+  await expect(
+    integrations.getByRole('button', { name: 'Copy link to this opportunity' }).locator('svg'),
+  ).toBeVisible()
   expect(prose.y).toBeGreaterThanOrEqual(previousBottom)
   expect(capabilities.y).toBeGreaterThanOrEqual(facts.y + facts.height - 1)
   expect(prose.y).toBeGreaterThanOrEqual(capabilities.y + capabilities.height)
+  // One complete record: the source history follows the description in the same scroll.
+  const history = panel.locator('.inspector-scroll .record-history')
+  await expect(history.locator('summary')).toHaveText('Source history')
+  expect((await history.boundingBox())!.y).toBeGreaterThanOrEqual(prose.y + prose.height)
   await dockInViewport(page, panel)
   if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
     await page.screenshot({ path: `../artifacts/record-panel-${info.project.name}.png` })
@@ -99,6 +117,21 @@ test('selected design presents compact source facts before untruncated text', as
     .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
     .analyze()
   expect(results.violations).toEqual([])
+  // Brief reading is chosen in the workspace menu and persists: the record opens with the first
+  // passage, and Full text restores the complete description.
+  if (page.viewportSize()!.width <= 900)
+    await page.getByRole('button', { name: 'Close panel' }).click()
+  await page.getByRole('button', { name: 'Workspace menu', exact: true }).click()
+  const menu = page.getByRole('dialog', { name: 'Workspace' })
+  await menu
+    .getByRole('radiogroup', { name: 'Reading' })
+    .getByRole('radio', { name: 'Brief' })
+    .click()
+  await menu.getByRole('button', { name: 'Close workspace menu' }).click()
+  const brief = await preview(page)
+  await expect(brief.locator('.inspector-summary p')).toHaveText([paragraphs[0]])
+  await brief.getByRole('button', { name: 'Full text', exact: true }).click()
+  await expect(brief.locator('.inspector-summary p')).toHaveText(paragraphs)
 })
 
 test('@pr Gmail opens an unsent draft for the current record and its link reopens that record', async ({
@@ -182,45 +215,80 @@ test('long records keep the dock visible before and after scrolling at compact a
   for (const [width, height] of sizes) {
     await page.setViewportSize({ width, height })
     const panel = await preview(page)
-    const before = await dockInViewport(page, panel)
+    const before = (await dockInViewport(page, panel))!
     const scroller = panel.locator('.inspector-scroll')
     await scroller.focus()
     await page.keyboard.press('PageDown')
     await expect.poll(() => scroller.evaluate((el) => el.scrollTop)).toBeGreaterThan(0)
+    // The record is one scroll that ends with its source history, readable above the dock.
     await scroller.evaluate((el) => el.scrollTo(0, el.scrollHeight))
-    await expect(panel.locator('.inspector-summary p').last()).toBeInViewport()
+    const history = panel.locator('.record-history')
+    await expect(history).toBeInViewport()
     expect(await dockInViewport(page, panel)).toEqual(before)
-    const last = (await panel.locator('.inspector-summary p').last().boundingBox())!
-    expect(last.y + last.height).toBeLessThanOrEqual(before!.y)
-    await expect(panel.getByRole('button', { name: 'Full details', exact: true })).toBeEnabled()
+    const end = (await history.boundingBox())!
+    expect(end.y + end.height).toBeLessThanOrEqual(before.y)
+    // The dock names the source and when it was checked, and opens the source history in place.
+    const source = panel
+      .locator('.record-action-dock')
+      .getByRole('button', { name: /^Find a Tender/ })
+    await expect(source).toContainText(/Find a Tender\s*checked 11 Sept/)
+    await expect(source).toBeEnabled()
     if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
       await page.screenshot({ path: `../artifacts/record-panel-long-${width}x${height}.png` })
-    await panel.getByRole('button', { name: 'Full details', exact: true }).click()
-    const dialog = page.getByRole('dialog')
-    await dockInViewport(page, dialog)
-    await dialog.locator('.detail-content').evaluate((el) => el.scrollTo(0, el.scrollHeight))
-    await dockInViewport(page, dialog)
-    await dialog.getByRole('button', { name: 'Back to record' }).click()
-    if (width <= 900) await expect(page.locator('.console-detail:visible')).toBeVisible()
-    else await expect(dialog).toHaveCount(0)
+    await source.click()
+    await expect(history).toHaveAttribute('open', '')
+    await expect(history.locator('.provenance-list')).toContainText('Reference panel-notice')
+    await expect(page.getByRole('dialog')).toHaveCount(width <= 900 ? 1 : 0)
+    expect(await dockInViewport(page, panel)).toEqual(before)
+    await scroller.evaluate((el) => el.scrollTo(0, el.scrollHeight))
+    const openedEnd = (await history.boundingBox())!
+    expect(openedEnd.height).toBeGreaterThan(end.height)
+    expect(openedEnd.y + openedEnd.height).toBeLessThanOrEqual(before.y)
+    expect(await dockInViewport(page, panel)).toEqual(before)
   }
 })
 
-test('record actions open Google Calendar while save and hide remain in the results list', async ({
+test('record actions open Google Calendar and the source history, an opened record can be saved, and hide stays in the results list', async ({
   page,
 }) => {
   await fixture(page)
   const errors: string[] = []
   page.on('pageerror', (error) => errors.push(error.message))
   await page.goto('./?view=live')
+  const narrow = page.viewportSize()!.width <= 900
+  const saved = () => page.evaluate(() => localStorage.getItem('anthrion-saved-v1'))
   const firstRow = page.locator('[data-signal-id="panel-a"]')
   await firstRow.getByRole('button', { name: 'Save opportunity in this browser' }).click()
   await expect(
     firstRow.getByRole('button', { name: 'Unsave opportunity', exact: true }),
   ).toBeVisible()
   const panel = await preview(page)
-  await expect(panel.getByRole('button', { name: /save.*opportunity/i })).toHaveCount(0)
-  await expect(panel.getByRole('checkbox')).toHaveCount(0)
+  // The opened record shares the results list's saved state and can change it.
+  if (narrow) {
+    const drawer = page.getByRole('dialog')
+    await drawer.getByRole('button', { name: 'Unsave opportunity', exact: true }).click()
+    await expect.poll(saved).toBe('[]')
+    await drawer
+      .getByRole('button', { name: 'Save opportunity in this browser', exact: true })
+      .click()
+    await expect(
+      drawer.getByRole('button', { name: 'Unsave opportunity', exact: true }),
+    ).toBeVisible()
+  } else {
+    // Beside the list, the selected record is saved with its row's button or the S shortcut.
+    await page.keyboard.press('s')
+    await expect(
+      firstRow.getByRole('button', { name: 'Save opportunity in this browser', exact: true }),
+    ).toBeVisible()
+    await expect.poll(saved).toBe('[]')
+    await page.keyboard.press('s')
+    await expect(
+      firstRow.getByRole('button', { name: 'Unsave opportunity', exact: true }),
+    ).toBeVisible()
+  }
+  await expect.poll(saved).toBe('["panel-a"]')
+  const record = narrow ? page.getByRole('dialog') : panel
+  await expect(record.getByRole('button', { name: /^(Hide|Unhide) / })).toHaveCount(0)
   await page
     .context()
     .route('https://calendar.google.com/**', (route) =>
@@ -259,34 +327,38 @@ test('record actions open Google Calendar while save and hide remain in the resu
   const source = await opened
   await expect(source).toHaveURL('https://example.com/tender/a')
   await source.close()
-  await panel.getByRole('button', { name: 'Full details', exact: true }).click()
-  const dialog = page.getByRole('dialog')
-  await expect(dialog.getByRole('button', { name: /save.*opportunity|^Saved$/i })).toHaveCount(0)
-  await expect(
-    dialog.getByRole('link', {
-      name: 'Add deadline to Google Calendar (opens a new tab)',
-      exact: true,
-    }),
-  ).toHaveAttribute('href', calendarURL.href)
-  await dialog.getByRole('tab', { name: 'Sources & timeline' }).click()
-  await expect(dialog.getByRole('tabpanel')).toContainText('Source provenance')
-  await dockInViewport(page, dialog)
-  await dialog.getByRole('button', { name: 'Back to record' }).click()
-  if (page.viewportSize()!.width <= 900)
+  // The dock's source button opens the source history within the record and brings it into view.
+  const history = panel.locator('.record-history')
+  await expect(history).not.toHaveAttribute('open')
+  await panel
+    .locator('.record-action-dock')
+    .getByRole('button', { name: /^Find a Tender/ })
+    .click()
+  await expect(history).toHaveAttribute('open', '')
+  const provenance = history.locator('.provenance-list')
+  await expect(provenance).toContainText('Find a Tender')
+  await expect(provenance).toContainText('Reference panel-notice')
+  await expect(provenance).toBeInViewport({ ratio: 1 })
+  await dockInViewport(page, panel)
+  if (narrow) {
     await page.getByRole('button', { name: 'Close panel' }).click()
+    await expect(
+      firstRow.getByRole('button', { name: 'Unsave opportunity', exact: true }),
+    ).toBeVisible()
+  }
   await page.locator('.row-select').nth(1).click()
   const next = page.locator('.console-detail:visible')
   await expect(next.locator('.inspector-heading h2')).toHaveText('Customer platform implementation')
   await expect.poll(() => next.locator('.inspector-scroll').evaluate((el) => el.scrollTop)).toBe(0)
+  await expect(next.locator('.record-history')).not.toHaveAttribute('open')
   await expect(next.getByRole('link', { name: 'Open source notice' })).toHaveAttribute(
     'href',
     'https://example.com/tender/b',
   )
-  if (page.viewportSize()!.width <= 900)
-    await page.getByRole('button', { name: 'Close panel' }).click()
+  if (narrow) await page.getByRole('button', { name: 'Close panel' }).click()
   await page
     .locator('[data-signal-id="panel-b"]')
-    .getByRole('checkbox', { name: 'Hide Customer platform implementation', exact: true })
+    .getByRole('button', { name: 'Hide Customer platform implementation', exact: true })
     .click()
   await expect(page.locator('[data-signal-id="panel-b"]')).toHaveCount(0)
   expect(errors).toEqual([])

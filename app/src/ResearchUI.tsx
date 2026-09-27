@@ -102,17 +102,20 @@ export function RecordLink({
     </button>
   )
 }
-export function BuyerLink({ signal }: { signal: Signal }) {
+export function BuyerLink({ signal, count }: { signal: Signal; count?: number }) {
   const { open } = useResearchOpen()
   const text = useSignalText(signal)
   return (
     <button
       className="buyer-history-link"
       onClick={(event) => open({ kind: 'buyer', signal, opener: event.currentTarget })}
-      aria-label={`View buyer history for ${text.buyerName}`}
+      aria-label={`View buyer history for ${text.buyerName}${count ? `, ${count} collected notices` : ''}`}
     >
       {text.buyerName}
       <ArrowUpRight size={13} aria-hidden="true" />
+      {!!count && (
+        <small className="buyer-history-count">{count.toLocaleString('en-GB')} notices</small>
+      )}
     </button>
   )
 }
@@ -435,10 +438,13 @@ export function SourceDocuments({
 export function ProcurementHistory({
   signal,
   showLotSummary = true,
+  showContract = true,
   excludedSources = [],
 }: {
   signal: Signal
   showLotSummary?: boolean
+  /** The record view lists contract dates with its other facts. */
+  showContract?: boolean
   excludedSources?: string[]
 }) {
   const lots = meaningfulLots(signal.lots)
@@ -457,13 +463,13 @@ export function ProcurementHistory({
   return (
     <div className="procurement-history">
       {showLotSummary && <LotSummary record={signal} />}
-      {(signal.contract_start || signal.contract_end) && (
+      {showContract && (signal.contract_start || signal.contract_end) && (
         <p>
           Contract period: {date(signal.contract_start || null)} to{' '}
           {date(signal.contract_end || null)}
         </p>
       )}
-      {signal.extension_end && <p>Extension end: {date(signal.extension_end)}</p>}
+      {showContract && signal.extension_end && <p>Extension end: {date(signal.extension_end)}</p>}
       {!!lots.length && (
         <>
           <h3>Published lots</h3>
@@ -655,16 +661,18 @@ function HistoryTimeline({
   )
 }
 
+/** Active search and filter chips; the row only exists while something narrows the feed. */
 export function SearchWorkspace({
   filters,
   update,
   data,
-  count,
+  extra,
 }: {
   filters: Filters
   update: (patch: Partial<Filters>) => void
   data: Dataset | null
-  count: number
+  /** A leading chip for workspace state that narrows the feed, such as hidden records. */
+  extra?: ReactNode
 }) {
   const chips = Object.entries(filters).filter(
     ([key, value]) =>
@@ -693,60 +701,35 @@ export function SearchWorkspace({
     match: 'Match',
     amountType: 'Amount type',
   }
+  const shown: Record<string, Record<string, string>> = {
+    searchMode: { exact: 'Exact source text' },
+    match: { any: 'Any word', phrase: 'Exact phrase' },
+    deadline: { '7': '7 days', '14': '14 days', '30': '30 days', '90': '90 days' },
+    change: { new: 'New in 24 hours', updated: 'Updated in 24 hours' },
+  }
+  if (!chips.length && !extra) return null
   return (
     <div className="search-workspace">
-      <div className="search-intent">
-        <label>
-          <span>Search in</span>
-          <select
-            aria-label="Search mode"
-            value={filters.searchMode}
-            onChange={(e) => update({ searchMode: e.target.value })}
+      <div className="active-filter-chips" aria-label="Active filters">
+        {extra}
+        {chips.map(([key, value]) => (
+          <button
+            key={key}
+            onClick={() => update({ [key]: defaults[key as keyof Filters] })}
+            aria-label={`Remove ${names[key] || key} filter`}
           >
-            <option value="capability">Text + capabilities</option>
-            <option value="exact">Exact source text</option>
-          </select>
-        </label>
-        <label>
-          <span>Match</span>
-          <select
-            aria-label="Word matching"
-            value={filters.match}
-            onChange={(e) => update({ match: e.target.value })}
-          >
-            <option value="all">All words</option>
-            <option value="any">Any word</option>
-            <option value="phrase">Exact phrase</option>
-          </select>
-        </label>
-        <span className="search-result-count">
-          {count.toLocaleString()}{' '}
-          {filters.view === 'awards'
-            ? count === 1
-              ? 'award'
-              : 'awards'
-            : count === 1
-              ? 'signal'
-              : 'signals'}
-        </span>
-      </div>
-      {!!chips.length && (
-        <div className="active-filter-chips" aria-label="Active filters">
-          {chips.map(([key, value]) => (
-            <button
-              key={key}
-              onClick={() => update({ [key]: defaults[key as keyof Filters] })}
-              aria-label={`Remove ${names[key] || key} filter`}
-            >
-              <span>
-                {names[key] || key}:{' '}
-                {key === 'capability'
-                  ? data?.capabilities.find((c) => c.id === value)?.label || value
-                  : value.replaceAll('_', ' ')}
-              </span>
-              <X size={12} />
-            </button>
-          ))}
+            <span>
+              {names[key] || key}:{' '}
+              {key === 'capability'
+                ? data?.capabilities.find((c) => c.id === value)?.label || value
+                : key === 'source'
+                  ? data?.sources.find((s) => s.id === value)?.name || value
+                  : shown[key]?.[value] || value.replaceAll('_', ' ')}
+            </span>
+            <X size={12} />
+          </button>
+        ))}
+        {!!chips.length && (
           <button
             className="clear-all"
             onClick={() =>
@@ -760,8 +743,8 @@ export function SearchWorkspace({
           >
             Clear all
           </button>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   )
 }

@@ -79,6 +79,8 @@ export function useAwardHistory(data: Dataset | null, active: boolean, market: s
     ...(current ? result : { ...empty, error: '' }),
     loading: active && !!data && !current,
     knownSignals,
+    /** This market's awards once loaded, kept after leaving the awards view. */
+    loadedSignals: result.key === key && !result.error ? result.signals : null,
     retry: () => {
       setResult({ key: '', ...empty, error: '' })
       setAttempt((v) => v + 1)
