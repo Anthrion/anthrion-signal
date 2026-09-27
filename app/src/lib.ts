@@ -269,6 +269,8 @@ function deadlineInstant(value: string, signal: Signal) {
     event?.timezone || (signal.source === 'digital_outcomes' ? 'Europe/London' : undefined),
   )
 }
+/** A live opportunity is closing soon when its known response deadline is this many days away. */
+export const closingSoonDays = 15
 export const daysLeft = (s: Signal, now = Date.now()) => {
   const deadline = responseDeadline(s, now)
   return deadline ? Math.ceil((deadlineInstant(deadline, s) - now) / 86400000) : null
@@ -283,7 +285,8 @@ export function deadlineCaption(s: Signal, now = Date.now()) {
   if (remaining <= 0) return `Closed ${label}`
   if (remaining < 3600000) return `${label} · ${Math.ceil(remaining / 60000)}m left`
   if (remaining < 86400000) return `${label} · ${Math.ceil(remaining / 3600000)}h left`
-  return `${label}${remaining <= 14 * 86400000 ? ` · ${Math.ceil(remaining / 86400000)}d left` : ''}`
+  const soon = remaining <= closingSoonDays * 86400000
+  return `${label}${soon ? ` · ${Math.ceil(remaining / 86400000)}d left` : ''}`
 }
 export function lifecycleState(s: Signal, now = Date.now()) {
   if (/^(CANCELLED|CANCELED|AVLYST|KESKEYTETTY|PERUTTU)\b/.test(s.title.trim())) return 'CLOSED'
@@ -599,7 +602,8 @@ export function filterSignals(
         if (!isLive(s, now)) return false
         break
       case 'closing':
-        if (!isLive(s, now) || daysLeft(s, now) === null || daysLeft(s, now)! > 7) return false
+        if (!isLive(s, now) || daysLeft(s, now) === null || daysLeft(s, now)! > closingSoonDays)
+          return false
         break
       case 'early':
       case 'pipeline':

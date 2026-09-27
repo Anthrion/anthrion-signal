@@ -6,6 +6,7 @@ import {
   filterSignals,
   isLive,
   safeURL,
+  closingSoonDays,
   deadlineCaption,
   matchesMarket,
   marketIsEnabled,
@@ -468,18 +469,23 @@ describe('team workflows', () => {
     expect(isAvailableOpportunity(postponed, now)).toBe(false)
     expect(filterSignals([postponed], { ...defaults, view: 'all' }, [], now)).toEqual([])
   })
-  test('closing this week only includes live, known deadlines in the next seven days', () => {
+  test('closing soon only includes live, known deadlines in the next fifteen days', () => {
+    expect(closingSoonDays).toBe(15)
     const candidates = [
       { ...signal, id: 'today', deadline_at: '2026-09-09T13:00:00Z' },
       { ...signal, id: 'week', deadline_at: '2026-09-16T12:00:00Z' },
-      { ...signal, id: 'later', deadline_at: '2026-09-17T12:00:00Z' },
+      { ...signal, id: 'fifteen', deadline_at: '2026-09-24T12:00:00Z' },
+      { ...signal, id: 'later', deadline_at: '2026-09-25T12:00:00Z' },
       { ...signal, id: 'unknown', deadline_at: null },
       { ...signal, id: 'closed', deadline_at: '2026-09-09T11:00:00Z' },
       { ...signal, id: 'cancelled', status: 'cancelled', deadline_at: '2026-09-10T12:00:00Z' },
     ]
     expect(
       filterSignals(candidates, { ...defaults, view: 'closing' }, [], now).map((s) => s.id),
-    ).toEqual(['today', 'week'])
+    ).toEqual(['today', 'week', 'fifteen'])
+    // The countdown caption covers the same window.
+    expect(deadlineCaption(candidates[2], now)).toMatch(/15d left$/)
+    expect(deadlineCaption(candidates[3], now)).not.toMatch(/left$/)
   })
   test('combines source filters without requiring a model assessment', () => {
     expect(
