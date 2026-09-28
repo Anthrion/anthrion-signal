@@ -52,6 +52,13 @@ AMBIGUOUS_NEEDS.update({"fallmanagement", "atencion al cliente", "atencion ciuda
 GENERIC_INTEGRATION = {"systems integration", "system integration", "integration with existing systems",
                        "integrate with existing systems", "systemintegration", "schnittstellenmanagement",
                        "integracion de sistemas", "integrazione di sistemi"}
+# German counterparts of ambiguous English needs: "Datenanalyse" also names statistical or
+# environmental analysis work and "digitale Transformation" a report or policy topic.
+AMBIGUOUS_NEEDS.update({"datenanalyse", "digitale transformation"})
+# German names of a specialist application or data hub are often the buyer's existing system
+# that a printing, scanning or field service feeds; they need technical context too.
+AMBIGUOUS_NEEDS.update({"fachverfahren", "fachverfahrens", "fachsoftware", "fachanwendung", "fachanwendungen",
+                        "fachapplikation", "fachapplikationen", "e akte", "e akten", "datendrehscheibe"})
 PHYSICAL_SYSTEMS = ("pipework", "ventilation", "air handling", "compressed air", "heating", "boilers",
                     "high voltage", "switchgear", "electrical installations", "building management system",
                     "building management systems", "mechanical systems", "tiefengeothermie", "gas systems",
