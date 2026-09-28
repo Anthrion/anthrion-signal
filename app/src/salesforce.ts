@@ -182,8 +182,7 @@ export function salesforcePrefill(
   )
   if (mapped.size === 1) fields.Market__c = [...mapped][0]
   const currency = signal.amount?.currency ?? signal.currency
-  if (currency && activeCurrencies.has(currency)) fields.CurrencyIsoCode = currency
-  if (currency) fields.Tender_Currency__c = activeCurrencies.has(currency) ? currency : 'Other'
+  fields.CurrencyIsoCode = currency && activeCurrencies.has(currency) ? currency : 'USD'
   const noticeURL = safeURL(signal.primary_source_url)
   if (noticeURL !== '#' && noticeURL.length <= 255) fields.Procurement_Publication__c = noticeURL
   const contacts = signal.contacts || []
@@ -223,6 +222,9 @@ export function salesforcePrefill(
     `Notice country: ${countryLabels(signal) || 'Not published'}`,
     contractAmount(signal),
     `Notice type: ${typeLabels[signal.signal_type] || signal.signal_type}`,
+    ...(currency && !activeCurrencies.has(currency)
+      ? [`Lead currency: USD. Published ${currency} amounts have not been converted.`]
+      : []),
     deadlineText,
     ...(signal.lot_ids.length ? [`Lots: ${signal.lot_ids.join(', ')}`] : []),
     `Signal: ${recordURL.href}`,

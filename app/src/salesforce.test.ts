@@ -51,7 +51,6 @@ describe('Salesforce sandbox prefill', () => {
       Status: 'New',
       Market__c: 'UKI',
       CurrencyIsoCode: 'GBP',
-      Tender_Currency__c: 'GBP',
       Industry__c: 'Technology',
       Sector__c: 'Software and Services',
       Anthrion_Signal_ID__c: record.id,
@@ -184,11 +183,19 @@ describe('Salesforce sandbox prefill', () => {
       }),
     )!.fields
     expect(result.Market__c).toBe('New Markets')
-    expect(result).not.toHaveProperty('CurrencyIsoCode')
-    expect(result.Tender_Currency__c).toBe('Other')
+    expect(result.CurrencyIsoCode).toBe('USD')
+    expect(result).not.toHaveProperty('Tender_Currency__c')
     expect(result).not.toHaveProperty('Procurement_Publication__c')
     expect(result).not.toHaveProperty('Company_HQ_Country__c')
     expect(result.Description).toContain('100,000 CAD')
+    expect(result.Description).toContain('Published CAD amounts have not been converted.')
+    expect(result.Lead_Name__c).toContain('CA$100000')
+    for (const currency of ['GBP', 'EUR', 'SEK', 'USD']) {
+      const fields = draft(make({ currency }))!.fields
+      expect(fields.CurrencyIsoCode).toBe(currency)
+      expect(fields).not.toHaveProperty('Tender_Currency__c')
+    }
+    expect(draft(make({ currency: null }))!.fields.CurrencyIsoCode).toBe('USD')
     expect(draft(make({ countries: ['GB', 'DE'] }))!.fields).not.toHaveProperty('Market__c')
     expect(draft(make({ countries: ['SE'] }))!.fields.Market__c).toBe('NORD')
     expect(draft(make({ currency: null }))!.fields).not.toHaveProperty('Tender_Currency__c')

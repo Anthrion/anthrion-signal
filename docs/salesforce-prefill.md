@@ -17,8 +17,7 @@ The verified sandbox origin and record type are public routing configuration in 
 | Origin | `LeadSource` | Existing value `Anthrion Signal`. |
 | Lead lifecycle | `Status` | Existing default `New`. |
 | Notice country | `Market__c` | Uses existing market values. Nordic countries use the API value `NORD`; other countries without a named existing market use `New Markets`. Mixed markets remain for review. |
-| Published currency | `Tender_Currency__c` | GBP, EUR, SEK, USD or Other. Unsupported original ISO codes remain in Description and Lead Name. Unpublished currency leaves it blank. |
-| Supported financial currency | `CurrencyIsoCode` | Only active GBP, EUR, SEK and USD. Other is never sent as an ISO code; unsupported currencies leave Salesforce's financial default intact. No currency conversion or contract-value-to-company-revenue mapping. |
+| Lead currency | `CurrencyIsoCode` | Reuses published GBP, EUR, SEK or USD. Unsupported or unpublished currencies default to USD, as requested. Original published currency and amounts remain in Description and Lead Name; unsupported currencies include an explicit note that no conversion was applied. Other is never sent as an ISO code. No contract-value-to-company-revenue mapping. |
 | Original notice | `Procurement_Publication__c` | Source URL when it fits the existing 255-character URL field; also retained in Description. |
 | Reviewed recommended approach | `Technology__c` | Reuses the displayed English/Original guidance, including relevant lots. No new model call. |
 | Notice facts and problems | `Description` | Full title, buyer, notice country, published amount **above Notice type**, deadline precision, lots, contacts, links and reviewed problems. Includes a labelled notice-text excerpt when required for a usable URL. |
@@ -29,9 +28,10 @@ The sandbox has these additional public-data fields:
 
 - `Anthrion_Signal_ID__c`: Text(80), Unique, External ID. Editable by design. Uniqueness rejects another Lead carrying the same current ID; editing or removing the ID can defeat that protection. No validation rule prevents changes.
 - `Anthrion_Signal_URL__c`: link back to the public Signal record.
-- `Tender_Currency__c`: optional restricted picklist with GBP, EUR, SEK, USD and Other, independent of Salesforce's financial currency. Adds no org currencies or exchange-rate changes.
 
-The existing Dynamic Form shows these fields and Technology only when Lead Source is Anthrion Signal. Tender Currency sits beside Lead Currency. Field access uses the existing narrowly scoped permission set; its audience was checked before adding access to Tender Currency. No object, record, application, API or additional-user access is granted. Org backups, receipts and conversion analysis stay private outside this repository.
+The existing Dynamic Form shows these fields and Technology only when Lead Source is Anthrion Signal. Field access uses the existing narrowly scoped permission set. There is no separate Tender Currency field, no added org currency and no exchange-rate change. No object, record, application, API or additional-user access is granted. Org backups, receipts and conversion analysis stay private outside this repository.
+
+The sandbox's **AI Tenders** Lead list view filters on Lead Source = Anthrion Signal and shows Lead Name first, then Company, Lead Status, Market, Created Date and Owner. It omits the standard contact Name column and does not impose a status filter. A shared list view respects each user's existing record access.
 
 ## Conversion considerations
 
@@ -41,7 +41,7 @@ Lead Name is also unique: different notices with identical or identically shorte
 
 ## Verification and limits
 
-The draft uses Salesforce's `recordTypeId` page parameter and individually encoded `defaultFieldValues`. Encoding has been checked in the actual Tenders form with commas, equals signs, ampersands, accented names and multiline text. Unit tests cover field boundaries, names, history/closed/expired guards, translations, deadline precision and unsupported currencies.
+The draft uses Salesforce's `recordTypeId` page parameter and individually encoded `defaultFieldValues`. Encoding has been checked in the actual Tenders form with commas, equals signs, ampersands, accented names and multiline text. Tests cover field boundaries, names, site-only action visibility, translations, deadline precision and unsupported currencies.
 
 The site shows the Salesforce action only on available opportunities; awarded/historical records retain their existing sharing actions. This is a site display rule, not a Salesforce restriction, and the URL builder does not enforce lifecycle eligibility. Essential facts, guidance and problems are never silently trimmed to fit a link; a record that cannot fit the bounded URL does not generate a draft. The selected language is reused from cached content.
 

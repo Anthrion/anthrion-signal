@@ -258,12 +258,13 @@ test('@pr Salesforce opens a reviewable sandbox draft with tender fields and fol
     Title: 'Workflow management system',
     Industry__c: 'Technology',
     Sector__c: 'Software and Services',
-    Tender_Currency__c: 'Other',
+    CurrencyIsoCode: 'USD',
     Anthrion_Signal_ID__c: id,
     Technology__c: 'Recommended approach:\nConfigure Service Cloud flows.',
   })
-  expect(draft).not.toHaveProperty('CurrencyIsoCode')
+  expect(draft).not.toHaveProperty('Tender_Currency__c')
   expect(draft.Description).toContain('450,000 CAD')
+  expect(draft.Description).toContain('Published CAD amounts have not been converted.')
   expect(draft.Description.indexOf('Published amount:')).toBeLessThan(
     draft.Description.indexOf('Notice type:'),
   )
