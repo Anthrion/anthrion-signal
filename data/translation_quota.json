@@ -2075,19 +2075,23 @@
       }
     },
     "36482086371-1": {
-      "closed": false,
+      "closed": true,
       "day": "2026-09-28",
       "limits": {
         "gemini-3.1-flash-lite": 75,
         "gemini-3.5-flash-lite": 75
       },
-      "used": {}
+      "started": true,
+      "used": {
+        "gemini-3.1-flash-lite": 14,
+        "gemini-3.5-flash-lite": 2
+      }
     }
   },
   "models": {
     "gemini-3.1-flash-lite": {
       "blocked_reason": "transient",
-      "blocked_until": 1790627757.7749104,
+      "blocked_until": 1790629953.8378189,
       "consecutive_errors": 1,
       "days": {
         "2026-09-12": 9,
@@ -2106,19 +2110,44 @@
         "2026-09-25": 324,
         "2026-09-26": 499,
         "2026-09-27": 499,
-        "2026-09-28": 165
+        "2026-09-28": 104
       },
-      "recent": [],
+      "recent": [
+        {
+          "at": 1790629840.2392516,
+          "tokens": 21364
+        },
+        {
+          "at": 1790629840.3338327,
+          "tokens": 6508
+        },
+        {
+          "at": 1790629862.296319,
+          "tokens": 15952
+        },
+        {
+          "at": 1790629862.3949578,
+          "tokens": 4560
+        },
+        {
+          "at": 1790629873.8371062,
+          "tokens": 21210
+        },
+        {
+          "at": 1790629873.9335709,
+          "tokens": 6660
+        }
+      ],
       "usage": {
-        "candidatesTokenCount": 4244664,
-        "promptTokenCount": 5511409,
+        "candidatesTokenCount": 4265874,
+        "promptTokenCount": 5536932,
         "thoughtsTokenCount": 0
       }
     },
     "gemini-3.5-flash-lite": {
       "blocked_reason": "transient",
-      "blocked_until": 1790627789.643127,
-      "consecutive_errors": 4,
+      "blocked_until": 1790630614.3879669,
+      "consecutive_errors": 5,
       "days": {
         "2026-09-12": 16,
         "2026-09-13": 500,
@@ -2136,7 +2165,7 @@
         "2026-09-25": 499,
         "2026-09-26": 500,
         "2026-09-27": 499,
-        "2026-09-28": 95
+        "2026-09-28": 22
       },
       "recent": [],
       "usage": {
