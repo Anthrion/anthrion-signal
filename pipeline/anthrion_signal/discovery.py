@@ -20,6 +20,12 @@ RECIPIENT_ORGANISATION = re.compile(
     r"\b(?:for|at|within|serving)\s+(?:(?:the|each)\s+)?(?:\d+(?:st|nd|rd|th|\?)*\s+)?"
     r"(?:software engineering|digital transformation|information technology|artificial intelligence|systems integration)"
     r"\s+(?:group|division|department|office|directorate)\b", re.IGNORECASE)
+# Eligibility and non-opportunity blockers, not scope: a reviewed restoration never clears them.
+TEST_PLACEHOLDER = "The source explicitly marks the notice and multiple procurement fields as test placeholders."
+NO_OPPORTUNITY = "General publication without a current supplier opportunity or explicit future buying intent."
+EMPLOYEE_VACANCY = "Permanent employee vacancy, not a supplier engagement."
+PUBLIC_INSTITUTIONS_ONLY = "The notice explicitly restricts participation to public institutions, not company suppliers."
+OPPORTUNITY_BLOCKERS = frozenset({TEST_PLACEHOLDER, NO_OPPORTUNITY, EMPLOYEE_VACANCY, PUBLIC_INSTITUTIONS_ONLY})
 
 
 def discovery_signature(config):
@@ -202,15 +208,15 @@ def hard_exclusions(signal, charter, scope_evidence=False):
     placeholder_fields = re.findall(r"\b(summary of work|description|how to apply|timeline)\s+(?:test|dummy|placeholder)\b", text)
     if (re.match(r"^\s*(?:test|dummy|placeholder)\s*(?:[-:]|$)", signal.title, re.IGNORECASE)
             and len(set(placeholder_fields)) >= 2):
-        reasons.append("The source explicitly marks the notice and multiple procurement fields as test placeholders.")
+        reasons.append(TEST_PLACEHOLDER)
     if signal.source == "govuk":
         directory_or_retrospective = signal.notice_type in policy.get("non_opportunity_formats", [])
         buying_intent = any(contains(text, p) for p in policy.get("publication_intent", policy["commercial_intent"]))
         if directory_or_retrospective or not buying_intent:
-            reasons.append("General publication without a current supplier opportunity or explicit future buying intent.")
+            reasons.append(NO_OPPORTUNITY)
     staffing = any(contains(text, p) for p in ("contract staffing", "supplier", "consultancy", "professional services", "contractor"))
     if any(contains(text, p) for p in policy["permanent_roles"]) and not staffing:
-        reasons.append("Permanent employee vacancy, not a supplier engagement.")
+        reasons.append(EMPLOYEE_VACANCY)
     technical = any(contains(text, p) for p in policy["technical_context"])
     physical_title = any(contains(title, p) for p in policy.get("physical_scope_titles", []))
     digital_title = any(contains(title, p) for p in policy.get("digital_scope_titles", []))
@@ -225,7 +231,7 @@ def hard_exclusions(signal, charter, scope_evidence=False):
     if non_technical and not software_scope:
         reasons.append("Non-technology service delivery without a stated software, AI or systems scope.")
     if any(contains(text, p) for p in policy.get("company_excluding_eligibility", [])):
-        reasons.append("The notice explicitly restricts participation to public institutions, not company suppliers.")
+        reasons.append(PUBLIC_INSTITUTIONS_ONLY)
     # A competing installed system is not a lock-in. Require an explicit no-alternatives
     # clause in the same sentence, and retain any separately addressable AI/API scope.
     separate = any(contains(text, p) for p in ("AI assistant", "AI agent", "artificial intelligence", "integration", "integrate", "API", "middleware", "or equivalent", "or Salesforce"))

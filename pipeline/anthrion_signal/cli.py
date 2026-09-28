@@ -105,6 +105,17 @@ def derive_renewals(signals, now, config):
     return result
 
 
+def lead_keys(signals):
+    """Identities through which a retained lead receives its later notices."""
+    return ({s.id for s in signals}, {s.ocid for s in signals if s.ocid},
+            {alias for s in signals for alias in s.external_ids})
+
+
+def follows(signal, keys):
+    ids, ocids, aliases = keys
+    return signal.id in ids or signal.ocid in ocids or bool(aliases.intersection(signal.external_ids))
+
+
 def prepare_current(root, *, save_cache=False):
     """Classify current candidates without writing award shards or public assets."""
     data = Dataset.model_validate(read_json(root / "data/current.json", {}))
@@ -115,19 +126,29 @@ def prepare_current(root, *, save_cache=False):
     state = read_json(root / "data/source_state.json", {})
     backfill_retained_facts(canonical_signals, state)
     backfill_retained_facts(data.signals, state)
-    if data.run.get("discovery_signature") != signature and retained_path(canonical).exists():
+    cache = ClassificationCache(root, config)
+    recovering = data.run.get("discovery_signature") != signature and retained_path(canonical).exists()
+    lost = set()
+    if recovering:
         # A rule release must be able to restore previously suppressed candidates
         # even on an existing-data deployment. Availability is still checked below.
         known = {s.id for s in canonical_signals}
-        recovered = [s for s in read_rejected(root)
-            if s.id not in known and is_public_opportunity(s.model_copy(update={"exclusion_reasons": []}), datetime.now(UTC))]
+        rejected = [s for s in read_rejected(root) if s.id not in known]
+        recovered = [s for s in rejected
+            if is_public_opportunity(s.model_copy(update={"exclusion_reasons": []}), datetime.now(UTC))]
+        # A restored notice's own retained cancellations, awards and change notices
+        # are not opportunities, but must still reconcile with it.
+        leads = lead_keys([s for s in recovered if s.id in cache.inclusions])
+        ids = {s.id for s in recovered}
+        recovered += [s for s in rejected if s.id not in ids and follows(s, leads)]
         # Reuse collection's identity/status reconciliation: an old rejected tender
         # must not resurrect a subsequently awarded/cancelled archived procurement.
         restored = restore_matching(root, recovered, known)
         data.signals, _, _ = reconcile(canonical_signals + restored, recovered)
+        # A restoration merged into another identity no longer applies; report it.
+        lost = leads[0] - {s.id for s in data.signals}
         backfill_retained_facts(data.signals, state)
     translations = available_translations(root, data.signals)
-    cache = ClassificationCache(root, config)
     cache.classify(data.signals, translations)
     if save_cache:
         cache.save()
@@ -161,7 +182,10 @@ def prepare_current(root, *, save_cache=False):
     data.translations = {key: value for key, value in data.translations.items() if key in visible_ids}
     data.run["reviewed_exclusions"] = before_reviews - len(data.signals)
     data.run["reviewed_inclusions"] = sum(INCLUSION_MARKER in s.prefilter_matches for s in data.signals)
-    data.run["reviewed_inclusions_stale"] = len(cache.stale_inclusions)
+    # Only a recovery classifies retained notices; otherwise keep collection's count,
+    # which also saw restorations that are hidden from the current records.
+    stale = len(cache.stale_inclusions | lost)
+    data.run["reviewed_inclusions_stale"] = stale if recovering else data.run.get("reviewed_inclusions_stale", stale)
     data.run["public_signals"] = len(data.signals)
     return data, canonical_signals, config
 
@@ -245,13 +269,16 @@ def run(root, args):
     # Replayed source versions already have durable evidence; do not duplicate
     # the entire rejection history into a new date partition on every release.
     rejected_count = retain_rejected(root, incoming[len(replayed):], now, config["capabilities"]["discovery"]["minimum_candidate_score"])
-    known_ids, known_ocids = {s.id for s in previous}, {s.ocid for s in previous if s.ocid}
-    known_aliases = {alias for s in previous for alias in s.external_ids}
-    # Sparse awards and cancellations must still retire a previously collected lead.
+    known_ids = {s.id for s in previous}
+    # Sparse awards and cancellations must still retire a previously collected lead,
+    # including a restored lead first admitted with its replayed relatives.
+    leads = lead_keys([*previous, *(s for s in incoming if s.id in cache.matched_inclusions)])
     incoming = [s for s in incoming if s.prefilter_score >= config["capabilities"]["discovery"]["minimum_candidate_score"]
-                or s.id in known_ids or s.ocid in known_ocids or known_aliases.intersection(s.external_ids)]
+                or follows(s, leads)]
     previous.extend(restore_matching(root, incoming, {s.id for s in previous}))
     signals, index, stats = reconcile(previous, incoming)
+    # A restoration merged into another identity no longer applies; report it.
+    lost = cache.matched_inclusions - {s.id for s in signals}
     # Replayed legacy releases can share a timestamp with corrected records and
     # reintroduce contact-as-buyer or manufactured midnight fields during merge.
     # Restore retained source facts before scope, availability and persistence.
@@ -287,7 +314,7 @@ def run(root, args):
         "public_signals": len(current), "suppressed_unavailable_signals": len(signals) - len(available),
         "suppressed_scope_signals": len(available) - len(current),
         "reviewed_inclusions": sum(INCLUSION_MARKER in s.prefilter_matches for s in current),
-        "reviewed_inclusions_stale": len(cache.stale_inclusions),
+        "reviewed_inclusions_stale": len(cache.stale_inclusions | lost),
         "new_public_signals": sum(s.id not in known_ids for s in current),
         **stats, **ai_stats, "high_fit_signals": sum(s.fit_score is not None and s.fit_score >= config["scoring"]["recommendation"]["strong_fit"] for s in current),
         "content_digest": content_digest, "content_changed": not same_content, "deployment_status": "awaiting_build",

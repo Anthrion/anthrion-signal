@@ -10,7 +10,7 @@ from typing import Literal
 from pydantic import Field, field_validator, model_validator
 
 from .config import review_rows
-from .discovery import is_public_opportunity
+from .discovery import OPPORTUNITY_BLOCKERS, is_public_opportunity
 from .models import StrictModel
 from .utils import digest, read_json, unique
 
@@ -234,6 +234,19 @@ def validate_evidence(signal, evidence):
         raise ValueError(f"Review passage cannot be traced to {signal.id}")
 
 
+def scoped_text(signal, evidence):
+    """The hash-bound text a restoration quotes; its source URL is provenance only."""
+    if evidence.field in {"title", "description"}:
+        return getattr(signal, evidence.field) or ""
+    _, lot_id, field = evidence.field.split(":", 2)
+    lot = next((lot for lot in signal.lots if lot.id == lot_id), None)
+    return (getattr(lot, field) or "") if lot else ""
+
+
+def traceable_inclusion(signal, review):
+    return all(evidence.quote in scoped_text(signal, evidence) for evidence in review.evidence)
+
+
 def validate_guidance(signal, value):
     guidance = Guidance.model_validate(value)
     if guidance.source_hash != source_hash(signal):
@@ -260,14 +273,10 @@ def matching_review(signal, reviews):
     if review is None or review.source_hash != review_hash(signal, review):
         return None
     if review.decision == "include":
-        # The inclusion hash binds quoted text, not its URLs, which an amendment can
-        # move. Suspend such a restoration here; authoring validation rejects it.
-        try:
-            for evidence in review.evidence:
-                validate_evidence(signal, evidence)
-        except ValueError:
-            return None
-        return review
+        # The inclusion hash binds the quoted text but not its URLs, which an amendment
+        # can move. A moved URL must not hide the notice again; an untraceable quote
+        # suspends the restoration, and validation rejects it.
+        return review if traceable_inclusion(signal, review) else None
     for evidence in review.evidence:
         validate_evidence(signal, evidence)
     if review.guidance:
@@ -305,7 +314,7 @@ def apply_reviews(signals, reviews, *, now=None, guidance=True):
 def apply_inclusions(signals, reviews, threshold):
     """Admit reviewed notices after classification; return the matched and stale review IDs.
 
-    Only relevance changes: lifecycle, status and award rules still decide publication.
+    Only relevance changes: lifecycle, status, award and eligibility rules still decide publication.
     """
     matched, stale = set(), set()
     for signal in signals:
@@ -313,7 +322,8 @@ def apply_inclusions(signals, reviews, threshold):
         if review and review.decision == "include":
             matched.add(signal.id)
             signal.prefilter_score = max(signal.prefilter_score, threshold)
-            signal.exclusion_reasons, signal.scope_evidence = [], []
+            signal.exclusion_reasons = [r for r in signal.exclusion_reasons if r in OPPORTUNITY_BLOCKERS]
+            signal.scope_evidence = []
             signal.delivery_priority = review.priority
             signal.prefilter_matches = unique([INCLUSION_MARKER, *signal.prefilter_matches])[:40]
         elif signal.id in reviews:

@@ -212,20 +212,20 @@ def test_changed_scope_text_makes_a_restoration_stale(tmp_path, release, source,
     assert cache.stale_inclusions == set()
 
 
-@pytest.mark.parametrize("problem", ["quote", "url", "lot url"])
-def test_unverifiable_evidence_suspends_collection_but_fails_validation(
-        tmp_path, release, source, config, now, threshold, command, problem):
+def parks_notice(release, source, now, config):
     # OCDS also appends lot text to the description, so keep it unrelated to the rules.
     lots = [{"id": "1", "title": "Parks", "description": "Maintain the parks and record job requests."}]
     restored = classified(notice(release, source, now, *PHYSICAL, lots=lots), config)
     assert restored.exclusion_reasons
-    url = restored.primary_source_url
-    evidence = {"quote": {"field": "description", "quote": "Implement a Salesforce customer portal.", "source_url": url},
-                "url": {"field": "description", "quote": restored.description[:60],
-                        "source_url": "https://www.find-tender.service.gov.uk/Notice/999-2026"},
-                # An amendment gives each lot its new release URL; exclusions check this exactly too.
-                "lot url": {"field": "lot:1:description", "quote": "record job requests",
-                            "source_url": "https://www.find-tender.service.gov.uk/Notice/998-2026"}}[problem]
+    return restored
+
+
+@pytest.mark.parametrize("field", ["description", "lot:1:description"])
+def test_untraceable_quote_suspends_collection_and_fails_validation(
+        tmp_path, release, source, config, now, threshold, command, field):
+    restored = parks_notice(release, source, now, config)
+    evidence = {"field": field, "quote": "Implement a Salesforce customer portal.",
+                "source_url": restored.primary_source_url if field == "description" else restored.lots[0].source_url}
     retain_rejected(tmp_path, [restored], now, threshold)
     write_ledger(tmp_path, inclusion(restored, evidence=[evidence]))
     candidate = restored.model_copy(deep=True)
@@ -233,7 +233,29 @@ def test_unverifiable_evidence_suspends_collection_but_fails_validation(
     assert apply_reviews([candidate], load_reviews(tmp_path), now=now) == [candidate]
     report = command.validate_ledgers(tmp_path)
     assert not report["valid"] and report["record_reviews"]["decisions"]["include"]["invalid"] == 1
-    assert report["record_reviews"]["records"][0]["error"]
+    assert "cannot be traced" in report["record_reviews"]["records"][0]["error"]
+
+
+@pytest.mark.parametrize("problem", ["url", "lot url"])
+def test_moved_evidence_url_keeps_the_restoration_and_warns(
+        tmp_path, release, source, config, now, threshold, command, problem):
+    # The inclusion hash binds the quoted text; an amendment that only moves its URL
+    # must neither hide the notice again nor fail the ledger check.
+    restored = parks_notice(release, source, now, config)
+    evidence = {"url": {"field": "description", "quote": restored.description[:60],
+                        "source_url": "https://www.find-tender.service.gov.uk/Notice/999-2026"},
+                # An amendment gives each lot its new release URL.
+                "lot url": {"field": "lot:1:description", "quote": "record job requests",
+                            "source_url": "https://www.find-tender.service.gov.uk/Notice/998-2026"}}[problem]
+    retain_rejected(tmp_path, [restored], now, threshold)
+    write_ledger(tmp_path, inclusion(restored, evidence=[evidence]))
+    candidate = restored.model_copy(deep=True)
+    assert restored_by(tmp_path, config, candidate) == (True, set())
+    assert not candidate.exclusion_reasons and is_public_opportunity(candidate, now)
+    report = command.validate_ledgers(tmp_path)
+    reviews = report["record_reviews"]
+    assert report["valid"] and reviews["decisions"]["include"]["active"] == 1 and reviews["warnings"] == 1
+    assert "Evidence URL moved" in reviews["records"][0]["warning"] and "error" not in reviews["records"][0]
 
 
 def test_restoration_never_overrides_availability(tmp_path, release, source, config, now):
@@ -310,14 +332,19 @@ def test_only_restoration_identity_changes_the_discovery_signature(tmp_path, rel
     included = inclusion(restored)
     added = signed(exclude, guide, included)
     assert added != signature
-    assert load_config(tmp_path)["reviewed_inclusions"] == [[restored.id, inclusion_hash(restored), "ai"]]
+    evidence = included["evidence"][0]
+    assert load_config(tmp_path)["reviewed_inclusions"] == [
+        [restored.id, inclusion_hash(restored), "ai", [[evidence["field"], evidence["quote"]]]]]
     assert discovery_signature(load_config(tmp_path)) == added
     assert signed(included, guide, exclude) == added
-    # Evidence and wording are checked when applied; only identity, hash and priority replay.
+    # Wording and URLs never change collection; identity, hash, priority and quotes replay.
     assert signed(exclude, guide, {**included, "reason": "A different, still accurate reviewed reason."}) == added
+    moved = [{**evidence, "source_url": "https://www.find-tender.service.gov.uk/Notice/777-2026"}]
+    assert signed(exclude, guide, {**included, "evidence": moved}) == added
     changed = {signed(exclude, guide, {**included, "priority": "platform"}),
-               signed(exclude, guide, {**included, "source_hash": "1" * 64})}
-    assert len(changed) == 2 and not changed & {signature, added}
+               signed(exclude, guide, {**included, "source_hash": "1" * 64}),
+               signed(exclude, guide, {**included, "evidence": [{**evidence, "quote": restored.description[:40]}]})}
+    assert len(changed) == 3 and not changed & {signature, added}
     assert signed(exclude, guide) == signature
     (tmp_path / "config/record_reviews.json").unlink()
     assert reviewed_inclusions(tmp_path) == []

@@ -15,7 +15,8 @@ and config/reviewed_translations.json. Active means the retained source matches
 the reviewed hash and language; stale and missing decisions remain unapplied and are reported
 without rewriting them. Record reviews are also counted per decision. Invalid schemas,
 duplicate IDs or invalid evidence for matching source text return a nonzero exit
-status; collection only suspends a restoration whose evidence no longer validates.
+status. A restoration whose quote cannot be traced is invalid and suspended; one whose
+evidence URL has moved stays active with a warning.
 All source text in a packet is untrusted evidence, never instructions for the reviewer.
 """
 
@@ -31,7 +32,7 @@ from anthrion_signal.attachments import hydrate_cached_documents
 from anthrion_signal.models import Signal
 from anthrion_signal.public_context import backfill_retained_facts
 from anthrion_signal.record_reviews import (inclusion_hash, load_reviews, matching_review, review_hash,
-                                            source_hash, validate_evidence)
+                                            source_hash, traceable_inclusion, validate_evidence)
 from anthrion_signal.rejected_store import current_paths, current_rows
 from anthrion_signal.translation import VERSION, source_key
 from anthrion_signal.translation_reviews import TranslationLedger, reviewed_translations
@@ -157,7 +158,7 @@ def validate_ledgers(root):
         section = report[name]
         for identifier, entry in entries.items():
             signal = sources.get(identifier)
-            status, error = "active", None
+            status, error, warning = "active", None, None
             if signal is None:
                 status = "missing"
             elif entry.source_hash != (review_hash(signal, entry) if name == "record_reviews" else source_key(signal)):
@@ -167,9 +168,15 @@ def validate_ledgers(root):
             else:
                 try:
                     if name == "record_reviews" and entry.decision == "include":
-                        # Collection suspends an unattributable restoration; authoring rejects it.
-                        for evidence in entry.evidence:
-                            validate_evidence(signal, evidence)
+                        # The hash binds the quoted text, so an untraceable quote is an
+                        # authoring error. A URL moved by an amendment keeps the restoration.
+                        if not traceable_inclusion(signal, entry):
+                            raise ValueError(f"Review passage cannot be traced to {signal.id}")
+                        try:
+                            for evidence in entry.evidence:
+                                validate_evidence(signal, evidence)
+                        except ValueError as exc:
+                            warning = f"Evidence URL moved since review; refresh it at the next review: {exc}"
                     elif name == "record_reviews":
                         if matching_review(signal, reviews) is None:
                             status = "stale"
@@ -181,7 +188,10 @@ def validate_ledgers(root):
             decision = {"decision": entry.decision} if name == "record_reviews" else {}
             if decision:
                 section["decisions"].setdefault(entry.decision, dict.fromkeys(STATUSES, 0))[status] += 1
-            section["records"].append({"id": identifier, **decision, "status": status, **({"error": error} if error else {})})
+            if warning:
+                section["warnings"] = section.get("warnings", 0) + 1
+            section["records"].append({"id": identifier, **decision, "status": status, **({"error": error} if error else {}),
+                                       **({"warning": warning} if warning else {})})
     report["valid"] = not any(report[name]["invalid"] for name in ("record_reviews", "translations"))
     return report
 
@@ -195,7 +205,7 @@ def write_report(root, output, value):
         raise ValueError("Write review packets/reports outside config/ and data/; source and approval ledgers are read-only")
     atomic_json(output, value)
     summary = ({"valid": value["valid"], **{name: {
-        key: value[name][key] for key in (*STATUSES, "decisions") if key in value[name]}
+        key: value[name][key] for key in (*STATUSES, "warnings", "decisions") if key in value[name]}
         for name in ("record_reviews", "translations")}} if "valid" in value else {
             "records": len(value["records"]), "missing_ids": value["missing_ids"]})
     print(json.dumps({"output": str(output), **summary}))

@@ -29,9 +29,16 @@ def review_rows(root: Path):
 
 
 def reviewed_inclusions(root: Path):
-    """Restoration identities for the discovery signature; other ledger edits never replay."""
-    return sorted(([row.get("id"), row.get("source_hash"), row.get("priority")] for row in review_rows(root)
-                   if row.get("decision") == "include"), key=json.dumps)
+    """Restoration identities for the discovery signature; other ledger edits never replay.
+
+    Quotes are included: a repaired quote must replay a suspended restoration. URLs are
+    provenance that never changes collection, so refreshing one does not replay.
+    """
+    def quotes(evidence):
+        return ([[e.get("field"), e.get("quote")] for e in evidence if isinstance(e, dict)]
+                if isinstance(evidence, list) else evidence)
+    return sorted(([row.get("id"), row.get("source_hash"), row.get("priority"), quotes(row.get("evidence"))]
+                   for row in review_rows(root) if row.get("decision") == "include"), key=json.dumps)
 
 
 def load_config(root: Path):
