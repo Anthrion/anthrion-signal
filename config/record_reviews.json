@@ -332,6 +332,22 @@
       "guidance": null
     },
     {
+      "id": "sig_01f7db86fbf66b4f4afc",
+      "source_hash": "84e1b5e41483b0d6f2519591acbcba6d1712fbc009c123fc695d3e0cb0100076",
+      "decision": "include",
+      "reviewed_at": "2026-09-28T17:00:13.003430+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "FITKO (federal IT cooperation) procures takeover, operation and further development of the central 115-Teilnehmerservice incl. 1st/2nd-level support, service-provider and service-level management, plus quality/participant management and advisory within the 115 network (the German public-service number). A public-sector service desk with participant management is Service Cloud / managed-support territory; kept visible as unsure because the notice does not say whether the service includes the ticketing/CRM platform.",
+      "evidence": [
+        {
+          "field": "description",
+          "quote": "Übernahme, Betrieb und, soweit durch die Auftraggeberin beauftragt, die Weiterentwicklung eines zentralen 115-Teilnehmerservices einschließlich 1st- und 2nd-Level-Support sowie des Dienstleister- und Service Level-Managements.",
+          "source_url": "https://oeffentlichevergabe.de/ui/de/notices/85e48251-d358-41bc-8e95-63e4482e70b3"
+        }
+      ],
+      "priority": "other"
+    },
+    {
       "id": "sig_023870867493cccf1f1e",
       "source_hash": "439f23bd1bef8b42253c1bca04a8fa77c27a1e3b4e5e96eb9f055de6516eb380",
       "decision": "exclude",
@@ -2285,6 +2301,32 @@
       }
     },
     {
+      "id": "sig_16b45565f569da86a4be",
+      "source_hash": "43e9d435f10920c72c5aea1c86643f0f151e9303100497be258300ff3bb1b459",
+      "decision": "include",
+      "reviewed_at": "2026-09-28T17:00:13.003430+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "IHK zu Leipzig procures Microsoft 365 support services under EVB-IT service contracts until 2029 (evergabe categories Software, IT-Systemdienstleistungen, Beratung (IT)). M365 platform support/consulting is IT support of a business platform; comparable M365 support notices with CPV 72 are shown in other markets. Hidden only because evergabe.de exports a fixed 2-digit pseudo-CPV list, so the CPV 72 route never applies.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "M365 Unterstützungsleistungen",
+          "source_url": "https://oeffentlichevergabe.de/ui/de/notices/25852298"
+        },
+        {
+          "field": "description",
+          "quote": "EVB-IT Dienstleistungsvertrag und EVB-IT Servicevertrag",
+          "source_url": "https://oeffentlichevergabe.de/ui/de/notices/25852298"
+        },
+        {
+          "field": "description",
+          "quote": "Software,IT-Systemdienstleistungen,Beratung/ Gutachten/ Studie (IT)",
+          "source_url": "https://oeffentlichevergabe.de/ui/de/notices/25852298"
+        }
+      ],
+      "priority": "other"
+    },
+    {
       "id": "sig_16ec4fbe23383fb087a7",
       "source_hash": "f2229bf71b916356b2bb2cbc999817c73ef648c91d8c7dc5222e3411189eb87a",
       "decision": "exclude",
@@ -3341,6 +3383,27 @@
         }
       ],
       "guidance": null
+    },
+    {
+      "id": "sig_20fec34876f754e3fd1e",
+      "source_hash": "975e6c039502a4a49c7cfcb51b7a9d64eaf22b2f24e861bf8021e6cc7d387a05",
+      "decision": "include",
+      "reviewed_at": "2026-09-28T17:00:13.003430+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "BSI study on securing database migrations (proprietary to open-source, on-premises to cloud) with derived security requirements AND a practical migration to an open-source database and to the cloud. Data/platform migration with a hands-on implementation is part of Anthrion's migration and integration delivery. No CPV in the national export and no family phrase matches German 'Migrationsszenarien bei Datenbanksystemen'.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Projekt 1028 - Absicherung von Migrationsszenarien bei Datenbanksystemen (AMiD)",
+          "source_url": "https://oeffentlichevergabe.de/ui/de/notices/1e7ff5a4-faa5-46cf-9163-464f7e6855e8"
+        },
+        {
+          "field": "description",
+          "quote": "Weiterhin soll eine praktische Umsetzung einer Migration zu einem Open-Source Datenbanksystem und in die Cloud erfolgen.",
+          "source_url": "https://oeffentlichevergabe.de/ui/de/notices/1e7ff5a4-faa5-46cf-9163-464f7e6855e8"
+        }
+      ],
+      "priority": "other"
     },
     {
       "id": "sig_21107d470d790e3396b2",
@@ -5839,6 +5902,22 @@
       "source_hash": "b89920ada763cdd209a669783bd6d47a737abd1d817cbbc9199c6f9c1667b125"
     },
     {
+      "id": "sig_3b5e99289f954efbdce1",
+      "source_hash": "5c5f4853a559e2982b7493ac192bcdc8c2cfeaf1eab31ea9451dcb405264261d",
+      "decision": "include",
+      "reviewed_at": "2026-09-28T17:00:13.003430+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Stadt Lüdenscheid procures concept and implementation of a digital multimedia guide for its museums (a visitor app/web application). Custom digital application development for a public body is in the generic custom-application scope; kept visible as unsure because content production may dominate. CPV 925 (museum services) gives no route.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Konzeption und Umsetzung eines digitalen Multimediaguides zur Anwendung in den Museen der Stadt Lüdenscheid",
+          "source_url": "https://oeffentlichevergabe.de/ui/de/notices/25821606"
+        }
+      ],
+      "priority": "other"
+    },
+    {
       "id": "sig_3c0f126a91ca2b9fbc53",
       "source_hash": "61c8e5add0f88c3a8afb2c6b36d2e643a71e4e146816a742e5b634ebb16bf08b",
       "decision": "guide",
@@ -6619,6 +6698,22 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_426aba61d6c4ae47245d",
+      "source_hash": "9666ccc7bbfedf2afb9c22b6a28bf50d95ebc93297e9f963f8744f2bc1b108a9",
+      "decision": "include",
+      "reviewed_at": "2026-09-28T17:00:13.003430+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Kreisverwaltung Paderborn procures a digital management system (software) for areas of its rescue service. A configurable business system for operational records, checklists, material/vehicle and quality workflows is doable as a Salesforce Platform/Field Service or custom business application. The notice is sparse and carries only CPV 75250000 (rescue services), so no family or CPV route surfaces it; kept visible because the purchased object is software, not the rescue service itself.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Digitales Managementsystem für Bereiche des Rettungsdienstes",
+          "source_url": "https://oeffentlichevergabe.de/ui/de/notices/25825648"
+        }
+      ],
+      "priority": "other"
     },
     {
       "decision": "exclude",
@@ -8098,6 +8193,27 @@
       "reviewed_at": "2026-09-22T09:29:11.069922+00:00",
       "reviewed_by": "Codex primary agent; independent review of subagent proposal",
       "source_hash": "602c4603e18c8e7368baf10e0ea3faedee261dc951c046d9d55feaee03e84d73"
+    },
+    {
+      "id": "sig_4db4a0552335fc52fe83",
+      "source_hash": "6af98a3f46a9112820d68e1f56ce3805fe14f8b61692a0fb1c00d0699fab36d2",
+      "decision": "include",
+      "reviewed_at": "2026-09-28T17:00:13.003430+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "BSI procures analysis, consolidation and optimisation of the XML schemas (XSD) and Schematron validation used as interface specifications for border-control logging, a style guide for future XSD modelling and an expertise contingent for new schema changes. This is data-interface / integration engineering (schema design, validation rules, interface standards) that integration consultants (MuleSoft/API practice) deliver; kept visible as an unsure but plausible integration-consulting fit. No CPV in the national export.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Projekt 1003 - XML-Schema-Optimierung XMLens",
+          "source_url": "https://oeffentlichevergabe.de/ui/de/notices/1eb7c31e-3b1d-468e-8083-8c8e5f80b051"
+        },
+        {
+          "field": "description",
+          "quote": "Ziel des Projektes ist es, diese Schemata einer grundsätzlichen Analyse, Konsolidierung und Optimierung zu unterziehen.",
+          "source_url": "https://oeffentlichevergabe.de/ui/de/notices/1eb7c31e-3b1d-468e-8083-8c8e5f80b051"
+        }
+      ],
+      "priority": "other"
     },
     {
       "id": "sig_4e3516356e085cc07051",
@@ -11080,6 +11196,27 @@
       "source_hash": "f52b5acadbcc70c70bf5a12a1987f8b05e181b828cff72bf5094e7af94c317c5"
     },
     {
+      "id": "sig_6d7e0fd9db635730a79e",
+      "source_hash": "45b676ac5ed6890df46e8d8a2f18668b9f7a4b4d01b6234da70f307cadfe1933",
+      "decision": "include",
+      "reviewed_at": "2026-09-28T17:00:13.003430+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Stadt Bern (Informatik) seeks a support partner providing Microsoft Azure expertise by the hour (1-2 people), an on-call service and an account manager for 3 years. Azure cloud-environment support is adjacent to Anthrion's cloud/integration and Azure OpenAI work; kept visible as unsure. It is hidden only because the licence_resale rule misfires on the title phrase 'ohne Option auf Verlängerung' (no licence is bought); without that misfire the CPV 72611000 record would be admitted like its peers.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "IT-Dienstleistungen, Support Microsoft Azure Umgebung, 3 Jahre, ohne Option auf Verlängerung",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/658036-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Die Informatik Stadt Bern sucht einen Supportpartner der die geforderte Fachexpertise als Dienstleistung auf Stundenbasis durch ein bis zwei Personen im gewünschten Umfang bieten kann.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/658036-2026"
+        }
+      ],
+      "priority": "other"
+    },
+    {
       "id": "sig_6dc4e962077f42ec0f72",
       "source_hash": "20762bfe4cbd5e0ca913a8aff94a94e755f91a099902c3e3a1755b99a2e2156e",
       "decision": "guide",
@@ -11220,6 +11357,32 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_6ea500033da9643da48d",
+      "source_hash": "ea0225a77887b452248efed72d548054efca559c196904ed367233cb04a2ff4c",
+      "decision": "include",
+      "reviewed_at": "2026-09-28T17:00:13.003430+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Fachhochschule Erfurt procures development and operation of digital participation formats in a metaverse for a research project; award criteria include hosting and operation of the platform, white-label deployment, multi-user capability and 'KI-Assistenzen' (AI assistants, 15%). A hosted citizen-participation platform with AI assistants overlaps portals/engagement and AI-assistant delivery; kept visible as unsure (metaverse focus).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Entwicklung und Durchführung von digitalen Beteiligungsformaten im Metaverse im Rahmen des Forschungsprojekts Dritte Orte zur Stärkung von Nachhaltigkeit und Demokratie in der Stadtentwicklung",
+          "source_url": "https://oeffentlichevergabe.de/ui/de/notices/25832900"
+        },
+        {
+          "field": "description",
+          "quote": "2 Hosting und Betrieb der Plattform (10%), 3 White-Label Ausbringung der Plattform (5%), 4 Multi-User Fähigkeit (10%)",
+          "source_url": "https://oeffentlichevergabe.de/ui/de/notices/25832900"
+        },
+        {
+          "field": "description",
+          "quote": "9 KI-Assistenzen (15%)",
+          "source_url": "https://oeffentlichevergabe.de/ui/de/notices/25832900"
+        }
+      ],
+      "priority": "other"
     },
     {
       "id": "sig_6eb9572aae3b7818c770",
@@ -13535,6 +13698,37 @@
       "source_hash": "02c6e5ee392a384171f3fc13e653c8d4162e70bf83a39aa31a5eb4f816ec822e"
     },
     {
+      "id": "sig_854a6c15a0daf0f32001",
+      "source_hash": "bc8cb269042655568d2b4a9bf019e59ba62b2df890bd0fd6d3a61b50bc4855b4",
+      "decision": "include",
+      "reviewed_at": "2026-09-28T17:00:13.003430+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Study phase only; the build phase is not part of this tender. Agentur für Innovation in der Cybersicherheit (Cyberagentur) commissions the requirements/user study for WissPAS, a digital knowledge platform for state security actors with automated pattern recognition and data-driven synthesis; the later build phase develops and implements the platform. User and requirements analysis for an AI-assisted knowledge platform is AI/knowledge-management consulting with a software deliverable (discovery for a RAG/knowledge platform, Salesforce Knowledge/Data Cloud or custom). CPV 73000000 (R&D) gives no route.",
+      "evidence": [
+        {
+          "field": "description",
+          "quote": "Ziel des Programms „WissPAS“ ist die Entwicklung und Implementierung einer digitalen Plattform",
+          "source_url": "https://oeffentlichevergabe.de/ui/de/notices/7fcb07db-9cca-4698-a71f-8d7665fe4388"
+        },
+        {
+          "field": "description",
+          "quote": "der durch automatisierte Mustererkennung und datengetriebene Synthese neue Erkenntnisse und Einsichten hervorbringen kann",
+          "source_url": "https://oeffentlichevergabe.de/ui/de/notices/7fcb07db-9cca-4698-a71f-8d7665fe4388"
+        },
+        {
+          "field": "description",
+          "quote": "In einer Studie werden strukturiert Bedarfe und Anforderungen der Nutzerinnen und Nutzer erfasst und analysiert.",
+          "source_url": "https://oeffentlichevergabe.de/ui/de/notices/7fcb07db-9cca-4698-a71f-8d7665fe4388"
+        },
+        {
+          "field": "description",
+          "quote": "Im Rahmen der vorliegenden Ausschreibung werden ausschliesslich die Leistungen der Studie in Auftrag gegeben.",
+          "source_url": "https://oeffentlichevergabe.de/ui/de/notices/7fcb07db-9cca-4698-a71f-8d7665fe4388"
+        }
+      ],
+      "priority": "ai"
+    },
+    {
       "id": "sig_85675749643cdece19fd",
       "source_hash": "fa73c8af6fc8bcf12dc954db15db1e45b596bfb95a9128b05ebc02fda490350a",
       "decision": "guide",
@@ -13868,6 +14062,22 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_87648a1c283ebace7834",
+      "source_hash": "6cfe08934af03a430c2a5ef277b1583f51cf47b98b52562086c2b38a3ac19a5f",
+      "decision": "include",
+      "reviewed_at": "2026-09-28T17:00:13.003430+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "IHK zu Leipzig procures organisational and conceptual support for its apprenticeship and careers fair 'Aktionstag Lehrstellen' on 9 September 2027, including a digital matching solution. The matching solution is a software deliverable inside a mixed event contract; the detailed scope is only in the tender documents on evergabe.de, so the notice is restored at low priority rather than left hidden. Tender open until 16 Nov 2026.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Organisatorische und konzeptionelle Betreuung der Ausbildungsund Karrieremesse „Aktionstag Lehrstellen“ (ATL) am 09.09.2027 einschließlich digitaler Matching-Lösung",
+          "source_url": "https://oeffentlichevergabe.de/ui/de/notices/25847766"
+        }
+      ],
+      "priority": "other"
     },
     {
       "id": "sig_87fd425e7bca37c3cc10",
