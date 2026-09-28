@@ -329,7 +329,7 @@ def prefilter(signals, profile, terms, charter=None, translations=None):
             reason = None if addressable else unrelated_supply(discovery_text(heading), discovery_text(description), evidence, signal.cpv_codes)
             if reason:
                 signal.exclusion_reasons = unique([*signal.exclusion_reasons, reason])
-        scope = scope_exclusion(segments, signal.cpv_codes)
+        scope = scope_exclusion(segments, signal.cpv_codes, capability_scope=bool(set(primary_families) - {"staffing"}))
         signal.scope_evidence = [scope] if scope else []
         if scope:
             signal.exclusion_reasons = unique([*signal.exclusion_reasons, scope["reason"]])

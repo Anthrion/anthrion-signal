@@ -65,6 +65,14 @@ COMMUNICATIONS_SOFTWARE = (
     "media monitoring software", "social media management software", "social media listening software",
     "press office management system",
 )
+# Dutch "procesautomatisering" shares its spelling with the Danish business term,
+# but Dutch notices mostly use it for industrial process control of plants, locks,
+# bridges and pumping stations (usually beside electrical engineering). Business
+# process automation, e.g. in an ESM platform, has none of this context.
+INDUSTRIAL_PROCESS_CONTROL = ("elektrotechniek", "elektrotechnische", "elektrotechnisch", "besturing",
+                              "procesbesturing", "plc", "scada", "operational technology", "civiele kunstwerken",
+                              "rioolgemalen", "gemalen", "zuiveringsinstallatie", "awzi", "rwzi",
+                              "werktuigbouwkundige", "werktuigbouwkundig", "instrumentatie", "telemetrie")
 
 
 def physical_integration(text, phrase, title_context=""):
@@ -316,6 +324,8 @@ def capability_hits(cap, segments, software_cpv=False, funding=False):
                         or operational_software_use(text, phrase)):
                     continue
                 if cap["id"] in ("integration", "external_integration") and physical_integration(text, phrase, title_context):
+                    continue
+                if phrase == "procesautomatisering" and phrase_hits(text + " " + title_context, INDUSTRIAL_PROCESS_CONTROL):
                     continue
                 if cap["id"] == "ai" and phrase in ("claude", "gemini"):
                     if not phrase_hits(text, ("ai", "artificial intelligence", "llm", "anthropic", "google ai",

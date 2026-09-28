@@ -81,7 +81,9 @@ NATIVE_DIGITAL_CONTEXT = (
 NATIVE_IMPLEMENTATION = re.compile(r"^(?:developpement|deploiement|integration|implementatie|ontwikkeling|migratie|"
                                    r"entwicklung|implementierung|sviluppo|implementazione|integrazione|"
                                    r"desarrollo|implantacion|implementacion|integracion|αναπτυξη|υλοποιηση)$")
-NATIVE_LICENCE = re.compile(r"\b(?:licen[cs]\w*|lizenz\w*|lizenzen|licenz\w*|αδειων|αδεια|software assurance)\b")
+# Dutch spells the entitlement "licentie(s)", so "levering van software-licenties"
+# (hyphen normalised to a space) must not read as delivery of software itself.
+NATIVE_LICENCE = re.compile(r"\b(?:licen[cs]\w*|licentie\w*|lizenz\w*|lizenzen|licenz\w*|αδειων|αδεια|software assurance)\b")
 
 
 def native_equipment_bundle(text):
@@ -327,6 +329,14 @@ RULES = (
      r"supply of led panels|audio visual equipment|bandwidth management equipment|hydrological monitoring stations|clinical simulation manikins)\b",
      r"\b(?:hardware|equipment|server|servers|computers|licences|licenses|supply|purchase|stations|manikins)\b",
      ("30", "32", "38", "48"), "Physical computing, network or measurement equipment"),
+    # A Dutch "softwarebroker" contract resells standard-software licences from many
+    # vendors (plus licence advice); customisation is normally excluded. A stated
+    # implementation or development deliverable is still protected before any rule.
+    ("software_licence_broker", r"\b(?:softwarebroker\w*|software broker\w*|"
+     r"broker (?:voor )?(?:standaardsoftware|standaard software|softwarelicenties|software licenties))\b",
+     r"\b(?:standaardsoftware|standaard software|standard software|softwarelicenties|licenties|licentie|"
+     r"licences|licenses|gebruiksrechten|rights of use|licentiebeheer|licence management|license management)\b",
+     ("48", "72"), "Brokerage or resale of standard software licences"),
     ("licence_resale", r"\b(?:microsoft|adobe|acrobat|vmware|citrix|autodesk|veeam|commvault|red hat|"
      r"windows|oracle|sap|sophos|arcsight|fortinet|trellix|trend ai)\b.*\b(?:licen[csz]\w*|subscription\w*|renewal|extension|verlangerung)\b|"
      r"\b(?:licen[csz]\w*|subscription\w*|renewal|extension|verlangerung)\b.*\b(?:microsoft|adobe|acrobat|vmware|citrix|autodesk|"
@@ -416,7 +426,7 @@ def description_service_exclusion(segments, cpv_codes):
     return None
 
 
-def scope_exclusion(segments, cpv_codes):
+def scope_exclusion(segments, cpv_codes, capability_scope=False):
     if addressable_delivery(segments):
         return None
     scope_text = " ".join(s["text"] for s in segments)
@@ -436,7 +446,12 @@ def scope_exclusion(segments, cpv_codes):
         for key, title_pattern, detail_pattern, prefixes, label in COMPILED_RULES:
             if not title_pattern.search(title["text"]):
                 continue
-            if key not in ("licence_resale", "hardware", "equipment_maintenance") and phrase_hits(title["text"], ("software", "platform", "application", "crm")):
+            if key not in ("licence_resale", "software_licence_broker", "hardware", "equipment_maintenance") and phrase_hits(title["text"], ("software", "platform", "application", "crm")):
+                continue
+            # A broker framework can also carry a Salesforce/CRM licence lot or
+            # application work that the delivery patterns do not read in Dutch
+            # (Digipolis: "Salesforce softwarelicenties"). Only pure resale goes.
+            if key == "software_licence_broker" and capability_scope:
                 continue
             # This narrow oversight rule must not remove a sparse software lot
             # merely because its contract also discusses physical cleaning.
