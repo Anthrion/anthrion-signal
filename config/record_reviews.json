@@ -574,6 +574,21 @@
       }
     },
     {
+      "id": "sig_0689b6805f14b885348a",
+      "source_hash": "0794949ec97be4282be41dff886cf9aec1316ded1e0152367ef387be909f2553",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Porter and janitorial services (CPV 98341120, 98341130) at the headquarters of the Spanish AI supervision agency, reserved for special employment centres. 'Inteligencia Artificial' appears only in the agency's name.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Servicios auxiliares en la sede de la Agencia Española de Supervisión de Inteligencia Artificial reservados a Centros Especiales de Empleo de iniciativa social o a empresas de inserción",
+          "source_url": "https://contrataciondelestado.es/wps/poc?idEvl=XHwqUtZoHZ%2FE6P%2FuLemXRw%3D%3D&uri=deeplink%3Adetalle_licitacion"
+        }
+      ]
+    },
+    {
       "id": "sig_06d9eb8a8f9a89e5a224",
       "source_hash": "4e3bcdc732b616010076cab7292ed8db71f3bd8841c3050fb0424efa44800386",
       "decision": "guide",
@@ -1446,6 +1461,26 @@
       }
     },
     {
+      "id": "sig_0b8bb72724e7df4271d8",
+      "source_hash": "66f5e3e096f4a7cb90e43c43962a6548df8e3344072ec122b43f3481d9a7fa50",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "EUIPO call to list vendors for intellectual-property expertise: drafting trade-mark legislation and guidelines, training at IP workshops, case-law summaries, IP statistics and IP valuation. Artificial intelligence is only a training topic.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "List of vendors for the provision of independent and on-hand expertise on specialised services in the field of intellectual property rights",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/657499-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Drafting comparative or gap analysis on TM legislation or TM guidelines",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/657499-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_0c37b5a1ac3e14a3b3be",
       "source_hash": "f12a700aff31b00a70fe51d338bc0c56c51311f5efed871b224ad464cd9dd057",
       "decision": "guide",
@@ -1998,6 +2033,21 @@
       }
     },
     {
+      "id": "sig_138e014646eed8f93d66",
+      "source_hash": "ff1ca62ff43db598cf85297b9ef3dc486d5ec8fdf5f85758bf3447d7b55d4c34",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Prior information notice for supplying the software updates of the installed SAP licence base of the Andalusian employment service and agrarian agency, with support and advice on the installed products (vendor licence renewal).",
+      "evidence": [
+        {
+          "field": "description",
+          "quote": "El objeto del contrato consistirá en los suministros a la Agencia Digital de Andalucía de las actualizaciones software necesarias para el funcionamiento del parque de licencias SAP",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/478158-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_13f9daed6ed6129e1bbd",
       "source_hash": "1a7fcec786b8cb614246339ac49755f99a176cb45705709247ed27a795ee75cc",
       "decision": "guide",
@@ -2031,6 +2081,21 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_13fe546da905733482b4",
+      "source_hash": "f4887a1ec4ee73ed9605215e4bd5e1220c56257f37b70e4fe10b223b89713ae9",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Prior information notice for Liferay DXP licence subscriptions for the web portal of the General Council of the Judiciary (vendor licence subscription only).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Suministro de suscripción de licencias LIFERAY DXP para el portal web del Consejo General del Poder Judicial.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/218626-2026"
+        }
+      ]
     },
     {
       "id": "sig_14897e110770d455eb74",
@@ -2114,6 +2179,21 @@
         }
       ],
       "guidance": null
+    },
+    {
+      "id": "sig_1565a720ed1173466ed3",
+      "source_hash": "0850506705203aa9a3f213e2bfed915f05767387731157c6cb53e98e9fddb308",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "TED copy of the FRATERNIDAD-MUPRESPA electricity supply contract (CPV 09310000; misapplied CPV 79311000).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Contratación del suministro de energía eléctrica para FRATERNIDAD-MURESPA.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/629159-2026"
+        }
+      ]
     },
     {
       "id": "sig_15d3de0b21e21d2f3694",
@@ -3122,6 +3202,21 @@
       }
     },
     {
+      "id": "sig_1fb30781c32abe9b9b58",
+      "source_hash": "ed0954d765d90a6e0ff9df2597e8040c6f12fe9bc19333c58eab586f27095523",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Metro de Madrid prior information notice for maintenance of the BMC software installed in its Operations and Monitoring Centre for Facilities and Telecommunications Maintenance (support of one named vendor's installed software). 'API 59 2026' at the start of the title is the number of Metro's periodic indicative notice (anuncio periódico indicativo), not an application programming interface.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "API 59 2026 - SERVICIO DE MANTENIMIENTO DEL SOFTWARE BMC INSTALADO EN EL CENTRO DE OPERACIONES Y MONITORIZACIÓN DE MANTENIMIENTO DE INSTALACIONES Y TELECOMUNICACIONES",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/290478-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_1fb44c3de46adc80768a",
       "source_hash": "5547c9a7a2af15e4eff22aac79d3e40de1d945785fa3d5d13748ff1d4c031f34",
       "decision": "guide",
@@ -3406,6 +3501,21 @@
           }
         }
       }
+    },
+    {
+      "id": "sig_21c987f2694fa5da73b8",
+      "source_hash": "8d44194aa46db2f0a6036c9dade89b1a1007975502c77b4e5726ceedf3e434b0",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Metro de Madrid prior information notice, in two lots, for support and maintenance of its Oracle database software (vendor database support). 'API 48 2026' at the start of the title is the number of Metro's periodic indicative notice (anuncio periódico indicativo), not an application programming interface.",
+      "evidence": [
+        {
+          "field": "description",
+          "quote": "Contrato de soporte y mantenimiento del software de bases de datos Oracle.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/287688-2026"
+        }
+      ]
     },
     {
       "id": "sig_22045d0f587bc61eff66",
@@ -3749,6 +3859,21 @@
           }
         }
       }
+    },
+    {
+      "id": "sig_26e5754f17bad463e341",
+      "source_hash": "1fc1b5be18f5a90be865b09117e88a1d63c88086a5a5e1c3193488cbc7e48f9c",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Metro de Madrid prior information notice for maintenance of the Alstom systems installed in its central control post (Puesto Central), vendor-specific railway operations control systems. 'API 36 2026' at the start of the title is the number of Metro's periodic indicative notice (anuncio periódico indicativo), not an application programming interface.",
+      "evidence": [
+        {
+          "field": "description",
+          "quote": "Servicio de mantenimiento en los sistemas de Alstom instalados en puesto central",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/285395-2026"
+        }
+      ]
     },
     {
       "id": "sig_26fc285d05c35f03de8a",
@@ -4659,6 +4784,21 @@
       }
     },
     {
+      "id": "sig_2f994e48696eede4a20a",
+      "source_hash": "c8dc79294babd6902616e61e61d78e87fb908b113628264241958ce0b2a9a81c",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Operation of eight cash-withdrawal machines (ATMs) in municipalities of Valladolid province, a banking service (CPV 66110000 among others).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Servicios de 8 cajeros, de retirada de efectivo, por la Diputación Provincial de Valladolid en ocho municipios de la provincia",
+          "source_url": "https://contrataciondelestado.es/wps/poc?idEvl=DjyHcGkylZ3%2Fa9DgO%2BoYKQ%3D%3D&uri=deeplink%3Adetalle_licitacion"
+        }
+      ]
+    },
+    {
       "id": "sig_300916263a994d9d6a95",
       "source_hash": "77e8afac9f55b1d2e71bf8ad913eafaf70d195c6ff3735d1c7d6edd8e917771b",
       "decision": "exclude",
@@ -4707,6 +4847,21 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_30f1c7201507870fce8e",
+      "source_hash": "5ed56a951004d0961233b86bd46e8f7500b78efd880195d730a1f370d33f31cb",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Temporary installation, production and operation of a digital leisure space (gaming, e-sports, virtual and augmented reality) at the Alicante 2027 Ocean Race event (CPV 79952000 event services). 'Transformación digital' is only a content theme.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Servicio de instalación temporal, producción, gestión y explotación del espacio de ocio digital (gaming, e-sports, realidad virtual y realidad aumentada)",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/613168-2026"
+        }
+      ]
     },
     {
       "id": "sig_3122025619f07ea97413",
@@ -5254,6 +5409,21 @@
       }
     },
     {
+      "id": "sig_36b0c81925a306a2e1ae",
+      "source_hash": "6beaad95d1ec4fdacf2fc6828cc481a1eb9d6afab4fb456f34b91884f3ad7d36",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Prior information notice for renewing Metro de Madrid's backup tape libraries. This is storage hardware; the notice describes no CRM, business application, integration or AI work.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "RENOVACIÓN DE LIBRERÍAS DE CINTAS DE BACKUP",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/341088-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_37078f6f5cd75084048c",
       "source_hash": "67cc64b853f07c8c9f2e0a493306092d5078fa50bc5330dc602c239fe1fb7d5b",
       "decision": "guide",
@@ -5645,6 +5815,41 @@
       }
     },
     {
+      "id": "sig_3a48dd21108b2e189500",
+      "source_hash": "b7dca9ccafccfcda2c03f758fa993c62bc492d255c400d53deb3398dda0a9df2",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Prior information notice for the Ávila city council's telecommunications services in three lots: fixed and mobile telephony, broadband internet access, data transmission between municipal sites over Layer-2 networks, which the council prefers to SD-WAN, and maintenance of the related equipment, including the LAN equipment for VoIP. Artificial intelligence is mentioned only as a traffic-management technique of SD-WAN networks, and digital transformation only as a goal that the new communications infrastructure supports; no software, application or data platform is procured.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Servicio de telecomunicaciones del Ayuntamiento de Ávila (telefonía fija, móvil, datos, internet y servicios asociados) distribuido en 3 lotes",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/741615-2025"
+        },
+        {
+          "field": "description",
+          "quote": "Incorporar una gestión inteligente y proactiva del tráfico, especialmente mediante la aplicación de técnicas de analítica avanzada e inteligencia artificial.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/741615-2025"
+        },
+        {
+          "field": "description",
+          "quote": "sustituyendo las redes basadas en SD-WAN por redes Layer-2",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/741615-2025"
+        },
+        {
+          "field": "description",
+          "quote": "que soporte la transformación digital de la institución",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/741615-2025"
+        },
+        {
+          "field": "description",
+          "quote": "se licitan los servicios de telecomunicaciones del Ayuntamiento de Ávila, comprendiendo los ámbitos de telefonía fija y móvil, acceso a Internet de banda ancha, transmisión de datos entre sedes y servicios asociados",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/741615-2025"
+        }
+      ]
+    },
+    {
       "id": "sig_3a5dc62ae29c8fbdf7ff",
       "source_hash": "9c4a323c6640a24a2a6eb1fef02aab1d704b2f85616e04f19e840806da64dabe",
       "decision": "exclude",
@@ -5764,6 +5969,26 @@
       "reviewed_at": "2026-09-22T09:29:11.069922+00:00",
       "reviewed_by": "Codex primary agent; independent review of subagent proposal",
       "source_hash": "b89920ada763cdd209a669783bd6d47a737abd1d817cbbc9199c6f9c1667b125"
+    },
+    {
+      "id": "sig_3c09912e45b0b7c88a8a",
+      "source_hash": "7dad87c5c24a4139f03bfeb0dff7479e53f234157e4bb0e823970aff9535ba1a",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Consultancy, design, configuration, implementation, development, integration, data migration, testing, training and support of a new HR management system for the Catalan public broadcaster CCMA, built on SAP SuccessFactors with licences bought by CTTI. This is SAP-specific HR implementation, which Anthrion does not provide; no Salesforce, CRM or AI work is procured.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Implementación y mantenimiento de una herramienta de gestión de personas SAP Successfactors",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/655282-2026"
+        },
+        {
+          "field": "description",
+          "quote": "basado en el ecosistema tecnológico de aplicaciones de SucessFactors del fabricante SAP",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/655282-2026"
+        }
+      ]
     },
     {
       "id": "sig_3c0f126a91ca2b9fbc53",
@@ -5917,6 +6142,21 @@
         }
       ],
       "guidance": null
+    },
+    {
+      "id": "sig_3e6bf237221225b4ecbd",
+      "source_hash": "3557cf2d57608472bc79a882a7ecafdc93b364eaea4de7576c26033d824bc753",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "TED copy of the CADASA contract to supply and renew perpetual licences and subscriptions of various applications for its IT/OT systems (licence resale).",
+      "evidence": [
+        {
+          "field": "description",
+          "quote": "El objeto del contrato es el suministro y renovación de licencias perpetuas y suscripciones de diversas aplicaciones informáticas para los sistemas de información y tecnologías operacionales (TIC/OT)",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/647002-2026"
+        }
+      ]
     },
     {
       "id": "sig_3ea2e52dd150a6f04f2c",
@@ -8752,6 +8992,21 @@
       "source_hash": "a4f2fd1db21ab639ad5cad261f99111b107a3e1c32fdaf4d251cd279a4294cdd"
     },
     {
+      "id": "sig_555d96e2df85233d00f5",
+      "source_hash": "045aa352b1b4b068222fa5baee447d4e575ad9232a730405c521bbabfdfe9a12",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Prior information notice for renewing Metro de Madrid's network storage infrastructure. This is storage hardware; the notice describes no CRM, business application, integration or AI work.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "RENOVACIÓN DE INFRAESTRUCTURA DE ALMACENAMIENTO EN RED",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/342522-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_559553f607e05c5e8c99",
       "source_hash": "d6b582334912c79872f937b5af037e1d811677762b81d72890076052bddc2a1a",
       "decision": "guide",
@@ -10821,6 +11076,36 @@
       }
     },
     {
+      "id": "sig_6b25f8eb8f029399ef2f",
+      "source_hash": "f43a812ff14a7d18d2f1160c9130fda0bbf07baaaa8728eb5069c90ddf8ea35c",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Metro de Madrid prior information notice for maintenance of its Veritas software (backup and data-protection software support from a single named vendor). 'API 54 2026' at the start of the title is the number of Metro's periodic indicative notice (anuncio periódico indicativo), not an application programming interface.",
+      "evidence": [
+        {
+          "field": "description",
+          "quote": "Contrato de mantenimiento del software veritas",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/269032-2026"
+        }
+      ]
+    },
+    {
+      "id": "sig_6b31cf3c445460408b8a",
+      "source_hash": "d417c776178cc78dcd82126f6cf45c746f103c39a1660f3977ba53835b51fdf9",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Access control, security guarding and porter (celador) staff at a local health clinic (CPV 98350000, 75122000).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Control de accesos, vigilancia y celaduría del Consultorio Local de Salud",
+          "source_url": "https://contrataciondelestado.es/wps/poc?idEvl=ILWyqXjodckl5NjlNci%2BtA%3D%3D&uri=deeplink%3Adetalle_licitacion"
+        }
+      ]
+    },
+    {
       "id": "sig_6b5b65b7037d1e35ed81",
       "source_hash": "70fd3cbec8c90a6047c4e09b10bcd7d0ec1d53d180056e164a89aba266200191",
       "decision": "exclude",
@@ -10958,6 +11243,21 @@
       "reviewed_at": "2026-09-22T09:29:11.069922+00:00",
       "reviewed_by": "Codex primary agent; independent review of subagent proposal",
       "source_hash": "f52b5acadbcc70c70bf5a12a1987f8b05e181b828cff72bf5094e7af94c317c5"
+    },
+    {
+      "id": "sig_6d595ccac8fe8b80368c",
+      "source_hash": "aa1c2dd09b8ff1975a51748f2d347065ff03d92be6fade3bed24882a06b3714e",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Metro de Madrid prior information notice for a framework agreement for cybersecurity technical assistance (security services). 'API 79' at the start of the title is the number of Metro's periodic indicative notice (anuncio periódico indicativo), not an application programming interface.",
+      "evidence": [
+        {
+          "field": "description",
+          "quote": "Acuerdo Marco de asistencias técnicas ciberseguridad",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/289613-2026"
+        }
+      ]
     },
     {
       "id": "sig_6dc4e962077f42ec0f72",
@@ -11552,6 +11852,21 @@
       }
     },
     {
+      "id": "sig_718958b1153ac5d2ec3d",
+      "source_hash": "ef3e4298586cebb9a5f06181a584e84f0159044f07afa1f4a9bbd67b14485cea",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Metro de Madrid prior information notice, in two lots, for comprehensive maintenance of the security systems in its 'sacos y recintos' (the dead-end track sections beyond terminal stations, where trains reverse and are stabled, and enclosed sites). This is security-equipment maintenance; the notice names no business application, portal or integration work. 'API 35 2026' at the start of the title is the number of Metro's periodic indicative notice (anuncio periódico indicativo), not an application programming interface.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "API 35 2026 - SERVICIO DE MANTENIMIENTO INTEGRAL DE SISTEMAS DE SEGURIDAD EN SACOS Y RECINTOS",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/289680-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_720dc99be366cd8692dc",
       "source_hash": "57247e4ff6c88ff9fb3d9bb68ba44eb80fd8bc8c9347af4200cf631f325957cb",
       "decision": "guide",
@@ -11674,6 +11989,21 @@
           }
         }
       }
+    },
+    {
+      "id": "sig_72739519e29a204d810d",
+      "source_hash": "9a3bc4a9446197a71404f57897bb6eb4e1741d44773b2841832b14e060abb13d",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Metro de Madrid prior information notice for maintenance of the communications network of its core layer and data centres (network infrastructure maintenance). 'API 23 2026' at the start of the title is the number of Metro's periodic indicative notice (anuncio periódico indicativo), not an application programming interface.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "API 23 2026 - SERVICIO DE MANTENIMIENTO DE LA RED DE COMUNICACIONES CAPA CORE Y DATA CENTERS",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/270214-2026"
+        }
+      ]
     },
     {
       "id": "sig_72b628b73735b1975333",
@@ -12243,6 +12573,21 @@
       }
     },
     {
+      "id": "sig_787423f0f35468edf011",
+      "source_hash": "94f47be89aaa5d76ba7adeb80c692d1a182aeb5da5115cd544f799064ed628e8",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Metro de Madrid prior information notice for maintenance of its central fire-protection systems (PCI), a fire-safety installation; the notice names no business application, portal or integration work. 'API 67' at the start of the title is the number of Metro's periodic indicative notice (anuncio periódico indicativo), not an application programming interface.",
+      "evidence": [
+        {
+          "field": "description",
+          "quote": "Contrato de Mantenimiento de los sistemas centrales de protección contra incendios (PCI)",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/290510-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_789a6c3b83d7ab80200d",
       "source_hash": "57f0d871be0254b8c0ae87795cc127897433210c2818a9f2934fdf47b9f1e73e",
       "decision": "guide",
@@ -12395,6 +12740,21 @@
         }
       ],
       "guidance": null
+    },
+    {
+      "id": "sig_7c2cf77c028667f6a1bb",
+      "source_hash": "6e806e714d6717d9f6a5a5cfee69f357a0ecaf59d5010da6e2b7df1013dc43d6",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Supply and renewal of perpetual licences and subscriptions for various software applications of the Asturias water supply and sanitation consortium (CADASA) (licence purchase; CPV 48000000). The notice names no implementation, development or integration work.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Contrato de suministro y renovación de licencias perpetuos y suscripciones de diversas aplicaciones informáticas.",
+          "source_url": "https://contrataciondelestado.es/wps/poc?idEvl=%2Bo0BIKogC%2FO2gkLQ8TeYKA%3D%3D&uri=deeplink%3Adetalle_licitacion"
+        }
+      ]
     },
     {
       "decision": "exclude",
@@ -13043,6 +13403,21 @@
       }
     },
     {
+      "id": "sig_821c07135835f31c5eeb",
+      "source_hash": "1ca9df6024b1591fcebfff32723866875a87bbc0177d8d85387008dabadeb6fe",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Technical assistance, software maintenance and hardware availability for the irrigation control system of the Parador de Málaga golf course (industrial irrigation control).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Contratación del servicio de asistencia técnica, mantenimiento de software y garantía de disponibilidad de hardware del sistema operativo de riego del campo de golf del Parador de Málaga Golf",
+          "source_url": "https://contrataciondelestado.es/wps/poc?idEvl=2XTxbEY7WEzkY6rls5tG9A%3D%3D&uri=deeplink%3Adetalle_licitacion"
+        }
+      ]
+    },
+    {
       "id": "sig_82391277c8002fad1f98",
       "source_hash": "71690e7b1e912068247e6343e6099d7a53a819e1b5921391a9bc5522583aea1e",
       "decision": "guide",
@@ -13448,6 +13823,21 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_85bfca8f16d31da3271e",
+      "source_hash": "25e50e0c52a36b697d09f6a5f2964da4ced6397aaf3d07358987ab44fcfa5627",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Metro de Madrid prior information notice for maintenance of the renewed and expanded storage platforms of its OT and IT systems (storage infrastructure maintenance). 'API 75 2026' at the start of the title is the number of Metro's periodic indicative notice (anuncio periódico indicativo), not an application programming interface.",
+      "evidence": [
+        {
+          "field": "description",
+          "quote": "Contrato de mantenimiento de la renovación tecnológica y ampliación de las plataformas de almacenamiento de los sistemas OT e IT.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/267354-2026"
+        }
+      ]
     },
     {
       "id": "sig_8608455ddad914e0e75c",
@@ -14010,6 +14400,21 @@
           }
         }
       }
+    },
+    {
+      "id": "sig_8b3333ce012a2ff734df",
+      "source_hash": "6f598865eeefcc061d8b439281815aed0a6c9df738e77963ee36d8c173b2e40f",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Maintenance of the Oracle software deployed in Mutua Universal's information systems (CPV 72267000, software maintenance and repair): support of one named vendor's installed products. The notice names no application development, implementation or integration work.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Servicio de mantenimiento del software Oracle desplegado en los Sistemas de Información de Mutua Universal.",
+          "source_url": "https://contrataciondelestado.es/wps/poc?idEvl=348Ges8%2B%2FTYXhk1FZxEyvw%3D%3D&uri=deeplink%3Adetalle_licitacion"
+        }
+      ]
     },
     {
       "id": "sig_8b4bf10de5e76b471c05",
@@ -15162,6 +15567,21 @@
       "source_hash": "b123c443cddaff8d5ecf64dfcab885387f22d51ce5491cd8a67cd030174f8066"
     },
     {
+      "id": "sig_9946ed9fbc88fa19febc",
+      "source_hash": "2e13c06382e9e3518c6ffd7aabbbfdb22e73735d585064625fbe08b7ffc03132",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "TED copy of the contract to operate eight cash-withdrawal machines (ATMs) in Valladolid province municipalities.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Servicios de 8 cajeros, de retirada de efectivo, por la Diputación Provincial de Valladolid en ocho municipios de la provincia",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/612719-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_996967692fa953733e6a",
       "source_hash": "36ee0526f569010531209aad3f8aedd54aa23dfd87fcc5cccdbb1f43d7a7c93a",
       "decision": "guide",
@@ -15381,6 +15801,21 @@
           }
         }
       }
+    },
+    {
+      "id": "sig_9b6438fa619c4a21c473",
+      "source_hash": "6a5e8f4f53407f777ffb660c72597c2912846ca1206a9af9c6be7f628a1722f8",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Prior information notice for maintaining Metro de Madrid's Hewlett Packard Enterprise hardware infrastructure. This is hardware maintenance; no CRM, business application, integration or AI work is procured.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "MANTENIMIENTO DE LA INFRAESTRUCTURA DE HARDWARE DEL FABRICANTE HEWLETT PACKARD ENTERPRISE",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/315973-2026"
+        }
+      ]
     },
     {
       "id": "sig_9c80d0bb7dbdefcd3c06",
@@ -15606,6 +16041,21 @@
           }
         }
       }
+    },
+    {
+      "id": "sig_9e14025186e48a727264",
+      "source_hash": "b1e7e7ebeb4da30d0cdde51bb50f5a9694e1f8e86b92fc41ecbb96f7a50e8471",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Prior information notice for an Oracle database hardware and software platform in high availability, with migration of the current database environment to it (database infrastructure; CPVs 48820000 servers, 48611000).",
+      "evidence": [
+        {
+          "field": "description",
+          "quote": "El objeto del contrato es la adquisición de una plataforma de hardware y software de explotación de bases de datos en el entorno de Oracle y los servicios necesarios para la migración del entorno actual a la nueva plataforma",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/192466-2026"
+        }
+      ]
     },
     {
       "id": "sig_9e66a53d1962fd8144a0",
@@ -16059,6 +16509,26 @@
         }
       ],
       "guidance": null
+    },
+    {
+      "id": "sig_a357ae8223b8bb6e43b0",
+      "source_hash": "b2f23a1c1d2a4bf0210019af88c4f7e33f2515c8ed324aefe0fd1ce585e9329c",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Market analysis, technology valorisation and commercialisation-strategy studies for technologies developed at BSC-CNS, in four lots by scientific domain. AI appears as one of the technology fields to be studied.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Servicios de análisis de mercado, valorización tecnológica y definición de estrategias de comercialización para las tecnologías desarrolladas en el BSC-CNS",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/653607-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Estudios de mercado, análisis de oportunidades y estrategias de valorización para tecnologías en los ámbitos de Supercomputación, Software, Hardware y Tecnologías Cuánticas.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/653607-2026"
+        }
+      ]
     },
     {
       "id": "sig_a3b6e28eb16ed23741f2",
@@ -17284,6 +17754,21 @@
       }
     },
     {
+      "id": "sig_ae2bff408b1829e6d1b4",
+      "source_hash": "898ae768807a5207ebd2a2ff0edb48f2ccd514c04b0e22fd5d392cd5eca4ec2c",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Prior information notice for the supply of Autodesk software to Canal de Isabel II (design-software licences; CPV 48320000).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "SUMINISTRO DEL SOFTWARE AUTODESK CANAL DE ISABEL II S.A, MP",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/184305-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_ae7eb8d554010b10ca22",
       "source_hash": "1820de9cf4eb6faaf0eb7e7a53681577cbd1aa37c578b93d8efafbad004891be",
       "decision": "guide",
@@ -17313,6 +17798,21 @@
       }
     },
     {
+      "id": "sig_ae8144ead2c90155f68a",
+      "source_hash": "696c0388758a42b68584d72fa106cb93a819b77749afe56becebb28d9bfc8322",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Prior information notice for supplying and installing E4.0 ticket vending machines for the extension of the Metro de Madrid network, in two lots. This is fare-collection equipment; no CRM, business application, integration or AI work is procured.",
+      "evidence": [
+        {
+          "field": "description",
+          "quote": "Suministro e instalación de equipos de venta según el modelo E4.0 para la ampliación del cierre de la red de Metro de Madrid.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/339874-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_af516a1785084d44f2eb",
       "source_hash": "16c4fa2f5558e62f1b017e746b3d1c2f94bb35b7c1f7b6e9ccced65b81d7b9b7",
       "decision": "guide",
@@ -17340,6 +17840,21 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_b061c00f7928c6dc75e0",
+      "source_hash": "6abcac2c663b9c439b38500341a85471755df490b1bd18324591ce9e786d97b9",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Metro de Madrid prior information notice for on-site technical support maintaining the technology infrastructure of its Maintenance Operations and Facilities and Telecommunications Monitoring Centre (COMMIT); infrastructure support, with no business application, portal or integration work named. 'API 24 2026' at the start of the title is the number of Metro's periodic indicative notice (anuncio periódico indicativo), not an application programming interface.",
+      "evidence": [
+        {
+          "field": "description",
+          "quote": "Contrato de Soporte técnico presencial para el mantenimiento de la infraestructura tecnológica del Centro de Operaciones de Mantenimiento y de Monitorización de Instalaciones y Telecomunicaciones (COMMIT).",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/269120-2026"
+        }
+      ]
     },
     {
       "id": "sig_b0c1708c04f418b41358",
@@ -17547,6 +18062,21 @@
         }
       ],
       "guidance": null
+    },
+    {
+      "id": "sig_b30b8f2692cb51182e78",
+      "source_hash": "7e3e8a041f1b93ac12d450c691a2787b8e52834d7dbda4ff7e70fdba635cf4b2",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "TED copy of the maintenance of the Oracle software deployed in Mutua Universal's information systems (vendor licence support).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Servicio de mantenimiento del software Oracle desplegado en los Sistemas de Información de Mutua Universal.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/639085-2026"
+        }
+      ]
     },
     {
       "id": "sig_b351abf34766cbbe0dfe",
@@ -17829,6 +18359,21 @@
         }
       ],
       "guidance": null
+    },
+    {
+      "id": "sig_b89a872216055a6c7149",
+      "source_hash": "7b78230bcc02fb0fde20771bbb43e2f58073bb9d88d15890dbe44f39260c8194",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Supply of VMware software for the virtualisation of Canal de Isabel II's server infrastructure (infrastructure licence resale; CPV 48517000).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "SUMINISTRO DEL SOFTWARE VMWARE PARA LA VIRTUALIZACIÓN DE LA INFRAESTRUCTURA DE SERVIDORES DE CANAL DE ISABEL II, S.A., M.P.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/640282-2026"
+        }
+      ]
     },
     {
       "id": "sig_b8cd5bf87f885cda567d",
@@ -18233,6 +18778,21 @@
       "guidance": null
     },
     {
+      "id": "sig_bd55c71a618bb007f99d",
+      "source_hash": "67c1ae8b526c73df302e1081991a8ce2dbdfcaf36a3d283fda3e268dd8423592",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Prior information notice for maintaining Gijón's SAP R3 application and its SAP IS-U/CCS utilities modules in the integrated management system of the municipal companies. This is vendor-specific SAP maintenance, which Anthrion does not provide; the notice states no Salesforce, CRM, AI, integration or new development scope.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Servicio de mantenimiento de la aplicación informática SAP R3 y utilities (ISU-CCS) definidos en el sistema de gestión integrada de empresas municipales del Ayuntamiento de Gijón",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/132412-2026"
+        }
+      ]
+    },
+    {
       "decision": "exclude",
       "evidence": [
         {
@@ -18396,6 +18956,21 @@
       }
     },
     {
+      "id": "sig_bff014394cc4a835e2e9",
+      "source_hash": "60ec55225f0ca66a148904cb0781b4d6c6b98a726af760b3ca22417127f6bda3",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Electricity supply for FRATERNIDAD-MUPRESPA (CPV 09310000); admitted only through a misapplied CPV 79311000.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Contratación del suministro de energía eléctrica para FRATERNIDAD-MURESPA.",
+          "source_url": "https://contrataciondelestado.es/wps/poc?idEvl=QQ%2F5NtbpxPqExvMJXBMHHQ%3D%3D&uri=deeplink%3Adetalle_licitacion"
+        }
+      ]
+    },
+    {
       "id": "sig_c0037b8ffe36977c5052",
       "source_hash": "1415bdc3c26dd363a92f1f930736120492b87363a3ea44b33a1adc8473b4e4bd",
       "decision": "guide",
@@ -18536,6 +19111,21 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_c1606e051ead397bca38",
+      "source_hash": "6377791c7f0010e1015033e470636bfd1a4873e98a5fe12da971ac6978f2a364",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Maintenance of the software of the Xovis passenger-flow sensor system at Almería airport, 2027-2031 (vendor sensor system).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Servicio De Mantenimiento Software Sistema Xovis 2027-2031",
+          "source_url": "https://contrataciondelestado.es/wps/poc?idEvl=LZ9fz2uz0UQ%2FbjW6njtWLw%3D%3D&uri=deeplink%3Adetalle_licitacion"
+        }
+      ]
     },
     {
       "id": "sig_c18c574df88e52eea3b9",
@@ -18834,6 +19424,21 @@
       "guidance": null
     },
     {
+      "id": "sig_c382ca1c56373f11fe16",
+      "source_hash": "19807aa609fb0f4f305749b4558075be85d38b8c9a253b759a630eca7aabf4e5",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Metro de Madrid prior information notice for support and maintenance of the Dell EMC storage and backup environment of its Communications and IT Area (vendor hardware and software support). 'API 18 2026' at the start of the title is the number of Metro's periodic indicative notice (anuncio periódico indicativo), not an application programming interface.",
+      "evidence": [
+        {
+          "field": "description",
+          "quote": "Contrato de Soporte y mantenimiento del entorno de almacenamiento y backup Dell EMC del Área de Comunicaciones y Tecnologías de la Información (ACTI) de Metro de Madrid",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/267785-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_c3dc71dd8ff1f76ddde6",
       "source_hash": "f1e775ed231607fb7a01449929ccc3d742ce8c6b6b24ef511cb69f59239a539a",
       "decision": "guide",
@@ -18904,6 +19509,46 @@
           }
         }
       }
+    },
+    {
+      "id": "sig_c4468dc763f937c0a467",
+      "source_hash": "34aa559086c82653bab38848f0e86599f7e66f7085c533de0951f72ac79ce2e2",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Framework agreement for the supply, warranty and maintenance of IT equipment for CNIO in two lots: microcomputing and audiovisual material (PCs, laptops, monitors, printers, peripherals, audiovisual and room-control equipment, and general-purpose PC software) and computer systems (servers, storage, networking, security and IP-telephony equipment, GPU computing, data-centre racks and general-purpose server software), with the software licences associated with the equipment. The only development named is the control software of the audiovisual control system; no business application, portal, CRM, data platform or integration service is procured.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Acuerdo Marco para el Suministro de Equipamiento Informático",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/636806-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Lote 1. Material de microinformática y audiovisuales. Lote 2. Sistemas informáticos.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/636806-2026"
+        },
+        {
+          "field": "description",
+          "quote": "El presente Acuerdo Marco incluye el suministro, garantía y mantenimiento de equipamiento informático, así como las licencias de software que pudieran tener asociados.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/636806-2026"
+        },
+        {
+          "field": "description",
+          "quote": "software con carácter general para ordenadores personales, independientemente del sistema operativo",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/636806-2026"
+        },
+        {
+          "field": "description",
+          "quote": "sistema de control de todo el equipamiento, incluyendo el desarrollo e implantación de software de control",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/636806-2026"
+        },
+        {
+          "field": "description",
+          "quote": "y software con carácter general para servidores, independientemente del sistema operativo.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/636806-2026"
+        }
+      ]
     },
     {
       "id": "sig_c47690a1e3e9b6d0319b",
@@ -19506,6 +20151,21 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_cc2be60787430fc6f8fa",
+      "source_hash": "80e0bcbaafc86bf67d4067b3d42f52f0850ee93d0499068120ab0fcc13280a29",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Supply of reagents and consumables for automated haemostasis testing at the Miguel Servet haematology laboratory, with leasing and maintenance of the analysers and their connection to the laboratory information system (CPV 33696500).",
+      "evidence": [
+        {
+          "field": "description",
+          "quote": "Suministro de Material Necesario para Realización de Técnicas Analíticas Automáticas de Hemostasia para el Laboratorio de Hematología del Hospital Universitario Miguel Servet de Zaragoza, así como Arrendamiento de los Equipos Necesarios, Mantenimiento y su Conexión Informática al Sistema de Información del Laboratorio.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/628584-2026"
+        }
+      ]
     },
     {
       "id": "sig_cc50a73d61158c1f39ae",
@@ -20414,6 +21074,36 @@
       "reviewed_at": "2026-09-22T11:52:15.370255+00:00",
       "reviewed_by": "Codex primary agent; independent technical-content review",
       "source_hash": "8edce1f9425bc58d194b0668c607c936fa4f6fa82c3cc631a4131a44fdff2750"
+    },
+    {
+      "id": "sig_d6bfa3df4cb237ff02e1",
+      "source_hash": "7766f8c46b0f3ee147b78963356db245da21747094351e0d10dcec1544241912",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Metro de Madrid prior information notice for a framework agreement to acquire cybersecurity software and hardware (security products; CPVs 30200000, 35710000, 48820000, 48900000, 72130000). 'API 80 2026' at the start of the title is the number of Metro's periodic indicative notice (anuncio periódico indicativo), not an application programming interface.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "API 80 2026 - ACUERDO MARCO ADQUISICIÓN SOFTWARE/HARDWARE CIBERSEGURIDAD",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/255380-2026"
+        }
+      ]
+    },
+    {
+      "id": "sig_d6dc79b2552df05961d3",
+      "source_hash": "8478e2f7ce3b718dcc2472be8ffebcf6392a4edb66d670e36d9d122caf9a80da",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Specialised support verifying and controlling the execution and justification of projects funded by budget transfers of the State Secretariat for Digitalisation and AI (CPV 79419000, evaluation consultancy). AI appears only in the funder's name.",
+      "evidence": [
+        {
+          "field": "description",
+          "quote": "Servicio de soporte especializado en los procedimientos de verificación y control de las actuaciones financiadas mediante resoluciones de transferencia presupuestaria por parte de la Secretaría de Estado de Digitalización e Inteligencia Artificial, para asegurar la verificación de la correcta ejecución y justificación de los proyectos financiados",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/638343-2026"
+        }
+      ]
     },
     {
       "id": "sig_d6f20e827ba28a83b6df",
@@ -21619,6 +22309,21 @@
       "source_hash": "e788c0c01ede3d095becf6e7c4cecd87f7f7fb5380f1510706913df6409150f8"
     },
     {
+      "id": "sig_e3c01bd25a5507ceb298",
+      "source_hash": "b7f80fb8cc13b53258bece52317819e7683be89c5e7f3d6e0da25703f5acf2f9",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Metro de Madrid prior information notice for maintenance of the General Electric software installed in its Operations and Monitoring Centre for Facilities and Telecommunications Maintenance (vendor-specific industrial monitoring software). 'API 66 2026' at the start of the title is the number of Metro's periodic indicative notice (anuncio periódico indicativo), not an application programming interface.",
+      "evidence": [
+        {
+          "field": "description",
+          "quote": "Contrato de mantenimiento del software General Electric instalado en el Centro de Operaciones y Monitorización de Mantenimiento de Instalaciones y Telecomunicaciones",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/285770-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_e3e38678a89b31ee0c41",
       "source_hash": "25612458ec2592c496f2ee5b86315aeaba00c560240973fba4edaff7b03bf5ab",
       "decision": "guide",
@@ -21967,6 +22672,21 @@
       "source_hash": "881b4a51a48d887991945bc5bf989986223eca85277e0b6ec2ed1c0b928db25f"
     },
     {
+      "id": "sig_e709c1e047187808913f",
+      "source_hash": "f26c01046840ded69899689926ec35f273e9bfef3274a3c03dc11f63cb55072b",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Prior information notice for the renewal of the Barcelona provincial council's IT security platform or firewalls (security product; CPV 48730000).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Renovación de la plataforma de seguridad informática o cortafuegos",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/182946-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_e71e24bc22369dd78f86",
       "source_hash": "5d84c18d46bac6511dc5a5d0bca7ea61a1cb2b4f8c77f65d94ba5c9b4b170e55",
       "decision": "guide",
@@ -22118,6 +22838,21 @@
           }
         }
       }
+    },
+    {
+      "id": "sig_e885626e8f53251dc74c",
+      "source_hash": "4190493ff929371328c2ae900f7cba2d51fb41303342af730f143783072396c9",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Supply and installation of centralised storage infrastructure within the Albacete provincial council's Sedipualb@ e-administration platform (storage hardware; CPV 32580000 data equipment, 72710000).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Suministro e instalación de infraestructuras de almacenamiento centralizadas dentro de la plataforma de administración electrónica Sedipualb@.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/655595-2026"
+        }
+      ]
     },
     {
       "id": "sig_e97ada2ecc5891b94285",
@@ -22755,6 +23490,21 @@
           }
         }
       }
+    },
+    {
+      "id": "sig_f0911f864d717c6ce978",
+      "source_hash": "8f185bc5b1d60b78a4c20bd4bf7b19a35a65e3855d7945158f6644e1a06773ec",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Prior information notice for installing E4.0 fare gates for the extension of the Metro de Madrid network, in two lots. This is fare-collection equipment and its installation; no CRM, business application, integration or AI work is procured.",
+      "evidence": [
+        {
+          "field": "description",
+          "quote": "Contrato de Instalación de equipos de peaje según el modelo E4.0 para la ampliación del cierre de la red de Metro de Madrid.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/341180-2026"
+        }
+      ]
     },
     {
       "id": "sig_f0b9b48a33442069db5c",
@@ -23752,6 +24502,21 @@
       "guidance": null
     },
     {
+      "id": "sig_f8bfebeedde3c963c0c3",
+      "source_hash": "34e1aa431bfb25d839bd55a3571f8383aa94d85a6fc053aa63629eb08da91ee8",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Prior information notice for licence updates and support of the identity and access management platform of the Judiciary web portal (vendor licence renewal only).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Suministro de actualización y soporte de licencias para la plataforma de acceso y gestión de identidades del portal web del Poder Judicial.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/399132-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_f8d9baeecda6b2718052",
       "source_hash": "c06610a7bdab43889a85f4063715cfcc3e7ef67be2e861fdc620d0a062c33ae2",
       "decision": "guide",
@@ -24118,6 +24883,21 @@
           }
         }
       }
+    },
+    {
+      "id": "sig_fd8fff79091236b0b9a1",
+      "source_hash": "4b3c1691dab955578eba9ddec752712c8920b64f8781e227c8b60b19b51d77e2",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T20:48:09.277429+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Technical support service for the verification and control procedures of actions funded through budget-transfer resolutions, tendered by Ingeniería de Sistemas para la Defensa de España (ISDEFE) (CPV 79419000, evaluation consultancy). It is a verification and control support service; the notice names no software, platform, data or AI deliverable.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Servicio de apoyo tecnico en los procedimientos de verificación y control de las actuaciones financiadas mediante resoluciones de transferencia presupuestaria.",
+          "source_url": "https://contrataciondelestado.es/wps/poc?idEvl=3jQjtAlydIDE6P%2FuLemXRw%3D%3D&uri=deeplink%3Adetalle_licitacion"
+        }
+      ]
     },
     {
       "id": "sig_fd9024840912064d6ab0",

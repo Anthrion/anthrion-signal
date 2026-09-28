@@ -60,6 +60,35 @@ PHYSICAL_SYSTEMS = ("pipework", "ventilation", "air handling", "compressed air",
                     "gate actuators", "drive actuator", "sally port", "magnetic locks")
 DIGITAL_SYSTEMS = ("software", "application", "database", "crm", "salesforce", "api", "middleware",
                    "information system", "information systems", "data platform", "customer portal", "ai agent")
+# Spanish, Catalan and Galician needs that can also name a service process, a programme topic or the
+# buyer's existing system; like the English entries above, they count only with technical context.
+# Spanish notices name the buyer's "sede electrónica" (e-office) as the channel for bids
+# and applications in works, goods and concession notices alike.
+AMBIGUOUS_NEEDS.update({"sede electronica"})
+# As with "digital transformation": a programme, strategy or department name, not scope.
+AMBIGUOUS_NEEDS.update({"transformacion digital"})
+# Spanish contact-centre operations are often outsourced human services (BPO).
+AMBIGUOUS_NEEDS.update({"centro de contacto", "atencion omnicanal", "atencion multicanal"})
+# These can name the buyer's existing file-processing system in a non-IT contract.
+AMBIGUOUS_NEEDS.update({"gestor de expedientes", "gestor electronico de expedientes", "tramitador de expedientes",
+                        "herramienta de tramitacion de expedientes"})
+# Existing citizen/employee channels or human appointment handling in service contracts.
+AMBIGUOUS_NEEDS.update({"portal del empleado", "carpeta ciudadana", "gestion de citas previas", "gestion de cita previa"})
+# Also used for equipment maintenance and custom-made goods.
+AMBIGUOUS_NEEDS.update({"mantenimiento evolutivo", "desarrollo a medida", "aplicacion a medida", "aplicaciones a medida"})
+# Digitalisation and data governance can be a programme or policy topic.
+AMBIGUOUS_NEEDS.update({"digitalizacion de procesos", "digitalizacion de procedimientos", "gobernanza del dato",
+                        "gobernanza de datos"})
+# Customer/citizen relationship handling can be an outsourced human service.
+AMBIGUOUS_NEEDS.update({"gestion de la relacion con el cliente", "gestion de la relacion con los clientes",
+                        "gestion de las relaciones con los clientes", "relacion con la ciudadania"})
+# A Catalan file-processing system can be the buyer's existing tool in a non-IT (e.g. social-care) contract.
+AMBIGUOUS_NEEDS.update({"gestor d expedients"})
+# Evolutive/corrective maintenance also describes equipment maintenance (ca/gl, as in Spanish).
+AMBIGUOUS_NEEDS.update({"manteniment evolutiu", "manteniment correctiu i evolutiu", "mantemento evolutivo"})
+# Spanish RPA wording can describe industrial robotics; NLP and data analytics can be course or study topics.
+AMBIGUOUS_NEEDS.update({"automatizacion robotica de procesos", "procesamiento del lenguaje natural",
+                        "procesamiento de lenguaje natural", "analitica de datos"})
 COMMUNICATIONS_SOFTWARE = (
     "call queue management system", "call queue management solution", "call queue management solutions",
     "media monitoring software", "social media management software", "social media listening software",
