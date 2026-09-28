@@ -58,7 +58,8 @@ describe('Salesforce sandbox prefill', () => {
     expect(result.fields).not.toHaveProperty('AnnualRevenue')
     expect(result.fields).not.toHaveProperty('Country')
     expect(result.fields.Description).toContain('Framework ceiling: 123,456.78 GBP')
-    expect(result.fields.Lead_Name__c).toContain('Ceiling £123456.78')
+    expect(result.fields.Expected_Value__c).toBe('Ceiling £123,456.78')
+    expect(result.fields.Response_Deadline__c).toBe('2026-12-01')
     expect(result.fields.Description.indexOf('Framework ceiling:')).toBeLessThan(
       result.fields.Description.indexOf('Notice type:'),
     )
@@ -96,7 +97,7 @@ describe('Salesforce sandbox prefill', () => {
     expect(result.fields.Description).toContain(record.title)
     expect(result.fields.Description).toContain(record.buyer_name)
   })
-  test('uses the project, actual amount and buyer in Lead Name, retaining unknowns and ranges faithfully', () => {
+  test('separates value from project and buyer, retaining original currencies, unknowns and ranges', () => {
     const record = make({
       title: 'Workflow management system',
       buyer_name: 'WM5G LIMITED',
@@ -105,7 +106,8 @@ describe('Salesforce sandbox prefill', () => {
       currency: 'USD',
     })
     expect(draft(record)!.fields).toMatchObject({
-      Lead_Name__c: 'Workflow management system, $450000, WM5G LIMITED',
+      Lead_Name__c: 'Workflow management system, WM5G LIMITED',
+      Expected_Value__c: '$450,000',
       Title: 'Workflow management system',
     })
     expect(
@@ -117,15 +119,15 @@ describe('Salesforce sandbox prefill', () => {
           value_max: 250000,
           currency: 'GBP',
         }),
-      )!.fields.Lead_Name__c,
-    ).toBe('CRM, £0–£250000, Council')
+      )!.fields,
+    ).toMatchObject({ Lead_Name__c: 'CRM, Council', Expected_Value__c: '£0–£250,000' })
     expect(
-      draft(make({ title: 'CRM', buyer_name: 'Council', value_min: null, value_max: null }))!.fields
-        .Lead_Name__c,
-    ).toBe('CRM, Value not published, Council')
+      draft(make({ title: 'CRM', buyer_name: 'Council', value_min: null, value_max: null }))!
+        .fields,
+    ).not.toHaveProperty('Expected_Value__c')
     expect(
       draft(make({ title: 'CRM', buyer_name: 'Council', value_max: 250000, currency: null }))!
-        .fields.Lead_Name__c,
+        .fields.Expected_Value__c,
     ).toContain('currency unknown')
   })
   test('keeps lifecycle visibility in the site, while validating draft identity and full detail', () => {
@@ -189,7 +191,7 @@ describe('Salesforce sandbox prefill', () => {
     expect(result).not.toHaveProperty('Company_HQ_Country__c')
     expect(result.Description).toContain('100,000 CAD')
     expect(result.Description).toContain('Published CAD amounts have not been converted.')
-    expect(result.Lead_Name__c).toContain('CA$100000')
+    expect(result.Expected_Value__c).toBe('CA$100,000')
     for (const currency of ['GBP', 'EUR', 'SEK', 'USD']) {
       const fields = draft(make({ currency }))!.fields
       expect(fields.CurrencyIsoCode).toBe(currency)
@@ -247,6 +249,7 @@ describe('Salesforce sandbox prefill', () => {
       }),
     )!
     expect(result.fields.Description).toContain('Cutoff time not published')
+    expect(result.fields.Response_Deadline__c).toBe('2026-12-02')
     expect(result.fields.Description).toContain('[Excerpt; full text in Anthrion Signal.]')
     expect(result.href.length).toBeLessThanOrEqual(14000)
     const record = make({
@@ -259,5 +262,45 @@ describe('Salesforce sandbox prefill', () => {
       },
     })
     expect(draft(record)).toBeNull()
+  })
+  test('selects the current response stage and preserves its calendar day across timezones', () => {
+    const deadline = {
+      kind: 'tender' as const,
+      date: '2026-12-02',
+      precision: 'date' as const,
+      status: 'current' as const,
+      source_text: 'Published deadline',
+      source_url: 'https://example.org',
+    }
+    const fields = draft(
+      make({
+        deadlines: [
+          { ...deadline, kind: 'questions', date: '2026-10-01' },
+          { ...deadline, status: 'superseded', date: '2026-10-02' },
+          { ...deadline, kind: 'invited_submission', date: '2026-10-03' },
+          deadline,
+          {
+            ...deadline,
+            kind: 'expression_of_interest',
+            date: '2026-11-01',
+            time: '00:30',
+            timezone: '+13:00',
+            precision: 'instant',
+            instant: '2026-10-31T11:30:00Z',
+          },
+        ],
+      }),
+    )!.fields
+    expect(fields.Response_Deadline__c).toBe('2026-11-01')
+    expect(fields.Description).toContain('00:30')
+    expect(fields.Description).toContain('UTC+13:00')
+    expect(
+      draft(make({ deadline_at: '2026-12-01T23:30:00-08:00' }))!.fields.Response_Deadline__c,
+    ).toBe('2026-12-01')
+    for (const deadline_at of [null, 'not a date', '2026-02-30', '2026-12-01Tinvalid'])
+      expect(draft(make({ deadline_at }))!.fields).not.toHaveProperty('Response_Deadline__c')
+    expect(
+      draft(make({ deadlines: [{ ...deadline, kind: 'questions' }] }))!.fields,
+    ).not.toHaveProperty('Response_Deadline__c')
   })
 })

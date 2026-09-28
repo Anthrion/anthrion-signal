@@ -8,6 +8,7 @@ import {
   typeLabels,
 } from './lib'
 import { deadlinePresentation } from './publicFacts'
+import { validCalendarDate } from './deadlineMath'
 import { selectedGuidance } from './RecommendedApproach'
 
 export interface SalesforceSandboxConfig {
@@ -93,7 +94,7 @@ function contractAmount(signal: Signal) {
   const distinct = [...new Set(values)]
   return `${amountLabels[signal.amount?.kind || 'unknown'] || 'Published amount'}: ${distinct.length ? distinct.map((value) => value.toLocaleString('en-GB', { maximumFractionDigits: 20 })).join('–') + ' ' + (currency || '(currency not published)') : 'Not published'}`
 }
-function leadName(signal: Signal, title: string) {
+function expectedValue(signal: Signal) {
   const values = [
     ...new Set(
       [
@@ -118,21 +119,22 @@ function leadName(signal: Signal, title: string) {
         award: 'Award ',
       } as Record<string, string>
     )[kind || ''] || ''
-  const amount = values.length
-    ? `${qualifier}${values.map((value) => symbol + value.toLocaleString('en-GB', { useGrouping: false, maximumFractionDigits: 20 })).join('–')}${currency ? '' : ' (currency unknown)'}`
-    : 'Value not published'
-  // Preserve all three useful parts within the existing unique Text(80) field.
-  const price = amount.length <= 40 ? amount : 'Value in description'
+  return values.length
+    ? `${qualifier}${values.map((value) => symbol + value.toLocaleString('en-GB', { maximumFractionDigits: 20 })).join('–')}${currency ? '' : ' (currency unknown)'}`
+    : null
+}
+function leadName(signal: Signal, title: string) {
+  // Keep the project and buyer in the existing unique Text(80) field; value has its own field.
   const buyer = signal.buyer_name?.trim() || 'Buyer not published'
   const project = title.trim() || 'Untitled project'
-  if (`${project}, ${price}, ${buyer}`.length <= 80) return `${project}, ${price}, ${buyer}`
-  const remaining = 80 - price.length - 4
+  if (`${project}, ${buyer}`.length <= 80) return `${project}, ${buyer}`
+  const remaining = 78
   const buyerLength = Math.min(
     buyer.length,
     Math.max(18, remaining - project.length),
     Math.floor(remaining / 2),
   )
-  return `${short(project, remaining - buyerLength)}, ${price}, ${short(buyer, buyerLength)}`
+  return `${short(project, remaining - buyerLength)}, ${short(buyer, buyerLength)}`
 }
 function encodeURL(config: SalesforceSandboxConfig, fields: Record<string, string>) {
   const url = new URL('/lightning/o/Lead/new', config.origin)
@@ -176,6 +178,10 @@ export function salesforcePrefill(
     Anthrion_Signal_URL__c: recordURL.href,
   }
   if (signal.buyer_name) fields.Company = short(signal.buyer_name, 255)
+  const value = expectedValue(signal)
+  // Do not truncate a published amount into a different financial fact.
+  if (value && value.length > 255) return null
+  if (value) fields.Expected_Value__c = value
   // Country of performance is not necessarily the buyer's registered address or HQ.
   const mapped = new Set(
     signal.countries.map((country) => marketForCountry[country] || 'New Markets'),
@@ -211,6 +217,15 @@ export function salesforcePrefill(
   const approach = guidance ? points(guidance.approach) : ''
   const problems = guidance?.problems.length ? points(guidance.problems) : ''
   const event = selectedResponseDeadlineEvent(signal, now)
+  // A Date field stores the published calendar day, not an instant shifted into the user's zone.
+  const responseValue = event?.date || responseDeadline(signal, now)
+  const responseDate = responseValue?.slice(0, 10)
+  if (
+    responseDate &&
+    Number.isFinite(Date.parse(responseValue!)) &&
+    validCalendarDate(responseDate)
+  )
+    fields.Response_Deadline__c = responseDate
   const deadline = event ? deadlinePresentation(event) : null
   const deadlineText = deadline
     ? `${deadline.label}: ${deadline.value}${deadline.precision ? ` (${deadline.precision})` : ''}`

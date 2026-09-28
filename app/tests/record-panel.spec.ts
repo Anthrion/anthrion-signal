@@ -252,7 +252,9 @@ test('@pr Salesforce opens a reviewable sandbox draft with tender fields and fol
   }
   const draft = fields(popup.url())
   expect(draft).toMatchObject({
-    Lead_Name__c: 'Workflow management system, CA$450000, WM5G LIMITED',
+    Lead_Name__c: 'Workflow management system, WM5G LIMITED',
+    Expected_Value__c: 'CA$450,000',
+    Response_Deadline__c: '2099-01-01',
     FirstName: 'AI tender',
     LastName: `WM5G LIMITED · ${id}`,
     Title: 'Workflow management system',
