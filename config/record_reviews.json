@@ -1539,6 +1539,32 @@
       }
     },
     {
+      "id": "sig_0c94510f9031d37e9cd3",
+      "source_hash": "a5b716c9237d5f4c1aa7b99ccb526136a1fc356acea5f6e28c56dc0477ee4c07",
+      "decision": "include",
+      "reviewed_at": "2026-09-28T14:59:38.309314+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Pipeline expression of interest (GBP 400k) from Torbay Council for a new council-wide telephony system plus the acquisition of a fully featured contact centre, to be live by April 2027. Contact-centre platform delivery and its integration with CRM/case management and omnichannel routing (e.g. Service Cloud Voice with Amazon Connect) is core Anthrion scope.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "COR25119 Telephony Services - Expression of Interest",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/058220-2025"
+        },
+        {
+          "field": "description",
+          "quote": "Torbay Council is seeking a provider delivering a new telephony system for the entire council.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/058220-2025"
+        },
+        {
+          "field": "description",
+          "quote": "Alongside this, a fully featured contact centre will need to be acquired.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/058220-2025"
+        }
+      ],
+      "priority": "platform"
+    },
+    {
       "id": "sig_0cc396de5878c3ab1d62",
       "source_hash": "e68fdfc560d8ac1703b619d95ddd7b6b91f6c1eb95ec5b433643935943a5e1b0",
       "decision": "guide",
@@ -1795,6 +1821,32 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_10886f4c2950b36f63e3",
+      "source_hash": "394cbc756f21f43be0a7f72ca0def17b6fc731e4079d5b0d1cfe9e943dbddec9",
+      "decision": "include",
+      "reviewed_at": "2026-09-28T14:59:38.309314+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Open YPO Dynamic Purchasing System (to 12 Feb 2029, up to GBP 500m) for critical incident and public safety software/systems for all public sector organisations; suppliers can apply to join at any time. Incident, case and multi-agency coordination software can be delivered on the Salesforce platform (Service Cloud / Public Sector Solutions, Experience Cloud) or as custom software, so Anthrion could seek a place on the DPS.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "YPO - 001218 Critical Incident Management and Public Safety Software and Systems",
+          "source_url": "https://www.contractsfinder.service.gov.uk/Notice/8ce7627e-2a73-4b30-b16a-40aa41d8e384"
+        },
+        {
+          "field": "description",
+          "quote": "YPO are looking for Providers to be appointed onto a Dynamic Purchasing System (DPS) for the provision of Critical Incident and Public Safety Software / Systems.",
+          "source_url": "https://www.contractsfinder.service.gov.uk/Notice/8ce7627e-2a73-4b30-b16a-40aa41d8e384"
+        },
+        {
+          "field": "description",
+          "quote": "Suppliers can apply to join throughout DPS duration.",
+          "source_url": "https://www.contractsfinder.service.gov.uk/Notice/8ce7627e-2a73-4b30-b16a-40aa41d8e384"
+        }
+      ],
+      "priority": "platform"
     },
     {
       "decision": "exclude",
@@ -5544,6 +5596,27 @@
       "reviewed_at": "2026-09-22T09:29:11.069922+00:00",
       "reviewed_by": "Codex primary agent; independent review of subagent proposal",
       "source_hash": "89dbe431f290e67863a60a21c56096ed39612f90ffb9f263d6bf5f7e8bb8ca88"
+    },
+    {
+      "id": "sig_394eb136828098fb63c0",
+      "source_hash": "76835e431b2a4b5bd6b28fe7c0a16a84f4e296fc859818d9dc567869f269d99b",
+      "decision": "include",
+      "reviewed_at": "2026-09-28T14:59:38.309314+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Live GCA DPS RM6322 (to 27 Nov 2030) for designing and administering schemes that disburse grants, loans and entitlement benefits. Grant and benefit scheme administration is a Salesforce Public Sector Solutions use case (application portals, eligibility and case management, payment integration), so a technology-led scheme-administration offer could join. Low confidence: many call-offs buy outsourced administration staff.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Fund Administration & Disbursement Services DPS (FAADS)",
+          "source_url": "https://www.gca.gov.uk/agreements/RM6322"
+        },
+        {
+          "field": "description",
+          "quote": "All public sector buyers can access a full range of services for designing and administering schemes that disburse funds. Schemes can include grants, loans, entitlement benefits, hybrid funds and any other fund not so easily defined.",
+          "source_url": "https://www.gca.gov.uk/agreements/RM6322"
+        }
+      ],
+      "priority": "other"
     },
     {
       "id": "sig_39c40af2c89b03ad377e",
@@ -19104,6 +19177,27 @@
       "source_hash": "a5998a51ad01179d79f120fa155e3b2e7f8fe41e084416a276193df524fbde77"
     },
     {
+      "id": "sig_c68b3cc0623422412029",
+      "source_hash": "2028d0835b4bb68100d08a5d921e3ea35761e6f263502ef0327b2750e3896e94",
+      "decision": "include",
+      "reviewed_at": "2026-09-28T14:59:38.309314+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Early market engagement run by Strata Service Solutions (the councils' shared IT company) for systems to run East Devon District Council's waste and street-scene services, classified CPV 48000000 (software packages). Operational systems for these services (service requests, rounds, work orders, crews, grounds-maintenance scheduling) map to Salesforce Field Service and public-sector case management. It is hidden only because 'grounds maintenance' is an irrelevant_physical phrase and the plural 'systems' is not in technical_context.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "EARLY MARKET ENGAGEMENT: Street Scene and Waste East Devon District Council",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/061036-2025"
+        },
+        {
+          "field": "description",
+          "quote": "Strata Service Solutions Ltd are running an early market engagement on behalf of East Devon District Council to look into systems for their waste and street scene e.g. grounds maintenance etc.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/061036-2025"
+        }
+      ],
+      "priority": "platform"
+    },
+    {
       "decision": "exclude",
       "evidence": [
         {
@@ -23682,6 +23776,37 @@
       }
     },
     {
+      "id": "sig_f621e9cd2c68dd0cd8ce",
+      "source_hash": "ee3eb451ce9c5117a793311655ced5c50cac4c1622d936d88c4d30fb7b88c0d7",
+      "decision": "include",
+      "reviewed_at": "2026-09-28T14:59:38.309314+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Custom software delivery: discovery, UX and technical design, build, testing, deployment and 36 months' support of a bilingual iOS/Android app for education professionals in Wales, including an AI-assisted search grounded in Estyn-approved content (retrieval-grounded generative search), analytics/notifications and a secure inspector area connected to Estyn's existing Inspector Profile application. This is custom application, integration and applied-AI (RAG) delivery. Live tender: deadline 26 Oct 2026, value GBP 40,000.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Tender for the Discovery, Design, Development, Deployment and Support of an Estyn Mobile App",
+          "source_url": "https://www.sell2wales.gov.wales/search/show/search_view.aspx?ID=SEP661667"
+        },
+        {
+          "field": "description",
+          "quote": "undertake the discovery, user experience design, technical design, development, testing, deployment and initial support of a bilingual mobile application for iOS and Android",
+          "source_url": "https://www.sell2wales.gov.wales/search/show/search_view.aspx?ID=SEP661667"
+        },
+        {
+          "field": "description",
+          "quote": "Develop an AI-assisted search feature grounded in Estyn-approved content.",
+          "source_url": "https://www.sell2wales.gov.wales/search/show/search_view.aspx?ID=SEP661667"
+        },
+        {
+          "field": "description",
+          "quote": "the creation of a secure inspector companion area connected to Estyn's existing Inspector Profile application",
+          "source_url": "https://www.sell2wales.gov.wales/search/show/search_view.aspx?ID=SEP661667"
+        }
+      ],
+      "priority": "ai"
+    },
+    {
       "id": "sig_f69f67ab6ecf615e9e4d",
       "source_hash": "81ae710dac9e3804c375a967de40d700be430c02b470c7aa92f8005c5e487a09",
       "decision": "guide",
@@ -24165,6 +24290,27 @@
           }
         }
       }
+    },
+    {
+      "id": "sig_fd6b62ab415c454990a3",
+      "source_hash": "594ec0a03844102c9809480f88214851c2864328aedbe3374803f6537fef137f",
+      "decision": "include",
+      "reviewed_at": "2026-09-28T14:59:38.309314+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "GCA RM6419 Innovation Marketplace (tenders open 1 Feb 2027, live 1 Mar 2027): a route to buy innovative services and solutions from suppliers of novel technologies beyond traditional IT, the successor space to the Spark DPS that is already shown. Applied AI and automation solutions fit this marketplace. Low confidence: the lot scope is not yet published.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Innovation Marketplace",
+          "source_url": "https://www.gca.gov.uk/agreements/RM6419"
+        },
+        {
+          "field": "description",
+          "quote": "Gives access to a diverse range of innovative services and solutions. Suppliers specialise in novel technologies beyond traditional IT.",
+          "source_url": "https://www.gca.gov.uk/agreements/RM6419"
+        }
+      ],
+      "priority": "other"
     },
     {
       "id": "sig_fd9024840912064d6ab0",
