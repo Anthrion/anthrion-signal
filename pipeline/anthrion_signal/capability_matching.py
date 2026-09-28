@@ -49,6 +49,10 @@ AMBIGUOUS_NEEDS = {"account management", "client management", "contact managemen
                    "inquiry management", "workforce scheduling", "mobile workforce", "field service management",
                    "subscription management"}
 AMBIGUOUS_NEEDS.update({"fallmanagement", "atencion al cliente", "atencion ciudadana", "ongoing enhancement"})
+# Norwegian (Bokmål/Nynorsk) and Danish "case processing" names the activity, which is also
+# bought as human casework (e.g. consultants for building-application processing); the
+# "-system" compounds stay unconditional, like the English entries above.
+AMBIGUOUS_NEEDS.update({"saksbehandling", "sakshandsaming", "sagsbehandling"})
 GENERIC_INTEGRATION = {"systems integration", "system integration", "integration with existing systems",
                        "integrate with existing systems", "systemintegration", "schnittstellenmanagement",
                        "integracion de sistemas", "integrazione di sistemi"}
