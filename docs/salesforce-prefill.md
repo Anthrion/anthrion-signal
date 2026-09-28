@@ -6,9 +6,11 @@ The verified sandbox origin and record type are public routing configuration in 
 
 ## Field mapping
 
-| Signal value | Existing Salesforce field | Behaviour |
+| Signal value | Salesforce field | Behaviour |
 | --- | --- | --- |
-| Project, amount, buyer | `Lead_Name__c` | Example: `Workflow management system, $450000, WM5G LIMITED`. No ID. Fits the existing unique Text(80) field by shortening project and buyer; retains all three parts. Unknown values, ranges and framework ceilings remain explicit. Full facts remain in Description. |
+| Project and buyer | `Lead_Name__c` | Example: `Workflow management system, WM5G LIMITED`. No amount or ID. Fits the existing unique Text(80) field by shortening project and buyer. Full facts remain in Description. |
+| Published value | `Expected_Value__c` | Optional Text(255), for example `£150,000–£250,000` or `NOK 20,000,000`. Preserves original currency, decimals, ranges and framework/annual/grant qualifiers without conversion. Blank when unpublished. Text is not a numeric report measure. |
+| Current response date | `Response_Deadline__c` | Optional Date, suitable for filtering and chronological sorting. Uses the published calendar date of the current response stage; ignores questions, superseded deadlines and invitation-only submission stages. Exact cutoff time and timezone remain in Description. |
 | Project title | `Title` | Selected English/Original title, bounded to the existing 128-character field. |
 | Industry and Sector | `Industry__c`, `Sector__c` | Existing dependent values `Technology` and `Software and Services`. |
 | Buyer | `Company` | Uses the published buyer name. |
@@ -17,7 +19,7 @@ The verified sandbox origin and record type are public routing configuration in 
 | Origin | `LeadSource` | Existing value `Anthrion Signal`. |
 | Lead lifecycle | `Status` | Existing default `New`. |
 | Notice country | `Market__c` | Uses existing market values. Nordic countries use the API value `NORD`; other countries without a named existing market use `New Markets`. Mixed markets remain for review. |
-| Lead currency | `CurrencyIsoCode` | Reuses published GBP, EUR, SEK or USD. Unsupported or unpublished currencies default to USD, as requested. Original published currency and amounts remain in Description and Lead Name; unsupported currencies include an explicit note that no conversion was applied. Other is never sent as an ISO code. No contract-value-to-company-revenue mapping. |
+| Lead currency | `CurrencyIsoCode` | Reuses published GBP, EUR, SEK or USD. Unsupported or unpublished currencies default to USD, as requested. Original published currency and amounts remain in Expected Value and Description; unsupported currencies include an explicit note that no conversion was applied. Other is never sent as an ISO code. No contract-value-to-company-revenue mapping. |
 | Original notice | `Procurement_Publication__c` | Source URL when it fits the existing 255-character URL field; also retained in Description. |
 | Reviewed recommended approach | `Technology__c` | Reuses the displayed English/Original guidance, including relevant lots. No new model call. |
 | Notice facts and problems | `Description` | Full title, buyer, notice country, published amount **above Notice type**, deadline precision, lots, contacts, links and reviewed problems. Includes a labelled notice-text excerpt when required for a usable URL. |
@@ -28,10 +30,12 @@ The sandbox has these additional public-data fields:
 
 - `Anthrion_Signal_ID__c`: Text(80), Unique, External ID. Editable by design. Uniqueness rejects another Lead carrying the same current ID; editing or removing the ID can defeat that protection. No validation rule prevents changes.
 - `Anthrion_Signal_URL__c`: link back to the public Signal record.
+- `Expected_Value__c`: optional Text(255), preserving the published amount and currency.
+- `Response_Deadline__c`: optional Date, preserving the response calendar day.
 
-The existing Dynamic Form shows these fields and Technology only when Lead Source is Anthrion Signal. Field access uses the existing narrowly scoped permission set. There is no separate Tender Currency field, no added org currency and no exchange-rate change. No object, record, application, API or additional-user access is granted. Org backups, receipts and conversion analysis stay private outside this repository.
+The existing Dynamic Form shows these fields and Technology only when Lead Source is Anthrion Signal. Read/edit field access uses the existing System Administrator, Standard User and Sales User profiles. The dedicated permission set and former AI Tenders list view were removed. There is no separate Tender Currency field, no added org currency and no exchange-rate change. No object, record, application or API access is added. Org backups, receipts and conversion analysis stay private outside this repository.
 
-The sandbox's **AI Tenders** Lead list view filters on Lead Source = Anthrion Signal and shows Lead Name first, then Company, Lead Status, Market, Created Date and Owner. It omits the standard contact Name column and does not impose a status filter. A shared list view respects each user's existing record access.
+The sandbox's **Anthrion Signal** Lead list view filters on Lead Source = Anthrion Signal and shows native Last Name first, then Lead Name, Expected Value, Response Deadline, Lead Status, Market and Owner Alias. It does not impose a status filter. A shared list view respects each user's existing record access. Existing saved Leads are not automatically rewritten by a website prefill change.
 
 ## Conversion considerations
 
