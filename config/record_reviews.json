@@ -137,6 +137,26 @@
       }
     },
     {
+      "id": "sig_011ce3c309edc38f3e9c",
+      "source_hash": "5f4b83148b32c011b7e3e21410d429c1d38877c80270c04c253082da3c291343",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Complete renewal of network filtering equipment (firewalls) for production and disaster-recovery platforms, with installation, migration and documentation of the appliances; security hardware, no business-application scope.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "RENOUVELLEMENT DES ÉQUIPEMENTS DE FILTRAGE RÉSEAU",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/643873-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Renouvellement complet des équipements de filtrage réseau (pare-feux) des plateformes de l’EPELFI de Saverne (production) et de Nantes (préproduction / plan de reprise d'activité), incluant la fourniture, l'installation, la migration, la mise en exploitation, la documentation et le transfert de compétences associés.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/643873-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_01649132e69dc7f0b1ec",
       "source_hash": "11d000585084e894328cb17a77a3a9f4d3c6ed0cd859c1e6ef7f3273223ebfcd",
       "decision": "guide",
@@ -387,6 +407,26 @@
       }
     },
     {
+      "id": "sig_02a728d7b10eba73a715",
+      "source_hash": "7818629e7b59f8e1bbff97f42c28f5cc66a79d6d4ad67fe121217762488dbd7e",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Development mandate and delegated public project-management mandate for the operational implementation of the national urban-renewal programme (NPNRU).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Mandat d’aménagement et mandat de maîtrise d’ouvrage publique pour la mise en œuvre opérationnelle du Nouveau Programme National de Renouvellement urbain (NPNRU)",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/612884-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Mandat d'aménagement et mandat de maîtrise d'ouvrage publique pour la mise en oeuvre opérationnelle du Nouveau Programme National de Renouvellement urbain (NPNRU) Mandat d’aménagement et mandat de maîtrise d’ouvrage publique pour la mise en œuvre opérationnelle du Nouveau Programme National de Renouvellement urbain (NPNRU)",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/612884-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_02acb1039e53b4932dca",
       "source_hash": "c9a7cb7e15be70a8d16e816898234ca983a361ec8d51601ad889f1376f6fd426",
       "decision": "guide",
@@ -494,6 +534,26 @@
       }
     },
     {
+      "id": "sig_04c9fc335f9ffdb6cd6f",
+      "source_hash": "76585a4fecfbf6a9658f92cfc8724a9e369d9444c5785c63a6fbbd75e7072588",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Principal works project management and project-management assistance for building a new A10 motorway interchange and multimodal hub (maîtrise d'œuvre PRO to AOR phases).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Autoroute A10 – Diffuseur de Rochepinard - Prestations de maîtrise d’œuvre principale et d’assistance à maîtrise d’ouvrage – Phase réalisation",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/636335-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Le marché consiste en des missions de maîtrise d’œuvre principale pour la phase de réalisation du diffuseur de Rochepinard. Ce projet de nouvel échangeur de Tours Rochepinard sur l’autoroute A10 est situé entre les échangeurs existants n°21 (Tours centre) et n°22 (Saint Avertin), autour du PS 155 (PR 208+950), il comprend la réalisation des 4 bretelles et de l’ensemble des carrefours et voies nécessaires pour",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/636335-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_04ec5c7d95d017cd5bc5",
       "source_hash": "a5dabc5c8c1f04532d3c362a9797d4e2201ed9f6862feb5a030a31bda5dcbe7f",
       "decision": "guide",
@@ -572,6 +632,46 @@
           }
         }
       }
+    },
+    {
+      "id": "sig_0536bd1a66f08ef92792",
+      "source_hash": "a2cb8049efddb6c6d243f5daf8d656d9615cf8dd820d03edbc481876c1e77882",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Territorial diagnostic of access to water for the City of Pau in two phases (state of play, roadmap) - a water-policy study.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Diagnostic territorial d'accès à l'eau sur le territoire de la Ville de Pau",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/655675-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Marché ordinaire avec une part à bons de commande pour les prestations sur bordereau des prix et une part forfaitaire, sans minimum et avec un maximum de 4 réunions supplémentaires. Le marché est passé avec un seul opérateur économique Les prestations sont réparties en 2 phases : -1 : Etat des lieux -2 : Feuille de route Le délai d'exécution des prestations est laissé à l'initiative du candidat qui devra les",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/655675-2026"
+        }
+      ]
+    },
+    {
+      "id": "sig_06b747a406ca39ca22a8",
+      "source_hash": "02d79dfafd3a4d6fdeb17417b40fe13938f594ad0d0eec9e459b147b637b934c",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Acquisition, installation and maintenance of HF RFID document-security and people-counting equipment and consumables for the city libraries.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Fourniture et maintenance d'équipements RFID",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/632428-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Le marché a pour objet l'acquisition, la mise en place et la maintenance des solutions de sécurisation des documents s'appuyant sur la technologie RFID HF, la mise en place de solutions de comptage et la fourniture de consommables, pour les bibliothèques de la ville d'Angers. durée du marché : 4 ans ; marché non alloti durée du marché : 4 ans ; accord-cadre ; valeur estimée sur la durée totale du marché : 410 000 €",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/632428-2026"
+        }
+      ]
     },
     {
       "id": "sig_06d9eb8a8f9a89e5a224",
@@ -756,6 +856,26 @@
       }
     },
     {
+      "id": "sig_070e021f3658bf4089b2",
+      "source_hash": "94a397fbc2d67a54076bd8855d1ab3576a461a508dded52aca25308871c4bbf8",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Production of communal disaster-risk management plans (flood focus) in Chad: methodology and templates, stakeholder mapping, workshops and plan drafting - development-cooperation expertise.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Elaboration de Plans Communaux de Gestion des Risques de catastrophes (PCGRC) -Focus Inondation (Tchad)",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/638720-2026"
+        },
+        {
+          "field": "description",
+          "quote": "1. Développer la méthodologie d'élaboration des PCGRC ainsi que les outils y afférents (dont canevas du PCGRC-Focus Inondation) sous la supervision de l'équipe technique d'Expertise France ; 2. Cartographier tous les acteurs impliqués dans le domaine GRC et collecter toutes les sources secondaires existantes liées à la thématique de travail au niveau national et au niveau des 3 provinces et 6 communes ; 3. Animer",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/638720-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_075b2918714852ec7648",
       "source_hash": "c4d1b4b231d9f3fb053f2355bf7945df8b27b91a37a4f1b3b988be1cfc07ef63",
       "decision": "guide",
@@ -921,6 +1041,26 @@
       }
     },
     {
+      "id": "sig_080e4ba34cbed3e02e93",
+      "source_hash": "14d35da0e18ddcb7b601fd184ff8031720d55a73b6817cad15040095d7129ae3",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Monitoring of the conservation status of marine habitats in two Natura 2000 sites (ecological fieldwork for fisheries-management evaluation).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Suivi de l’état de conservation des habitats d’intérêt communautaire de deux sites Natura 2000 de la façade Manche Mer du Nord dans le cadre de l’évaluation de l’efficacité des mesures de gestion",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/648602-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Le présent marché a pour objet le suivi de l’état de conservation des habitats d’intérêt communautaire de deux sites Natura 2000 de la façade Manche Mer du Nord dans le cadre de l’évaluation de l’efficacité des mesures de gestion de la pêche professionnelle. 5ième suivi de l’état de conservation des habitats meubles d’intérêt communautaire de la ZSC « Baie de Seine Occidentale » (FR2502020); 1ier suivi de l’état de",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/648602-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_08388bf3d1c7538f0a8c",
       "source_hash": "2a6f47919be9c9fd0b21382e8ab8600a3229b16cb4050ae13393b0a4728198c1",
       "decision": "guide",
@@ -997,6 +1137,26 @@
       "reviewed_at": "2026-09-22T09:29:11.069922+00:00",
       "reviewed_by": "Codex primary agent; independent review of subagent proposal",
       "source_hash": "3cd11da7999ad290e59e1d9145108d6e86ff2f693c36ab601f95ceae7b0722d6"
+    },
+    {
+      "id": "sig_0880688c47c473ebd0e9",
+      "source_hash": "c9938ea85f88f9a89b95e2024e4cd936db49916fbd5b42afe9ba59f5ba2e4d67",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Support and implementation of the region's international actions: market studies, trade missions, business meetings, trade fairs and investor prospection.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Réalisation de prestations d’accompagnement et de mise en œuvre d’actions internationales",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/617735-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Réalisation de prestations d’accompagnement et de mise en œuvre d’actions internationales Réalisation de prestations d’accompagnement et de mise en œuvre d’actions internationales Le présent accord-cadre a pour objet la réalisation de prestations d’accompagnement, d’études et la mise en œuvre d’actions à dimension internationale, en appui à la stratégie régionale d’internationalisation, d’attractivité économique et",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/617735-2026"
+        }
+      ]
     },
     {
       "id": "sig_0897a4bf55bdb8b956cc",
@@ -1254,6 +1414,21 @@
         }
       ],
       "guidance": null
+    },
+    {
+      "id": "sig_09c92dfe552b97dbc7a7",
+      "source_hash": "1d1f962cbd4991ebcd74c997032d25337e5b3be4a3a7a311fe2bf80789a26aab",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Operational maintenance, technical support and software follow-up for the national frequency agency's fleet of CRFS Node radio-monitoring receivers. This is maintenance of specialist receivers and their own software; no CRM, business application, integration or AI work is procured.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Prestations de maintien en condition opérationnelle (MCO) des récepteurs CRFS Node et des logiciels associés",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/608100-2026"
+        }
+      ]
     },
     {
       "id": "sig_0a036bc1542d0c97b215",
@@ -1577,6 +1752,26 @@
       }
     },
     {
+      "id": "sig_0d5c53e794ef5358cdc4",
+      "source_hash": "0cb23fc96d971ca1a67d2553f343df57426dc3def7b17f14899cde31feda015b",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Intellectual services for engineering studies on the repair or construction of civil-engineering structures and bridges (ouvrages d'art), two geographic lots.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "PRESTATIONS INTELLECTUELLES D'ETUDES SUR OUVRAGES D'ART",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/658992-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Réalisation de prestations intellectuelles d'études liées à des projets de réparation ou de construction d'ouvrages de génie civil ou d'ouvrages d'art SECTEUR NORD / CENTRE OUEST / EST; SECTEUR OUEST / SUD / CENTRE",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/658992-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_0df6b64ec2f9021fef92",
       "source_hash": "beb90ca33b47d19a81747fa7c689e22025e9cc8fc80085bf005785fbd2ae02f9",
       "decision": "exclude",
@@ -1716,6 +1911,41 @@
       }
     },
     {
+      "id": "sig_0f863fc603100d93ee1d",
+      "source_hash": "e7ffdfa6e30494f8a20641f47db4623025245e48b8e62af73a88a0bb1a82fbe4",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Study and facilitation mission to draw up a Local Housing Programme (PLH) for an agglomeration community.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "26079 - Mission d’étude et d’animation en vue de l’élaboration du Programme Local de l’Habitat (PLH) de la Communauté d'Agglomération Paris-Vallée de la Marne",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/644345-2026"
+        }
+      ]
+    },
+    {
+      "id": "sig_0f881fe79f4091b51159",
+      "source_hash": "18fd6ef276db8209722fe2fcbb5621374095bdd9539863714f4494d0ed11831f",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Telecommunication services in two lots: fixed telephony, internet access and site interconnections; mobile telephony and M2M.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "SERVICES DE TELECOMMUNICATIONS",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/614848-2026"
+        },
+        {
+          "field": "description",
+          "quote": "LOT N° 01 Services de téléphonie fixe, d'accès internet et d'interconnexions de sites LOT N° 02 Services de téléphonie mobile et M2M Montant initial pour la période initiale de 24 mois : 135 000 euro(s) HT // Reconductions 1 et 2 : 45 000 euro(s) HT pour chaque période de reconduction; Montant initial pour la période initiale de 24 mois : 90 000 euro(s) HT // Reconductions 1 et 2 : 30 000 euro(s) HT pour chaque",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/614848-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_0fa6eed09c6c4976ffb0",
       "source_hash": "902610843978d637a23c2863477630bea07855cb99bbf9f0c749fa159f04cefb",
       "decision": "guide",
@@ -1795,6 +2025,26 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_0ff4edc5ca97abfb2bc1",
+      "source_hash": "2fe98543c6ebe4f20ad40b957570b07d45ac8b054109ec4cdee7b001855dff7e",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Environmental assessments and derogation studies (article L111-6 of the urban-planning code) needed to amend urban-planning documents, two lots.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Evolution des documents d’urbanisme - Réalisation d'études environnementales et d'études dérogatoires à l'article L111-6 du code de l'urbanisme sur le territoire du Grand Dax",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/630509-2026"
+        },
+        {
+          "field": "description",
+          "quote": "La présente consultation a pour objet la réalisation d’évaluations environnementales et d’études dérogatoires à l’article L111-6 du code de l’urbanisme, sur le territoire de la Communauté d’Agglomération du Grand Dax lorsque ces études sont nécessaires pour faire évoluer les documents d’urbanisme Le présent lot a pour objet la réalisation d'évaluations environnementales et études cas par cas pour un montant maximum",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/630509-2026"
+        }
+      ]
     },
     {
       "decision": "exclude",
@@ -2031,6 +2281,26 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_1432a4e9eddfe139beb3",
+      "source_hash": "5ce87055d2ae2e3527058eadb7ab282e0a8eb0d5628ffc00ca309ffdcd564fc8",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Studies to revise the heritage Safeguarding and Development Plan (PSMV) of a remarkable heritage site, with support until approval.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Révision du dossier de Plan de Sauvegarde et de Mise en Valeur (PSMV) du Site Patrimonial Remarquable (SPR) de la Ville de Nîmes",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/633853-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Le présent marché port sur la réalisation des études permettant la révision du dossier de Plan de Sauvegarde et de Mise en Valeur du Site Patrimonial Remarquable de la Ville de Nîmes ainsi que l’accompagnement de la Ville jusqu’à approbation de ce dossier de révision. Le présent marché n'est pas alloti conformément aux motifs indiqués au règlement de la consultation, accessible dans le dossier de la consultation.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/633853-2026"
+        }
+      ]
     },
     {
       "id": "sig_14897e110770d455eb74",
@@ -2431,6 +2701,26 @@
       "source_hash": "8859a46c726336839120639dc72d057ce33c5abb99d01762482dc0aab8506826"
     },
     {
+      "id": "sig_19794f7be6c58095d13e",
+      "source_hash": "72f91db89e1849991ab6f99e80cb9f7dd71a8fef16c6a99ed2cfd25ca73762f0",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Airborne magnetic (and optional gravimetric) measurement campaign over the Bay of Biscay and Iroise Sea.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Prestation de mesure magnétique aéroportées",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/627273-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Le présent marché résulte en la réalisation d'une campagne aéroportée de mesures magnétique (et en option gravimétriques) au nord du Golfe de Gascogne et en mer d'Iroise.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/627273-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_19b904fde88d29bff55f",
       "source_hash": "a7db4fdecc005afdac20009d22b7324440fc31c05802407920afb53d315cc329",
       "decision": "guide",
@@ -2565,6 +2855,26 @@
           }
         }
       }
+    },
+    {
+      "id": "sig_1b076f43de1afd1e55a6",
+      "source_hash": "cb0c5f789f386bc101a6840a42146301f863d9835f8cb6654c2eab192612b342",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Monitoring and facilitation of a programmed housing-improvement operation (OPAH-RU) in Hazebrouck town centre.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Mission de suivi-animation d’une Opération Programmée d’Amélioration de l’Habitat de type Renouvellement Urbain (OPAH-RU) sur la commune d’Hazebrouck",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/640385-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Cœur de Flandre agglo souhaite mettre en œuvre une Opération Programmée d’Amélioration de l’Habitat de type « renouvellement Urbain », dénommée « OPAH-RU du centre-ville d’Hazebrouck ».",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/640385-2026"
+        }
+      ]
     },
     {
       "id": "sig_1b0fe10a953dcadcf693",
@@ -2705,6 +3015,26 @@
         }
       ],
       "guidance": null
+    },
+    {
+      "id": "sig_1c2c7a5ad0b81e2d128c",
+      "source_hash": "e174eeeaace4988e7ccde0b063690fe30593e1d190c1c91249e13534d98cbcb0",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "General management assistance for an economic-interest group and three companies: professional-environment assistance and on-demand advice (structure operation, insurance, operational advice).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Mission d'assistance générale à la gestion du GIE SYNERGIE et des sociétés THEMELIA, AUDEO et SPLA LES PORTES DU TARN",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/654190-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Mission d'assistance générale à la gestion du GIE SYNERGIE et des sociétés THEMELIA, AUDEO et SPLA LES PORTES DU TARN Assistance générale dans les métiers (environnement professionnel); Prestations de services sur demande (conseils dans le cadre du fonctionnement des structures, conseils en assurances, conseils opérationnels dans les domaines spécifiques de chaque entité)",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/654190-2026"
+        }
+      ]
     },
     {
       "id": "sig_1cb272b49d6e8f42b1b2",
@@ -3167,6 +3497,26 @@
       }
     },
     {
+      "id": "sig_1fffa974597c6f931b9c",
+      "source_hash": "3d40906040d9d6c6eb202796df7538f9ccff78adf3bbff2b4f9bfcbb113c473a",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Public consultation (concertation) around the revision of the intercommunal urban plan: informing, collecting views and running events.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Concertation avec la population dans le cadre de la révision du Plan Local d'Urbanisme intercommunal (PLUi)",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/613615-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Pour répondre au cadre juridique délimité par l'article L.103-4 du Code de l'urbanisme, la démarche de concertation menée durant la procédure de révision du PLUi de GPS&amp;amp;O s'articulera autour de trois axes qui permettront au public : - De s'informer sur le projet de révision engagé et son état d'avancement ; - De s'exprimer sur le projet, qu'il s'agisse de questionnements, de pistes de réflexion ou de",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/613615-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_200ce3d85d4db0a3975c",
       "source_hash": "5461d9a5c620ecc7e11ebf09e5f2dfe473d4e23dbd3f41004772203e242d6936",
       "decision": "guide",
@@ -3560,6 +3910,26 @@
       "source_hash": "0ba2657d07e7efc622e05862311ac4329ee6aec68f1c7e9eba3890c98a06b42a"
     },
     {
+      "id": "sig_243fc305a575af54f026",
+      "source_hash": "6c75f4aad48f9d7987bd4c91141cdbc2815c2856f1f2471ee00e61e68b1870be",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Communication consultancy and design of communication tools during the road works for the Flaubert bridge access roads.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "RN 338 – Accès définitifs du pont Flaubert en rive gauche",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/630052-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Les prestations, objet du présent marché, concernent un marché de services, en termes de communication, dans le cadre des travaux des accès définitifs du pont Flaubert en rive gauche de la Seine. Les prestations portent sur le conseil en communication et la conception des différents outils de communication durant la phase de travaux.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/630052-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_25298f7668ab85bcb053",
       "source_hash": "672735d32d7e89607361ee038a260b458d5b7e412fe4626867e8de9f9949ddaa",
       "decision": "guide",
@@ -3751,6 +4121,26 @@
       }
     },
     {
+      "id": "sig_26f63b106d330a6cca32",
+      "source_hash": "63bce121fb6e40e6e36eb1ade0c51385d12b9a01f0fd2059e0cf6bb5250eb41d",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Support for business creation, social support and training engineering for an inclusive-entrepreneurship pilot (three lots of human support services).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "MARCHE DE PRESTATIONS D'ACCOMPAGNEMENT A LA CREATION D'ACTIVITES, D'ACCOMPAGNEMENT SOCIAL ET D'INGENIERIE DE FORMATION POUR L'EXPERIMENTATION \" ENTREPRENEURIAT INCLUSIF \" DANS L'OUEST GUYANAIS",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/603451-2026"
+        },
+        {
+          "field": "description",
+          "quote": "LE MARCHE A POUR OBJET L'ACCOMPAGNEMENT DE BENEFICIAIRES EN VUE DE LA CREATION, DE LA STRUCTURATION ET DU DEVELOPPEMENT D'ACTIVITES ECONOMIQUES, DANS LE CADRE DE L'EXPERIMENTATION \" ENTREPRENEURIAT INCLUSIF \" DANS L'OUEST GUYANAIS. IL SE COMPOSE DE TROIS LOTS : ACCOMPAGNEMENT SOCIAL ET SECURISATION DES PARCOURS (LOT 1) ; ACCOMPAGNEMENT A LA CREATION ET AU DEVELOPPEMENT D'ACTIVITES (LOT 2) ; INGENIERIE DE FORMATION",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/603451-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_26fc285d05c35f03de8a",
       "source_hash": "3bc427eab71b1e6cbe0c57d4da15818168acaf153a75393426fc87d97bbd9b9d",
       "decision": "guide",
@@ -3814,6 +4204,26 @@
       "reviewed_at": "2026-09-22T09:29:11.069922+00:00",
       "reviewed_by": "Codex primary agent; independent review of subagent proposal",
       "source_hash": "5dba9890e69cdbd51dbcfbd681861fc0630a4d791bc7524b773a4c974e813aaa"
+    },
+    {
+      "id": "sig_276b96a52f2515609b45",
+      "source_hash": "6b4860672653f664c66bdeb10d2aab6dda82555b5c7821b88c19e47e527e4671",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Delegated project-management mandate for redeveloping a departmental port, including studies and environmental authorisations for the works.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "MANDAT DE MAITRISE D’OUVRAGE REAMENAGEMENT DU PORT DEPARTEMENTAL DE PORT-LOUIS",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/625680-2026"
+        },
+        {
+          "field": "description",
+          "quote": "MANDAT DE MAITRISE D'OUVRAGE REAMENAGEMENT DU PORT DEPARTEMENTAL DE PORT-LOUIS - LOT UNIQUE Le mandataire aura la charge de conduire les études nécessaires à la bonne réalisation des travaux ainsi que d’obtenir les autorisations environnementales nécessaires à la réalisation de l’opération.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/625680-2026"
+        }
+      ]
     },
     {
       "id": "sig_2792874424dbe87cff07",
@@ -4238,6 +4648,26 @@
       }
     },
     {
+      "id": "sig_2af7a1a55d141f3a04f5",
+      "source_hash": "1ee306f8b7810e796a4f23096e007ec6941c8100ac51225102ed18714b5447fa",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "All-mode traffic counts, surveys and video counts for a travel observatory (field data collection).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Réalisation de comptage tous modes dans le cadre de l'observatoire des déplacements",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/626236-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Le présent marché a pour objet la réalisation de comptages, d'enquêtes et de relevés destinés à améliorer la connaissance des flux de déplacement, des pratiques de mobilité et du fonctionnement des infrastructures de transport sur le territoire d'Angers Loire Métropole Le marché porte sur la réalisation de comptages tous modes et de relevés vidéo destinés à analyser les flux de déplacement et les pratiques de",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/626236-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_2b020043dab52be83960",
       "source_hash": "ed91468b8e3195248b85d035cbbc7e8a9c97a644fcfbabc904e80f4eadd9fb16",
       "decision": "guide",
@@ -4537,6 +4967,26 @@
       }
     },
     {
+      "id": "sig_2e17ed0808c6172c9354",
+      "source_hash": "b42990b0a449b274877e67cd16117dd3176927e896309797712d11fb0dc43b91",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Extension works on an existing video-surveillance system and replacement of equipment with new cameras for the INSA Lyon buildings (CCTV equipment and its software).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Fournitures, installation de caméras et de logiciel, accompagnement projet et maintenance des équipements",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/651692-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Le présent marché a pour objectif la mise en œuvre de travaux d’extension d’un dispositif de vidéoprotection existant, et la maintenance d’équipements existants avec des équipements neufs. A terme, il s’agit de mettre en sûreté l’ensemble des bâtiments de l’INSA Lyon sur la base d’un système unique, évolutif et flexible.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/651692-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_2e663221899759dd5150",
       "source_hash": "271b44caea1d4b3e2f104f57b26054edbfdf8945f173ef8e392e6915c1ff305b",
       "decision": "guide",
@@ -4630,6 +5080,26 @@
       }
     },
     {
+      "id": "sig_2ed49726bba0d00e03b1",
+      "source_hash": "6f46d96d25b704ca5f2486bccf91a17131ebee9e4c7c85b6b8a22cf5b762136e",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Works project management (maîtrise d'œuvre) for supervising energy-improvement works on a municipal sports centre.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Maîtrise d'oeuvre pour le suivi de l'exécution du marché de travaux relatif à l'amélioration énergétique du centre sportif Philippe Cattiau de la commune de Villeneuve-la-Garenne (92390)",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/637445-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Le détail des missions confiées au titulaire figure au cahier des charges. Les prestations sont réglées par des prix forfaitaires. Le présent marché public a pour objet de désignation d'une maîtrise d'oeuvre pour le suivi de l'exécution du marché de travaux relatif à l'amélioration énergétique du centre sportif Philippe Cattiau de la commune de Villeneuve-la-Garenne (92390)",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/637445-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_2edfffb529a5ebc6b778",
       "source_hash": "20f5db2303b9992351da377a0ac053a5df35664fd42fd95cb9c31e50fe5bfece",
       "decision": "guide",
@@ -4675,6 +5145,26 @@
       "guidance": null
     },
     {
+      "id": "sig_304ce565676c765ba5cd",
+      "source_hash": "45a333a50c3431aea175626bb4389c6e9786a3b0723ee539f3075feadc7bb90d",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Support for coordinating user-engagement activities of a marine-data programme: project-management support and storytelling/writing of use cases.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Copernicus - User - Support technique à la coordination des activités d'engagement des utilisateurs de Copernicus Marine",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/509791-2025"
+        },
+        {
+          "field": "description",
+          "quote": "L'objet de cette consultation est d'assurer un support technique à la coordination des activités d'engagement des utilisateurs dans le cadre du programme nommé 'Copernicus Marine National Collaboration Program' afin d'assurer la coordination et l'exécution efficaces des activités de ce programme et d'améliorer la communication et l'impact du service Copernicus Marine. Support aux activités de gestion de projets des",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/509791-2025"
+        }
+      ]
+    },
+    {
       "id": "sig_309ff7bc780a16df66a8",
       "source_hash": "ee72a0a7818c7ed42bcfe42b5d7d1b14761f546e27024f4cecf2de429033f5eb",
       "decision": "guide",
@@ -4707,6 +5197,26 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_30ca93f7f967bda83cf8",
+      "source_hash": "db0d32eab5ece391dfd6aef4ba62e621571de2f79734ceaaa6221eb594c82dbf",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Framework for fixed telephony, mobile telephony and internet services for a town hall, its CCAS and a childhood centre (three telecom lots).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "ACCORD-CADRE DE SERVICES DE TELECOMMUNICATIONS : TELEPHONE FIXE, MOBILE ET INTERNET",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/651760-2026"
+        },
+        {
+          "field": "description",
+          "quote": "La présente consultation concerne la refonte en matière de téléphonie fixe, mobile et internet de la Mairie et des sites distants, pour répondre aux besoins de la Ville de Saint-Paul-Trois-Châteaux, de son Centre Communal d'Action Sociale (CCAS) et de l'Etablissement Public Administratif (EPA) Maison de l'enfance. L'accord-cadre sera exécuté par l'émission de bons de commande. Chaque lot fera l'objet d'une",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/651760-2026"
+        }
+      ]
     },
     {
       "id": "sig_3122025619f07ea97413",
@@ -5053,6 +5563,26 @@
       "guidance": null
     },
     {
+      "id": "sig_33874f8f72cde414ecd8",
+      "source_hash": "f441ce0a0dc7229fd16911b78bd38d71eb144e8bbe7d4f5a73762bafac6e76ef",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Wave 2 of the employer component of a longitudinal survey: contact enrichment, e-mailing, mailing and telephone follow-up of respondents (survey fieldwork).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Enquête longitudinale Familles et employeurs (FamEmp) – volet Employeurs – 2ème vague",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/653677-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Réalisation de la vague 2 du volet Employeurs de l’enquête longitudinale FamEmp. Le marché comporte quatre prestations principales : enrichissement des coordonnées de contact, envoi de mails, envoi de courriers et relance téléphonique.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/653677-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_338df0d215ef687e99ab",
       "source_hash": "d5e24555abcb16d346aba633e994285e021ab7c83afdf099e8a9d8c456ca59eb",
       "decision": "exclude",
@@ -5218,6 +5748,26 @@
         }
       ],
       "guidance": null
+    },
+    {
+      "id": "sig_3649b24345f165c48d61",
+      "source_hash": "cf88a089f3094999dbc9f0fa30cab4268d493b4a1f704eab4abf98f770cdd79c",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Service concession for providing television, telephone and internet-access subscriptions to hospital patients and residents.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Concession valant convention d'Autorisation d'Occupation temporaire du domaine public pour la mise à disposition d'abonnements de télévision, de téléphone, d'accès à internet et de services associés pour les patients et résidents du GHT Nord Comté",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/544977-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Le GHT Nord Franche Comté est composé de l'Hôpital Nord Franche Comté (HNFC) et ses annexes en tant que l'établissement support et du CHSLD Le Chênois en tant qu'établissement partie. La consultation concerne tous les sites du GHT Nord Franche Comté les dispositions du cahier des charges. La durée de la convention est de 8 ans fermes à compter de la date de démarrage de l'exploitation par le prestataire. Il s'agit",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/544977-2026"
+        }
+      ]
     },
     {
       "id": "sig_3692e954d782782d57bc",
@@ -5766,6 +6316,21 @@
       "source_hash": "b89920ada763cdd209a669783bd6d47a737abd1d817cbbc9199c6f9c1667b125"
     },
     {
+      "id": "sig_3b8d3d5f3f8a9e59a37a",
+      "source_hash": "000d414a28b9b8f709e927d06b173c283f6ca79b1d891cffec6e9f9cff7f243b",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Social-media agency support for the Atlas brands; the description repeats the title.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Accompagnement Social Media des marques Atlas",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/614797-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_3c0f126a91ca2b9fbc53",
       "source_hash": "61c8e5add0f88c3a8afb2c6b36d2e643a71e4e146816a742e5b634ebb16bf08b",
       "decision": "guide",
@@ -5978,6 +6543,26 @@
       }
     },
     {
+      "id": "sig_3ec6be93f0b362456678",
+      "source_hash": "c8d1a065dab99479bb9ba5769e1f5946a66f576653351802c81918781389b43e",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Technical, legal, financial and organisational assistance to define the future land and infrastructure strategy of composting platforms (three-scenario comparison).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Assistance à maîtrise d'ouvrage technique, juridique, financière et organisationnelle dans le cadre de l'élaboration de la future stratégie de gestion du foncier et des infrastructures disponibles sur les plateformes de compostage de St Médard en Jalles",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/664595-2026"
+        },
+        {
+          "field": "description",
+          "quote": "L'accord-cadre sera exécuté par l'émission de bons de commande. Le détail du phasage de l'opération figure au cahier des charges. Les prestations sont réglées par des prix unitaires et forfaitaires. La mission a pour objet d'assister Bordeaux Métropole dans la définition d'une stratégie d'évolution des plateformes de compostage de Saint?Médard?en?Jalles, dans une perspective de continuité de service, d'optimisation",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/664595-2026"
+        }
+      ]
+    },
+    {
       "decision": "exclude",
       "evidence": [
         {
@@ -6063,6 +6648,26 @@
           }
         }
       }
+    },
+    {
+      "id": "sig_3f138997bbbcf4d896c5",
+      "source_hash": "035c1268a9f149058d6fc51ada8ce41334f42409c9399c27c7986d9ede91f1ff",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Continuing-training courses for ANR staff in three lots (digital technologies, languages, health and safety); the digital lot is a list of course topics (office tools, SAP, SQL, AI and big-data fundamentals, Power BI...), i.e. training delivery.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Prestations de formation continue pour le personnel de l'Agence Nationale de la Recherche (ANR).",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/649986-2026"
+        },
+        {
+          "field": "description",
+          "quote": "- Les fondamentaux de l’Intelligence artificielle et/ou du Big Data ;",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/649986-2026"
+        }
+      ]
     },
     {
       "id": "sig_3f443255f38bcabd6daa",
@@ -6302,6 +6907,26 @@
       }
     },
     {
+      "id": "sig_41182a3c69a810638ddb",
+      "source_hash": "1c72d337e9106a34fec1340fc766da54c84f235612ad9680e188f74949838829",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Measurement of service quality in regional passenger rail and road transport (quality-control surveys).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Mesure de la qualité de service dans les transports ferroviaires et routiers de voyageurs en Région Bourgogne-Franche-Comté",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/620409-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Mesure de la qualité de service dans les transports ferroviaires et routiers de voyageurs en Région Bourgogne-Franche-Comté Lot unique",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/620409-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_4134850d7e3fb5061eda",
       "source_hash": "114b08bbf6bf6a965fd950a6db1f171c55cdfab7d3676afda833e10ffcad5076",
       "decision": "guide",
@@ -6472,6 +7097,21 @@
       }
     },
     {
+      "id": "sig_4211daf7ff91b1dfa202",
+      "source_hash": "fd6f0ef8a8f2a5066a12544781b57e13b85d3042d209179e4a73d42ca996dda9",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Revision of the intercommunal local urban plan (PLUi) and integration of a local housing programme (PLH).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Révision du PLUI et intégration d'un PLH",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/621713-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_4241ee1527fd0e26e35d",
       "source_hash": "9e8ff650c4ccdc669dabf65a3df970ef4aa59b95573cda66224fe166e542fe4a",
       "decision": "guide",
@@ -6618,6 +7258,26 @@
           }
         }
       }
+    },
+    {
+      "id": "sig_42b04143b870e463e22e",
+      "source_hash": "8adc98ef60be687995223d633cea5aaa1435a47db9ef8a7a508d3cc8fa301b40",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Rental, maintenance and consumables for the printer fleet of the Guadeloupe hospital group, with print-flow management and deployment of a print-management tool. This is managed print; the tool manages the print fleet, and no CRM, business application, integration or AI work is procured.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "LOCATION, MAINTENANCE, FOURNITURE DE CONSOMMABLES, ET GESTION DES FLUX D'IMPRESSION DU GHT DE LA GUADELOUPE",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/623903-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Gestion du flux d’impression et déploiement d’un outil de gestion des flux d’impression",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/623903-2026"
+        }
+      ]
     },
     {
       "id": "sig_42db4c2311e7c3cf9e2d",
@@ -6786,6 +7446,26 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_444a02bb1f4c008e508b",
+      "source_hash": "3c97632333cbbbf4a7cd033f49a424ae97df1f73f772b37465d66079338aa9eb",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Hosting and managed operation (infogérance) of the SAP information system of the Centre des monuments nationaux; SAP hosting and run services, no development or integration scope stated.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Hébergement et infogérance du système d’information SAP du Centre des monuments nationaux",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/623158-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Le présent marché a pour objet des prestations d’hébergement et d’infogérance du système d’information SAP du Centre des Monuments Nationaux.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/623158-2026"
+        }
+      ]
     },
     {
       "id": "sig_445f611665444a7ce2b6",
@@ -6988,6 +7668,26 @@
         }
       ],
       "guidance": null
+    },
+    {
+      "id": "sig_44d880370080bab91598",
+      "source_hash": "831bf3e807f08a9da09bbd97e72bd8b88f5748dc66b0403d0215c0c589870169",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Consultancy missions in architecture, urban planning and regional development (aménagement) under a call-off framework.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Missions de conseil dans le domaine de l'architecture, de l'urbanisme et de l'aménagement",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/654258-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Missions de conseil dans le domaine de l'architecture, de l'urbanisme et de l'aménagement Il s’agit d’un accord-cadre à bons de commande avec minimum et maximum et un opérateur économique pour des missions de conseil dans le domaine de l'architecture, de l'urbanisme et de l'aménagement",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/654258-2026"
+        }
+      ]
     },
     {
       "id": "sig_44e485d508bcf5b3ee21",
@@ -7756,6 +8456,26 @@
       }
     },
     {
+      "id": "sig_4bda2525d84cfcad1b8f",
+      "source_hash": "fbeaaf1d7f25da61f8163681de135cfdee3dc6c33e80f7e5fda7b62750f72e64",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Political, parliamentary, regulatory and media monitoring (veille) with public-affairs advice and management of the organisation's LinkedIn account.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Prestations de services de veille politique, institutionnelle, parlementaire, sénatoriale, législative, réglementaire et médiatique et services annexes pour le compte de la CRPNPAC",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/652000-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Il s'agit d'un marché de prestations intellectuelles ayant pour objet des prestations de services de veille politique, institutionnelle, parlementaire, sénatoriale, législative, réglementaire et médiatique pour le compte de la CRPNPAC, ainsi que la fourniture des services annexes décrits au présent document. Les prestations s'articulent autour d'une mission principale et récurrente (unité d'uvre n° 1) et de deux",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/652000-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_4c3e048afb79a8cc00c3",
       "source_hash": "4f3f25f9dd6cc6719dc0a0c5fc8b54a0f5cae445ec7dafde45de7557998fd6fb",
       "decision": "guide",
@@ -8040,6 +8760,26 @@
       }
     },
     {
+      "id": "sig_4e4790db1b58eaf03fa0",
+      "source_hash": "422bc13bca441fa2d2c87157cd5ad1260bb188cbf37ea6254a2a1a6a112ce5f4",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Drawing up an intercommunal local urban and housing plan (PLUi-H) in phases and optional tranches.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Elaboration du Plan local d'Urbanisme Intercommunal -Habitat (PLUI-H) de la Communauté de Communes des Pays du Sel et du Vermois",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/625622-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Elaboration du Plan local d'Urbanisme Intercommunal -Habitat (PLUI-H) de la Communauté de Communes des Pays du Sel et du Vermois en une tranche ferme composée de 5 phases et de 4 tranches optionnelles Elaboration du Plan Local d'Urbanisme Intercommunal - habitat (PLUI-H) de la Communauté de Communes des Pays du Sel et du Vermois composé d'une tranche ferme en 4 phases et de 4 tranches optionnelles",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/625622-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_4e627562539b1ee4194a",
       "source_hash": "e242c90bb389e27dacc43deb995ba24ebf16e401e1f1f1f7510524f5056e7cc2",
       "decision": "guide",
@@ -8097,6 +8837,26 @@
         }
       ],
       "guidance": null
+    },
+    {
+      "id": "sig_4f2f3da03cf95038f3e4",
+      "source_hash": "8eaa1d1e17a5ce29855e27c88837f237618552627a87464a3c68063d19599d5e",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Subscription access to the PsycInfo, PsycArticles and PsycTests bibliographic databases of the American Psychological Association for a university.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Fourniture d’accès sur abonnement aux bases PsycInfo, PsycArticles et PsycTests (éditeur American Psychological Association) destinées à l’Université Paris Nanterre",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/646199-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Le présent marché a pour objet la fourniture d’accès sur abonnement aux bases PsycInfo, PsycArticles et PsycTests (éditeur American Psychological Association), pour l’ensemble des services et composantes de l’Université Paris Nanterre.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/646199-2026"
+        }
+      ]
     },
     {
       "id": "sig_4f4f84c1083d9db04c73",
@@ -8192,6 +8952,26 @@
       "guidance": null
     },
     {
+      "id": "sig_50fff32a993a50a743bb",
+      "source_hash": "2383d17f7b499ad358b68c20cda02ea60c77b9e40d481fe8ed48fac38596993c",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Consultancy and support for Radio France's social (industrial-relations) strategy.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Marché de conseil et d'accompagnement en stratégie sociale",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/628155-2026"
+        },
+        {
+          "field": "description",
+          "quote": "La présente consultation a pour objet la mise en place d'un marché portant sur une prestation de conseil et d'accompagnement de la stratégie sociale de Radio France. La présente consultation a pour objet la mise en place d’un marché portant sur une prestation de conseil et d’accompagnement de la stratégie sociale de Radio France.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/628155-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_512ea4639e600bab9ae6",
       "source_hash": "274a18caef0661cdc87ba61a47d786f38355c6f32fe4527af0966e48d7eacd98",
       "decision": "exclude",
@@ -8237,6 +9017,26 @@
         }
       ],
       "guidance": null
+    },
+    {
+      "id": "sig_52034e2e88e2c79bac4d",
+      "source_hash": "5835398bcc1957a44b17f4cb907914953c000b32678011f5cb3003a82d055a54",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Execution of a national survey on financial inclusion and the digitalisation of financial services; the purchased service is survey fieldwork, not a digital system.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "LA REALISATION D'UNE ENQUETE NATIONALE SUR L'INCLUSION FINANCIERE ET LA DIGITALISATION DES SERVICES FINANCIERS.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/662297-2026"
+        },
+        {
+          "field": "description",
+          "quote": "LA REALISATION D'UNE ENQUETE NATIONALE SUR L'INCLUSION FINANCIERE ET LA DIGITALISATION DES SERVICES FINANCIERS. La réalisation d'une enquête nationale sur l'inclusion financière et la digitalisation des services financiers.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/662297-2026"
+        }
+      ]
     },
     {
       "id": "sig_520c3a78e4d7855a5f4a",
@@ -8480,6 +9280,26 @@
       }
     },
     {
+      "id": "sig_5356f94be2691527da3a",
+      "source_hash": "4bebaf96325207748fab003c7d2618b9bee810605cbe021e1737f47da8f43bb7",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Assistance in choosing the management mode and awarding operating contracts for drinking-water and sewerage public services.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Assistance à maîtrise d'ouvrage pour le choix du mode de gestion, la clôture et la passation de contrats pour l’exploitation des services \"Eau potable\" et \"Assainissement collectif\" de Quimper Bretagne Occidentale",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/618703-2026"
+        },
+        {
+          "field": "description",
+          "quote": "La prestation porte sur : - le choix du mode de gestion pour l’exploitation de ces services - la passation des éventuels contrats (marché public ou concession de service public) à intervenir pour l’exploitation de ces services - la réalisation de prestations diverses en lien avec l’exploitation de ces services, notamment accompagnement pour la clôture des contrats existants et assistance pour la première année des",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/618703-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_53930fa9072f523f79cf",
       "source_hash": "d45deae4acc1c54a4558f0e3fd96b0b09b799605f85508c66f841cb8017cdee6",
       "decision": "guide",
@@ -8606,6 +9426,26 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_543199dfbe7c70c9add4",
+      "source_hash": "16685b3f0b22fb5f793153cea6e6e58213b8feb4c24ec8d871882ca62320e9ab",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Internet breakout, WAN MPLS interconnection and SIP trunk links for the community's sites (three telecom lots).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "La fourniture d'une sortie Internet, à l'interconnexion WAN MPLS et à la fourniture de lien Trunk SIP pour les sites de la CADEMA",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/621109-2026"
+        },
+        {
+          "field": "description",
+          "quote": "La fourniture d'une sortie Internet, à l'interconnexion WAN MPLS et à la fourniture de lien Trunk SIP pour les sites de la CADEMA Sortie Internet; WAN MPLS; Trunk SIP",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/621109-2026"
+        }
+      ]
     },
     {
       "id": "sig_5439fdf38566ca016a1f",
@@ -8833,6 +9673,46 @@
       }
     },
     {
+      "id": "sig_55d490bf44fd7fed2571",
+      "source_hash": "766e7a76fccdcf01b20832a5ff1c7ac2dd1fa93bf0b708a7865dce5cc034b223",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Dynamic purchasing system for building technical studies: control office, OPC, geotechnics, asbestos/lead diagnostics, structural and thermal studies, surveying, fire-safety coordination and construction economics (11 categories).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Système d'Acquisition Dynamique pour la réalisation d'études techniques liées aux travaux",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/431439-2026"
+        },
+        {
+          "field": "description",
+          "quote": "La consultation a pour objet la réalisation d'études techniques liées aux travaux de bâtiments sur les bâtiments départementaux. Ne sont pas concernées : - les études de maitrise d'oeuvre - les prestations d'écologue faune sur le bâti - les prestations de coordination en matière de sécurité et de protection de la santé - les prestations de détection de réseau Date limite de réception des candidatures : 01/03/2030 à",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/431439-2026"
+        }
+      ]
+    },
+    {
+      "id": "sig_561cfb07bdc4dd3eb0d9",
+      "source_hash": "204264d48f2933a29ca6e27c36a0c19ea84fa5213bc9ed6537351842029c8137",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Design and service-design framework of Île-de-France Mobilités in five lots: strategic structuring of the IDFM design system; design of rolling stock and vehicles; design of mobility spaces, their infrastructure and furniture; graphic, identity and service devices that make the network legible (including the uniforms of staff in contact with the public); and evaluation of conformity and of the quality and comfort perceived by passengers. The design system applies to the products, equipment, spaces and devices of the mobility network; the notice names no software, app, portal, CRM or data platform to be built or integrated.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Prestations de design et de design de service pour les produits, espaces et services du du système de mobilité francilien",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/649146-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Le présent marché a pour objet d'accompagner le pouvoir adjudicateur dans la définition, la mise en oeuvre et le contrôle du Système de Design Ile-de-France Mobilités appliqué aux produits, matériels, espaces et dispositifs liés à la mobilité en Ile-de-France. Ce lot porte sur la structuration stratégique du Système de Design Ile-de-France Mobilités.; Ce lot porte sur la conception et l’évolution des caractéristiques de design applicables aux matériels roulants et véhicules de transport.; Ce lot concerne la conception et l’aménagement des espaces de mobilité, des infrastructures associées et des mobiliers.; Ce lot porte sur les dispositifs graphiques, identitaires et serviciels contribuant à la lisibilité et à la reconnaissance du réseau. Ce design graphique et identitaire s’applique également à la définition des prescriptions portant sur les tenues agents au contact du Public.; Ce lot vise à évaluer la conformité des réalisations aux référentiels et principes définis, ainsi qu’à mesurer la qualité perçue et les conditions de confort offertes aux voyageurs.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/649146-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_562424cd2ab8bac71d1c",
       "source_hash": "b582bfcc3790b18512b1244a3cfb2fb7efdc9bf398261ec7714f05db15d0600f",
       "decision": "guide",
@@ -8969,6 +9849,41 @@
       }
     },
     {
+      "id": "sig_56f5f57be06cc2f5ea42",
+      "source_hash": "b0aed9b742d3b0af96a7766fac310666eb848b069da899d67980d23efed5b9dd",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Access to a third-party macroeconomic and financial database interface covering all countries (data subscription).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Fourniture d’accès à une interface de bases de données macroéconomiques et financières couvrant l’ensemble des pays et zone géographique du monde",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/615892-2026"
+        }
+      ]
+    },
+    {
+      "id": "sig_578a5e2eff917b342025",
+      "source_hash": "697da258a4baedce656bcbfc57d8a13e3dc389d40587e053f1bf95c6ed7edb59",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Geodetection of underground water networks, georeferencing and updating of water/fire/sanitation network records in CAD/GIS formats (six lots of survey data capture).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Acquisition, géoréférencement, traitement et restitution de données patrimoniales eau-incendie-assainissement et contextuelles (formats DAO et SIG) - 6 lots",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/652508-2026"
+        },
+        {
+          "field": "description",
+          "quote": "L'accord-cadre sera exécuté par l'émission de bons de commande. Chaque lot fera l'objet d'une attribution séparée. Les prestations sont réglées par des prix unitaires Veurey-Voroize, Noyarey, Sassenage, Fontaine, Seyssinet-Pariset, Seyssins, Le Fontanil-Cornillon, Saint-Egrève, Saint-Martin-le-Vinoux, La Tronche, Mont-Saint-Martin, Proveysieux, Sarcenas, Quaix-en-Chartreuse, Le Sappey-en-Chartreuse, Corenc, Meylan,",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/652508-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_57cec2bd824ed2ef0b41",
       "source_hash": "5c749b1a124e339a3bb760b716d07f64e4e1d3e0491fbb0c799b0480a634d93f",
       "decision": "guide",
@@ -9022,6 +9937,26 @@
           }
         }
       }
+    },
+    {
+      "id": "sig_57f1a72ff997986e1da2",
+      "source_hash": "50c44d22e9779a68c09c6d11d1ac98adfafc360c57fab899864d7ba5f68fa384",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Provision of aircraft APU substitution means (400 Hz converters, pre-conditioned air) with distribution to aircraft and the HV/LV networks and substations supporting them.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Mise à disposition de moyens de substitutions aux APU",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/312855-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Dans le cadre de ce projet de mise à disposition de moyens de substitutions au fonctionnement des APU lors des escales il est prévu la mise à disposition des dits moyens de substitutions (convertisseurs 400Hz et PCA), moyens de distributions aux avions ainsi que l'ensemble des infrastructures permettant leurs fonctionnements (réseaux HT et BT, postes de transformations, point de livraison au réseau public)",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/312855-2026"
+        }
+      ]
     },
     {
       "id": "sig_57ffa1d0482b6e4bb488",
@@ -9915,6 +10850,26 @@
       }
     },
     {
+      "id": "sig_614aa5d248546c509cbc",
+      "source_hash": "a730806532b03f662d2fb9a27b4763fdbd7175f7c268ac16b1889b3422ae4351",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Studies required to obtain a second flood-prevention action programme (PAPI 2) label for a river-basin syndicate.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Etude pour la mise en place d'un PAPI 2",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/601536-2026"
+        },
+        {
+          "field": "description",
+          "quote": "L'objet du marché est de réaliser l'ensemble des études nécessaires à la labellisation d'un second PAPI sur le territoire du Syndicat Mixte Bassin du Lay.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/601536-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_615a7ad8699f790a495c",
       "source_hash": "8a104bbc0c661cc9beb8318d34f68a1618d4d14b3d7810d74dab74bb413a5e2d",
       "decision": "exclude",
@@ -10115,6 +11070,41 @@
           }
         }
       }
+    },
+    {
+      "id": "sig_64b3dfae32344b40bfd3",
+      "source_hash": "d419eb867c4002ceb4c2c99cc3919b5a3b78dd4568fe4bdc3635f8d7cd142a46",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Occupational health, safety and working-conditions (HSCT) assistance including psychosocial-risk and PRAP follow-up across a social landlord's sites; the description only states call-off terms.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Assistance à la fonction H.S.C.T. (Hygiène Sécurité et Conditions de Travail) y compris RPS et suivi de l'action de PRAP sur l'ensemble des sites de Var Habitat et auprès de tout type d'emploi",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/646777-2026"
+        }
+      ]
+    },
+    {
+      "id": "sig_64db1fc00e9566d4663e",
+      "source_hash": "e8d74c11df6c7dcc88d21465ca262f576adbb6e865fabafc44aee408d02ee950",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Outsourced information-security officer (\"RSSI externalisé\") for the Rennes water utility: support for the security accreditation of its information systems and advice on implementing an overall security policy. This is security governance advice; no CRM, business application, integration or AI work is procured.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "DSI-2026-20-RSSI",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/629621-2026"
+        },
+        {
+          "field": "description",
+          "quote": "PRESTATION D'ASSISTANCE A LA SECURITE DES SYSTEMES D'INFORMATION",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/629621-2026"
+        }
+      ]
     },
     {
       "id": "sig_64f2881c21c0394e8649",
@@ -10483,6 +11473,26 @@
           }
         }
       }
+    },
+    {
+      "id": "sig_67c6d14f0e7ca433b903",
+      "source_hash": "4b5a85584697b4385a5ad5a46e811632792da228acf0b53860f8e42079d1401b",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Supply of sterile implantable medical devices (pacemakers, defibrillators, leads, catheters, implantable Holters) across 90 item lots; the only AI mention is an implantable Holter item 'avec présence d'intelligence artificielle', i.e. AI inside a regulated medical device.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Fourniture de dispositifs médicaux stériles de stimulateurs cardiaques implantables et sondes, défibrillateurs implantables et sondes et autres dispositifs pour électrophysiologie et rythmologie",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/656241-2026"
+        },
+        {
+          "field": "description",
+          "quote": "HOLTER INJECTABLE PETIT MODELE AVEC PRESENCE D'INTELLIGENCE ARTIFICIELLE AINSI QU'UNE BATTERIE > 4ANS",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/656241-2026"
+        }
+      ]
     },
     {
       "id": "sig_67f3a9ec99e7e153dd72",
@@ -10960,6 +11970,26 @@
       "source_hash": "f52b5acadbcc70c70bf5a12a1987f8b05e181b828cff72bf5094e7af94c317c5"
     },
     {
+      "id": "sig_6d2e3b01293bf444fc0f",
+      "source_hash": "e596e19b43f14c49c5685de4aa85944d7d648045524bbdef99b3d26dd219b4cd",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Supply of a school rigid truck and trailer adapted as a training vehicle for road-freight driver courses; 'CRM' in the title is the diploma 'conducteur routier de marchandises', not customer relationship management.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Fourniture de véhicule école - type porteur et remorque - pour l'enseignement en Bac Pro CRM, CAP CRM option longues distances",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/657203-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Le lycée professionnel Jean Rondeau souhaite acquérir un véhicule porteur et remorque en version véhicule école à destination de la formation des élèves en Bac pro et CAP conducteurs routier de Marchandises Fourniture d'un porteur et de sa remorque dont la longueur minimale de l'ensemble sera de 18.75 mètres. Le porteur sera adapté en véhicule école, cette adaptation comportera les équipements nécessaires ainsi que",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/657203-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_6dc4e962077f42ec0f72",
       "source_hash": "20762bfe4cbd5e0ca913a8aff94a94e755f91a099902c3e3a1755b99a2e2156e",
       "decision": "guide",
@@ -11184,6 +12214,26 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_6ee4dba96c10e2ee9352",
+      "source_hash": "5fa8f5981f4278371ab769f81ff8993bf265d4f6f5e22bd85ccd4f206bb42f3c",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Maintenance of all licences of the installed VIEWPOINT software package, purchase of additional licences, technical assistance and training (four modules) for the GHT13 hospital group; licence maintenance and resale of an installed product.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "2026-0281 MAINTENANCE DU PROGICIEL VIEWPOINT, ACQUISITION DE LICENCES SUPPLÉMENTAIRES ET PRESTATIONS ASSOCIÉES POUR LE GHT13",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/589036-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Montant HT maximum des prestations à bon de commande : 351 000,00 Euro(s) H.T. L'accord-cadre est &amp;quot;composite&amp;quot;. Il comprend une partie &amp;quot;marché ordinaire&amp;quot; et une partie &amp;quot;accord-cadre à bons de commande&amp;quot;. Les montants estimatifs sont indicatifs et comprennent la totalité des périodes de reconduction. Le marché est décomposé comme suit : Module 1 : Maintenance de",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/589036-2026"
+        }
+      ]
     },
     {
       "id": "sig_6f100c78acffda09e727",
@@ -11552,6 +12602,26 @@
       }
     },
     {
+      "id": "sig_72062c4284e810cb2c9d",
+      "source_hash": "abf35f888da0b0fd92adb8104c21c013a5b9b599c60631434da7e6d724666423",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Technical, legal, land and financial diagnostics of co-ownership buildings and a housing programming study to define an intervention strategy for an ORCOD neighbourhood (four lots).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Mission d’appui pour l’élaboration d’une stratégie d’intervention globale et priorisée pour l’ORCOD de droit commun des Lochères à Sarcelles (95)",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/614930-2026"
+        },
+        {
+          "field": "description",
+          "quote": "L'objet de la présente consultation est la passation d'un marché public ayant pour objet la réalisation d'une mission d'appui pour l'élaboration d'une stratégie d'intervention globale et priorisée pour l'ORCOD de droit commun des Lochères à Sarcelles (95). Conformément à l'article L. 2124-1 et R. 2124-1 du code de la commande publique, la présente consultation fait l'objet d'une procédure formalisée en raison du",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/614930-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_720dc99be366cd8692dc",
       "source_hash": "57247e4ff6c88ff9fb3d9bb68ba44eb80fd8bc8c9347af4200cf631f325957cb",
       "decision": "guide",
@@ -11793,6 +12863,21 @@
       "source_hash": "c991a0655500f4ead1b87a9198dc676f8e38ee111b5a7abc0779259c1d2433d4"
     },
     {
+      "id": "sig_748aff8288b61226c051",
+      "source_hash": "3663b9ac2856b047e479d700dae7fcaa4ce041bd1ee3f0c86e26c66bdf1e7c6a",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Works project management (maîtrise d'œuvre) for improvement, renewal and extension works on sanitation and drinking-water networks; the description only adds contract-duration boilerplate.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Maîtrise d'oeuvre portant sur les travaux d'amélioration, de renouvellement et d'extension des réseaux d'assainissement ou d'eau potable et d'ouvrages annexes",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/654905-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_748f196d63249751cddf",
       "source_hash": "90b850599c05648e6ad8135b79f7af1fe94ce82e20e7907991ebcfb11686fd38",
       "decision": "exclude",
@@ -11857,6 +12942,26 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_7534bb923a85f1957e20",
+      "source_hash": "ed084e3cfd8e951d49e549ec479c2da6d3f042a558062256a3fc4e8f031e2021",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Impact evaluations of ERDF-ESF+ and Interreg programme priorities (three evaluation lots); a lot evaluating the programme's digital-economy priority is still a policy evaluation, not digital delivery.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Évaluations d'impact du programme FEDER-FSE+ Bourgogne-Franche-Comté Massif du Jura et du programme Interreg France-Suisse 2021-2027",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/650630-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Évaluations d'impact du programme FEDER-FSE+ Bourgogne-Franche-Comté Massif du Jura et du programme Interreg France-Suisse 2021-2027 Évaluation d’impact du programme FEDER-FSE+ Bourgogne-Franche-Comté Massif du Jura - Priorité I « Développer une économie régionale innovante et compétitive »; Évaluation d’impact du programme FEDER-FSE+ Bourgogne-Franche-Comté Massif du Jura - Priorité II « Développer une économie",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/650630-2026"
+        }
+      ]
     },
     {
       "id": "sig_76e8b1f0b3f7be62f9f4",
@@ -12412,6 +13517,46 @@
       "source_hash": "824cd3a2194867b63ff2da7aff699c158099facd3d688c25ba3d8fcae8c477cd"
     },
     {
+      "id": "sig_7c5154283ee77ae2942e",
+      "source_hash": "c395bb07db1086e0bda55f07896944a18d1a5cdf2d7322b4cf75badba118d468",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Project-management assistance supporting regional departments in ISO-type certification and compliance processes (management-system certification, not software).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Prestation d'assistance à maitrise d'ouvrage pour l'accompagnement des directions de la région Provence Alpes Côte d'Azur dans le cadre de démarches de certification de type ISO",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/630039-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Le présent accord-cadre a pour objet une prestation d'assistance à maîtrise d'ouvrage pour l'accompagnement des directions de la Région Provence-Alpes-Côte d'Azur dans leurs démarches de certification et de mise en conformité (type ISO et assimilées). La définition précise du besoin figure dans le CCTP. Il s'agit d'un accord-cadre au sens des articles R. 2162-2 et suivants du Code de la commande publique conclu avec",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/630039-2026"
+        }
+      ]
+    },
+    {
+      "id": "sig_7c6903526bbf40979a6f",
+      "source_hash": "ff0762ed1018f4cf1edbcb8b5c3e683d13b4146442151288c6bafa46d16d9693",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Editorial strategy, design and production of annual reports and other editorial media for a regional health-insurance fund.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "MARCHÉ DE CONCEPTION ET DE RÉALISATION DES RAPPORTS ANNUELS ET AUTRES SUPPORTS DESTINE A LA CRAMIF",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/625148-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Le présent marché public a pour objet l'accompagnement stratégique, la conception éditoriale et la réalisation de supports éditoriaux de la Caisse régionale d'assurance maladie d'Île-de-France.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/625148-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_7c81fa0efc36e2e2f76b",
       "source_hash": "86e072b3ee6ca1677c265d17984c28168606caea7d14d2405a725a8f7496f914",
       "decision": "guide",
@@ -12453,6 +13598,21 @@
           }
         }
       }
+    },
+    {
+      "id": "sig_7c9e00d362f5428a977e",
+      "source_hash": "2bc234892985efe2b6d1886f316a5883ab1a2662cb14d90283dc294103e38968",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Maintenance, upgrades ('évolutions'), licence supply and associated services for the existing Viewpoint software deployed across the hospital group's establishments; maintenance and licensing of an installed product, no integration or new implementation scope stated.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Maintenance, évolutions, fourniture de licences et prestations associées du logiciel Viewpoint déployé au sein des établissements du GHT de La Réunion",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/633668-2026"
+        }
+      ]
     },
     {
       "id": "sig_7cf8897ca2cfdd567423",
@@ -12567,6 +13727,46 @@
       }
     },
     {
+      "id": "sig_7dd6770446e758e33708",
+      "source_hash": "556c32db153289476443a7eb5f46f5167215e28067b0e91be35920d4b4ff0774",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Supply of a remote-management system for Dunkirk's public lighting in two lots: connected lighting nodes and clocks, and the supply and maintenance of the lighting-management supervision software. This is street-lighting control equipment with its own software; the notice describes no software development, integration, CRM or AI work.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "FOURNITURE D'UN SYSTEME DE TELEGESTION DES ECLAIRAGES PUBLICS : FOURNITURE ET ACQUISITION DES MODULES DE TELEGESTION, PRESTATIONS COMPLEMENTAIRES ET FOURNITURE ET MAINTENANCE DU LOGICIEL DE GESTION DE L'ECLAIRAGE PUBLIC (2 LOTS)",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/637967-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Fourniture de noeuds et horloges connectés; Fourniture et maintenance d'un superviseur",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/637967-2026"
+        }
+      ]
+    },
+    {
+      "id": "sig_7dda0986570f40407f6a",
+      "source_hash": "e4b5a27edef761fb38cb57b4fa620eae7c7cb337774609b0afc29d1dc89bc608",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Framework for supplying and installing IT hardware and software for Lyon Métropole Habitat: workstation and smartphone accessories, servers and storage, switches, Wi-Fi and firewalls, with software maintenance contracts, rights of use, installation and architecture advice. This is IT equipment and licence supply; the notice describes no CRM, business-application or AI work.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Fourniture de systèmes, réseaux, petits matériels et accessoires (matériels, logiciels et services associés)",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/614226-2026"
+        },
+        {
+          "field": "description",
+          "quote": "L'objet de cet accord-cadre est la fourniture et la mise en place des matériels et logiciels nécessaires à l'évolution du parc informatique de Lyon Métropole Habitat.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/614226-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_7e66c65cb86f4f9d2966",
       "source_hash": "c224ffc0446300ab6e5951cc7f9611e13b5876967aebf6c254f7630d973e5fef",
       "decision": "exclude",
@@ -12634,6 +13834,26 @@
       "reviewed_at": "2026-09-22T09:29:11.069922+00:00",
       "reviewed_by": "Codex primary agent; independent review of subagent proposal",
       "source_hash": "ad3aab09cf5a8e4e6ae142d50995c586dbcde9ec8c98c085181a26b181ab070d"
+    },
+    {
+      "id": "sig_7f19122290fd066c5bbc",
+      "source_hash": "0428d8c5fc026f25605bf77d9a3588ba05b7450bf00e834b16b7725448c71b49",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Videoconferencing, video-communication and audiovisual solutions and associated services, including Cisco and HP Poly fleet extensions (three equipment lots).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Solutions de visioconférence / vidéocommunication / audiovisuel et prestations",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/508919-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Solutions de visioconférence / vidéocommunication / audiovisuel et prestations Solutions de visioconférence, de vidéocommunication, d'audiovisuel et Prestations associées; Solutions de visioconférence, de vidéocommunication « Cisco » en extension de parc existant et Prestations associées; Solutions de visioconférence, de vidéocommunication « HP Poly » en extension de parc existant et Prestations associées",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/508919-2026"
+        }
+      ]
     },
     {
       "id": "sig_7f9ff0375af0d5a9ad72",
@@ -12903,6 +14123,26 @@
         }
       ],
       "guidance": null
+    },
+    {
+      "id": "sig_80f99914f1c9ee00d637",
+      "source_hash": "fb51fb5b0567ac2742a69f90fed1b6907d4ddc5cc33a3b7f92a00a9ee83830cf",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Third-party maintenance of the water and sewerage network supervision system of the Pays d'Aix water utility, which is built on the Topkapi supervision (SCADA) software. This is maintenance of an industrial control system; no CRM, business application, integration or AI work is procured.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Tierce maintenance applicative et prestations associées pour la solution de supervision des réseaux eau et assainissement",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/628633-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Ce marché a pour objet la maintenance du système d'information de supervision basée sur le logiciel Topkapi.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/628633-2026"
+        }
+      ]
     },
     {
       "id": "sig_80fa16267e3bb8ced1ac",
@@ -13296,6 +14536,26 @@
       "source_hash": "7f047abe1fe47374695f086dcaea25ce0d78faf35ff567e8ae7bb0ffb7c97fb5"
     },
     {
+      "id": "sig_84d039325cd8d8872ca5",
+      "source_hash": "1b2944e7996611e38bfbd9534d37628617f47df25703a66ae6c40109461b874c",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Technical IT security audits planned in Comutitres' annual cybersecurity control plan. This is security auditing and penetration testing, which Anthrion does not provide; no CRM, business application, integration or AI work is procured.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Audits techniques informatiques de cybersécurité.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/363517-2024"
+        },
+        {
+          "field": "description",
+          "quote": "Prestations d'audits techniques de sécurité liées aux besoins planifiés dans le plan de contrôle Cybersécurité annuel.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/363517-2024"
+        }
+      ]
+    },
+    {
       "id": "sig_84eb04a72d9a31ebdcf5",
       "source_hash": "c5d4e69e3d65fe0261f3b48a58a575ff2297eb8a979108faa145d89af47f3498",
       "decision": "exclude",
@@ -13400,6 +14660,26 @@
       }
     },
     {
+      "id": "sig_852b14d88a55cdb2850e",
+      "source_hash": "d05b0037d8c176a998a7b050c5ed504f02b28541ec5f4fa14021c2e11409935b",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Technical, economic, legal and financial project-management assistance on waste management and on water, sanitation and storm-water competences (two lots).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Accord-cadre relatif à une mission d'assistance à maitrise d'ouvrage pour l'accompagnement de la CASGBS sur la gestion des déchets, d'une part, et de l'eau, l'assainissement et les eaux pluviales, d'autre part",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/639885-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Montant HT minimum pour la durée totale du contrat : 80000.0 Euro(s) H.T. L'accord-cadre sera exécuté par la conclusion de marchés subséquents. Chaque lot fera l'objet d'une attribution séparée. Les prestations sont réglées par des prix unitaires et forfaitaires. Les montants estimatifs sont indicatifs et comprennent les options (prestations similaires et reconductions). Les montants estimatifs sont indicatifs et",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/639885-2026"
+        }
+      ]
+    },
+    {
       "decision": "exclude",
       "evidence": [
         {
@@ -13448,6 +14728,26 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_8574cd258c6b28974073",
+      "source_hash": "3b9090a20e589ec7dc46c7cca219aa2fcbc04cde814e90ecd15fe3c5fe891359",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Central-purchasing (Resah) framework for acquiring radiotherapy equipment and radiotherapy software with associated services; all 21 lot descriptions repeat the same object, i.e. specialist clinical treatment equipment and its bundled software.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "FOURNITURE D’EQUIPEMENTS ET LOGICIELS DE RADIOTHERAPIE ET PRESTATIONS ASSOCIEES",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/609382-2026"
+        },
+        {
+          "field": "description",
+          "quote": "La présente consultation lancée par le Resah agissant en tant que centrale d’achat selon le mode dit « intermédiaire », a pour objet l’acquisition d’équipements et logiciels de radiothérapie et la mise en œuvre de prestations associées à la fourniture de ces équipements. Le détail des prestations ainsi que les spécifications fonctionnelles et techniques sont précisés dans le cahier des clauses techniques",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/609382-2026"
+        }
+      ]
     },
     {
       "id": "sig_8608455ddad914e0e75c",
@@ -13750,6 +15050,21 @@
       }
     },
     {
+      "id": "sig_8799e9ed6ff939fa230f",
+      "source_hash": "59e2bd89a8f6ff2e47e4618f26102cbec9ffac1803d72e4929794bd7403ca75b",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Press-relations and crisis-communication consultancy; the description only refers to the tender documents.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Conseil et accompagnement en relations presse et communication de crise",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/645828-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_87fd425e7bca37c3cc10",
       "source_hash": "0b00c510988c19d906ecd1c73f45cbb2a4830c33392e1bb8ad5a74ddbc0446e0",
       "decision": "exclude",
@@ -13974,6 +15289,26 @@
       }
     },
     {
+      "id": "sig_89defc3e59f464d7459b",
+      "source_hash": "343584122af4d9dbc184e7b323b33ca154699251a477e816d02e230de85f0cba",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Prior-information notice for acquiring diagnostic data on dry and wet utility networks for high-speed rail line design studies (field data acquisition).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "PROJET LGV+ NORD - Acquisition de données : diagnostic réseaux secs/humides",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/375417-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Le présent avis périodique indicatif est relatif au futur marché d'acquisition de données diagnostiquant les réseaux secs et humides afin de réaliser des études de conception pour le projet d'optimisation vers la Haute Performance à Grande Vitesse de la Ligne à Grande Vitesse Nord (HPGV NORD). Les zones à diagnotiquer sont situées principalement sur les lignes 216 000 et 226 000 (entre Paris-Gare du Nord - Lille et",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/375417-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_8a404399e1ff170c70e2",
       "source_hash": "52c0d965df9d4b0fe9e9de6e5062298130cc1b7c7b10b4d6b946764a0546d0c1",
       "decision": "guide",
@@ -14174,6 +15509,41 @@
       "guidance": null
     },
     {
+      "id": "sig_8d404a48dbf06306621f",
+      "source_hash": "767d86c421341dda68c2926ed3f28ce0045e1aa03fe8d09efdd788d3eb3db10b",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Evaluation of French development cooperation with Morocco and Senegal over 15 years (policy evaluation study).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Evaluation de la coopération française auprès de partenaires de premier plan : leçons de 15 ans d’engagement au Maroc et au Sénégal",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/643951-2026"
+        }
+      ]
+    },
+    {
+      "id": "sig_8dc4f470baf7849528a7",
+      "source_hash": "ecec85a1ddae70a0176ad1a56924fd4319c656169b00c777a1ceaa472c0040b3",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Press-aggregator subscription giving online access to press articles, alerts, press reviews and archives for an agglomeration community's documentation service.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Services d'abonnement à une base de données d'articles de presse dématérialisés pour la Communauté d'agglomération Grand Paris Sud",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/640869-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Services d'abonnement à une base de données d'articles de presse dématérialisés pour la Communauté d'agglomération Grand Paris Sud La présente consultation a pour objet la conclusion d’un accord-cadre mono-attributaire à prix mixte, avec une partie forfaitaire donnant accès annuel aux services et une partie à bons de commande, pour l’exécution de prestations de services d’agrégateur de presse offrant un accès unique",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/640869-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_8dfed59770476e947318",
       "source_hash": "8d2b9fec993388deb5f57e1d641ecc38ef566f46eafc423aaf3ebf7c0b035593",
       "decision": "guide",
@@ -14210,6 +15580,26 @@
           }
         }
       }
+    },
+    {
+      "id": "sig_8e1d8af7d84211657950",
+      "source_hash": "66352a8e9c94fc127b5a302a13dd18815b9c378318659d6d78f7edcd5db49ea4",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Traffic counts and surveys (lot 1) and traffic/parking studies (lot 2) for mobility projects.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Réalisation de prestations d'acquisitions de données (comptages et enquêtes) et réalisation de prestations d'études de circulation et de stationnement",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/622806-2026"
+        },
+        {
+          "field": "description",
+          "quote": "L'accord-cadre a pour objet la réalisation de missions d'acquisitions de données : comptages et enquêtes, et d'études de circulation et de stationnement pour l'ensemble des projets de mobilités du Grand Annecy et notamment les éléments nécessaires à la réalisation du projet de TCSPi, du schéma directeur des pôles d'échanges multimodaux, ou du schéma directeur cyclable. Décomposition en lots : LOT 1 : Prestations",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/622806-2026"
+        }
+      ]
     },
     {
       "id": "sig_8e7b12a0905223d24202",
@@ -14368,6 +15758,26 @@
       "guidance": null
     },
     {
+      "id": "sig_8f4e701ca7dee40da42d",
+      "source_hash": "62a06c0845bc5a507370e9cb08ac981c63f234188fd0992c17a9f546c88de39d",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Implementation and maintenance of the extension of the video-surveillance (vidéoprotection) system for secondary schools, departmental sites and roads (CCTV hardware and its management software).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Mise en oeuvre et maintenance de l'extension du système de vidéoprotection pour les collèges, les sites du Département et les routes de l'Eure",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/653037-2026"
+        },
+        {
+          "field": "description",
+          "quote": "La présente consultation a pour objet la mise en œuvre de l’extension du dispositif de vidéoprotection pour les collèges, les sites du Département et les routes de l'Eure dit Maîtrise d’Ouvrage.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/653037-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_8f607dd3dd4619a87d89",
       "source_hash": "371380dab99d12a512cdc9938ff7601391b54c5ec68e91e54249226801a7f427",
       "decision": "guide",
@@ -14446,6 +15856,26 @@
       }
     },
     {
+      "id": "sig_8f7c5e4ae4d1a16fa287",
+      "source_hash": "1ceb266d5f71ec35d8b9461945ced7d03543ab638d1f15c15070ccbd612a19be",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Subscription to third-party crypto-asset market data (on-chain and off-chain data) for supervisory monitoring, accessible via a commercial subscription model.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Crypto assets markets data II",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/416045-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Under the EU Markets in Crypto-Assets Regulation (MiCA, Regulation 2023/1114) the European Banking Authority (EBA) is entrusted with direct supervisory responsibilities , where an asset-referenced token (ART) or electronic money token (EMT) is determined to be significant. To conduct the significance assessment, the EBA will use (i) regulatory reporting data and (ii) market monitoring, including crypto-asset data",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/416045-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_8f8fe033e8b931460120",
       "source_hash": "a090aaddff9656a8c0e05ee01b503147bbd95d2514fb8547892d38d7d0c1c1db",
       "decision": "guide",
@@ -14482,6 +15912,26 @@
           }
         }
       }
+    },
+    {
+      "id": "sig_8fa86d4c43116847c193",
+      "source_hash": "5e33a531d0f6a50d1035d1550c03e355d8d526d229eb1724d6236c2a6911d61c",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Works project management for flood-limitation works on the Torras, with public-consultation support and land-acquisition assistance lots.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "26A29F - Mission de maitrise d'oeuvre pour les travaux de limitation des crues du Torras - 3 lots",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/642794-2026"
+        },
+        {
+          "field": "description",
+          "quote": "L'objet de la consultation est de réaliser la maîtrise d'oeuvre complète, à partir de l'étude projet et en intégrant comme mission complémentaire, l'élaboration des dossiers réglementaires pour le lot n°1. L'objet du lot n°2 est d'accompagner la maitrise d'ouvrage dans la consultation du public en vue du recueil des doléances sur les mesures d'accompagnement du projet et dans l'acceptation de celui-ci. L'objet du",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/642794-2026"
+        }
+      ]
     },
     {
       "id": "sig_8fbbd563e70df5d834a3",
@@ -14741,6 +16191,26 @@
       }
     },
     {
+      "id": "sig_939c445760fad7a106fb",
+      "source_hash": "28067b27a937f10c6d100912729fb8e26a21dd7dc9d595454a7d916362fd5ba9",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Collection and supply of fisheries observer and self-sampling data for monitoring pelagic longline fishing (at-sea observation fieldwork).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "COLLECTE ET FOURNITURE DE DONNEES « OBSERVATEURS » ET « AUTO-ECHANTILLONAGE » POUR LE SUIVI DE LA PÊCHE PALANGRIERE PELAGIQUE A LA REUNION (OCEAN INDIEN)",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/629845-2026"
+        },
+        {
+          "field": "description",
+          "quote": "COLLECTE ET FOURNITURE DE DONNEES « OBSERVATEURS » ET « AUTO-ECHANTILLONAGE » POUR LE SUIVI DE LA PÊCHE PALANGRIERE PELAGIQUE A LA REUNION (OCEAN INDIEN). Une clause sociale et une clause environnementale sont prévues au marché. COLLECTE ET FOURNITURE DE DONNEES « OBSERVATEURS » ET « AUTO-ECHANTILLONNAGE » POUR LE SUIVI DE LA PÊCHE PALANGRIERE PELAGIQUE A LA REUNION (OCEAN INDIEN)",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/629845-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_93a545e1c49a3e269947",
       "source_hash": "7d97b074dcff3ae84240b8cf8d132ce1d0a29dc99c23b0f40002cb1f68ee5a08",
       "decision": "exclude",
@@ -14826,6 +16296,26 @@
         }
       ],
       "guidance": null
+    },
+    {
+      "id": "sig_94078d3150647e3ceb5f",
+      "source_hash": "bcda2cbb5ba2befcdafdb903ae4d535491611efdf21c575fb889d8804e2bb50e",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Dynamic purchasing system for organisational-change expertise to set up pooled resource structures (decentralised offices, project support units) for a development-cooperation agency.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Réseau d'Expertise de la Task Force Décentralisation Système d'acquisition dynamique (SAD) visant à la contractualisation de missions de prestations intellectuelles pour l'appui à la mise en place des organisations mutualisées des ressources entre des projets mis en oeuvre par Expertise France et implantés au sein d'une même géographie.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/717512-2025"
+        },
+        {
+          "field": "description",
+          "quote": "Création un système d'acquisition dynamique visant à la contractualisation de missions de prestations intellectuelles pour l'appui à la mise en place des organisations mutualisées des ressources entre des projets mis en oeuvre par Expertise France et implantés au sein d'une même géographie. Pour candidater au SAD, il est impératif de s'inscrire sur la plateforme PLACE, via laquelle les documents de la consultation",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/717512-2025"
+        }
+      ]
     },
     {
       "id": "sig_94246655601b8970b989",
@@ -14964,6 +16454,26 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_964f8aed2d779ba5eaed",
+      "source_hash": "6bb9276c9887469bffed6d136b7dea9cdfca743b90d23e8bc70401170ff61249",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Framework of up to seven years for maintaining the industrial computing and control-command systems of the CEA/CESTA site: corrective and evolutive maintenance, integration and development of control-command software and hardware, access control, video surveillance, supervision of test installations and cabling, with a service centre (tickets, configuration database, user support). This is industrial control-system maintenance; the notice describes no CRM, business-application or AI work.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Maintenance informatique des systèmes industriels du CEA/CESTA (MISI3)",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/660784-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Le CEA/CESTA, dans le cadre de ses activités, souhaite confier des prestations de maintenance corrective, évolutive et perfective pour les logiciels de l'informatique technique industrielle et leurs systèmes de contrôle-commande.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/660784-2026"
+        }
+      ]
     },
     {
       "id": "sig_96b721fbe0907b462a8b",
@@ -15160,6 +16670,26 @@
       "reviewed_at": "2026-09-22T09:29:11.069922+00:00",
       "reviewed_by": "Codex primary agent; independent review of subagent proposal",
       "source_hash": "b123c443cddaff8d5ecf64dfcab885387f22d51ce5491cd8a67cd030174f8066"
+    },
+    {
+      "id": "sig_995136046000335b0348",
+      "source_hash": "1d6b63642393c37075ef53fbd526fe5030603bb862d4e69fc71ffdfa1c9faf93",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Cybersecurity audits of the systems of the new automatic metro line C in Toulouse: an architecture audit, a configuration audit, an organisational and physical audit and a penetration test. This is security auditing and penetration testing, which Anthrion does not provide; no CRM, business application, integration or AI work is procured.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Prestations d'audits de cybersécurité - Ligne C du métro Toulousain",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/597168-2026"
+        },
+        {
+          "field": "description",
+          "quote": "La présente consultation concerne la réalisation d'un ensemble d'audits sur le système de la nouvelle Ligne C de métro à Toulouse.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/597168-2026"
+        }
+      ]
     },
     {
       "id": "sig_996967692fa953733e6a",
@@ -15738,6 +17268,26 @@
       "guidance": null
     },
     {
+      "id": "sig_9f01f5d5ea38242db7dd",
+      "source_hash": "82dc9fcc76ed57cdbacd06c1174e32000e53133498d3610a276c5c4575105031",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Delegated project-management mandate for building an underground car park and a municipal building.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Mandat de maîtrise d'ouvrage déléguée pour la création d'un parking souterrain et d'un bâtiment",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/600867-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Les prestations sont réglées par des prix forfaitaires. Mandat de maîtrise d'ouvrage pour la réalisation d'un parking souterrain boulevard du 8 Mai 1945 et la construction d'un bâtiment communal avenue Georges Clemenceau",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/600867-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_9f4dfbcaa0c2d1600711",
       "source_hash": "f23005ab69cf4a3ebefb2a74704cd697729d128adcfe7d7c9d0651bcbc95d4d7",
       "decision": "exclude",
@@ -15806,6 +17356,41 @@
       "reviewed_at": "2026-09-22T09:29:11.069922+00:00",
       "reviewed_by": "Codex primary agent; independent review of subagent proposal",
       "source_hash": "2ae860f5d84dba71ab63796235c8659e85fcc6d3c0ae5aa6d329254d75e3ef86"
+    },
+    {
+      "id": "sig_9ff5c3d474614c1916e5",
+      "source_hash": "cd5b7491214e7cac75476fd8eea08a61edc35f77d93522d3dae2a7345d57639f",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Supply of insulated containers fitted with geolocation sensors and a management portal for the Cornouaille fishing ports. This is equipment with its own tracking portal; no CRM, business application, integration or AI work is procured.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Fourniture de conteneurs isothermes équipés de capteurs de géolocalisation et d'un portail de management",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/648959-2026"
+        }
+      ]
+    },
+    {
+      "id": "sig_a039aede5e1f33373510",
+      "source_hash": "a0af95069f4b58acc721a37c37e19923f5bd76250ea377b575127b89f8fc1e78",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Telecommunication services in four lots: internet access for flats, internet access for offices, fixed telephony (VoIP with Teams telephony) and mobile telephony. Telephony integration with Teams is carrier configuration, not business-application integration.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Accord-cadre ayant pour objet des prestations de services de télécommunication pour le compte de France terre d'asile",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/658591-2026"
+        },
+        {
+          "field": "description",
+          "quote": "La présente consultation a pour objet des prestations de services de télécommunication à destination des établissements, services et appartements de France terre d'asile (FTDA). Conformément aux articles L.2113-10 et R.2113-1 du Code de la commande publique, le marché public est alloti. Les prestations sont réparties en quatre (4) lots comme suit : Le Lot 1 porte que la fourniture d'accès à internet à destination",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/658591-2026"
+        }
+      ]
     },
     {
       "id": "sig_a052c17cfe26fd51029f",
@@ -15889,6 +17474,26 @@
           }
         }
       }
+    },
+    {
+      "id": "sig_a0c8a06f557771f16958",
+      "source_hash": "72212b92a85205db9c038789b4603a70dbc582d26e42360a7db9514520c2209c",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Face-to-face cultural mediation services for visitors of the Musée des Confluences.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Prestations de médiation culturelle face public pour le musée des Confluences",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/619112-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Le présent accord-cadre a pour objet les prestations de médiation culturelle face public pour le musée des Confluences. L'accord-cadre est conclu dans les limites suivantes : -Montant minimum de commandes sur la durée initiale de l'accord-cadre (24 mois) : sans -Montant maximum de commandes sur la durée initiale de l'accord-cadre (24 mois) : 1 200 000 euro(s) HT -Montant minimum de commandes par période de",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/619112-2026"
+        }
+      ]
     },
     {
       "id": "sig_a0ee8a30db3736e148f1",
@@ -15997,6 +17602,21 @@
           }
         }
       }
+    },
+    {
+      "id": "sig_a1667a25b6ad9ee893a7",
+      "source_hash": "a774224f562915b8e9a955bb40ecdb87aadb050b1ec196b3b1e5e5ea604fd43b",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Support for running social insertion schemes and actions.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "PRESTATION D'APPUI A L'ANIMATION DE DISPOSITIFS OU D'ACTIONS D'INSERTION",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/600394-2026"
+        }
+      ]
     },
     {
       "id": "sig_a1c558fedaee7c7f0bf7",
@@ -16398,6 +18018,21 @@
         }
       ],
       "guidance": null
+    },
+    {
+      "id": "sig_a58eb69ebdad9076bb95",
+      "source_hash": "b71704deec251db9c2b1e53f98719c009fca7e4b4cc969cdd8db97ab2f2d06d3",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Monitoring and facilitation of component 3 of the France Rénov' territorial pact (housing-renovation advice to households).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Suivi-animation du volet 3 de la Communauté de communes Vienne et Gartempe au Pacte Territorial France Rénov' Sud Vienne",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/632589-2026"
+        }
+      ]
     },
     {
       "decision": "exclude",
@@ -16815,6 +18450,26 @@
       }
     },
     {
+      "id": "sig_a8fe7b5df488cc33ace8",
+      "source_hash": "5137bf9db96657e6fae8a29fdb196263d955f0180f190f823a6b32046677e65b",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Vehicle-mounted LiDAR surveys of reduced-visibility zones on the road network, with analysis and reporting for road-works safety.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Accord-cadre mono attributaire à bon de commande relatif aux prestations des Relevés des zones d'ombres sur le réseau géré par la DIR Nord-Ouest via la technologie LiDAR embarquée sur véhicule, analyse et restitution.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/615053-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Prestations de relevés mobiles de zones de visibilité réduite via la technologie LiDAR embarquée sur véhicule, analyse et restitution exploitables pour la sécurisation des interventions routières. Prestations de relevés mobiles de zones de visibilité réduite via la technologie LiDAR embarquée sur véhicule, analyse et restitution exploitables pour la sécurisation des interventions routières",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/615053-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_a9961283d05e83808998",
       "source_hash": "2b40d57670fe17b8c01e16adba402060d7c9a0b628979c03e04413c256aa106b",
       "decision": "guide",
@@ -16881,6 +18536,26 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_aa3c5bc33f5784b9ff57",
+      "source_hash": "c69839b2b68bb793833101a063478e296ad56872bcb880cec176bb0783e5a66f",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "France Rénov' territorial pact component 3: accompanying homeowners' renovation, adaptation, decent-housing and landlord aid files (four lots of human advisory services).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "VOLET 3 : PACTE TERRITORIAL FRANCE RENOV DE LA COMMUNAUTE URBAINE DE LIMOGES METROPOLE (EN 4 LOTS)",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/627643-2026"
+        },
+        {
+          "field": "description",
+          "quote": "La présente consultation concerne le VOLET 3 : PACTE TERRITORIAL FRANCE RENOV DE LA COMMUNAUTE URBAINE DE LIMOGES METROPOLE en 4 lots. Accompagnement des dossiers de rénovation énergétique pour les propriétaires occupants – MPR Parcours accompagné (MPR PA); Accompagnement des dossiers d’adaptation du logement à la perte d’autonomie et au handicap – MaPrimeAdapt’ (MPA).; Accompagnement des dossiers de lutte contre",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/627643-2026"
+        }
+      ]
     },
     {
       "id": "sig_aa943435c84df0830efd",
@@ -17070,6 +18745,26 @@
         }
       ],
       "guidance": null
+    },
+    {
+      "id": "sig_acd3b119a1786b7451db",
+      "source_hash": "eca01db4f320674d4c2d2d0c6f9b246ca64b315af5bc8a8fb129195cd18313a7",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Purchase of collaborative robot cells (six-axis robots) and force-feedback haptic devices for a research project; both lots are equipment.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "ACQUISITION DE CELLULES ROBOTISEES DE TYPE COBOTIQUE",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/662591-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Acquisition de Cellules robotisées de type cobotique, dans le cadre du projet MODE : Robots 6 articulations (min.) et dispositifs haptique a retour d'effort ROBOTS 6 ARTICULATIONS (Min.) - Voir CCTP; DISPOSITIF HAPTIQUE A RETOUR D'EFFORT",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/662591-2026"
+        }
+      ]
     },
     {
       "id": "sig_acdff2b1f4b89cd868fb",
@@ -17342,6 +19037,46 @@
       }
     },
     {
+      "id": "sig_afb6978fea5a6add8772",
+      "source_hash": "f4855f200f7a8b1d86b89c9d359af1ddb46439a8aaba2d6a168941519393a19f",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Assistance with compiling files and administrative follow-up of public-utility inquiry and expropriation procedures for a land agency.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "EPFGE - Assistance à maitrise d'ouvrage pour la constitution de dossiers et suivi administratif des procédures d'expropriation",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/639279-2026"
+        },
+        {
+          "field": "description",
+          "quote": "L’EPFGE souhaite s’attacher par le biais d’un accord-cadre multi-attributaires les services de prestataires à même de l’assister dans la constitution des dossiers et le suivi administratif des procédures d’enquête préalable à la déclaration d’utilité publique et parcellaire valant le cas échéant mise en compatibilité du PLU. La mission s’achèvera à la publication de l’Ordonnance d’Expropriation",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/639279-2026"
+        }
+      ]
+    },
+    {
+      "id": "sig_b099c7cda9c76af007f6",
+      "source_hash": "5cfc2138b79531ace5886b4bdf4826d941ef02c49a0d0072c1d03e4768255696",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Prior information notice for the coordinated cybersecurity audits of metro line C in Toulouse: architecture, configuration, organisational and physical audits and a penetration test, with audit reports. This is security auditing and penetration testing, which Anthrion does not provide; no CRM, business application, integration or AI work is procured.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Prestations d'audits cybersécurité de la Ligne C du métro toulousain",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/391726-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Les prestations portent sur la réalisation d'un ensemble coordonné d'audits de cybersécurité, sur quatre portées différentes",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/391726-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_b0c1708c04f418b41358",
       "source_hash": "81e9484c25090f7cec5ee15abc819dd3e8502acdd735bdc7cfda49edbded5bce",
       "decision": "guide",
@@ -17579,6 +19314,26 @@
       }
     },
     {
+      "id": "sig_b39560577bfcb6d535fd",
+      "source_hash": "750af999c8977362a502a754ce7f7907899f27bf59009f034f63d77ab8326f24",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Acquisition of didactic equipment for a vocational-school smart-grid teaching platform (HV cell, connected houses, connected street, industrial and tertiary zones, VR headset scenarios, smart-grid lab) with installation, configuration and teacher training; all seven lots are educational equipment.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "ACQUISITION D'EQUIPEMENTS SPECIFIQUES DESTINES A L'EQUIPEMENT D'UN PLATEAU TECHNIQUE PEDAGOGIQUE \"SMART GRID\" AU LYCEE PABLO NERUDA (38)",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/622213-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Acquisition d'équipements spécifiques destinés à l'équipement d'un plateau technique pédagogique \" Smart Grid \" au Lycée Pablo Neruda (Saint-Martin-d'Hères, 38), réparti en 7 lots : poste de livraison/distribution HTA, zone habitation, zone infrastructure, zone industrielle, zone tertiaire, zone outils numériques, et laboratoire City Grid pédagogique. Le marché comprend la fourniture, la livraison, l'installation,",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/622213-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_b3aff275208f654a526c",
       "source_hash": "53e757f9b848662437639513164c8a30accd8dbc082ea2c6a04ba2bf1d485c71",
       "decision": "guide",
@@ -17694,6 +19449,21 @@
       "reviewed_at": "2026-09-22T09:29:11.069922+00:00",
       "reviewed_by": "Codex primary agent; independent review of subagent proposal",
       "source_hash": "a1b68120a6f64c05a642a67d84cdf907e4380a8d950b94dafc748c4da05cf125"
+    },
+    {
+      "id": "sig_b4c625d5e9cd00f666b7",
+      "source_hash": "069f186e5c9c27357222550d1d5017f37e5f37bc4cb1c75f5e388c9f72a68e32",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Design of a prototype individual timber house for social home ownership (architectural design).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Conception d’un prototype d’habitat individuel bois en accession sociale à la propriété sur le territoire de la Communauté de communes Cœur Haute Lande",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/523407-2026"
+        }
+      ]
     },
     {
       "decision": "guide",
@@ -18317,6 +20087,21 @@
       "guidance": null
     },
     {
+      "id": "sig_bf24d8ffb93feeb4d2cc",
+      "source_hash": "c64e321f7e7b89b97ae1b394aae1c5e023dfc8d4c10d7a6423217107eec83ad7",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Monitoring and facilitation of a housing-renovation and energy-poverty advice desk under a territorial pact; the description only states call-off terms.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Prestations de suivi et animation d'un guichet de la rénovation et de la lutte contre la précarité énergétique pour le compte de Grand Paris Grand Est (Pacte territorial)",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/619763-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_bf3ae200ba572e488c45",
       "source_hash": "322d70579294c664b3dfce0c55a6e783679e58d3f9cd54ed7ce8bd6bfc59b82f",
       "decision": "guide",
@@ -18473,6 +20258,26 @@
       }
     },
     {
+      "id": "sig_c0691269452417b5a4d9",
+      "source_hash": "9b34c98ebc9d54a13350a4103a7c6eddef66f0f7fd18ac3e6c4e392c075728d9",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Project-management assistance for regional facilitation of the public housing-renovation service network in Corsica.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Prestations d’assistance à maitrise d’ouvrage pour l’animation régionale du réseau du service public de rénovation de l’Habitat",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/614213-2026"
+        },
+        {
+          "field": "description",
+          "quote": "AMO relative à des prestations d’assistance à maitrise d’ouvrage pour l’animation régionale du réseau du service public de rénovation de l’Habitat en Corse AMO relative à des prestations d’assistance à maitrise d’ouvrage pour l’animation régionale du réseau du service public de rénovation de l’Habitat",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/614213-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_c0f330fe5ebd4fbb8725",
       "source_hash": "eaede729cfda4f10a8d8f59ceed186a915766a787dca687f6e5d5146bc2d68ff",
       "decision": "guide",
@@ -18599,6 +20404,26 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_c1cc47a86c6802729644",
+      "source_hash": "96737d30087d494a32b69b3493c048fff7dced6a80f1fc1fa18b611f16838f09",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Works project management for redeveloping public spaces and renewing water networks in a town centre.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Mission de maitrise d'oeuvre pour le réaménagement du coeur de ville secteurs Martyrs - Libération - Guynemer à Elbeuf sur Seine",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/621083-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Le présent marché porte sur les études de Maîtrise d'oeuvre pour le réaménagement des espaces publics et le renouvellement des réseaux humides de la place de la Libération, de la rue des Martyrs et de ses amorces entre la Rue Guynemer et la place François Mitterrand incluses, présentes sur la commune d'Elbeuf-sur-Seine, au sein de la Métropole Rouen Normandie (76)",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/621083-2026"
+        }
+      ]
     },
     {
       "id": "sig_c27e073c759153f0952e",
@@ -18863,6 +20688,21 @@
       }
     },
     {
+      "id": "sig_c3df42d80f343874e009",
+      "source_hash": "d95daa744cb20c5079b9affd737a7a0b0c0ac9d4691c81b9a8dbe0e3d22d0829",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Project-management assistance for communication, public consultation and public inquiries around road projects; the description only states call-off terms.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Assistance à maîtrise d'ouvrage - communication, concertation, enquêtes publiques autour des projets routiers",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/584006-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_c436d94f6994c8433416",
       "source_hash": "87de6ee814eb6da0385a40920b1f61917fb2fb7b251878098cb90f2f8670c5e4",
       "decision": "guide",
@@ -18944,6 +20784,46 @@
       }
     },
     {
+      "id": "sig_c47785c4bb385b3081e5",
+      "source_hash": "87c6b897d28fe243bb49b09edc8d14830faa05762a515026f5a0dff13df6aa32",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Duplicate publication of the COFIROUTE flood-vulnerability engineering study: hydrological/hydraulic modelling and maîtrise d'œuvre studies for motorway structures, five geographic lots of the same study.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Etudes approfondies de vulnérabilité du réseau autoroutier COFIROUTE aux risques crue et inondation",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/605981-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Le marché porte sur la réalisation d'études de vulnérabilité de l’infrastructure autoroutière et de ses ouvrages aux risques de crue et d'inondation, sur environ 118 km du réseau COFIROUTE répartis en douze zones d'étude. Les prestations comprennent la réalisation de modélisations hydrologiques et hydrauliques, et de missions de maîtrise d’œuvre de niveau « diagnostic » et « études préliminaires » de solutions",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/605981-2026"
+        }
+      ]
+    },
+    {
+      "id": "sig_c4efddfb17e083bb98a3",
+      "source_hash": "455ec3448264ec3737a1abf0eba7b2657dbe072f49d32bf46c5fb2384612918f",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Framework for the supply of IT hardware and accessories with associated services, in regional lots covering six French regions.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Accord-cadre relatif à la fourniture de matériels informatiques et d’accessoires et services associés",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/623946-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Le présent accord-cadre a pour objet la fourniture de matériels informatiques et d'accessoires associés, ainsi que la réalisation de prestations de services afférentes sur le périmètre géographique des Hauts-de-France, de la Normandie, de l'Ile-de-France, du Grand Est, de la Bourgogne-Franche-Comté et de l'Auvergne-Rhône-Alpes. Le présent accord-cadre à pour objet la fourniture de matériels, accessoires",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/623946-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_c57817db33a5b42f1ddb",
       "source_hash": "d16236afcf76aaecdee95921ed1c30f6554dc7356331177ac36ca09c93ff6773",
       "decision": "guide",
@@ -18990,6 +20870,26 @@
           }
         }
       }
+    },
+    {
+      "id": "sig_c615b8d7d5b0ed6423e9",
+      "source_hash": "70c89e6c31320e5a64e40bdf30ad1ae5cb7705a68d5fd9dc39289f2daa01a879",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Legal, financial and technical project-management assistance for renewing the management mode of ski-lift public services (two lots: legal/financial AMO, technical diagnostic and investment plan).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "La présente consultation concerne : ASSISTANCE À MAÎTRISE D'OUVRAGE POUR LE RENOUVELLEMENT DU MODE DE GESTION DES REMONTÉES MÉCANIQUES DES CARROZ ET DE FLAINE",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/633249-2026"
+        },
+        {
+          "field": "description",
+          "quote": "La commune d'Arâches-la-Frasse est l'autorité organisatrice du service public des remontées mécaniques des domaines skiables des Carroz et de Flaine, tous deux intégrés au domaine relié du Grand Massif. Le domaine des Carroz est exploité par la SEM SOREMAC dans le cadre d'une délégation de service public arrivant à échéance le 30 septembre 2029. Le domaine de Flaine fait l'objet d'un contrat distinct, exploité par",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/633249-2026"
+        }
+      ]
     },
     {
       "id": "sig_c61aead6a7e5fda93e12",
@@ -19057,6 +20957,46 @@
       "source_hash": "a5998a51ad01179d79f120fa155e3b2e7f8fe41e084416a276193df524fbde77"
     },
     {
+      "id": "sig_c655f9622d7a10d8b940",
+      "source_hash": "d6e3394ccc925e04cb48db43396880253d488091c72cc72babc591df23ffdcd8",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Project-management assistance for citizen-participation and consultation processes in urban-development operations (strategy, facilitation, evaluation).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "AMO pour la conduite de démarches de participation citoyenne dans le cadre des opérations d'aménagement d'Oppidea et d'Europolia",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/620250-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Ces prestations couvrent l'ensemble du cycle de vie des démarches participatives : de la définition d'une stratégie de concertation jusqu'à la restitution et l'évaluation des actions menées, en passant par l'animation des dispositifs de participation. Les prestations objet du contrat sont décrites au Cahier des Clauses Techniques Particulières (CCTP). Ces prestations couvrent l'ensemble du cycle de vie des démarches",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/620250-2026"
+        }
+      ]
+    },
+    {
+      "id": "sig_c6dec21d713e22b0589d",
+      "source_hash": "dad92066eb49764bf27e9821a36f2e114cf3f43fc7cac18bbdedcfa8e2dfa702",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Hydrological/hydraulic modelling and flood-vulnerability engineering studies (maîtrise d'œuvre diagnostic and preliminary-study level) for motorway structures; all five lots are the same civil-engineering study by geographic zone.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Etudes approfondies de vulnérabilité du réseau autoroutier COFIROUTE aux risques crue et inondation",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/662200-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Le marché porte sur la réalisation d'études de vulnérabilité de l’infrastructure autoroutière et de ses ouvrages aux risques de crue et d'inondation, sur environ 118 km du réseau COFIROUTE répartis en douze zones d'étude. Les prestations comprennent la réalisation de modélisations hydrologiques et hydrauliques, et de missions de maîtrise d’œuvre de niveau « diagnostic » et « études préliminaires » de solutions",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/662200-2026"
+        }
+      ]
+    },
+    {
       "decision": "exclude",
       "evidence": [
         {
@@ -19110,6 +21050,46 @@
       }
     },
     {
+      "id": "sig_c7e9929853e0da8b7477",
+      "source_hash": "531a02561136e5675dd39b2f64474a8dbcbfcd4cc7b732b0b403b7a27e17405e",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Pooling of telecom infrastructures and associated telecom outsourcing (access, WAN, network equipment, 24/7 supervision) across racecourses and central sites.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Mutualisation d'infrastructures Télécoms et Infogérance associée sur les Hippodromes Consortium HRMedia / PMU / France Galop / Le Trot",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/619765-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Chantier de mutualisation des infrastructures Télécom et de l'infogérance associée sur les hippodromes connectés, ainsi que sur les sites centraux et de support du consortium. Le portage contractuel et le pilotage opérationnel du futur marché sont transférés à HRMedia, dans une logique de gouvernance multi-entités et de rationalisation économique. Le futur marché devra couvrir, à terme, les accès télécoms, les",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/619765-2026"
+        }
+      ]
+    },
+    {
+      "id": "sig_c8474a371101e2cc3517",
+      "source_hash": "c47a12e9eb41c565ae3ad5a18cdf650d0eccc79f75aa28bf11e8906857aaf417",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Sound-reinforcement services, event sound/lighting equipment rental for council meetings and cultural events (three lots).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Prestations de sonorisation et prestations associées dans le cadre des réunions des instances communautaires et des événements divers organisés par la CABBALR",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/626024-2026"
+        },
+        {
+          "field": "description",
+          "quote": "La présente consultation concerne les prestations de sonorisation et prestations associées dans le cadre des réunions des instances communautaires et des événements divers organisés par la CABBALR sous la forme d'un accord-cadre mixte. Accord-cadre mono-attributaire s'exécutant par l'émission de bons de commande et par l'exécution de marchés subséquents. La durée du contrat est d'un an ferme et trois périodes de",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/626024-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_c9589d269b485c91bdc4",
       "source_hash": "11641ffebccf71caea450b74b9232a96d7fbbba8d506f70314bd0504775d3e27",
       "decision": "exclude",
@@ -19124,6 +21104,26 @@
         }
       ],
       "guidance": null
+    },
+    {
+      "id": "sig_c9b39e1d7abe63274b11",
+      "source_hash": "ed8f7af64a17d187f51f149754c193d8c9d6dbdeae45660c0db066c332ea3c81",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Subscription and online access to digital library resources (video on demand, e-books, self-training methods, online press) delivered through the media library's existing platform; content licensing, no system development.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Abonnement, accès en ligne et fourniture de ressources documentaires numériques pour la Médiathèque départementale du Puy-de-Dôme",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/654490-2026"
+        },
+        {
+          "field": "description",
+          "quote": "L'accord-cadre sera exécuté par l'émission de bons de commande. Chaque lot fera l'objet d'une attribution séparée. Le contrat est susceptible d'être reconduit dans les conditions du cahier des charges. Les prestations sont réglées par des prix unitaires. L'abonnement, l'accès en ligne et la fourniture de ressources documentaires numériques pour la Médiathèque départementale du Puy-de-Dôme La Médiathèque",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/654490-2026"
+        }
+      ]
     },
     {
       "id": "sig_c9bd0617aa0781e394f2",
@@ -19446,6 +21446,41 @@
       "source_hash": "d691507212dbc5bd39bccbff2ad65d2a65b36075fc068727904ba6510622d398"
     },
     {
+      "id": "sig_cb3cfebe060c57a32e29",
+      "source_hash": "83b4e466fe599941cf0172a9cb397d6fcb7f58195a91ba8fce0e60eb74cdf9fd",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Supply, installation and maintenance of a site-interconnection (network) solution for the water syndicate's sites; network connectivity only (interconnection-service and network CPV codes).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "FOURNITURE, INSTALLATION ET MAINTENANCE D'UNE SOLUTION D'INTERCONNEXION DES SITES DU SMGEAG",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/658267-2026"
+        }
+      ]
+    },
+    {
+      "id": "sig_cb764191742f76c92974",
+      "source_hash": "db8d662f3f8c256421e6fb5810c9467c41b499a669ec0c80006d6a975c1960ab",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Project-management assistance for involving the school community in greening school playgrounds (Cours Nature), three geographic lots.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Assistance à Maîtrise d'ouvrage concertation et programmation pour le réaménagement végétalisé des cours d'écoles (Cours Nature)",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/641153-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Assistance à Maîtrise d'ouvrage pour l'association de la communauté éducative aux projets d'aménagements végétalisés dans les cours d'écoles Lot_ 1_Ecoles secteur T1 : 2ème, 4ème, 5ème et 9ème arrondissements; Lot_2_Ecoles-secteur T2 7ème et 8ème arrondissements; Lot_3_ Ecoles-secteur T3 1er, 3ème et 6ème arrondissements",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/641153-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_cc13392d2c6618625b23",
       "source_hash": "18781eea2c536be70d719c23bd6febc20e370df94dcfd50151339eaca5f804a5",
       "decision": "exclude",
@@ -19551,6 +21586,26 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_cc7d27282783457ce64c",
+      "source_hash": "51e8b5b29b8aba8badb863ddc785209035fc3c42e1e1e7cd220013ee0fe64191",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Renewal and support of Dassault Systèmes 3DEXPERIENCE (SaaS) and CATIA V5 licences used by research teams for design, simulation and PLM; vendor licence renewal with no implementation or integration scope.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Renouvellement et support des licences 3DEXPERIENCE et CATIA V5",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/655301-2026"
+        },
+        {
+          "field": "description",
+          "quote": "L’IFPEN utilise la plateforme 3DEXPERIENCE version SAAS de Dassault Systèmes comme solution de conception, de simulation, de gestion des données techniques (PLM) et de collaboration. L’IFPEN possède On Premise également une licence CATIA V5 permettant l’accès aux anciennes études. Les licences sont utilisées quotidiennement par les équipes de plusieurs directions de Recherches pour : • La conce",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/655301-2026"
+        }
+      ]
     },
     {
       "decision": "exclude",
@@ -19728,6 +21783,26 @@
       "source_hash": "b515039d29b4d03200c197d527ec384031bf4d304cf2cdbcefcb73619c09231e"
     },
     {
+      "id": "sig_cf5ab75c14cbaaf85f5b",
+      "source_hash": "bbb297719d75d79b71dc8d08e16f6c270e172b39b426a14c4fefd50c1d120a3d",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Feasibility study (technical, legal, institutional, economic and financial) for a biodiversity-conservation trust fund in Senegal.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Etude de faisabilité pour la mise en place d’un fonds fiduciaire pour la conservation de la biodiversité au Sénégal",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/635075-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Étudier la faisabilité technique, juridique, institutionnelle, économique et financière de la création d’un Fonds Fiduciaire pour la Conservation de la Biodiversité au Sénégal et proposer une feuille de route opérationnelle pour sa mise en place.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/635075-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_cf77547941b731b5ea07",
       "source_hash": "dca6b995ffa7ab85c60d9f2da1c18f68ad22e7cd46bba4161cd65b204a2a3c73",
       "decision": "guide",
@@ -19774,6 +21849,26 @@
           }
         }
       }
+    },
+    {
+      "id": "sig_cf8ee8a600a1f8c7697b",
+      "source_hash": "bc21d2b681b9249f1f3a120225172401797ac0798f5c9eff6159b61a2689843d",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Communication agency services for FIF PL: communication strategy, social networks, podcasts, press relations, newsletters, annual convention logistics and promotional brochures.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "CONSULTATION RELATIVE A DES PRESTATIONS DE COMMUNICATION AU PROFIT DES ACTIONS DU FIF PL",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/650886-2026"
+        },
+        {
+          "field": "description",
+          "quote": "La présente consultation vise à l'attribution d'un marché public de prestations de service au sens de l'article L. 1111-4 du Code de la commande publique portant sur des prestations de communication. En synthèse, les prestations attendues sont les suivantes : - Assistance du FIF PL dans la détermination de sa stratégie de communication et son pilotage (UO 1) ; - Assistance du FIF PL pour sa communication sur les",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/650886-2026"
+        }
+      ]
     },
     {
       "id": "sig_cf9535f03041162a3dab",
@@ -19870,6 +21965,26 @@
       "reviewed_at": "2026-09-22T09:29:11.069922+00:00",
       "reviewed_by": "Codex primary agent; independent review of subagent proposal",
       "source_hash": "db58e729353a4f24ac7ecac64398c1f98f257e136ca9fdab5f6e3f47854d60c5"
+    },
+    {
+      "id": "sig_cffcddc8759a7fb20c05",
+      "source_hash": "4027e25f595e1cc9d7e211a01cab086bfebf21898594db092631a883dd62eeb5",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "HR 'employment engineering' services: coaching and support of employees under the company's GEPP agreement and for internal/external mobility (two lots of human HR support).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Prestations d'Ingénierie Emploi dans le cadre de projets RH",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/656928-2026"
+        },
+        {
+          "field": "description",
+          "quote": "La présente consultation a pour objet l'attribution de marchés de Prestations d'Ingénierie Emploi dans le cadre de projets RH et allotie comme suit : Lot 1 – Accord cadre mono-attributaire de missions d'accompagnement des salariés dans le cadre de l'accord GEPP Notre besoin prend forme au regard du contexte évolutif de l'entreprise et de la mise en œuvre de notre accord collectif relatif à la gestion des emplois et",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/656928-2026"
+        }
+      ]
     },
     {
       "id": "sig_d06ddb546c44a243d33c",
@@ -20041,6 +22156,26 @@
           }
         }
       }
+    },
+    {
+      "id": "sig_d1f430d5c3fcd7d60afe",
+      "source_hash": "53164fbcd1562bb39c90aae60f8ec622d2e45fe5470b6bcbd5f1897bf2f32b20",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Project-management assistance (AMO) on the buyer's SAP software; vendor-specific SAP consultancy with no other scope stated.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Assistance à maîtrise d’ouvrage sur le logiciel SAP",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/612553-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Prestations d’assistance à maîtrise d’ouvrage sur le logiciel SAP Cette phase concerne la phase d'offres",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/612553-2026"
+        }
+      ]
     },
     {
       "id": "sig_d21c7a59ece191bc6134",
@@ -20390,6 +22525,26 @@
       "guidance": null
     },
     {
+      "id": "sig_d67707bd65bd8cc19ae8",
+      "source_hash": "b60b40311474ff805fc5de3ea348e3ce138fdaf7f684e0baa4efa3bb0182fd8d",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "External (regulatory) evaluation of medico-social establishments and services, four lots by establishment size.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "2027EVA-1 - Prestation de services pour l'évaluation externe des établissements et services médico-sociaux (ESSMS)",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/630607-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Prestation de services pour l'évaluation externe des établissements et services médico-sociaux (ESSMS) Établissements de 30 à 89 places médico-sociaux; Établissements de 90 à 149 places médico-sociaux; Établissements de 150 à 299 places médico-sociaux; Établissements de plus de 300 places médico-sociaux",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/630607-2026"
+        }
+      ]
+    },
+    {
       "decision": "guide",
       "guidance": {
         "approach": [
@@ -20414,6 +22569,26 @@
       "reviewed_at": "2026-09-22T11:52:15.370255+00:00",
       "reviewed_by": "Codex primary agent; independent technical-content review",
       "source_hash": "8edce1f9425bc58d194b0668c607c936fa4f6fa82c3cc631a4131a44fdff2750"
+    },
+    {
+      "id": "sig_d6b1e04d7569fac20636",
+      "source_hash": "a0acb7da8d81f16cc1c6c63fd7c9b606c0e26b1ce9c1af02c410c7d23b39d47d",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Rehabilitation works on a hospital building in 17 trade lots (asbestos removal, structural work, roofing, joinery, electricity, HVAC, medical gases, building technical management, external works).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Travaux de réhabilitation du bâtiment V120 de l'hôpital de Villeneuve de Berg",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/527253-2026"
+        },
+        {
+          "field": "description",
+          "quote": "La consultation est lancée par l'établissement support du Groupement Hospitalier de Territoire (GHT) Drôme Ardèche Vercors. --- 2 PSE Obligatoires : PSE 01 - Lot 13 : Appel malade au RDC supérieur (V0) (remplacement des équipements (seul le bus est prévu en base)) PSE 02 - Lot 13 : Récepteur de radiomessagerie, renvoi rappel DESAMIANTAGE; GROS oeUVRE - MACONNERIE; CHARPENTE - COUVERTURE BACS - ZINGUERIE - OSSATURE",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/527253-2026"
+        }
+      ]
     },
     {
       "id": "sig_d6f20e827ba28a83b6df",
@@ -20486,6 +22661,46 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_d860e1ebd6ac5cf540a9",
+      "source_hash": "984c64bdcb50f3e19132cdc9c948172c698342d1188c5dcd91d3d3fd565e7d5c",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Land, financial and notarial assistance for transferring ownership of regional railway lines and rolling-stock depots (three lots).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Assistance à la maîtrise d'ouvrage pour le transfert de propriété des lignes de desserte fine du territoire (LDFT) et des ateliers de maintenance et de remisage du matériel roulant",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/645387-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Dans le cadre de mise en concurrence des ligne ferroviaires régionales, la Région Grand Est, autorité organisatrice des transports ferroviaires régionaux, devient propriétaire des lignes de desserte fine du territoire et des gares concernées. Afin de l'accompagner, la SPL Infrastructure lance le présent marché d'Assistance à la maîtrise d'ouvrage pour le transfert de propriété des lignes de desserte fine du",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/645387-2026"
+        }
+      ]
+    },
+    {
+      "id": "sig_d972734870eb32fd0eef",
+      "source_hash": "7d38b0f5a72b8c6a29c1fb81fb96ca129dbcd75943f6cc614fb61f215bb8a983",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Maintenance and small works on the supervision installations of the operations-support unit, the synoptic displays and the fire-safety reset systems of the Paris-Charles de Gaulle terminals. This is maintenance of airport building-safety and supervision systems; no CRM, business application, integration or AI work is procured.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Marché de maintenance et petits travaux des installations de supervision d'unité d'aide à l'exploitation UAE de CDG9",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/373063-2024"
+        },
+        {
+          "field": "description",
+          "quote": "Le présent marché a pour objet la maintenance et la réalisation de petits travaux divers et d'adaptation des installations de l'Unité d'Aide à l'Exploitation, partie haute, des équipements Synoptiques, et des systèmes de réarmement du système de sécurité incendie",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/373063-2024"
+        }
+      ]
     },
     {
       "id": "sig_da0d58e0c1acaf2e6781",
@@ -20879,6 +23094,21 @@
       "guidance": null
     },
     {
+      "id": "sig_dccaa3609c2188468449",
+      "source_hash": "363c8312bd4019a5cc91486f47c55d92975ea3fdb91d0f7ad5c4e3b38cd76fcc",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Study mapping the training needs of structural design offices ahead of Eurocode 5.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Cartographie des besoins en formation des bureaux d’études structure pour anticiper l’Eurocode 5",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/618215-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_dd73f87151f4cd16f2be",
       "source_hash": "d26be6408b9584f5559c55f4934c7408a51e7ed350ef110367d89e9552be00ae",
       "decision": "guide",
@@ -21206,6 +23436,26 @@
       "source_hash": "b5e342709bb7adb9b7f821e1c7710c46dfa92784ff5e25da83865fd0124e49f1"
     },
     {
+      "id": "sig_dfec04bed68292c604d3",
+      "source_hash": "0b5f4a74285bfe92a7d8d9ef394800423b202f1e70d0caf5887c0833d0f26e2b",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Preliminary environmental studies and regulatory environmental files (case-by-case procedure, optional impact study) for a departmental road sector.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "RD900 - Secteur Pritz - Etudes préalables environnementales",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/614862-2026"
+        },
+        {
+          "field": "description",
+          "quote": "La présente consultation concerne les études préalables environnementales et constitution des dossiers environnementaux réglementaires - RD900 - Secteur Pritz. La procédure de passation utilisée est l'appel d'offres ouvert. Elle est soumise aux dispositions des articles L. 2124-2, R. 2124-2 1° et R. 2161-2 à R. 2161-5 du Code de la commande publique. Le marché à tranches sera conclu en application des articles R.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/614862-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_dffd39d7db588b8ae59d",
       "source_hash": "168df52149d235b3709d1ca862e64510530488a0e00a530c090d9810c4356839",
       "decision": "guide",
@@ -21406,6 +23656,26 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_e196f60d302f91d9157f",
+      "source_hash": "15d22a1675a3f09fdaa25439578cc943dbac464eb0db00753be9e913646e283b",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Dynamic purchasing system for new and refurbished IT hardware: PCs, screens, printers, point-of-sale hardware, servers and network equipment, smartphones, meeting-room AV and hardware buy-back (eight categories).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Achat de matériels informatiques pour la SPL Le Voyage à Nantes",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/300432-2024"
+        },
+        {
+          "field": "description",
+          "quote": "Le présent SAD porte sur l’achat de matériels informatiques neufs et reconditionnés afin de répondre aux besoins de l’Acheteur. Le présent SAD porte sur l’achat de matériels informatiques neufs et reconditionnés afin de répondre aux besoins de l’Acheteur. Catégorie 1 : Ordinateur personnel et accessoires associés.; Le présent SAD porte sur l’achat de matériels informatiques neufs et reconditionnés afin de répondre",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/300432-2024"
+        }
+      ]
     },
     {
       "id": "sig_e1bcda544514a7ae6fc7",
@@ -21921,6 +24191,26 @@
       "source_hash": "5e03359790f24e8f18090981eb7943fcef847ab533170225aa86f80cd3358182"
     },
     {
+      "id": "sig_e626d280bf75555d2ee7",
+      "source_hash": "661ebb421457875213040c1b083fdc39e4832a6df62fe016ed598077912b0425",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Five-year dynamic purchasing system, reserved exclusively for AFT Transport et Logistique, for telephone survey services carried out by a call centre. The purchased service is survey fieldwork by call-centre interviewers; the notice describes no contact-centre platform, CRM, portal or other software to be supplied or integrated.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Achat de prestations de services d'enquêtes téléphoniques",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/671421-2024"
+        },
+        {
+          "field": "description",
+          "quote": "Réalisation de prestations de services d'enquêtes téléphoniques par centre d'appels au profit de l'AFT. SAD exclusivement au profit de l'AFT, d'une durée de cinq ans, ayant pour objet la réalisation de prestations de services d'enquêtes téléphoniques par centre d'appels .",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/671421-2024"
+        }
+      ]
+    },
+    {
       "decision": "exclude",
       "evidence": [
         {
@@ -22082,6 +24372,26 @@
       }
     },
     {
+      "id": "sig_e7af47ad8d814d84da9e",
+      "source_hash": "b2d73e57fd5a4d326eda2fce9c90440d5a2cfbbe14abf896b30d2cf265fde357",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Half-yearly supply of commercial real-estate market databases and writing of market-trend reports (two lots: data supply, report writing).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Fourniture de bases de données et réalisation de notes de conjoncture relatives au marché de l'immobilier d'entreprise en Ile-de-France",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/656700-2026"
+        },
+        {
+          "field": "description",
+          "quote": "La présent marché a pour objet la fourniture semestrielle de bases de données relatives aux marchés d’immobilier d’entreprise (bureaux, locaux d’activité, entrepôts de plus de 5 000 m2, datacenters) en Ile-de-France et la réalisation de notes de conjoncture sur ces mêmes marchés. Le marché se décompose en deux lots : lot 1 : fourniture de bases de données ; lot 2 : réalisation de notes de conjoncture Fourniture de",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/656700-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_e7ff320ef1cc012236ad",
       "source_hash": "c74e05725a8335f771f5666b6b759d0ec9b32a26aeaaefe4e574cc38aa9620cf",
       "decision": "guide",
@@ -22192,6 +24502,26 @@
       "reviewed_at": "2026-09-22T09:29:11.069922+00:00",
       "reviewed_by": "Codex primary agent; independent review of subagent proposal",
       "source_hash": "de1586b7a0845dccbbea23b449b69db7bfe62192c33788548ea54756aa893a44"
+    },
+    {
+      "id": "sig_eac5b060642517e9ccba",
+      "source_hash": "5f2fe960e68a15e04fc971c300ac46ad7380ee4bb031c3e094525ba94da05722",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Naturalist inventories (insects; mammals, reptiles and amphibians) to improve biodiversity knowledge, three lots.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Inventaires naturalistes pour l'amélioration des connaissances du territoire de Limoges Métropole en 3 lots",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/627104-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Inventaires naturalistes pour l'amélioration des connaissances du territoire de Limoges Métropole en 3 lots Insectes; Mammifères, reptiles et amphibiens; Mammifères, reptiles et amphibiens",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/627104-2026"
+        }
+      ]
     },
     {
       "decision": "exclude",
@@ -22458,6 +24788,26 @@
         }
       ],
       "guidance": null
+    },
+    {
+      "id": "sig_edd1ef0f922cbc878ce8",
+      "source_hash": "0c7a39e0a5f53f908a60de66b9929e7e4ffa960d8bff94ffe8c8e5bb3ee63a60",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Production of sanitation master plans (schémas directeurs d'assainissement) for several communes, two geographic lots in four study phases.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Réalisation des Schémas Directeurs d'Assainissement 2027",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/648047-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Chaque lot fera l'objet d'une attribution séparée. Chaque lot est décomposé en 4 phases détaillées dans le dossier de consultation. Le paiement des prestations se fera dans le respect du délai global de paiement applicable à l'acheteur. Financement via le budget de Grand Bourg Agglomération (30%) et subventions (sous réserve des subventions de l'année 2025) de l'Agence de l'Eau (50%) et du Conseil départemental de",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/648047-2026"
+        }
+      ]
     },
     {
       "id": "sig_edefd2ddf641ce44d9cd",
@@ -23781,6 +26131,41 @@
       }
     },
     {
+      "id": "sig_f93359d361afda58dd42",
+      "source_hash": "0831b7daa8238a1a997b8f49ade42b58fbe7127f231627e2d91979bc086c3ad9",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Content production and community animation/moderation for TV5MONDE's social-media pages and accounts; the description only refers to the specifications.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Prestations de production de contenus et d'animation/modération pour les pages et comptes sociaux de TV5MONDE",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/607929-2026"
+        }
+      ]
+    },
+    {
+      "id": "sig_f97cebaf0c80a9501c8e",
+      "source_hash": "f25471b80b9a7b8a4556de944d2680381b025b011e3d385d065fb24e370f7c84",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Technical, legal and financial assistance for managing the end of a public-service concession (one firm and ten optional tranches).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "AM26.24 - Assistance technique, juridique et financière pour la gestion de la fin de la concession de service public de l'Emeraude",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/600325-2026"
+        },
+        {
+          "field": "description",
+          "quote": "AM26.24 - Assistance technique, juridique et financière pour la gestion de la fin de la concession de service public de l'Emeraude. Il n'est pas prévu de décomposition en lots : l'objet du marché ne permet pas de l'allotir. Les prestations sont divisées en 11 tranches, en application des articles R. 2113-4 à R. 2113-6 du Code de la commande publique : 1 tranche ferme et 10 tranches optionnelles. La durée plafond",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/600325-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_fa79ecd4cd89e1d780ce",
       "source_hash": "e8c262b0f4cd5bbbc756166b9cb9aff0b29e5a864a32be3b2aa18e394049365e",
       "decision": "guide",
@@ -24288,6 +26673,26 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_ff5203aaa096de4ac209",
+      "source_hash": "996b9f6512160427a14867c711399fb9d183dbb54e6aeb16a6fbcd63a558f5c6",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T19:24:25.399841+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Outsourcing of the data protection officer (DPO) function for a city and its CCAS - a legal/compliance role, not a data system.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Externalisation de la mission de délégué à la protection des données (DPO)",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/625039-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Externalisation de la mission de délégué à la protection des données (DPO) pour les besoins de la Ville de la Garenne-Colombes et le CCAS Externalisation de la mission de délégué à la protection des données (DPO) pour les besoins de la Ville et du CCAS",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/625039-2026"
+        }
+      ]
     },
     {
       "id": "sig_ff835aacbe2fc7572298",
