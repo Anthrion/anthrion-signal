@@ -66,6 +66,12 @@ def discovery_text(value):
     value = RECIPIENT_ORGANISATION.sub(" for the receiving organisation ", value)
     value = re.sub(r"\b(?:AI\s+software\s+[\"']?)?(?:AI[ _-]*)?(?:Bietercockpit|Vergabemanager)\b", "bidding client", value, flags=re.IGNORECASE)
     value = re.sub(r"\b(?:[a-z0-9-]+\.)+[a-z]{2,24}/[^\s<>]*", " ", value, flags=re.IGNORECASE)
+    # A conditional supplier certification ("If you ... provide any IT systems ... you will
+    # need to have a Cyber Security Essentials Plus Certificate") is an eligibility condition
+    # on bidders, not the purchased scope. Mask only the clause: bullets or lot text that
+    # follow it without a full stop must stay matchable.
+    value = re.sub(r"\bif you\b[^.!?]{0,160}\byou will (?:be )?need to (?:have|hold)\b[^.!?]{0,40}"
+                   r"\bcyber\b[^.!?]{0,40}\bcertific\w*", " ", value, flags=re.IGNORECASE)
     sentences = re.split(r"(?<=[.!?])\s+|\n+", value)
     registration = re.compile(
         r"\b(?:log\s?in|logging in|sign in|user guide|guidance for suppliers|"

@@ -6443,6 +6443,32 @@
       }
     },
     {
+      "id": "sig_41fb27f55ade428052f2",
+      "source_hash": "404255a88d392696fd71862596f8ec3c8fde1157fe8328f49ef085afe39260b3",
+      "decision": "include",
+      "reviewed_at": "2026-09-28T11:12:00.449459+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "NHS Supply Chain framework (future tender) for technology-enabled care. Besides devices, its categories buy telehealth remote-monitoring solutions, ongoing support services for telehealth systems and lone-worker monitoring systems: software platforms (monitoring dashboards, patient/worker apps, monitoring services) that a Health Cloud/CRM or integration partner could plausibly supply, integrate or support. It is a one-lot planning notice with no lot text, too sparse to be sure that no software or platform scope exists, so it stays visible. Before the cyber-certificate boilerplate rule it was admitted only by that boilerplate; this include keeps it visible for its real scope.",
+      "evidence": [
+        {
+          "field": "description",
+          "quote": "Telehealth: Remote monitoring solutions to support patient wellbeing, including fall detection systems.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/064875-2025"
+        },
+        {
+          "field": "description",
+          "quote": "Telehealth Services, Maintenance & Support: Ongoing support services for telehealth systems.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/064875-2025"
+        },
+        {
+          "field": "description",
+          "quote": "Lone Worker Safety Solutions: Devices and systems designed to monitor and ensure the safety of individuals working alone.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/064875-2025"
+        }
+      ],
+      "priority": "other"
+    },
+    {
       "id": "sig_4210f69ee32efe8ca46d",
       "source_hash": "25987542d0ed8de814ece895e32614a9d01bcdd80e64ce11ca6082cb35925718",
       "decision": "guide",
@@ -10890,6 +10916,27 @@
       "reviewed_at": "2026-09-22T09:29:11.069922+00:00",
       "reviewed_by": "Codex primary agent; independent review of subagent proposal",
       "source_hash": "443fc143e590b2a3415e2631d969aa2d56f3607dee780947fb046884423fb832"
+    },
+    {
+      "id": "sig_6c8524bb6326bd74cd64",
+      "source_hash": "aa8e06e046b900dc0bb6ed080084719a2208bbd297e4c52172be3cc15d8aeb6c",
+      "decision": "include",
+      "reviewed_at": "2026-09-28T11:12:00.449459+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "CSI Piemonte runs a preliminary market consultation (live PIN, early engagement) to procure an accounting information system for the Comune di Torino. This is a business-application procurement (category 4 of the relevance test: business-system implementation, integration and support) at the stage where suppliers can shape the solution. It is rejected only because its CPV is 30000000 (office machinery) and its short Italian text matches no phrase; comparable business-system consultations and supplies with IT CPVs are shown (e.g. sig_9b97c1f86f535dbc8fd0 ERP software, sig_bebd58901957e9caacbb public-works management solution). Unsure whether Anthrion would bid, so it is kept visible for the team to judge.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "CONSULTAZIONE PRELIMINARE DI MERCATO PER L’APPROVVIGIONAMENTO DI UN SISTEMA INFORMATIVO CONTABILE (APIM26_006)",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/638942-2026"
+        },
+        {
+          "field": "description",
+          "quote": "APPROVVIGIONAMENTO DI UN SISTEMA INFORMATIVO CONTABILE PER COMUNE DI TORINO",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/638942-2026"
+        }
+      ],
+      "priority": "other"
     },
     {
       "id": "sig_6c8a0c2a7cec95c30dbf",
