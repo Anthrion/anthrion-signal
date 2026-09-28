@@ -730,7 +730,7 @@ test('@pr history titles open their own full record, keep language across pages,
   await expect(record.locator('.inspector-summary')).toContainText(
     'Complete retained scope for this historical contract.',
   )
-  await expect(record.getByRole('button', { name: /Salesforce/ })).toHaveCount(0)
+  await expect(record.locator('[aria-label*="Salesforce"]')).toHaveCount(0)
   await expect(record.getByRole('link', { name: /Gmail/ })).toBeVisible()
   const draft = new URL((await record.getByRole('link', { name: /Gmail/ }).getAttribute('href'))!)
   const sharedURL = draft.searchParams.get('body')!.match(/View in Anthrion Signal: (.+)/)![1]
@@ -753,7 +753,7 @@ test('@pr history titles open their own full record, keep language across pages,
   await expect(
     record.getByRole('link', { name: 'Open source notice', exact: true }),
   ).toHaveAttribute('href', history[2].source_url!)
-  await expect(record.getByRole('button', { name: /Salesforce/ })).toHaveCount(0)
+  await expect(record.locator('[aria-label*="Salesforce"]')).toHaveCount(0)
   await record.getByRole('button', { name: 'Back', exact: true }).click()
   await buyer.getByRole('button', { name: 'Back to results', exact: true }).click()
   await page.reload()
@@ -769,7 +769,7 @@ test('@pr history titles open their own full record, keep language across pages,
     'Complete retained scope for this historical contract.',
   )
   await expect(sharedRecord.locator('.supplier-links')).toContainText('Winner 1 Ltd')
-  await expect(sharedRecord.getByRole('button', { name: /Salesforce/ })).toHaveCount(0)
+  await expect(sharedRecord.locator('[aria-label*="Salesforce"]')).toHaveCount(0)
 })
 
 test('@pr related live and awarded titles open full details and awarded context points back to open signals', async ({
@@ -788,13 +788,13 @@ test('@pr related live and awarded titles open full details and awarded context 
     .getByRole('button', { name: 'Portail citoyen', exact: true })
     .click()
   const full = page.getByRole('dialog', { name: 'Full record', exact: true })
-  await expect(full.getByRole('button', { name: /Salesforce/ })).toBeVisible()
+  await expect(full.locator('[aria-label*="Salesforce"]')).toBeVisible()
   await full.getByRole('button', { name: 'Back', exact: true }).click()
   await context
     .locator('.research-awards')
     .getByRole('button', { name: 'Customer platform implementation 2024', exact: true })
     .click()
-  await expect(full.getByRole('button', { name: /Salesforce/ })).toHaveCount(0)
+  await expect(full.locator('[aria-label*="Salesforce"]')).toHaveCount(0)
   await full
     .getByRole('button', { name: 'Customer platform implementation 2024', exact: true })
     .click()

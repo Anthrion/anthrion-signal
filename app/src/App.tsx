@@ -43,6 +43,7 @@ import {
 import type { Dataset, DisplayLanguage, EnglishText, Filters, Signal } from './types'
 import { TranslationProvider, useSignalText, useTranslations } from './Translation'
 import { RecommendedApproach } from './RecommendedApproach'
+import { salesforcePrefill, salesforceSandbox } from './salesforce'
 import {
   AmbientGlass,
   BrandSignature,
@@ -1575,6 +1576,8 @@ function ResearchRecord({ signal, data }: { signal: Signal; data: Dataset }) {
 
 function RecordShare({ signal, data }: { signal: Signal; data: Dataset }) {
   const text = useSignalText(signal)
+  const { language } = useTranslations()
+  const salesforce = salesforcePrefill(signal, salesforceSandbox, text, language)
   const assetRoot = `${import.meta.env.BASE_URL}assets/integrations/`
   const [copied, setCopied] = useState(false)
   useEffect(() => {
@@ -1585,17 +1588,29 @@ function RecordShare({ signal, data }: { signal: Signal; data: Dataset }) {
   return (
     <div className="record-integrations" role="group" aria-label="Record integrations">
       {data.current_feed?.records[signal.id]?.view !== 'history' &&
-        isAvailableOpportunity(signal, Date.now()) && (
+        isAvailableOpportunity(signal, Date.now()) &&
+        (salesforce ? (
+          <a
+            className="record-integration"
+            href={salesforce.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Review lead in Salesforce sandbox (opens a new tab)"
+            title="Review lead in Salesforce sandbox"
+          >
+            <img src={`${assetRoot}salesforce.svg`} alt="" width="34" height="24" />
+          </a>
+        ) : (
           <button
             type="button"
             className="record-integration"
             disabled
-            aria-label="Salesforce (coming soon)"
-            title="Salesforce — coming soon"
+            aria-label="Salesforce prefill unavailable"
+            title="This record cannot fit in a Salesforce draft link. Copy its details into a new Lead."
           >
             <img src={`${assetRoot}salesforce.svg`} alt="" width="34" height="24" />
           </button>
-        )}
+        ))}
       <a
         className="record-integration record-integration-gmail"
         href={gmailDraftURL(signal, appURL(), text)}
