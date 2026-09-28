@@ -1,24 +1,34 @@
 {
   "applied": true,
-  "at": "2026-09-27T00:12:41.861375+00:00",
-  "candidate_records": 1,
+  "at": "2026-09-28T00:34:32.445631+00:00",
+  "candidate_records": 2,
   "records": [
     {
-      "bucket": "41.jsonl.gz",
+      "bucket": "d6.jsonl.gz",
       "hashes": [
-        "d731440d5242c0e4477d65dcfe4eb7d2d489d81c467f4058f680d4db179dd1d4"
+        "da34cb93ae550d6b2516552bb6da72c6c22fb97f76b0e76133080acccb06b0a0"
       ],
-      "id": "sig_58e6d68d2e2efc638e12",
+      "id": "sig_7eca56bc4a4e550399d0",
       "reason": "Every version is old, inactive and explicitly physical/non-technical; no retained dependency.",
-      "title": "Proposed 25 House Development at Coplands Road Stromness",
-      "url": "https://www.find-tender.service.gov.uk/Notice/083752-2025"
+      "title": "Internal and External Painting (Cyclical decoration)",
+      "url": "https://www.find-tender.service.gov.uk/Notice/001097-2026"
+    },
+    {
+      "bucket": "f4.jsonl.gz",
+      "hashes": [
+        "cee8c847a10d5ba3438dce3684d11c1a378f9ecc4ebe1c2136e00004b34782de"
+      ],
+      "id": "sig_90622c3c261646d83bcc",
+      "reason": "Every version is old, inactive and explicitly physical/non-technical; no retained dependency.",
+      "title": "Contractor Procurement for Ebbsfleet Central Phase 1a Infrastructure Works",
+      "url": "https://www.find-tender.service.gov.uk/Notice/000422-2026"
     }
   ],
-  "recovery_commit": "586dbb9c5fde0c6d82b1c5b1c459c38f342b32ba",
-  "removed_bytes": 1073,
-  "retained_heads_sha256": "d7a7c4515d31cb620ee1a0f776c321e07bcba1bbe4cc213c6419a84e69cfd55d",
+  "recovery_commit": "333d8c8d8e069329ad1da9d721d10c3d41cfa79a",
+  "removed_bytes": 3063,
+  "retained_heads_sha256": "a189766f51d5165b1eb7d178222b09ce94f47eab6be4878ab0f8686316f5eb97",
   "signature": {
-    "day": "2026-09-27",
+    "day": "2026-09-28",
     "discovery": "e13f6ef58bdf5ea367cbc63217d4b2d209c73d844021402d2af67cf952d87630",
     "policy": "unused-physical-inactive-1"
   }
