@@ -1,4 +1,4 @@
-import type { Signal } from './types'
+import type { DisplayLanguage, Signal } from './types'
 import { isAvailableOpportunity } from './lib'
 import { useTranslations } from './Translation'
 import { usePreferences } from './preferences'
@@ -85,15 +85,12 @@ function aligned(localized: Points, english: Points) {
   )
 }
 
-export function RecommendedApproach({ signal }: { signal: Signal }) {
-  const { language } = useTranslations()
-  const { approach } = usePreferences()
+export function selectedGuidance(signal: Signal, language: DisplayLanguage, now = Date.now()) {
   const guidance = signal.reviewed_guidance
   if (
-    approach === 'hide' ||
     !guidance ||
     !signal.countries.some((country) => countries.has(country)) ||
-    !isAvailableOpportunity(signal)
+    !isAvailableOpportunity(signal, now)
   )
     return null
   const originalLanguage =
@@ -109,9 +106,18 @@ export function RecommendedApproach({ signal }: { signal: Signal }) {
       ? candidate
       : undefined
   const display = localized || guidance
+  return { display, language: localized ? originalLanguage : 'en' }
+}
+
+export function RecommendedApproach({ signal }: { signal: Signal }) {
+  const { language } = useTranslations()
+  const { approach } = usePreferences()
+  const selected = selectedGuidance(signal, language)
+  if (approach === 'hide' || !selected) return null
+  const { display } = selected
   const paragraphs = (points: Points) =>
     points.map((point, index) => (
-      <p key={index} lang={localized ? originalLanguage : 'en'}>
+      <p key={index} lang={selected.language}>
         {point.lot_id && <strong>Lot {point.lot_id.replace(/^LOT[- ]?/i, '')}: </strong>}
         {point.text}
       </p>

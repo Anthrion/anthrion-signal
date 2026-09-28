@@ -72,7 +72,7 @@ test('selected design presents compact source facts before untruncated text in o
   expect(
     await buttons.evaluateAll((controls) => controls.map((el) => el.getAttribute('aria-label'))),
   ).toEqual([
-    'Salesforce (coming soon)',
+    'Salesforce prefill unavailable',
     'Share this opportunity in Gmail (opens a new tab)',
     'Slack (coming soon)',
     'Copy link to this opportunity',
@@ -141,7 +141,7 @@ test('@pr Gmail opens an unsent draft for the current record and its link reopen
   await fixture(page, { title: shareTitle })
   const panel = await preview(page)
   await expect(
-    panel.getByRole('button', { name: 'Salesforce (coming soon)', exact: true }),
+    panel.getByRole('button', { name: 'Salesforce prefill unavailable', exact: true }),
   ).toBeDisabled()
   await expect(
     panel.getByRole('button', { name: 'Slack (coming soon)', exact: true }),
@@ -184,6 +184,102 @@ test('@pr Gmail opens an unsent draft for the current record and its link reopen
   expect(nextURL.searchParams.get('body')).toContain('signal=panel-b')
   expect(nextURL.searchParams.get('body')).toContain('Source notice: https://example.com/tender/b')
   expect(nextURL.searchParams.get('body')).not.toContain('signal=panel-a')
+})
+
+test('@pr Salesforce opens a reviewable sandbox draft with tender fields and follows Original in full details', async ({
+  page,
+}) => {
+  const id = 'sig_1234567890abcdef1234'
+  const data = recordDataset(datasetFixture(), {
+    id,
+    title: 'Système de workflow',
+    buyer_name: 'WM5G LIMITED',
+    description: 'Configurer le système.',
+    countries: ['CA'],
+    source_language: 'fr',
+    value_max: 450000,
+    currency: 'CAD',
+    deadline_at: '2099-01-01',
+    reviewed_guidance: {
+      source_hash: 'fixture',
+      complexity: 4,
+      problem_level: 1,
+      original_language: 'fr',
+      approach: [{ text: 'Configure Service Cloud flows.' }],
+      problems: [],
+      localized: {
+        fr: { approach: [{ text: 'Configurer les flux Service Cloud.' }], problems: [] },
+      },
+    },
+  })
+  data.translations = {
+    [id]: {
+      source_hash: 'fixture',
+      version: 'en-procurement-2',
+      title: 'Workflow management system',
+      description: 'Configure the system.',
+    },
+  }
+  await page.route('**/data/current.json', (route) => route.fulfill({ json: data }))
+  await page.goto(`./?view=all&market=&signal=${id}`)
+  const panel = page.locator('.console-detail:visible')
+  const salesforce = panel.getByRole('link', {
+    name: 'Review lead in Salesforce sandbox (opens a new tab)',
+    exact: true,
+  })
+  await expect(salesforce).toBeVisible()
+  await page
+    .context()
+    .route('https://anthrion--aitender.sandbox.lightning.force.com/**', (route) =>
+      route.fulfill({ body: 'Unsaved Salesforce draft' }),
+    )
+  const opened = page.waitForEvent('popup')
+  await salesforce.click()
+  const popup = await opened
+  await expect(popup).toHaveURL(
+    /^https:\/\/anthrion--aitender\.sandbox\.lightning\.force\.com\/lightning\/o\/Lead\/new\?/,
+  )
+  function fields(href: string) {
+    return Object.fromEntries(
+      new URL(href).searchParams
+        .get('defaultFieldValues')!
+        .split(',')
+        .map((pair) => {
+          const split = pair.indexOf('=')
+          return [pair.slice(0, split), decodeURIComponent(pair.slice(split + 1))]
+        }),
+    )
+  }
+  const draft = fields(popup.url())
+  expect(draft).toMatchObject({
+    Lead_Name__c: 'Workflow management system, CA$450000, WM5G LIMITED',
+    FirstName: 'AI tender',
+    LastName: `WM5G LIMITED · ${id}`,
+    Title: 'Workflow management system',
+    Industry__c: 'Technology',
+    Sector__c: 'Software and Services',
+    Tender_Currency__c: 'Other',
+    Anthrion_Signal_ID__c: id,
+    Technology__c: 'Recommended approach:\nConfigure Service Cloud flows.',
+  })
+  expect(draft).not.toHaveProperty('CurrencyIsoCode')
+  expect(draft.Description).toContain('450,000 CAD')
+  expect(draft.Description.indexOf('Published amount:')).toBeLessThan(
+    draft.Description.indexOf('Notice type:'),
+  )
+  await popup.close()
+  await panel.locator('.inspector-heading .research-title-link').click()
+  const context = page.getByRole('dialog', { name: 'Opportunity research' })
+  await context.getByRole('button', { name: 'Record language: English' }).click()
+  await context.getByRole('menuitemradio', { name: 'Original', exact: true }).click()
+  await context.locator('.research-current .record-title-link').click()
+  const full = page.getByRole('dialog', { name: 'Full record', exact: true })
+  const originalLink = full.getByRole('link', { name: /Review lead in Salesforce/ })
+  await expect(originalLink).toBeVisible()
+  const original = fields((await originalLink.getAttribute('href'))!)
+  expect(original.Title).toBe('Système de workflow')
+  expect(original.Technology__c).toContain('Configurer les flux Service Cloud.')
+  expect(original.Anthrion_Signal_ID__c).toBe(id)
 })
 
 test('long records keep the dock visible before and after scrolling at compact and short sizes', async ({
