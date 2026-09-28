@@ -1301,6 +1301,26 @@
       }
     },
     {
+      "id": "sig_0a1a6d3c5cdb0b6776fb",
+      "source_hash": "87108a0ef46c3ab65d01e0a1234e92f2d54282b2bf91953973fd9fea65000598",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T12:16:20.101895+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Upgrade of municipal pumping stations: replacement of energy-intensive pump sets, supply and installation of power panels with soft starters, automation panels and energy analysers at boreholes and pumping stations, and their connection to the existing telecontrol/leak-control system. These are electromechanical works; the only digital element is attaching new panels to the buyer's existing SCADA.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "ΑΝΑΒΑΘΜΙΣΗ ΑΝΤΛΙΟΣΤΑΣΙΩΝ ΔΗΜΟΥ ΑΝΑΤΟΛΙΚΗΣ ΣΑΜΟΥ",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/654298-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Αντικατάσταση παλαιών ενεργοβόρων αντλητικών συγκροτημάτων, με νέα υψηλής ενεργειακής απόδοσης, την προμήθεια και εγκατάσταση νέων πινάκων ισχύος με ενσωματωμένους ομαλούς εκκινητές, την προμήθεια και εγκατάσταση πινάκων αυτοματισμού και αναλυτών ενέργειας σε επιλεγμένες Γεωτρήσεις και Αντλιοστάσια ύδρευσης και ενσωμάτωσή τους στο υφιστάμενο Κεντρικό Σύστημα Τηλελέγχου Τηλεχειρισμού και Ελέγχου Διαρροών Εγκαταστάσεων Ύδρευσης του Δήμου Ανατολικής Σάμου.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/654298-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_0a3425e1e6db240ac0b2",
       "source_hash": "c2a032bdf37c6f8607d63895745f2db9dc0fdc67c03c2a0e9b7e2892713498ed",
       "decision": "guide",
@@ -5766,6 +5786,31 @@
       "source_hash": "b89920ada763cdd209a669783bd6d47a737abd1d817cbbc9199c6f9c1667b125"
     },
     {
+      "id": "sig_3c0929d8cf24a9326d56",
+      "source_hash": "481ed3db43fbf58b542094a8903a72fa883ed6c45db9ca144cb75db14f1d0905",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T12:16:20.101895+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Three licence lots for the Ministry of Education: (1) a SIEM/SOAR security software licence, (2) renewal of Microsoft Software Assurance for existing licences, (3) renewal/extension of FortiAuthenticator support licences (firmware updates, enhanced and phone support). These are security licence purchases/renewals with no implementation, integration, CRM or business-application scope.",
+      "evidence": [
+        {
+          "field": "description",
+          "quote": "Τμήμα 1 : Προμήθεια Άδειας λογισμικού συστήματος SIEM/SOAR (Security Information and Event Management – SIEM, Security Orchestration, Automation, and Response -SOAR), Η ζητούμενη προμήθεια αφορά στην ανάγκη υιοθέτησης σύγχρονων λύσεων ασφάλειας του Υ.ΠΑΙ.Θ.Α..",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/608089-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Τμήμα 2 : Ανανέωση του Προγράμματος Συντήρησης και Υποστήριξης (Software Assurance - SA) των Αδειών Λογισμικού Microsoft του Υπουργείου Η ζητούμενη παροχή υπηρεσιών αφορά στην ανανέωση του προγράμματος συντήρησης και υποστήριξης (Software Assurance - SA) των αδειών λογισμικού της εταιρείας Microsoft που διαθέτει η Υπηρεσία.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/608089-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Τμήμα 3 : Ανανέωση και Επέκταση των Αδειών Υποστήριξης (Firmware Updates, Enhanced Support και Phone Support) του Συστήματος FortiAuthenticator της Υποδομής του Συστήματος Ασφαλούς Μετάδοσης (ΣΑΜ)».Η ζητούμενη παροχή υπηρεσιών αφορά την υποστήριξη των αδειών αναβάθμισης υλικολογισμικού (firmware και general updates), της διευρυμένης τεχνικής υποστήριξης (enhanced support), καθώς και της τηλεφωνικής υποστήριξης (phone support) του συστήματος Forti Authenticator της υποδομής του Συστήματος Ασφαλούς Μετάδοσης (ΣΑΜ), η οποία αναμένεται να λήξει στις 23-10-2026.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/608089-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_3c0f126a91ca2b9fbc53",
       "source_hash": "61c8e5add0f88c3a8afb2c6b36d2e643a71e4e146816a742e5b634ebb16bf08b",
       "decision": "guide",
@@ -8001,6 +8046,21 @@
       "source_hash": "602c4603e18c8e7368baf10e0ea3faedee261dc951c046d9d55feaee03e84d73"
     },
     {
+      "id": "sig_4d97fbe9efa68fa58c55",
+      "source_hash": "00186a7e52596f6ae769943c4b5ee421824719e42618f38485d18076b0eeb28e",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T12:16:20.101895+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Three years of maintenance services for 15 licences of the existing version of the vendor's 'N-CORE' NATO codification system (Ministry of National Defence). This is licence maintenance of an installed specialist product, with no implementation, customisation or integration scope.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Διαγωνισμός προς Σύναψη Σύμβασης Παροχής Υπηρεσιών Συντήρησης Δεκαπέντε (15) Αδειών Χρήσης Υφιστάμενης Έκδοσης Μηχανογραφικού Συστήματος «N-CORE» (Κωδικοποίηση κατά ΝΑΤΟ) για Τρία (3) Έτη για Κάλυψη Αναγκών ΥΠΕΘΑ με Ανοικτή Διαδικασία μέσω ΕΣΗΔΗΣ",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/602075-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_4e3516356e085cc07051",
       "source_hash": "9836e8b8c5061d99f7a0c5594255550f729cf89b529c021c888872a007c1c240",
       "decision": "guide",
@@ -8221,6 +8281,26 @@
       "reviewed_at": "2026-09-22T09:29:11.069922+00:00",
       "reviewed_by": "Codex primary agent; independent review of subagent proposal",
       "source_hash": "807fbff00bddf3fa370428a8e9e311b81bd7c44a780cc44c9ebf1db1cc10473e"
+    },
+    {
+      "id": "sig_5183115d74e23236474d",
+      "source_hash": "f92b3016e3027766738f6995bf7be6d4f6b6d6f6cbfbd2e02d896a2768da0ab3",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T12:16:20.101895+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Earlier notice of the same ERT procurement: supply of high-availability infrastructure with disaster recovery for Oracle databases (CPVs servers 48820000, storage 30233100, computer installation 51611100, system maintenance 50324100). Purchased database/server infrastructure, not CRM, business-application, integration or AI delivery.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "ΗΛΕΚΤΡΟΝΙΚΟΣ ΑΝΟΙΚΤΟΣ ΔΗΜΟΣΙΟΣ ΔΙΑΓΩΝΙΣΜΟΣ ΑΝΩ ΤΩΝ ΟΡΙΩΝ ΓΙΑ ΤΗΝ ΠΡΟΜΗΘΕΙΑ ΥΠΟΔΟΜΗΣ ΥΨΗΛΗΣ ΔΙΑΘΕΣΙΜΟΤΗΤΑΣ ΜΕ DISASTER RECOVERY ΓΙΑ ΤΙΣ ΒΑΣΕΙΣ ΔΕΔΟΜΕΝΩΝ ORACLE ΤΗΣ ΕΡΤ Α.Ε",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/587583-2026"
+        },
+        {
+          "field": "description",
+          "quote": "ΠΡΟΜΗΘΕΙΑ ΥΠΟΔΟΜΗΣ ΥΨΗΛΗΣ ΔΙΑΘΕΣΙΜΟΤΗΤΑΣ ΜΕ DISASTER RECOVERY ΓΙΑ ΤΙΣ ΒΑΣΕΙΣ ΔΕΔΟΜΕΝΩΝ ORACLE ΤΗΣ ΕΡΤ Α.Ε ΠΡΟΜΗΘΕΙΑ ΥΠΟΔΟΜΗΣ ΥΨΗΛΗΣ ΔΙΑΘΕΣΙΜΟΤΗΤΑΣ ΜΕ DISASTER RECOVERY ΓΙΑ ΤΙΣ ΒΑΣΕΙΣ ΔΕΔΟΜΕΝΩΝ ORACLE ΤΗΣ ΕΡΤ Α.Ε.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/587583-2026"
+        }
+      ]
     },
     {
       "id": "sig_51e23817765beacd6921",
@@ -9248,6 +9328,21 @@
       "guidance": null
     },
     {
+      "id": "sig_5b0cae0c05a99ce2ec71",
+      "source_hash": "4629363e8925beef9e73a21d4d8e118c962962b542c7d37187b936e55db132a7",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T12:16:20.101895+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Supply and support of one air-traffic-control simulation system for the Hellenic Air Force (CPV 34962210, air-traffic control simulation). This is specialist simulator equipment, not a business application, CRM, integration or AI implementation.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "ΔΕ.13/26 της ΥΠ/ΠΑ για την Προμήθεια - Υποστήριξη ενός (1) Συστήματος Προσομοίωσης Ελέγχου Εναέριας Κυκλοφορίας",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/622728-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_5b4a529cb0d009642c02",
       "source_hash": "ffbb7eea00f54090607ec165b7d4f2a5930eb615a322cb7ca88f7badbd7064c8",
       "decision": "exclude",
@@ -9566,6 +9661,21 @@
       "guidance": null
     },
     {
+      "id": "sig_5dd10bd7f0e21d64c8d7",
+      "source_hash": "988d38990872bbc3342e2e2f812e116697c88e360775788b50a1f30ada5b1082",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T12:16:20.101895+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Technical-support consultant services for managing electromobility actions of the Ministry of Infrastructure and Transport (CPV 79411000, general management consultancy): programme-management consultancy with no software or system deliverable.",
+      "evidence": [
+        {
+          "field": "description",
+          "quote": "Διακήρυξη Ηλεκτρονικού Ανοικτού Διεθνούς Άνω των Ορίων Διαγωνισμού για την παροχή υπηρεσιών Συμβούλου Τεχνικής Υποστήριξης για τη διαχείριση δράσεων στον τομέα της Ηλεκτροκίνησης του Υπουργείου Υποδομών και Μεταφορών.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/818708-2025"
+        }
+      ]
+    },
+    {
       "id": "sig_5e57f74c1e4a1f130711",
       "source_hash": "b7cad6d8a8e76726ca980e69196e65d0a2ffa5594a3546e407419825529efc5e",
       "decision": "exclude",
@@ -9774,6 +9884,26 @@
           }
         }
       }
+    },
+    {
+      "id": "sig_607a0b7a7be8beaf629e",
+      "source_hash": "fe6eea13f5fc39928756b5ad55c2415e3cecf8ed3104ffbf87937fcd384308e5",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T12:16:20.101895+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Supply of IT equipment (lowest-price award) for the roll-out of the existing secure SIENA information-exchange application between Member States (Internal Security Fund). The supplier delivers equipment; the SIENA application itself is not developed, configured or integrated under this contract (CPVs 48000000/48800000/72000000).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Προμήθεια εξοπλισμού πληροφορικής για την υλοποίηση της Πράξης με τίτλο «ειδική δράση “επέκταση (roll-out) της ασφαλούς εφαρμογής SIENA για την ανταλλαγή πληροφοριών μεταξύ των κρατών μελών”»",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/587403-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Σύναψη σύμβασης, με κριτήριο κατακύρωσης την πλέον συμφέρουσα από οικονομικής απόψεως προσφορά, αποκλειστικά βάσει της τιμής (χαμηλότερη τιμή), για την προμήθεια εξοπλισμού πληροφορικής για την υλοποίηση της Πράξης με τίτλο «ειδική δράση “επέκταση (roll-out) της ασφαλούς εφαρμογής SIENA για την ανταλλαγή πληροφοριών μεταξύ των κρατών μελών”», (MIS) 6056372 που χρηματοδοτείται από το «Ταμείο Εσωτερικής Ασφάλειας 2021-2027»",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/587403-2026"
+        }
+      ]
     },
     {
       "id": "sig_608be1ab08175b3ea416",
@@ -10765,6 +10895,21 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_6a6c3c76d11f26055d33",
+      "source_hash": "14707070aefd0ac75ab1e952252be071120c49313f92387a93094bed298eac26",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T12:16:20.101895+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "EYDAP study M-217 of new works for the optimal exploitation of the Psyttalia wastewater treatment plant (phase 3). The CPVs are engineering/design services plus financial consultancy: a physical-plant engineering study.",
+      "evidence": [
+        {
+          "field": "description",
+          "quote": "Μελέτη νέων Έργων για την Βέλτιστη Εκμετάλλευση του Κέντρου Επεξεργασίας Λυμάτων Ψυττάλειας (Ψυττάλεια – Φάση 3)",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/560873-2026"
+        }
+      ]
     },
     {
       "decision": "exclude",
@@ -13281,6 +13426,26 @@
       }
     },
     {
+      "id": "sig_83b3e8383f5b2e43b146",
+      "source_hash": "a972df80af6f269a862a44da67c823fbedd20abf44fa021d1d38743c3a4f825c",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T12:16:20.101895+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Implementation of subprojects 2 and 3 of a municipal social-structures programme: upskilling, advisory supervision and coaching of social-service field staff (workshops, webinars, on-the-job training), plus communication, publicity and dissemination of the action. The CPVs are social research, HR/PR consultancy, event, training and social services, with no IT CPV. It is admitted only through the 7931/7941 relevant-CPV prefixes.",
+      "evidence": [
+        {
+          "field": "description",
+          "quote": "Η Ενδυνάμωση, Αναβάθμιση Δεξιοτήτων & συμβουλευτική εποπτεία - coaching των στελεχών παροχής υπηρεσιών στο πεδίο •",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/663186-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Σκοπός της σύμβασης είναι ο σχεδιασμός και η υλοποίηση ενεργειών πληροφόρησης της Πράξης που στοχεύουν στην ενημέρωση, προβολή και ευαισθητοποίηση του κοινού σχετικά με τις παρεχόμενες δράσεις.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/663186-2026"
+        }
+      ]
+    },
+    {
       "decision": "exclude",
       "evidence": [
         {
@@ -14051,6 +14216,21 @@
       }
     },
     {
+      "id": "sig_8b760850698f4d6fef46",
+      "source_hash": "672322f8d1ffe364a3308b9aff4efce6e5bda7dec6d1a6f6467ff0b6a37542e0",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T12:16:20.101895+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "RFP for strategic advisory services for the Hellenic Corporation of Assets and Participations project 'Energy Strategy & Value Creation'. This is energy/corporate strategy consultancy with no software, data-platform or AI deliverable (CPVs architectural, business-analysis and management consultancy).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Request for Proposals (“RFP”) for the provision of Strategic Advisory Services for the project: “Energy Strategy & Value Creation”",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/653153-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_8bdfe651af1ce1c9d1b8",
       "source_hash": "016cc75c91a374f64f8f881d6c340ec11259c05d4e5b0a69c726aab27f273c6c",
       "decision": "guide",
@@ -14108,6 +14288,26 @@
         }
       ],
       "guidance": null
+    },
+    {
+      "id": "sig_8cea18ec8280f739f3a9",
+      "source_hash": "60fe1bf5337b6bd19fc494e31074577137505581144c3d350b3540d6ac52ef42",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T12:16:20.101895+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "'Development and upgrade of computing and data-analysis infrastructures' is in fact the supply of servers (including servers for training AI models and for big data), storage arrays, a backup server and a network switch. Purchasing AI compute hardware is explicitly out of scope. The 'artificial intelligence' match comes only from the server description.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Ανάπτυξη και αναβάθμιση υπολογιστικών υποδομών και υποδομών ανάλυσης δεδομένων",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/583466-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Servers για την ενίσχυση της υπολογιστικής υποδομής Ποσότητα: Έξι (6) τεμάχια CPV: 48821000-9 Το Τμήμα Α αποτελείται από τρία είδη: (α) Servers για δημιουργία μοντέλων Artificial Intelligence (β) Servers για ανάλυση δεδομένων μεγάλης κλίμακας (Big Data) και (γ) Servers για λειτουργίες SMB, near-edge, remote office, File Server/NFS.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/583466-2026"
+        }
+      ]
     },
     {
       "id": "sig_8ceb6a750d48331c8bf4",
@@ -16761,6 +16961,21 @@
       }
     },
     {
+      "id": "sig_a8dab488da8394761c7a",
+      "source_hash": "1df575d7c5d41ba9c389627cfef276831d3b84d51992152f0575930ce0f4459a",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T12:16:20.101895+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Concession service for electric-vehicle charging stations in the Municipality of Grevena (CPV 31681500 rechargers plus 48000000): a physical charging-infrastructure concession.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "ΥΠΗΡΕΣΙΑ ΠΑΡΑΧΩΡΗΣΗΣ ΣΤΑΘΜΏΝ ΦΟΡΤΙΣΗΣ ΗΛΕΚΤΡΟΚΙΝΗΤΩΝ ΟΧΗΜΑΤΩΝ (Η/Ο) ΣΤΟΝ ΔΗΜΟ ΓΡΕΒΕΝΩΝ",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/77-2026"
+        }
+      ]
+    },
+    {
       "decision": "exclude",
       "evidence": [
         {
@@ -17992,6 +18207,26 @@
       }
     },
     {
+      "id": "sig_ba3592250177437e1582",
+      "source_hash": "d0d8e671b59744b07de8341aadb3a6da5275d4f4cfc728db2bc502c3f94e1cb1",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T12:16:20.101895+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "A unified operation-support and maintenance service for the boreholes, pumping stations and water reservoirs of the DEYA Rhodes drinking-water network (EUR 8.58m for 3 years plus an option). This is physical water-infrastructure maintenance. CPV 72250000 appears only next to pump, valve, machinery and plant-maintenance CPVs.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Ενοποιημένη Υπηρεσία Συντήρησης Γεωτρήσεων, Αντλιοστασίων Και Δεξαμενών Ύδατος Της Νήσου Ρόδου",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/659025-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Ενοποιημένης υπηρεσίας υποστηρικτικής λειτουργίας και συντήρησης των υποδομών ύδρευσης που είναι εγκατεστημένα στο δίκτυο διανομής πόσιμου ύδατος της ΔΕΥΑ Ρόδου.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/659025-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_ba6c6eb6ab6a856c56d7",
       "source_hash": "67ec4b4707ea67094ef0e720a852cdc03d0679150657e2d5e90a2a27591dca4c",
       "decision": "exclude",
@@ -18832,6 +19067,26 @@
         }
       ],
       "guidance": null
+    },
+    {
+      "id": "sig_c361a632680392503d2d",
+      "source_hash": "55caf84d4a12db7244ccab05034d4e301730d40e4e02844cfa5239141c28dc21",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T12:16:20.101895+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Phase B information and awareness-raising actions: preparing a communication strategy and media plan, and running information/awareness actions for carers, beneficiaries and citizens of a home-childcare programme. These are communication/advertising services (CPVs internet services plus advertising/marketing), with no digital system deliverable.",
+      "evidence": [
+        {
+          "field": "description",
+          "quote": "Δράσεις ενημέρωσης – ευαισθητοποίησης Β’ ΦΑΣΗ Αντικείμενο της σύμβασης «ΔΡΑΣΕΙΣ ΕΝΗΜΕΡΩΣΗΣ– ΕΥΑΙΣΘΗΤΟΠΟΙΗΣΗΣ Β' ΦΑΣΗ» είναι : α) η εκπόνηση της Επικοινωνιακής Στρατηγικής και του Πλάνου μέσων (Media Plan), λαμβάνοντας υπόψη την Επικοινωνιακή ταυτότητα του έργου που έχει εκπονηθεί στην Α φάση, β) η υλοποίηση δράσεων ενημέρωσης και ευαισθητοποίησης τόσο των υποψήφιων επιμελητών/τριών και των ωφελουμένων της Δράσης για την κατ’ οίκον φροντίδα βρεφών και παιδιών ηλικίας από 2 μηνών έως 2,5 ετών όσο και των πολιτών γενικότερα",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/599720-2026"
+        },
+        {
+          "field": "title",
+          "quote": "Δράσεις ενημέρωσης – ευαισθητοποίησης Β’ ΦΑΣΗ",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/599720-2026"
+        }
+      ]
     },
     {
       "id": "sig_c3dc71dd8ff1f76ddde6",
@@ -20081,6 +20336,26 @@
       }
     },
     {
+      "id": "sig_d229e9b4eb53dd036597",
+      "source_hash": "30b2706bfba11b19bdf1226c0e7d4af8ef0f51fe403bf586204919c938545e5f",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T12:16:20.101895+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Supply of high-availability infrastructure with disaster recovery for ERT's Oracle databases. The CPVs are servers (48820000), storage units (30233100), computer installation (51611100) and system maintenance (50324100): purchased database/server infrastructure, not CRM, business-application, integration or AI delivery. It is published only because 48820000 is a relevant CPV prefix.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "ΗΛΕΚΤΡΟΝΙΚΟΣ ΑΝΟΙΚΤΟΣ ΔΗΜΟΣΙΟΣ ΔΙΑΓΩΝΙΣΜΟΣ ΑΝΩ ΤΩΝ ΟΡΙΩΝ ΓΙΑ ΤΗΝ ΠΡΟΜΗΘΕΙΑ ΥΠΟΔΟΜΗΣ ΥΨΗΛΗΣ ΔΙΑΘΕΣΙΜΟΤΗΤΑΣ ΜΕ DISASTER RECOVERY ΓΙΑ ΤΙΣ ΒΑΣΕΙΣ ΔΕΔΟΜΕΝΩΝ ORACLE ΤΗΣ ΕΡΤ Α.Ε",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/663261-2026"
+        },
+        {
+          "field": "description",
+          "quote": "ΠΡΟΜΗΘΕΙΑ ΥΠΟΔΟΜΗΣ ΥΨΗΛΗΣ ΔΙΑΘΕΣΙΜΟΤΗΤΑΣ ΜΕ DISASTER RECOVERY ΓΙΑ ΤΙΣ ΒΑΣΕΙΣ ΔΕΔΟΜΕΝΩΝ ORACLE ΤΗΣ ΕΡΤ Α.Ε ΠΡΟΜΗΘΕΙΑ ΥΠΟΔΟΜΗΣ ΥΨΗΛΗΣ ΔΙΑΘΕΣΙΜΟΤΗΤΑΣ ΜΕ DISASTER RECOVERY ΓΙΑ ΤΙΣ ΒΑΣΕΙΣ ΔΕΔΟΜΕΝΩΝ ORACLE ΤΗΣ ΕΡΤ Α.Ε.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/663261-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_d2814edfc714795610aa",
       "source_hash": "7fa9c27748bcaf4ba416026716cfdb999eff7fa0dec07d7e6cdd3605b42e5b2b",
       "decision": "guide",
@@ -20536,6 +20811,26 @@
       "reviewed_at": "2026-09-22T09:29:11.069922+00:00",
       "reviewed_by": "Codex primary agent; independent review of subagent proposal",
       "source_hash": "cb5e0d5744b3870711c6dd3964d6b23193398d5bba035eba2d71314dea60281b"
+    },
+    {
+      "id": "sig_da39614ebd45a10c7687",
+      "source_hash": "63f030961283125ce688712c41902edb1722995e40ade9633f9e8164828acde8",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T12:16:20.101895+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Supply of technical and educational equipment for the Merchant Marine Academy of Laconia: four simulators (ship bridge, GMDSS, liquid-cargo handling, ECDIS/RADAR/ARPA). These are specialist maritime training simulators, not business software, CRM, integration or AI delivery.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Η αριθ. 08/2026 Διακήρυξη Υ.ΝΑ.Ν.Π./Γ.Δ.Ο.Υ./ΔΙ.Π.Ε.Α. 2ου για την Προμήθεια τεχνικού και εκπαιδευτικού εξοπλισμού για την Α.Ε.Ν. Λακωνίας",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/524283-2026"
+        },
+        {
+          "field": "description",
+          "quote": ", #1.104.838,71€#, Φ.Π.Α.: #265.161,29€#) Προσομοιωτής Γεφύρας για τις ανάγκες της ΑΕΝ/ΠΛΟΙΑΡΧΩΝ/ΛΑΚΩΝΙΑΣ .",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/524283-2026"
+        }
+      ]
     },
     {
       "id": "sig_da4d1b157ad82cf05583",
@@ -21133,6 +21428,21 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_de1ba15d5f9d4a896b3c",
+      "source_hash": "9326004e8d8c837681119862ed71f9f315555ff28bb05a3ac8f52ce51ae84150",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T12:16:20.101895+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Selection of a contractor to provide Secure Operating Center (SOC) services to ERT for three years: 24/7 managed security monitoring and incident response. This is a security-operations service, not CRM, business-application, integration or AI delivery.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "ΗΛΕΚΤΡΟΝΙΚΟΣ, ΑΝΟΙΚΤΟΣ, ΔΙΑΓΩΝΙΣΜΟΣ, ΑΝΩ ΤΩΝ ΟΡΙΩΝ, ΜΕ ΑΝΤΙΚΕΙΜΕΝΟ ΤΗΝ ΕΠΙΛΟΓΗ ΑΝΑΔΟΧΟΥ ΓΙΑ ΤΗΝ ΠΑΡΟΧΗ ΥΠΗΡΕΣΙΩΝ SECURE OPERATING CENTER (S.O.C.), ΓΙΑ ΧΡΟΝΙΚΗ ΔΙΑΡΚΕΙΑ ΤΡΙΩΝ (3) ΕΤΩΝ.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/624633-2026"
+        }
+      ]
     },
     {
       "id": "sig_de2da09aaafac43fb31d",
@@ -23595,6 +23905,26 @@
           }
         }
       }
+    },
+    {
+      "id": "sig_f5eb8ef89a30a829f7af",
+      "source_hash": "8537d881938d23a6345f9ba9827c6b73d75e9c3bf7136c3b50f13c9e954e81f2",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T12:16:20.101895+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Selection of a consultant to provide specialised administrative project-maturation services for the programme that accelerates Storm Daniel grant/advance payments to farms and businesses in Thessaly. This is administrative/management consultancy (CPV 72224000, project-management consultancy); no system or software is delivered.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Επιλογή Συμβούλου στο πλαίσιο του Έργου “Ενεργοποίηση προκαταβολής/επιχορήγησης και επιτάχυνσης πληρωμών δικαιούχων από την Κακοκαιρία Daniel σε Αγροτικές/Κτηνοτροφικές Εκμεταλλεύσεις και Πληγείσες Επιχειρήσεις της Περιφέρειας Θεσσαλίας”",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/605300-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Παροχή Υπηρεσιών Εξειδικευμένης Διοικητικής Ωρίμανσης Έργου στο πλαίσιο του Έργου “Ενεργοποίηση προκαταβολής/επιχορήγησης και επιτάχυνσης πληρωμών δικαιούχων από την Κακοκαιρία Daniel σε Αγροτικές/Κτηνοτροφικές Εκμεταλλεύσεις και Πληγείσες Επιχειρήσεις της Περιφέρειας Θεσσαλίας”",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/605300-2026"
+        }
+      ]
     },
     {
       "id": "sig_f611978af87124332823",
