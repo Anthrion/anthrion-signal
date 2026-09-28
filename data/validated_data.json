@@ -1,15 +1,15 @@
 {
   "version": 1,
-  "generation": 98,
+  "generation": 99,
   "data_code": "fc079359ebcd275bb07a264210f4da7bfa2093165a269e5d5ac4f872168e2088",
-  "sha256": "1219e32f49bcf9d7bdd98d908b32ec513337f09bb58ced8c9c03da5b853edf74",
-  "key": "signal-public-v1-1219e32f49bcf9d7bdd98d908b32ec513337f09bb58ced8c9c03da5b853edf74-36477581233-1",
-  "inputs": "9fb691a5c681c9d3c05456ce7effc70723b7a37c493b80ede49a4c1335b3dfd6",
-  "validated_at": "2026-09-28T20:48:12.588369+00:00",
+  "sha256": "5b26f7f7b0dae6017bde477960acda9aba62b6100b6ff92c782f255df865be30",
+  "key": "signal-public-v1-5b26f7f7b0dae6017bde477960acda9aba62b6100b6ff92c782f255df865be30-36482086371-1",
+  "inputs": "3dea779b2356f545a82b689aaa058b8a4dbe50a4482a575a6d17ac10b477042e",
+  "validated_at": "2026-09-28T21:21:11.553053+00:00",
   "signature": {
     "code": "3f3eec85b886b8eed63cf877cf2d7e25baf8d15c65a38e72158501502f3a984d",
-    "content": "06f4ba31ecfed8a2a08cbe9c1cef497424ee19eb1e53302376d1637ce673c5b7",
-    "translations": "5170451e5bdc4d54838c707abc5c0b14c7ce9e8995de1bd88d56408fb44aafc7",
+    "content": "b913b7e7bf827140de698973e2c40f6dc88a2b0712f50045b00d202ec06434aa",
+    "translations": "2333ff7c4878cff00e776a32b03729e737c7cb35f84457bec79404d65c2b71ce",
     "health": [
       [
         "find_tender",
@@ -61,7 +61,7 @@
       ],
       [
         "la_ramp",
-        "healthy"
+        "failed"
       ],
       [
         "grants",
@@ -229,7 +229,7 @@
       ],
       [
         "canada_buys",
-        "healthy"
+        "partial"
       ],
       [
         "seao_qc",
