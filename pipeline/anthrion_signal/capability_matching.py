@@ -8,7 +8,7 @@ SOFTWARE = ("software", "platform", "application", "information system", "inform
             # the German and Nordic single words do, so it needs listing separately.
             # "digital solutions" and "computer system" stay out: reviewed decisions
             # already hold that neither establishes a technology scope on its own.
-            "management system", "management systems", "it system", "it systems", "digital system",
+            "management system", "management systems", "it system", "it systems", "ict system", "ict systems", "digital system",
             "digital systems", "web application", "web applications",
             "it solution", "it solutions", "software solution", "software solutions",
             "web portal", "internet portal",
@@ -48,6 +48,9 @@ AMBIGUOUS_NEEDS = {"account management", "client management", "contact managemen
                    "investigation management", "appeals management", "grievance management", "enquiry management",
                    "inquiry management", "workforce scheduling", "mobile workforce", "field service management",
                    "subscription management"}
+# Like "complaints management" and "digital transformation": also a service process or a
+# programme name, so it counts only with technical context or a software CPV.
+AMBIGUOUS_NEEDS.update({"feedback management", "digital modernisation", "digital modernization"})
 AMBIGUOUS_NEEDS.update({"fallmanagement", "atencion al cliente", "atencion ciudadana", "ongoing enhancement"})
 GENERIC_INTEGRATION = {"systems integration", "system integration", "integration with existing systems",
                        "integrate with existing systems", "systemintegration", "schnittstellenmanagement",
@@ -348,7 +351,10 @@ def capability_hits(cap, segments, software_cpv=False, funding=False):
                     titled_acronym = (cap["id"] == "ai" and phrase == "ai"
                                       and segment["field"] == "title"
                                       and bool(phrase_hits(text, ("interpreter", "assistant", "agent", "adoption", "pilot",
-                                          "services", "service", "platform", "software", "solution", "tool", "implementation")))
+                                          "services", "service", "platform", "software", "solution", "tool", "implementation",
+                                          # "AI Delivery Partner", "AI Innovation Partner": UK buyers title an
+                                          # AI build/adoption commission by the partner they are appointing.
+                                          "partner", "delivery")))
                                       and acronym_case_evidence(segment["quote"], phrase))
                     if not (technical or weak_technical or titled_acronym):
                         continue

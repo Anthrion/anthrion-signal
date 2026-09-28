@@ -470,7 +470,7 @@ def generic_digital_scope(segments):
     scope_text = " ".join(s["text"] for s in segments)
     title_context = " ".join(s["text"] for s in segments if s["field"] == "title")
     phrases = ("digital and it professional services", "it consultancy", "it consultants", "ict consultants",
-               "it systems", "software testing", "software engineering",
+               "it systems", "ict systems", "ict system", "software testing", "software engineering",
                "ai adoption", "ai pilots", "remote patient monitoring", "digital delivery capability",
                "digital and technology delivery services", "digital data and technology",
                "digital service lifecycle", "digital products and services",
@@ -480,7 +480,7 @@ def generic_digital_scope(segments):
                # Web estate and named business systems. Each states a built or maintained
                # digital deliverable; a generic "digital" or "solution" still does not.
                "website development", "website design", "website relaunch", "website redesign",
-               "website maintenance", "website hosting", "web development", "web portal",
+               "website maintenance", "website hosting", "website migration", "web development", "web portal",
                "internet portal", "open data portal", "transparency portal",
                "content management system", "learning management system", "document management system",
                "records management system", "record management system", "records management solution",
@@ -503,6 +503,11 @@ def generic_digital_scope(segments):
                "reporting system", "registration system", "ticketing system", "archive system",
                "contract management system", "invoicing system", "billing system",
                "rostering system", "referral tool",
+               # UK line-of-business systems procured as software (income collection,
+               # lending, recruitment and leisure bookings). "Fleet management system" is
+               # deliberately absent: it also names vehicle/forklift telematics hardware.
+               "income management system", "loan management system",
+               "applicant tracking system", "leisure management system",
                "self service portal", "customer portal", "citizen portal", "tenant portal") + COMMUNICATIONS_SOFTWARE
     matches = [p for s in segments for p in phrase_hits(s["text"], phrases)
                              if affirmed(s["text"], p) and not physical_payment_equipment(s["text"], p)

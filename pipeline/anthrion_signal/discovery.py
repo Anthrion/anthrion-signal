@@ -235,6 +235,29 @@ def hard_exclusions(signal, charter, scope_evidence=False):
     return reasons
 
 
+DOS_SUMMARY = re.compile(r"\bSummary of (?:the )?work\s+(?P<body>.*?)"
+                         r"(?=\s\d{1,2}\.\s+(?-i:[A-Z])|\s+Pricing model\b|\s+Latest start date\b|$)", re.IGNORECASE | re.DOTALL)
+DOS_PLACEHOLDER_WORDS = {"test", "tests", "testing", "this", "is", "the", "tbc", "tbd", "none"}
+DOS_PARTICIPANTS = re.compile(r"\b(?:participant recruitment|recruit\w*\s+(?:\w+\s+){0,3}participants)\b", re.IGNORECASE)
+
+
+def digital_outcomes_call_off(signal):
+    """A Digital Outcomes (RM1043) call-off buys digital outcomes, capability or specialists.
+
+    That is the framework's definition, so a sparse summary is still digital scope.
+    The same catalogue shows buyers' test call-offs ("test", "This is a test", keyboard
+    strings or a UAT link as the summary) and user-research participant recruitment;
+    neither states work to deliver, so both stay unclassified.
+    """
+    if signal.source != "digital_outcomes":
+        return False
+    text = re.sub(r"https?://\S+", " ", signal.description or "")
+    summary = DOS_SUMMARY.search(text)
+    body = summary["body"] if summary else text
+    words = [w for w in re.findall(r"[^\W\d_]{2,}", body) if w.casefold() not in DOS_PLACEHOLDER_WORDS]
+    return len(words) >= 6 and not DOS_PARTICIPANTS.search(body)
+
+
 def prefilter(signals, profile, terms, charter=None, translations=None):
     # Compatibility for external callers; production always supplies the expanded charter.
     caps = charter["capabilities"] if charter else [dict(c, needs=c["terms"]) for c in profile["capabilities"]]
@@ -301,6 +324,9 @@ def prefilter(signals, profile, terms, charter=None, translations=None):
             if affirmed(segment["text"], p)
             and (p != "application development" or business_application_development(segment["text"])))
         digital_scope = unique(digital_scope + generic_digital_scope(segments))
+        dos_call_off = digital_outcomes_call_off(signal)
+        if dos_call_off:
+            digital_scope = unique(digital_scope + ["Digital Outcomes framework call-off"])
         score = min(100, max(strengths, default=0) + min(24, max(0, len(families) - 1) * 6) + (12 if cpv else 0))
         # Unclassified digital delivery remains a reviewable candidate, not an invented capability.
         if digital_scope or discovery_hints:
@@ -312,7 +338,8 @@ def prefilter(signals, profile, terms, charter=None, translations=None):
                 and not (addressable or any(has_software(segment["text"]) for segment in segments))):
             score = 0
         # Pipeline/consulting vocabulary alone identifies buying stage, not our scope.
-        if families and set(families) <= {"pipeline", "staffing", "external_integration"} and not cpv:
+        # A Digital Outcomes call-off states its digital scope through the framework itself.
+        if families and set(families) <= {"pipeline", "staffing", "external_integration"} and not cpv and not dos_call_off:
             score = min(score, 10)
         signal.prefilter_score = score
         signal.prefilter_matches = unique(hits + [f"Published digital scope: {p}" for p in digital_scope]
