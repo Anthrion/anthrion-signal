@@ -41,6 +41,13 @@ def is_award_intelligence(signal):
 def discovery_text(value):
     # Submission instructions and portal hostnames are not buyer technology requirements.
     value = re.sub(r"https?://\S+", " ", value, flags=re.IGNORECASE)
+    # A contact mailbox such as "ddat.crm@dft.gov.uk" names who answers questions,
+    # never the purchased scope; its local part must not become a capability.
+    value = re.sub(r"[\w.+-]+@[\w-]+(?:\.[\w-]+)+", " ", value)
+    # American Petroleum Institute standards ("API 653", "API RP 1604") govern tank
+    # and pipework inspection; they are not application programming interfaces.
+    # Masked neutrally, like URLs and mailboxes, so no substitute words can match.
+    value = re.sub(r"\bAPI[\s-]+(?:(?:RP|STD|Spec|MPMS)[\s-]+)?\d{3,4}\b", " ", value, flags=re.IGNORECASE)
     value = SUPPLIER_LABEL.sub("; published supplier; company name", value)
     # Regulatory clause headings and structured contact-role cells are not the
     # purchased scope. Match their syntax, not the surrounding procurement's
@@ -61,6 +68,7 @@ def discovery_text(value):
         r"\b(?:log\s?in|logging in|sign in|user guide|guidance for suppliers|"
         r"procurement responses|advertises? procurement|upload\w*|download\w*|"
         r"to register with|register (?:here|your (?:organisation|organization|interest))|"
+        r"registering with (?:an? |the )?(?:supplier|e-?procurement|e-?tendering|procurement) (?:portal|system|platform)|"
         r"submit (?:your |the |a )?(?:bid|tender|proposal|response)|"
         r"(?:register|apply) (?:and apply )?(?:via|on|through)|"
         r"(?:responses?|bids?|proposals?|applications?|submissions?)\b[^.!?]{0,120}\bsubmitted|being released through|"

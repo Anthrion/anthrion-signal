@@ -250,6 +250,14 @@ def funded_ai_build(text):
     return any(affirmed(text, hit.group()) for hit in re.finditer(pattern, text))
 
 
+def paper_application_support(text, phrase):
+    """Help preparing a planning, consents or funding application is not software support."""
+    hits = list(re.finditer(r"(?<!\w)" + re.escape(phrase) + r"(?!\w)", text))
+    return phrase == "application support" and bool(hits) and all(
+        re.search(r"\b(?:planning|consents|funding|grant)\s+$",
+                  text[max(0, hit.start() - 40):hit.start()]) for hit in hits)
+
+
 def paper_application(text):
     return bool(phrase_hits(text, ("investigational new drug", "grant application", "funding application",
         "patent application", "clinical trial application", "drug application"))) and not phrase_hits(text,
@@ -309,6 +317,8 @@ def capability_hits(cap, segments, software_cpv=False, funding=False):
                         or historical_topic(text, phrase, segment["quote"])):
                     continue
                 if phrase == "platform support" and "platform support hours" in text:
+                    continue
+                if paper_application_support(text, phrase):
                     continue
                 # The cleaned search text remains authoritative: a source URL or
                 # stripped bidding instruction cannot rescue a negated scope.
