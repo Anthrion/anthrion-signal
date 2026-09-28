@@ -1677,6 +1677,41 @@
       }
     },
     {
+      "id": "sig_0eb18e90b4a15abbedc2",
+      "source_hash": "b46b9f37a66129896952aaa62112963bfafa5729d64c47589eeaacfa79fb1a97",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Market survey for the annual Campus Wide Suite MATLAB licence (Istituto Italiano di Tecnologia); licence supply only.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "AVVISO DI INDAGINE DI MERCATO per l’affidamento della fornitura della licenza annuale Campus Wide Suite MATLAB",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/687666-2025"
+        },
+        {
+          "field": "description",
+          "quote": "VVISO DI INDAGINE DI MERCATO per l’affidamento della fornitura della licenza annuale Campus Wide Suite MATLAB",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/687666-2025"
+        }
+      ]
+    },
+    {
+      "id": "sig_0eb99b1a3e9e81ec2846",
+      "source_hash": "8839c6458c3a1c8c2a25c65d2c785c9c2ca4c0360f3470bfde59662bf2acd485",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Consultation before a negotiated procedure without publication, for extreme urgency, for full-risk management, evolutionary maintenance and technical support of the hospital's installed RIS-PACS (hardware and software).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "AVVISO DI CONSULTAZIONE PRELIMINARE DEL MERCATO AI FINI DELL'ESPLETAMENTO DI PROCEDURA NEGOZIATA SENZA BANDO PER RAGIONI DI ESTREMA URGENZA AI SENSI DELL'ART. 76, COMMA 2, LETT. C) DEL D.LGS. 36/2023 servizio di gestione, manutenzione evolutiva e supporto tecnico \"Full-Risk\" per il Sistema Integrato RIS-PACS Aziendale (hardware e software)",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/26125-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_0f15f690a6a1f19f021a",
       "source_hash": "27cd923575126e38ce910b435aeea6f14341b4f08b79cfab305027e50d72fa46",
       "decision": "guide",
@@ -1744,6 +1779,21 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_0fb0a8b1ccfaba40b5b2",
+      "source_hash": "dcb0487786effc84a4cbbf454dd0a87154ac543252a369ca7eb5c0d4b0ed9eea",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Management of RAI's voice and data network and maintenance of network equipment (NOC); network operations.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Servizi di gestione della rete fonia e dati e della manutenzione degli apparati - NOC",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/620733-2026"
+        }
+      ]
     },
     {
       "id": "sig_0fb50bed29e9ea0eee15",
@@ -2033,6 +2083,26 @@
       }
     },
     {
+      "id": "sig_143cccffeb42e31c4094",
+      "source_hash": "99606ba379f89d2adfbbb57b3ef65e374e049e24dc141fa9b4bbb9d4e59f7670",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Network Operation Centre service: management of network and telephony infrastructure, server-farm and mail-system infrastructure, and a cyber-security service for a hospital group; infrastructure operations only.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "GARA EUROPEA A PROCEDURA TELEMATICA APERTA, IN FORMA AGGREGATA, PER L’AGGIUDICAZIONE DEL CONTRATTO AVENTE AD OGGETTO IL SERVIZIO DI GESTIONE DEL NETWORK OPERATION CENTER (NOC)",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/660706-2026"
+        },
+        {
+          "field": "description",
+          "quote": "GARA EUROPEA A PROCEDURA TELEMATICA APERTA, IN FORMA AGGREGATA, PER L’AGGIUDICAZIONE DEL CONTRATTO AVENTE AD OGGETTO IL SERVIZIO DI GESTIONE DEL NETWORK OPERATION CENTER (NOC) Servizio di Gestione Infrastruttura di Rete e di Fonia; Servizio di Gestione: Infrastruttura di Server Farm, Sistema di Infrastruttura e Sistema di Posta; Servizio di Cyber Security",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/660706-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_14897e110770d455eb74",
       "source_hash": "997b0e32ce4686f8adf48d391d949e939bffdd2518165f2917655779fde9c653",
       "decision": "guide",
@@ -2114,6 +2184,21 @@
         }
       ],
       "guidance": null
+    },
+    {
+      "id": "sig_1543f0d8959cde6e9efd",
+      "source_hash": "e99f3d5cee117ca0417cc3033279f8a9fc49dc736ec0b6338ae98d4fb1038f9e",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Market survey for the Head of Prevention and Protection Service (RSPP) and related technical support under D.Lgs. 81/2008 (IUAV); occupational health and safety service.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "AVVISO PUBBLICO DI INDAGINE DI MERCATO per la manifestazione di interesse finalizzata allindividuazione di operatori economici da invitare alla successiva procedura negoziata per laffidamento del servizio di Responsabile del Servizio di Prevenzione e Protezione (R.S.P.P.) e dei servizi tecnici di supporto ai sensi del D.Lgs. 81/2008",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/785110-2025"
+        }
+      ]
     },
     {
       "id": "sig_15d3de0b21e21d2f3694",
@@ -2276,6 +2361,26 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_17868f35317ad11c3051",
+      "source_hash": "d3f9da92b3b964d568046caf73cffd15b05a599f1a5e41743b276ae6a8783b92",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Uniqueness check for three databases to be acquired for the Veneto Health Library project; content subscriptions.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "AVVISO DI INDAGINE DI MERCATO AI FINI CONOSCITIVI PER LA VERIFICA DELL’INFUNGIBILITA' DI BANCHE DATI DA ACQUISIRE NELL’AMBITO DEL PROGETTO VENETO HEALTH LIBRARY",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/722686-2025"
+        },
+        {
+          "field": "description",
+          "quote": "La presente indagine di mercato, indetta ai sensi dell’art. 77 del D.Lgs. n. 36/2023 e ss.mm.ii., è finalizzata alla verifica dell’effettiva infungibilità di ciascuna delle tre banche dati descritte nell'avviso pubblicato sul sito aziendale, ovvero della presenza sul mercato di soluzioni sovrapponibili dal punto di vista tecnico, contenutistico e funzionale Acquisizione tre banche dati per SSR nell'ambito del progetto VENETO HEALTH LIBRARY",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/722686-2025"
+        }
+      ]
     },
     {
       "id": "sig_187cf26506890ae49dba",
@@ -2488,6 +2593,26 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_1a70843d685436760b4b",
+      "source_hash": "81bbdc7ba71f597148303f20b9a2345ba5837f8f4fe310b07de028db884d6d4d",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Activation and management of a network of welfare actors, support to non-profit organisations with a communication campaign (lot 1) and monitoring/evaluation of lot 1 (lot 2), Comune di Venezia; social-sector services.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "servizio di attivazione e gestione di una rete di attori del welfare e di attività di supporto alle organizzazioni non profit - Costellazioni Civiche Operazione: VE4.4.11.2.a lotto 1 Attivazione e gestione di una rete di attori del welfare, attività di supporto alle organizzazioni non profit e relativa campagna di comunicazione. Lotto 2 Monitoraggio e valutazione delle attività del lotto 1.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/657402-2026"
+        },
+        {
+          "field": "description",
+          "quote": "servizio di attivazione e gestione di una rete di attori del servizio di attivazione e gestione di una rete di attori del welfare e di attività di supporto alle organizzazioni non profit - Costellazioni Civiche Operazione: VE4.4.11.2.a lotto 1 Attivazione e gestione di una rete di attori del welfare, attività di supporto alle organizzazioni non profit e relativa campagna di comunicazione. Lotto 2 Monitoraggio e valutazione delle attività del lotto 1. lotto 1 Attivazione e gestione di una rete di attori del welfare, attività di supporto alle organizzazioni non profit e relativa campagna di comunicazione.; Lotto 2 Monitoraggio e valutazione delle attività del lotto 1. (Lotto 2)",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/657402-2026"
+        }
+      ]
     },
     {
       "id": "sig_1aba67e4e5f4b6692510",
@@ -3408,6 +3533,26 @@
       }
     },
     {
+      "id": "sig_21a1a3e33b54421ba041",
+      "source_hash": "a616039c9e6d20be8ff5e6c6d3fef024b9877698dc56e04b475f243d52a69ca6",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Five-year supply of 'Trend AI' software solutions and related services for CRUI/Italian universities. 'Trend AI' is a cyber-security vendor brand (procurement_scope.py already lists 'trend ai' with Sophos, Fortinet and Trellix among unrelated licence vendors); the 'ai' match is the brand name, not an AI deliverable.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "PROCEDURA APERTA PER L’APPALTO RELATIVO ALLA FORNITURA QUINQUENNALE DI SOLUZIONI SOFTWARE TREND AI E SERVIZI CONNESSI PER CRUI/UNIVERSITÀ ITALIANE",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/613588-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Fornitura quinquennale di soluzioni software Trend AI e servizi connessi, per CRUI/Università italiane",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/613588-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_22045d0f587bc61eff66",
       "source_hash": "1995284098262c68e6a686a2673be35c80c50705a0ad9a7991bf187caa32add3",
       "decision": "guide",
@@ -3558,6 +3703,21 @@
       "reviewed_at": "2026-09-22T09:29:11.069922+00:00",
       "reviewed_by": "Codex primary agent; independent review of subagent proposal",
       "source_hash": "0ba2657d07e7efc622e05862311ac4329ee6aec68f1c7e9eba3890c98a06b42a"
+    },
+    {
+      "id": "sig_243f35341b774511983f",
+      "source_hash": "e02c9423b9633f0c75acc90ddf655ac9b837036058be2d1a9a7e230e4332857a",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Market consultation for hardware and software maintenance of NetApp devices in production at Insiel sites; storage-hardware maintenance.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "ID 8074 - Consultazione preliminare di mercato per manifestazione di interesse per il servizio di manutenzione hardware e software di dispositivi NetApp in produzione nei siti Insiel di Trieste e Palmanova.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/194812-2026"
+        }
+      ]
     },
     {
       "id": "sig_25298f7668ab85bcb053",
@@ -4072,6 +4232,26 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_2907af0bc09a9186df20",
+      "source_hash": "bec79ccefcb62b916e9792e68e1e76d94ad9b11d11e05030099f7a58babfdba4",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Uniqueness check for a specific training service for general practitioners/paediatricians on entering synthetic health profiles into FSE 2.0; training service.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "AVVISO ESPLORATIVO AI FINI CONOSCITIVI PER LA VERIFICA DELL’INFUNGIBILITA' DEL SERVIZIO DI FORMAZIONE SPECIFICA AI MMG/PLS PER INSERIMENTO DEI PROFILI SANITARI SINTETICI SU FSE 2.0",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/603954-2025"
+        },
+        {
+          "field": "description",
+          "quote": "Servizi informatici",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/603954-2025"
+        }
+      ]
     },
     {
       "decision": "exclude",
@@ -5463,6 +5643,26 @@
       }
     },
     {
+      "id": "sig_387ecc376965e513630a",
+      "source_hash": "f0770e2de214b2019a629bb43628bfb0ec2f645cccab3c003c6e96490697770c",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Market consultation for renewing Trend Micro endpoint, ScanMail and Deep Security licences (Insiel); security licence renewal only.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "ID 7971 - Fornitura del rinnovo delle licenze TrendMicro Smart Protection for Endpoints, ScanMail for MS Exchange Suite, Deep Security – Network Security & Malware Prevention",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/98657-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Consultazione preliminare di mercato per la “Fornitura del rinnovo delle licenze TrendMicro Smart Protection for Endpoints, ScanMail for MS Exchange Suite, Deep Security – Network Security & Malware Prevention”",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/98657-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_38986fa46939d895c50f",
       "source_hash": "9da8e846949705f22c26fa638f4b4e61700153d20584ab4184a2f24862b8f7a8",
       "decision": "guide",
@@ -5645,6 +5845,26 @@
       }
     },
     {
+      "id": "sig_3a07fefb938b73e8eb98",
+      "source_hash": "1863a89f5b0adfc2d14b4cd819f49e67504909717c5ab71f5db2c7479a02a179",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Data entry and postal dispatch of administrative penalties for the Comune di Aosta; clerical and postal service.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Aosta - Data Entry e postalizzazione II Ed",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/589877-2026"
+        },
+        {
+          "field": "description",
+          "quote": "PROCEDURA TELEMATICA APERTA PER L'AFFIDAMENTO DEL SERVIZIO DI DATA ENTRY E POSTALIZZAZIONE DELLE SANZIONI AMMINISTRATIVE PER IL COMUNE DI AOSTA - II ED Postalizzazione e Data Entry",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/589877-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_3a5dc62ae29c8fbdf7ff",
       "source_hash": "9c4a323c6640a24a2a6eb1fef02aab1d704b2f85616e04f19e840806da64dabe",
       "decision": "exclude",
@@ -5749,6 +5969,21 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_3b40970088a6792cd9c1",
+      "source_hash": "e12a8b4153d68eb6318f168c90cd515928ca47ca0a5bb2286aec23ac1622021e",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Renewal of EnterpriseDB (PostgreSQL database) subscriptions for InfoCamere; pure subscription renewal with no stated services.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "GE2618 - Rinnovo sottoscrizioni EnterpriseDB",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/641833-2026"
+        }
+      ]
     },
     {
       "decision": "exclude",
@@ -6223,6 +6458,26 @@
       }
     },
     {
+      "id": "sig_400e3509943b8d03a179",
+      "source_hash": "da57f02270a1cd4117bd24dbb7a83509d6798728f9e53a584eab70e06f32053b",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Security Operations Center service in 'as a service' mode (SOCaaS) for the University of Florence; managed security monitoring, outside Salesforce/CRM/AI/integration delivery.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "G005_2026 - Servizio Security Operations Center in modalità “as a service” (SOCaaS)",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/525346-2026"
+        },
+        {
+          "field": "description",
+          "quote": "G005_2026 Gara europea a procedura telematica aperta ex art. 71 d.lgs. 36/2023 per l’affidamento di un servizio Security Operations Center in modalità “as a service” (SOCaaS) aggiudicato in base al criterio dell’offerta economicamente più vantaggiosa, ai sensi dell’art. 108 del D.Lgs. 36/2023. CPV 72500000-0 Servizi informatici",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/525346-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_406a037fd160377b663d",
       "source_hash": "c8da20082e6f60810af3c32e4a6cacedacccbfaa7d5778d33f60dc77186a4c0e",
       "decision": "guide",
@@ -6302,6 +6557,26 @@
       }
     },
     {
+      "id": "sig_4128ce7bd712248c4534",
+      "source_hash": "05f7657ebfb5e13e5949b8439ff535c65a7c6467100ca9565455c64da4626f14",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Market consultation for a 12+12-month Hexagon Corporate Site License Agreement (Insiel); licence entitlement only.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "ID 8050 - Consultazione preliminare di mercato per manifestazione di interesse per il servizio di Corporate Site License Agreement prodotti software di HEXAGON.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/165398-2026"
+        },
+        {
+          "field": "description",
+          "quote": "ID 8050 - Consultazione preliminare di mercato per manifestazione di interesse per il servizio di Corporate Site License Agreement prodotti software di HEXAGON per un periodo di 12 mesi più altri 12 mesi opzionali.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/165398-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_4134850d7e3fb5061eda",
       "source_hash": "114b08bbf6bf6a965fd950a6db1f171c55cdfab7d3676afda833e10ffcad5076",
       "decision": "guide",
@@ -6343,6 +6618,26 @@
           }
         }
       }
+    },
+    {
+      "id": "sig_4154295b7a2a191867dc",
+      "source_hash": "5288af289b8690eb84a6d900bb1ea5d1afb70f5554a40b9e0e0bcd3e06bfd720",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Voluntary transparency notice (art. 86 D.Lgs. 36/2023) announcing a three-year maintenance and assistance contract for the EUSIS administrative system awarded to GPI SpA, stated to be the only company able to provide it as owner of the source code.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "AVVISO VOLONTARIO PER LA TRASPARENZA art. 86 D.Lgs 36/2023 : CONTRATTO TRIENNALE 2026-2027-2028 DI MANUTENZIONE ED ASSISTENZA AL SISTEMA GESTIONALE INTEGRATO PER L’AREA AMMINISTRATIVA EUSIS DIVERSI MODULI, A FAVORE DELLA DITTA GPI SPA.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/77604-2026"
+        },
+        {
+          "field": "description",
+          "quote": "CONTRATTO TRIENNALE 2026-2027-2028 sia per la manutenzione degli applicativi sia per l’assistenza, risulta possibile rivolgersi solo alla Ditta GPI Spa, fornitrice del software in argomento in quanto proprietaria dei codici sorgente del sistema, e per questo motivo unica Ditta in grado di fornire tali servizi. Procedura autorizzata dalla CRITE Regione Veneto MOTIVAZIONE: sia per la manutenzione degli applicativi sia per l’assistenza, risulta possibile rivolgersi solo alla Ditta GPI Spa, fornitrice del software in argomento in quanto proprietaria dei codici sorgente del sistema, e per questo motivo unica Ditta in grado di fornire tali servizi",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/77604-2026"
+        }
+      ]
     },
     {
       "id": "sig_418d8d9a6769dfce9ec2",
@@ -7006,6 +7301,21 @@
       "guidance": null
     },
     {
+      "id": "sig_454ee5bec37b40a078b3",
+      "source_hash": "525819c9e46c6fbd5a6f18e6f4aae0f393be565919f05b40c82f31c185f8ec7e",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Public notice seeking sponsors for AMAT events during Milan's Mobiweek; a sponsorship call.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "AVVISO PUBBLICO PER RICERCA DI SPONSOR PER EVENTI ORGANIZZATI DA AMAT IN OCCASIONE DELLA MOBIWEEK, LA SETTIMANA EUROPEA DELLA MOBILITÀ DI MILANO DAL 16 AL 22 SETTEMBRE 2026",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/383697-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_459027f6176c4ade720f",
       "source_hash": "167c59ad4e01dccad1ce54d18cdd40bf7f2dd9c4bd4c3cab865057d518aa830d",
       "decision": "exclude",
@@ -7472,6 +7782,21 @@
       }
     },
     {
+      "id": "sig_49da19b575ea6464357a",
+      "source_hash": "b181ba67feba3cfae98ffb81808d652664770938ce0f0d79b628bac4e001c216",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Prior information notice for SPC 2 connectivity (public-sector network lines); telecom connectivity.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "SPC 2 Connettività.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/859835-2025"
+        }
+      ]
+    },
+    {
       "id": "sig_49e69c3e357dae70bf5b",
       "source_hash": "8efe500527e307287bec7c5078f14f9b68900cc1ccf96147cdb9a3c414c67a0c",
       "decision": "guide",
@@ -7754,6 +8079,41 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_4bc672c5b88aac35d644",
+      "source_hash": "d8613d1f183ffe1657266b0926f7b6341a3cdb55a72043f4e16aacbe10f0d470",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Technical, administrative and legal assistance (advisory) for the ELENA-funded 'E.Co Energy for Cosenza' project; legal/technical advisory for energy projects.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "ASSISTENZA TECNICO, AMMINISTRATIVO E LEGALE (cd. AdvisoRy)” - Progetto E.Co Energy for Cosenza",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/657526-2026"
+        },
+        {
+          "field": "description",
+          "quote": "“Gara Europea a procedura telematica aperta per l'appalto del servizio di “ASSISTENZA TECNICO, AMMINISTRATIVO E LEGALE (cd. AdvisoRy)” (PDS3 Legal and Technical support public organisations - PDS5 Legal and Technical support private companies ) Progetto E.Co Energy for Cosenza (Contract Number: IEU-ELENA-2025-229) Programma ELENA - European Local Energy Assistance CUP F88J25000040006",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/657526-2026"
+        }
+      ]
+    },
+    {
+      "id": "sig_4bfe9141f831627bc23a",
+      "source_hash": "08c8d89692c0f3103318497c34b81774445ce4b9646366856cc2d32979027640",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "60-month outsourced data-centre service hosting AMA's SAP system; infrastructure hosting, not application delivery.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Procedura Aperta per l'affidamento del servizio di Data Center in outsourcing per il sistema SAP di AMA S.p.A., per un periodo di 60 (sessanta) mesi.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/616965-2026"
+        }
+      ]
     },
     {
       "id": "sig_4c3e048afb79a8cc00c3",
@@ -8097,6 +8457,21 @@
         }
       ],
       "guidance": null
+    },
+    {
+      "id": "sig_4eca1d1acfb7ea9f4f37",
+      "source_hash": "2da7dae6f6c899cc3466bab7dfb1799b15f19a2c1a00ddd615f9d82d539cf26c",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Technology refresh of the platform for centralised DNS, DHCP and IP address management network services (GSE); network infrastructure.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Refresh tecnologico della piattaforma per la gestione centralizzata dei servizi di rete Domain Name System (DNS), Dynamic Host Configuration Protocol (DHCP) e IP Address Management (IPAM) per le sedi del GSE",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/738664-2025"
+        }
+      ]
     },
     {
       "id": "sig_4f4f84c1083d9db04c73",
@@ -9350,6 +9725,21 @@
       }
     },
     {
+      "id": "sig_5c18434eb8ded8336e8d",
+      "source_hash": "104a6c530bdfb87571006e36a58103a8356042835ccebf433e00b76dd2c9b86f",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Market consultation for the Gartner Executive Programs 'Guided Individual Access' subscription (RAI); research-advisory subscription.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Avviso di consultazione preliminare di mercato ai sensi degli artt. 77 e 78 del D. Lgs. n. 36/2023 e s.m.i. ai fini dellaffidamento del Servizio Gartner - Executive Programs V2 Guided Individual Access",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/211653-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_5c649c9668c8e3e82cbe",
       "source_hash": "4248d7925738e84cdb5c57dd0f8c54400ea52f28427a3a19a23519bc69529ee4",
       "decision": "exclude",
@@ -9969,6 +10359,26 @@
           }
         }
       }
+    },
+    {
+      "id": "sig_6337277fd70b06a52433",
+      "source_hash": "604d57a1dd9a31474b3b75ede6d253806c7958ebb4876f69f0ac427eb790a55f",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Prior information notice for water supply, manpower, air transport and healthcare services for the armed forces.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "ACQUISTO SERVIZI PER LE FORZE ARMATE",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/1435-2026"
+        },
+        {
+          "field": "description",
+          "quote": "ACQUISIZIONE DEI SERVIZI DI RIFORNIMENTO IDRICO, MANOVALANZA, TRASPORTO AEREO E SANITARI",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/1435-2026"
+        }
+      ]
     },
     {
       "id": "sig_6383a5fca69306e82a74",
@@ -10616,6 +11026,21 @@
       }
     },
     {
+      "id": "sig_6857f700f4b208e79c19",
+      "source_hash": "5c1efb3a6300c463e6bdc664a5f2a7f9f85ea0c6654557e604e1e969cf5b9d41",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Specific contract for renting, with assistance and maintenance, 'production' printing equipment for the Corte dei conti graphics office; printing hardware.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Titolo: APPALTO SPECIFICO PER L’AFFIDAMENTO DELLA FORNITURA IN NOLEGGIO, COMPRENSIVO DI ASSISTENZA E MANUTENZIONE, DI APPARECCHIATURE ‘PRODUCTION’ PER L’UFFICIO GRAFICA E RIPRODUZIONE DELLA CORTE DEI CONTI – ID 2681",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/865849-2025"
+        }
+      ]
+    },
+    {
       "id": "sig_69032cbdfa2eafc8ec13",
       "source_hash": "f7dd1674b21a5af63a28b03331f3179f1593c188ddc98413429fa34544e69018",
       "decision": "guide",
@@ -10958,6 +11383,26 @@
       "reviewed_at": "2026-09-22T09:29:11.069922+00:00",
       "reviewed_by": "Codex primary agent; independent review of subagent proposal",
       "source_hash": "f52b5acadbcc70c70bf5a12a1987f8b05e181b828cff72bf5094e7af94c317c5"
+    },
+    {
+      "id": "sig_6da26613e30f3466f926",
+      "source_hash": "debd40776d75fd4573bfb688dbfab0638d85cdea6ad636f75746204b8cc5059c",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Framework to buy or lease network and security products (Cisco, HPE Aruba, Fortigate, Dell, Trend Micro, other vendors) and their maintenance to upgrade infrastructure and networking devices of Regione Toscana bodies; hardware/network supply only.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Fornitura di prodotti e soluzioni di rete e sicurezza, hardware e software e relativa manutenzione, per upgrade degli apparati infrastrutturali e networking destinati a Regione Toscana, Enti Regionali",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/643386-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Fornitura in acquisto e/o locazione, di prodotti e soluzioni di rete e sicurezza, hardware e software e della relativa manutenzione, necessari all’upgrade degli apparati infrastrutturali e networking da destinare a Regione Toscana, Enti Regionali, Estar, Aziende Sanitarie ed Ospedaliere ed agli altri Enti del Servizio Sanitario Regionale Toscano LOTTO 1 PRODOTTI SOLUZIONI E SERVIZI CISCO; LOTTO 2 PRODOTTI SOLUZIONI E SERVIZI HPE ARUBA; LOTTO 3 PRODOTTI SOLUZIONI E SERVIZI FORTIGATE; LOTTO 4 PRODOTTI SOLUZIONI E SERVIZI DELL; LOTTO 5 PRODOTTI SOLUZIONI E SERVIZI TREND MICRO; LOTTO 6 PRODOTTI SOLUZIONI E SERVIZI PRODUTTORI VARI",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/643386-2026"
+        }
+      ]
     },
     {
       "id": "sig_6dc4e962077f42ec0f72",
@@ -11552,6 +11997,26 @@
       }
     },
     {
+      "id": "sig_71f14f2028e708a0193a",
+      "source_hash": "3ed03809016dab6ee2e8d25a6263e4d1eb9b41612220e783d5d3004f7d40e76d",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Five-lot framework for workstation goods and services: personal computers, desktop assistance and maintenance for two groups of bodies, technical professional software with maintenance, and printers.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "FORNITURA DI BENI E SERVIZI PER LA GESTIONE INTEGRATA DELLE POSTAZIONI DI LAVORO (PDL) SUDDIVISA IN 5 LOTTI",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/539014-2026"
+        },
+        {
+          "field": "description",
+          "quote": "FORNITURA DI BENI E SERVIZI PER LA GESTIONE INTEGRATA DELLE POSTAZIONI DI LAVORO (PDL) SUDDIVISA IN 5 LOTTI Lotto 1 - Fornitura di Personal Computer (conformi al DM MISE 11marzo 2026 GU 70 del 25/03/2026) e dispositivi aggiuntivi a ridotto impatto ambientale; Lotto 2 - Servizi di assistenza e manutenzione per la gestione integrata delle Postazioni di Lavoro (PdL) per Regione Toscana Giunta Regionale, Consiglio Regionale, Agenzie, Enti dipendenti e Società in house di Regione Toscana; Lotto 3 - Servizi di assistenza e manutenzione per la gestione integrata delle Postazioni di Lavoro (PdL) per Enti del Servizio Sanitario regionale (AA.SS.LL, AA.OO., ecc.), altre Amministrazioni Pubbliche; Lotto 4 - Fornitura di software tecnico professionale e della relativa maintenance; Lotto 5 -. Fornitura di stampanti (conformi al D.M. del 17/10/2019 – G.U. n. 261 del 07/11/2019) a ridotto impatto",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/539014-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_720dc99be366cd8692dc",
       "source_hash": "57247e4ff6c88ff9fb3d9bb68ba44eb80fd8bc8c9347af4200cf631f325957cb",
       "decision": "guide",
@@ -11857,6 +12322,46 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_74d230f40156d607ede8",
+      "source_hash": "57ac6822dfc8f03f5f180a5ca03cd6f3625b5f4d7f0fb7a43214e648829d3994",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Framework for delivering water-utility bills and credit documents plus upstream and downstream delivery services (Abbanoa); postal/print-mail services.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Procedura aperta, ai sensi degli artt. 71 e 151 del D. lgs. n. 36/2023, per la conclusione di un Accordo Quadro con un unico operatore economico, ai sensi degli artt. 59 c. 3 e 154 del D.Lgs 36/2023, per l'affidamento del Servizio di recapito delle bollette e dei documenti del credito delle utenze del S.I.I. e dei relativi servizi a monte e a valle, suddiviso in 3 lotti, per una durata di 12 mesi",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/597656-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Procedura aperta, ai sensi degli artt. 71 e 151 del D. lgs. n. 36/2023, per la conclusione di un Accordo Quadro con un unico operatore economico, ai sensi degli artt. 59 c. 3 e 154 del D.Lgs 36/2023, per l'affidamento del Servizio di recapito delle bollette e dei documenti del credito delle utenze del S.I.I. e dei relativi servizi a monte e a valle, suddiviso in 3 lotti, per una durata di 12 mesi. Lotto 1 - Recapito delle bollette e dei documenti del credito; Lotto 2 - Servizi a monte del recapito.; Lotto 3 - Servizi a valle del recapito",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/597656-2026"
+        }
+      ]
+    },
+    {
+      "id": "sig_75074a89423d69a66897",
+      "source_hash": "55cd0087fb37cf83d8792a17b82b9321e42e544e844ffd9dd32589e9aad9e113",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Concession for organising and managing the 10th European Congress of Mathematics (University of Bologna); event organisation.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Procedura aperta per l affidamento della concessione del servizio di organizzazione e gestione della decima edizione del congresso europeo di matematica 10ECM2028 promosso dal Dipartimento di Matematica",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/643087-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Procedura aperta per l’affidamento della concessione del servizio di organizzazione e gestione della decima edizione del congresso europeo di matematica “10ECM2028” promosso dal Dipartimento di Matematica 6483529 - lotto 1",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/643087-2026"
+        }
+      ]
     },
     {
       "id": "sig_76e8b1f0b3f7be62f9f4",
@@ -12889,6 +13394,26 @@
       }
     },
     {
+      "id": "sig_803d1c363aabb921742e",
+      "source_hash": "d46201d94efff057167696b704cacb0638591b0b7357488a5f935ff65448950d",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Framework for organising tourism events in Riccione: safety coordination, unarmed day/night security, rental and assembly of event equipment, cleaning and porterage.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "PROCEDURA APERTA IN ACCORDO QUADRO SUDDIVISA IN 4 LOTTI PER IL SETTORE TURISMO",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/636181-2026"
+        },
+        {
+          "field": "description",
+          "quote": "PROCEDURA APERTA AI SENSI DEGLI ART. 71 E 108 DEL D.LGS. 36/2023 FINALIZZATA ALLA STIPULA DI UN ACCORDO QUADRO CON DIVERSI OPERATORI ECONOMICI PER L’AFFIDAMENTO DEI SERVIZI DI ORGANIZZAZIONE, REALIZZAZIONE E GESTIONE DI EVENTI A RILEVANZA TURISTICA, PROMOSSI O PARTECIPATI DAL COMUNE DI RICCIONE - SERVIZIO COORDINAMENTO ATTIVITÀ ED EVENTI TURISTICI E CULTURALI. COORDINAMENTO GENERALE SICUREZZA E ATTUAZIONE PIANO SAFETY; SERVIZIO DI VIGILANZA NON ARMATA DIURNA E NOTTURA; NOLEGGIO MONTAGGIO SMONTAGGIO ATTREZZATURE PER REALIZZAZIONE EVENTI; SERVIZIO DI PULIZIA E FACCHINAGGIO",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/636181-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_80ca4e90d6fe836950db",
       "source_hash": "cf4390e10614853bcb222aacaa62292a8e6a4f1413dfdfaf3027fe910a2d4f4a",
       "decision": "exclude",
@@ -13294,6 +13819,21 @@
       "reviewed_at": "2026-09-22T09:29:11.069922+00:00",
       "reviewed_by": "Codex primary agent; independent review of subagent proposal",
       "source_hash": "7f047abe1fe47374695f086dcaea25ce0d78faf35ff567e8ae7bb0ffb7c97fb5"
+    },
+    {
+      "id": "sig_846f085a94feec6ebb12",
+      "source_hash": "e4a46fb629145ea37955d6c415777963ed4e10aeae378d9451ffc6090383c8e0",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Market consultation for a storage and data-protection solution (Lepida); storage infrastructure.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "CONSULTAZIONE DI MERCATO PER ACQUISIZIONE DI UNA SOLUZIONE STORAGE E DATA PROTECTION",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/638678-2025"
+        }
+      ]
     },
     {
       "id": "sig_84eb04a72d9a31ebdcf5",
@@ -14212,6 +14752,26 @@
       }
     },
     {
+      "id": "sig_8e64643cb199b674c2ec",
+      "source_hash": "baa49f071741776a3572c7410eb16819b2fde678e91896a43ef547d7ac016fc7",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Purchases SAP's own 'Standard Support' licence-support contract, SAP Analytics Cloud and Data Warehouse Cloud subscription fees for 2027 and one SAP Secure Login licence block. This is resale/renewal of vendor licences and subscriptions; no implementation, integration, CRM or AI service is stated.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Attivazione Contratto “SAP Standard Support” licenze del software SAP S/4 e BW/4 e Canoni SAP Analytics Cloud e Data Warehouse Cloud per l’anno 2027 ed acquisto di nr. 1 blocco licenza SAP Secure Login Service for SAP GUI",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/658897-2026"
+        },
+        {
+          "field": "description",
+          "quote": "vedasi documentazione di gara",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/658897-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_8e7b12a0905223d24202",
       "source_hash": "a50c7f2c1959d959541f1e9269fc037636a6b07311b305a9317074a977283275",
       "decision": "guide",
@@ -14366,6 +14926,26 @@
         }
       ],
       "guidance": null
+    },
+    {
+      "id": "sig_8f42481bc5584fdb9925",
+      "source_hash": "48975fba76b9c9311fa4fafa776fed586967ced48802ece078201f36a0d724d5",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "JRC study: risk assessment and impact analysis of droughts on EU manufacturing and energy production; research study.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Drought Risk Assessment on the European Union’s Manufacturing Sector and the Energy Production",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/640691-2025"
+        },
+        {
+          "field": "description",
+          "quote": "The main aim of the foreseen contract is to conduct detailed risk assessment and impact analysis of droughts on the manufacturing sector and the energy production of the EU.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/640691-2025"
+        }
+      ]
     },
     {
       "id": "sig_8f607dd3dd4619a87d89",
@@ -14643,6 +15223,26 @@
       }
     },
     {
+      "id": "sig_912b3dcbb33e75702c08",
+      "source_hash": "c93b9a4836900186c954486a7c67333d4e1e051ef1b5b638cf671de67fa5885d",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "48-month security services for the regional CSIRT: CSIRT governance, regulatory support and on-call service, and integrated cyber-security services; security operations only.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Procedura aperta telematica, ai sensi dell'art. 71 del D.lgs. n. 36/2023 e ss.mm.ii., per l'acquisto di serivizi di sicurezza per il CSIRT regionale della durata di 48 mesi, in due lotti",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/656945-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Procedura aperta telematica, ai sensi dell'art. 71 del D.lgs. n. 36/2023 e ss.mm.ii., per l'acquisto di serivizi di sicurezza per il CSIRT regionale della durata di 48 mesi, in due lotti Servizio di Governance del CSIRT regionale e supporto normativo, e servizio di reperibilità; Servizi Integrati di Cyber Security per il Csirt regionale",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/656945-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_91e9131bb963979e14eb",
       "source_hash": "2a975ec166513495a35da26fc108f81e0695c6fab7a85687d2c888b9e1da5bf1",
       "decision": "exclude",
@@ -14662,6 +15262,21 @@
         }
       ],
       "guidance": null
+    },
+    {
+      "id": "sig_9255a6f42a4ad315aec7",
+      "source_hash": "e71d1ab855ac62ab17a07d5035af047f5ff8aa214722f6017fadb2ae816ef061",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Supply of 8,500 software licences for an e-mail protection security solution plus an optional 100 licences (ANAS); licence supply only.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "DGACQ 25-26 - Affidamento della Fornitura di n.8.500 Licenze software per una soluzione avanzata di sicurezza (protection) delle e-mail, nonché di un eventuale pacchetto opzionale di n.100 Licenze aggiuntive",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/638614-2026"
+        }
+      ]
     },
     {
       "id": "sig_92caf0427995304453c5",
@@ -14812,6 +15427,21 @@
       }
     },
     {
+      "id": "sig_93d3cdae5f8a7f214b00",
+      "source_hash": "fe72b0644962015a39d438cc6f5641fc43f13365280bf7b5e5ca335c22a89d87",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Preventive and corrective assistance and maintenance of the emission-monitoring analysers (SME analysers) installed at Silea's plant; physical instrument maintenance.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Procedura aperta per l'affidamento del servizio di assistenza e manutenzione preventiva e correttiva dei sistemi di analisi (analizzatori SME) installati presso l’impianto di Silea S.p.A. Società Benefit.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/546895-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_93d93c9cf670f034256c",
       "source_hash": "48e88c523fc79debdd7f063066e23b70055dba7a3074ac396ecb6fdaeee4bc2c",
       "decision": "exclude",
@@ -14932,6 +15562,26 @@
       }
     },
     {
+      "id": "sig_95f911344f2d86051bac",
+      "source_hash": "7e9b05988af7a5379797cbfa814c3963ee1ac9d13ae9e6260d5185401b22f74d",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Framework for assistance and consultancy in European project design: submission, drafting, management, monitoring and reporting of EU projects; grant consultancy.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Procedura Aperta per la Conclusione di un Accordo Quadro con più operatori economici per l'affidamento del servizio di assistenza e consulenza in progettazione europea",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/650604-2025"
+        },
+        {
+          "field": "description",
+          "quote": "L’Accordo Quadro ha ad oggetto l’affidamento, durante il periodo di validità dell’accordo stesso, mediante successivi contratti attuativi, del servizio di assistenza nella presentazione, redazione, gestione, monitoraggio e rendicontazione dei progetti europea",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/650604-2025"
+        }
+      ]
+    },
+    {
       "id": "sig_9644fa39e84861be3134",
       "source_hash": "77069f06b491b51aae6b1b644ff3a4957e46ab69777ade9e4edeaf96782d5b84",
       "decision": "guide",
@@ -14964,6 +15614,21 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_96adcb8b64dee5490128",
+      "source_hash": "5761fd5b12078ea1d5f3c17f6beb0681576052ae000a4c45a999fa12f43a9e9c",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Expression of interest for an Oracle ULA (Unlimited License Agreement) contract (Lepida); licence agreement only.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "AVVISO PUBBLICO DI MANIFESTAZIONE DI INTERESSE PER CONTRATTO ORACLE ULA",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/775693-2025"
+        }
+      ]
     },
     {
       "id": "sig_96b721fbe0907b462a8b",
@@ -15383,6 +16048,26 @@
       }
     },
     {
+      "id": "sig_9b42fe8a6634366239c3",
+      "source_hash": "cb1a0e4a5cf2875e0aa184dd5971c1c01bf31f870b8152367a371e88ce913370",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Sole-supplier check for a subscription to the LSEG-Workspace Data & Analytics database for University of Padova departments; data subscription.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Avviso esplorativo per la verifica di unicità del fornitore per l’affidamento tramite procedura negoziata senza bando ai sensi dell’art. 76, comma 2, lett. b), punto 2) del d.lgs. 36/2023 del servizio di abbonamento alla banca dati LSEG-Workspace Data & Analytics, distribuito in Italia da Refinitiv Italy SpA, per le esigenze di alcuni Dipartimenti dell’Università degli Studi di Padova.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/342908-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Il Centro di Ateneo per le Biblioteche dell’Università degli Studi di Padova, ha la necessità di procedere all’affidamento del servizio di abbonamento alla banca dati LSEG-Workspace Data & Analytics per le esigenze dei Dipartimenti di Scienze Statistiche, Matematica e di Scienze economiche e aziendali dell’Ateneo dell’Università degli Studi di Padova. Al fine di raggiungere tali obiettivi, il Centro di Ateneo per le Biblioteche dell’Università degli Studi di Padova potrebbe, pertanto, avviare una procedura finalizzata all’ affidamento del servizio indicato sopra",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/342908-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_9c80d0bb7dbdefcd3c06",
       "source_hash": "d909d4e9f1cba534644c2b6b6fe5762de597ddf1f4d01f6527ab74eaad1386e1",
       "decision": "guide",
@@ -15715,6 +16400,26 @@
           }
         }
       }
+    },
+    {
+      "id": "sig_9ea9b4d6ca32a8bdf237",
+      "source_hash": "b0f756f3272931c59f1292567263b28f29d9474ec8f84f927584c7b7c00feff9",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Notice verifying the conditions for a negotiated procedure without publication (art. 76 c.2 b) points 2-3, exclusive rights) for three-year technological upgrade services of the TrakCare platform.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "AVVISO DI MANIFESTAZIONE DI INTERESSE PER LA VERIFICA PRELIMINARE DELLA RICORRENZA DELLE CONDIZIONI PER ESPERIRE PROCEDURA NEGOZIATA SENZA PREVIA PUBBLICAZIONE DEL BANDO (AI SENSI DELL’ART. 76, COMMA 2, LETTERA B), PUNTO 2) E PUNTO 3) DEL D. LGS. 36/2023) PER L’AFFIDAMENTO TRIENNALE DEI SERVIZI DI AGGIORNAMENTO TECNOLOGICO DELLA PIATTAFORMA “TRAKCARE” PRESSO L’A.O.U. DI ALESSANDRIA.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/243097-2026"
+        },
+        {
+          "field": "description",
+          "quote": "ID SINTEL: 217475933 - AFFIDAMENTO TRIENNALE DEI SERVIZI DI AGGIORNAMENTO TECNOLOGICO DELLA PIATTAFORMA “TRAKCARE” PRESSO L’A.O.U. DI ALESSANDRIA",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/243097-2026"
+        }
+      ]
     },
     {
       "id": "sig_9ed238e99537f5c688a7",
@@ -16090,6 +16795,26 @@
       "reviewed_at": "2026-09-22T09:29:11.069922+00:00",
       "reviewed_by": "Codex primary agent; independent review of subagent proposal",
       "source_hash": "c1f4827656ec0611fbe5879a4ca5eb89e9348f3e699997e21eb382c3415d1739"
+    },
+    {
+      "id": "sig_a43642035b4fc546ba03",
+      "source_hash": "64c46bec3ac3b002d1e2e292bce95be266e9ddf334eb3995a04ebad434f50f96",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Conducting and managing CAPI and CATI interviews for ISTAT's EU-SILC and Citizens' Safety surveys; interview fieldwork.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Affidamento del servizio di conduzione e gestione di interviste con tecnica mista CAPI e CATI per la realizzazione delle indagini “EU­SILC” e “Sicurezza dei cittadini” e dei relativi servizi connessi e strumentali per ISTAT. - ID 2967",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/383455-2026"
+        },
+        {
+          "field": "description",
+          "quote": "GARA A PROCEDURA APERTA PER L’AFFIDAMENTO DEL SERVIZIO DI CONDUZIONE E GESTIONE DI INTERVISTE CAPI – CATI PER LA REALIZZAZIONE DELLE INDAGINI STATISTICHE «EU­SILC» E «SICUREZZA DEI CITTADINI» PER ISTAT ­ ID 2967 LOTTO 1 Indagine EU­SILC - ID 2967; LOTTO 2 - Indagine Sicurezza dei cittadini - ID 2967",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/383455-2026"
+        }
+      ]
     },
     {
       "id": "sig_a438361846f3d781754a",
@@ -16580,6 +17305,26 @@
           }
         }
       }
+    },
+    {
+      "id": "sig_a810f8905f68df246536",
+      "source_hash": "3a89d3048c306c647936f51043af429aee27b78c657e15dcbf399a956e977c3f",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Front-office administrative services: staffing territorial single-counter offices and administrative support at blood-collection centres and hospital sites, in a contract reserved under art. 61 D.Lgs. 36/2023.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "2026_SERVIZI AMMINISTRATIVI DI FRONT OFFICE:",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/661047-2026"
+        },
+        {
+          "field": "description",
+          "quote": "PROCEDURA APERTA, TRAMITE APPALTO RISERVATO AI SENSI DELL’ART. 61 DEL D. LGS. N. 36/2023, PER L’AFFIDAMENTO DI SERVIZI AMMINISTRATIVI DI FRONT OFFICE: GESTIONE SEDI DI SPORTELLO UNICO TERRITORIALE, SERVIZIO DI SUPPORTO AMMINISTRATIVO PRESSO I CENTRI PRELIEVO E SEDI OSPEDALIERE DELL’AZIENDA USL DELLA ROMAGNA. Servizi Amministrativi di front office",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/661047-2026"
+        }
+      ]
     },
     {
       "id": "sig_a81e8d7654a302075f60",
@@ -17284,6 +18029,26 @@
       }
     },
     {
+      "id": "sig_ae7eb34b8db26ae9676d",
+      "source_hash": "8d60efadc368075e48d2e6ba4c120d4f59e9b103bffcf1e262d9efdfb16c9d1a",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Enel qualification system for control and automation systems of thermoelectric power plants (industrial plant equipment).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Impianti regolazione e automazione impianti termoelettrici (FAAI03)",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/276803-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Impianti regolazione e automazione impianti termoelettrici (FAAI03) Scopo del sistema di qualificazione è di costituire un elenco di Imprese qualificate nel Gruppo Merceologico Impianti regolazione e automazione impianti termoelettrici. Ulteriori dettagli sono descritti nel documento Requisiti di Base per la qualificazione delle Imprese nel Gruppo Merceologico Impianti regolazione e automazione impianti termoelettrici (FAAI03) consultabile sul portale Global Procurement di Enel.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/276803-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_ae7eb8d554010b10ca22",
       "source_hash": "1820de9cf4eb6faaf0eb7e7a53681577cbd1aa37c578b93d8efafbad004891be",
       "decision": "guide",
@@ -17547,6 +18312,46 @@
         }
       ],
       "guidance": null
+    },
+    {
+      "id": "sig_b2b8c1b5f175986dd26b",
+      "source_hash": "80ad398fc1204850e2058d50d36c24f3a383b3f0e4176944afaa553bb7743300",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Qualification system for engineering services for decommissioning SOGIN's nuclear sites.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Sistema di qualificazione SOGIN S.p.A. per l'affidamento di Servizi di ingegneria",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/20452-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Avviso di esistenza del sistema di qualificazione SOGIN S.p.A. per SERVIZI DI INGEGNERIA Lo scopo del sistema di qualificazione è quello di selezionare soggetti idonei al fine di costituire elenchi di fornitori, suddivisi per classi d’importo, dalla classe 0 (fino a 20.000 €) alla classe VI (fino a 2.000.000 €), per prestazioni di servizi di ingegneria finalizzati al decommissioning dei siti SOGIN S.p.A. I soggetti idonei potranno essere invitati, senza ulteriore pubblicazione del bando di gara o esperimento di ricerche di mercato, alle singole procedure di affidamento SOGIN S.p.A. disciplinate dall’art. 50 e 168 del D. Lgs. n. 36/2023 e s.m.i.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/20452-2026"
+        }
+      ]
+    },
+    {
+      "id": "sig_b30cdc75256f59e3b597",
+      "source_hash": "b709a89d9536f2c8c46c7cb83943d134f29130f29ad5c40beaf2d83057a4c2df",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "IP Transit connectivity for national and international traffic with DDoS protection and secondary DNS (RAI); telecom lines.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Servizi di collegamento IP Transit per il traffico nazionale e internazionale",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/593791-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Servizi di collegamento IP Transit per il traffico nazionale e internazionale Servizi di collegamento IP Transit per traffico nazionale, servizio DDoS e DNS secondario; Servizi di collegamento IP Transit per traffico internazionale, servizio DDoS",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/593791-2026"
+        }
+      ]
     },
     {
       "id": "sig_b351abf34766cbbe0dfe",
@@ -18473,6 +19278,21 @@
       }
     },
     {
+      "id": "sig_c075f599dac08e79cbc6",
+      "source_hash": "04d9bb88f48ac640191e5435e8916dc7d242a4dbdba70819b74a5428f2112a42",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Prior information notice for networking assistance services; network support only.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Servizi di assistenza networking",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/869263-2025"
+        }
+      ]
+    },
+    {
       "id": "sig_c0f330fe5ebd4fbb8725",
       "source_hash": "eaede729cfda4f10a8d8f59ceed186a915766a787dca687f6e5d5146bc2d68ff",
       "decision": "guide",
@@ -18599,6 +19419,26 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_c243946f70e033b7c76c",
+      "source_hash": "2302eb9c82db7ff9699e51dafb746956378a2a194456aad037782176628f84c0",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Notice modifying an existing contract (GA20_006 lot 1 - AMCO) to add an organisational change-support service for users of the AMCO accounting solution; an addition to the incumbent's contract, not a competition.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "SU25_002 - MODIFICA DEL CONTRATTO D’APPALTO PER L’ACQUISIZIONE DI UN SISTEMA AMMINISTRATIVO CONTABILE UNICO PER GLI ENTI DEL SERVIZIO SANITARIO REGIONALE E DEL CONSOLIDATO SANITARIO REGIONALE (GA20_006 LOTTO 1 - AMCO) PER L'ACQUISIZIONE DI SERVIZI SUPPLEMENTARI",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/340106-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Prestazioni supplementari relative ad un nuovo Servizio di Supporto al Change Organizzativo, finalizzato a rafforzare il servizio di accompagnamento all'uso della soluzione AMCO",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/340106-2026"
+        }
+      ]
     },
     {
       "id": "sig_c27e073c759153f0952e",
@@ -18832,6 +19672,26 @@
         }
       ],
       "guidance": null
+    },
+    {
+      "id": "sig_c34795fa4cef263102a6",
+      "source_hash": "4e6e5cf059d17858a711c7107565fca2f9ab26b4b22590a790a0625888d39ca7",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Five-year aeronautical management, maintenance, technical assistance and fire-fighting for hospital helipads (ASP Messina).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Procedura aperta in modalità telematica, da espletarsi tramite piattaforma aziendale (e-procurement), a lotto unico, ai sensi degli art. 70 e 71 del d.lgs. 36/2023, da aggiudicarsi con il criterio dell'offerta economicamente più vantaggiosa sulla base del miglior rapporto qualità prezzo, ai sensi dell'art. 108, commi 1, 2 e 8 stesso decreto, per l'affidamento, per anni 5 (cinque), dei seguenti ser",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/600659-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Procedura aperta in modalità telematica, da espletarsi tramite piattaforma aziendale (e-procurement), a lotto unico, ai sensi degli art. 70 e 71 del d.lgs. 36/2023, da aggiudicarsi con il criterio dell'offerta economicamente più vantaggiosa sulla base del miglior rapporto qualità prezzo, ai sensi dell'art. 108, commi 1, 2 e 8 stesso decreto, per l'affidamento, per anni 5 (cinque), dei seguenti servizi: - gestione aeronautica, manutenzione e assistenza tecnica per le elisuperfici ubicate presso i PP.OO. Giuseppe Fogliani di Milazzo, Barone Romeo di Patti; - gestione aeronautica, manutenzione e assistenza tecnica e antincendio per l'elisuperficie ubicata presso il P.O. San Salvatore di Mistretta",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/600659-2026"
+        }
+      ]
     },
     {
       "id": "sig_c3dc71dd8ff1f76ddde6",
@@ -19110,6 +19970,26 @@
       }
     },
     {
+      "id": "sig_c8d59d587642efb0df0f",
+      "source_hash": "b3927217cd604f9337d45ff5c307a9a9980b2556fa9e6984e6f390f7da6475b9",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Earlier edition of the same reserved front-office administrative services contract (staffed counters and administrative support at collection centres and hospitals).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "2026_SERVIZI AMMINISTRATIVI DI FRONT OFFICE:",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/565781-2026"
+        },
+        {
+          "field": "description",
+          "quote": "PROCEDURA APERTA, TRAMITE APPALTO RISERVATO AI SENSI DELL’ART. 61 DEL D. LGS. N. 36/2023, PER L’AFFIDAMENTO DI SERVIZI AMMINISTRATIVI DI FRONT OFFICE: GESTIONE SEDI DI SPORTELLO UNICO TERRITORIALE, SERVIZIO DI SUPPORTO AMMINISTRATIVO PRESSO I CENTRI PRELIEVO E SEDI OSPEDALIERE DELL’AZIENDA USL DELLA ROMAGNA. Servizi Amministrativi di front office",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/565781-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_c9589d269b485c91bdc4",
       "source_hash": "11641ffebccf71caea450b74b9232a96d7fbbba8d506f70314bd0504775d3e27",
       "decision": "exclude",
@@ -19124,6 +20004,21 @@
         }
       ],
       "guidance": null
+    },
+    {
+      "id": "sig_c99fe81eefda58cb1c94",
+      "source_hash": "facf05d47c8a99868b20a0ecf41c749b69822541d864de4efe30d80c96f1074c",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Market consultation for the supply of Hexagon Fiber licences (Insiel); product licence supply only.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "ID 7917 - Consultazione preliminare di mercato per manifestazione di interesse per la fornitura licenze Hexagon Fiber",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/90580-2026"
+        }
+      ]
     },
     {
       "id": "sig_c9bd0617aa0781e394f2",
@@ -19251,6 +20146,21 @@
           }
         }
       }
+    },
+    {
+      "id": "sig_ca2cb379e77a5c384f87",
+      "source_hash": "7d5d68b4bbdc745866d6b670b977b053d41998053da2a5d998ceebf1826a5cf7",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Uniqueness check for the database used to verify bidders' general and special requirements (Azienda Zero); data-service subscription.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "AVVISO ESPLORATIVO PER LA VERIFICA DI INFUNGIBILITA' DELLA BANCA DATI UTILIZZATA PER LE VERIFICHE DEL POSSESSO DEI REQUISITI DI CARATTERE GENERALE E DEI REQUISITI SPECIALI IN CAPO AGLI OPERATORI ECONOMICI AL FINE DELL’AFFIDAMENTO DEI CONTRATTI PUBBLICI",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/110798-2026"
+        }
+      ]
     },
     {
       "decision": "exclude",
@@ -20081,6 +20991,21 @@
       }
     },
     {
+      "id": "sig_d23e24b7fd55712ab78f",
+      "source_hash": "4e142f4d98e9c1449b8cb10e2cd373ff0092e18035693ec25c61562aa1afa04c",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Uniqueness check for H3C CAS and Cloud-OS virtualisation solutions (Lepida); infrastructure virtualisation products.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "AVVISO PER LA VERIFICA DI UNICITA’ DI SOLUZIONI DI VIRTUALIZZAZIONE DI H3C CAS E CLOUD-OS",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/833651-2025"
+        }
+      ]
+    },
+    {
       "id": "sig_d2814edfc714795610aa",
       "source_hash": "7fa9c27748bcaf4ba416026716cfdb999eff7fa0dec07d7e6cdd3605b42e5b2b",
       "decision": "guide",
@@ -20374,6 +21299,26 @@
       }
     },
     {
+      "id": "sig_d64b1f12cf647ccd12f7",
+      "source_hash": "16cb1c8e37dc17cde7a0114d36432ecab9ddc17eae31e59ad641db88b36c044e",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "48-month provision of IT infrastructure in private-cloud mode including a point-to-point line to the supplier's data centre; infrastructure-as-a-service and connectivity only.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Servizio di messa a disposizione di infrastruttura informatica in modalità Private Cloud – 48 mesi",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/649725-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Procedura aperta per l’affidamento del servizio di messa a disposizione di infrastruttura informatica in modalità Private Cloud periodo di 48 mesi, comprensivo della linea punto-punto di connessione tra il Data Center dell’operatore economico e la sede del Consorzio e come meglio specificato nei documenti messi a disposizione, da aggiudicarsi secondo il criterio dell'offerta economicamente più vantaggiosa, ai sensi di quanto disposto dagli artt.71 e 108 del D.Lgs.36/2023 sulla base dei criteri indicati nel bando-disciplinare di gara",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/649725-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_d660fe503ef949435c92",
       "source_hash": "ae803ab6e1e20595cc1a23a9b7a6f2d20ea2ce1908920ef3d2f28207ecc6aab0",
       "decision": "exclude",
@@ -20488,6 +21433,41 @@
       }
     },
     {
+      "id": "sig_d9b3b68474f4782fe3ec",
+      "source_hash": "50ac5facebacbe497e32456c37f1527c1a2e6412d48c176bbd5ffaafae11784d",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Market consultation for a software stack for virtualisation, operating systems and container orchestration for cloud environments (Banca d'Italia); infrastructure software.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Consultazione preliminare di mercato – Acquisizione di uno stack software per la realizzazione di una piattaforma core per virtualizzazione, sistemi operativi e orchestrazione di container per ambienti cloud (G00H/25 - 22I11)",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/735506-2025"
+        }
+      ]
+    },
+    {
+      "id": "sig_d9c9a21fb23adaf4e7d5",
+      "source_hash": "0b78699476a7f25661782d68f0266450b17c46e6c8afcd84d76c1827364c8c5c",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Purchase of Fortinet 'Forticare Premium 24x7' assistance and maintenance for ENAV's production firewalls; vendor hardware support.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Procedura di gara a rilevanza comunitaria, indetta ai sensi dell’art. 155 del D.Lgs. 36/2023, per l’acquisto delle attività di assistenza e manutenzione sui firewall di produzione della Fortinet posti a protezione delle reti aziendali dedicate sia alle comunicazioni di carattere operativo che di carattere corporate",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/585427-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Acquisizione delle funzionalità standardizzate, che sono state contestualizzate dalla Fortinet in un apposito pacchetto di attività che è denominato “Forticare Premium 24x7”, atte a garantire assistenza e manutenzione sugli apparati di produzione Fortinet posti a protezione delle reti aziendali dedicate sia alle comunicazioni di carattere operativo che di carattere corporate.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/585427-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_da0d58e0c1acaf2e6781",
       "source_hash": "aafcea77409a4bb03fafb82eecbaaad127aebd357c248ccda689da25d74be69d",
       "decision": "guide",
@@ -20521,6 +21501,26 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_da1d6256e4d4a3bcee11",
+      "source_hash": "e24a26c416afef26edbb7fdd4c3766a507f060bae3933ee2839ebb5e4c37ec98",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Prior information notice for acquiring Carveco specialist CAD/CAM software for designing artefacts and preparing CNC machining data; purchase of a specialist product licence.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Software specialistico per la progettazione, modellazione ed elaborazione digitale di manufatti e per la preparazione dei dati destinati alle lavorazioni a controllo numerico Carveco",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/657927-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Preparazione della procedura di acquisizione del software specialistico per la progettazione, modellazione ed elaborazione digitale di manufatti e per la preparazione dei dati destinati alle lavorazioni a controllo numerico Carveco",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/657927-2026"
+        }
+      ]
     },
     {
       "decision": "exclude",
@@ -21619,6 +22619,21 @@
       "source_hash": "e788c0c01ede3d095becf6e7c4cecd87f7f7fb5380f1510706913df6409150f8"
     },
     {
+      "id": "sig_e3c5fa93606aad4bbdb6",
+      "source_hash": "6fd2ec9541bac1b3874d4b3b36e54f180bf14bbe3e31c509e5e22b47ab7881c2",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Renewal, maintenance and support of Equitrac print-management licences for RAI: vendor licence maintenance, not application delivery.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Rinnovo, manutenzione e supporto licenze Equitrac",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/618212-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_e3e38678a89b31ee0c41",
       "source_hash": "25612458ec2592c496f2ee5b86315aeaba00c560240973fba4edaff7b03bf5ab",
       "decision": "guide",
@@ -21843,6 +22858,21 @@
       }
     },
     {
+      "id": "sig_e557d47372097cfaf9c4",
+      "source_hash": "ab2974f9b45bc7df4d939d095658da68bdf8484402e0fe22b069b3db5ac43411",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Uniqueness verification before a negotiated award (art. 76 c.2 b) of a contract for the Maggioli SaaS cloud solution (Lepida); vendor-specific SaaS subscription.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Avviso per verifica unicità per l’affidamento di un contratto di appalto avente ad oggetto la soluzione Cloud Maggioli SaaS ex art. 76 c.2, lett. b) del D.lgs. n. 36/2023",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/638219-2025"
+        }
+      ]
+    },
+    {
       "decision": "exclude",
       "evidence": [
         {
@@ -21856,6 +22886,26 @@
       "reviewed_at": "2026-09-22T09:29:11.069922+00:00",
       "reviewed_by": "Codex primary agent; independent review of subagent proposal",
       "source_hash": "ae609517651e3a7f72091fa6f349f38bb42bc9cf6f18e1fdb48259f4b4f8f013"
+    },
+    {
+      "id": "sig_e5911d039fa1e1693aed",
+      "source_hash": "fc52616e69a48b5eb5d620c592b3caa17572ddc5664cd2e22e416224a80b01d7",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Customer-satisfaction market research among passengers of Trenitalia and Trenitalia TPER services; survey execution, not a feedback-management platform.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Gara customer satisfaction per le ricerche di mercato dei passeggeri dei servizi di trasporto offerti da Trenitalia S.p.A. e Trenitalia TPER S.c.a.r.l.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/543259-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Gara Customer Satisfaction per le ricerche di mercato dei passeggeri dei servizi di trasporto. Gara per l'affidamento del servizio avente ad oggetto le ricerche di Customer Satisfaction dei passeggeri dei servizi di trasporto offerti da Trenitalia S.p.A. e Trenitalia TPER S.C.a.r.l.",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/543259-2026"
+        }
+      ]
     },
     {
       "id": "sig_e5b5f5a4d0a22f672a0d",
@@ -21919,6 +22969,21 @@
       "reviewed_at": "2026-09-22T09:29:11.069922+00:00",
       "reviewed_by": "Codex primary agent; independent review of subagent proposal",
       "source_hash": "5e03359790f24e8f18090981eb7943fcef847ab533170225aa86f80cd3358182"
+    },
+    {
+      "id": "sig_e5eb88c28bffc1d565da",
+      "source_hash": "d1c300b352c67446584c91a1e258be55ae204d8dafcfafc61e8852d0e3cfcc20",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Supply of data-network systems for building U10 (university); network equipment supply.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Fornitura di sistemi di rete dati - Edificio U10",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/610883-2026"
+        }
+      ]
     },
     {
       "decision": "exclude",
@@ -22118,6 +23183,21 @@
           }
         }
       }
+    },
+    {
+      "id": "sig_e8f777884fcb420b187d",
+      "source_hash": "17f6a84b9b7dc54a91d7eac86704a7696de5763d0380d2915f706ef12e2bd1e1",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "European tender for new computing and storage infrastructure for Toscana Aeroporti; data-centre hardware.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Gara europea per la nuova Infrastruttura Computing e Storage per Toscana Aeroporti Spa",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/616925-2026"
+        }
+      ]
     },
     {
       "id": "sig_e97ada2ecc5891b94285",
@@ -22513,6 +23593,21 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_ee64cd71e1593a688c5d",
+      "source_hash": "e16cb5e4378fd166c3b0dda134ea32a62af117c7413dbba8294959936afad178",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Renewal of Pentaho subscriptions for InfoCamere; a subscription renewal of a third-party product with no implementation, integration or development service.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "GE2616-Rinnovo sottoscrizioni Pentaho",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/618124-2026"
+        }
+      ]
     },
     {
       "decision": "guide",
@@ -23479,6 +24574,26 @@
       "guidance": null
     },
     {
+      "id": "sig_f53e5d04d699f7167f41",
+      "source_hash": "601e520917291fdda07cf8a80446c9a967b4777a938567951710fd0cd9ef57ba",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Technical assistance supporting the implementation of the Interreg Greece-Italy projects CHORA and ONSEA for Regione Puglia's culture/tourism department; non-IT programme consultancy.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Interreg CHORA - ONSEA",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/659984-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Gara comunitaria telematica a mezzo di procedura aperta per l'affidamento del “Servizio di assistenza tecnica a supporto dell’attuazione dei progetti di Cooperazione Territoriale Europea Interreg VI-A-Greece Italy 2021/2027 “Cultural hubs for open and regenerative arts- CHORA (MIS CODE 6022456)” di cui il Dipartimento Cultura, Istruzione, Turismo e diritti civili della Regione Puglia è Lead Partner e “on sea, many paths: inclusive tourism beyond borders - ONSEA (MIS CODE 6038653)” di cui il Dipartimento Cultura, Istruzione, Turismo e diritti civili della Regione Puglia e’ partner beneficiario, previa selezione del fornitore a mezzo di procedura di gara telematica aperta con applicazione del criterio dell’offerta economicamente più vantaggiosa, individuata sulla base del miglior rapporto qualità-prezzo ai sensi degli artt. 71 e 108 comma 2, lett. b) del D. Lgs. 36/2023 (recante il Codice",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/659984-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_f559dbdaeb69de5ac52b",
       "source_hash": "0ff771c5d43514ff80b260af93423d04bc2042a330d0727fb36df4b1c92fd662",
       "decision": "guide",
@@ -23779,6 +24894,26 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_f98179cfe7605026b18e",
+      "source_hash": "c8e9da4b4810fcc62827e997ab4b17e1588a06a12f0edc4777d66f7e1a35aa72",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Consultation before a negotiated award of the Gartner technology-support service delivered through access to ICT research databases (AGEA); information subscription.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Consultazione preliminare di mercato (ex. art. 77 del D.lgs 36/2023) per il servizio di supporto tecnologico erogato attraverso l’accesso a banche dati informative del settore ICT, Per la verifica di infungibilità/esclusività propedeutica all’acquisizione di servizi con procedura negoziata senza pubblicazione di un bando (ex art. 76 D.Lgs 36/2023 e s.m.i.)",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/662485-2025"
+        },
+        {
+          "field": "description",
+          "quote": "Con il presente avviso, l’Agenzia per l’erogazione in Agricoltura (di seguito “AGEA” o “Stazione appaltante”), intende avviare una consultazione preliminare di mercato ai sensi dell’art. 77 del d.lgs. 36/2023 (di seguito “Codice”), al fine di informare gli operatori economici circa la propria intenzione di acquistare, mediante procedura negoziata ex art. 76, comma 2, lettera b) del Codice, il “Servizio Gartner di supporto tecnologico erogato attraverso l’accesso a banche dati informative del settore ICT”. Disponibile al seguente Link: https://www.sintel.regione.lombardia.it/eprocdata/sintelSearch.xhtml",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/662485-2025"
+        }
+      ]
     },
     {
       "id": "sig_fa79ecd4cd89e1d780ce",
@@ -24368,6 +25503,21 @@
       "reviewed_at": "2026-09-22T09:29:11.069922+00:00",
       "reviewed_by": "Codex primary agent; independent review of subagent proposal",
       "source_hash": "1df0d52fe9ca5842ba0d850227be3a410c724dbfc2e7bea119f1cdc023581100"
+    },
+    {
+      "id": "sig_ff8aaacc73ff8b080510",
+      "source_hash": "2c56bc7e1abffcfef9934d9ed729391fb27ffb5fdd71e4a68560bc43eb83f1dc",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-28T10:08:13.097622+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Purchase of an endpoint protection (anti-malware) security tool for InfoCamere; security product supply outside Salesforce/CRM/AI/integration scope.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "GE2620 - Strumento di protezione endpoint",
+          "source_url": "https://ted.europa.eu/en/notice/-/detail/624530-2026"
+        }
+      ]
     }
   ]
 }
