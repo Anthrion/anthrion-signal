@@ -2151,20 +2151,24 @@
       }
     },
     "36612767113-1": {
-      "closed": false,
+      "closed": true,
       "day": "2026-09-29",
       "limits": {
         "gemini-3.1-flash-lite": 75,
         "gemini-3.5-flash-lite": 75
       },
-      "used": {}
+      "started": true,
+      "used": {
+        "gemini-3.1-flash-lite": 30,
+        "gemini-3.5-flash-lite": 75
+      }
     }
   },
   "models": {
     "gemini-3.1-flash-lite": {
       "blocked_reason": "transient",
-      "blocked_until": 1790693002.6023855,
-      "consecutive_errors": 2,
+      "blocked_until": 1790708393.047848,
+      "consecutive_errors": 0,
       "days": {
         "2026-09-12": 9,
         "2026-09-13": 420,
@@ -2183,12 +2187,45 @@
         "2026-09-26": 499,
         "2026-09-27": 499,
         "2026-09-28": 153,
-        "2026-09-29": 83
+        "2026-09-29": 38
       },
-      "recent": [],
+      "recent": [
+        {
+          "at": 1790708393.051487,
+          "tokens": 17341
+        },
+        {
+          "at": 1790708393.1848552,
+          "tokens": 12361
+        },
+        {
+          "at": 1790708393.3019497,
+          "tokens": 3867
+        },
+        {
+          "at": 1790708405.946466,
+          "tokens": 10300
+        },
+        {
+          "at": 1790708406.0612237,
+          "tokens": 4085
+        },
+        {
+          "at": 1790708418.944133,
+          "tokens": 17341
+        },
+        {
+          "at": 1790708419.050162,
+          "tokens": 12361
+        },
+        {
+          "at": 1790708419.1536067,
+          "tokens": 3867
+        }
+      ],
       "usage": {
-        "candidatesTokenCount": 4332660,
-        "promptTokenCount": 5627121,
+        "candidatesTokenCount": 4354963,
+        "promptTokenCount": 5655219,
         "thoughtsTokenCount": 0
       }
     },
@@ -2218,8 +2255,8 @@
       },
       "recent": [],
       "usage": {
-        "candidatesTokenCount": 8137014,
-        "promptTokenCount": 10512962,
+        "candidatesTokenCount": 8202564,
+        "promptTokenCount": 10605062,
         "thoughtsTokenCount": 0
       }
     }
