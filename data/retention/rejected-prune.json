@@ -1,35 +1,14 @@
 {
   "applied": true,
-  "at": "2026-09-29T00:47:05.661111+00:00",
-  "candidate_records": 2,
-  "records": [
-    {
-      "bucket": "15.jsonl.gz",
-      "hashes": [
-        "acd3a6d1b8566c9d99be164f5e545e71bf986a89c89a0ed76ef74d9bab40a332"
-      ],
-      "id": "sig_79ae71ff7fcccd8daf35",
-      "reason": "Every version is old, inactive and explicitly physical/non-technical; no retained dependency.",
-      "title": "Four Schools M&E Upgrade Works",
-      "url": "https://www.find-tender.service.gov.uk/Notice/002694-2026"
-    },
-    {
-      "bucket": "4a.jsonl.gz",
-      "hashes": [
-        "c74f87864292a7f38482d6caacda25631cd8dccdc119b2cb481e4faf6ea8868e"
-      ],
-      "id": "sig_fb1983d7e41e4b8656df",
-      "reason": "Every version is old, inactive and explicitly physical/non-technical; no retained dependency.",
-      "title": "Cyclical Repairs and External Property Wash-downs and Associated Work",
-      "url": "https://www.find-tender.service.gov.uk/Notice/003753-2026"
-    }
-  ],
-  "recovery_commit": "7d314307b2a2afec20dbc20fcf3be8fa8b474b16",
-  "removed_bytes": 1818,
-  "retained_heads_sha256": "ec1b85a9400413d72505d2dd7f1197bbe984091361a278d45b6c69351597e61b",
+  "at": "2026-09-29T13:56:52.716001+00:00",
+  "candidate_records": 0,
+  "records": [],
+  "recovery_commit": "65ba6fbd3cf2af224cb27dabab662faefe942525",
+  "removed_bytes": 0,
+  "retained_heads_sha256": "dfcc1ec9492643111cc6df4e72f610bee855392a13d09ebd868cff0eca80cb31",
   "signature": {
     "day": "2026-09-29",
-    "discovery": "e13f6ef58bdf5ea367cbc63217d4b2d209c73d844021402d2af67cf952d87630",
+    "discovery": "deade6fdcfa16f7fa635e4c765951b394dd2a3ee96994052bb2c66a629d1a1a8",
     "policy": "unused-physical-inactive-1"
   }
 }
