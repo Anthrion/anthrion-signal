@@ -161,6 +161,28 @@ def test_open_list_absence_requires_two_different_verified_snapshots(config, now
     assert confirmed.state['feeds']['open']['removed'] == ['tender:cb-100-123']
 
 
+@pytest.mark.parametrize("legacy", [False, True])
+def test_open_list_keeps_confirmed_disappearance_until_actual_reappearance(config, now, legacy):
+    rows = [row(), row(**{REFERENCE: 'cb-200'})]
+    first, _ = collect(config, now, rows, budget=4)
+    missing, _ = collect(config, now + timedelta(days=1), rows[1:], first.state, budget=4, etag='"v2"')
+    confirmed, _ = collect(config, now + timedelta(days=2), rows[1:], missing.state, budget=4, etag='"v3"')
+    state = confirmed.state
+    if legacy:
+        state['feeds']['open'].pop('removed_at')
+    for day, revision in ((3, '"v3"'), (4, '"v4"'), (5, '"v5"')):
+        checked, _ = collect(config, now + timedelta(days=day), rows[1:], state, budget=4, etag=revision)
+        assert checked.state['feeds']['open']['removed'] == ['tender:cb-100-123']
+        closed = removed_canada_records([normalise(config, now)], checked.state,
+                                        (now + timedelta(days=day)).isoformat())
+        assert closed[0].updated_at == (now + timedelta(days=2)).isoformat()
+        state = checked.state
+    returned, _ = collect(config, now + timedelta(days=6), rows, state, budget=4, etag='"v6"')
+    assert not returned.state['feeds']['open']['removed']
+    assert not returned.state['feeds']['open']['removed_at']
+    assert {r.data[REFERENCE] for r in returned.records} == {'cb-100-123'}
+
+
 def test_fiscal_year_and_free_endpoint_names(now):
     assert feeds(now)[-1][1] == '2026-2027-awardNotice-avisAttribution.csv'
     assert feeds(now.replace(month=2))[-1][1] == '2025-2026-awardNotice-avisAttribution.csv'

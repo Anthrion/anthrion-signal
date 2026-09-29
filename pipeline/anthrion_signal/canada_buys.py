@@ -104,6 +104,10 @@ def collect_canada_buys(source, state, frozen, http, settings, terms):
                 raise SourceUnavailable("CanadaBuys snapshot metadata needs review")
             if previous.get("etag") == etag and not previous.get("pending"):
                 snapshots[name] = {**previous, "checked_at": frozen.isoformat()}
+                if name == "open":
+                    snapshots[name]["removed_at"] = {
+                        ident: previous.get("removed_at", {}).get(ident) or previous.get("checked_at") or frozen.isoformat()
+                        for ident in previous.get("removed", [])}
                 continue
             result.pages += 1
             response = http.request("GET", url, headers={"If-Match": etag, "Accept-Encoding": "identity"}, follow_redirects=False)
@@ -125,8 +129,14 @@ def collect_canada_buys(source, state, frozen, http, settings, terms):
             if name == "open":
                 missing = previous.get("missing", {})
                 gone = (old_hashes.keys() | missing.keys()) - hashes.keys()
-                entry["removed"] = sorted(ident for ident in gone if missing.get(ident) and missing[ident] != etag)
-                entry["missing"] = {ident: missing.get(ident) or etag for ident in gone}
+                removed = {ident: previous.get("removed_at", {}).get(ident) or previous.get("checked_at") or frozen.isoformat()
+                           for ident in previous.get("removed", []) if ident not in hashes}
+                for ident in gone:
+                    if missing.get(ident) and missing[ident] != etag:
+                        removed.setdefault(ident, frozen.isoformat())
+                entry["removed"] = sorted(removed)
+                entry["removed_at"] = removed
+                entry["missing"] = {ident: missing.get(ident) or etag for ident in gone if ident not in removed}
             snapshots[name] = entry
             if entry["pending"]:
                 result.complete = False
@@ -215,15 +225,19 @@ def normalise_canada_buys(raw):
 
 def removed_canada_records(previous_signals, state, retrieved_at):
     from .normalise import set_hashes
-    removed = {"canadabuys:" + ident for ident in state.get("feeds", {}).get("open", {}).get("removed", [])}
+    snapshot = state.get("feeds", {}).get("open", {})
+    removed = {"canadabuys:" + ident for ident in snapshot.get("removed", [])}
     result = []
     for previous in previous_signals:
         if (previous.source != "canada_buys" or not removed.intersection(previous.external_ids) or
                 previous.signal_type == "AWARD" or previous.status.lower() not in {"active", "open", ""}):
             continue
+        observed = max(snapshot.get("removed_at", {}).get(alias.removeprefix("canadabuys:")) or
+                       snapshot.get("checked_at") or retrieved_at for alias in removed.intersection(previous.external_ids))
+        if parse_date(previous.updated_at) and parse_date(observed) and parse_date(previous.updated_at) > parse_date(observed):
+            continue
         signal = previous.model_copy(deep=True)
         signal.status = "not_listed"
-        signal.last_seen_at = retrieved_at
-        signal.updated_at = retrieved_at
+        signal.last_seen_at = signal.updated_at = signal.last_material_update = observed
         result.append(set_hashes(signal))
     return result

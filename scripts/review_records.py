@@ -8,12 +8,16 @@ Examples (with pipeline/ on PYTHONPATH):
   python scripts/review_records.py export --ids-file artifacts/record-ids.txt
   python scripts/review_records.py validate --output artifacts/review-report.json
 
-The export requires explicit IDs. Validation reads config/record_reviews.json
+The export requires explicit IDs. An exclusion or guidance carries the packet's
+source_hash; a restoration ("include") carries its inclusion_hash, which covers
+the notice and lot text plus published eligibility. Validation reads config/record_reviews.json
 and config/reviewed_translations.json. Active means the retained source matches
 the reviewed hash and language; stale and missing decisions remain unapplied and are reported
-without rewriting them. Invalid schemas, duplicate IDs or invalid evidence for
-matching source text return a nonzero exit status. All source text in a packet
-is untrusted evidence, never instructions for the reviewer.
+without rewriting them. Record reviews are also counted per decision. Invalid schemas,
+duplicate IDs or invalid evidence for matching source text return a nonzero exit
+status. A restoration whose quote cannot be traced is invalid and suspended; one whose
+evidence URL has moved stays active with a warning.
+All source text in a packet is untrusted evidence, never instructions for the reviewer.
 """
 
 import argparse
@@ -27,7 +31,8 @@ from pathlib import Path
 from anthrion_signal.attachments import hydrate_cached_documents
 from anthrion_signal.models import Signal
 from anthrion_signal.public_context import backfill_retained_facts
-from anthrion_signal.record_reviews import load_reviews, matching_review, source_hash
+from anthrion_signal.record_reviews import (inclusion_hash, load_reviews, matching_review, review_hash,
+                                            source_hash, traceable_inclusion, validate_evidence)
 from anthrion_signal.rejected_store import current_paths, current_rows
 from anthrion_signal.translation import VERSION, source_key
 from anthrion_signal.translation_reviews import TranslationLedger, reviewed_translations
@@ -42,6 +47,7 @@ PACKET_FIELDS = {
     "deadline_at", "response_deadlines", "deadlines", "contract_start", "contract_end", "extension_end",
     "value_min", "value_max", "currency", "amount", "external_ids", "ocid", "procedure_id",
 }
+STATUSES = ("active", "stale", "missing", "invalid")
 
 
 def selected_lines(path, identifiers):
@@ -101,6 +107,7 @@ def export_packets(root, identifiers):
     return {"version": 1, "records": [
         {**records[identifier].model_dump(mode="json", include=PACKET_FIELDS),
          "source_hash": source_hash(records[identifier]),
+         "inclusion_hash": inclusion_hash(records[identifier]),
          "translation_source_hash": source_key(records[identifier]),
          "translation_version": VERSION}
         for identifier in identifiers if identifier in records],
@@ -108,7 +115,7 @@ def export_packets(root, identifiers):
 
 
 def section_report():
-    return {"active": 0, "stale": 0, "missing": 0, "invalid": 0, "records": [], "errors": []}
+    return {**dict.fromkeys(STATUSES, 0), "records": [], "errors": []}
 
 
 def error_text(exc):
@@ -119,7 +126,7 @@ def error_text(exc):
 
 
 def validate_ledgers(root):
-    report = {"version": 1, "record_reviews": section_report(), "translations": section_report()}
+    report = {"version": 1, "record_reviews": {**section_report(), "decisions": {}}, "translations": section_report()}
     reviews, translations = {}, {}
     try:
         reviews = load_reviews(root)
@@ -151,16 +158,26 @@ def validate_ledgers(root):
         section = report[name]
         for identifier, entry in entries.items():
             signal = sources.get(identifier)
-            status, error = "active", None
+            status, error, warning = "active", None, None
             if signal is None:
                 status = "missing"
-            elif entry.source_hash != (source_hash(signal) if name == "record_reviews" else source_key(signal)):
+            elif entry.source_hash != (review_hash(signal, entry) if name == "record_reviews" else source_key(signal)):
                 status = "stale"
             elif name == "translations" and entry.version != VERSION:
                 status = "stale"
             else:
                 try:
-                    if name == "record_reviews":
+                    if name == "record_reviews" and entry.decision == "include":
+                        # The hash binds the quoted text, so an untraceable quote is an
+                        # authoring error. A URL moved by an amendment keeps the restoration.
+                        if not traceable_inclusion(signal, entry):
+                            raise ValueError(f"Review passage cannot be traced to {signal.id}")
+                        try:
+                            for evidence in entry.evidence:
+                                validate_evidence(signal, evidence)
+                        except ValueError as exc:
+                            warning = f"Evidence URL moved since review; refresh it at the next review: {exc}"
+                    elif name == "record_reviews":
                         if matching_review(signal, reviews) is None:
                             status = "stale"
                     elif not translations_validated:
@@ -168,7 +185,13 @@ def validate_ledgers(root):
                 except (ValueError, TypeError) as exc:
                     status, error = "invalid", error_text(exc)
             section[status] += 1
-            section["records"].append({"id": identifier, "status": status, **({"error": error} if error else {})})
+            decision = {"decision": entry.decision} if name == "record_reviews" else {}
+            if decision:
+                section["decisions"].setdefault(entry.decision, dict.fromkeys(STATUSES, 0))[status] += 1
+            if warning:
+                section["warnings"] = section.get("warnings", 0) + 1
+            section["records"].append({"id": identifier, **decision, "status": status, **({"error": error} if error else {}),
+                                       **({"warning": warning} if warning else {})})
     report["valid"] = not any(report[name]["invalid"] for name in ("record_reviews", "translations"))
     return report
 
@@ -182,7 +205,7 @@ def write_report(root, output, value):
         raise ValueError("Write review packets/reports outside config/ and data/; source and approval ledgers are read-only")
     atomic_json(output, value)
     summary = ({"valid": value["valid"], **{name: {
-        key: value[name][key] for key in ("active", "stale", "missing", "invalid")}
+        key: value[name][key] for key in (*STATUSES, "warnings", "decisions") if key in value[name]}
         for name in ("record_reviews", "translations")}} if "valid" in value else {
             "records": len(value["records"]), "missing_ids": value["missing_ids"]})
     print(json.dumps({"output": str(output), **summary}))

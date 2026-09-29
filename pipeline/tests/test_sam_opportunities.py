@@ -171,6 +171,28 @@ def test_notice_disappearance_needs_two_versions_and_reappearance_restores_recor
     assert cleared.deadline_at is None and not cleared.deadlines
 
 
+@pytest.mark.parametrize("legacy", [False, True])
+def test_confirmed_disappearance_survives_unchanged_and_later_snapshots(config, now, legacy):
+    rows = [row(f"{n:032x}") for n in range(4)]
+    ident = rows[-1]["NoticeId"]
+    first, _ = collect(config, now, rows)
+    missing, _ = collect(config, now + timedelta(days=1), rows[:-1], first.state, revision='"v2"')
+    confirmed, _ = collect(config, now + timedelta(days=2), rows[:-1], missing.state, revision='"v3"')
+    state = confirmed.state
+    if legacy:
+        state.pop("removed_at")
+    for day, revision in ((3, '"v3"'), (4, '"v4"'), (5, '"v5"')):
+        checked, _ = collect(config, now + timedelta(days=day), rows[:-1], state, revision=revision)
+        assert checked.state["removed_ids"] == [ident]
+        closed = removed_sam_records([normalise_sam_opportunity(first.records[-1])], checked.state,
+                                     (now + timedelta(days=day)).isoformat())
+        assert closed[0].updated_at == (now + timedelta(days=2)).isoformat()
+        state = checked.state
+    returned, _ = collect(config, now + timedelta(days=6), rows, state, revision='"v6"')
+    assert not returned.state["removed_ids"] and not returned.state["removed_at"]
+    assert [r.data["NoticeId"] for r in returned.records] == [ident]
+
+
 def test_awards_are_historical_and_published_set_asides_do_not_invent_eligibility(config, now):
     award = normalise(config, now, Type="Award Notice", AwardDate="2026-09-01", Awardee="Example Supplier LLC",
                       **{"Award$": "$125,000.50"})

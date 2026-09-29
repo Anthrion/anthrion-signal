@@ -8,7 +8,8 @@ if path.exists():
     labels = {"sources_attempted": "Sources attempted", "sources_succeeded": "Sources succeeded", "raw_records": "Raw records fetched",
         "new_signals": "New canonical signals", "material_updates": "Materially updated signals", "duplicates_merged": "Duplicates merged",
         "public_signals": "Published candidates", "new_public_signals": "New public candidates",
-        "suppressed_unavailable_signals": "Unavailable records excluded", "suppressed_scope_signals": "Out-of-scope records excluded"}
+        "suppressed_unavailable_signals": "Unavailable records excluded", "suppressed_scope_signals": "Out-of-scope records excluded",
+        "reviewed_inclusions": "Reviewed restorations published", "reviewed_inclusions_stale": "Stale reviewed restorations"}
     body = "## Anthrion Signal\n\n"
     plan_path = Path("tmp/refresh-plan.json")
     if plan_path.exists():

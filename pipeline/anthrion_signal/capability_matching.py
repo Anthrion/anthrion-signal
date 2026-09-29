@@ -8,15 +8,16 @@ SOFTWARE = ("software", "platform", "application", "information system", "inform
             # the German and Nordic single words do, so it needs listing separately.
             # "digital solutions" and "computer system" stay out: reviewed decisions
             # already hold that neither establishes a technology scope on its own.
-            "management system", "management systems", "it system", "it systems", "digital system",
+            "management system", "management systems", "it system", "it systems", "ict system", "ict systems", "digital system",
             "digital systems", "web application", "web applications",
             "it solution", "it solutions", "software solution", "software solutions",
             "web portal", "internet portal",
-            "automation", "workflow", "api", "crm", "saas", "database", "logiciel", "sistema", "sistemi",
+            "automation", "workflow", "api", "crm", "saas", "database", "logiciel", "logiciels", "sistema", "sistemi",
             "applicazioni", "applicazione", "applikationen", "anwendungen", "virtualisierbar", "softwarewartung",
             "plataforma", "piattaforma", "softwareentwicklung", "systeme", "jarjestelma", "jarjestelman",
             "ohjelmisto", "logismiko", "λογισμικο", "συστημα", "συστηματος", "συστηματων", "πλατφορμα",
-            "ψηφιακων", "ψηφιακος", "tietojarjestelma", "tietojarjestelman", "kerfi", "kerfis")
+            "ψηφιακων", "ψηφιακος", "εφαρμογη", "εφαρμογης", "εφαρμογων", "πλατφορμας",
+            "tietojarjestelma", "tietojarjestelman", "kerfi", "kerfis")
 INTEGRATION = ("integration", "integrate", "integrated", "integrating", "interface", "interfaces", "connect",
                "connecting", "interoperability", "systemintegration", "schnittstelle", "schnittstellen",
                "integrazione", "interoperabilita", "integracion", "interoperabilidad", "διασυνδεση",
@@ -48,10 +49,25 @@ AMBIGUOUS_NEEDS = {"account management", "client management", "contact managemen
                    "investigation management", "appeals management", "grievance management", "enquiry management",
                    "inquiry management", "workforce scheduling", "mobile workforce", "field service management",
                    "subscription management"}
+# Like "complaints management" and "digital transformation": also a service process or a
+# programme name, so it counts only with technical context or a software CPV.
+AMBIGUOUS_NEEDS.update({"feedback management", "digital modernisation", "digital modernization", "employee listening",
+                        "loyalty programme", "loyalty programmes", "loyalty program", "loyalty scheme", "loyalty management"})
 AMBIGUOUS_NEEDS.update({"fallmanagement", "atencion al cliente", "atencion ciudadana", "ongoing enhancement"})
+# Norwegian (Bokmål/Nynorsk) and Danish "case processing" names the activity, which is also
+# bought as human casework (e.g. consultants for building-application processing); the
+# "-system" compounds stay unconditional, like the English entries above.
+AMBIGUOUS_NEEDS.update({"saksbehandling", "sakshandsaming", "sagsbehandling"})
 GENERIC_INTEGRATION = {"systems integration", "system integration", "integration with existing systems",
                        "integrate with existing systems", "systemintegration", "schnittstellenmanagement",
                        "integracion de sistemas", "integrazione di sistemi"}
+# German counterparts of ambiguous English needs: "Datenanalyse" also names statistical or
+# environmental analysis work and "digitale Transformation" a report or policy topic.
+AMBIGUOUS_NEEDS.update({"datenanalyse", "digitale transformation"})
+# German names of a specialist application or data hub are often the buyer's existing system
+# that a printing, scanning or field service feeds; they need technical context too.
+AMBIGUOUS_NEEDS.update({"fachverfahren", "fachverfahrens", "fachsoftware", "fachanwendung", "fachanwendungen",
+                        "fachapplikation", "fachapplikationen", "e akte", "e akten", "datendrehscheibe"})
 PHYSICAL_SYSTEMS = ("pipework", "ventilation", "air handling", "compressed air", "heating", "boilers",
                     "high voltage", "switchgear", "electrical installations", "building management system",
                     "building management systems", "mechanical systems", "tiefengeothermie", "gas systems",
@@ -60,15 +76,114 @@ PHYSICAL_SYSTEMS = ("pipework", "ventilation", "air handling", "compressed air",
                     "gate actuators", "drive actuator", "sally port", "magnetic locks")
 DIGITAL_SYSTEMS = ("software", "application", "database", "crm", "salesforce", "api", "middleware",
                    "information system", "information systems", "data platform", "customer portal", "ai agent")
+# Spanish, Catalan and Galician needs that can also name a service process, a programme topic or the
+# buyer's existing system; like the English entries above, they count only with technical context.
+# Spanish notices name the buyer's "sede electrónica" (e-office) as the channel for bids
+# and applications in works, goods and concession notices alike.
+AMBIGUOUS_NEEDS.update({"sede electronica"})
+# As with "digital transformation": a programme, strategy or department name, not scope.
+AMBIGUOUS_NEEDS.update({"transformacion digital"})
+# Spanish contact-centre operations are often outsourced human services (BPO).
+AMBIGUOUS_NEEDS.update({"centro de contacto", "atencion omnicanal", "atencion multicanal"})
+# These can name the buyer's existing file-processing system in a non-IT contract.
+AMBIGUOUS_NEEDS.update({"gestor de expedientes", "gestor electronico de expedientes", "tramitador de expedientes",
+                        "herramienta de tramitacion de expedientes"})
+# Existing citizen/employee channels or human appointment handling in service contracts.
+AMBIGUOUS_NEEDS.update({"portal del empleado", "carpeta ciudadana", "gestion de citas previas", "gestion de cita previa"})
+# Also used for equipment maintenance and custom-made goods.
+AMBIGUOUS_NEEDS.update({"mantenimiento evolutivo", "desarrollo a medida", "aplicacion a medida", "aplicaciones a medida"})
+# Digitalisation and data governance can be a programme or policy topic.
+AMBIGUOUS_NEEDS.update({"digitalizacion de procesos", "digitalizacion de procedimientos", "gobernanza del dato",
+                        "gobernanza de datos"})
+# Customer/citizen relationship handling can be an outsourced human service.
+AMBIGUOUS_NEEDS.update({"gestion de la relacion con el cliente", "gestion de la relacion con los clientes",
+                        "gestion de las relaciones con los clientes", "relacion con la ciudadania"})
+# A Catalan file-processing system can be the buyer's existing tool in a non-IT (e.g. social-care) contract.
+AMBIGUOUS_NEEDS.update({"gestor d expedients"})
+# Evolutive/corrective maintenance also describes equipment maintenance (ca/gl, as in Spanish).
+AMBIGUOUS_NEEDS.update({"manteniment evolutiu", "manteniment correctiu i evolutiu", "mantemento evolutivo"})
+# Spanish RPA wording can describe industrial robotics; NLP and data analytics can be course or study topics.
+AMBIGUOUS_NEEDS.update({"automatizacion robotica de procesos", "procesamiento del lenguaje natural",
+                        "procesamiento de lenguaje natural", "analitica de datos"})
+# These new native phrases have the same non-software uses as their English
+# counterparts. Keep them for collection, but require context for a capability tag.
+AMBIGUOUS_NEEDS.update({"manutenzione evolutiva", "manutenzione adeguativa", "manutenzione correttiva ed evolutiva",
+                        "manutenzione correttiva e evolutiva", "manutenzione correttiva evolutiva",
+                        "manutenzione correttiva adeguativa ed evolutiva", "sviluppi evolutivi"})
+AMBIGUOUS_NEEDS.update(search_text(phrase).strip() for phrase in (
+    "διαχείριση παραπόνων", "διαχείρισης παραπόνων", "διαχείριση καταγγελιών", "διαχείρισης καταγγελιών"))
 COMMUNICATIONS_SOFTWARE = (
     "call queue management system", "call queue management solution", "call queue management solutions",
     "media monitoring software", "social media management software", "social media listening software",
     "press office management system",
 )
+# Dutch "procesautomatisering" shares its spelling with the Danish business term,
+# but Dutch notices mostly use it for industrial process control of plants, locks,
+# bridges and pumping stations (usually beside electrical engineering). Business
+# process automation, e.g. in an ESM platform, has none of this context.
+INDUSTRIAL_PROCESS_CONTROL = ("elektrotechniek", "elektrotechnische", "elektrotechnisch", "besturing",
+                              "procesbesturing", "plc", "scada", "operational technology", "civiele kunstwerken",
+                              "rioolgemalen", "gemalen", "zuiveringsinstallatie", "awzi", "rwzi",
+                              "werktuigbouwkundige", "werktuigbouwkundig", "instrumentatie", "telemetrie")
+FRENCH_PHYSICAL_INTEROPERABILITY = ("cablage", "panneaux de brassage", "cassettes", "connecteurs",
+                                    "rails", "materiel roulant", "ferroviaire", "ferroviaires")
+FRENCH_APPLICATIONS = ("logiciel", "logiciels", "application", "applications", "api", "apis", "middleware",
+                       "systeme d information", "systemes d information", "plateforme de donnees")
+WORKPLACE_PHRASES = {"digitale werkplek", "espace de travail numerique", "espace numerique de travail",
+                     "espaces numeriques de travail"}
+WORKPLACE_EQUIPMENT = ("laptops", "dockingstations", "beeldschermen", "werkplekapparatuur",
+                       "ordinateurs", "ecrans", "postes de travail", "materiel informatique")
+BUSINESS_SOFTWARE_OBJECTS = ("intranet", "crm", "business application", "customer portal", "workflow",
+                            "applications metiers", "application metier", "logiciel de gestion", "logiciels de gestion",
+                            "plateforme collaborative", "bedrijfsapplicatie", "bedrijfsapplicaties", "bedrijfstoepassingen",
+                            "klantenportaal", "burgerportaal", "werkorders", "klantmeldingen")
+BUSINESS_BUILD = re.compile(r"\b(?:build|develop|implement|configure|creation|conception|developpement|deploiement|"
+                            r"fourniture|acquisition|integration|ontwerp|bouw|bouwen|ontwikkeling|implementatie|inrichting)\b")
+GERMAN_INTERFACES = re.compile(r"\b(?:erstellung|entwicklung|implementierung|integration)\s+"
+                              r"(?:(?:und|die|der|des|von|konkrete|beschreibung|neuen|neuer|aller|alle)\s+){0,7}"
+                              r"schnittstellen\b")
+SPANISH_NEED_BUILD = re.compile(r"\b(?:implantacion|implementacion|desarrollo|configuracion|integracion|"
+                                r"puesta en marcha|diseno)\s+"
+                                r"(?:(?:de|del|la|las|el|los|un|una|unos|unas|y|nueva|nuevas|nuevo|nuevos|"
+                                r"solucion|servicio|herramienta|modulo|para)\s+){0,6}$")
+SPANISH_PROCESS_DESIGN = re.compile(r"\b(?:apoyo|asistencia) tecnic[oa]\s+para\s+(?:el\s+)?"
+                                    r"(?:modelado|modelizacion|diseno) de procesos para (?:la )?$")
+
+
+def native_need_delivery(text, phrase):
+    """Native delivery wording can qualify a need without an IT CPV."""
+    if phrase not in {"sede electronica", "procesamiento del lenguaje natural", "procesamiento de lenguaje natural",
+                       "analitica de datos", "automatizacion robotica de procesos", "transformacion digital"}:
+        return False
+    for hit in re.finditer(r"(?<!\w)" + re.escape(phrase) + r"(?!\w)", text):
+        before = text[max(0, hit.start() - 180):hit.start()]
+        # Technical process design is commissioned digital-transformation work;
+        # a department or programme named "transformación digital" is not.
+        action = (SPANISH_PROCESS_DESIGN if phrase == "transformacion digital" else SPANISH_NEED_BUILD).search(before)
+        if action and not re.search(r"\b(?:curso|formacion|taller|seminario)\b", before[:action.start()]):
+            if affirmed(text, action.group() + phrase):
+                return True
+    return False
+
+
+def business_software_delivery(segments, basis):
+    """Positive application scope protects a mixed equipment/business contract."""
+    for segment in segments:
+        if segment["basis"] != basis or not phrase_hits(segment["text"], BUSINESS_SOFTWARE_OBJECTS):
+            continue
+        for action in BUSINESS_BUILD.finditer(segment["text"]):
+            if re.search(r"\b(?:geen|zonder)\s+(?:\w+\s+){0,4}$", segment["text"][:action.start()]):
+                continue
+            if affirmed(segment["text"], action.group()):
+                return True
+    return False
 
 
 def physical_integration(text, phrase, title_context=""):
     """A mechanical connection is not application integration; mixed digital lots survive."""
+    if phrase == "interoperabilite":
+        return (bool(phrase_hits(text + " " + title_context, FRENCH_PHYSICAL_INTEROPERABILITY))
+                and not phrase_hits(text, FRENCH_APPLICATIONS))
     return (phrase in GENERIC_INTEGRATION and bool(phrase_hits(text + " " + title_context, PHYSICAL_SYSTEMS))
             and not phrase_hits(text, DIGITAL_SYSTEMS))
 
@@ -102,7 +217,7 @@ def operational_software_use(text, phrase):
                                 r"(?:\w+\s+){0,4}(?:software|application|api) integration\b", text)
         return not (integration and affirmed(text, integration.group()))
     if not phrase_hits(text, ("inspection actions", "inspection results", "visit records", "case notes", "inspection records",
-                              "patient records", "clinical records")):
+                              "patient records", "clinical records", "repair jobs", "appointments")):
         return False
     if phrase_hits(text, ("software development", "software upgrade", "implement", "develop", "configure", "migrate")):
         return False
@@ -111,6 +226,8 @@ def operational_software_use(text, phrase):
         if re.search(r"\binput\w*\b.{0,40}\bdata\b.{0,30}\b(?:using|into|in)\s+(?:\w+\s+){0,4}$", before):
             return True
         if re.search(r"\b(?:updating|recording (?:in|on)|entering (?:in|into)|logging (?:in|into))\s+(?:\w+\s+){0,8}$", before):
+            return True
+        if re.search(r"\b(?:log|record|enter)\w*\b.{0,60}\b(?:jobs|appointments)\b.{0,30}\bin\s+(?:\w+\s+){0,5}$", before):
             return True
     return False
 
@@ -250,6 +367,14 @@ def funded_ai_build(text):
     return any(affirmed(text, hit.group()) for hit in re.finditer(pattern, text))
 
 
+def paper_application_support(text, phrase):
+    """Help preparing a planning, consents or funding application is not software support."""
+    hits = list(re.finditer(r"(?<!\w)" + re.escape(phrase) + r"(?!\w)", text))
+    return phrase == "application support" and not phrase_hits(text, ("software", "it system", "ict system", "saas", "crm")) and bool(hits) and all(
+        re.search(r"\b(?:planning|consents|funding|grant)\s+$",
+                  text[max(0, hit.start() - 40):hit.start()]) for hit in hits)
+
+
 def paper_application(text):
     return bool(phrase_hits(text, ("investigational new drug", "grant application", "funding application",
         "patent application", "clinical trial application", "drug application"))) and not phrase_hits(text,
@@ -291,7 +416,12 @@ def capability_hits(cap, segments, software_cpv=False, funding=False):
     title_context = " ".join(s["text"] for s in segments if s["field"] == "title")
     for segment in segments:
         text = segment["text"]
-        technical = has_software(text) or (funding and cap["id"] in ("ai", "genai") and funded_ai_build(text))
+        technical = (has_software(text)
+                     or any(affirmed(text, hit.group()) for hit in GERMAN_INTERFACES.finditer(text))
+                     or (funding and cap["id"] in ("ai", "genai") and funded_ai_build(text)))
+        if cap["id"] == "marketing" and phrase_hits(text, ("employee listening platform", "employee listening platforms",
+                                                           "mobile membership", "points redemption", "reward balances")):
+            technical = True
         weak_text = MANAGEMENT_PROCESS.sub("management process", text)
         weak_technical = bool(phrase_hits(weak_text, ("system", "systems", "implementation", "development", "digital")))
         if cap["id"] in {"ai", "genai"} and phrase_hits(text, (
@@ -310,6 +440,8 @@ def capability_hits(cap, segments, software_cpv=False, funding=False):
                     continue
                 if phrase == "platform support" and "platform support hours" in text:
                     continue
+                if paper_application_support(text, phrase):
+                    continue
                 # The cleaned search text remains authoritative: a source URL or
                 # stripped bidding instruction cannot rescue a negated scope.
                 if (not affirmed(text, phrase) or not affirmed(text, phrase, segment["quote"])
@@ -317,6 +449,13 @@ def capability_hits(cap, segments, software_cpv=False, funding=False):
                     continue
                 if cap["id"] in ("integration", "external_integration") and physical_integration(text, phrase, title_context):
                     continue
+                if phrase == "procesautomatisering" and phrase_hits(text + " " + title_context, INDUSTRIAL_PROCESS_CONTROL):
+                    if not business_software_delivery(segments, segment["basis"]):
+                        continue
+                if phrase in WORKPLACE_PHRASES and any(phrase_hits(s["text"], WORKPLACE_EQUIPMENT)
+                        for s in segments if s["basis"] == segment["basis"]):
+                    if not business_software_delivery(segments, segment["basis"]):
+                        continue
                 if cap["id"] == "ai" and phrase in ("claude", "gemini"):
                     if not phrase_hits(text, ("ai", "artificial intelligence", "llm", "anthropic", "google ai",
                                               "chatbot", "language model", "generative", "api", "licence", "license",
@@ -332,7 +471,7 @@ def capability_hits(cap, segments, software_cpv=False, funding=False):
                         continue
                 # A foreign-language alias may describe a human service. Software CPV
                 # supports a functional phrase, but never proves a tag by itself.
-                if level == "needs" and phrase in AMBIGUOUS_NEEDS and not (technical or software_cpv):
+                if level == "needs" and phrase in AMBIGUOUS_NEEDS and not (technical or software_cpv or native_need_delivery(text, phrase)):
                     if not weak_technical:
                         continue
                     hint_only = True
@@ -347,8 +486,9 @@ def capability_hits(cap, segments, software_cpv=False, funding=False):
                     # the case test above already separates the acronym from foreign prose.
                     titled_acronym = (cap["id"] == "ai" and phrase == "ai"
                                       and segment["field"] == "title"
-                                      and bool(phrase_hits(text, ("interpreter", "assistant", "agent", "adoption", "pilot",
+                                      and (bool(phrase_hits(text, ("interpreter", "assistant", "agent", "adoption", "pilot",
                                           "services", "service", "platform", "software", "solution", "tool", "implementation")))
+                                          or bool(re.search(r"\bai (?:delivery|innovation) partner\b", text)))
                                       and acronym_case_evidence(segment["quote"], phrase))
                     if not (technical or weak_technical or titled_acronym):
                         continue

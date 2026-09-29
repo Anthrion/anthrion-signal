@@ -5,7 +5,7 @@ from pathlib import Path
 from .capability_matching import (affirmed, business_application_development, capability_hits, evidence_excerpt,
                                   has_software, unrelated_supply)
 from .procurement_scope import addressable_delivery, generic_digital_scope, scope_exclusion
-from .notice_dates import digital_deadline, digital_deadline_instant, digital_window_uncertain, signal_response_deadline
+from .notice_dates import digital_deadline, digital_deadline_instant, digital_window_uncertain, engagement_notice_deadline, signal_response_deadline
 from .utils import digest, parse_date, unique
 from .vocabulary import phrase_hits, search_text
 
@@ -20,13 +20,26 @@ RECIPIENT_ORGANISATION = re.compile(
     r"\b(?:for|at|within|serving)\s+(?:(?:the|each)\s+)?(?:\d+(?:st|nd|rd|th|\?)*\s+)?"
     r"(?:software engineering|digital transformation|information technology|artificial intelligence|systems integration)"
     r"\s+(?:group|division|department|office|directorate)\b", re.IGNORECASE)
+# Eligibility and non-opportunity blockers, not scope: a reviewed restoration never clears them.
+TEST_PLACEHOLDER = "The source explicitly marks the notice and multiple procurement fields as test placeholders."
+NO_OPPORTUNITY = "General publication without a current supplier opportunity or explicit future buying intent."
+EMPLOYEE_VACANCY = "Permanent employee vacancy, not a supplier engagement."
+PUBLIC_INSTITUTIONS_ONLY = "The notice explicitly restricts participation to public institutions, not company suppliers."
+PLATFORM_RESTRICTION = "Explicit competing-platform restriction with no separately stated AI or integration scope."
+OPPORTUNITY_BLOCKERS = frozenset({TEST_PLACEHOLDER, NO_OPPORTUNITY, EMPLOYEE_VACANCY, PUBLIC_INSTITUTIONS_ONLY,
+                                PLATFORM_RESTRICTION})
 
 
 def discovery_signature(config):
-    """Replay after policy or engine changes, even without a manual version bump."""
+    """Replay after policy or engine changes, even without a manual version bump.
+
+    Reviewed restorations are policy: only a replay recovers a rejected notice.
+    """
     directory = Path(__file__).parent
-    modules = ("discovery.py", "capability_matching.py", "procurement_scope.py", "vocabulary.py", "translation.py", "notice_dates.py")
-    return digest({"policy": {key: config[key] for key in ("company_profile", "search_terms", "capabilities")},
+    modules = ("discovery.py", "capability_matching.py", "procurement_scope.py", "vocabulary.py", "translation.py",
+               "notice_dates.py", "record_reviews.py")
+    policy = {key: config[key] for key in ("company_profile", "search_terms", "capabilities")}
+    return digest({"policy": {**policy, "reviewed_inclusions": config.get("reviewed_inclusions", [])},
                    "engine": {name: (directory / name).read_text(encoding="utf-8") for name in modules}})
 
 
@@ -41,6 +54,13 @@ def is_award_intelligence(signal):
 def discovery_text(value):
     # Submission instructions and portal hostnames are not buyer technology requirements.
     value = re.sub(r"https?://\S+", " ", value, flags=re.IGNORECASE)
+    # A contact mailbox such as "ddat.crm@dft.gov.uk" names who answers questions,
+    # never the purchased scope; its local part must not become a capability.
+    value = re.sub(r"[\w.+-]+@[\w-]+(?:\.[\w-]+)+", " ", value)
+    # American Petroleum Institute standards ("API 653", "API RP 1604") govern tank
+    # and pipework inspection; they are not application programming interfaces.
+    # Masked neutrally, like URLs and mailboxes, so no substitute words can match.
+    value = re.sub(r"\bAPI[\s-]+(?:(?:RP|STD|Spec|MPMS)[\s-]+)?\d{3,4}\b", " ", value, flags=re.IGNORECASE)
     value = SUPPLIER_LABEL.sub("; published supplier; company name", value)
     # Regulatory clause headings and structured contact-role cells are not the
     # purchased scope. Match their syntax, not the surrounding procurement's
@@ -56,11 +76,18 @@ def discovery_text(value):
     value = RECIPIENT_ORGANISATION.sub(" for the receiving organisation ", value)
     value = re.sub(r"\b(?:AI\s+software\s+[\"']?)?(?:AI[ _-]*)?(?:Bietercockpit|Vergabemanager)\b", "bidding client", value, flags=re.IGNORECASE)
     value = re.sub(r"\b(?:[a-z0-9-]+\.)+[a-z]{2,24}/[^\s<>]*", " ", value, flags=re.IGNORECASE)
+    # A conditional supplier certification ("If you ... provide any IT systems ... you will
+    # need to have a Cyber Security Essentials Plus Certificate") is an eligibility condition
+    # on bidders, not the purchased scope. Mask only the clause: bullets or lot text that
+    # follow it without a full stop must stay matchable.
+    value = re.sub(r"\bif you\b[^.!?]{0,160}\byou will (?:be )?need to (?:have|hold)\b[^.!?]{0,40}"
+                   r"\bcyber\b[^.!?]{0,40}\bcertific\w*", " ", value, flags=re.IGNORECASE)
     sentences = re.split(r"(?<=[.!?])\s+|\n+", value)
     registration = re.compile(
         r"\b(?:log\s?in|logging in|sign in|user guide|guidance for suppliers|"
         r"procurement responses|advertises? procurement|upload\w*|download\w*|"
         r"to register with|register (?:here|your (?:organisation|organization|interest))|"
+        r"registering with (?:an? |the )?(?:supplier|e-?procurement|e-?tendering|procurement) (?:portal|system|platform)|"
         r"submit (?:your |the |a )?(?:bid|tender|proposal|response)|"
         r"(?:register|apply) (?:and apply )?(?:via|on|through)|"
         r"(?:responses?|bids?|proposals?|applications?|submissions?)\b[^.!?]{0,120}\bsubmitted|being released through|"
@@ -131,6 +158,8 @@ def lifecycle(signal, now):
         # An initial application deadline takes precedence over a later,
         # invitation-only stage. Re-evaluate retained detail after parser releases.
         deadline = digital_deadline_instant(digital_deadline(signal.description) or signal.deadline_at) or deadline
+    elif not deadline:
+        deadline = engagement_notice_deadline(signal)
     # Explicit source headings can contradict an incorrectly selected notice
     # category. These are status labels, not words anywhere in the description.
     if re.match(r"^(?:CANCELLED|CANCELED|AVLYST|KESKEYTETTY|PERUTTU)\b", signal.title.strip()):
@@ -159,7 +188,7 @@ def lifecycle(signal, now):
     if status == "expired" or (deadline and deadline <= now):
         return "EXPIRED", "The published response deadline has passed."
     if signal.source == "digital_outcomes" and digital_window_uncertain(signal.description, deadline, now):
-        return "UNKNOWN", "The published planned start has passed without a confirmed current application window."
+        return "UNKNOWN", "A current application window is not confirmed by the published timeline."
     if signal.signal_type == "RENEWAL_SIGNAL":
         return "FUTURE", "Inferred from a published contract end; replacement procurement is unconfirmed."
     if signal.signal_type in ("EARLY_MARKET_ENGAGEMENT", "RFI"):
@@ -198,15 +227,15 @@ def hard_exclusions(signal, charter, scope_evidence=False):
     placeholder_fields = re.findall(r"\b(summary of work|description|how to apply|timeline)\s+(?:test|dummy|placeholder)\b", text)
     if (re.match(r"^\s*(?:test|dummy|placeholder)\s*(?:[-:]|$)", signal.title, re.IGNORECASE)
             and len(set(placeholder_fields)) >= 2):
-        reasons.append("The source explicitly marks the notice and multiple procurement fields as test placeholders.")
+        reasons.append(TEST_PLACEHOLDER)
     if signal.source == "govuk":
         directory_or_retrospective = signal.notice_type in policy.get("non_opportunity_formats", [])
         buying_intent = any(contains(text, p) for p in policy.get("publication_intent", policy["commercial_intent"]))
         if directory_or_retrospective or not buying_intent:
-            reasons.append("General publication without a current supplier opportunity or explicit future buying intent.")
+            reasons.append(NO_OPPORTUNITY)
     staffing = any(contains(text, p) for p in ("contract staffing", "supplier", "consultancy", "professional services", "contractor"))
     if any(contains(text, p) for p in policy["permanent_roles"]) and not staffing:
-        reasons.append("Permanent employee vacancy, not a supplier engagement.")
+        reasons.append(EMPLOYEE_VACANCY)
     technical = any(contains(text, p) for p in policy["technical_context"])
     physical_title = any(contains(title, p) for p in policy.get("physical_scope_titles", []))
     digital_title = any(contains(title, p) for p in policy.get("digital_scope_titles", []))
@@ -221,7 +250,7 @@ def hard_exclusions(signal, charter, scope_evidence=False):
     if non_technical and not software_scope:
         reasons.append("Non-technology service delivery without a stated software, AI or systems scope.")
     if any(contains(text, p) for p in policy.get("company_excluding_eligibility", [])):
-        reasons.append("The notice explicitly restricts participation to public institutions, not company suppliers.")
+        reasons.append(PUBLIC_INSTITUTIONS_ONLY)
     # A competing installed system is not a lock-in. Require an explicit no-alternatives
     # clause in the same sentence, and retain any separately addressable AI/API scope.
     separate = any(contains(text, p) for p in ("AI assistant", "AI agent", "artificial intelligence", "integration", "integrate", "API", "middleware", "or equivalent", "or Salesforce"))
@@ -230,9 +259,43 @@ def hard_exclusions(signal, charter, scope_evidence=False):
         platform = any(contains(normalized, p) for p in policy["incompatible_platforms"])
         locked = any(contains(normalized, p) for p in policy["mandatory_constraints"] if p != "mandatory")
         if platform and locked and not separate:
-            reasons.append("Explicit competing-platform restriction with no separately stated AI or integration scope.")
+            reasons.append(PLATFORM_RESTRICTION)
             break
     return reasons
+
+
+DOS_SUMMARY = re.compile(r"\bSummary of (?:the )?work\s+(?P<body>.*?)"
+                         r"(?=(?:\s\d{1,2}\.\s+|\n[ \t]*)(?:Pricing model|Latest start date|Expected contract length|"
+                         r"Location|Organisation the work is for|Why the work is being done|Problem to be solved)\b|$)",
+                         re.IGNORECASE | re.DOTALL)
+DOS_PLACEHOLDER_WORDS = {"test", "tests", "testing", "this", "is", "the", "tbc", "tbd", "none"}
+
+
+def digital_outcomes_call_off(signal):
+    """Recover stated digital work from a call-off summary, never catalogue boilerplate."""
+    if signal.source != "digital_outcomes":
+        return False
+    text = re.sub(r"https?://\S+", " ", signal.description or "")
+    summary = DOS_SUMMARY.search(text)
+    if not summary:
+        return False
+    body = " ".join(summary["body"].split())
+    words = [w for w in re.findall(r"[^\W\d_]{2,}", body) if w.casefold() not in DOS_PLACEHOLDER_WORDS]
+    if len(words) < 6 or re.match(r"\s*(?:this is (?:a )?|please )?(?:test|dummy|placeholder)\b", body, re.IGNORECASE):
+        return False
+    # Recruitment alone is a human service; a separately commissioned discovery,
+    # prototype or build remains addressable even when it includes participants.
+    if re.search(r"\b(?:recruit\w*|participants?)\b", body, re.IGNORECASE):
+        commissioned = re.compile(r"\b(?:deliver|build|develop|implement|create|configure|design)\w*\s+"
+                                  r"(?:(?:a|an|the|our|new|bespoke|custom|discovery|alpha|beta|digital)\s+){0,5}"
+                                  r"(?:software|application|platform|digital service|prototypes?|build|service)\b", re.IGNORECASE)
+        return any(commissioned.search(clause) and not re.search(
+            r"\b(?:will not|shall not|not (?:required|commissioned)|no (?:design|development|build))\b", clause, re.IGNORECASE)
+            for clause in re.split(r"[.;]", body))
+    delivery = re.search(r"\b(?:digital (?:service|capabilit|moderni|deliver)|software|"
+                         r"(?:alpha|beta) (?:prototype|build)|(?:discovery|user research)[ /-]+alpha|"
+                         r"(?:design|build|develop|implement)\w*\b.{0,70}\b(?:application|platform|service))", body, re.IGNORECASE)
+    return bool(delivery)
 
 
 def prefilter(signals, profile, terms, charter=None, translations=None):
@@ -301,6 +364,9 @@ def prefilter(signals, profile, terms, charter=None, translations=None):
             if affirmed(segment["text"], p)
             and (p != "application development" or business_application_development(segment["text"])))
         digital_scope = unique(digital_scope + generic_digital_scope(segments))
+        dos_call_off = digital_outcomes_call_off(signal)
+        if dos_call_off:
+            digital_scope = unique(digital_scope + ["Digital Outcomes framework call-off"])
         score = min(100, max(strengths, default=0) + min(24, max(0, len(families) - 1) * 6) + (12 if cpv else 0))
         # Unclassified digital delivery remains a reviewable candidate, not an invented capability.
         if digital_scope or discovery_hints:
@@ -312,7 +378,8 @@ def prefilter(signals, profile, terms, charter=None, translations=None):
                 and not (addressable or any(has_software(segment["text"]) for segment in segments))):
             score = 0
         # Pipeline/consulting vocabulary alone identifies buying stage, not our scope.
-        if families and set(families) <= {"pipeline", "staffing", "external_integration"} and not cpv:
+        # Digital Outcomes scope comes from its stated work summary.
+        if families and set(families) <= {"pipeline", "staffing", "external_integration"} and not cpv and not dos_call_off:
             score = min(score, 10)
         signal.prefilter_score = score
         signal.prefilter_matches = unique(hits + [f"Published digital scope: {p}" for p in digital_scope]
