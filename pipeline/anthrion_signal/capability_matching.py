@@ -127,7 +127,7 @@ INDUSTRIAL_PROCESS_CONTROL = ("elektrotechniek", "elektrotechnische", "elektrote
                               "werktuigbouwkundige", "werktuigbouwkundig", "instrumentatie", "telemetrie")
 FRENCH_PHYSICAL_INTEROPERABILITY = ("cablage", "panneaux de brassage", "cassettes", "connecteurs",
                                     "rails", "materiel roulant", "ferroviaire", "ferroviaires")
-FRENCH_APPLICATIONS = ("logiciel", "logiciels", "application", "applications", "api", "middleware",
+FRENCH_APPLICATIONS = ("logiciel", "logiciels", "application", "applications", "api", "apis", "middleware",
                        "systeme d information", "systemes d information", "plateforme de donnees")
 WORKPLACE_PHRASES = {"digitale werkplek", "espace de travail numerique", "espace numerique de travail",
                      "espaces numeriques de travail"}
@@ -146,16 +146,20 @@ SPANISH_NEED_BUILD = re.compile(r"\b(?:implantacion|implementacion|desarrollo|co
                                 r"puesta en marcha|diseno)\s+"
                                 r"(?:(?:de|del|la|las|el|los|un|una|unos|unas|y|nueva|nuevas|nuevo|nuevos|"
                                 r"solucion|servicio|herramienta|modulo|para)\s+){0,6}$")
+SPANISH_PROCESS_DESIGN = re.compile(r"\b(?:apoyo|asistencia) tecnic[oa]\s+para\s+(?:el\s+)?"
+                                    r"(?:modelado|modelizacion|diseno) de procesos para (?:la )?$")
 
 
 def native_need_delivery(text, phrase):
-    """A native build verb can qualify an e-office/NLP need without an IT CPV."""
+    """Native delivery wording can qualify a need without an IT CPV."""
     if phrase not in {"sede electronica", "procesamiento del lenguaje natural", "procesamiento de lenguaje natural",
-                       "analitica de datos", "automatizacion robotica de procesos"}:
+                       "analitica de datos", "automatizacion robotica de procesos", "transformacion digital"}:
         return False
     for hit in re.finditer(r"(?<!\w)" + re.escape(phrase) + r"(?!\w)", text):
         before = text[max(0, hit.start() - 180):hit.start()]
-        action = SPANISH_NEED_BUILD.search(before)
+        # Technical process design is commissioned digital-transformation work;
+        # a department or programme named "transformación digital" is not.
+        action = (SPANISH_PROCESS_DESIGN if phrase == "transformacion digital" else SPANISH_NEED_BUILD).search(before)
         if action and not re.search(r"\b(?:curso|formacion|taller|seminario)\b", before[:action.start()]):
             if affirmed(text, action.group() + phrase):
                 return True

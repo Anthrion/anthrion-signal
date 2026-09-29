@@ -23,6 +23,9 @@ def admitted(signal, config):
      "Conception et mise en place des échanges de données entre nos logiciels.", "integration"),
     ("Interopérabilité des applications métiers pour le réseau ferroviaire",
      "Développement des interfaces entre les logiciels de gestion.", "integration"),
+    ("Solutions de Contrôles / Gestion des Risques et de la Conformité (GRC)",
+     "Intégration et interopérabilité (Intégration au SI, APIs et connecteurs, Imports de données, "
+     "Réversibilité, Automatisation / IA pour optimisation des fonctionnalités).", "integration"),
     ("Espace de travail numérique",
      "Création d'un intranet collaboratif avec gestion des contenus et des accès.", "collaboration"),
     ("Digitale werkplek",
@@ -34,6 +37,8 @@ def admitted(signal, config):
      "Contratación para el diseño y puesta en marcha del acceso telemático de los ciudadanos.", "portals"),
     ("Implementación de procesamiento del lenguaje natural",
      "Clasificación de las consultas de la ciudadanía y extracción de entidades de documentos.", "genai"),
+    ("Servicios de apoyo técnico para modelado de procesos para la transformación digital",
+     "Apoyo técnico para modelado de procesos para la transformación digital.", "transformation"),
     ("Manutenzione evolutiva delle applicazioni",
      "Servizi per i sistemi informativi e le applicazioni aziendali.", "managed"),
     ("Ανάπτυξη εφαρμογής διαχείρισης παραπόνων",

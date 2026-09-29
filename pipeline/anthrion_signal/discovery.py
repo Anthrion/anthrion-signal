@@ -5,7 +5,7 @@ from pathlib import Path
 from .capability_matching import (affirmed, business_application_development, capability_hits, evidence_excerpt,
                                   has_software, unrelated_supply)
 from .procurement_scope import addressable_delivery, generic_digital_scope, scope_exclusion
-from .notice_dates import digital_deadline, digital_deadline_instant, digital_window_uncertain, signal_response_deadline
+from .notice_dates import digital_deadline, digital_deadline_instant, digital_window_uncertain, engagement_notice_deadline, signal_response_deadline
 from .utils import digest, parse_date, unique
 from .vocabulary import phrase_hits, search_text
 
@@ -158,6 +158,8 @@ def lifecycle(signal, now):
         # An initial application deadline takes precedence over a later,
         # invitation-only stage. Re-evaluate retained detail after parser releases.
         deadline = digital_deadline_instant(digital_deadline(signal.description) or signal.deadline_at) or deadline
+    elif not deadline:
+        deadline = engagement_notice_deadline(signal)
     # Explicit source headings can contradict an incorrectly selected notice
     # category. These are status labels, not words anywhere in the description.
     if re.match(r"^(?:CANCELLED|CANCELED|AVLYST|KESKEYTETTY|PERUTTU)\b", signal.title.strip()):
@@ -186,7 +188,7 @@ def lifecycle(signal, now):
     if status == "expired" or (deadline and deadline <= now):
         return "EXPIRED", "The published response deadline has passed."
     if signal.source == "digital_outcomes" and digital_window_uncertain(signal.description, deadline, now):
-        return "UNKNOWN", "The published planned start has passed without a confirmed current application window."
+        return "UNKNOWN", "A current application window is not confirmed by the published timeline."
     if signal.signal_type == "RENEWAL_SIGNAL":
         return "FUTURE", "Inferred from a published contract end; replacement procurement is unconfirmed."
     if signal.signal_type in ("EARLY_MARKET_ENGAGEMENT", "RFI"):

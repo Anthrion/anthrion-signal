@@ -8655,6 +8655,22 @@
       "guidance": null
     },
     {
+      "id": "sig_3183f3b0106b18b2b4ae",
+      "source_hash": "909f44916c5c42d8b14a1fc1af778cd63af5036a74a41c3d805621118b9707f0",
+      "decision": "include",
+      "reviewed_at": "2026-09-29T10:37:57.795486+00:00",
+      "reviewed_by": "Codex release author and independent source reviewer",
+      "reason": "The construction notice separately commissions a new automated fuel-tracking subsystem with a data-entry terminal and office controller connectivity. Preserve possible systems-partner scope conservatively because the linked detailed specification is not extracted. This is not evidence of a software API or CRM requirement; these notices belong to one procedure and their expired response route stays closed.",
+      "evidence": [
+        {
+          "field": "description",
+          "quote": "The system must connect to a new automated fuel tracking system powered by a key fob reader and data entry terminal at the island, linked to a controller in the Garage Office and connected to the back-up generator.",
+          "source_url": "https://sam.gov/opp/6767ca3244cc4caaa5f4b8dd5c9b5a98/view"
+        }
+      ],
+      "priority": "other"
+    },
+    {
       "id": "sig_3216cb1f05bd457d2349",
       "source_hash": "94b7f52f92e16eb05b240f980da39e3cb4d206c5921f441a307e11261b69d1bf",
       "decision": "exclude",
@@ -15313,6 +15329,22 @@
       ]
     },
     {
+      "id": "sig_56748276bdc54138d562",
+      "source_hash": "aac7e709d0e308491ccf5f8d672b95fb01637f461989aa7abf5ca12f31871721",
+      "decision": "include",
+      "reviewed_at": "2026-09-29T10:37:57.795486+00:00",
+      "reviewed_by": "Codex release author and independent source reviewer",
+      "reason": "Remote ECG analysis/services are expressly included alongside equipment. The retained early notice does not establish whether the service is packaged clinical provision or offers a technology partner route, so preserve the mixed scope conservatively. Do not infer custom software, AI, a separate software lot or an open response window.",
+      "evidence": [
+        {
+          "field": "description",
+          "quote": "Remote ECG Analysis/Services",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/084914-2025"
+        }
+      ],
+      "priority": "other"
+    },
+    {
       "id": "sig_5674edda512b921644dc",
       "source_hash": "e444e39988b190c9e6c9936726df9d8284c77a9ba5820728cf3e14869b9e162b",
       "decision": "exclude",
@@ -15351,6 +15383,22 @@
           "source_url": "https://ted.europa.eu/en/notice/-/detail/626916-2025"
         }
       ]
+    },
+    {
+      "id": "sig_56aecf19b1d85f3855d3",
+      "source_hash": "2b39f61559d183f988a6b089d52ab3db574a6096e61d6e2807a073beaccd0097",
+      "decision": "include",
+      "reviewed_at": "2026-09-29T10:37:57.795486+00:00",
+      "reviewed_by": "Codex release author and independent source reviewer",
+      "reason": "The construction notice separately commissions a new automated fuel-tracking subsystem with a data-entry terminal and office controller connectivity. Preserve possible systems-partner scope conservatively because the linked detailed specification is not extracted. This is not evidence of a software API or CRM requirement; these notices belong to one procedure and their expired response route stays closed.",
+      "evidence": [
+        {
+          "field": "description",
+          "quote": "The system must connect to a new automated fuel tracking system powered by a key fob reader and data entry terminal at the island, linked to a controller in the Garage Office and connected to the back-up generator.",
+          "source_url": "https://sam.gov/opp/0ecc5ec9a4724a338802fc244a6c8d8a/view"
+        }
+      ],
+      "priority": "other"
     },
     {
       "id": "sig_56b084049fe98c2c7b2d",
@@ -28740,6 +28788,22 @@
       }
     },
     {
+      "id": "sig_a7d967a6fc696c70c4d6",
+      "source_hash": "385db75ab973d037d8e959f84a8916f33133079254a55cfffe55cfc7666a33e6",
+      "decision": "include",
+      "reviewed_at": "2026-09-29T10:37:57.795486+00:00",
+      "reviewed_by": "Codex release author and independent source reviewer",
+      "reason": "The construction notice separately commissions a new automated fuel-tracking subsystem with a data-entry terminal and office controller connectivity. Preserve possible systems-partner scope conservatively because the linked detailed specification is not extracted. This is not evidence of a software API or CRM requirement; these notices belong to one procedure and their expired response route stays closed.",
+      "evidence": [
+        {
+          "field": "description",
+          "quote": "The system must connect to a new automated fuel tracking system powered by a key fob reader and data entry terminal at the island, linked to a controller in the Garage Office and connected to the back-up generator.",
+          "source_url": "https://sam.gov/opp/f86e3ee61f854c80afc84f15b63ed944/view"
+        }
+      ],
+      "priority": "other"
+    },
+    {
       "id": "sig_a810f8905f68df246536",
       "source_hash": "3a89d3048c306c647936f51043af429aee27b78c657e15dcbf399a956e977c3f",
       "decision": "exclude",
@@ -29592,6 +29656,22 @@
           "source_url": "https://oeffentlichevergabe.de/ui/de/notices/c1e3ae57-cabe-4dbf-86d2-7b2943deb0a9"
         }
       ]
+    },
+    {
+      "id": "sig_ac713fa09508499cc094",
+      "source_hash": "9ce0f466ca77c2c248672950e809541de2a81068627ea5e7a21fe6e822fc6358",
+      "decision": "include",
+      "reviewed_at": "2026-09-29T10:37:57.795486+00:00",
+      "reviewed_by": "Codex release author and independent source reviewer",
+      "reason": "The mixed dental framework explicitly includes digital workflows, diagnostic imaging software and integration in Lots 4 and 5. Preserve potential software and specialist-partner work independently of the unrelated conditional supplier-security wording; this does not establish qualification for every lot.",
+      "evidence": [
+        {
+          "field": "description",
+          "quote": "It includes intraoral x-ray units, OPG/cephalometric systems, CBCT, digital sensors/PSP systems, intraoral cameras and diagnostic imaging software. The scope includes devices and all associated equipment, accessories, installation, acceptance testing, maintenance, software, technical support, integration and training.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/088191-2026"
+        }
+      ],
+      "priority": "other"
     },
     {
       "id": "sig_ac87397183583cc1f50f",
@@ -38888,6 +38968,22 @@
       ]
     },
     {
+      "id": "sig_e80d5bd71467ecf81ba2",
+      "source_hash": "5a26d1f4be84acbe8dd9c1af20d74c00772b192606b0685fb59171188c06240c",
+      "decision": "include",
+      "reviewed_at": "2026-09-29T10:37:57.795486+00:00",
+      "reviewed_by": "Codex release author and independent source reviewer",
+      "reason": "The maintenance procurement explicitly invites digital monitoring or predictive-maintenance solutions where possible. Preserve this potential specialist-partner workstream independently of the physical API piping standard. This is optional innovation scope, not a mandatory standalone software lot or a claim of a currently open response route.",
+      "evidence": [
+        {
+          "field": "description",
+          "quote": "Support NTL's commitment to environmental sustainability and innovation, including digital monitoring or predictive maintenance solutions where possible.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/081599-2025"
+        }
+      ],
+      "priority": "other"
+    },
+    {
       "id": "sig_e885626e8f53251dc74c",
       "source_hash": "4190493ff929371328c2ae900f7cba2d51fb41303342af730f143783072396c9",
       "decision": "exclude",
@@ -40984,6 +41080,21 @@
           "field": "description",
           "quote": "Beschaffung der Auswertesoftware TrackEye in Form einer Abonnement-Lizenz für einen Zeitraum von 5 Jahren inkl. Upgrades Lot LOT-0000: Auswertesoftware TrackEye . Es wird ein Gesamtsystem beschafft.",
           "source_url": "https://oeffentlichevergabe.de/ui/de/notices/96384565-3981-41b0-8b8a-97875493e488"
+        }
+      ]
+    },
+    {
+      "id": "sig_f4967188cc99a58e8ab0",
+      "source_hash": "b88d1e9e5d40c99b832061605b6b89f49418552d04773132fb03ca3c3880a131",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-29T10:52:16.428761+00:00",
+      "reviewed_by": "Codex source reviewer and independent release review",
+      "reason": "Administrative announcement of automated closeouts for contracts that have already completed performance. It notifies the listed incumbent vendors and requests no new supplier technology delivery.",
+      "evidence": [
+        {
+          "field": "description",
+          "quote": "This is an advance notice to vendors identified on the attached contract list of the forthcoming closeout action.",
+          "source_url": "https://sam.gov/opp/49940126e51c4ab383edfca27e5b8a0c/view"
         }
       ]
     },

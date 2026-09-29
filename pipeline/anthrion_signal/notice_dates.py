@@ -1,9 +1,9 @@
-"""Dates explicitly published in UK Digital Outcomes application timelines.
+"""Dates explicitly published in source-specific application windows.
 
-This is deliberately source-specific: numeric dates are day/month/year and
-specified clock times use Europe/London. A date without a time stays date-only;
-we never manufacture a clock time or infer a missing year. Initial submission
-stages take priority over invitation-only final tenders.
+Digital Outcomes numeric dates are day/month/year and specified clock times
+use Europe/London. The Find a Tender prose fallback retains unknown timezones.
+A date without a time stays date-only; we never manufacture a clock time or
+infer a missing year. Initial submission stages precede invitation-only tenders.
 """
 import re
 from datetime import datetime, time, timedelta, timezone
@@ -16,6 +16,7 @@ MONTHS = {name.lower(): index for index, name in enumerate(
 MONTHS.update({name[:3]: index for name, index in list(MONTHS.items())})
 MONTHS['sept'] = 9
 DATE = re.compile(r"\b(?P<day>\d{1,2})(?:st|nd|rd|th)?(?:\s+(?P<month>[A-Za-z]+)\s+|/(?P<numeric>\d{1,2})/)(?P<year>20\d{2})\b", re.I)
+MONTH_FIRST_DATE = re.compile(r"\b(?P<month>[A-Za-z]+)\s+(?P<day>\d{1,2})(?:st|nd|rd|th)?\s+(?P<year>20\d{2})\b", re.I)
 TIME = re.compile(r"\b(?:(?P<hour>\d{1,2})(?::(?P<minute>\d{2})\s*(?P<meridian>am|pm)?|\s*(?P<short>am|pm))|(?P<noon>noon|midday))\b", re.I)
 LABEL = re.compile(
     r"\b(?:application closing date|tender submission deadline|closing date|"
@@ -25,14 +26,15 @@ LABEL = re.compile(
 
 
 def _date(text, match):
-    month = int(match['numeric']) if match['numeric'] else MONTHS.get(match['month'].lower())
+    numeric = match.groupdict().get('numeric')
+    month = int(numeric) if numeric else MONTHS.get(match['month'].lower())
     if not month:
         return None
     try:
         value = datetime(int(match['year']), month, int(match['day']))
         # Clock may precede the date in a table, or immediately follow it.
         before, after = text[:match.start()], text[match.end():]
-        clock = TIME.search(before) or TIME.match(after.lstrip(' ,;()-').removeprefix('at ').strip())
+        clock = TIME.search(before) or TIME.match(re.sub(r'^at\s+', '', after.lstrip(' ,;()-'), flags=re.I).strip())
         if not clock:
             return value.date().isoformat()
         hour, minute = (12, 0) if clock['noon'] else (int(clock['hour']), int(clock['minute'] or 0))
@@ -82,9 +84,16 @@ def digital_deadline(text):
 
 
 def digital_window_uncertain(text, deadline, now):
-    """An old planned start is not an invented deadline or evidence of an open bid."""
+    """Unresolved response timelines and old starts do not confirm an open bid."""
+    if deadline:
+        return False
+    # A yearless/TBC submission row must not become OPEN merely because a later
+    # project start has a year. Only inspect the source's actual timeline section.
+    timeline = re.search(r"(?:^|\n|\b\d+\.\s*)Timeline\b(?P<body>.*?)(?=\b\d+\.\s*(?:Contracted out service|How to apply)\b|$)", text, re.I | re.S)
+    if timeline and LABEL.search(timeline['body']):
+        return True
     start = re.search(r"\bLatest start date\s+(20\d{2}-\d{2}-\d{2})\b", text, re.I)
-    if deadline or not start:
+    if not start:
         return False
     try:
         return datetime.strptime(start[1], '%Y-%m-%d').date() < now.date()
@@ -162,3 +171,63 @@ def signal_response_deadline(signal):
         values = [response_deadline_instant(value)
                   for value in (signal.response_deadlines or [signal.deadline_at])]
     return max((value for value in values if value), default=None)
+
+
+def engagement_notice_deadline(signal):
+    """Lifecycle-only fallback for explicit Find a Tender engagement closures.
+
+    Do not mine general milestones or lot prose, infer years/timezones, overwrite
+    source facts, or let prose compete with structured response windows.
+    """
+    if signal.source != 'find_tender' or signal.signal_type not in {'EARLY_MARKET_ENGAGEMENT', 'RFI'}:
+        return None
+    if signal_response_deadline(signal) or any(response_deadline_instant(value) for value in (
+            signal.deadline_at, *signal.response_deadlines, *(lot.deadline_at for lot in signal.lots)) if value):
+        return None
+    # Explicitly disputed/withdrawn facts are not absence of data. An old prose
+    # sentence must not revive a superseded or conflicting date.
+    if any(event.kind not in {'questions', 'invited_submission'} for event in signal.deadlines):
+        return None
+    text = re.split(r'\bLot\s+[A-Za-z0-9][\w.-]*\s*:', signal.description, maxsplit=1, flags=re.I)[0]
+    if re.search(r'\b(?:previous|original|historical|superseded|withdrawn|cancelled|canceled|draft)\s+(?:notice|engagement|closing date|response deadline)\b', text, re.I):
+        return None
+    if re.search(r'\b(?:new|revised|extended|superseded|postponed)\s+(?:response\s+)?(?:deadline|closing date|notice)\b|'
+                 r'\b(?:deadline|closing date|response window)\b[^.!?]{0,50}\b(?:extended|revised|changed|amended|superseded|postponed)\b', text, re.I):
+        return None
+    label = re.compile(r'(?:^|(?<=[.!?\n])\s+)(?:The deadline for submitting your response is|This notice will be kept open until)\s+', re.I)
+    candidates = []
+    for found in label.finditer(text):
+        context = text[max(0, found.start() - 140):found.end()]
+        if re.search(r'\b(?:previous|original|superseded|historical|quoted?|example|indicative|provisional|draft|future questionnaire)\b', context, re.I):
+            continue
+        tail = re.split(r'[.!?\n]', text[found.end():found.end() + 100], maxsplit=1)[0].strip()
+        match = DATE.search(tail) or MONTH_FIRST_DATE.search(tail)
+        if not match:
+            return None
+        prefix = tail[:match.start()]
+        prefix = re.sub(r'^\s*(?:by|on|at)\s+', '', prefix, flags=re.I)
+        prefix = re.sub(r'\b(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\s*$', '', prefix, flags=re.I).strip()
+        suffix = re.sub(r'^\s*(?:at|by)\s+', '', tail[match.end():], flags=re.I).strip()
+        zone = re.search(r'\s+(GMT|UTC|BST)$', suffix, re.I)
+        clock = suffix[:zone.start()].strip() if zone else suffix
+        if ((prefix and not TIME.fullmatch(prefix)) or (clock and not TIME.fullmatch(clock))
+                or (prefix and clock)):
+            return None
+        value = _date(tail, match)
+        if not value:
+            return None
+        parsed = datetime.fromisoformat(value)
+        published = parse_date(signal.published_at)
+        if published and parsed.date() < published.date():
+            continue
+        if 'T' in value:
+            # Find a Tender prose need not identify a timezone. Keep such dates
+            # reviewable through the whole last possible calendar day.
+            offset = timezone(timedelta(hours=1)) if zone and zone[1].upper() == 'BST' else timezone.utc
+            value = parsed.replace(tzinfo=offset if zone else None).isoformat()
+        candidates.append(value)
+    # Repeated parent/lot copy is harmless; conflicting self-notice dates need
+    # review rather than selecting the old date and hiding a possible extension.
+    if len(set(candidates)) != 1:
+        return None
+    return response_deadline_instant(candidates[0])
