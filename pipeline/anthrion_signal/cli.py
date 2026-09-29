@@ -20,7 +20,7 @@ from .notice_dates import response_deadline_instant
 from .public_context import backfill_retained_facts, public_signal
 from .public_feed import atomic_public_json, export_current
 from .retention import archive_expired, restore_matching
-from .record_reviews import apply_reviews, load_reviews
+from .record_reviews import INCLUSION_MARKER, apply_reviews, load_reviews
 from .translation import available_translations
 from .utils import (atomic_json, atomic_retained_bytes, atomic_retained_json, digest,
                     jsonl_lines, parse_date, read_json, read_retained_bytes, retained_path)
@@ -67,13 +67,26 @@ def _collect(source, previous_state, now, config, previous_signals=None):
         elif source["collector"] == "sam_csv" and next_state.get("snapshot_etag") != state.get("snapshot_etag"):
             from .sam_opportunities import removed_sam_records
             normalised.extend(removed_sam_records(previous_signals or [], next_state, now.isoformat()))
-        elif (source["collector"] == "canada_buys" and
-              next_state.get("feeds", {}).get("open", {}).get("etag") != state.get("feeds", {}).get("open", {}).get("etag")):
+        elif source["collector"] == "canada_buys":
             from .canada_buys import removed_canada_records
-            received = {signal.id for signal in normalised}
-            # A newly published revision or explicit cancellation takes precedence
-            # over absence from the independently refreshed daily open list.
-            normalised.extend(removed_canada_records([s for s in previous_signals or [] if s.id not in received], next_state, now.isoformat()))
+            open_snapshot = next_state.get("feeds", {}).get("open", {})
+            if open_snapshot.get("checked_at") == now.isoformat():
+                formerly_unlisted = {alias for s in previous_signals or [] if s.source == "canada_buys" and s.status == "not_listed"
+                                     for alias in s.external_ids}
+                for signal in normalised:
+                    if signal.status == "active" and any(alias in formerly_unlisted and
+                            alias.removeprefix("canadabuys:") in open_snapshot.get("hashes", {}) for alias in signal.external_ids):
+                        # A fresh, verified open snapshot can relist an unchanged
+                        # notice. Its publisher amendment date remains older than
+                        # our closure; record this observed availability change so
+                        # reconciliation can reopen it, including resumed batches.
+                        signal.updated_at = signal.last_material_update = now.isoformat()
+                        set_hashes(signal)
+            if open_snapshot.get("etag") != state.get("feeds", {}).get("open", {}).get("etag"):
+                received = {signal.id for signal in normalised}
+                # A newly published revision or explicit cancellation takes precedence
+                # over absence from the independently refreshed daily open list.
+                normalised.extend(removed_canada_records([s for s in previous_signals or [] if s.id not in received], next_state, now.isoformat()))
         return source["id"], normalised, next_state, health, len(result.records) + len(result.rejected_records)
     except Exception as exc:
         health.status = "failed"
@@ -105,6 +118,28 @@ def derive_renewals(signals, now, config):
     return result
 
 
+def lead_keys(signals):
+    """Identities through which a retained lead receives its later notices."""
+    return ({s.id for s in signals}, {s.ocid for s in signals if s.ocid},
+            {alias for s in signals for alias in s.external_ids})
+
+
+def follows(signal, keys):
+    ids, ocids, aliases = keys
+    return signal.id in ids or signal.ocid in ocids or bool(aliases.intersection(signal.external_ids))
+
+
+def project_source_removals(signals, state, retrieved_at):
+    """Apply compact verified source tombstones without reading rejection history."""
+    from .canada_buys import removed_canada_records
+    from .sam_opportunities import removed_sam_records
+
+    removed = removed_sam_records(signals, state.get("sam", {}), retrieved_at)
+    removed += removed_canada_records(signals, state.get("canada_buys", {}), retrieved_at)
+    updates = {signal.id: signal for signal in removed}
+    return [updates.get(signal.id, signal) for signal in signals] if updates else signals
+
+
 def prepare_current(root, *, save_cache=False):
     """Classify current candidates without writing award shards or public assets."""
     data = Dataset.model_validate(read_json(root / "data/current.json", {}))
@@ -113,21 +148,34 @@ def prepare_current(root, *, save_cache=False):
     canonical = root / "data/signals.jsonl"
     canonical_signals = [Signal.model_validate_json(line) for line in jsonl_lines(read_retained_bytes(canonical).decode("utf-8"))] if retained_path(canonical).exists() else data.signals
     state = read_json(root / "data/source_state.json", {})
+    observed_at = datetime.now(UTC).isoformat()
+    canonical_signals = project_source_removals(canonical_signals, state, observed_at)
     backfill_retained_facts(canonical_signals, state)
     backfill_retained_facts(data.signals, state)
-    if data.run.get("discovery_signature") != signature and retained_path(canonical).exists():
+    cache = ClassificationCache(root, config)
+    recovering = data.run.get("discovery_signature") != signature and retained_path(canonical).exists()
+    lost = set()
+    if recovering:
         # A rule release must be able to restore previously suppressed candidates
         # even on an existing-data deployment. Availability is still checked below.
         known = {s.id for s in canonical_signals}
-        recovered = [s for s in read_rejected(root)
-            if s.id not in known and is_public_opportunity(s.model_copy(update={"exclusion_reasons": []}), datetime.now(UTC))]
+        rejected = project_source_removals([s for s in read_rejected(root) if s.id not in known], state, observed_at)
+        recovered = [s for s in rejected
+            if is_public_opportunity(s.model_copy(update={"exclusion_reasons": []}), datetime.now(UTC))]
+        # A restored notice's own retained cancellations, awards and change notices
+        # are not opportunities, but must still reconcile with it.
+        leads = lead_keys([s for s in recovered if s.id in cache.inclusions])
+        ids = {s.id for s in recovered}
+        recovered += [s for s in rejected if s.id not in ids and follows(s, leads)]
         # Reuse collection's identity/status reconciliation: an old rejected tender
         # must not resurrect a subsequently awarded/cancelled archived procurement.
         restored = restore_matching(root, recovered, known)
         data.signals, _, _ = reconcile(canonical_signals + restored, recovered)
+        # A restoration merged into another identity no longer applies; report it.
+        lost = leads[0] - {s.id for s in data.signals}
         backfill_retained_facts(data.signals, state)
+    data.signals = project_source_removals(data.signals, state, observed_at)
     translations = available_translations(root, data.signals)
-    cache = ClassificationCache(root, config)
     cache.classify(data.signals, translations)
     if save_cache:
         cache.save()
@@ -160,6 +208,11 @@ def prepare_current(root, *, save_cache=False):
     visible_ids = {signal.id for signal in data.signals}
     data.translations = {key: value for key, value in data.translations.items() if key in visible_ids}
     data.run["reviewed_exclusions"] = before_reviews - len(data.signals)
+    data.run["reviewed_inclusions"] = sum(INCLUSION_MARKER in s.prefilter_matches for s in data.signals)
+    # Only a recovery classifies retained notices; otherwise keep collection's count,
+    # which also saw restorations that are hidden from the current records.
+    stale = len(cache.stale_inclusions | lost)
+    data.run["reviewed_inclusions_stale"] = stale if recovering else data.run.get("reviewed_inclusions_stale", stale)
     data.run["public_signals"] = len(data.signals)
     return data, canonical_signals, config
 
@@ -203,6 +256,7 @@ def run(root, args):
     previous_data = read_json(root / "data/current.json", None)
     canonical_path = root / "data/signals.jsonl"
     previous = [Signal.model_validate_json(line) for line in jsonl_lines(read_retained_bytes(canonical_path).decode("utf-8"))] if retained_path(canonical_path).exists() else []
+    previous = project_source_removals(previous, state, now.isoformat())
     backfill_retained_facts(previous, state)
     wanted = set(args.sources.split(",")) if args.sources else None
     all_sources = config["sources"]["sources"]
@@ -235,7 +289,7 @@ def run(root, args):
     discovery_state = read_json(root / "data/discovery/state.json", {})
     signature = discovery_signature(config)
     replay = discovery_state.get("signature") != signature or getattr(args, "command", "ingest") == "rescore"
-    replayed = read_rejected(root) if replay else []
+    replayed = project_source_removals(read_rejected(root), state, now.isoformat()) if replay else []
     # Current retrieval follows replay so newer status updates remain authoritative.
     incoming = replayed + incoming
     cache = ClassificationCache(root, config)
@@ -243,13 +297,17 @@ def run(root, args):
     # Replayed source versions already have durable evidence; do not duplicate
     # the entire rejection history into a new date partition on every release.
     rejected_count = retain_rejected(root, incoming[len(replayed):], now, config["capabilities"]["discovery"]["minimum_candidate_score"])
-    known_ids, known_ocids = {s.id for s in previous}, {s.ocid for s in previous if s.ocid}
-    known_aliases = {alias for s in previous for alias in s.external_ids}
-    # Sparse awards and cancellations must still retire a previously collected lead.
+    known_ids = {s.id for s in previous}
+    # Sparse awards and cancellations must still retire a previously collected lead,
+    # including a restored lead first admitted with its replayed relatives.
+    leads = lead_keys([*previous, *(s for s in incoming if s.id in cache.matched_inclusions)])
     incoming = [s for s in incoming if s.prefilter_score >= config["capabilities"]["discovery"]["minimum_candidate_score"]
-                or s.id in known_ids or s.ocid in known_ocids or known_aliases.intersection(s.external_ids)]
+                or follows(s, leads)]
     previous.extend(restore_matching(root, incoming, {s.id for s in previous}))
     signals, index, stats = reconcile(previous, incoming)
+    signals = project_source_removals(signals, state, now.isoformat())
+    # A restoration merged into another identity no longer applies; report it.
+    lost = cache.matched_inclusions - {s.id for s in signals}
     # Replayed legacy releases can share a timestamp with corrected records and
     # reintroduce contact-as-buyer or manufactured midnight fields during merge.
     # Restore retained source facts before scope, availability and persistence.
@@ -284,6 +342,8 @@ def run(root, args):
         "raw_records": raw_count, "canonical_signals": len(signals), "candidates_shortlisted": sum(s.prefilter_score >= runtime["ai_min_score"] and not s.related_signal_id for s in current),
         "public_signals": len(current), "suppressed_unavailable_signals": len(signals) - len(available),
         "suppressed_scope_signals": len(available) - len(current),
+        "reviewed_inclusions": sum(INCLUSION_MARKER in s.prefilter_matches for s in current),
+        "reviewed_inclusions_stale": len(cache.stale_inclusions | lost),
         "new_public_signals": sum(s.id not in known_ids for s in current),
         **stats, **ai_stats, "high_fit_signals": sum(s.fit_score is not None and s.fit_score >= config["scoring"]["recommendation"]["strong_fit"] for s in current),
         "content_digest": content_digest, "content_changed": not same_content, "deployment_status": "awaiting_build",

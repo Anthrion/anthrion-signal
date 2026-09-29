@@ -139,20 +139,26 @@ def collect_sam_opportunities(source, state, frozen, http, settings, terms):
         result.pages += 1
         size, etag, modified = _snapshot_metadata(http.request("HEAD", EXTRACT_URL, follow_redirects=False), frozen, maximum)
         if previous.get("snapshot_etag") == etag and not previous.get("pending_records"):
-            result.state.update(watermark=frozen.isoformat(), removed_ids=[])
+            result.state.update(watermark=frozen.isoformat(), removed_at={
+                ident: previous.get("removed_at", {}).get(ident) or previous.get("watermark") or frozen.isoformat()
+                for ident in previous.get("removed_ids", [])})
             return result
         with tempfile.TemporaryFile() as target:
             result.pages += 1
             _download(http, target, size, etag, maximum)
             processed = previous.get("record_hashes", {})
             hashes, records, pending = parse_snapshot(target, source, processed, frozen.isoformat(), previous.get("snapshot_rows", 0))
-        missing, removed = {}, []
+        missing = {}
+        # Confirmed absence must survive later unchanged/revised snapshots: a
+        # rejected notice may be reviewed and replayed months after it vanished.
+        removed = {ident: previous.get("removed_at", {}).get(ident) or previous.get("watermark") or frozen.isoformat()
+                   for ident in previous.get("removed_ids", []) if ident not in hashes}
         # Absence is not an award or cancellation. Only retire a retained open
         # notice after two independently revised, validated full snapshots.
         for ident in (previous.get("record_hashes", {}).keys() | previous.get("missing", {}).keys()) - hashes.keys():
             earlier = previous.get("missing", {}).get(ident)
             if earlier and earlier != etag:
-                removed.append(ident)
+                removed.setdefault(ident, frozen.isoformat())
             else:
                 missing[ident] = earlier or etag
         result.records = records
@@ -166,7 +172,8 @@ def collect_sam_opportunities(source, state, frozen, http, settings, terms):
             result.message = f"Verified public snapshot; {pending:,} new or changed notices remain in the resumable backlog."
         result.state.update(query_version=VERSION, watermark=frozen.isoformat(), snapshot_etag=etag,
             snapshot_modified=modified, snapshot_bytes=size, snapshot_rows=len(hashes),
-            record_hashes=accepted, pending_records=pending, missing=missing, removed_ids=sorted(removed))
+            record_hashes=accepted, pending_records=pending, missing=missing,
+            removed_ids=sorted(removed), removed_at=removed)
     except SourceUnavailable as exc:
         result.records = []
         defer_collection(result, exc)
@@ -177,13 +184,20 @@ def removed_sam_records(previous_signals, state, retrieved_at):
     removed = set(state.get("removed_ids", []))
     result = []
     for signal in previous_signals:
-        if signal.source != "sam" or signal.status == "not_listed" or signal.signal_type == "AWARD":
+        if (signal.source != "sam" or signal.signal_type == "AWARD" or
+                signal.status.lower() not in {"active", "open", "unknown", "unverified", ""}):
             continue
-        if not any(alias.startswith("sam:") and alias[4:] in removed for alias in signal.external_ids):
+        matched = [alias[4:] for alias in signal.external_ids if alias.startswith("sam:") and alias[4:] in removed]
+        if not matched:
+            continue
+        observed = max(state.get("removed_at", {}).get(ident) or state.get("watermark") or retrieved_at for ident in matched)
+        # A newer actual source revision can reopen a notice. Reapplying an old
+        # tombstone must not manufacture a fresh closure timestamp on each replay.
+        if parse_date(signal.updated_at) and parse_date(observed) and parse_date(signal.updated_at) > parse_date(observed):
             continue
         updated = signal.model_copy(deep=True)
         updated.status = "not_listed"
-        updated.updated_at = updated.last_seen_at = updated.last_material_update = retrieved_at
+        updated.updated_at = updated.last_seen_at = updated.last_material_update = observed
         result.append(set_hashes(updated))
     return result
 

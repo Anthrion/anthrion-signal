@@ -1,3 +1,4 @@
+import json
 import os
 from pathlib import Path
 
@@ -17,6 +18,27 @@ class UniqueKeyLoader(yaml.SafeLoader):
                 raise ValueError(f"Duplicate configuration key: {key}")
             seen.add(key)
         return super().construct_mapping(node, deep=deep)
+
+
+def review_rows(root: Path):
+    """Unvalidated ledger rows for collection-time readers; export validates the whole ledger."""
+    path = root / "config/record_reviews.json"
+    ledger = json.loads(path.read_bytes()) if path.exists() else {}
+    rows = ledger.get("records") if isinstance(ledger, dict) else None
+    return [row for row in rows if isinstance(row, dict)] if isinstance(rows, list) else []
+
+
+def reviewed_inclusions(root: Path):
+    """Restoration identities for the discovery signature; other ledger edits never replay.
+
+    Quotes are included: a repaired quote must replay a suspended restoration. URLs are
+    provenance that never changes collection, so refreshing one does not replay.
+    """
+    def quotes(evidence):
+        return ([[e.get("field"), e.get("quote")] for e in evidence if isinstance(e, dict)]
+                if isinstance(evidence, list) else evidence)
+    return sorted(([row.get("id"), row.get("source_hash"), row.get("priority"), quotes(row.get("evidence"))]
+                   for row in review_rows(root) if row.get("decision") == "include"), key=json.dumps)
 
 
 def load_config(root: Path):
@@ -42,6 +64,7 @@ def load_config(root: Path):
     result["search_terms"]["discovery_phrases"] = list(dict.fromkeys(
         p for c in capabilities if c["id"] not in ("pipeline", "staffing")
         for p in c.get("explicit", []) + c.get("needs", []) + c.get("aliases", [])))
+    result["reviewed_inclusions"] = reviewed_inclusions(root)
     result["runtime"] = {
         "model": "",
         "max_ai_calls": 0,

@@ -5,6 +5,7 @@ import json
 from .discovery import discovery_signature, prefilter
 from .models import Signal
 from .notice_dates import digital_deadline
+from .record_reviews import apply_inclusions, load_inclusions
 from .utils import atomic_bytes, digest
 
 FIELDS = ("prefilter_score", "prefilter_matches", "discovery_families", "delivery_priority",
@@ -17,6 +18,9 @@ class ClassificationCache:
         self.config = config
         self.path = root / "data/discovery/current_classification.json.gz"
         self.signature = discovery_signature(config)
+        # Restorations are applied after every lookup and never cached: removing
+        # or staling one restores the classifier's own decision.
+        self.inclusions, self.stale_inclusions, self.matched_inclusions = load_inclusions(root), set(), set()
         try:
             previous = json.loads(gzip.decompress(self.path.read_bytes()))
         except (OSError, ValueError, EOFError):
@@ -61,6 +65,12 @@ class ClassificationCache:
                     deadline = digital_deadline(signal.description)
                     if deadline:
                         signal.deadline_at, signal.response_deadlines = deadline, [deadline]
+        if self.inclusions:
+            matched, stale = apply_inclusions(signals, self.inclusions,
+                                              self.config["capabilities"]["discovery"]["minimum_candidate_score"])
+            # A later classification of the same notice supersedes an earlier outcome.
+            self.stale_inclusions = (self.stale_inclusions - matched) | stale
+            self.matched_inclusions |= matched
         return len(pending)
 
     def save(self):

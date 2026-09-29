@@ -145,6 +145,7 @@ def test_specialist_software_and_sparse_it_remain_candidates(signal, config, tit
     "Suministro de licencias de software del fabricante.",
     "Maintenance des licences du logiciel.",
     "Levering van licenties voor software.",
+    "Raamovereenkomst met één softwarebroker voor de levering van software-licenties.",
     "Beschaffung von Lizenzen mit Software Assurance.",
     "Fornitura di licenze del software.",
     "Mantenimiento de software y licencias del fabricante.",
@@ -328,3 +329,49 @@ def test_a_url_cannot_rescue_negated_scope_or_become_the_affirmative_excerpt(sig
     quote = "See https://example.test/Salesforce; maintenance of Salesforce is required."
     excerpt = evidence_excerpt(quote, "salesforce")
     assert "maintenance" in excerpt and "https://" not in excerpt and excerpt in quote
+
+
+@pytest.mark.parametrize("title,description,expected", [
+    ("Procesautomatisering en elektrotechniek", "Onderhoud van de procesautomatisering van rioolgemalen.", False),
+    ("Groengasinstallatie", "Ontwerp en onderhoud; procesautomatisering en besturing van de installatie.", False),
+    ("Procesautomatisering Civiele Kunstwerken", "Beheer van de procesautomatisering van civiele kunstwerken.", False),
+    ("Enterprise Service Management platform", "Daarbij wordt ingezet op procesautomatisering, selfservice en integratie.", True),
+])
+def test_dutch_pure_industrial_control_is_not_business_process_automation(signal, config, title, description, expected):
+    signal.title, signal.description, signal.cpv_codes = title, description, ["72000000"]
+    classify(signal, config)
+    assert ("workflow" in signal.matched_capabilities) is expected
+
+
+def test_unspecified_dutch_broker_framework_keeps_a_possible_salesforce_resale_route(signal, config):
+    signal.title = "Europese aanbesteding Softwarebroker"
+    signal.description = "Raamovereenkomst voor de levering en het beheer van standaardsoftware en licenties."
+    signal.cpv_codes = ["48000000"]
+    assert classify(signal, config)
+    assert not signal.scope_evidence
+    signal.description += " Perceel 2: Implementatie van de belasting applicatie en migratie van de gegevens."
+    assert classify(signal, config)
+    assert not signal.scope_evidence
+
+
+@pytest.mark.parametrize("title,description", [
+    # Digipolis Antwerpen licence framework (TED 473521-2026) carries a Salesforce lot.
+    ("Softwarebroker", "Perceel 1: Google softwarelicenties; Perceel 2: Salesforce softwarelicenties; "
+                       "Perceel 3: diverse softwarelicenties via een softwarebroker."),
+    ("Softwarebroker", "De levering van standaardsoftware en de implementatie van een nieuw CRM-systeem."),
+    ("Softwarebroker", "Levering van softwarelicenties. Perceel 2: implementatie en inrichting van een nieuw zaaksysteem."),
+    ("Softwarebroker en applicatiebeheer", "Levering van softwarelicenties en functioneel applicatiebeheer."),
+])
+def test_dutch_software_broker_with_crm_or_application_scope_stays_visible(signal, config, title, description):
+    signal.title, signal.description, signal.cpv_codes = title, description, ["48000000"]
+    assert classify(signal, config), signal.exclusion_reasons
+
+
+def test_ccaas_is_matched_as_quoted_ted_phrases_only(signal, config):
+    # TED expands the bare token: FT ~ CCaaS returned 188,349 non-IT notices in 12 months,
+    # the quoted compounds 5 (all contact-centre tenders).
+    from anthrion_signal.collectors import ted_keyword_groups
+    clauses = {c for group in ted_keyword_groups(config["search_terms"]) for c in group.split(" OR ")}
+    assert "FT ~ CCaaS" not in clauses and 'FT ~ "CCaaS oplossing"' in clauses
+    signal.title, signal.description, signal.cpv_codes = "CCaaS-dienstverlening", "Implementeren van de CCaaS-oplossing.", ["64214200"]
+    assert classify(signal, config) and "contact_centre" in signal.matched_capabilities
