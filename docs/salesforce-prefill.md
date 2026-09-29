@@ -15,7 +15,7 @@ The verified sandbox origin and record type are public routing configuration in 
 | Industry and Sector | `Industry__c`, `Sector__c` | Existing dependent values `Technology` and `Software and Services`. |
 | Buyer | `Company` | Uses the published buyer name. |
 | Published contact | `LastName`, `Email` | Uses an unambiguous single contact. The source has no structured given/family names, so the full published name is preserved in Last Name. Published roles remain in Description. |
-| No named contact | `FirstName`, `LastName` | First Name is `AI tender`; Last Name is buyer plus the complete Signal ID. Only the buyer portion is shortened when necessary. |
+| No named contact | `FirstName`, `LastName` | First Name stays blank. Last Name uses the buyer, shortened to 80 characters when necessary; `Buyer not published` is the fallback when absent. The Signal ID is retained in its dedicated field and is not appended to either name. |
 | Origin | `LeadSource` | Existing value `Anthrion Signal`. |
 | Lead lifecycle | `Status` | Existing default `New`. |
 | Notice country | `Market__c` | Uses existing market values. Nordic countries use the API value `NORD`; other countries without a named existing market use `New Markets`. Mixed markets remain for review. |
@@ -46,6 +46,8 @@ Lead Name is also unique: different notices with identical or identically shorte
 ## Verification and limits
 
 The draft uses Salesforce's `recordTypeId` page parameter and individually encoded `defaultFieldValues`. Encoding has been checked in the actual Tenders form with commas, equals signs, ampersands, accented names and multiline text. Tests cover field boundaries, names, site-only action visibility, translations, deadline precision and unsupported currencies.
+
+Salesforce's [record-type warning](https://help.salesforce.com/s/articleView?id=platform.links_useful_custom_buttons_create_record_dfv.htm&language=en_US&type=5) specifically concerns passing `RecordTypeId` inside `defaultFieldValues`. This draft passes lowercase `recordTypeId` as a separate routing parameter and never includes `RecordTypeId` in the field-value payload. This works in the verified sandbox Tenders form. The [object-page PageReference documentation](https://developer.salesforce.com/docs/platform/lwc/guide/reference-page-reference-type.html) does not list `recordTypeId` among its supported state properties, so target-org verification remains necessary rather than assuming every org, layout or user configuration will behave identically.
 
 The site shows the Salesforce action only on available opportunities; awarded/historical records retain their existing sharing actions. This is a site display rule, not a Salesforce restriction, and the URL builder does not enforce lifecycle eligibility. Essential facts, guidance and problems are never silently trimmed to fit a link; a record that cannot fit the bounded URL does not generate a draft. The selected language is reused from cached content.
 
