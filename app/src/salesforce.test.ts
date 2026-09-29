@@ -44,8 +44,8 @@ describe('Salesforce sandbox prefill', () => {
     const result = draft(record)!
     expect(new URL(result.href).searchParams.get('recordTypeId')).toBe(config.recordTypeId)
     expect(result.fields).toMatchObject({
-      FirstName: 'AI tender',
-      LastName: `Example Council · ${record.id}`,
+      FirstName: '',
+      LastName: 'Example Council',
       Company: 'Example Council',
       LeadSource: 'Anthrion Signal',
       Status: 'New',
@@ -80,7 +80,7 @@ describe('Salesforce sandbox prefill', () => {
     })
     expect(decode(result.href).LeadSource).toBe('Anthrion Signal')
   })
-  test('bounds Salesforce names, keeps the ID only in its field and contact fallback, and retains full facts', () => {
+  test('bounds Salesforce names, keeps the ID out of names, and retains full identity and facts', () => {
     const record = make({
       buyer_name: 'Long buyer '.repeat(40),
       title: '😀Technical title '.repeat(40),
@@ -89,7 +89,9 @@ describe('Salesforce sandbox prefill', () => {
     for (const key of ['LastName', 'Lead_Name__c']) {
       expect(result.fields[key].length).toBeLessThanOrEqual(80)
     }
-    expect(result.fields.LastName.endsWith(record.id)).toBe(true)
+    expect(result.fields.LastName).not.toContain(record.id)
+    expect(result.fields.LastName).toContain('Long buyer')
+    expect(result.fields.Anthrion_Signal_ID__c).toBe(record.id)
     expect(result.fields.Lead_Name__c).not.toContain(record.id)
     expect(result.fields.Lead_Name__c).toContain('Long buyer')
     expect(result.fields.Title.length).toBeLessThanOrEqual(128)
@@ -170,7 +172,8 @@ describe('Salesforce sandbox prefill', () => {
     const multiple = draft(
       make({ contacts: [contact, { ...contact, name: 'Another person' }] }),
     )!.fields
-    expect(multiple.FirstName).toBe('AI tender')
+    expect(multiple.FirstName).toBe('')
+    expect(multiple.LastName).toBe(base.buyer_name)
     expect(multiple).not.toHaveProperty('Email')
     expect(multiple.Description).toContain('Another person')
     expect(multiple.Description).toContain(contact.role)

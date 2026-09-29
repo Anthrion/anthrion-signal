@@ -75,10 +75,6 @@ function prefix(value: string, max: number) {
 function short(value: string, max: number) {
   return value.length <= max ? value : `${prefix(value, max - 1).trimEnd()}…`
 }
-function identifiedName(label: string, id: string) {
-  const suffix = ` · ${id}`
-  return `${short(label, 80 - suffix.length)}${suffix}`
-}
 function excerpt(value: string, max: number) {
   return value.length <= max
     ? value
@@ -166,8 +162,8 @@ export function salesforcePrefill(
   const recordURL = new URL(publicApp)
   recordURL.search = new URLSearchParams({ view: 'all', market: '', signal: signal.id }).toString()
   const fields: Record<string, string> = {
-    FirstName: 'AI tender',
-    LastName: identifiedName(signal.buyer_name || 'Buyer not published', signal.id),
+    FirstName: '',
+    LastName: short(signal.buyer_name?.trim() || 'Buyer not published', 80),
     Lead_Name__c: leadName(signal, text.title),
     Title: short(text.title, 128),
     Industry__c: 'Technology',
@@ -196,7 +192,6 @@ export function salesforcePrefill(
     const contact = contacts[0]
     // The source supplies a full name, not structured given/family names. Preserve it intact.
     if (contact.name?.trim() && contact.name.trim().length <= 80) {
-      fields.FirstName = ''
       fields.LastName = contact.name.trim()
     }
     if (
