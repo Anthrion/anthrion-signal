@@ -109,6 +109,8 @@ Complete HTML character references are decoded before translation and literal va
 
 Highest value, Lowest value and the adjacent minimum/maximum inputs use the published numeric amounts in the selected market. No currency conversion is applied. The currency selector lists supported currencies plus any additional codes present in the feed; select a currency for like-for-like comparisons in mixed-currency markets. Ranges persist when changing market. Unknown values sort last within each team-priority group and do not match a numeric range.
 
+Best match is an optional opportunity sort. It puts direct, specific capability evidence ahead of incidental or installed-system mentions, then uses delivery priority, lifecycle, distinct capabilities, title evidence, response deadline and publication date to resolve ties. Compact market indexes carry deduplicated facts from the same validated evidence as full records, so loading a record does not change its relevance. Contract amounts, currency, description length and repeated translations do not increase relevance. This changes order only; Most recent remains the default and awarded contracts retain their existing order. See the [ranking and exclusion review](docs/relevance-ranking-2026-09-30.md).
+
 ## Scheduling and Budget
 
 The workflow requests collection **at XX:50 every hour, day and night**, with `Europe/London` timezone handling. This replaces all previous slots, including 08:55. It supports manual collection and existing-data deployment. Main-branch code pushes rebuild; source-state commits do not recursively trigger collection. It runs independently of website visitors, without an external scheduler.

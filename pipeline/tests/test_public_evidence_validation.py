@@ -54,3 +54,74 @@ def test_participation_field_remains_traceable_after_a_long_description(signal):
     result = public_signal(signal)
     assert result["participation_requirements"][0]["source_quote"] == signal.eligibility_text
     evidence_checked(result, None)
+
+
+@pytest.mark.parametrize(("quote", "context"), [
+    ("Offer robust integration with existing systems using standards-based APIs.", "delivery"),
+    ("Support integration and collaboration • Seamlessly integrate with existing systems.", "delivery"),
+    ("It will also integrate with tools we already use.", "delivery"),
+    ("Our existing system supports integration with other software.", "existing_system"),
+    ("The existing system does not support integration.", "existing_system"),
+    ("The existing CRM was developed to support integration with the finance system.", "existing_system"),
+    ("The buyer currently uses its integration platform to provide seamless integration with the existing CRM.", "existing_system"),
+    ("The existing system was developed in 2018.", "existing_system"),
+])
+def test_existing_system_context_preserves_commissioned_integration(signal, quote, context):
+    signal.description = quote
+    signal.matched_capabilities = ["integration"]
+    signal.capability_evidence = [{"capability": "integration", "phrase": "integration", "strength": "needs",
+        "field": "description", "basis": "original", "quote": quote}]
+    result = public_signal(signal)
+    assert result["capability_evidence"][0]["context"] == context
+    evidence_checked(result, None)
+
+
+@pytest.mark.parametrize(("phrase", "quote", "strength", "context"), [
+    ("data cloud", "Technical assurance across architecture, integration, data, cloud/SaaS lock-in and security.", "contextual", "delivery"),
+    ("data cloud", "Implement Data Cloud.", "explicit", "delivery"),
+    ("data cloud", "Implement Data-Cloud.", "explicit", "delivery"),
+    ("data cloud", "Review data, cloud services; implement Data Cloud.", "explicit", "delivery"),
+    ("education cloud", "Digital Reading Education Cloud-based Software Solution", "contextual", "uncertain"),
+    ("education cloud", "Education Cloud implementation", "explicit", "delivery"),
+    ("education cloud", "Salesforce Education Cloud-based implementation", "explicit", "delivery"),
+    ("salesforce", "Salesforce LogIT, Change IT decommission Security Operations Centre (SOC) Integration", "explicit", "existing_system"),
+    ("salesforce", "Implement Salesforce and decommission legacy CRM.", "explicit", "delivery"),
+    ("salesforce", "Migrate from Dynamics to Salesforce and decommission the old system.", "explicit", "delivery"),
+    ("salesforce", "Salesforce implementation will decommission old tools.", "explicit", "delivery"),
+    ("salesforce", "Integrate with Salesforce and decommission old interfaces.", "explicit", "delivery"),
+    ("salesforce", "Maintain Salesforce during decommissioning of the old tools.", "explicit", "delivery"),
+    ("salesforce", "Replace the old CRM with Salesforce and decommission the old tools.", "explicit", "delivery"),
+    ("salesforce", "Salesforce will replace the old CRM, which will be decommissioned.", "explicit", "delivery"),
+    ("salesforce", "The supplier must not deliver hardware and must implement Salesforce.", "explicit", "delivery"),
+])
+def test_named_product_evidence_requires_the_product_and_its_actual_role(signal, phrase, quote, strength, context):
+    signal.description = quote
+    signal.matched_capabilities = ["salesforce"]
+    signal.capability_evidence = [{"capability": "salesforce", "phrase": phrase, "strength": "explicit",
+        "field": "description", "basis": "original", "quote": quote}]
+    result = public_signal(signal)
+    assert result["id"] == signal.id
+    assert result["matched_capabilities"] == signal.matched_capabilities
+    assert result["capability_evidence"][0]["quote"] == quote
+    assert result["capability_evidence"][0]["strength"] == strength
+    assert result["capability_evidence"][0]["context"] == context
+    evidence_checked(result, None)
+
+
+@pytest.mark.parametrize(("quote", "strength", "context"), [
+    ("It must not deliver technology, configure platforms, act as a systems integrator, or become part of the delivery supply chain.", "contextual", "uncertain"),
+    ("The supplier will act as a systems integrator to implement the platform.", "needs", "delivery"),
+    ("The supplier must not deliver hardware, but must act as a systems integrator to implement the CRM.", "needs", "delivery"),
+    ("The supplier must not configure a systems integrator portal; the systems integrator must implement Salesforce.", "needs", "delivery"),
+    ("The supplier must not deliver hardware and will act as a systems integrator to implement the CRM.", "needs", "delivery"),
+])
+def test_prohibited_delivery_does_not_rank_as_a_commissioned_implementation(signal, quote, strength, context):
+    signal.description = quote
+    signal.matched_capabilities = ["staffing"]
+    signal.capability_evidence = [{"capability": "staffing", "phrase": "systems integrator", "strength": "needs",
+        "field": "description", "basis": "original", "quote": quote}]
+    result = public_signal(signal)
+    assert result["matched_capabilities"] == signal.matched_capabilities
+    assert result["capability_evidence"][0]["strength"] == strength
+    assert result["capability_evidence"][0]["context"] == context
+    evidence_checked(result, None)

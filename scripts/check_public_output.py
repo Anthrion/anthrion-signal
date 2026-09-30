@@ -9,7 +9,7 @@ from urllib.parse import urlparse
 from anthrion_signal.models import Dataset, Signal
 from anthrion_signal.discovery import is_public_award
 from anthrion_signal.public_context import PUBLIC_EXCLUDE
-from anthrion_signal.public_feed import search_text
+from anthrion_signal.public_feed import ranking_evidence, search_text
 from anthrion_signal.public_compression import decode_public_bytes
 from anthrion_signal.record_reviews import GUIDANCE_COUNTRIES, validate_guidance
 from anthrion_signal.utils import clean, digest, retained_path
@@ -180,6 +180,9 @@ def check_public_output(path, inventory_path=None):
                 signal, translation = details[item["id"]]
                 if item.get("search_text") != search_text(signal, translation):
                     raise ValueError("Current index lost complete source/English search text")
+                if "ranking_evidence" in item and item["ranking_evidence"] != ranking_evidence(
+                        {"capability_evidence": signal.capability_evidence}):
+                    raise ValueError("Current index ranking evidence differs from its validated detail")
                 if market not in data.current_feed["records"][signal.id]["markets"]:
                     raise ValueError("Current index market membership mismatch")
     if inventory_path:
