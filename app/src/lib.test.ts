@@ -20,6 +20,8 @@ import {
   isAddedToday,
   normaliseFilters,
   priorityTier,
+  evidenceMatch,
+  relevanceScore,
   responseDeadline,
   displayBuyer,
   gmailDraftURL,
@@ -747,6 +749,77 @@ describe('team workflows', () => {
     ]
     expect(filterSignals(rows, { ...defaults, sort: 'recent' }, [], now)[0].id).toBe('published')
     expect(filterSignals(rows, { ...defaults, sort: 'updated' }, [], now)[0].id).toBe('updated')
+  })
+  describe('best match', () => {
+    const evidence = (strength: string, field = 'description', context = 'delivery') =>
+      [
+        { capability: 'crm', phrase: 'crm', strength, basis: 'text', field, context },
+      ] as unknown as Signal['capability_evidence']
+    const row = (id: string, extra: Partial<Signal>) => ({ ...signal, id, ...extra }) as Signal
+    test('orders by the strength of the published evidence, then by the classification code', () => {
+      const rows = [
+        row('code', {
+          capability_evidence: [],
+          delivery_priority: 'other',
+          cpv_codes: ['72200000'],
+        }),
+        row('existing', {
+          capability_evidence: evidence('needs', 'title', 'existing_system'),
+          delivery_priority: 'platform',
+        }),
+        row('need', { capability_evidence: evidence('needs'), delivery_priority: 'platform' }),
+        row('named', {
+          capability_evidence: evidence('explicit', 'title'),
+          delivery_priority: 'platform',
+        }),
+      ]
+      expect(
+        filterSignals(rows, { ...defaults, sort: 'relevance' }, [], now).map((s) => s.id),
+      ).toEqual(['named', 'need', 'existing', 'code'])
+      expect(rows.map((s) => evidenceMatch(s).strength)).toEqual(['code', 'weak', 'good', 'strong'])
+    })
+    test('treats delivery priority as a component, so strong evidence outranks a weak platform tag', () => {
+      const rows = [
+        row('weak-platform', {
+          capability_evidence: evidence('contextual'),
+          delivery_priority: 'platform',
+        }),
+        row('strong-other', {
+          capability_evidence: evidence('needs', 'title'),
+          delivery_priority: 'other',
+        }),
+      ]
+      expect(filterSignals(rows, { ...defaults, sort: 'recent' }, [], now)[0].id).toBe(
+        'weak-platform',
+      )
+      expect(filterSignals(rows, { ...defaults, sort: 'relevance' }, [], now)[0].id).toBe(
+        'strong-other',
+      )
+    })
+    test('prefers software codes among code-only notices and breaks ties by the soonest deadline', () => {
+      const code = { capability_evidence: [], delivery_priority: 'other' as const }
+      const rows = [
+        row('works', { ...code, cpv_codes: ['45000000'] }),
+        row('later', { ...code, cpv_codes: ['48000000'], deadline_at: '2026-09-30T12:00:00Z' }),
+        row('sooner', { ...code, cpv_codes: ['48000000'], deadline_at: '2026-09-25T12:00:00Z' }),
+      ]
+      expect(
+        filterSignals(rows, { ...defaults, sort: 'relevance' }, [], now).map((s) => s.id),
+      ).toEqual(['sooner', 'later', 'works'])
+      expect(relevanceScore(rows[1], now)).toBe(relevanceScore(rows[2], now))
+    })
+    test('rewards an open response window over a future pipeline notice', () => {
+      const open = row('open', { capability_evidence: evidence('needs') })
+      const future = row('future', {
+        capability_evidence: evidence('needs'),
+        signal_type: 'PIPELINE',
+        deadline_at: null,
+      })
+      expect(relevanceScore(open, now)).toBeGreaterThan(relevanceScore(future, now))
+    })
+    test('keeps the sort in the URL state', () => {
+      expect(normaliseFilters({ ...defaults, sort: 'relevance' }).sort).toBe('relevance')
+    })
   })
   test('awards and inferred renewals stay out of opportunity views, including saved and search', () => {
     const excluded = [

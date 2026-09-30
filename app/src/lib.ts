@@ -600,7 +600,11 @@ export function normaliseFilters(value: Partial<Filters>): Filters {
   if (['recommended', 'fit', 'confidence'].includes(result.sort)) result.sort = 'recent'
   if (!['all', 'live', 'early', 'closing', 'today', 'saved', 'awards'].includes(result.view))
     result.view = defaults.view
-  if (!['recent', 'updated', 'deadline', 'value', 'value-low', 'capability'].includes(result.sort))
+  if (
+    !['relevance', 'recent', 'updated', 'deadline', 'value', 'value-low', 'capability'].includes(
+      result.sort,
+    )
+  )
     result.sort = defaults.sort
   if (['AWARD', 'RENEWAL_SIGNAL'].includes(result.type)) result.type = ''
   if (result.view === 'awards') result.type = result.deadline = result.change = ''
@@ -733,6 +737,10 @@ export function filterSignals(
       .join('\u0000')
   const capabilityKeys =
     f.sort === 'capability' ? new Map(result.map((s) => [s.id, capabilityKey(s)])) : null
+  const relevance =
+    f.sort === 'relevance' ? new Map(result.map((s) => [s.id, relevanceScore(s, now)])) : null
+  const deadlineOrder = (s: Signal) =>
+    responseDeadline(s, now) ? Date.parse(responseDeadline(s, now)!) : Infinity
   return result.sort((a, b) => {
     if (f.view === 'awards')
       return (
@@ -756,6 +764,13 @@ export function filterSignals(
       if (!first || !second) return first ? -1 : second ? 1 : compareRecommended(a, b, now)
       return first.localeCompare(second, 'en-GB') || compareRecommended(a, b, now)
     }
+    // Delivery priority is one component of the relevance score, not a tier above it.
+    if (relevance)
+      return (
+        relevance.get(b.id)! - relevance.get(a.id)! ||
+        deadlineOrder(a) - deadlineOrder(b) ||
+        compareRecommended(a, b, now)
+      )
     const priority = priorityTier(a) - priorityTier(b)
     if (priority) return priority
     switch (f.sort) {
@@ -778,6 +793,66 @@ export function filterSignals(
         return compareRecommended(a, b, now)
     }
   })
+}
+export type MatchStrength = 'strong' | 'good' | 'weak' | 'code'
+// Title evidence names the purchased object; description evidence may only mention it.
+const evidencePoints: Record<string, [title: number, description: number]> = {
+  explicit: [50, 42],
+  needs: [36, 28],
+  contextual: [12, 9],
+}
+/** The strongest published capability evidence, or the classification code when there is none. */
+export function evidenceMatch(s: Signal): { points: number; strength: MatchStrength } {
+  let best = -1
+  for (const evidence of s.capability_evidence || []) {
+    const [title, description] = evidencePoints[evidence.strength] || evidencePoints.contextual
+    let points = evidence.field?.startsWith('title') ? title : description
+    // The buyer's current system, or an unclear delivery context, is weaker than a stated need.
+    if (evidence.context === 'existing_system') points = Math.min(points, 12)
+    else if (evidence.context === 'uncertain' && evidence.strength !== 'explicit') points -= 6
+    best = Math.max(best, points)
+  }
+  if (best < 0) {
+    // Admitted by its classification code alone: software codes are the least speculative.
+    const codes = s.cpv_codes || []
+    const points = codes.some((c) => c.startsWith('48'))
+      ? 8
+      : codes.some((c) => c.startsWith('72'))
+        ? 6
+        : 3
+    return { points, strength: 'code' }
+  }
+  return { points: best, strength: best >= 36 ? 'strong' : best >= 22 ? 'good' : 'weak' }
+}
+/**
+ * "Best match" points: the evidence tying the notice to Anthrion's delivery first, then its
+ * breadth, delivery priority, how actionable it is and its value. The score only orders the
+ * feed; it hides nothing.
+ */
+export function relevanceScore(s: Signal, now = Date.now()) {
+  const families = new Set(s.discovery_families || s.matched_capabilities)
+  const breadth = Math.min(10, 5 * Math.max(0, families.size - 1))
+  const priority = [15, 12, 0][priorityTier(s)]
+  const days = daysLeft(s, now)
+  const state = lifecycleState(s, now)
+  const actionable =
+    days !== null && days > 0
+      ? days >= 7
+        ? 20
+        : days >= 3
+          ? 12
+          : 5
+      : state === 'EARLY_ENGAGEMENT'
+        ? 14
+        : state === 'FUTURE'
+          ? 9
+          : 4
+  const value =
+    s.value_max && s.value_max > 0
+      ? Math.min(10, Math.max(0, Math.round((Math.log10(s.value_max) - 4) * 3)))
+      : 3
+  const sparse = (s.description || '').length < 200 && !s.lots?.length ? -5 : 0
+  return evidenceMatch(s).points + breadth + priority + actionable + value + sparse
 }
 export function compareRecommended(a: Signal, b: Signal, now = Date.now()) {
   void now
