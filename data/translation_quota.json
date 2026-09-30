@@ -2202,20 +2202,24 @@
       }
     },
     "36659921935-1": {
-      "closed": false,
+      "closed": true,
       "day": "2026-09-29",
       "limits": {
         "gemini-3.1-flash-lite": 108,
         "gemini-3.5-flash-lite": 42
       },
-      "used": {}
+      "started": true,
+      "used": {
+        "gemini-3.1-flash-lite": 29,
+        "gemini-3.5-flash-lite": 42
+      }
     }
   },
   "models": {
     "gemini-3.1-flash-lite": {
       "blocked_reason": "transient",
       "blocked_until": 1790733136.1770904,
-      "consecutive_errors": 1,
+      "consecutive_errors": 0,
       "days": {
         "2026-09-12": 9,
         "2026-09-13": 420,
@@ -2234,12 +2238,45 @@
         "2026-09-26": 499,
         "2026-09-27": 499,
         "2026-09-28": 153,
-        "2026-09-29": 247
+        "2026-09-29": 168
       },
-      "recent": [],
+      "recent": [
+        {
+          "at": 1790736550.4173307,
+          "tokens": 17263
+        },
+        {
+          "at": 1790736550.5228,
+          "tokens": 5087
+        },
+        {
+          "at": 1790736563.609049,
+          "tokens": 15002
+        },
+        {
+          "at": 1790736563.7118368,
+          "tokens": 4196
+        },
+        {
+          "at": 1790736576.80362,
+          "tokens": 19438
+        },
+        {
+          "at": 1790736576.8982964,
+          "tokens": 5385
+        },
+        {
+          "at": 1790736590.1133852,
+          "tokens": 18177
+        },
+        {
+          "at": 1790736590.2107651,
+          "tokens": 4244
+        }
+      ],
       "usage": {
-        "candidatesTokenCount": 4488003,
-        "promptTokenCount": 5821627,
+        "candidatesTokenCount": 4519088,
+        "promptTokenCount": 5861603,
         "thoughtsTokenCount": 0
       }
     },
@@ -2269,8 +2306,8 @@
       },
       "recent": [],
       "usage": {
-        "candidatesTokenCount": 8489244,
-        "promptTokenCount": 10980437,
+        "candidatesTokenCount": 8535776,
+        "promptTokenCount": 11040656,
         "thoughtsTokenCount": 0
       }
     }
