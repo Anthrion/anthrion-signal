@@ -217,6 +217,31 @@
       ]
     },
     {
+      "id": "sig_0148868379b0cf70e54f",
+      "source_hash": "68f07502b8ebc64d78f78a6d5bca0898f00d004e03344335a8aeb4aace2ff512",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Managed connectivity for the trust's school sites: broadband, failover line, firewall, filtering and security, support and service reporting. Network and telecom connectivity and security; no business application, data or integration deliverable.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Maiden Erlegh Trust Communications & Security Procurement",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/058013-2025"
+        },
+        {
+          "field": "description",
+          "quote": "A managed connectivity service to connect schools anywhere in England",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/058013-2025"
+        },
+        {
+          "field": "description",
+          "quote": "A broadband service for each school based on synchronous connectivity",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/058013-2025"
+        }
+      ]
+    },
+    {
       "id": "sig_01649132e69dc7f0b1ec",
       "source_hash": "11d000585084e894328cb17a77a3a9f4d3c6ed0cd859c1e6ef7f3273223ebfcd",
       "decision": "guide",
@@ -2700,21 +2725,21 @@
     },
     {
       "id": "sig_0da64c62b3ce71ae9824",
-      "source_hash": "b76ca5d3b4c630c0ca9ba1924c4521aeaf841bf797c381c7215a507153458484",
+      "source_hash": "cfbc0c6d1cf5d49bb692c4ebb600ff833149b965d395db0d529c90146fb91a82",
       "decision": "exclude",
-      "reviewed_at": "2026-09-29T10:11:55.796536+00:00",
-      "reviewed_by": "Claude proposal; independent Codex market and release review",
-      "reason": "Broadband provision for MPs offices (telecom lines). Network or telecom connectivity, radio, public-address/audio-visual equipment or IT hardware supply and support; no business application, CRM, AI or integration deliverable.",
+      "reviewed_at": "2026-09-30T18:15:57.134400+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Broadband provision for MPs' offices and IPSA-funded accommodation through a broker, with one consolidated monthly bill. Telecom connectivity; the centralised billing is the broker's invoicing, not a software deliverable. Re-read after the notice changed: still junk.",
       "evidence": [
         {
           "field": "title",
           "quote": "IPSA Broadband Provision for MPs",
-          "source_url": "https://www.find-tender.service.gov.uk/Notice/057809-2025"
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/008573-2026"
         },
         {
           "field": "description",
           "quote": "IPSA would like to put in place a contract to provide high-quality reliable broadband services across the United Kingdom to MPs' constituency offices and IPSA-funded living accommodation.",
-          "source_url": "https://www.find-tender.service.gov.uk/Notice/057809-2025"
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/008573-2026"
         }
       ]
     },
@@ -3255,21 +3280,21 @@
     },
     {
       "id": "sig_0fdeda1d9ef368fd183c",
-      "source_hash": "a1c1c7fb9619ecbcf5472c9ed6d20a6bd123c80b22ac11d498f405acc21bbac1",
+      "source_hash": "a108af282d88a74c35647afd4359ccff42b61d34445663b90e479d302094d2da",
       "decision": "exclude",
-      "reviewed_at": "2026-09-29T10:11:55.796536+00:00",
-      "reviewed_by": "Claude proposal; independent Codex market and release review",
-      "reason": "Apprenticeship agency services (staffing). Recruitment, staffing or procurement-outsourcing service; no technology deliverable.",
+      "reviewed_at": "2026-09-30T18:15:57.134400+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Apprenticeship agency: employ apprentices, run payroll, HR administration, compliance and welfare support, with service MI reporting. Staffing and employment service; no technology deliverable. Re-read after the notice changed: still junk.",
       "evidence": [
         {
           "field": "title",
           "quote": "Apprentice Worker Agency",
-          "source_url": "https://www.find-tender.service.gov.uk/Notice/091052-2026"
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/091685-2026"
         },
         {
           "field": "description",
-          "quote": "We require a supplier to provide Apprenticeship Agency Services across both Northumbrian Water and Essex & Suffolk Water.",
-          "source_url": "https://www.find-tender.service.gov.uk/Notice/091052-2026"
+          "quote": "The supplier will act as the employer of apprentices on behalf of NWL and provide employment, payroll, HR administration, compliance and apprentice support services throughout the duration of the apprenticeship programme.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/091685-2026"
         }
       ]
     },
@@ -3786,6 +3811,26 @@
       }
     },
     {
+      "id": "sig_1305d2b4a78b26e8c71b",
+      "source_hash": "8fb2547f24372a1b1c273fdc407580b90afbbc276dfc1377e6c1beeb088c0730",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "RFI for the British Council's Global Evaluation Framework (evaluation suppliers and specialist evaluation lots). Non-IT evaluation consultancy; no software deliverable.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "UK_1003 Evaluation and Monitoring Consultancy",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/004383-2026"
+        },
+        {
+          "field": "description",
+          "quote": "The British Council is recommissioning the Global Evaluation Framework and seeks evaluation suppliers for application to join the framework and relevant specialist lots within.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/004383-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_13f2033f0d2d81eedb9e",
       "source_hash": "55f1ae1191c77ecd137a13f09a9af27e89a179556b65fe8cd8a379330f6d3ddf",
       "decision": "exclude",
@@ -4080,6 +4125,26 @@
           "field": "description",
           "quote": "2 konfigurierte Server Server Lot LOT-0000: Server. 2 konfigurierte Server Server",
           "source_url": "https://oeffentlichevergabe.de/ui/de/notices/25861984"
+        }
+      ]
+    },
+    {
+      "id": "sig_1578a3f872661f47d3d7",
+      "source_hash": "73e252a3f4a165f78e402ff7bb283ba4c9fbcae0595c71b78bf21e555c0c3dd8",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Appointment of a developer for the sale and residential-led regeneration of a city-centre site. Property development and construction; no software deliverable.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "P-0406 Hope Street Transformation project and Development Opportunity",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/006727-2026"
+        },
+        {
+          "field": "description",
+          "quote": "The Housing Executive is seeking to appoint a developer to deliver its vision for a residential-led, regeneration scheme on a two-acre site at Hope Street, Belfast.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/006727-2026"
         }
       ]
     },
@@ -5430,6 +5495,26 @@
       ]
     },
     {
+      "id": "sig_1df17429228d59fe5c58",
+      "source_hash": "f3d436b8d71ab48385772e7c16528e0aedae89af092b6dc43db0324509481195",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Strategic brand guardianship agency (brand direction, governance, creative development and activation). Marketing and creative service; no software deliverable.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "TfW Strategic Brand Guardianship",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/001625-2026"
+        },
+        {
+          "field": "description",
+          "quote": "TfW requires a strategic Brand Guardianship agency to provide insight and expertise that will enable us to continue building and establishing our accessible, bilingual, distinctive and multimodal brand at a pivotal point in our development.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/001625-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_1e176f46a2a8d860b1a5",
       "source_hash": "8170924676bb79be8b8738defb7e0b620f77ab94f47cea63e2caca79a8586667",
       "decision": "exclude",
@@ -6480,6 +6565,26 @@
       ]
     },
     {
+      "id": "sig_237f206f45c5e8f4928f",
+      "source_hash": "81c6e35fc3ec8885602182be56e7488d415b3d7ebcd0878ade3eef5b8f0cf685",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Resident satisfaction survey programme (three surveys, 2026-2029). Human survey execution; no software, platform or data-system deliverable.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Lambeth Housing Management Resident Satisfaction Surveys 2026 - 2029",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/010323-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Procurement of Resident satisfaction surveys to be carried out from April 2026 until March 2029.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/010323-2026"
+        }
+      ]
+    },
+    {
       "decision": "exclude",
       "evidence": [
         {
@@ -7221,6 +7326,31 @@
       "guidance": null
     },
     {
+      "id": "sig_28c4ff9e9f012494f4f3",
+      "source_hash": "14c2a1e3c06c592835ba7afa11486764d69e85188e13731f5cade479b0416da2",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Managed print partner: supply, installation, maintenance and consumables for the college's multifunction printer fleet, with print management software for those devices. Hardware supply and maintenance; the named software is device print management within the print service, not a business application.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Joseph Chamberlain 6th Form College MFD Partner",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/010313-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Provision of a range of multi-functional printing devices to the college",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/010313-2026"
+        },
+        {
+          "field": "description",
+          "quote": "A service that includes appropriate print management software",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/010313-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_28cd0a339f3d0d41da3f",
       "source_hash": "a29de6b026ea4cad796600bf1fe705bba708969c3a6b65b7cb5bda268fc7a340",
       "decision": "guide",
@@ -7604,6 +7734,31 @@
           "field": "description",
           "quote": "Deze Marktconsultatie dient ter voorbereiding op de voorgenomen Europese Aanbesteding betreffende het bijhouden van het Normaal Amsterdams Peil (NAP).",
           "source_url": "https://ted.europa.eu/en/notice/-/detail/245558-2026"
+        }
+      ]
+    },
+    {
+      "id": "sig_2ad20d2b02e40250ad87",
+      "source_hash": "1e771e0c7c50e01a77aa960585a16a0237a5450700f618dc6ef297790657b9f0",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Programme-management contract for a cyber accelerator: recruit public-sector challenge owners and SMEs, match them, facilitate pro bono design partnerships, run a showcase and write reports. Programme delivery and events; the supplier builds no software (solutions come from unpaid SMEs).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Webinar Invitation: Cyber Accelerator Programme - Design Partnerships",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/087964-2026"
+        },
+        {
+          "field": "description",
+          "quote": "The programme will use structured, pro bono design partnerships between public-sector organisations with identified cyber challenges and innovative cyber SMEs capable of developing and testing solutions.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/087964-2026"
+        },
+        {
+          "field": "description",
+          "quote": "The appointed supplier will be expected to: - identify and recruit suitable public-sector Challenge Council members;",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/087964-2026"
         }
       ]
     },
@@ -8909,6 +9064,26 @@
       }
     },
     {
+      "id": "sig_331a6992d9252d033cd2",
+      "source_hash": "d42c4dfb72455ad8d77127189f0e0468ff60114aa87b74692f3451e7d7983076",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Job evaluation, salary benchmarking and associated HR advisory services for a housing group. Non-IT HR consultancy; no software deliverable.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Torus Job Evaluation and Salary Benchmarking Service",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/091489-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Torus is seeking to appoint a suitably qualified and experienced provider to deliver job evaluation and salary benchmarking services.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/091489-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_332ac9ded4e88023b8e6",
       "source_hash": "c3a85b4c58395e786805340d303871be8996c79f6357d24d8ca5bf0c818ada36",
       "decision": "guide",
@@ -8955,6 +9130,26 @@
           }
         }
       }
+    },
+    {
+      "id": "sig_332c92563a4466d8999e",
+      "source_hash": "01f49c58f6e5fb976a42da64f96056c594a9e9919ad903ce37923555023a05cf",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "PIN for the design and construction of a police custody centre. Construction works; no software deliverable.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Design and Construction of Police Custody Hub",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/007374-2026"
+        },
+        {
+          "field": "description",
+          "quote": "This Prior Information Notice (PIN) is being issued to gather information from the market for potential procurement options related to the design and construction of a police custody centre for Scottish Police Authority (SPA).",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/007374-2026"
+        }
+      ]
     },
     {
       "id": "sig_334e1d5bc205ff39fe83",
@@ -9663,6 +9858,26 @@
       }
     },
     {
+      "id": "sig_385d561f2369a6591e6b",
+      "source_hash": "81ef0f17d77489c8246e2b8d644fbe00d852e88eec9bffe1669769976271f950",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Continued delivery of a debt advice and financial well-being service to residents. Advice service to people; no software deliverable.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Provision of a Financial Well-being and Debt Advice Service in the Borough of Newcastle–under–Lyme 2026 – 2029",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/007552-2026"
+        },
+        {
+          "field": "description",
+          "quote": "The Borough Council of Newcastle-under-Lyme is seeking an experienced provider to continue the delivery of a Financial Well-Being and Debt Advice Service to residents of the Borough.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/007552-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_386ca583829de162b3f9",
       "source_hash": "d64cc9e444e5db039b3a8eef993f96b12d317b9884fcb2ea6b646ff70e0212dd",
       "decision": "exclude",
@@ -9932,21 +10147,21 @@
     },
     {
       "id": "sig_39f2c23a14b1414a3519",
-      "source_hash": "745992a2b229392a5a01d5212ea84d16e2bedc04b520e696d9630eaf35d18724",
+      "source_hash": "98c9b8a5d4591923ed7aca6143fae06248310bb4b331861817530cbb15509303",
       "decision": "exclude",
-      "reviewed_at": "2026-09-29T10:11:55.796536+00:00",
-      "reviewed_by": "Claude proposal; independent Codex market and release review",
-      "reason": "Business events industry engagement and lead generation programme. Non-IT consultancy, research, evaluation, marketing/communications or facility-operation service; no software, data platform, CRM or AI deliverable.",
+      "reviewed_at": "2026-09-30T18:15:57.134400+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Pan-Wales business-events industry engagement, networking and lead-generation programme. Non-IT engagement and marketing service; encouraging businesses to list on the existing TXGB channel is not a software deliverable. Re-read after the notice changed: still junk.",
       "evidence": [
         {
           "field": "title",
           "quote": "C086/2026/2027- Business Events Industry Engagement & Lead Generation",
-          "source_url": "https://www.find-tender.service.gov.uk/Notice/088672-2026"
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/091870-2026"
         },
         {
           "field": "description",
           "quote": "The Welsh Government seeks to appoint a contractor to deliver and further develop a pan-Wales programme of business events industry engagement and lead generation activity over a two-year period.",
-          "source_url": "https://www.find-tender.service.gov.uk/Notice/088672-2026"
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/091870-2026"
         }
       ]
     },
@@ -10496,6 +10711,26 @@
       ]
     },
     {
+      "id": "sig_3e3a33960fc79290147a",
+      "source_hash": "00ae6486ca1f90a0edd56adbf2e30b4b6222d4a049c478d9d5bd13e34674c9f2",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Drone surveillance managed service delivering 5,000 sensor-coverage hours a year; imagery is transmitted to the buyer's existing command-and-control facility. Aircraft and sensor service; no business application, integration build or data platform is commissioned.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Tactical Remotely Piloted Aircraft (RPAS) System Managed Service",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/009804-2026"
+        },
+        {
+          "field": "description",
+          "quote": "The Home Office seeks an experienced commercial provider to supply capable Remotely Piloted Aircraft Systems (RPAS) to support the Border Security Command's (BSC) Intelligence, Surveillance and Reconnaissance (ISR) operations.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/009804-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_3e6bb3912fad2a55756f",
       "source_hash": "7be199ec13b65ac27f23ac721bde41c28eeca3bf3d28e99b5229fda84aef63df",
       "decision": "exclude",
@@ -10668,6 +10903,26 @@
       "reviewed_at": "2026-09-22T09:29:11.069922+00:00",
       "reviewed_by": "Codex primary agent; independent review of subagent proposal",
       "source_hash": "8bcb4b470c5c5c145a9baf9fcc84998510218ab8ec8f9370563e90ab2d7bf1f9"
+    },
+    {
+      "id": "sig_3ee6514253a2750d3222",
+      "source_hash": "652b50fb51f15b44c890b65a11d4803415ab908827d2e38fa1b838dc2f2e7448",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Out-of-hours protective monitoring SOC service complementing Defra's internal SOC. Managed SOC; no application or integration deliverable. The notice's own timeline (ITT submission 20 April, award 11 June 2026) has passed.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "SOC Out-of-Hours Protective Monitoring Service",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/083442-2025"
+        },
+        {
+          "field": "description",
+          "quote": "Defra is seeking to reprocure this out-of-hours Protective Monitoring SOC service when the incumbent contract expires on 31st October 2026.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/083442-2025"
+        }
+      ]
     },
     {
       "id": "sig_3eeac5a1e46ab27fbe7d",
@@ -11179,6 +11434,26 @@
       ]
     },
     {
+      "id": "sig_411d0a23d56107b2b80e",
+      "source_hash": "74c0c7f203e55839025d746f536e732e24a4bf123af79d34ffc992d64c333ee7",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Managed security services provider and SOC for an education group. Managed SOC service; the retained text names no application or integration.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "LEG T205 IT Security Operations Centre (SOC) and IT Managed Security Services Provider (MSSP)",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/090115-2026"
+        },
+        {
+          "field": "description",
+          "quote": "The project comprises the delivery of a preferred Managed Security Services Provider (MSSP) and Security Operations Centre (SOC).",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/090115-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_4128ce7bd712248c4534",
       "source_hash": "05f7657ebfb5e13e5949b8439ff535c65a7c6467100ca9565455c64da4626f14",
       "decision": "exclude",
@@ -11478,6 +11753,26 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_42579ed567041efde290",
+      "source_hash": "5cd6d62247e37b0f71acfefe947aef2d8f68776a6a007fe3cfa161259d3fc346",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Managed 24x7x365 SOC capability to detect, respond to and recover from cyber incidents. Managed SOC service; no application or integration deliverable.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "TfGM SOC 2026",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/007835-2026"
+        },
+        {
+          "field": "description",
+          "quote": "The IS department is responsible for the security of the services it provides and is seeking a supplier to enhance its ability to detect, respond and recover from cyber-security incidents through a managed 24x7x365 Security Operations Centre Capability.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/007835-2026"
+        }
+      ]
     },
     {
       "id": "sig_426aba61d6c4ae47245d",
@@ -12638,6 +12933,31 @@
       "guidance": null
     },
     {
+      "id": "sig_4777e9d6233da061a19e",
+      "source_hash": "3e245388497d6d7d8b591dfafc5a6c620a24268764b09d3978ffa51d27c0da6e",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Hybrid managed 24/7 SOC providing human-led monitoring, detection and response on the buyer's existing Exabeam SIEM. Managed SOC service; no application, integration or data platform is built.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "DDaT25591 - UKSBS Security Operations Center",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/002161-2026"
+        },
+        {
+          "field": "description",
+          "quote": "UK Shared Business Services (UKSBS) is seeking to procure a hybrid managed, 24/7 Security Operations Centre (SOC) service to enhance the security posture of its NEO environments.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/002161-2026"
+        },
+        {
+          "field": "description",
+          "quote": "The primary function of this service is to provide continuous, human-led monitoring, detection, and response to security incidents, leveraging the Exabeam SIEM platform that is currently used within UKSBS.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/002161-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_479f59836b1cc7004f3f",
       "source_hash": "f34da63a47f66f641cb90346cfb8ecab87af2c618e7460f3473550e789594980",
       "decision": "guide",
@@ -12858,6 +13178,26 @@
           "field": "description",
           "quote": "This territorial study is being carried out at the request of the Lithuanian Presidency of the Council of the European Union in the first term of 2027.",
           "source_url": "https://ted.europa.eu/en/notice/-/detail/615407-2026"
+        }
+      ]
+    },
+    {
+      "id": "sig_49ae6a1212180b1c9006",
+      "source_hash": "aa121793b2a0b5f4c7af7cb2f01ca8e3281b44f78c1c2f626493107bc75778ea",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Feasibility and option selection for depot infrastructure (bogie drop, jacking systems, shed extension) for Class 331 heavy maintenance. Engineering consultancy for physical assets; the retained scope states no business-application delivery.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Allerton TCC 331 Heavy Maintenance Feasibility",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/006548-2026"
+        },
+        {
+          "field": "description",
+          "quote": "We propose to evaluate the possible infrastructure solutions at Allerton TCC for feasibility and option selection assessments as per the outline scope below:",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/006548-2026"
         }
       ]
     },
@@ -13092,6 +13432,26 @@
           "field": "description",
           "quote": "Gegenstand der Beschaffung bildet die Führung der öffentlichen Energieberatungsstelle der RKBM ab 01.01.2028 bis 31.12.2031. Die öffentliche Energieberatung Bern-Mittelland führt die unabhängige Energieberatungsstelle (EBS) im Auftrag des Kantons Bern.",
           "source_url": "https://ted.europa.eu/en/notice/-/detail/640538-2026"
+        }
+      ]
+    },
+    {
+      "id": "sig_4a52180614354f0d4e12",
+      "source_hash": "72b976eed7cf77a50a58335ddaccef8dbf36d8bfc81fda638c357155625dfd45",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Design-and-construct framework for water and water-recycling major capital projects. Construction works; no software deliverable.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Major Projects Framework",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/009206-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Anglian Water Services Ltd (Anglian Water) is undertaking a procurement exercise to establish a framework agreement with up to 2 bidding entities to undertake design and construction of major projects to support delivery of its capital delivery.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/009206-2026"
         }
       ]
     },
@@ -14184,6 +14544,26 @@
           "field": "description",
           "quote": "ΠΡΟΜΗΘΕΙΑ ΥΠΟΔΟΜΗΣ ΥΨΗΛΗΣ ΔΙΑΘΕΣΙΜΟΤΗΤΑΣ ΜΕ DISASTER RECOVERY ΓΙΑ ΤΙΣ ΒΑΣΕΙΣ ΔΕΔΟΜΕΝΩΝ ORACLE ΤΗΣ ΕΡΤ Α.Ε ΠΡΟΜΗΘΕΙΑ ΥΠΟΔΟΜΗΣ ΥΨΗΛΗΣ ΔΙΑΘΕΣΙΜΟΤΗΤΑΣ ΜΕ DISASTER RECOVERY ΓΙΑ ΤΙΣ ΒΑΣΕΙΣ ΔΕΔΟΜΕΝΩΝ ORACLE ΤΗΣ ΕΡΤ Α.Ε.",
           "source_url": "https://ted.europa.eu/en/notice/-/detail/587583-2026"
+        }
+      ]
+    },
+    {
+      "id": "sig_518feb66cb28bfc13b9f",
+      "source_hash": "a76057774e273483fc2af5e8e23dde855f5459a4ab79d2c0864fcb23b1898f04",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Time-limited financial option-appraisal support for a health board in deficit. Non-IT financial consultancy (analysis and option appraisal only); no software or data platform. The notice's own text says outputs were due by 31 March 2026.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "External Finance Support",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/001731-2026"
+        },
+        {
+          "field": "description",
+          "quote": "The external support will provide analysis and option appraisal only, with all substantive outputs completed by no later than 31 March 2026.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/001731-2026"
         }
       ]
     },
@@ -15667,6 +16047,31 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_582007de6d252ad9dc84",
+      "source_hash": "278cca083e9fa0f39cfaf0625924bfaa25ee06f7f52f639e4ca6a4026cbb7f01",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Pipeline notice for the same end-user computing and on-site desk-side and infrastructure IT support contract. Hardware and infrastructure support; no business application, data or integration deliverable.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "UK_777 IT Onsite Operations & Infrastructure supporting services",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/091667-2026"
+        },
+        {
+          "field": "description",
+          "quote": "The supplier shall provide End User Computing (EUC) and on-site IT support services for the British Council",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/091667-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Complementing the British Council Digital and Technology team (D&T), the supplier will deliver hands-on, desk-side, and infrastructure support where remote resolution is not feasible by either our Global Service Desk (GSD) or Central Infrastructure Team (CIT).",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/091667-2026"
+        }
+      ]
     },
     {
       "id": "sig_58461c148a24e2f429fa",
@@ -17328,6 +17733,26 @@
       ]
     },
     {
+      "id": "sig_62c6c1c3d0b1548d665c",
+      "source_hash": "468497e5ea5bfd50911c91fd94a729c54fecf9f9dedb3d986668a9b19eb125de",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Licences, technical support and maintenance for the council's existing named CAMS product (the rights-of-way team's asset and legal-record GIS database). A pure licence and support renewal of an unrelated vendor's named product; no implementation, integration or development service is requested.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Countryside Access Management Software (CAMS)",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/069387-2025"
+        },
+        {
+          "field": "description",
+          "quote": "Procurement of Countryside Access Development System (CAMS) software licences, technical support and maintenance.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/069387-2025"
+        }
+      ]
+    },
+    {
       "id": "sig_630c660be96e1412834c",
       "source_hash": "f120ed92aec65a52715be96bc8c50c9a2c7ee57f5661531884a61585708421a3",
       "decision": "exclude",
@@ -18133,6 +18558,26 @@
           "field": "description",
           "quote": "HOLTER INJECTABLE PETIT MODELE AVEC PRESENCE D'INTELLIGENCE ARTIFICIELLE AINSI QU'UNE BATTERIE > 4ANS",
           "source_url": "https://ted.europa.eu/en/notice/-/detail/656241-2026"
+        }
+      ]
+    },
+    {
+      "id": "sig_67cbba4c9c601433502c",
+      "source_hash": "6be0acceffd9948a679bef4a086975aed6fc4885fa49686fb06c39ee225c35f4",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "RFI for advanced penetration testing and forensic analysis to support cyber risk assurance of a capability being acquired. Security testing service; no application or integration deliverable.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Request for Information (RFI) Advanced Penetration Testing and Forensic Analysis enquiry for Cyber Risk Assurance",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/079970-2025"
+        },
+        {
+          "field": "description",
+          "quote": "The Ministry of Defence (MoD) is seeking information from suppliers within the Defence Security Sector regarding their capability to perform advanced Penetration Testing, including forensic analysis, to support Cyber Risk Assurance for a capability currently being acquired.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/079970-2025"
         }
       ]
     },
@@ -19064,6 +19509,26 @@
       "priority": "other"
     },
     {
+      "id": "sig_6d9da9863336b662e387",
+      "source_hash": "586fc37775ea2d7f860c5897fdf8b25db83ac6e23dc2501ed905d4d4e52d72de",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Consultancy to establish a corporate PMO assurance framework and operating model for governance of capital and regeneration projects. Non-IT governance consultancy; the retained scope names no software, data or workflow system.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Corporate PMO Assurance Framework and Operating Model",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/092245-2026"
+        },
+        {
+          "field": "description",
+          "quote": "To establish and embed a Corporate Programme Management Office (PMO) Assurance Framework and Operating Model that will provide a consistent approach to portfolio, programme and project governance in delivery of capital and regeneration projects and programmes of investment across a range of services within the Council.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/092245-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_6da26613e30f3466f926",
       "source_hash": "debd40776d75fd4573bfb688dbfab0638d85cdea6ad636f75746204b8cc5059c",
       "decision": "exclude",
@@ -19456,6 +19921,26 @@
       }
     },
     {
+      "id": "sig_6ee9c3650b90a9779869",
+      "source_hash": "7fa5db465b7d4616bb09d76df8c37601231514b1c9cdfdbaaea3def4b33063a6",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "PME for a multi-tenanted firewall solution to consolidate 10 physical firewall pairs (perimeter security infrastructure). Network infrastructure supply; no business application, data or integration deliverable. The PME closing date in the notice (12 February 2026) has passed.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "CWC26012MW - Virtual Firewalls",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/003630-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Wolverhampton City Council are seeking information from qualified vendors regarding the provision of a multi-tenanted firewall solution to replace our current estate of 10 dedicated firewall pairs.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/003630-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_6f100c78acffda09e727",
       "source_hash": "3310807041b324eca76db2f7425fce017857c10c0d1076419a9b493fb8fb8516",
       "decision": "guide",
@@ -19746,6 +20231,26 @@
           "field": "description",
           "quote": "1.1 Information on the procurement Sandnes municipality, hereafter called the contracting authority, is preparing a framework agreement with up to 2 - two - tenderers for temporary hire of event technical equipment and staffing for various events.",
           "source_url": "https://ted.europa.eu/en/notice/-/detail/215394-2026"
+        }
+      ]
+    },
+    {
+      "id": "sig_70502745d6059e59ae54",
+      "source_hash": "3e20650634914e55e04cbc2a55f07d67d28de4c39726a82e8b50fe72a6ed495a",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Full outsource of schools' connectivity: managed WAN, broadband, failover line, firewall, support and service reporting. Network and telecom connectivity; no business application, data or integration deliverable (telephony and web filtering are excluded).",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Lincoln Anglican Academy Trust Connectivity & Security Services Partner",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/010303-2026"
+        },
+        {
+          "field": "description",
+          "quote": "This procurement encompasses a full outsource of all the connectivity and associated security services, such as firewalls and protection from cyber-attacks.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/010303-2026"
         }
       ]
     },
@@ -20454,6 +20959,26 @@
       ]
     },
     {
+      "id": "sig_753d36bbc214cc4071ed",
+      "source_hash": "07966fcdaf31e323577b460efcfdc2031a55f084ea67110758a51607ecdb22d8",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "24/7 SOC and managed detection and response service for a housing association. Managed SOC; no application or integration deliverable.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Security Operations Centre (SOC) and Managed Detection Response Service",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/081748-2025"
+        },
+        {
+          "field": "description",
+          "quote": "We are seeking a reliable and experienced provider to deliver a security operations centre (SOC) and managed detection and response (MDR) service that operates 24/7.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/081748-2025"
+        }
+      ]
+    },
+    {
       "id": "sig_758ffd6b1b959a7470e0",
       "source_hash": "34601a40385f5776fbcf8d5f05f4060dfb25cea393e6bd46df8ed67a8f8b6edf",
       "decision": "exclude",
@@ -21102,6 +21627,26 @@
       }
     },
     {
+      "id": "sig_796d61dbbb40512cb48e",
+      "source_hash": "c0acee87b95ae446f64720cbb4aef56d4ddd2429d9bb290bc536638047df238f",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Market engagement for a community dementia support service (information, advice, signposting, emotional and practical support). Delivery of a health and care support service to people; no software, CRM or AI deliverable.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Dementia Support Service Market Engagement - Birmingham and Solihull ICB",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/006826-2026"
+        },
+        {
+          "field": "description",
+          "quote": "NHS Arden and Greater East Midlands CSU on behalf of NHS Birmingham and Solihull ICB are seeking to run a market engagement event for providers who have the relevant experience and skills to provide a Dementia Support Service.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/006826-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_79e38c24604df002ebc6",
       "source_hash": "988a3d3889071ed8c80d3ce809118f27d20b588d57ccb33452773dca51a64e3c",
       "decision": "exclude",
@@ -21227,6 +21772,46 @@
           "field": "description",
           "quote": "This is a preliminary market engagement exercise and the contract, procurement route, scope, term and budget are subject to change based on the findings of this exercise.",
           "source_url": "https://www.find-tender.service.gov.uk/Notice/071953-2025"
+        }
+      ]
+    },
+    {
+      "id": "sig_7b9584592e94905377fd",
+      "source_hash": "ed61162a12d4741ad23035444d82129531abbd6f5fd339613204eb732c4d0df0",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Advertising concession to install, operate and commercialise an LED advertising screen on a bridge. The 'digital advertising platform' is the physical screen; no software, integration or data deliverable.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Pre-Market Engagement LED Screen Mersey Gateway Bridge",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/064613-2025"
+        },
+        {
+          "field": "description",
+          "quote": "Halton Borough Council is seeking proposals from qualified advertising companies to manage the installation, operation, and commercialisation of an LED advertising screen mounted on Mersey Gateway Bridge.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/064613-2025"
+        }
+      ]
+    },
+    {
+      "id": "sig_7bae50609cec359c8f12",
+      "source_hash": "c879ef03bab07df67c6616df7e3bbf8711bba4322d6a78541903ff8b5b140979",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Contract to run the national Infant Feeding Survey for England. Human survey execution; no software, platform or data-system deliverable is described.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "DHSC: OHID: Infant Feeding Survey 2027",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/092158-2026"
+        },
+        {
+          "field": "description",
+          "quote": "A new contract to undertake an Infant Feeding Survey (IFS) collecting data on breastfeeding, the use of foods and drinks other than breastmilk in infancy and related relevant matters for England.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/092158-2026"
         }
       ]
     },
@@ -21445,6 +22030,31 @@
       ]
     },
     {
+      "id": "sig_7cdccb94160744b0672b",
+      "source_hash": "6bd08e18e16fdabda59f4cb0e919b202515e32f8d90fee4f2a9c6121266bc525",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "The engagement concerns wide-area network infrastructure and WAN services for two Birmingham NHS trusts and a GP partnership support unit (capacity, Wi-Fi, security gaps and shared network access). 'digital transformation' appears only as strategy context ('build on previous investments in digital transformation'); federated access and authentication is an outcome of the shared WAN. No business application, CRM, integration or AI deliverable is described.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "BCHC Secure WAN",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/001188-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Birmingham Community Healthcare NHS Foundation Trust (BCHC), Birmingham and Solihull Mental Health NHS Foundation Trust (BSMHFT), and Birmingham and Solihull GP Partnership Support Unit (GPPSU) are reviewing their WAN infrastructure both individually and collaboratively, aiming to develop a future blueprint for the ICB and ICS.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/001188-2026"
+        },
+        {
+          "field": "description",
+          "quote": "WAN services at the three Trusts are currently delivered through three separate contracts utilising a variety of technologies.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/001188-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_7cf43fc5fcd81cee3fb4",
       "source_hash": "aea4036c993b2e2126c817f46e1388ad7c11bb666c7d31258e53aeea4b93963b",
       "decision": "exclude",
@@ -21545,6 +22155,26 @@
           "field": "title",
           "quote": "RFI - Procurement of a Lisence solution provider",
           "source_url": "https://ted.europa.eu/en/notice/-/detail/585468-2026"
+        }
+      ]
+    },
+    {
+      "id": "sig_7d3b4d76bdf8db32ad8c",
+      "source_hash": "60e900e67c6d52fe1fae44707629bad6970351612284575f9be7e09805415507",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Cyber incident response and threat-intelligence partner (forensic investigation and response) via the CSS3 DPS; companion notice of the same Defra requirement. Security incident-response service; no application or integration deliverable. Its planned timeline (ITT 03/12/2025, award 03/03/2026) has passed.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Cyber Incident Response Partner Service",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/067105-2025"
+        },
+        {
+          "field": "description",
+          "quote": "Defra is seeking a Cyber Incident Response Partner to act as their prime threat intelligence partner, conduct forensic investigations and respond to cyber security incidents.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/067105-2025"
         }
       ]
     },
@@ -21757,6 +22387,26 @@
           "field": "description",
           "quote": "Solutions de visioconférence / vidéocommunication / audiovisuel et prestations Solutions de visioconférence, de vidéocommunication, d'audiovisuel et Prestations associées; Solutions de visioconférence, de vidéocommunication « Cisco » en extension de parc existant et Prestations associées; Solutions de visioconférence, de vidéocommunication « HP Poly » en extension de parc existant et Prestations associées",
           "source_url": "https://ted.europa.eu/en/notice/-/detail/508919-2026"
+        }
+      ]
+    },
+    {
+      "id": "sig_7f2ef1ff6b0c17136c62",
+      "source_hash": "d53cb600bccdfa443af3e3c914cfe968053a66dd55d8e5290f80b03e7ce82183",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Contracts Finder copy of the same out-of-hours protective monitoring SOC service. Managed SOC; no application or integration deliverable. The notice's own timeline (ITT submission 20 April, award 11 June 2026) has passed.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "SOC Out-of-Hours Protective Monitoring Service",
+          "source_url": "https://www.contractsfinder.service.gov.uk/Notice/48c369bc-b932-4fd0-9dff-6fed2171890d"
+        },
+        {
+          "field": "description",
+          "quote": "Defra is seeking to reprocure this out-of-hours Protective Monitoring SOC service when the incumbent contract expires on 31st October 2026.",
+          "source_url": "https://www.contractsfinder.service.gov.uk/Notice/48c369bc-b932-4fd0-9dff-6fed2171890d"
         }
       ]
     },
@@ -22368,6 +23018,26 @@
       ]
     },
     {
+      "id": "sig_82023e403821362aec16",
+      "source_hash": "8b9083dc8da8d3c633617198abdb40a848c102625208dea24ebafae923bd6844",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Framework renewal for energy efficiency works (building fabric, heating, renewables and storage) and related professional services (architects, retrofit coordinators, EPC assessors, managing agents). Construction works and non-IT professional services.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "The Provision of Energy Efficiency Contractors",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/001446-2026"
+        },
+        {
+          "field": "description",
+          "quote": "This Prior Information Notice (PIN) relates to the renewal of a Framework Agreement for energy and efficiency works and services.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/001446-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_821c07135835f31c5eeb",
       "source_hash": "1ca9df6024b1591fcebfff32723866875a87bbc0177d8d85387008dabadeb6fe",
       "decision": "exclude",
@@ -22550,6 +23220,26 @@
       }
     },
     {
+      "id": "sig_82bd63d834b1237f7407",
+      "source_hash": "aaef433b4d131ac6b6a78d6f68733359c0c2222bb0a2a30a38a21c23315fbfba",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "An accredited trainer is sought to deliver an existing bespoke carbon literacy course to CITB staff. Training delivery; no software or platform is purchased.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Carbon Literacy Trainer(s)",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/010214-2026"
+        },
+        {
+          "field": "description",
+          "quote": "We are seeking a Carbon Literacy Project (CLP) accredited Trainer to deliver Carbon Literacy training to its workforce.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/010214-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_82dfde4756b60bb6d0ca",
       "source_hash": "80c760305a299f6327f18c34e467632bca1693a9bfae22a95b483c25e08b17bb",
       "decision": "exclude",
@@ -22717,21 +23407,21 @@
     },
     {
       "id": "sig_838726c977100c700853",
-      "source_hash": "6f5e69e44e969fcdc36a6996d2504f959c4427ab907b208d6213c95f0b8a5291",
+      "source_hash": "1ddc3dda45f3ff844aae20b57192f3a3376d0a1075736dd690e1d458971345d5",
       "decision": "exclude",
-      "reviewed_at": "2026-09-29T10:11:55.796536+00:00",
-      "reviewed_by": "Claude proposal; independent Codex market and release review",
-      "reason": "Tournament impact evaluation. Non-IT consultancy, research, evaluation, marketing/communications or facility-operation service; no software, data platform, CRM or AI deliverable.",
+      "reviewed_at": "2026-09-30T18:15:57.134400+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Socio-economic impact and legacy evaluation of UEFA EURO 2028 for the host partners. Non-IT evaluation research; no software deliverable. Re-read after the notice changed: still junk; its supplier briefing (12 January 2026) has passed.",
       "evidence": [
         {
           "field": "title",
           "quote": "UEFA EURO 2028 Tournament Impact Evaluation",
-          "source_url": "https://www.find-tender.service.gov.uk/Notice/075425-2025"
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/009354-2026"
         },
         {
           "field": "description",
-          "quote": "Hosting Partners are aiming to implement a single, combined evaluation of the socioeconomic impacts and legacy benefits of UEFA EURO 2028, which can service the requirements of domestic delivery partners (The Football Association, Scottish Football Association, Football Association of Wales, Football Association of Ireland; Government of Ireland, Scottish",
-          "source_url": "https://www.find-tender.service.gov.uk/Notice/075425-2025"
+          "quote": "UK Sport, Scottish Government and Welsh Government (the Contracting Authorities) are conducting Pre-Market Engagement to gather market intelligence and refine the scope of a potential future procurement for UEFA EURO 2028 Tournament Evaluation Services.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/009354-2026"
         }
       ]
     },
@@ -23824,6 +24514,26 @@
       "guidance": null
     },
     {
+      "id": "sig_88ed8fa569d7e5feaa8e",
+      "source_hash": "026d202684d2a2e3cc0b06e5a08dbf39e57b1abc7b24c71fb8ace1b9c648c836",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Strategic public affairs and crisis communications agency for a port authority. Communications service; no software deliverable.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Public Affairs and Crisis Communication Support",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/091704-2026"
+        },
+        {
+          "field": "description",
+          "quote": "The Port of Milford Haven is seeking to appoint an experienced agency partner to provide strategic public affairs and crisis communications support.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/091704-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_88f2aa3b467ba46f9464",
       "source_hash": "c9ffc2682b1c8d7705728759fe50855a86e4f7b629019f46504436be1ee28c45",
       "decision": "guide",
@@ -24337,6 +25047,31 @@
       ]
     },
     {
+      "id": "sig_8cd75ff330577e598c55",
+      "source_hash": "8bb4005a0c00e7462dc60c146aa53348777852298385cd8d0454bb7a106127d1",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Brand identity, guidelines and photography for a business hub. Creative design service; the hub website is being developed by the buyer's own web team, not purchased here.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Visual Identity and Photography Development for the Business Enterprise Hub",
+          "source_url": "https://api.publiccontractsscotland.gov.uk/v1/Notice?id=ocds-r6ebe6-0000844403"
+        },
+        {
+          "field": "description",
+          "quote": "UHI Moray invites proposals from suitably qualified and experienced companies to develop a comprehensive brand and visual identity and supporting assets for the Hub including comprehensive brand guidelines.",
+          "source_url": "https://api.publiccontractsscotland.gov.uk/v1/Notice?id=ocds-r6ebe6-0000844403"
+        },
+        {
+          "field": "description",
+          "quote": "The successful bidder will also liase with UHI Webteam who are developing a standalone website for the Hub",
+          "source_url": "https://api.publiccontractsscotland.gov.uk/v1/Notice?id=ocds-r6ebe6-0000844403"
+        }
+      ]
+    },
+    {
       "id": "sig_8cea18ec8280f739f3a9",
       "source_hash": "60fe1bf5337b6bd19fc494e31074577137505581144c3d350b3540d6ac52ef42",
       "decision": "exclude",
@@ -24421,6 +25156,26 @@
       "guidance": null
     },
     {
+      "id": "sig_8d273380006db3cc610c",
+      "source_hash": "cb9e714d8e62139d23d75f28dbae7d9a3aa7e61c210cedb28728b7dad14f8892",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Business support programme: one-to-one coaching, growth action plans, change-management training and grant distribution for manufacturers. Non-IT business support; no software deliverable.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Supply Chain Transition (Investment Zone)",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/070416-2025"
+        },
+        {
+          "field": "description",
+          "quote": "They will achieve this by working with a dedicated Delivery Partner (the successful supplier), who will provide one-to-one technical coaching on how to improve business performance, create action plans detailing the steps required to achieve growth and deliver training programmes in change management.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/070416-2025"
+        }
+      ]
+    },
+    {
       "id": "sig_8d404a48dbf06306621f",
       "source_hash": "767d86c421341dda68c2926ed3f28ce0045e1aa03fe8d09efdd788d3eb3db10b",
       "decision": "exclude",
@@ -24452,6 +25207,26 @@
           "field": "description",
           "quote": "Politiets fellestjenester (PFT) shall, on behalf of the police and the Norwegian Police Security Service, enter into framework agreements for consultancy services for the management and development of the police.",
           "source_url": "https://ted.europa.eu/en/notice/-/detail/730231-2025"
+        }
+      ]
+    },
+    {
+      "id": "sig_8d9ed364853ad131d5ed",
+      "source_hash": "245cdec4475df2947681a66c4174506b269594555a931cd0aae05330a2e33ef6",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Fully managed VPN service (design, implementation, operation, monitoring, support) under an infrastructure-management framework lot. Network connectivity; no business application deliverable.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "VPN Provision",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/010279-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Ofsted intends to appoint a supplier to deliver a fully managed VPN service that provides secure, encrypted network connectivity across the organisation.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/010279-2026"
         }
       ]
     },
@@ -25381,6 +26156,26 @@
           "field": "description",
           "quote": "Sandvikens kommun avser att upphandla en leverantör som kan tillhandahålla kommunikations-, media- och evenemangsinfrastruktur som tjänst.",
           "source_url": "https://ted.europa.eu/en/notice/-/detail/606049-2026"
+        }
+      ]
+    },
+    {
+      "id": "sig_92ae2e57a6d8e1cd5597",
+      "source_hash": "8fae9713564e0221ccde6a4bf81d01f972e867d8b1c3dcbf7699a23c68f89462",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "The notice announces an intended award to Thales of in-service support for its proprietary TACTICOS naval combat management system (sensor control, picture compilation and weapon control); the scope is defence mission-system engineering, not business-software delivery.",
+      "evidence": [
+        {
+          "field": "description",
+          "quote": "intends to award a “Procurement of support services for the Type 31 Combat Management System” contract to Thales UK Limited (Thales) for in-service support to the Thales TACTICOS combat management system installed on five Royal Navy Type 31 Frigates",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/077966-2025"
+        },
+        {
+          "field": "description",
+          "quote": "TACTICOS is a proprietary combat management system, combining sensor control, picture compilation and weapon control.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/077966-2025"
         }
       ]
     },
@@ -28158,6 +28953,26 @@
       "guidance": null
     },
     {
+      "id": "sig_a45a398f06a03f9877a6",
+      "source_hash": "dbf214dd2c1c462818070ebacd4740ff5c0969d837ebc39203ea724658a634b4",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Public Contracts Scotland copy of the energy efficiency contractors framework PIN: building fabric, heating, renewables works and related professional services. Construction works and non-IT professional services.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "The Provision of Energy Efficiency Contractors",
+          "source_url": "https://www.publiccontractsscotland.gov.uk/search/show/search_view.aspx?ID=JAN546762"
+        },
+        {
+          "field": "description",
+          "quote": "This Prior Information Notice (PIN) relates to the renewal of a Framework Agreement for energy and efficiency works and services.",
+          "source_url": "https://www.publiccontractsscotland.gov.uk/search/show/search_view.aspx?ID=JAN546762"
+        }
+      ]
+    },
+    {
       "id": "sig_a48ef942bc6a09e5105c",
       "source_hash": "7e38c798b840d115b373cdd75735474d162151a42aa7140c9fe319f77deea1a9",
       "decision": "guide",
@@ -29350,6 +30165,26 @@
       ]
     },
     {
+      "id": "sig_aa30c2bdec25058b0f2e",
+      "source_hash": "aa5dea8e845e45379337fe6458915e21bfc368654e790d6f71deb91f0da3489f",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Framework of sector technical specialists for the Crown Estate portfolio (13 lots: minerals, telecoms, transmission, pipelines, coastal, marine, ports, aquaculture, nature, CCUS, new energies, offshore wind, integrated energy). Non-IT technical and property consultancy; the Telecoms lot concerns estate telecoms assets.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Technical Services Framework - Managing Agent",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/091615-2026"
+        },
+        {
+          "field": "description",
+          "quote": "The Framework is being established to provide access to specialist technical services across The Crown Estate's diverse UK portfolio.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/091615-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_aa3c5bc33f5784b9ff57",
       "source_hash": "c69839b2b68bb793833101a063478e296ad56872bcb880cec176bb0783e5a66f",
       "decision": "exclude",
@@ -29599,6 +30434,31 @@
           "field": "description",
           "quote": "The company is seeking to introduce autonomous vehicles for the horizontal transport of containers into its existing container handling operations at its Teesport Container Terminal 2 (TCT2).",
           "source_url": "https://www.find-tender.service.gov.uk/Notice/074897-2025"
+        }
+      ]
+    },
+    {
+      "id": "sig_abcb3fdfeb086d0f50fd",
+      "source_hash": "ab13ab2dd66c979cc24603a9e87bead5b3f09775d9efbafffc1f6cbc1704cbb2",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Two lots: AV hardware supply, installation, room integration (including Microsoft Teams Rooms) and maintenance; managed print (printer lease, servicing, consumables). AV and print hardware supply and maintenance; 'integration' is AV room integration, not business-application integration.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "SONI092 – Workplace Technology Services",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/092321-2026"
+        },
+        {
+          "field": "lot:1:description",
+          "quote": "AV hardware supply, design, installation and integration (including Microsoft Teams Rooms), maintenance and support, and lifecycle/refresh, in accordance with Annex A.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/092321-2026"
+        },
+        {
+          "field": "lot:2:description",
+          "quote": "Sale or lease of printers (Supplier's choice of commercial model) for SONI's Belfast office, with set-up and configuration, ongoing servicing, consumables (ink/toner) replacement and end-of-life disposal in accordance with Annex B.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/092321-2026"
         }
       ]
     },
@@ -30230,6 +31090,26 @@
       ]
     },
     {
+      "id": "sig_affda61669f96a01edb1",
+      "source_hash": "0c3cb932b71582666b49b73c775c5e75153eeaf9a9ba73ecd64a6acfdf44c033",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Recruitment of user-research participants for DWP Digital's research sessions. Participant recruitment service; it supports digital teams, but no software, platform or research tool is purchased. The RFI response date (03/10/2025) and the planned award have passed.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "User Research Participant Recruitment for DWP Digital",
+          "source_url": "https://www.contractsfinder.service.gov.uk/Notice/099b5292-688b-4d16-853e-b2da79457004"
+        },
+        {
+          "field": "description",
+          "quote": "The Department for Work & Pensions (DWP) is undertaking market research to understand technical capability and capacity to recruit User Research Participants for DWP Digital.",
+          "source_url": "https://www.contractsfinder.service.gov.uk/Notice/099b5292-688b-4d16-853e-b2da79457004"
+        }
+      ]
+    },
+    {
       "id": "sig_b061c00f7928c6dc75e0",
       "source_hash": "6abcac2c663b9c439b38500341a85471755df490b1bd18324591ce9e786d97b9",
       "decision": "exclude",
@@ -30386,6 +31266,31 @@
           }
         }
       }
+    },
+    {
+      "id": "sig_b0f8d8077aa0b96b3bec",
+      "source_hash": "e1a80451a8063992cbf80b1eb7bb43f4f8de7b44ae946636ff739ba255dfb1b3",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "The commissioned deliverable is a programme of general (non-life) insurance cover with related broking and claims services across eight lots (property and liability, motor, engineering insurance and inspections, cyber risk cover, terrorism, directors' and officers' liability, alternative risk financing). The matched 'client relationship management' names a role in the insurer's service team, and 'computer' and 'cyber risk' are insured risks. No software, CRM, integration or AI deliverable is purchased.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Provision of Insurance and Related Services to Yorkshire Housing",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/091585-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Yorkshire Housing Association are looking to appoint one or more providers to deliver their Insurance and related services for Property, legal liability and other general (non-life) insurable risks.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/091585-2026"
+        },
+        {
+          "field": "description",
+          "quote": "A skilled and competent service team, being Client Relationship Management, Insurance Claims management, Insurance Broking / underwriting and insurable risk managers",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/091585-2026"
+        }
+      ]
     },
     {
       "id": "sig_b11a52091543994287ca",
@@ -31169,6 +32074,26 @@
       ]
     },
     {
+      "id": "sig_b7d866e178e7a30f357c",
+      "source_hash": "a8743c8101dfce8bf7b75e42cd59fa4d7cca4024685c09b3683de05708ccbcaa",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Market engagement for a school-estate condition programme: construction technical advisory delivery partners, then construction works (including modular buildings). Construction and estates consultancy; the only 'online' mention is the engagement session.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "DfE Education Estates Programme",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/075178-2025"
+        },
+        {
+          "field": "description",
+          "quote": "This programme is projected to include procurement of strategic, regional delivery partners who will provide construction technical advisory services related to school building condition, sustainability, project management, procurement services, technical and cost management and assurance services, architectural and design services, energy related services and building services.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/075178-2025"
+        }
+      ]
+    },
+    {
       "id": "sig_b89a872216055a6c7149",
       "source_hash": "7b78230bcc02fb0fde20771bbb43e2f58073bb9d88d15890dbe44f39260c8194",
       "decision": "exclude",
@@ -31270,21 +32195,21 @@
     },
     {
       "id": "sig_b950af5a9ca5f1892d47",
-      "source_hash": "885fa40463ab7cf5b5a6ca9eaf54740a1bf4b51fb7dfbf011f78bfa443894ea4",
+      "source_hash": "ce9309977120d37a119872b8ff7102919fd4ff5da2d1ae09de2b4614c5156a31",
       "decision": "exclude",
-      "reviewed_at": "2026-09-29T10:11:55.796536+00:00",
-      "reviewed_by": "Claude proposal; independent Codex market and release review",
-      "reason": "Benchmarking of rail maintenance expenditure (economic consultancy). Non-IT consultancy, research, evaluation, marketing/communications or facility-operation service; no software, data platform, CRM or AI deliverable.",
+      "reviewed_at": "2026-09-30T18:15:57.134400+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Top-down econometric cost benchmarking of Network Rail's maintenance and renewals expenditure for 2025-26. Non-IT economic consultancy; no software deliverable. Re-read after the notice changed: still junk.",
       "evidence": [
         {
           "field": "title",
           "quote": "Intra-company benchmarking of Network Rail's maintenance and renewals expenditure",
-          "source_url": "https://www.find-tender.service.gov.uk/Notice/089570-2026"
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/091864-2026"
         },
         {
           "field": "description",
           "quote": "This work relates to our top-down benchmarking of Network Rail's maintenance and renewals expenditure for the year from 1 April 2025 to 31 March 2026 ('2025-26').",
-          "source_url": "https://www.find-tender.service.gov.uk/Notice/089570-2026"
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/091864-2026"
         }
       ]
     },
@@ -33222,6 +34147,31 @@
       ]
     },
     {
+      "id": "sig_c52cb1f48a0ccc969db0",
+      "source_hash": "ed4b58ee7ba36d4f6fdf909f644f9ec2d02e5a02b9df2da5db0f35288457acb1",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "The planned purchase is research-data storage infrastructure as a managed service: on-premise caching with cloud object storage and archive in AWS, storage-tier lifecycle management and access control, with the supplier responsible for 24/7 monitoring, capacity planning, patching, backup and disaster recovery, including leased-equipment options. 'digital transformation' is strategy context. No business application, CRM, integration, analytics or AI deliverable is described.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Natural History Museum - Bulk Storage Solution",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/081263-2025"
+        },
+        {
+          "field": "description",
+          "quote": "The solution is anticipated to be the primary bulk storage infrastructure supporting over 300 scientists across multiple research domains including CT scanning, bioinformatics, molecular biology, and imaging analysis.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/081263-2025"
+        },
+        {
+          "field": "description",
+          "quote": "The procurement will seek a comprehensive managed service encompassing both the storage platform infrastructure and ongoing operational support, with the supplier assuming responsibility for 24/7 monitoring, capacity planning, security patching, backup and disaster recovery, and service delivery under contractual Experience Level Agreements (XLAs).",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/081263-2025"
+        }
+      ]
+    },
+    {
       "id": "sig_c57817db33a5b42f1ddb",
       "source_hash": "d16236afcf76aaecdee95921ed1c30f6554dc7356331177ac36ca09c93ff6773",
       "decision": "guide",
@@ -34331,6 +35281,26 @@
       "guidance": null
     },
     {
+      "id": "sig_cc166b99ddb33d1354a9",
+      "source_hash": "f61c61db225928388addccde28e600b5388cf23ee180b7117393c615edf74276",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "SOC service for 24/7/365 monitoring and management of cyber threats on two corporate networks. Managed SOC; no application or integration deliverable.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "SPS-02306 SOC services (Security Operations Centre)",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/074151-2025"
+        },
+        {
+          "field": "description",
+          "quote": "The SPS is seeking to establish a Security Operations Centre (SOC) service to support the monitoring and management of cyber threats across its two corporate networks.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/074151-2025"
+        }
+      ]
+    },
+    {
       "id": "sig_cc2a89a7cc9fd496b5e0",
       "source_hash": "8ff9792bf7577816d28ffae79ff1b311f61a53b7138eed608780050e8e0fb125",
       "decision": "guide",
@@ -34375,6 +35345,26 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_cc39a7ffa6016515dc42",
+      "source_hash": "b0f4c2041cd4669c0fd614d156961b7494973df1a8c7b8a12d07b319deca6043",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Market research ahead of a tender for consultancy to deliver the City Region Deal final evaluation, with or without economic benefits modelling. The commissioned deliverable is an evaluation study; the retained scope states no software, platform, data-system or AI delivery.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "ACRD Final Evaluation",
+          "source_url": "https://www.publiccontractsscotland.gov.uk/search/show/search_view.aspx?ID=MAR552611"
+        },
+        {
+          "field": "description",
+          "quote": "Aberdeen City Council (ACC) is undertaking market research ahead of a planned tender process for consultancy services to deliver a tiered Final Evaluation suitable for Deal Closure.",
+          "source_url": "https://www.publiccontractsscotland.gov.uk/search/show/search_view.aspx?ID=MAR552611"
+        }
+      ]
     },
     {
       "id": "sig_cc50a73d61158c1f39ae",
@@ -34587,6 +35577,26 @@
           "field": "description",
           "quote": "Micro, small and medium-sized enterprises (MSMEs) constitute the overwhelming majority of economic activity in Jordan.",
           "source_url": "https://ted.europa.eu/en/notice/-/detail/597218-2026"
+        }
+      ]
+    },
+    {
+      "id": "sig_cdea1510cc56dbdbac05",
+      "source_hash": "f5c84e1219cf92d66a401ae056603cf39bba03d855a197c5f891ddf54b822d90",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Online-safety education for schools delivered as programmes, staff training, pupil workshops and guidance. Training and education delivery; the subject is online safety but no software or platform is purchased.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Online Safety Programme for Schools",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/007979-2026"
+        },
+        {
+          "field": "description",
+          "quote": "This programme will provide key workers and professionals across the community with essential training and support, enabling staff working with children to understand and identify the risks, as well as training and guidance on how to respond when issues do arise.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/007979-2026"
         }
       ]
     },
@@ -36868,6 +37878,26 @@
       }
     },
     {
+      "id": "sig_dc7acf6a01d99be3f67a",
+      "source_hash": "6d95ce224fd9ef0d389409161cc0dc4f55394e58dc4c1d1cd058979d2a7b916e",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Cyber incident response and threat-intelligence partner (forensic investigation and response) via the CSS3 DPS. Security incident-response service in the same class as managed SOC and security testing; no application or integration deliverable. Its planned timeline (ITT 03/12/2025, award 03/03/2026) has passed.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Cyber Incident Response Partner 2026",
+          "source_url": "https://www.contractsfinder.service.gov.uk/Notice/74f156d4-1165-4c55-a2b0-6238986183ad"
+        },
+        {
+          "field": "description",
+          "quote": "Partnering with Defra Group to as their prime threat intelligence partner, conduct forensic investigations of cyber attacks and respond to incidents for an initial 3-years with two 1 year options to extend.",
+          "source_url": "https://www.contractsfinder.service.gov.uk/Notice/74f156d4-1165-4c55-a2b0-6238986183ad"
+        }
+      ]
+    },
+    {
       "id": "sig_dc7d4b0214ccaf561bc6",
       "source_hash": "9c078b856e37a51c7a6d9eb577d2c93e41839a0c00a4b9f843e0f2db3eccc0ef",
       "decision": "guide",
@@ -37636,6 +38666,31 @@
         "original_language": "en",
         "localized": {}
       }
+    },
+    {
+      "id": "sig_e0626c20b333f31d4378",
+      "source_hash": "a684b7a0b341b775ee986dbc00db6c91117673c46905e31781c57df8fa6b1dc6",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "End-user computing and on-site desk-side and infrastructure IT support for UK offices, complementing the buyer's own global service desk. Hardware and infrastructure support; no business application, data or integration deliverable.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "UK 777 IT Onsite Operations and Infrastructure supporting services",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/091875-2026"
+        },
+        {
+          "field": "description",
+          "quote": "The supplier shall provide End User Computing (EUC) and on-site IT support services for the British Council",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/091875-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Complementing the British Council Digital and Technology team (D&T), the supplier will deliver hands-on, desk-side, and infrastructure support where remote resolution is not feasible by either our Global Service Desk (GSD) or Central Infrastructure Team (CIT).",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/091875-2026"
+        }
+      ]
     },
     {
       "id": "sig_e09cb2aa998d64d69f62",
@@ -38456,6 +39511,26 @@
       }
     },
     {
+      "id": "sig_e5287f997ac3cc39e8a3",
+      "source_hash": "bd59a356dda8e6796d9a1584a357b1e83984c7bf9b3922da432718ae71f35d24",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Mobile voice and data connections for the City of London Corporation and Police (about 4,100 voice and 775 data-only lines). Telecom transport; no application or integration deliverable.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Mobile and Data Services",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/007274-2026"
+        },
+        {
+          "field": "description",
+          "quote": "We are looking to understand how suppliers could provide reliable, secure, and flexible mobile voice and data services to support these users.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/007274-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_e5404ce98ddacbdc0d6c",
       "source_hash": "ba9c015659f901ef8bd91f8587a94acf7c23d9a69235522cc91f031d8e7c1bc0",
       "decision": "exclude",
@@ -38635,6 +39710,36 @@
           "field": "description",
           "quote": "Neu-Errichtung eines Digitalen Alarmierungssystems im POCSAG-Standard (2m Band) für die nichtpolizeiliche Gefahrenabwehr im Landkreis Emmendingen zur Ablösung der analogen 5-Ton-Alarmierung.",
           "source_url": "https://ted.europa.eu/en/notice/-/detail/618674-2026"
+        }
+      ]
+    },
+    {
+      "id": "sig_e5e5ce82803367b17c32",
+      "source_hash": "93b085b9feee0fc996d4cfff1340f198e5886c88f9d12ccff98dff0e25c014a4",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "United Utilities works dynamic market in 7 lots: rural works; building fabric and services; site services, resource and personnel; OT and electrical services; environmental works; access and recreation; maintenance managed services. Every lot's retained scope lists physical works, labour or maintenance provisions. The OT and electrical lot lists electrical installation and maintenance, resource and people, and certification and testing, and the maintenance lot lists industrial M&E, statutory maintenance and minor works. The two software-maintenance CPVs (72267000, 72267100) sit among 53 works, repair and maintenance codes. No lot describes business-application, integration, data or AI work.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "PRO005124 – Works – Dynamic Market – Building, Operations, Labour & Trade Services",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/092425-2026"
+        },
+        {
+          "field": "description",
+          "quote": "UUWL operates diverse portfolio of operational assets and infrastructure that requires ongoing maintenance, repair, and compliance-driven servicing.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/092425-2026"
+        },
+        {
+          "field": "lot:LOT-0004:description",
+          "quote": "Scope includes provision for: Electrical Installation & Maintenance Resource & People Certification & Testing",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/092425-2026"
+        },
+        {
+          "field": "lot:LOT-0007:description",
+          "quote": "Scope includes provision for: Industrial M&E Industrial Statutory Maintenance Maintenance Minor Works",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/092425-2026"
         }
       ]
     },
@@ -39930,6 +41035,26 @@
       ]
     },
     {
+      "id": "sig_eed01742d5c27ea81da1",
+      "source_hash": "2012f1e78b7b9fd575c4c12a8d17f1c56955383c537d6695b20c586ca35f4d60",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Specialist ransomware negotiation expertise (threat-actor credibility, communications, negotiation advice). Security advisory service; no software deliverable. The questionnaire deadline (23 December 2025) has passed.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Ransomware Services",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/081383-2025"
+        },
+        {
+          "field": "description",
+          "quote": "The Student Loans Company Limited (SLC) are undertaking Pre-Market Engagement with regards to the provision of Ransomware Negotiation Services.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/081383-2025"
+        }
+      ]
+    },
+    {
       "id": "sig_eefd1eaf6f5be3200eae",
       "source_hash": "5a0c00672c2742fcc5ffe46110664f640b27ca242a7cc4f25f4870b1a588c8a5",
       "decision": "guide",
@@ -40054,6 +41179,31 @@
           }
         }
       }
+    },
+    {
+      "id": "sig_efac7e8c5ad245ae979e",
+      "source_hash": "a658faf04db374da6dbdafac5019b2ee122f280d7025de7a81999294dc7decf4",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Market engagement for a managed wide area network. The commissioned deliverable is network connectivity; the invitation for wider ideas is optional added value, not a software, data or integration deliverable. The questionnaire deadline (9 December 2025) has passed.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Managed Wide Area Network (WAN)",
+          "source_url": "https://www.publiccontractsscotland.gov.uk/search/show/search_view.aspx?ID=NOV544270"
+        },
+        {
+          "field": "description",
+          "quote": "are looking to notify the market about the potential contract opportunity for a managed wide area network",
+          "source_url": "https://www.publiccontractsscotland.gov.uk/search/show/search_view.aspx?ID=NOV544270"
+        },
+        {
+          "field": "description",
+          "quote": "While the immediate requirement is the delivery of a secure, resilient, high-performance WAN, NAC also intends to leverage this procurement to invite ideas, innovation, and additional value that can support wider digital, economic, and social outcomes across the region.",
+          "source_url": "https://www.publiccontractsscotland.gov.uk/search/show/search_view.aspx?ID=NOV544270"
+        }
+      ]
     },
     {
       "id": "sig_efd8879725d725b78cad",
@@ -41014,6 +42164,26 @@
       }
     },
     {
+      "id": "sig_f4734303296108191cee",
+      "source_hash": "b90dce042142ee1d8a7842860f91500d2cf8684560b337de065153049758c1ad",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Light-touch process evaluation of two marine recovery pilot sites (evaluation plan, evidence collection, outcome-evaluation scoping). Non-IT evaluation research; no software deliverable.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Evaluation of the pilot phase of Marine Recovery Action Plans",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/092105-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Natural England is testing a proposed process for developing Marine Recovery Action Plans (M-RAPs), and requires a light touch process evaluation (in keeping with the overall scale of the project) at two pilot M-RAP sites.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/092105-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_f47670163e5812efefba",
       "source_hash": "654cc9acafc7c94df9ead6d7f7dd0c45ee3ab364a970eb0d8a4ff5fb1e9a3c0e",
       "decision": "guide",
@@ -41389,6 +42559,31 @@
       }
     },
     {
+      "id": "sig_f619d873d9a4a1c81532",
+      "source_hash": "6d9e83e2b70e9ec91ee8e41f64f33a215804bf90a7d22564f7b2554281074e52",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Find a Tender copy of the same managed WAN market engagement. The commissioned deliverable is network connectivity; the invitation for wider ideas is optional added value, not a software, data or integration deliverable. The questionnaire deadline (9 December 2025) has passed.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Managed Wide Area Network (WAN)",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/076981-2025"
+        },
+        {
+          "field": "description",
+          "quote": "are looking to notify the market about the potential contract opportunity for a managed wide area network",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/076981-2025"
+        },
+        {
+          "field": "description",
+          "quote": "While the immediate requirement is the delivery of a secure, resilient, high-performance WAN, NAC also intends to leverage this procurement to invite ideas, innovation, and additional value that can support wider digital, economic, and social outcomes across the region.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/076981-2025"
+        }
+      ]
+    },
+    {
       "id": "sig_f621e9cd2c68dd0cd8ce",
       "source_hash": "1918d178250e5a60e12b3291e677772167b7f47bfa3669c23a04edd7c1808c97",
       "decision": "include",
@@ -41490,6 +42685,26 @@
           "field": "description",
           "quote": "Closed: The FCDO invited proposals by 17 October 2025 for AI automation and optimisation solutions in health, education, humanitarian, economic development, and climate action to be deployed through FCDO bilateral development programmes in Ethiopia.",
           "source_url": "https://www.gov.uk/international-development-funding/ethiopiai-programme-call-for-proposals"
+        }
+      ]
+    },
+    {
+      "id": "sig_f710a4176142e70ac212",
+      "source_hash": "debd00599b016035a80dba7721eb926ccb9ca1f7991f72c02fe57d5bebf26bbd",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Fleet accident claims management and cost recovery service for police and fire fleets. Insurance claims handling; no software deliverable.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Fleet Claims Management Service",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/091831-2026"
+        },
+        {
+          "field": "description",
+          "quote": "Derbyshire Constabulary intend to procure a Fleet Claims Management Service.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/091831-2026"
         }
       ]
     },
@@ -42191,6 +43406,31 @@
       }
     },
     {
+      "id": "sig_fb4f761317f382577b26",
+      "source_hash": "1355c622621ec633153388dd6e9b681b8ae01c7dd35c72438d2a4ec620410506",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "The commissioned deliverable is a GP-led same-day primary care service: about 7,000 additional same-day appointments, predominantly face to face, across hub locations in Bromley under the Provider Selection Regime. The matched 'referral management' comes from the provider's duty to use EMIS and existing NHS clinical systems for consultation recording and write-back; the 'integration' it describes is with care pathways and services. No software, CRM, system-integration, data-platform or AI deliverable is purchased.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Winter Access Hubs Service for Bromley",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/092031-2026"
+        },
+        {
+          "field": "description",
+          "quote": "NHS South East London Integrated Care Board (SEL ICB) is seeking to commission a Winter Access Hubs Service to provide additional same-day primary care capacity for Bromley residents during periods of seasonal demand and winter system pressures.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/092031-2026"
+        },
+        {
+          "field": "description",
+          "quote": "•Utilise EMIS and associated NHS digital systems to facilitate consultation recording, referral management and consultation write-back to registered GP practices.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/092031-2026"
+        }
+      ]
+    },
+    {
       "id": "sig_fba2d6481e0766a8ad64",
       "source_hash": "8db9df3b85fca9fbbcb13fce00432e48a8c3c2e0e2487fa6730f3a655ea1324c",
       "decision": "exclude",
@@ -42207,6 +43447,26 @@
           "field": "description",
           "quote": "Die hochrangige Regierungsberatung wird in Staaten in Osteuropa, auf dem Westbalkan, im Südkaukasus und in Zentralasien durchgeführt. Aktuell erfolgt die Beratung in den Ländern Ukraine, Belarus (derzeit ausgesetzt), Moldau, Georgien (derzeit ausgesetzt), Usbekistan und Kosovo.",
           "source_url": "https://ted.europa.eu/en/notice/-/detail/662481-2026"
+        }
+      ]
+    },
+    {
+      "id": "sig_fba77b3b1ac810e630a0",
+      "source_hash": "98bb3b03b57b3e4423a1bd55a372ce28b5797c3251df1257aabbb8260fde2015",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Duplicate engagement notice for the same drone surveillance managed service (5,000 sensor-coverage hours a year, imagery sent to the existing command-and-control facility). Aircraft and sensor service; no business application, integration build or data platform is commissioned.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Tactical Remotely Piloted Aircraft System (RPAS) Managed Service",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/009787-2026"
+        },
+        {
+          "field": "description",
+          "quote": "The Home Office seeks an experienced commercial provider to supply capable Remotely Piloted Aircraft Systems (RPAS) to support the Border Security Command's (BSC) Intelligence, Surveillance and Reconnaissance (ISR) operations.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/009787-2026"
         }
       ]
     },
@@ -42554,6 +43814,26 @@
       "reviewed_at": "2026-09-22T09:29:11.069922+00:00",
       "reviewed_by": "Codex primary agent; independent review of subagent proposal",
       "source_hash": "398a9f85ed6fc664c9b079065c5c1ca8956a241feecf69a3ddee43c9f58c1fac"
+    },
+    {
+      "id": "sig_feb5111a85b03697c68e",
+      "source_hash": "d408e275e8f9ac186cbb52685a07f1237ab342f5ce4b86a74405e011362171c8",
+      "decision": "exclude",
+      "reviewed_at": "2026-09-30T18:15:29.118969+00:00",
+      "reviewed_by": "Claude market agent + independent Claude source review",
+      "reason": "Independent external review of the FRC Board, its committees and wider governance arrangements. Non-IT governance consultancy; no software, data or AI deliverable.",
+      "evidence": [
+        {
+          "field": "title",
+          "quote": "Board Effectiveness Review",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/091391-2026"
+        },
+        {
+          "field": "description",
+          "quote": "The FRC is seeking an experienced, independent external reviewer to undertake a Board Effectiveness Review covering the Board, its Committees and wider governance arrangements.",
+          "source_url": "https://www.find-tender.service.gov.uk/Notice/091391-2026"
+        }
+      ]
     },
     {
       "id": "sig_feb9398e0f530ba7000d",
