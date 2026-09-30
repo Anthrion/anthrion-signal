@@ -9,7 +9,7 @@ from anthrion_signal.cli import public_data
 from anthrion_signal.discovery import prefilter
 from anthrion_signal.models import Dataset, EnglishText
 from anthrion_signal.public_context import attach_history
-from anthrion_signal.public_feed import export_current, atomic_public_json
+from anthrion_signal.public_feed import export_current, atomic_public_json, ranking_evidence
 from anthrion_signal.utils import atomic_json, digest, read_json
 
 
@@ -36,6 +36,10 @@ def test_indexes_keep_original_english_search_and_lazy_full_evidence(tmp_path, s
     assert summary["description"] == "" and summary["is_summary"]
     assert "rare final phrase" in summary["search_text"] and "English rare phrase" in summary["search_text"]
     detail = read_json(root / data.current_feed["records"][signal.id]["url"], {})
+    assert summary["ranking_evidence"] == ranking_evidence(detail["signal"])
+    assert summary["ranking_evidence"]
+    assert "capability_evidence" not in summary and "lots" not in summary
+    assert all(set(item) == {"capability", "strength", "field", "context"} for item in summary["ranking_evidence"])
     assert detail["signal"]["description"] == signal.description
     assert not detail["signal"]["buyer_history"]
     buyer = read_json(root / detail["signal"]["buyer_history_ref"]["url"], {})
@@ -49,6 +53,32 @@ def test_indexes_keep_original_english_search_and_lazy_full_evidence(tmp_path, s
         *[p["url"] for p in data.current_feed["markets"].values()],
         *[p["url"] for p in data.current_feed["records"].values()],
     }
+
+
+def test_compact_evidence_deduplicates_translation_without_losing_scope():
+    original = {"capability": "crm", "strength": "needs", "field": "title", "context": "uncertain",
+                "basis": "original", "quote": "CRM"}
+    translated = {**original, "basis": "english_translation", "quote": "Translated CRM"}
+    delivery = {**original, "field": "description", "context": "delivery"}
+    compact = ranking_evidence({"capability_evidence": [original, translated, delivery]})
+    assert len(compact) == 2
+    assert {item["context"] for item in compact} == {"uncertain", "delivery"}
+
+
+def test_rehashed_index_cannot_invent_stronger_ranking_evidence(tmp_path, signal, config):
+    data = make_feed(tmp_path, signal, config)
+    root = tmp_path / "app/public/data"
+    pointer = data.current_feed["markets"]["GB"]
+    page = read_json(root / pointer["url"], {})
+    page["signals"][0]["ranking_evidence"][0]["strength"] = "invented"
+    pointer["url"] = f"current/GB-{digest(page)[:16]}.json.gz"
+    atomic_public_json(root / pointer["url"], page)
+    body = public_data(data)
+    atomic_json(root / "current.json", body)
+    atomic_json(root / "manifest.json", {**body, "signals": [], "translations": {}})
+    checker = runpy.run_path(str(Path(__file__).resolve().parents[2] / "scripts/check_public_output.py"))["check_public_output"]
+    with pytest.raises(ValueError, match="ranking evidence differs"):
+        checker(root / "current.json")
 
 
 def test_content_change_preserves_previous_manifest_dependencies(tmp_path, signal, config):

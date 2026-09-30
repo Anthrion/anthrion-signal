@@ -832,6 +832,7 @@ export function LanguageMenu({
 }
 
 const sortOptions = [
+  ['relevance', 'Best match'],
   ['recent', 'Most recent'],
   ['updated', 'Recently updated'],
   ['deadline', 'Soonest deadline'],

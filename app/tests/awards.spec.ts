@@ -113,6 +113,7 @@ test('Awarded is the sixth refiner, lazy loads and preserves capability priority
   const liveCounts = counts.slice(0, 5)
   await page.getByRole('button', { name: 'Sort opportunities: Most recent' }).click()
   await expect(page.getByRole('menuitemradio')).toHaveText([
+    'Best match',
     'Most recent',
     'Recently updated',
     'Soonest deadline',

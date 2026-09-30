@@ -7,6 +7,7 @@ import re
 from collections import defaultdict
 from html import unescape
 
+from .capability_matching import source_occurrences
 from .models import Amount, Deadline
 from .utils import canonical_url, clean, digest, parse_date, unique
 
@@ -21,6 +22,16 @@ EXISTING = re.compile(r"\b(?:existing|currently uses?|already uses?|current syst
 REQUIRED_DELIVERY = re.compile(r"\b(?:must|shall|requires?|required to|seeks?|will implement|will develop|"
                                r"will replace|to be implemented|to be developed|procure\w*)\b|"
                                r"(?:^|[.;:]\s+)(?:implement|develop|integrate|replace|upgrade|maintain)\b", re.I)
+COMMISSIONED_INTEGRATION = re.compile(
+    r"\bwill (?:also )?integrate\b|(?:^|[•;:\n]\s*|\b(?:must|shall)\s+)"
+    r"(?:(?:offer|provide|support|enable|ensure) "
+    r"(?:(?:robust|seamless|secure|standards-based)\s+)?integration|"
+    r"(?:seamlessly |securely )?integrate with (?:the |our )?existing systems)\b", re.I)
+PROHIBITED_DELIVERY = re.compile(
+    r"\b(?:must|shall|will|should) not (?:deliver|implement|configure|develop|build|act as)\b", re.I)
+AFFIRMATIVE_INSTRUCTION = re.compile(
+    r"\b(?:and|then)\s+(?:(?:the supplier|we|it)\s+)?(?:must|shall|will|should)\s+(?!not\b)", re.I)
+DECOMMISSION = re.compile(r"\bdecommission\w*\b", re.I)
 PREREQUISITE = re.compile(r"\b(?:must|shall|required|mandatory|eligible|eligibility|membership|certification|"
                          r"minimum (?:turnover|insurance|experience)|consorti\w*|subcontract\w*|"
                          r"muss|müssen|erforderlich|zwingend|mindestens|nachweis|doit|doivent|obligatoire|exig[ée]\w*|"
@@ -105,6 +116,49 @@ def enrich_signal(signal):
     return signal
 
 
+def evidence_specificity(evidence, quote):
+    """Keep local source context without changing discovery or record membership."""
+    strength = evidence.get("strength", "")
+    commissioned = REQUIRED_DELIVERY.search(quote) or COMMISSIONED_INTEGRATION.search(quote)
+    context = ("existing_system" if EXISTING.search(quote) and not commissioned
+               else "delivery" if DELIVERY.search(quote) else "uncertain")
+    phrase = evidence.get("phrase", "")
+    if not phrase or not (strength == "explicit" or PROHIBITED_DELIVERY.search(quote)):
+        return strength, context
+    occurrences = list(source_occurrences(quote, phrase))
+    if not occurrences:
+        return strength, context
+    # A prohibited action list is not a commissioned implementation. A later
+    # affirmative occurrence after a sentence/contrast boundary remains usable.
+    if all(PROHIBITED_DELIVERY.search(AFFIRMATIVE_INSTRUCTION.split(quote[left:start])[-1])
+           for start, _, left, _ in occurrences):
+        return "contextual", "uncertain"
+    if strength == "explicit":
+        # Normalisation can join separate list items into a product name, such as
+        # "data, cloud/SaaS". Keep the tag but not the claim of named-product scope.
+        if all(re.search(r"[,;]", quote[start:end]) for start, end, _, _ in occurrences):
+            strength = "contextual"
+        if phrase.casefold() == "education cloud" and all(
+                re.match(r"[-\s]+based\b", quote[end:], re.I)
+                and not re.search(r"\bSalesforce\b", quote[left:right], re.I)
+                for _, end, left, right in occurrences):
+            strength = "contextual"
+        if DECOMMISSION.search(quote):
+            def retiring_mention(span):
+                start, end, left, right = span
+                before, after = quote[max(left, start - 80):start], quote[end:min(right, end + 80)]
+                positive = (re.search(
+                    r"\b(?:implement|deploy|configure|integrate|maintain|support|upgrade)\w*\s+"
+                    r"(?:(?:with|for|a|the|new|our|an|existing)\s+){0,3}$", before, re.I)
+                    or re.search(r"\bmigrat\w*\b[^.;!?]{0,60}\bto\s+(?:(?:the|new)\s+){0,2}$", before, re.I)
+                    or re.search(r"\breplac\w*\b[^.;!?]{0,60}\bwith\s+(?:(?:the|new)\s+){0,2}$", before, re.I)
+                    or re.match(r"\s+(?:(?:platform|system)\s+)?(?:implementation|deployment|integration|upgrade|will replace)\b", after, re.I))
+                return not positive and bool(DECOMMISSION.search(before[-60:] + " " + after[:60]))
+            if all(retiring_mention(span) for span in occurrences):
+                context = "existing_system"
+    return strength, context
+
+
 def public_capability_evidence(signal, translation=None):
     result = []
     translated = translation.model_dump() if hasattr(translation, "model_dump") else translation or {}
@@ -119,9 +173,9 @@ def public_capability_evidence(signal, translation=None):
         reference = translated.get(field, "") if english and valid_translation else original if not english else ""
         if not quote or clean(unescape(quote), limit=None) not in clean(unescape(reference), limit=None):
             continue
-        context = ("existing_system" if EXISTING.search(quote) and not REQUIRED_DELIVERY.search(quote)
-                   else "delivery" if DELIVERY.search(quote) else "uncertain")
+        strength, context = evidence_specificity(evidence, quote)
         item = {key: evidence.get(key, "") for key in ("capability", "phrase", "strength", "basis", "field", "quote")}
+        item["strength"] = strength
         item.update(source_url=signal.primary_source_url, language="en" if english else signal.source_language,
                     context=context, source_hash=digest([signal.title, signal.description]))
         if english:

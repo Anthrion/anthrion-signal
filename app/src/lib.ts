@@ -600,7 +600,11 @@ export function normaliseFilters(value: Partial<Filters>): Filters {
   if (['recommended', 'fit', 'confidence'].includes(result.sort)) result.sort = 'recent'
   if (!['all', 'live', 'early', 'closing', 'today', 'saved', 'awards'].includes(result.view))
     result.view = defaults.view
-  if (!['recent', 'updated', 'deadline', 'value', 'value-low', 'capability'].includes(result.sort))
+  if (
+    !['relevance', 'recent', 'updated', 'deadline', 'value', 'value-low', 'capability'].includes(
+      result.sort,
+    )
+  )
     result.sort = defaults.sort
   if (['AWARD', 'RENEWAL_SIGNAL'].includes(result.type)) result.type = ''
   if (result.view === 'awards') result.type = result.deadline = result.change = ''
@@ -733,6 +737,10 @@ export function filterSignals(
       .join('\u0000')
   const capabilityKeys =
     f.sort === 'capability' ? new Map(result.map((s) => [s.id, capabilityKey(s)])) : null
+  const relevance =
+    f.sort === 'relevance' && f.view !== 'awards'
+      ? new Map(result.map((s) => [s.id, relevanceKey(s, now)]))
+      : null
   return result.sort((a, b) => {
     if (f.view === 'awards')
       return (
@@ -756,6 +764,13 @@ export function filterSignals(
       if (!first || !second) return first ? -1 : second ? 1 : compareRecommended(a, b, now)
       return first.localeCompare(second, 'en-GB') || compareRecommended(a, b, now)
     }
+    if (relevance) {
+      const first = relevance.get(a.id)!
+      const second = relevance.get(b.id)!
+      // Ordered criteria: no collection of secondary bonuses can outweigh scope evidence.
+      for (let i = 0; i < first.length; i++) if (first[i] !== second[i]) return second[i] - first[i]
+      return a.id.localeCompare(b.id)
+    }
     const priority = priorityTier(a) - priorityTier(b)
     if (priority) return priority
     switch (f.sort) {
@@ -778,6 +793,80 @@ export function filterSignals(
         return compareRecommended(a, b, now)
     }
   })
+}
+export type MatchStrength = 'strong' | 'good' | 'weak' | 'code'
+interface EvidenceMatch {
+  points: number
+  strength: MatchStrength
+  breadth: number
+  title: number
+  code: number
+}
+const evidenceMatchCache = new WeakMap<Signal, EvidenceMatch>()
+/** Source-derived specificity, not a probability of fit or a qualification decision. */
+export function evidenceMatch(s: Signal): EvidenceMatch {
+  const cached = evidenceMatchCache.get(s)
+  if (cached) return cached
+  let best = 0
+  let title = 0
+  const delivery = new Set<string>()
+  for (const evidence of s.ranking_evidence ?? s.capability_evidence ?? []) {
+    const inTitle = evidence.field === 'title'
+    const direct = evidence.context === 'delivery' || (inTitle && evidence.context === 'uncertain')
+    const specific = ['explicit', 'needs'].includes(evidence.strength)
+    const points =
+      evidence.context === 'existing_system'
+        ? 4
+        : direct && specific
+          ? evidence.strength === 'explicit'
+            ? 50
+            : 36
+          : specific
+            ? 18
+            : direct
+              ? 9
+              : 6
+    if (points > best) {
+      best = points
+      title = Number(inTitle)
+    } else if (points === best && inTitle) title = 1
+    if (direct && specific && evidence.capability) delivery.add(evidence.capability)
+  }
+  const codes = s.cpv_codes || []
+  const result: EvidenceMatch = {
+    points: best,
+    strength: best >= 36 ? 'strong' : best >= 18 ? 'good' : best ? 'weak' : 'code',
+    breadth: Math.min(3, delivery.size),
+    title,
+    code: best
+      ? 0
+      : codes.some((c) => c.startsWith('48'))
+        ? 2
+        : codes.some((c) => c.startsWith('72'))
+          ? 1
+          : 0,
+  }
+  evidenceMatchCache.set(s, result)
+  return result
+}
+function relevanceKey(s: Signal, now: number): number[] {
+  const match = evidenceMatch(s)
+  const deadline = responseDeadline(s, now)
+  const instant = deadline ? deadlineInstant(deadline, s) : Infinity
+  const state = lifecycleState(s, now)
+  const actionable =
+    state === 'OPEN' ? 3 : state === 'EARLY_ENGAGEMENT' ? 2 : state === 'FUTURE' ? 1 : 0
+  const published = Date.parse(s.published_at || s.first_seen_at)
+  return [
+    match.points,
+    match.code,
+    -priorityTier(s),
+    actionable,
+    match.breadth,
+    match.title,
+    Number.isFinite(instant) && instant > now ? -instant : -Infinity,
+    Number.isFinite(published) ? published : 0,
+  ]
 }
 export function compareRecommended(a: Signal, b: Signal, now = Date.now()) {
   void now

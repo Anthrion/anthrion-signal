@@ -26,6 +26,17 @@ DETAIL_FIELDS = {"description", "documents", "changes", "capability_evidence", "
                  "contacts", "buyer_name_conflicts", "reviewed_guidance"}
 
 
+def ranking_evidence(item):
+    """Compact, deduplicated facts from the same validated evidence as full details.
+
+    No score, extra source text or private company facts enter the index. Original
+    and translated passages describing the same capability contribute only once.
+    """
+    fields = ("capability", "strength", "field", "context")
+    rows = {tuple(e.get(key, "") for key in fields) for e in item.get("capability_evidence", [])}
+    return [dict(zip(fields, row)) for row in sorted(rows)]
+
+
 def record_file(root, signal, translation=None, view="opportunities", buyer_refs=None):
     if not re.fullmatch(r"[A-Za-z0-9_-]{1,100}", signal.id):
         raise ValueError("Unsafe public record identifier")
@@ -111,6 +122,7 @@ def export_current(root, dataset, award_records=None):
         summary["description"] = ""
         summary["documents"] = []
         summary["changes"] = []
+        summary["ranking_evidence"] = ranking_evidence(item)
         summary["search_text"] = search_text(signal, translation)
         summary["is_summary"] = True
         summaries[signal.id] = summary

@@ -16,6 +16,10 @@ export interface CapabilityEvidence extends Evidence {
   original_language?: string
   original_field?: string
 }
+export type RankingEvidence = Pick<
+  CapabilityEvidence,
+  'capability' | 'strength' | 'field' | 'context'
+>
 export interface PublishedAmount {
   kind:
     | 'estimated_contract'
@@ -165,6 +169,7 @@ export interface Signal {
   award_date?: string | null
   winners?: { name: string; identifiers: string[]; lot_ids: string[]; source_url: string }[]
   capability_evidence?: CapabilityEvidence[]
+  ranking_evidence?: RankingEvidence[]
   delivery_role?: {
     kind: 'direct_supplier' | 'advertised_component' | 'funded_project' | 'unknown'
     evidence: CapabilityEvidence[]

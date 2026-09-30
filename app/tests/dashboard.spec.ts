@@ -1299,6 +1299,7 @@ test('sort menu supports keyboard selection, dismissal and clean positioning', a
   await expect(menu.getByRole('menuitemradio', { name: 'Most recent', exact: true })).toBeFocused()
   // The menu only sorts: the hidden lens and Awarded have their own controls now.
   await expect(menu.getByRole('menuitemradio')).toHaveText([
+    'Best match',
     'Most recent',
     'Recently updated',
     'Soonest deadline',
@@ -1323,6 +1324,8 @@ test('sort menu supports keyboard selection, dismissal and clean positioning', a
   await page.keyboard.press('End')
   await expect(menu.getByRole('menuitemradio', { name: 'Capability A-Z' })).toBeFocused()
   await page.keyboard.press('Home')
+  await expect(menu.getByRole('menuitemradio', { name: 'Best match' })).toBeFocused()
+  await page.keyboard.press('ArrowDown')
   await page.keyboard.press('Enter')
   await expect.poll(() => new URL(page.url()).searchParams.get('sort') || 'recent').toBe('recent')
   const recent = page.getByRole('button', { name: 'Sort opportunities: Most recent' })
