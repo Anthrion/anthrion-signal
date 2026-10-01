@@ -99,6 +99,7 @@ import {
   publicationDate,
   daysLeft,
   defaults,
+  applicableFilters,
   download,
   explainSearch,
   filterSignals,
@@ -299,6 +300,7 @@ export default function App() {
   const [filters, setFilters] = useState<Filters>(() =>
     initialWorkspaceFilters(getPreferences().startMarket),
   )
+  const activeFilters = useMemo(() => applicableFilters(filters), [filters])
   // Typing stays immediate: the feed, its counts and its highlights follow the query at
   // background priority, and React abandons a stale pass when the next key arrives.
   const deferredQuery = useDeferredValue(filters.q)
@@ -522,7 +524,7 @@ export default function App() {
           n.id,
           filterSignals(
             opportunityMatches,
-            { ...defaults, market: filters.market, view: n.id },
+            { ...defaults, market: filters.market, view: n.id, sort: 'recent' },
             [],
             time,
           ).length,
@@ -603,7 +605,7 @@ export default function App() {
   const [feedTime, setFeedTime] = useState(data?.generated_at ?? '')
   if (data && data.generated_at !== feedTime) setFeedTime(data.generated_at)
   const stale = !!feedTime && time - Date.parse(feedTime) >= 26 * 3600000
-  const activeFilterCount = Object.entries(filters).filter(
+  const activeFilterCount = Object.entries(activeFilters).filter(
     ([k, v]) =>
       !['q', 'view', 'sort', 'market', 'searchMode', 'match'].includes(k) &&
       v !== defaults[k as keyof Filters],
@@ -825,17 +827,11 @@ export default function App() {
     update({ market: id, source: '', region: '', buyer: '', cpv: '' })
   }
   const selectView = (view: string) => {
-    update({
-      view,
-      sort: view === 'closing' ? 'deadline' : 'recent',
-      ...(view === 'awards'
-        ? { type: '', deadline: '', change: '' }
-        : { supplier: '', awardFrom: '', awardTo: '' }),
-    })
+    update({ view })
   }
   const toggleHidden = () => {
     if (!showHidden && !viewingAwards && !viewingSaved && filters.view !== 'all')
-      update({ view: 'all', sort: 'recent' })
+      update({ view: 'all' })
     else {
       setSelected(null)
       setDetailOpen(false)
@@ -1053,7 +1049,7 @@ export default function App() {
                         key={id}
                         aria-pressed={filters.view === id}
                         onClick={() => {
-                          // The chosen chip is the one to reveal; choosing it again still resets it.
+                          // Reveal the chosen chip without resetting the current sort or filters.
                           if (filters.view === id) revealChip(true)
                           selectView(id)
                         }}
@@ -1098,7 +1094,7 @@ export default function App() {
               </div>
               <div className="feed-layout">
                 <SearchWorkspace
-                  filters={filters}
+                  filters={activeFilters}
                   update={update}
                   data={data}
                   extra={
@@ -1298,7 +1294,7 @@ export default function App() {
           {showFilters && data && (
             <Modal title="Filters" onClose={() => setShowFilters(false)} sheet>
               <FilterPanel
-                filters={filters}
+                filters={activeFilters}
                 update={update}
                 data={viewingAwards || viewingSaved ? { ...data, signals: activeSignals } : data}
                 pool={filterPool}

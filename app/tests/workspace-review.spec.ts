@@ -38,7 +38,7 @@ test('@pr typing shortcut letters in menus does not hide or save the selected re
   )
   await page.goto('./?view=all')
   await expect(page.locator('.row-select').first()).toBeVisible()
-  for (const trigger of ['Sort opportunities: Most recent', 'Search options']) {
+  for (const trigger of ['Sort opportunities: Best match', 'Search options']) {
     await page.getByRole('button', { name: trigger, exact: true }).click()
     await page.keyboard.press('h')
     await page.keyboard.press('s')

@@ -6,7 +6,7 @@ export const defaults: Filters = {
   searchMode: 'capability',
   match: 'all',
   view: 'live',
-  sort: 'recent',
+  sort: 'relevance',
   market: 'GB',
   score: '',
   confidence: '',
@@ -589,6 +589,7 @@ export function normaliseFilters(value: Partial<Filters>): Filters {
   if (result.sort === 'awarded') {
     result.view = 'awards'
     result.sort = 'recent'
+    result.type = result.deadline = result.change = ''
   }
   if (result.view === 'pipeline') result.view = 'early'
   if (result.view === 'updates') result.view = 'today'
@@ -607,9 +608,14 @@ export function normaliseFilters(value: Partial<Filters>): Filters {
   )
     result.sort = defaults.sort
   if (['AWARD', 'RENEWAL_SIGNAL'].includes(result.type)) result.type = ''
-  if (result.view === 'awards') result.type = result.deadline = result.change = ''
   result.score = result.confidence = result.recommendation = ''
   return result
+}
+/** Keep view-specific choices in memory while applying only the current collection's filters. */
+export function applicableFilters(filters: Filters): Filters {
+  return filters.view === 'awards'
+    ? { ...filters, type: '', deadline: '', change: '' }
+    : { ...filters, supplier: '', awardFrom: '', awardTo: '' }
 }
 export function readFilters(): Filters {
   const params = new URLSearchParams(window.location.search)
@@ -650,6 +656,7 @@ export function filterSignals(
   capabilities: Dataset['capabilities'] = [],
   translations: Dataset['translations'] = {},
 ) {
+  f = applicableFilters(f)
   const currentViews = ['live', 'closing', 'early', 'pipeline', 'frameworks', 'funding']
   const search = prepareSearch(f.q, capabilities, { mode: f.searchMode, match: f.match })
   const result = signals.filter((s) => {

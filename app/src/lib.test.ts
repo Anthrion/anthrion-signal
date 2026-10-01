@@ -641,7 +641,7 @@ describe('team workflows', () => {
       expect(
         filterSignals(
           typed,
-          { ...defaults, view },
+          { ...defaults, view, sort: 'recent' },
           rows.map((s) => s.id),
           now,
         ).map((s) => s.id),
@@ -1050,6 +1050,51 @@ describe('team workflows', () => {
     expect(draft).toContain('view=awards')
     expect(draft).toContain('Awarded: 14 Aug 2026')
     expect(draft).not.toContain('Deadline:')
+  })
+  test('retains view-specific preferences while only applying the current collection’s filters', () => {
+    const preferences = {
+      ...defaults,
+      sort: 'value',
+      buyer: 'Buyer',
+      type: 'LIVE_TENDER',
+      deadline: '14',
+      change: 'new',
+      supplier: 'Example Ltd',
+      awardFrom: '2026-01-01',
+      awardTo: '2026-12-31',
+    }
+    const live = { ...signal, first_seen_at: '2026-09-09' }
+    const award = {
+      ...signal,
+      id: 'award',
+      signal_type: 'AWARD',
+      status: 'complete',
+      award_date: '2026-08-14',
+      deadline_at: '2020-01-01',
+      first_seen_at: '2025-01-01',
+      incumbent_supplier: 'Example Ltd',
+    }
+    for (const view of ['all', 'live', 'closing', 'today', 'saved', 'awards']) {
+      const filters = normaliseFilters({ ...preferences, view })
+      expect(filters).toEqual({ ...preferences, view })
+      expect(filterSignals([live, award], filters, ['one'], now)).toEqual([
+        view === 'awards' ? award : live,
+      ])
+      expect(
+        filterSignals([live, award], { ...filters, buyer: 'Other buyer' }, ['one'], now),
+      ).toEqual([])
+    }
+    expect(
+      filterSignals(
+        [award],
+        { ...preferences, view: 'awards', supplier: 'Other supplier' },
+        [],
+        now,
+      ),
+    ).toEqual([])
+    expect(
+      filterSignals([award], { ...preferences, view: 'awards', awardFrom: '2026-09-01' }, [], now),
+    ).toEqual([])
   })
   test('uncertain digital call-offs stay reviewable without being presented as live', () => {
     const uncertain = {

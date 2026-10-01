@@ -80,6 +80,25 @@ describe('personal views and market preferences', () => {
       'BENELUX',
     ])
   })
+  test('fresh visits use Best match and remembered award views retain opportunity preferences', () => {
+    expect(readLastView(memoryStorage()).sort).toBe('relevance')
+    const filters = {
+      ...defaults,
+      view: 'awards',
+      sort: 'recent',
+      q: 'CRM',
+      buyer: 'Buyer',
+      type: 'LIVE_TENDER',
+      deadline: '7',
+      change: 'new',
+      supplier: 'Example Ltd',
+      awardFrom: '2026-01-01',
+      awardTo: '2026-12-31',
+    }
+    const storage = memoryStorage()
+    rememberLastView(storage, filters)
+    expect(readLastView(storage)).toEqual(filters)
+  })
   test('North America replaces the former US pin once while independent choices remain persistent', () => {
     const migrated = normaliseMarketPreferences({
       pinned: ['', 'GB', 'US'],

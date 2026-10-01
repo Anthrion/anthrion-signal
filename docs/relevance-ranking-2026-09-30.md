@@ -45,8 +45,9 @@ IDs break any remaining tie.
 
 The sort is deterministic and runs locally with a WeakMap cache of immutable
 evidence facts. It calls no model or external service. It does not assert supplier
-qualification, change filters, exclude notices, alter awards ordering or replace
-the default Most recent sort. Existing preferences and explicit URLs keep working.
+qualification, change filters, exclude notices or alter awards ordering. The
+workspace now uses Best match by default and retains the selected sort and filters
+when switching refiners. Existing preferences and explicit URLs keep working.
 Older exports without compact facts remain readable; the release data fingerprint
 forces a fresh compatible export for this pipeline change.
 
