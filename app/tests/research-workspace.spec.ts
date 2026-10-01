@@ -180,6 +180,14 @@ async function fixture(page: Page, changeRecord?: (record: Signal) => void) {
     description: '',
     documents: [],
     capability_evidence: [],
+    ranking_evidence: record.capability_evidence?.map(
+      ({ capability, strength, field, context }) => ({
+        capability,
+        strength,
+        field,
+        context,
+      }),
+    ),
     participation_requirements: [],
     search_text: `${record.title} ${record.description}`,
   }
