@@ -723,7 +723,7 @@ test('CSV export retains source facts and comparison is removed', async ({ page 
   await expect(page.locator('.signal-row input[type="checkbox"]')).toHaveCount(0)
 })
 
-test('every opportunity refiner keeps default priority and explicit values sort across groups', async ({
+test('every opportunity refiner keeps priority in recency sorts and values sort across groups', async ({
   page,
 }) => {
   test.setTimeout(120000)
@@ -776,7 +776,7 @@ test('every opportunity refiner keeps default priority and explicit values sort 
         framework: view === 'frameworks' ? 'Open framework agreement' : null,
       })),
     )
-    await page.goto(`./?view=${view}`)
+    await page.goto(`./?view=${view}&sort=recent`)
     await ready(page)
     await expect(page.locator('.feed-heading .count-badge')).toHaveText('6')
     await expect(page.locator('.row-title')).toHaveText(order(false))
@@ -1007,7 +1007,7 @@ test('published currency codes, both sort directions and adjacent value range co
 }, info) => {
   await page.goto('./?view=all&market=US')
   await ready(page)
-  await page.getByRole('button', { name: 'Sort opportunities: Most recent' }).click()
+  await page.getByRole('button', { name: 'Sort opportunities: Best match' }).click()
   await page.getByRole('menuitemradio', { name: 'Highest value', exact: true }).click()
   await expect(
     page.getByRole('button', { name: 'Sort opportunities: Highest value' }),
@@ -1293,10 +1293,10 @@ test('sort menu supports keyboard selection, dismissal and clean positioning', a
 }, info) => {
   await page.goto('./')
   await ready(page)
-  const trigger = page.getByRole('button', { name: 'Sort opportunities: Most recent' })
+  const trigger = page.getByRole('button', { name: 'Sort opportunities: Best match' })
   await trigger.click()
   const menu = page.getByRole('menu', { name: 'Sort opportunities' })
-  await expect(menu.getByRole('menuitemradio', { name: 'Most recent', exact: true })).toBeFocused()
+  await expect(menu.getByRole('menuitemradio', { name: 'Best match', exact: true })).toBeFocused()
   // The menu only sorts: the hidden lens and Awarded have their own controls now.
   await expect(menu.getByRole('menuitemradio')).toHaveText([
     'Best match',
@@ -1315,6 +1315,7 @@ test('sort menu supports keyboard selection, dismissal and clean positioning', a
   expect(box!.x + box!.width).toBeLessThanOrEqual(page.viewportSize()!.width)
   await page.keyboard.press('ArrowDown')
   await page.keyboard.press('ArrowDown')
+  await page.keyboard.press('ArrowDown')
   await page.keyboard.press('Enter')
   await expect.poll(() => new URL(page.url()).searchParams.get('sort')).toBe('deadline')
   const deadline = page.getByRole('button', { name: 'Sort opportunities: Soonest deadline' })
@@ -1327,7 +1328,7 @@ test('sort menu supports keyboard selection, dismissal and clean positioning', a
   await expect(menu.getByRole('menuitemradio', { name: 'Best match' })).toBeFocused()
   await page.keyboard.press('ArrowDown')
   await page.keyboard.press('Enter')
-  await expect.poll(() => new URL(page.url()).searchParams.get('sort') || 'recent').toBe('recent')
+  await expect.poll(() => new URL(page.url()).searchParams.get('sort')).toBe('recent')
   const recent = page.getByRole('button', { name: 'Sort opportunities: Most recent' })
   await expect(recent).toBeFocused()
   await recent.click()
@@ -1731,7 +1732,7 @@ test('both themes keep the console, menus, evidence and sources accessible', asy
     await ready(page)
     if (theme === 'light') await page.getByRole('button', { name: 'Switch to light theme' }).click()
     await audit(`${theme} console`)
-    await page.getByRole('button', { name: 'Sort opportunities: Most recent' }).click()
+    await page.getByRole('button', { name: 'Sort opportunities: Best match' }).click()
     await audit(`${theme} sort`)
     await page.keyboard.press('Escape')
     await page.getByRole('button', { name: 'Search options', exact: true }).click()

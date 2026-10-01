@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test'
 import { datasetFixture } from './fixtures/dataset'
 import type { Signal } from '../src/types'
 
-test('@pr Best match ranks lazy market evidence and persists without changing results', async ({
+test('@pr Best match is the default, ranks lazy evidence and preserves explicit sort choices', async ({
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' })
@@ -111,14 +111,24 @@ test('@pr Best match ranks lazy market evidence and persists without changing re
   })
   await page.goto('./?view=all&market=GB&q=Shared')
   await expect(page.locator('.signal-row')).toHaveCount(3)
+  await expect(page.getByRole('button', { name: 'Sort opportunities: Best match' })).toBeVisible()
+  await expect(page.locator('.signal-row').first()).toContainText(
+    'Shared Salesforce implementation',
+  )
+  await page.getByRole('button', { name: 'Sort opportunities: Best match' }).click()
+  await page.getByRole('menuitemradio', { name: 'Most recent', exact: true }).click()
+  await expect(page.locator('.signal-row').first()).toContainText('Shared software purchase')
+  await expect(page.locator('.signal-row')).toHaveCount(3)
+  await expect.poll(() => new URL(page.url()).searchParams.get('sort')).toBe('recent')
+  await page.reload()
+  await expect(page.getByRole('button', { name: 'Sort opportunities: Most recent' })).toBeVisible()
   await expect(page.locator('.signal-row').first()).toContainText('Shared software purchase')
   await page.getByRole('button', { name: 'Sort opportunities: Most recent' }).click()
   await page.getByRole('menuitemradio', { name: 'Best match', exact: true }).click()
   await expect(page.locator('.signal-row').first()).toContainText(
     'Shared Salesforce implementation',
   )
-  await expect(page.locator('.signal-row')).toHaveCount(3)
-  await expect.poll(() => new URL(page.url()).searchParams.get('sort')).toBe('relevance')
+  await expect.poll(() => new URL(page.url()).searchParams.has('sort')).toBe(false)
   await page.reload()
   await expect(page.getByRole('button', { name: 'Sort opportunities: Best match' })).toBeVisible()
   await expect(page.locator('.signal-row').first()).toContainText(
