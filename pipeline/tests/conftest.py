@@ -15,6 +15,16 @@ def now():
 
 
 @pytest.fixture
+def frozen_datetime(now):
+    class FrozenDateTime(datetime):
+        @classmethod
+        def now(cls, tz=None):
+            return now.astimezone(tz) if tz is not None else now.astimezone().replace(tzinfo=None)
+
+    return FrozenDateTime
+
+
+@pytest.fixture
 def config():
     return load_config(Path(__file__).resolve().parents[2])
 
@@ -38,7 +48,9 @@ def release():
 
 
 @pytest.fixture
-def signal(release, source, now):
+def signal(release, source, now, monkeypatch, frozen_datetime):
+    # Publication decisions must use the same clock as this dated source fixture.
+    monkeypatch.setattr("anthrion_signal.cli.datetime", frozen_datetime)
     return normalise_ocds(RawRecord(release, source, now.isoformat()))
 
 

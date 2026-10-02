@@ -12,12 +12,12 @@ from anthrion_signal.utils import atomic_json, read_json
 
 
 @pytest.fixture
-def command(tmp_path, monkeypatch, signal):
+def command(tmp_path, monkeypatch, signal, frozen_datetime):
     path = Path(__file__).resolve().parents[2] / "scripts/translate_records.py"
     spec = importlib.util.spec_from_file_location("translate_command", path)
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
-    signal.deadline_at = "2099-01-01T00:00:00Z"
+    monkeypatch.setattr(module, "datetime", frozen_datetime)
     atomic_json(tmp_path / "data/current.json", {
         "generated_at": signal.first_seen_at, "data_updated_at": signal.first_seen_at,
         "profile_version": "test", "scoring_version": "test", "run": {},
