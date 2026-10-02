@@ -683,39 +683,35 @@ export default function App() {
       setDetailOpen(false)
     }
   }, [selected, activeSignals, hiddenIds, showHidden])
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (pendingRowFocus.current === null) return
     const next = filtered[Math.min(pendingRowFocus.current, filtered.length - 1)]
     pendingRowFocus.current = null
-    const frame = requestAnimationFrame(() => {
-      const button =
-        next &&
-        feedRef.current?.querySelector<HTMLButtonElement>(
-          `[data-signal-id="${CSS.escape(next.id)}"] .row-select`,
-        )
-      if (button) button.focus({ preventScroll: true })
-      else feedRef.current?.focus({ preventScroll: true })
-    })
-    return () => cancelAnimationFrame(frame)
+    const button =
+      next &&
+      feedRef.current?.querySelector<HTMLButtonElement>(
+        `[data-signal-id="${CSS.escape(next.id)}"] .row-select`,
+      )
+    if (button) button.focus({ preventScroll: true })
+    else feedRef.current?.focus({ preventScroll: true })
   }, [hidden, filtered, departing])
   const dismiss = (id: string) => {
     if (pendingDepartures.current.has(id)) return
     const restoring = hiddenIds.has(id)
-    const focusOrigin = document.activeElement
     const hadRowFocus = !!feedRef.current
       ?.querySelector(`[data-signal-id="${CSS.escape(id)}"]`)
-      ?.contains(focusOrigin)
+      ?.contains(document.activeElement)
+    if (hadRowFocus) pendingRowFocus.current = filtered.findIndex((s) => s.id === id)
+    if (selected === id) {
+      setSelected(null)
+      setDetailOpen(false)
+    }
     let completed = false
     const commit = () => {
       if (completed) return
       completed = true
       clearTimeout(pendingDepartures.current.get(id)?.timer)
       pendingDepartures.current.delete(id)
-      if (
-        hadRowFocus &&
-        (document.activeElement === focusOrigin || document.activeElement === document.body)
-      )
-        pendingRowFocus.current = filtered.findIndex((s) => s.id === id)
       setDeparting((current) => {
         const next = { ...current }
         delete next[id]
@@ -830,6 +826,7 @@ export default function App() {
     update({ view })
   }
   const toggleHidden = () => {
+    pendingDepartures.current.forEach(({ complete }) => complete())
     if (!showHidden && !viewingAwards && !viewingSaved && filters.view !== 'all')
       update({ view: 'all' })
     else {
@@ -1475,7 +1472,13 @@ function SignalRow({
     : null
   const amount = hasPublishedAmount(s) ? valueFact(s) : null
   return (
-    <div className="row-motion" data-signal-id={s.id} data-departure={departure}>
+    <div
+      className="row-motion"
+      data-signal-id={s.id}
+      data-departure={departure}
+      aria-hidden={departure ? true : undefined}
+      inert={!!departure}
+    >
       <article
         className={`signal-row type-${s.signal_type.toLowerCase()} ${selected ? 'selected' : ''}`}
         onAnimationEnd={(event) => {

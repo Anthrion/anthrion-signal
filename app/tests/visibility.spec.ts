@@ -165,7 +165,7 @@ test('Added today counts first collection, not updates, and hidden records stay 
   await expect(row(page, 'a')).toBeVisible()
 })
 
-test('Hide and Unhide persist immediately before their animations finish', async ({ page }) => {
+test('Hide and Unhide persist immediately before their animations finish @pr', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'no-preference' })
   await page.goto('./?view=all')
   await eye(page, 'a').click()
@@ -182,6 +182,47 @@ test('Hide and Unhide persist immediately before their animations finish', async
   ).toEqual([])
   await page.reload()
   await expect(row(page, 'a')).toBeVisible()
+})
+
+test('Hide updates results and focus even when animation frames stop @pr', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' })
+  await page.goto('./?view=all')
+  await expect(row(page, 'a')).toBeVisible()
+  const restoreFrames = await page.evaluateHandle(() => {
+    const request = window.requestAnimationFrame
+    window.requestAnimationFrame = () => 0
+    return () => {
+      window.requestAnimationFrame = request
+    }
+  })
+  try {
+    await eye(page, 'a').click({ force: true })
+    expect(
+      await page.evaluate(() => JSON.parse(localStorage.getItem('anthrion-hidden-v1')!)),
+    ).toEqual(['visibility-a'])
+    // Only an inert, inaccessible visual ghost remains while its animation is stalled.
+    await expect(row(page, 'a')).toHaveAttribute('inert', '')
+    await expect(row(page, 'a')).toHaveAttribute('aria-hidden', 'true')
+    await expect(
+      page.getByRole('button', { name: 'CRM implementation A', exact: true }),
+    ).toHaveCount(0)
+    await expect(row(page, 'b').locator('.row-select')).toBeFocused()
+    await expect(page.locator('.feed-heading .count-badge')).toHaveText('2')
+    await expect(hiddenButton(page)).toHaveAccessibleName('Hidden, 1')
+    const download = page.waitForEvent('download')
+    await page.getByRole('button', { name: 'Export signals' }).click({ force: true })
+    const stream = await (await download).createReadStream()
+    let exported = ''
+    for await (const chunk of stream!) exported += chunk.toString()
+    expect(exported).not.toContain('CRM implementation A')
+    // Entering Hidden cancels the ghost and exposes the saved record immediately.
+    await hiddenButton(page).click({ force: true })
+    await expect(eye(page, 'a', 'Unhide')).toBeEnabled()
+    await expect(row(page, 'a')).not.toHaveAttribute('inert')
+  } finally {
+    await restoreFrames.evaluate((restore) => restore())
+    await restoreFrames.dispose()
+  }
 })
 
 test('hide dust is nonblank, rows close the gap, and Unhide slides the record left', async ({
