@@ -222,6 +222,43 @@ test('hide dust is nonblank, rows close the gap, and Unhide slides the record le
   await expect(row(page, 'a')).toBeVisible()
 })
 
+test('Hide paints before removal after a stalled frame @pr', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' })
+  await page.goto('./?view=all')
+  await expect(row(page, 'a')).toBeVisible()
+  const motion = await observeDeparture(row(page, 'a'))
+  await eye(page, 'a').evaluate((button) => {
+    button.addEventListener(
+      'click',
+      () => {
+        requestAnimationFrame(() => {
+          // Reproduce a busy renderer that misses the original 620 ms removal timer.
+          const resumeAt = performance.now() + 800
+          while (performance.now() < resumeAt) {
+            /* Wait for the stalled frame. */
+          }
+        })
+      },
+      { once: true },
+    )
+  })
+  try {
+    await eye(page, 'a').click()
+    await expect.poll(() => motion.evaluate(({ samples }) => samples.removed)).toBe(true)
+    expect(await motion.evaluate(({ samples }) => samples)).toMatchObject({
+      dustVisible: true,
+      dustNonblank: true,
+    })
+    expect(
+      await page.evaluate(() => JSON.parse(localStorage.getItem('anthrion-hidden-v1')!)),
+    ).toEqual(['visibility-a'])
+  } finally {
+    await motion.evaluate((observer) => observer.stop())
+    await motion.dispose()
+  }
+  await expect(row(page, 'a')).toHaveCount(0)
+})
+
 test('glass reflections drift without rotating or resizing the refiners, and pause for reduced motion', async ({
   page,
 }) => {

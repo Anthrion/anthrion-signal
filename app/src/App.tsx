@@ -728,9 +728,9 @@ export default function App() {
     if (reducedMotion) commit()
     else {
       setDeparting((current) => ({ ...current, [id]: restoring ? 'unhide' : 'hide' }))
-      // Unhide follows the CSS animation, with a fallback if its row leaves the viewport.
+      // Finish from the animation, with a fallback if its row leaves the viewport.
       pendingDepartures.current.set(id, {
-        timer: setTimeout(commit, restoring ? 2000 : 620),
+        timer: setTimeout(commit, 2000),
         complete: commit,
       })
     }
@@ -1557,7 +1557,7 @@ function SignalRow({
           </IconButton>
         </div>
       </article>
-      {departure === 'hide' && <DismissDust id={s.id} />}
+      {departure === 'hide' && <DismissDust id={s.id} onComplete={onDepartureEnd} />}
     </div>
   )
 }
