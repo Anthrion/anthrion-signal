@@ -1,15 +1,15 @@
 {
   "version": 1,
-  "generation": 132,
+  "generation": 133,
   "data_code": "4835e0577d3c2a794ce75731e69d823ef4876064fe1139bac8419e6916f10a8d",
-  "sha256": "5f0d59c6bf5b4a5e27ba9d44adc854e608d357efec599c790a99795031ee3877",
-  "key": "signal-public-v1-5f0d59c6bf5b4a5e27ba9d44adc854e608d357efec599c790a99795031ee3877-37014995832-1",
-  "inputs": "d5491415dae37a274b59bebd563d5da9209c8215f20d91777d24598d78f46d78",
-  "validated_at": "2026-10-02T14:27:28.969806+00:00",
+  "sha256": "b8909dbb715aaa9e6cca4e69210fbf3858cdeb23fcce1fd7b0b1f5bc6ef3d049",
+  "key": "signal-public-v1-b8909dbb715aaa9e6cca4e69210fbf3858cdeb23fcce1fd7b0b1f5bc6ef3d049-37049405934-1",
+  "inputs": "c84f6f459045f4335f52bc553a687a3e0d079617c6fc24ce497d13866e4d6470",
+  "validated_at": "2026-10-02T19:22:21.899392+00:00",
   "signature": {
     "code": "1c8de7a3be361a72ebe3efd4de15e2e629142ed7eba8d79b5c31de04e452587d",
-    "content": "10c29d2dc4d687af7e4a3318ae0e42e3bd48f627bc3223eeebae9fbed87b7ede",
-    "translations": "9f2a4401f3e3d0918eaec76e17aa4c7d8b48525f72038700d757c5e567b4a5d4",
+    "content": "66042acc92580042b3310ff20b67a07e6d29d50026f873944065882415bfef4d",
+    "translations": "1deaad09c4b38c37e857021a028dc4ceaa11bb3342b66bcf955bf3ec87a7f1a7",
     "health": [
       [
         "find_tender",
@@ -141,7 +141,7 @@
       ],
       [
         "sam",
-        "healthy"
+        "partial"
       ],
       [
         "ungm",
