@@ -1,7 +1,11 @@
 import { useEffect, useRef } from 'react'
 
-export function DismissDust({ id }: { id: string }) {
+export function DismissDust({ id, onComplete }: { id: string; onComplete: () => void }) {
   const ref = useRef<HTMLCanvasElement>(null)
+  const complete = useRef(onComplete)
+  useEffect(() => {
+    complete.current = onComplete
+  }, [onComplete])
   useEffect(() => {
     const canvas = ref.current
     const row = canvas?.parentElement
@@ -50,9 +54,12 @@ export function DismissDust({ id }: { id: string }) {
       }
     })
     let frame = 0
-    const started = performance.now()
+    let previous = performance.now()
+    let progress = 0
     const draw = (now: number) => {
-      const progress = Math.min(1, (now - started) / 600)
+      // A busy frame must not skip straight past every visible particle.
+      progress = Math.min(1, progress + Math.max(0, Math.min(100, now - previous)) / 600)
+      previous = now
       row.style.setProperty('--dust-reveal', `${progress * 124}%`)
       context.clearRect(0, 0, width, height)
       for (const particle of particles) {
@@ -68,6 +75,7 @@ export function DismissDust({ id }: { id: string }) {
         )
       }
       if (progress < 1) frame = requestAnimationFrame(draw)
+      else complete.current()
     }
     frame = requestAnimationFrame(draw)
     return () => {
