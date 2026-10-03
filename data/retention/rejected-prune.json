@@ -1,24 +1,13 @@
 {
   "applied": true,
-  "at": "2026-10-02T08:09:02.760290+00:00",
-  "candidate_records": 1,
-  "records": [
-    {
-      "bucket": "c9.jsonl.gz",
-      "hashes": [
-        "9ec923ae14c8bc959b945d8152ae0c4063472bb89ddb5eb2cd8c2c811d5450fd"
-      ],
-      "id": "sig_841f3f58402cbc915e95",
-      "reason": "Every version is old, inactive and explicitly physical/non-technical; no retained dependency.",
-      "title": "STANTA-Bodney Camp-Electrical Intake Upgrades to support DNO upgrades",
-      "url": "https://www.find-tender.service.gov.uk/Notice/013286-2026"
-    }
-  ],
-  "recovery_commit": "bf1a839d8bf514f944fb2e21e30e8a7efb106a00",
-  "removed_bytes": 1323,
-  "retained_heads_sha256": "0f34f73ba981c6e971fda18a85df7aa82acaeaca1bae58eab9afca109d7df8af",
+  "at": "2026-10-03T02:02:17.654216+00:00",
+  "candidate_records": 0,
+  "records": [],
+  "recovery_commit": "40d7c7ef7cda8a18d017ca655ce96d31812aabf9",
+  "removed_bytes": 0,
+  "retained_heads_sha256": "11e9964c18e7154f8a06fd298e7ace15d02c5f4202f3379be74e986d079069f9",
   "signature": {
-    "day": "2026-10-02",
+    "day": "2026-10-03",
     "discovery": "deade6fdcfa16f7fa635e4c765951b394dd2a3ee96994052bb2c66a629d1a1a8",
     "policy": "unused-physical-inactive-1"
   }
