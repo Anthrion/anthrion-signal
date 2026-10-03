@@ -2520,20 +2520,24 @@
       }
     },
     "37123938690-1": {
-      "closed": false,
+      "closed": true,
       "day": "2026-10-03",
       "limits": {
         "gemini-3.1-flash-lite": 75,
         "gemini-3.5-flash-lite": 75
       },
-      "used": {}
+      "started": true,
+      "used": {
+        "gemini-3.1-flash-lite": 3,
+        "gemini-3.5-flash-lite": 55
+      }
     }
   },
   "models": {
     "gemini-3.1-flash-lite": {
       "blocked_reason": "transient",
-      "blocked_until": 1791015519.5709403,
-      "consecutive_errors": 1,
+      "blocked_until": 1791033397.1807678,
+      "consecutive_errors": 2,
       "days": {
         "2026-09-12": 9,
         "2026-09-13": 420,
@@ -2556,9 +2560,22 @@
         "2026-09-30": 202,
         "2026-10-01": 87,
         "2026-10-02": 112,
-        "2026-10-03": 158
+        "2026-10-03": 86
       },
-      "recent": [],
+      "recent": [
+        {
+          "at": 1791033258.116465,
+          "tokens": 19743
+        },
+        {
+          "at": 1791033258.1940928,
+          "tokens": 13225
+        },
+        {
+          "at": 1791033258.258269,
+          "tokens": 4303
+        }
+      ],
       "usage": {
         "candidatesTokenCount": 5096460,
         "promptTokenCount": 6603370,
@@ -2591,12 +2608,37 @@
         "2026-09-30": 471,
         "2026-10-01": 393,
         "2026-10-02": 423,
-        "2026-10-03": 202
+        "2026-10-03": 182
       },
-      "recent": [],
+      "recent": [
+        {
+          "at": 1791033219.2131333,
+          "tokens": 13141
+        },
+        {
+          "at": 1791033219.289968,
+          "tokens": 4137
+        },
+        {
+          "at": 1791033230.033566,
+          "tokens": 16803
+        },
+        {
+          "at": 1791033230.1149652,
+          "tokens": 5071
+        },
+        {
+          "at": 1791033244.329737,
+          "tokens": 19247
+        },
+        {
+          "at": 1791033244.409294,
+          "tokens": 5687
+        }
+      ],
       "usage": {
-        "candidatesTokenCount": 10545606,
-        "promptTokenCount": 13656496,
+        "candidatesTokenCount": 10615661,
+        "promptTokenCount": 13751773,
         "thoughtsTokenCount": 0
       }
     }
