@@ -2507,19 +2507,23 @@
       }
     },
     "37107877273-1": {
-      "closed": false,
+      "closed": true,
       "day": "2026-10-03",
       "limits": {
         "gemini-3.1-flash-lite": 75,
         "gemini-3.5-flash-lite": 75
       },
-      "used": {}
+      "started": true,
+      "used": {
+        "gemini-3.1-flash-lite": 73,
+        "gemini-3.5-flash-lite": 75
+      }
     }
   },
   "models": {
     "gemini-3.1-flash-lite": {
       "blocked_reason": "transient",
-      "blocked_until": 1791013403.7370775,
+      "blocked_until": 1791015519.5709403,
       "consecutive_errors": 1,
       "days": {
         "2026-09-12": 9,
@@ -2543,12 +2547,45 @@
         "2026-09-30": 202,
         "2026-10-01": 87,
         "2026-10-02": 112,
-        "2026-10-03": 85
+        "2026-10-03": 83
       },
-      "recent": [],
+      "recent": [
+        {
+          "at": 1791015411.622612,
+          "tokens": 18221
+        },
+        {
+          "at": 1791015411.7306247,
+          "tokens": 5302
+        },
+        {
+          "at": 1791015426.8498213,
+          "tokens": 14860
+        },
+        {
+          "at": 1791015426.9552162,
+          "tokens": 3913
+        },
+        {
+          "at": 1791015440.3701634,
+          "tokens": 18585
+        },
+        {
+          "at": 1791015440.4877596,
+          "tokens": 5261
+        },
+        {
+          "at": 1791015454.189941,
+          "tokens": 18585
+        },
+        {
+          "at": 1791015454.2978194,
+          "tokens": 5261
+        }
+      ],
       "usage": {
-        "candidatesTokenCount": 4990950,
-        "promptTokenCount": 6466270,
+        "candidatesTokenCount": 5096460,
+        "promptTokenCount": 6603370,
         "thoughtsTokenCount": 0
       }
     },
@@ -2582,8 +2619,8 @@
       },
       "recent": [],
       "usage": {
-        "candidatesTokenCount": 10445277,
-        "promptTokenCount": 13519532,
+        "candidatesTokenCount": 10545606,
+        "promptTokenCount": 13656496,
         "thoughtsTokenCount": 0
       }
     }
