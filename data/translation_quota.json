@@ -2595,6 +2595,15 @@
         "gemini-3.1-flash-lite": 22,
         "gemini-3.5-flash-lite": 65
       }
+    },
+    "37158498391-1": {
+      "closed": false,
+      "day": "2026-10-03",
+      "limits": {
+        "gemini-3.1-flash-lite": 150,
+        "gemini-3.5-flash-lite": 0
+      },
+      "used": {}
     }
   },
   "models": {
@@ -2624,18 +2633,9 @@
         "2026-09-30": 202,
         "2026-10-01": 87,
         "2026-10-02": 112,
-        "2026-10-03": 177
+        "2026-10-03": 327
       },
-      "recent": [
-        {
-          "at": 1791060302.7842014,
-          "tokens": 18019
-        },
-        {
-          "at": 1791060302.9583628,
-          "tokens": 5195
-        }
-      ],
+      "recent": [],
       "usage": {
         "candidatesTokenCount": 5194699,
         "promptTokenCount": 6730660,
