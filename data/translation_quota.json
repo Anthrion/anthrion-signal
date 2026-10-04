@@ -2671,13 +2671,16 @@
       }
     },
     "37211313941-1": {
-      "closed": false,
+      "closed": true,
       "day": "2026-10-04",
       "limits": {
         "gemini-3.1-flash-lite": 75,
         "gemini-3.5-flash-lite": 75
       },
-      "used": {}
+      "started": true,
+      "used": {
+        "gemini-3.5-flash-lite": 53
+      }
     }
   },
   "models": {
@@ -2708,7 +2711,7 @@
         "2026-10-01": 87,
         "2026-10-02": 112,
         "2026-10-03": 336,
-        "2026-10-04": 224
+        "2026-10-04": 149
       },
       "recent": [],
       "usage": {
@@ -2719,8 +2722,8 @@
     },
     "gemini-3.5-flash-lite": {
       "blocked_reason": "transient",
-      "blocked_until": 1790968247.1757002,
-      "consecutive_errors": 0,
+      "blocked_until": 1791130327.5236323,
+      "consecutive_errors": 1,
       "days": {
         "2026-09-12": 16,
         "2026-09-13": 500,
@@ -2744,12 +2747,45 @@
         "2026-10-01": 393,
         "2026-10-02": 423,
         "2026-10-03": 499,
-        "2026-10-04": 284
+        "2026-10-04": 262
       },
-      "recent": [],
+      "recent": [
+        {
+          "at": 1791130216.8180475,
+          "tokens": 20566
+        },
+        {
+          "at": 1791130216.922733,
+          "tokens": 6318
+        },
+        {
+          "at": 1791130231.351003,
+          "tokens": 20566
+        },
+        {
+          "at": 1791130231.4420445,
+          "tokens": 6318
+        },
+        {
+          "at": 1791130246.0697563,
+          "tokens": 20971
+        },
+        {
+          "at": 1791130246.1642025,
+          "tokens": 6762
+        },
+        {
+          "at": 1791130262.2060888,
+          "tokens": 21381
+        },
+        {
+          "at": 1791130262.2838037,
+          "tokens": 6792
+        }
+      ],
       "usage": {
-        "candidatesTokenCount": 11305507,
-        "promptTokenCount": 14661869,
+        "candidatesTokenCount": 11380032,
+        "promptTokenCount": 14760938,
         "thoughtsTokenCount": 0
       }
     }
