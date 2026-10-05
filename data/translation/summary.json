@@ -1,29 +1,29 @@
 {
-  "api_calls": 80,
-  "completed_fields": 29137,
+  "api_calls": 58,
+  "completed_fields": 29081,
   "disabled_models": [],
   "failures": {
-    "too_large": 10,
-    "transient": 3,
-    "validation": 82
+    "too_large": 8,
+    "transient": 1,
+    "validation": 40
   },
-  "finished_at": "2026-10-05T07:12:23.742630+00:00",
-  "input_characters": 46056773,
+  "finished_at": "2026-10-05T08:16:49.985588+00:00",
+  "input_characters": 46092953,
   "models": [
     "gemini-3.5-flash-lite",
     "gemini-3.1-flash-lite"
   ],
   "notice_coverage": {
     "awards": {
-      "complete": 8847,
-      "records": 37993
+      "complete": 8846,
+      "records": 38039
     },
     "current": {
-      "complete": 7765,
-      "records": 7819
+      "complete": 7725,
+      "records": 7782
     }
   },
-  "pending_fields": 61487,
-  "split_events": 10,
+  "pending_fields": 61580,
+  "split_events": 8,
   "stop_reason": "run_budget"
 }
