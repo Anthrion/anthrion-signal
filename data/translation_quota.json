@@ -2861,20 +2861,24 @@
       }
     },
     "37492296441-1": {
-      "closed": false,
+      "closed": true,
       "day": "2026-10-06",
       "limits": {
         "gemini-3.1-flash-lite": 75,
         "gemini-3.5-flash-lite": 75
       },
-      "used": {}
+      "started": true,
+      "used": {
+        "gemini-3.1-flash-lite": 6,
+        "gemini-3.5-flash-lite": 74
+      }
     }
   },
   "models": {
     "gemini-3.1-flash-lite": {
       "blocked_reason": "transient",
-      "blocked_until": 1791285449.3186555,
-      "consecutive_errors": 1,
+      "blocked_until": 1791304979.957863,
+      "consecutive_errors": 3,
       "days": {
         "2026-09-12": 9,
         "2026-09-13": 420,
@@ -2900,9 +2904,22 @@
         "2026-10-03": 336,
         "2026-10-04": 330,
         "2026-10-05": 137,
-        "2026-10-06": 141
+        "2026-10-06": 72
       },
-      "recent": [],
+      "recent": [
+        {
+          "at": 1791304712.8159273,
+          "tokens": 24723
+        },
+        {
+          "at": 1791304712.9164977,
+          "tokens": 9625
+        },
+        {
+          "at": 1791304713.0054665,
+          "tokens": 3777
+        }
+      ],
       "usage": {
         "candidatesTokenCount": 5936819,
         "promptTokenCount": 7736697,
@@ -2938,12 +2955,12 @@
         "2026-10-03": 499,
         "2026-10-04": 499,
         "2026-10-05": 447,
-        "2026-10-06": 205
+        "2026-10-06": 204
       },
       "recent": [],
       "usage": {
-        "candidatesTokenCount": 12420717,
-        "promptTokenCount": 16168879,
+        "candidatesTokenCount": 12540667,
+        "promptTokenCount": 16325271,
         "thoughtsTokenCount": 0
       }
     }
