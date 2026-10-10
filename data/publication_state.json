@@ -1,7 +1,7 @@
 {
   "code": "1c8de7a3be361a72ebe3efd4de15e2e629142ed7eba8d79b5c31de04e452587d",
-  "content": "9fbb4db6a802844c91f3fc135890071e15ac16c4a8c820608aa1a1a294cb7d6f",
-  "translations": "d1bb07f64519a9ff198bd9eb0d17f88c197521426cbb14ed19f0b2ac7c6f7d22",
+  "content": "3172c8fd91be938c860232e38af6a2e61f0b409166f63f00ca23c938724bbec8",
+  "translations": "e540e12a46a9b5cd67cda3f396a44f707209dbc09eb2e63fcd68862afdb0e1c5",
   "health": [
     [
       "find_tender",
@@ -21,7 +21,7 @@
     ],
     [
       "govuk",
-      "healthy"
+      "partial"
     ],
     [
       "digital_outcomes",
@@ -53,7 +53,7 @@
     ],
     [
       "la_ramp",
-      "healthy"
+      "failed"
     ],
     [
       "grants",
@@ -133,7 +133,7 @@
     ],
     [
       "sam",
-      "healthy"
+      "partial"
     ],
     [
       "ungm",
@@ -284,5 +284,5 @@
       "disabled"
     ]
   ],
-  "day": "2026-10-09"
+  "day": "2026-10-10"
 }
