@@ -3212,20 +3212,24 @@
       }
     },
     "38039357712-1": {
-      "closed": false,
+      "closed": true,
       "day": "2026-10-10",
       "limits": {
         "gemini-3.1-flash-lite": 75,
         "gemini-3.5-flash-lite": 75
       },
-      "used": {}
+      "started": true,
+      "used": {
+        "gemini-3.1-flash-lite": 35,
+        "gemini-3.5-flash-lite": 74
+      }
     }
   },
   "models": {
     "gemini-3.1-flash-lite": {
       "blocked_reason": "transient",
-      "blocked_until": 1791573971.6831193,
-      "consecutive_errors": 0,
+      "blocked_until": 1791623833.7763515,
+      "consecutive_errors": 1,
       "days": {
         "2026-09-12": 9,
         "2026-09-13": 420,
@@ -3255,12 +3259,45 @@
         "2026-10-07": 110,
         "2026-10-08": 178,
         "2026-10-09": 218,
-        "2026-10-10": 75
+        "2026-10-10": 35
       },
-      "recent": [],
+      "recent": [
+        {
+          "at": 1791623716.7197638,
+          "tokens": 20496
+        },
+        {
+          "at": 1791623716.8041945,
+          "tokens": 6830
+        },
+        {
+          "at": 1791623734.5261226,
+          "tokens": 20496
+        },
+        {
+          "at": 1791623734.6110508,
+          "tokens": 6830
+        },
+        {
+          "at": 1791623752.3308568,
+          "tokens": 15492
+        },
+        {
+          "at": 1791623752.405867,
+          "tokens": 4952
+        },
+        {
+          "at": 1791623771.3245003,
+          "tokens": 15492
+        },
+        {
+          "at": 1791623771.4031322,
+          "tokens": 4952
+        }
+      ],
       "usage": {
-        "candidatesTokenCount": 6694812,
-        "promptTokenCount": 8721862,
+        "candidatesTokenCount": 6735701,
+        "promptTokenCount": 8771883,
         "thoughtsTokenCount": 0
       }
     },
@@ -3297,12 +3334,12 @@
         "2026-10-07": 391,
         "2026-10-08": 390,
         "2026-10-09": 432,
-        "2026-10-10": 128
+        "2026-10-10": 127
       },
       "recent": [],
       "usage": {
-        "candidatesTokenCount": 14674342,
-        "promptTokenCount": 19117335,
+        "candidatesTokenCount": 14768406,
+        "promptTokenCount": 19242427,
         "thoughtsTokenCount": 0
       }
     }
