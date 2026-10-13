@@ -1,15 +1,15 @@
 {
   "version": 1,
-  "generation": 224,
+  "generation": 225,
   "data_code": "4835e0577d3c2a794ce75731e69d823ef4876064fe1139bac8419e6916f10a8d",
-  "sha256": "5a32e9f594bdb0acc1925e47bc3cd68671d3aa0dc89460a8e07e77f384bf4f56",
-  "key": "signal-public-v1-5a32e9f594bdb0acc1925e47bc3cd68671d3aa0dc89460a8e07e77f384bf4f56-38301156753-1",
-  "inputs": "2d478dfb8a4c3137e5370e95971642231f0d24223f72eb0ac2293de9dc4b7b72",
-  "validated_at": "2026-10-12T20:42:06.435406+00:00",
+  "sha256": "04b3b938cac4be34bb1dd6a9045079b4708a42bdbc999858657a83ca229b5830",
+  "key": "signal-public-v1-04b3b938cac4be34bb1dd6a9045079b4708a42bdbc999858657a83ca229b5830-38321248423-1",
+  "inputs": "4e165243e6c76da401427341bc81c293811ee28c3cb0d0f78c11668b107dd65a",
+  "validated_at": "2026-10-13T00:06:49.722898+00:00",
   "signature": {
     "code": "1c8de7a3be361a72ebe3efd4de15e2e629142ed7eba8d79b5c31de04e452587d",
-    "content": "52e51fbe3fec7c09075a27c523e856929b01a662222e31e1dc0859165590acb6",
-    "translations": "584db364b2572eee0a68186d2d7b2a65ca10b2bf150c4cb53acd8a6b764ab183",
+    "content": "83d99a400c5efe17b01829f7f5301e2012d6093d7f57a27fded14eb9a61fd490",
+    "translations": "73cfd9effed8d105188d7fc8c4e00f330d1a30b4736a1e9fb96917acead2a576",
     "health": [
       [
         "find_tender",
@@ -29,7 +29,7 @@
       ],
       [
         "govuk",
-        "healthy"
+        "partial"
       ],
       [
         "digital_outcomes",
@@ -292,6 +292,6 @@
         "disabled"
       ]
     ],
-    "day": "2026-10-12"
+    "day": "2026-10-13"
   }
 }
