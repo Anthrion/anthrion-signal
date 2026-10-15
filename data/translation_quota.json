@@ -3793,13 +3793,17 @@
       }
     },
     "38808033699-1": {
-      "closed": false,
+      "closed": true,
       "day": "2026-10-15",
       "limits": {
         "gemini-3.1-flash-lite": 75,
         "gemini-3.5-flash-lite": 75
       },
-      "used": {}
+      "started": true,
+      "used": {
+        "gemini-3.1-flash-lite": 75,
+        "gemini-3.5-flash-lite": 75
+      }
     }
   },
   "models": {
@@ -3843,17 +3847,54 @@
         "2026-10-14": 334,
         "2026-10-15": 264
       },
-      "recent": [],
+      "recent": [
+        {
+          "at": 1792101312.4100816,
+          "tokens": 13001
+        },
+        {
+          "at": 1792101312.539278,
+          "tokens": 3854
+        },
+        {
+          "at": 1792101326.242667,
+          "tokens": 22904
+        },
+        {
+          "at": 1792101326.4117978,
+          "tokens": 21197
+        },
+        {
+          "at": 1792101326.5100906,
+          "tokens": 5581
+        },
+        {
+          "at": 1792101326.5881474,
+          "tokens": 1190
+        },
+        {
+          "at": 1792101349.188642,
+          "tokens": 20936
+        },
+        {
+          "at": 1792101349.3278978,
+          "tokens": 13481
+        },
+        {
+          "at": 1792101349.423206,
+          "tokens": 4711
+        }
+      ],
       "usage": {
-        "candidatesTokenCount": 8575276,
-        "promptTokenCount": 11183563,
+        "candidatesTokenCount": 8655293,
+        "promptTokenCount": 11297935,
         "thoughtsTokenCount": 0
       }
     },
     "gemini-3.5-flash-lite": {
       "blocked_reason": "transient",
       "blocked_until": 1792098453.1543255,
-      "consecutive_errors": 1,
+      "consecutive_errors": 0,
       "days": {
         "2026-09-12": 16,
         "2026-09-13": 500,
@@ -3892,8 +3933,8 @@
       },
       "recent": [],
       "usage": {
-        "candidatesTokenCount": 18152119,
-        "promptTokenCount": 23691691,
+        "candidatesTokenCount": 18232574,
+        "promptTokenCount": 23803934,
         "thoughtsTokenCount": 0
       }
     }
