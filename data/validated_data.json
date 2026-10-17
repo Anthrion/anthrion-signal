@@ -1,15 +1,15 @@
 {
   "version": 1,
-  "generation": 269,
+  "generation": 270,
   "data_code": "4835e0577d3c2a794ce75731e69d823ef4876064fe1139bac8419e6916f10a8d",
-  "sha256": "09ccde1c046658fd7aaa46a5ed150af39b6f3656ec15907fbf65f97b448c352a",
-  "key": "signal-public-v1-09ccde1c046658fd7aaa46a5ed150af39b6f3656ec15907fbf65f97b448c352a-38990965613-1",
-  "inputs": "9b03ee66d8199bcf5628c9417ed7a743b701678354d763a9a013f9b8e6fbd4fd",
-  "validated_at": "2026-10-17T02:10:11.929925+00:00",
+  "sha256": "8c5722a9a67c2b7ac5396cdb3e5edb61e33a6a1fb37e0e3b417468241b974aa4",
+  "key": "signal-public-v1-8c5722a9a67c2b7ac5396cdb3e5edb61e33a6a1fb37e0e3b417468241b974aa4-38991597730-1",
+  "inputs": "a1e51cc955b9f8324fe3eca891a8b7b44b7b7505335bfee4bbdc3ad185e38e2c",
+  "validated_at": "2026-10-17T03:28:04.904113+00:00",
   "signature": {
     "code": "1c8de7a3be361a72ebe3efd4de15e2e629142ed7eba8d79b5c31de04e452587d",
-    "content": "45abe8cdf7b1d7b646ac48c16c3a0247ca12d720248964de15861d60c57f12c5",
-    "translations": "f996d1cb07a78bc750dd35301fbae1b0be6e67900a409a97b8d9b25e33036bba",
+    "content": "b60abe3a38e2296d590e831115f7fef732c802244b26c378a43890a192ce092c",
+    "translations": "c06d7f1f3d13517cbf21283bb844b920248fbdd7658433c369619c2a829911ad",
     "health": [
       [
         "find_tender",
@@ -49,11 +49,11 @@
       ],
       [
         "germany",
-        "failed"
+        "partial"
       ],
       [
         "spain",
-        "partial"
+        "healthy"
       ],
       [
         "nyc_city_record",
