@@ -118,10 +118,19 @@ def export_awards(root, canonical, config, now, record_manifest=None, context_si
         record_manifest.update(history_files(root, [s for s in context if s.id not in record_manifest],
             context_translations, buyer_refs))
     manifest = {}
+    indexed = {}
+    for signal in awards:
+        item = public_signal(signal, translations.get(signal.id))
+        if record_manifest is not None:
+            # Timelines are already preserved in the immutable full record. Avoid
+            # repeating megabytes of the same procedure inside every market index.
+            item["procedure_history"] = []
+            item["is_summary"] = True
+        indexed[signal.id] = item
     for market, countries in MARKETS.items():
         records = [s for s in awards if set(countries).intersection(s.countries)]
         ids = {s.id for s in records}
-        payload = {"schema_version": "1.0", "signals": [public_signal(s, translations.get(s.id)) for s in records],
+        payload = {"schema_version": "1.0", "signals": [indexed[s.id] for s in records],
                    "translations": {sid: value for sid, value in translations.items() if sid in ids}}
         relative = f"awards/{market}-{digest(payload)[:16]}.json.gz"
         atomic_public_json(root / "app/public/data" / relative, payload)

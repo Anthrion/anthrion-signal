@@ -84,8 +84,9 @@ def collect_canada_buys(source, state, frozen, http, settings, terms):
     snapshots = copy.deepcopy(prior.get("feeds", {}))
     limit = max(1, min(int(source.get("max_records_per_feed", 1000)), 3000))
     budget = max(0, int(settings.get("max_pages", 0)))
-    try:
-        for name, filename, kind, hours in feeds(frozen):
+    failures = []
+    for name, filename, kind, hours in feeds(frozen):
+        try:
             previous = snapshots.get(name, {})
             checked = parse_date(previous.get("checked_at"))
             if checked and not previous.get("pending") and not settings.get("refresh_daily") and timedelta(0) <= frozen - checked < timedelta(hours=hours):
@@ -141,13 +142,18 @@ def collect_canada_buys(source, state, frozen, http, settings, terms):
             if entry["pending"]:
                 result.complete = False
                 result.message = "CanadaBuys verified snapshots have a resumable notice backlog."
-        # Checkpoints acknowledge only emitted notices, and are committed only after
-        # the common normalizer accepts every row in this collection.
+        except (SourceUnavailable, ValueError, TypeError) as exc:
+            # Each verified snapshot is an independent checkpoint. A malformed
+            # historical file must not discard new/open tenders from another feed.
+            failure = exc if isinstance(exc, SourceUnavailable) else SourceUnavailable("CanadaBuys snapshot could not be verified")
+            failures.append(f"{name}: {failure}")
+            defer_collection(result, failure)
+    # The common normalizer still verifies every emitted row before these
+    # checkpoints are persisted. Failed feeds retain their earlier state.
+    if snapshots != prior.get("feeds", {}):
         result.state.update(query_version=VERSION, feeds=snapshots)
-    except (SourceUnavailable, ValueError, TypeError) as exc:
-        result.records = []
-        result.state = copy.deepcopy(state)
-        defer_collection(result, exc if isinstance(exc, SourceUnavailable) else SourceUnavailable("CanadaBuys snapshot could not be verified"))
+    if failures:
+        result.message = "; ".join(failures)
     return result
 
 

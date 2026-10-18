@@ -95,6 +95,19 @@ def test_award_cache_invalidates_changed_scope_and_never_deletes_sources(tmp_pat
     assert first['GB']['url'] != second['GB']['url']
 
 
+def test_award_index_keeps_search_facts_and_loads_unchanged_timeline_from_full_record(tmp_path, signal, config, now):
+    award = signal.model_copy(update={'signal_type': 'AWARD', 'status': 'complete'})
+    manifest = {}
+    indexes = export_awards(tmp_path, [award], config, now, manifest)
+    root = tmp_path / 'app/public/data'
+    summary = read_json(root / indexes['GB']['url'], {})['signals'][0]
+    full = read_json(root / manifest[award.id]['url'], {})['signal']
+    assert summary['is_summary'] and summary['procedure_history'] == []
+    assert full['procedure_history'] and 'is_summary' not in full
+    assert {k: v for k, v in summary.items() if k not in {'procedure_history', 'is_summary'}} == {
+        k: v for k, v in full.items() if k != 'procedure_history'}
+
+
 @pytest.mark.parametrize('changes', [
     {'status': 'cancelled'}, {'status': 'unsuccessful'}, {'signal_type': 'RENEWAL_SIGNAL'},
     {'title': 'CANCELLED CRM procurement'}, {'notice_type': 'veat'}, {'notice_type': 'UK5'},

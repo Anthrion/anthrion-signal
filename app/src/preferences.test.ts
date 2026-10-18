@@ -28,7 +28,7 @@ describe('workspace preferences', () => {
     expect(
       normalisePreferences({ reading: 'brief', approach: 'maybe', effects: 1, startMarket: 'DE' }),
     ).toEqual({ ...defaultPreferences, reading: 'brief', startMarket: 'DE' })
-    expect(normalisePreferences({ startMarket: '<script>' }).startMarket).toBe('GB')
+    expect(normalisePreferences({ startMarket: '<script>' }).startMarket).toBe('UKI')
   })
 
   test('the theme is dark unless light was chosen', () => {
@@ -54,10 +54,10 @@ describe('workspace preferences', () => {
   test('a plain visit opens the preferred market, or the remembered one', () => {
     const memory = storage()
     rememberLastView(memory, { ...defaults, market: 'FR', q: 'CRM' })
-    expect(readLastView(memory).market).toBe('GB')
+    expect(readLastView(memory).market).toBe('UKI')
     expect(readLastView(memory, 'DE')).toEqual({ ...defaults, market: 'DE', q: 'CRM' })
     expect(readLastView(memory, 'last')).toEqual({ ...defaults, market: 'FR', q: 'CRM' })
-    expect(readLastView(storage(), 'last').market).toBe('GB')
+    expect(readLastView(storage(), 'last').market).toBe('UKI')
   })
 
   test('backups merge saved and hidden records and replace settings', () => {

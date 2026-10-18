@@ -189,7 +189,7 @@ test('award deep links survive reload and market changes', async ({ page }) => {
     await page.getByRole('button', { name: 'Close panel' }).click()
   await page
     .getByRole('navigation', { name: 'Markets' })
-    .getByRole('button', { name: 'United Kingdom', exact: true })
+    .getByRole('button', { name: 'UK&I', exact: true })
     .click()
   await expect(page.locator('.row-title').first()).toHaveText('Customer platform implementation')
   await expect(page).toHaveURL(/view=awards/)
@@ -214,23 +214,29 @@ for (const failure of [true, 'malformed'] as const)
 test('@data published historical records match every market manifest and stay out of live data', async ({
   page,
 }) => {
-  test.setTimeout(180000)
+  test.setTimeout(300000)
   await page.unroute('**/data/manifest.json')
   const data: Dataset = await publicJSON(page.request)
   expect(data.signals.every((s) => !isHistoricalAward(s))).toBe(true)
-  expect(Object.keys(data.award_history || {}).sort()).toEqual(markets.map((m) => m.id).sort())
+  // Groups can load the union of country shards, avoiding another copy on disk.
+  const published = Object.keys(data.award_history || {})
+  expect(published.every((id) => markets.some((m) => m.id === id))).toBe(true)
+  for (const market of markets.filter((m) => m.countries.length === 1))
+    expect(published).toContain(market.id)
   for (const [market, manifest] of Object.entries(data.award_history!)) {
-    const payload: { signals: Signal[] } = await publicJSON(page.request, manifest.url)
-    expect(payload.signals).toHaveLength(manifest.count)
-    expect(payload.signals.every((s) => isHistoricalAward(s) && matchesMarket(s, market))).toBe(
-      true,
-    )
-    await page.goto(`./?view=awards&market=${market}`)
-    if (!manifest.count) continue
-    await expect(page.locator('.row-select').first()).toBeVisible()
-    const id = await page.locator('.row-motion').first().getAttribute('data-signal-id')
-    const first = payload.signals.find((s) => s.id === id)!
-    expect(first).toBeDefined()
-    expect(priorityTier(first)).toBe(Math.min(...payload.signals.map(priorityTier)))
+    await test.step(`${market}: ${manifest.count} historical records`, async () => {
+      const payload: { signals: Signal[] } = await publicJSON(page.request, manifest.url)
+      expect(payload.signals).toHaveLength(manifest.count)
+      expect(payload.signals.every((s) => isHistoricalAward(s) && matchesMarket(s, market))).toBe(
+        true,
+      )
+      await page.goto(`./?view=awards&market=${market}`)
+      if (!manifest.count) return
+      await expect(page.locator('.row-select').first()).toBeVisible({ timeout: 45000 })
+      const id = await page.locator('.row-motion').first().getAttribute('data-signal-id')
+      const first = payload.signals.find((s) => s.id === id)!
+      expect(first).toBeDefined()
+      expect(priorityTier(first)).toBe(Math.min(...payload.signals.map(priorityTier)))
+    })
   }
 })

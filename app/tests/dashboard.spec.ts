@@ -177,7 +177,7 @@ test('@pr source facts, logo, filtering, saving, evidence and search', async ({ 
   page.on('pageerror', (e) => errors.push(e.message))
   await page.goto('./')
   await ready(page)
-  await expectMarket(page, 'United Kingdom')
+  await expectMarket(page, 'UK&I')
   await expect(page.locator('.workspace-brand img')).toHaveAttribute('src', /anthrion-wordmark.svg/)
   await expect
     .poll(() =>
@@ -668,7 +668,7 @@ test('@data all market tabs have real, correctly scoped records and opportunity 
   await ready(page)
   const dataset = await publicJSON(page.request)
   for (const [id, name, countries] of [
-    ['GB', 'United Kingdom', ['GB']],
+    ['UKI', 'UK&I', ['GB', 'IE']],
     ['NORTHAMERICA', 'North America', ['US', 'CA']],
     ['IT', 'Italy', ['IT']],
     ['NORDICS', 'Nordics', ['SE', 'FI', 'DK', 'NO', 'IS']],
@@ -687,7 +687,7 @@ test('@data all market tabs have real, correctly scoped records and opportunity 
     )
     expect(expected.length).toBeGreaterThan(0)
     await expect(page.locator('.feed-heading .count-badge')).toHaveText(String(expected.length))
-    expect(new URL(page.url()).searchParams.get('market') || 'GB').toBe(id)
+    expect(new URL(page.url()).searchParams.get('market') || 'UKI').toBe(id)
   }
   await page.reload()
   await ready(page)

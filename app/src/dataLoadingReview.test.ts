@@ -59,7 +59,7 @@ describe('Benelux as a combined market', () => {
       pinned: ['NL', 'BE', 'LU', 'GB'],
       order: ['BE', 'FR', 'NL', 'LU'],
     })
-    expect(preferences.pinned).toEqual(['NL', 'BE', 'LU', 'GB'])
+    expect(preferences.pinned).toEqual(['NL', 'BE', 'LU', 'UKI'])
     expect(preferences.order.slice(0, 4)).toEqual(['BE', 'FR', 'NL', 'LU'])
     expect(preferences.order.filter((id) => id === 'BENELUX')).toHaveLength(1)
     expect(normaliseFilters({ market: 'benelux' }).market).toBe('BENELUX')
@@ -112,7 +112,7 @@ describe('Benelux as a combined market', () => {
       pinned: ['GB', 'DE', 'CH', 'AT'],
       order: ['DE', 'AT', 'FR', 'CH'],
     })
-    expect(arranged.pinned).toEqual(['GB', 'DE', 'CH', 'AT'])
+    expect(arranged.pinned).toEqual(['UKI', 'DE', 'CH', 'AT'])
     expect(arranged.order.slice(0, 4)).toEqual(['DE', 'AT', 'FR', 'CH'])
     expect(defaultMarketOptions.filter((m) => ['DE', 'AT', 'CH'].includes(m.id))).toHaveLength(3)
     expect(normaliseFilters({ market: 'dach' }).market).toBe('DACH')

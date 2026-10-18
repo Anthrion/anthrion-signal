@@ -81,12 +81,56 @@ def test_fixed_est_deadline_and_source_membership_survive_normalization(config, 
     assert lifecycle(expired, now)[0] == 'EXPIRED'  # Source still says Open.
 
 
+@pytest.mark.parametrize('bad_feed', ['new', 'open', '2026-2027-tenders'])
+def test_bad_snapshot_does_not_discard_independent_tenders_or_advance_its_checkpoint(config, now, bad_feed):
+    from anthrion_signal.canada_buys import VERSION
+    catalog = {filename: (name, kind) for name, filename, kind, _ in feeds(now)}
+    old = {'etag': 'old', 'checked_at': '2026-09-01T00:00:00+00:00', 'rows': 1, 'hashes': {'old': 'kept'}}
+    state = {'query_version': VERSION, 'feeds': {bad_feed: old}}
+    def handler(request):
+        name, kind = catalog[request.url.path.rsplit('/', 1)[-1]]
+        fields = {'awardStatus-attributionStatut-eng': 'Active'} if kind == 'award' else {}
+        body = csv_bytes([row(**{REFERENCE: name, PUBLISHED: '' if name == bad_feed else '2026-09-08', **fields})])
+        headers = {'ETag': 'new-' + name, 'Content-Length': str(len(body)), 'Last-Modified': format_datetime(now)}
+        return httpx.Response(200, headers=headers, content=body if request.method == 'GET' else b'')
+    http = Http(transport=httpx.MockTransport(handler), sleeper=lambda _: None)
+    result = collect_canada_buys(source(config), state, now, http, {'max_pages': 8, 'refresh_daily': True}, {})
+    assert not result.complete and len(result.records) == 3
+    assert all(raw.data[REFERENCE] != bad_feed for raw in result.records)
+    assert result.state['feeds'][bad_feed] == old
+    assert state['feeds'] == {bad_feed: old}
+    assert bad_feed + ': CanadaBuys contains a malformed notice' in result.message
+    assert len(result.state['feeds']) == 4
+    http.close()
+
+
 def test_french_only_original_and_complete_long_scope_are_preserved(config, now):
     description = 'Mettre en œuvre un portail citoyen. ' * 1200
     signal = normalise(config, now, row(**{'title-titre-eng': '', 'tenderDescription-descriptionAppelOffres-eng': '',
         'tenderDescription-descriptionAppelOffres-fra': description}))
     assert signal.source_language == 'fr'
     assert signal.description == description.strip() and len(signal.description) > 24000
+
+
+def test_rate_limit_keeps_verified_snapshot_and_persists_retry(config, now):
+    body = csv_bytes([row()])
+    headers = {'ETag': 'verified-new', 'Content-Length': str(len(body)), 'Last-Modified': format_datetime(now)}
+    calls = []
+    def handler(request):
+        calls.append(request)
+        if 'newTenderNotice' not in request.url.path:
+            return httpx.Response(429, headers={'Retry-After': '3600'})
+        return httpx.Response(200, headers=headers, content=body if request.method == 'GET' else b'')
+    http = Http(transport=httpx.MockTransport(handler), sleeper=lambda _: None)
+    try:
+        result = collect_canada_buys(source(config), {}, now, http, {'max_pages': 8, 'refresh_daily': True}, {})
+        assert not result.complete and len(result.records) == 1
+        assert result.state['feeds']['new']['etag'] == 'verified-new'
+        assert list(result.state['feeds']) == ['new']
+        assert result.state['retry_at'] == http.deferred_hosts['canadabuys.canada.ca'].retry_at.isoformat()
+        assert len(calls) == 3  # Further feeds respect the host's Retry-After without another request.
+    finally:
+        http.close()
 
 
 def test_award_is_historical_and_retains_amount_currency_supplier_and_distinct_id(config, now):

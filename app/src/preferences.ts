@@ -17,7 +17,7 @@ export const defaultPreferences: Preferences = {
   approach: 'show',
   effects: 'full',
   theme: 'dark',
-  startMarket: 'GB',
+  startMarket: 'UKI',
 }
 const choices: { [K in keyof Preferences]?: readonly string[] } = {
   reading: ['full', 'brief'],

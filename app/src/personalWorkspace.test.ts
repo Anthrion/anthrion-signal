@@ -22,7 +22,7 @@ function memoryStorage(initial: string | null = null) {
   } satisfies StorageAccess
 }
 describe('personal views and market preferences', () => {
-  test('last-view memory restores filters while a plain visit starts in the UK', () => {
+  test('last-view memory restores filters while a plain visit starts in UK&I', () => {
     const storage = memoryStorage()
     rememberLastView(storage, {
       ...defaults,
@@ -52,7 +52,7 @@ describe('personal views and market preferences', () => {
   test('All, groups and countries can be independently pinned and reordered', () => {
     expect(emptyPersonalWorkspace().marketPreferences.pinned).toEqual([
       '',
-      'GB',
+      'UKI',
       'NORTHAMERICA',
       'IT',
       'NORDICS',
@@ -104,8 +104,8 @@ describe('personal views and market preferences', () => {
       pinned: ['', 'GB', 'US'],
       order: ['', 'GB', 'US', 'FR'],
     })
-    expect(migrated.pinned).toEqual(['', 'GB', 'NORTHAMERICA'])
-    expect(migrated.order.slice(0, 5)).toEqual(['', 'GB', 'NORTHAMERICA', 'US', 'FR'])
+    expect(migrated.pinned).toEqual(['', 'UKI', 'NORTHAMERICA'])
+    expect(migrated.order.slice(0, 6)).toEqual(['', 'UKI', 'GB', 'NORTHAMERICA', 'US', 'FR'])
     expect(
       normaliseMarketPreferences({ ...migrated, pinned: ['CA', 'US', 'NORTHAMERICA'] }).pinned,
     ).toEqual(['CA', 'US', 'NORTHAMERICA'])
@@ -113,6 +113,19 @@ describe('personal views and market preferences', () => {
       'CA',
       'US',
     ])
+  })
+  test('UK&I replaces the old UK pin once without undoing independent country preferences', () => {
+    const migrated = normaliseMarketPreferences({
+      pinned: ['', 'GB', 'IE'],
+      order: ['', 'GB', 'IE'],
+    })
+    expect(migrated.pinned).toEqual(['', 'UKI', 'IE'])
+    expect(migrated.order.slice(0, 4)).toEqual(['', 'UKI', 'GB', 'IE'])
+    expect(normaliseMarketPreferences({ ...migrated, pinned: ['GB', 'IE'] }).pinned).toEqual([
+      'GB',
+      'IE',
+    ])
+    expect(readLastView(memoryStorage(), 'GB').market).toBe('GB')
   })
   test('a named view restores all search, market, financial and award filters', () => {
     const filters = {
@@ -213,6 +226,6 @@ describe('personal views and market preferences', () => {
       marketPreferences: { pinned: ['FR'], order: ['FR'] },
     }))
     expect(result.error).not.toBe('')
-    expect(result.state.marketPreferences.pinned).toContain('GB')
+    expect(result.state.marketPreferences.pinned).toContain('UKI')
   })
 })

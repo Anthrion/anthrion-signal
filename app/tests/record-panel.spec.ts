@@ -74,7 +74,6 @@ test('selected design presents compact source facts before untruncated text in o
   ).toEqual([
     'Salesforce prefill unavailable',
     'Share this opportunity in Gmail (opens a new tab)',
-    'Slack (coming soon)',
     'Copy link to this opportunity',
   ])
   const overview = (await panel.locator('.inspector-overview').boundingBox())!
@@ -93,9 +92,9 @@ test('selected design presents compact source facts before untruncated text in o
     expect(box.y).toBeGreaterThanOrEqual(previousBottom)
     previousBottom = box.y + box.height
   }
-  // The three services show their logos; Copy link is a drawn icon.
+  // Salesforce and Gmail show their logos; Copy link is a drawn icon.
   const logos = integrations.locator('img')
-  await expect(logos).toHaveCount(3)
+  await expect(logos).toHaveCount(2)
   for (const logo of await logos.all())
     await expect
       .poll(() => logo.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0))
@@ -143,9 +142,7 @@ test('@pr Gmail opens an unsent draft for the current record and its link reopen
   await expect(
     panel.getByRole('button', { name: 'Salesforce prefill unavailable', exact: true }),
   ).toBeDisabled()
-  await expect(
-    panel.getByRole('button', { name: 'Slack (coming soon)', exact: true }),
-  ).toBeDisabled()
+  await expect(panel.getByRole('button', { name: /Slack/ })).toHaveCount(0)
   await page
     .context()
     .route('https://mail.google.com/**', (route) => route.fulfill({ body: 'Gmail compose' }))

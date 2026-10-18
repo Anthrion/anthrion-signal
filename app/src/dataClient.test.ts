@@ -53,6 +53,27 @@ describe('versioned static data', () => {
     expect(cache.size).toBe(2)
     expect(cache.get('huge')).toBeUndefined()
   })
+  test('downloaded pages use their decoded size without serializing a second copy for cache admission', async () => {
+    const body = JSON.stringify({ title: 'Bürgerportal — Québec', padding: 'x'.repeat(256) })
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response(body)))
+    const parsed = await fetchJSON(
+      'awards/GB-0123456789abcdef.json.gz',
+      new AbortController().signal,
+      '/',
+    )
+    const stringify = vi.spyOn(JSON, 'stringify')
+    try {
+      const cache = new BoundedCache(2, body.length * 2)
+      cache.set('fits', parsed)
+      expect(cache.get('fits')).toBe(parsed)
+      const small = new BoundedCache(2, body.length * 2 - 1)
+      small.set('too-large', parsed)
+      expect(small.size).toBe(0)
+      expect(stringify).not.toHaveBeenCalled()
+    } finally {
+      stringify.mockRestore()
+    }
+  })
   test('All markets loads all required search shards and deduplicates overlapping Nordic records', () => {
     const current_feed = {
       version: '1.0',
@@ -77,6 +98,33 @@ describe('versioned static data', () => {
         'FI',
       ),
     ).toHaveLength(1)
+  })
+  test('UK&I loads the existing UK and Irish shards once, while each country stays independent', () => {
+    const current_feed = {
+      version: '1.0',
+      markets: {
+        GB: { url: path, count: 1 },
+        IE: { url: 'current/IE-1123456789abcdef.json', count: 1 },
+      },
+      records: {},
+    }
+    const data = { ...dataset, current_feed }
+    expect(currentMarketPaths(data, 'UKI')).toEqual([path, current_feed.markets.IE.url])
+    expect(currentMarketPaths(data, 'GB')).toEqual([path])
+    expect(currentMarketPaths(data, 'IE')).toEqual([current_feed.markets.IE.url])
+    expect(currentMarketPaths(data, '')).toHaveLength(2)
+    expect(
+      awardMarketPaths(
+        {
+          ...dataset,
+          award_history: {
+            GB: { url: 'awards/GB-0123456789abcdef.json', count: 1 },
+            IE: { url: 'awards/IE-1123456789abcdef.json', count: 1 },
+          },
+        },
+        'UKI',
+      ),
+    ).toHaveLength(2)
   })
   test('hashed paths cannot escape the published data directory or switch origin', () => {
     for (const candidate of [

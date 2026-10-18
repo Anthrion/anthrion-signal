@@ -5,7 +5,7 @@ from datetime import timedelta
 from .dedupe import exact_keys
 from .discovery import lifecycle
 from .models import Signal
-from .utils import atomic_bytes, atomic_json, jsonl_lines, parse_date, read_json
+from .utils import atomic_bytes, atomic_retained_json, jsonl_lines, parse_date, read_json
 
 
 def is_current(signal, now, retention_days):
@@ -57,5 +57,5 @@ def archive_expired(root, signals, now, retention_days):
             for key in exact_keys(signal):
                 index[key] = {"month": month, "id": signal.id}
     if partitions:
-        atomic_json(root / "data/archive_index.json", index)
+        atomic_retained_json(root / "data/archive_index.json", index)
     return current

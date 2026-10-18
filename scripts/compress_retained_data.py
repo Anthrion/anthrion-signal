@@ -7,7 +7,7 @@ from pathlib import Path
 
 from anthrion_signal.utils import atomic_retained_bytes, read_retained_bytes, retained_path
 
-SNAPSHOTS = ("signals.jsonl", "current.json", "source_state.json")
+SNAPSHOTS = ("signals.jsonl", "current.json", "source_state.json", "dedupe_index.json", "archive_index.json")
 
 
 def compress(root):

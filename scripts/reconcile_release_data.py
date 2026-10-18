@@ -175,7 +175,7 @@ def main():
         for item in items.values():
             for key in exact_keys(Signal.model_validate(item)):
                 index[key] = {"id": item["id"], "month": month}
-    atomic_json(root / "data/archive_index.json", index)
+    atomic_retained_json(root / "data/archive_index.json", index)
     atomic_retained_bytes(root / "data/signals.jsonl", ("\n".join(canonical_signal_json(Signal.model_validate(value))
                                                        for value in merged.values()) + "\n").encode())
     atomic_retained_json(root / "data/source_state.json", state)

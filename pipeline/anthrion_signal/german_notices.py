@@ -191,10 +191,15 @@ def collect_german_notices(source, state, frozen, http, settings, terms):
             result.pages += 1
             original = http.request("GET", source["url"], params={"pubDay": day.isoformat(), "format": "eforms.zip"})
             eforms = archive_files(original.content, ".xml")
-            if set(ocds) != set(eforms):
-                raise SourceUnavailable("German exports did not contain matching notice versions")
+            paired = ocds.keys() & eforms.keys()
+            complete_day = set(ocds) == set(eforms)
+            if not complete_day:
+                result.complete = False
+                result.message = "German export formats differ; verified notices collected, incomplete days retained for retry."
             day_records = []
-            for stem, data in ocds.items():
+            day_rejected = []
+            for stem in sorted(paired):
+                data = ocds[stem]
                 try:
                     package_releases = releases(json.loads(data))
                 except (ValueError, UnicodeDecodeError):
@@ -204,16 +209,19 @@ def collect_german_notices(source, state, frozen, http, settings, terms):
                     if relevant_release(enriched, terms, tracked):
                         day_records.append(RawRecord(enriched, source, frozen.isoformat(), "german_ocds"))
                     else:
-                        result.rejected_records.append(RawRecord(enriched, source, frozen.isoformat(), "german_ocds"))
-            # A failed or incomplete format pair never advances that day's checkpoint.
+                        day_rejected.append(RawRecord(enriched, source, frozen.isoformat(), "german_ocds"))
+            # Only individually verified format pairs are admitted. Keep a missing
+            # counterpart pending without blocking other notices or other days.
             result.records.extend(day_records)
+            result.rejected_records.extend(day_rejected)
             tracked.update(raw.data["ocid"] for raw in day_records if raw.data.get("ocid") and
                            not any(tag in " ".join(raw.data.get("tag", [])) for tag in ("award", "contract")))
-            result.state["pending_days"].remove(day.isoformat())
-            result.state["watermark"] = max(result.state.get("watermark", ""), day.isoformat())
+            if complete_day:
+                result.state["pending_days"].remove(day.isoformat())
+                result.state["watermark"] = max(result.state.get("watermark", ""), day.isoformat())
         except SourceUnavailable as exc:
             result.complete, result.message = False, str(exc)
-            break
+            continue
     result.state["tracked_ocids"] = sorted(tracked)
     if result.state["pending_days"] and result.complete:
         result.complete = False
