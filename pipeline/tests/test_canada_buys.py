@@ -90,7 +90,7 @@ def test_bad_snapshot_does_not_discard_independent_tenders_or_advance_its_checkp
     def handler(request):
         name, kind = catalog[request.url.path.rsplit('/', 1)[-1]]
         fields = {'awardStatus-attributionStatut-eng': 'Active'} if kind == 'award' else {}
-        body = csv_bytes([row(**{REFERENCE: name, PUBLISHED: '' if name == bad_feed else '2026-09-08', **fields})])
+        body = csv_bytes([row(**{REFERENCE: name, PUBLISHED: 'not-a-date' if name == bad_feed else '2026-09-08', **fields})])
         headers = {'ETag': 'new-' + name, 'Content-Length': str(len(body)), 'Last-Modified': format_datetime(now)}
         return httpx.Response(200, headers=headers, content=body if request.method == 'GET' else b'')
     http = Http(transport=httpx.MockTransport(handler), sleeper=lambda _: None)
@@ -171,6 +171,28 @@ def test_csv_reads_multiline_quotes_and_latest_amendment_without_keyword_gate():
         parse_snapshot(csv_bytes([older, {**older, 'title-titre-eng': 'Conflicting title'}]), 'tender')
     with pytest.raises(SourceUnavailable):
         parse_snapshot(b'Not a valid CSV', 'tender')
+
+
+def test_missing_publisher_dates_remain_unknown_and_numbered_amendments_still_order(config, now):
+    older = row(**{'amendmentNumber-numeroModification': '001'})
+    undated = row(**{PUBLISHED: '', 'amendmentDate-dateModification': '',
+                     'amendmentNumber-numeroModification': '002', 'title-titre-eng': 'Revised CRM scope'})
+    for sequence in ([older, undated], [undated, older]):
+        parsed = parse_snapshot(csv_bytes(sequence), 'tender')
+        assert parsed['tender:cb-100-123'] == undated
+    signal = normalise(config, now, undated)
+    assert signal.published_at is None and signal.updated_at is None
+    assert signal.provenance[0].published_at is None
+    assert signal.deadline_at == '2026-10-01T19:00:00+00:00'
+    assert signal.first_seen_at == now.isoformat()
+    collected, _ = collect(config, now, [undated])
+    assert len(collected.records) == 1 and collected.state['feeds']['new']['pending'] == 0
+    with pytest.raises(SourceUnavailable, match='conflicting'):
+        parse_snapshot(csv_bytes([older, {**undated, 'amendmentNumber-numeroModification': '001'}]), 'tender')
+    with pytest.raises(SourceUnavailable, match='malformed'):
+        parse_snapshot(csv_bytes([{**undated, PUBLISHED: 'not-a-date'}]), 'tender')
+    with pytest.raises(SourceUnavailable, match='invalid amendment'):
+        parse_snapshot(csv_bytes([{**undated, 'amendmentDate-dateModification': 'not-a-date'}]), 'tender')
 
 
 def test_bounded_bootstrap_resumes_same_snapshot_and_validates_before_checkpoint(config, now):

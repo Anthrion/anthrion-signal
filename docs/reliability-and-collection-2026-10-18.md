@@ -49,14 +49,19 @@ or proof of complete national coverage. UK has 104 and Ireland 11.
 | Spain | Healthy; unchanged head, zero new rows on this pass | No change |
 | SAM / NYC / Los Angeles | Healthy snapshots/checkpoints | No change |
 | Grants.gov | 356 rows; some individual details unavailable | Retained details remain; failed details retry |
-| CanadaBuys | Malformed notice; last wholly successful collection 5 October | Isolate the four snapshots so a bad one cannot discard verified results/checkpoints from healthy feeds; retain strict validation and failed-feed state |
+| CanadaBuys | 12 open notices omit publication/amendment dates; rejecting these blocked all 899 open notices | Preserve omitted dates as unknown, use explicit amendment numbers when dates are unavailable, reject invalid dates and ambiguous revisions; checkpoint the four snapshots independently |
 
 The German repair was replayed against the actual two source ZIPs: all 1,000
 paired entries normalized, including 387 broad retrieval candidates. The 301
 unpaired entries remain outstanding; they are not silently marked collected.
-Canadian downloads returned HTTP 403 from the local audit host, so the repaired
-feed must also be checked on its normal GitHub runner. Failure messages now name
-the affected Canadian snapshot. Run summaries list partial/failed sources as well
+An initial Canadian probe returned HTTP 403. A follow-up using the collector's
+normal identity succeeded: the annual tender and award files contained 3,497 and
+4,603 valid rows. The open file had 899 rows, including 12 SSC notices whose dates
+were genuinely blank. These now remain unknown rather than being invented or
+blocking the snapshot; the deadline and amendment number remain available.
+Offline replay of all three downloaded files parsed and normalized 8,999 rows
+successfully, with precisely those 12 publication dates left unknown.
+Failure messages name the affected Canadian snapshot. Run summaries list partial/failed sources as well
 as overall collection success, making these gaps visible in Actions.
 
 Collector HTTP requests already use a 40-second timeout and bounded retries,
@@ -74,7 +79,7 @@ The inspected checkout contains 649,519,125 tracked bytes (619.4 MiB), including
 636,159,942 bytes of retained data. Rejected-notice retention is already compressed
 and occupies 417,053,490 bytes (64.2% of the checkout). The published website is a
 separate footprint: the last successful build measured about 500 MiB, roughly
-half of GitHub Pages' 1 GB published-site limit.
+half of GitHub Pages' 1 GB published-site limit. The verified rebuild is 482.2 MiB.
 
 Source state, deduplication and archive indexes previously remained plain because
 each was below the old 32 MiB compression threshold. Their combined 45,276,163
@@ -98,3 +103,12 @@ selectable/pinnable; explicit country links and saved starting-market preference
 remain valid. The old UK pin migrates once; subsequent custom arrangements persist.
 The Slack placeholder and unused logo are removed. Salesforce continues to use
 the configured sandbox and Gmail/copy-link remain available.
+
+## Verification
+
+The complete export validates 8,403 current records, 40,077 awards and 67,356
+hashed data files, including evidence and linked histories. The production build
+is 482.2 MiB. All ten real-data desktop/mobile checks pass, including every award
+market. Fixture UI checks, full-history hydration, translations, CSP, frontend
+unit tests and the relevance benchmark also pass. The first GitHub PR verification
+completed in 8m57s; its filtered full-history checkout took 24 seconds.

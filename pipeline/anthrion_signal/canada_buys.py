@@ -50,7 +50,7 @@ def parse_snapshot(content, kind, minimum=0):
             if (None in row or any(value is None for value in row.values()) or
                     not re.fullmatch(r"[A-Za-z0-9_.(): /-]{1,180}", row[REFERENCE]) or
                     not (row["title-titre-eng"].strip() or row["title-titre-fra"].strip()) or
-                    not parse_date(row[PUBLISHED])):
+                    (row[PUBLISHED].strip() and not parse_date(row[PUBLISHED]))):
                 raise SourceUnavailable("CanadaBuys contains a malformed notice")
             status = row["awardStatus-attributionStatut-eng" if kind == "award" else "tenderStatus-appelOffresStatut-eng"].strip().lower()
             if status not in ({"active", "expired", "cancelled"} if kind == "award" else {"open", "expired", "cancelled"}):
@@ -58,19 +58,34 @@ def parse_snapshot(content, kind, minimum=0):
             if row.get(CLOSING) and not parse_date(row[CLOSING]):
                 raise SourceUnavailable("CanadaBuys published an invalid response deadline")
             ident = row_id(row, kind)
-            revised = parse_date(row.get(AMENDED) or row[PUBLISHED])
-            if revised is None:
+            amended = (row.get(AMENDED) or "").strip()
+            revised = parse_date(amended or row[PUBLISHED])
+            if amended and revised is None:
                 raise SourceUnavailable("CanadaBuys published an invalid amendment date")
             # Number 10 supersedes 9 even when the publisher omits zero padding.
             number = row.get("amendmentNumber-numeroModification", "").strip()
             revision = (revised, int(number) if number.isdigit() else -1, number)
             previous = latest.get(ident)
-            if previous is None or revision > previous[0]:
+            if previous is None:
                 latest[ident] = (revision, row)
-            elif revision == previous[0] and row != previous[1]:
+                if len(latest) > 100_000:
+                    raise SourceUnavailable("CanadaBuys exceeded its bounded notice count")
+                continue
+            earlier = previous[0]
+            if revised is not None and earlier[0] is not None:
+                comparison = (revision > earlier) - (revision < earlier)
+            elif revision[1] >= 0 and earlier[1] >= 0:
+                # Some SSC notices omit both dates. Explicit amendment numbers
+                # can still order their revisions; collection time cannot.
+                comparison = (revision[1] > earlier[1]) - (revision[1] < earlier[1])
+            elif row == previous[1]:
+                comparison = 0
+            else:
+                raise SourceUnavailable("CanadaBuys published ambiguous undated notice revisions")
+            if comparison > 0:
+                latest[ident] = (revision, row)
+            elif comparison == 0 and row != previous[1]:
                 raise SourceUnavailable("CanadaBuys published conflicting notice revisions")
-            if len(latest) > 100_000:
-                raise SourceUnavailable("CanadaBuys exceeded its bounded notice count")
         if len(latest) < minimum:
             raise SourceUnavailable("CanadaBuys snapshot is unexpectedly small")
         return {ident: row for ident, (_, row) in latest.items()}
@@ -214,7 +229,7 @@ def normalise_canada_buys(raw):
         external_ids=["canadabuys:" + row_id(row, kind)],
         source_language="en" if language == "eng" else "fr", signal_type=signal_type, procurement_stage=stage,
         notice_type=notice or None, status={"open": "active", "active": "awarded"}.get(status, status),
-        published_at=row[PUBLISHED], updated_at=row.get(AMENDED) or row[PUBLISHED],
+        published_at=clean(row[PUBLISHED]) or None, updated_at=clean(row.get(AMENDED)) or clean(row[PUBLISHED]) or None,
         deadline_at=deadline_value(fact) if fact else None, deadlines=[fact] if fact else [],
         response_deadlines=[deadline_value(fact)] if fact else [], eligibility_text=eligibility or None,
         award_date=row.get("contractAwardDate-dateAttributionContrat") or None,
