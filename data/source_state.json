@@ -9112,8 +9112,8 @@
       "until": "2026-08-29T09:22:37+00:00",
       "version": "2026-09-11.1"
     },
-    "last_success": "2026-10-18T11:59:22+00:00",
-    "watermark": "2026-10-18T11:59:22+00:00"
+    "last_success": "2026-10-18T15:28:34+00:00",
+    "watermark": "2026-10-18T15:28:34+00:00"
   },
   "digital_outcomes": {
     "digital_details": {
@@ -9478,9 +9478,9 @@
         "signature": "9695044357343a8bd1b5fe91028192ee5af179f2c17ac338b2d14aa81f635d7e"
       }
     },
-    "last_success": "2026-10-18T11:59:22+00:00",
+    "last_success": "2026-10-18T15:28:34+00:00",
     "next_detail": 0,
-    "watermark": "2026-10-18T11:59:22+00:00"
+    "watermark": "2026-10-18T15:28:34+00:00"
   },
   "find_tender": {
     "discovery_backfill": {
@@ -9498,8 +9498,8 @@
       "until": "2026-08-29T18:48:39+00:00",
       "version": "2026-09-11.1"
     },
-    "last_success": "2026-10-18T11:59:22+00:00",
-    "watermark": "2026-10-18T11:59:22+00:00"
+    "last_success": "2026-10-18T15:28:34+00:00",
+    "watermark": "2026-10-18T15:28:34+00:00"
   },
   "germany": {
     "discovery_vocabulary": "aff4ea01a1b2a0537a62c8531aee4a371d45d5a2a437403fcd8017ea7fac2313",
@@ -10881,7 +10881,7 @@
           },
           "CRM support tender": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 12200,
+            "offset": 12300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "CRM transformation": {
@@ -10906,7 +10906,7 @@
           },
           "Salesforce Public Sector": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 12200,
+            "offset": 12300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "Salesforce Scheduler": {
@@ -10936,12 +10936,12 @@
           },
           "Salesforce managed services": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 12200,
+            "offset": 12300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "Salesforce professional services": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 12200,
+            "offset": 12300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "application modernisation tender": {
@@ -10971,32 +10971,32 @@
           },
           "business intelligence procurement": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 12200,
+            "offset": 12300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "business rules engine procurement": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 12200,
+            "offset": 12300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "case management": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 12200,
+            "offset": 12300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "case management procurement": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 12200,
+            "offset": 12300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "citizen portal tender": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 12200,
+            "offset": 12300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "citizen services": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 12200,
+            "offset": 12300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "collaboration workflow platform tender": {
@@ -11006,7 +11006,7 @@
           },
           "commercial pipeline digital": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 12200,
+            "offset": 12300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "complaints management tender": {
@@ -11041,7 +11041,7 @@
           },
           "customer service platform procurement": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 12200,
+            "offset": 12300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "data platform": {
@@ -11086,7 +11086,7 @@
           },
           "field service software tender": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 12200,
+            "offset": 12300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "generative AI": {
@@ -11176,7 +11176,7 @@
           },
           "student services platform tender": {
             "from": "2025-10-11T09:22:37+00:00",
-            "offset": 12200,
+            "offset": 12300,
             "to": "2025-11-11T09:22:37+00:00"
           },
           "systems integration procurement": {
@@ -11204,32 +11204,32 @@
       "version": "2026-09-11.1"
     },
     "last_success": "2026-10-18T11:59:22+00:00",
-    "next_query": 0,
+    "next_query": 60,
     "queries": {
       "AI agent procurement": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "AI agents": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "AI assistant tender": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "API management tender": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "Agentforce": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "CRM legacy integration procurement": {
         "from": "2026-10-17T06:47:17+00:00",
@@ -11242,9 +11242,9 @@
         "through": "2026-10-18T06:47:17+00:00"
       },
       "CRM procurement": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "CRM support tender": {
         "from": "2026-10-17T06:47:17+00:00",
@@ -11252,34 +11252,34 @@
         "through": "2026-10-18T06:47:17+00:00"
       },
       "CRM transformation": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "LLM implementation procurement": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "OmniStudio": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "Salesforce": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "Salesforce Public Sector": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "Salesforce Scheduler": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "Salesforce consulting tender": {
         "from": "2026-10-17T06:47:17+00:00",
@@ -11292,14 +11292,14 @@
         "through": "2026-10-18T06:47:17+00:00"
       },
       "Salesforce document generation": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "Salesforce implementation": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "Salesforce managed services": {
         "from": "2026-10-17T06:47:17+00:00",
@@ -11307,64 +11307,64 @@
         "through": "2026-10-18T06:47:17+00:00"
       },
       "Salesforce professional services": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "application modernisation tender": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "artificial intelligence procurement": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "automated triage tender": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "automation integration": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "benefits management system": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "business intelligence procurement": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "business rules engine procurement": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "case management": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "case management procurement": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "citizen portal tender": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "citizen services": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "collaboration workflow platform tender": {
         "from": "2026-10-17T06:47:17+00:00",
@@ -11372,79 +11372,79 @@
         "through": "2026-10-18T06:47:17+00:00"
       },
       "commercial pipeline digital": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "complaints management tender": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "contact centre": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "contact centre implementation": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "customer journey platform procurement": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "customer portal supplier": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "customer relationship management tender": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "customer service platform procurement": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "data platform": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "data quality implementation": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "digital transformation procurement": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "document intelligence procurement": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "donor management tender": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "ecommerce platform tender": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "embedded analytics tender": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "enterprise integration partner": {
         "from": "2026-10-17T06:47:17+00:00",
@@ -11452,19 +11452,19 @@
         "through": "2026-10-18T06:47:17+00:00"
       },
       "field service software tender": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "generative AI": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "generative AI tender": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "grant management system procurement": {
         "from": "2026-10-17T06:47:17+00:00",
@@ -11472,34 +11472,34 @@
         "through": "2026-10-18T06:47:17+00:00"
       },
       "housing allocation system": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "intelligent automation procurement": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "knowledge assistant tender": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "legacy integration programme": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "marketing automation tender": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "master data management tender": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "patient engagement platform": {
         "from": "2026-10-17T06:47:17+00:00",
@@ -11507,39 +11507,39 @@
         "through": "2026-10-18T06:47:17+00:00"
       },
       "procurement pipeline technology": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "quote to cash implementation": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "regulatory casework system": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "replace spreadsheets workflow supplier": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "sales automation procurement": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "single customer view procurement": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "stakeholder management procurement": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "student services platform tender": {
         "from": "2026-10-17T06:47:17+00:00",
@@ -11547,21 +11547,22 @@
         "through": "2026-10-18T06:47:17+00:00"
       },
       "systems integration procurement": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "workflow automation procurement": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       },
       "workforce scheduling platform": {
-        "from": "2026-10-17T06:47:17+00:00",
+        "from": "2026-10-17T15:28:34+00:00",
         "offset": 0,
-        "through": "2026-10-18T06:47:17+00:00"
+        "through": "2026-10-18T15:28:34+00:00"
       }
     },
+    "query_cycle_to": "2026-10-18T15:28:34+00:00",
     "watermark": "2026-10-18T06:47:17+00:00"
   },
   "grants": {
@@ -11972,7 +11973,7 @@
         "signature": "b91beaf369b8fc368ff963dba7fa6e1e218ea631bf8973bbf95770a2a68a4c27"
       },
       "324456": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "U.S. National Science Foundation",
           "agencyDetails": {
@@ -12021,7 +12022,7 @@
         "signature": "84745b0822ed7f44a081930979e496bd979c4a6097635e9e0b76ca93b28a5809"
       },
       "325932": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "Dept of the Army -- Materiel Command",
           "agencyDetails": {
@@ -12874,7 +12875,7 @@
         "signature": "789e214cd065d5a2cff78696b85d48f9da00e2f43821a9a5ae413c070a6139e1"
       },
       "334551": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "U.S. Mission to the Democratic Republic of Congo",
           "agencyDetails": {
@@ -12915,7 +12916,7 @@
         "signature": "64bf034fb19b670187f0c0d30bc418f3bd45987f8b8acc8cee9d4b037782f884"
       },
       "334971": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "Centers for Disease Control and Prevention - ERA",
           "agencyDetails": {
@@ -12934,64 +12935,64 @@
             "applicantEligibilityDesc": "Entities involved in fishing and maritime matters, and those with expertise in commercial fishing safety.",
             "applicantTypes": [
               {
-                "description": "State governments",
-                "id": "00"
-              },
-              {
-                "description": "Native American tribal governments (Federally recognized)",
-                "id": "07"
-              },
-              {
-                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
-                "id": "25"
-              },
-              {
-                "description": "Private institutions of higher education",
-                "id": "20"
-              },
-              {
                 "description": "Public housing authorities/Indian housing authorities",
                 "id": "08"
               },
               {
-                "description": "For profit organizations other than small businesses",
-                "id": "22"
+                "description": "State governments",
+                "id": "00"
               },
               {
-                "description": "City or township governments",
-                "id": "02"
-              },
-              {
-                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "12"
+                "description": "Public and State controlled institutions of higher education",
+                "id": "06"
               },
               {
                 "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
                 "id": "13"
               },
               {
-                "description": "Small businesses",
-                "id": "23"
+                "description": "County governments",
+                "id": "01"
+              },
+              {
+                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "12"
               },
               {
                 "description": "Independent school districts",
                 "id": "05"
               },
               {
-                "description": "County governments",
-                "id": "01"
+                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
+                "id": "25"
               },
               {
                 "description": "Special district governments",
                 "id": "04"
               },
               {
+                "description": "Native American tribal governments (Federally recognized)",
+                "id": "07"
+              },
+              {
                 "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
                 "id": "11"
               },
               {
-                "description": "Public and State controlled institutions of higher education",
-                "id": "06"
+                "description": "Small businesses",
+                "id": "23"
+              },
+              {
+                "description": "City or township governments",
+                "id": "02"
+              },
+              {
+                "description": "Private institutions of higher education",
+                "id": "20"
+              },
+              {
+                "description": "For profit organizations other than small businesses",
+                "id": "22"
               }
             ],
             "awardCeiling": "975000",
@@ -13018,7 +13019,7 @@
         "signature": "2e7c22ffbf506127d2f0530a741cbc3dcb22727dce28525cb25ea14bde801ff5"
       },
       "334972": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "Centers for Disease Control and Prevention - ERA",
           "agencyDetails": {
@@ -13041,60 +13042,60 @@
                 "id": "13"
               },
               {
-                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "12"
-              },
-              {
-                "description": "Independent school districts",
-                "id": "05"
-              },
-              {
-                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
-                "id": "25"
-              },
-              {
-                "description": "Public housing authorities/Indian housing authorities",
-                "id": "08"
-              },
-              {
                 "description": "County governments",
                 "id": "01"
-              },
-              {
-                "description": "City or township governments",
-                "id": "02"
-              },
-              {
-                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
-                "id": "11"
-              },
-              {
-                "description": "Native American tribal governments (Federally recognized)",
-                "id": "07"
-              },
-              {
-                "description": "Private institutions of higher education",
-                "id": "20"
-              },
-              {
-                "description": "State governments",
-                "id": "00"
-              },
-              {
-                "description": "Special district governments",
-                "id": "04"
-              },
-              {
-                "description": "Public and State controlled institutions of higher education",
-                "id": "06"
               },
               {
                 "description": "For profit organizations other than small businesses",
                 "id": "22"
               },
               {
+                "description": "State governments",
+                "id": "00"
+              },
+              {
+                "description": "Independent school districts",
+                "id": "05"
+              },
+              {
+                "description": "Public housing authorities/Indian housing authorities",
+                "id": "08"
+              },
+              {
+                "description": "Native American tribal governments (Federally recognized)",
+                "id": "07"
+              },
+              {
+                "description": "Special district governments",
+                "id": "04"
+              },
+              {
+                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
+                "id": "11"
+              },
+              {
                 "description": "Small businesses",
                 "id": "23"
+              },
+              {
+                "description": "Private institutions of higher education",
+                "id": "20"
+              },
+              {
+                "description": "City or township governments",
+                "id": "02"
+              },
+              {
+                "description": "Public and State controlled institutions of higher education",
+                "id": "06"
+              },
+              {
+                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "12"
+              },
+              {
+                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
+                "id": "25"
               }
             ],
             "awardCeiling": "975000",
@@ -13121,7 +13122,7 @@
         "signature": "c73a60a2fb5750133abcbf92554507783d423bd8ad7ff60a703366ef320820f2"
       },
       "337086": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "Centers for Disease Control - OPHPR",
           "agencyDetails": {
@@ -13140,28 +13141,28 @@
             "applicantEligibilityDesc": "This NOFO is intended for states, political subdivisions of states, and other public entities as specified in section 317(a) of the Public Health Service Act (42 USC &sect; 247(b)). It targets public health organizations that serve state, tribal, local, and territorial populations and are constitutionally empowered to protect the health and welfare of their respective communities, focused on executing emergency preparedness and response services. To demonstrate existing capacity for public health emergency management, applicants must submit their response organizational charts and work plans. If these documents are not submitted, the application will be considered non-responsive and will receive no further review.    Local government organizations or their bona fide agents must:Serve a county population of 2 million or more or serve a city population of 400,000 or more. Populations for county and city jurisdictions are based on the following 2021 U.S. Census resources:City and Town Population Totals: 2020-2021 (census.gov) U.S. Census &ndash; Annual Estimates of the Resident Population for Incorporated Places, Ranked by July 1, 2021, Population: April 1, 2020, to July 1, 2021County Population Totals: 2020-2021 (census.gov) U.S. Census &ndash; Annual Estimates for 2021Sources may be updated as census data change over timeLocal jurisdictions that meet population requirements are listed in Attachment A.Tribal governments or their bona fide agents must be federally recognized and:Serve a population of 50,000 or more.CDC will reopen this announcement periodically over the five-year NOFO period to accommodate population changes and ensure we maintain a current roster of eligible jurisdictions for emergency response. Sources for future postings of this NOFO will be based on the latest census data and may change over time.The anticipated dates for reposting are noted below. Applicants will have 60 days to submit an application.July 2024July 2025July 2026",
             "applicantTypes": [
               {
-                "description": "County governments",
-                "id": "01"
-              },
-              {
-                "description": "Special district governments",
-                "id": "04"
+                "description": "State governments",
+                "id": "00"
               },
               {
                 "description": "City or township governments",
                 "id": "02"
               },
               {
-                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
-                "id": "25"
-              },
-              {
                 "description": "Native American tribal governments (Federally recognized)",
                 "id": "07"
               },
               {
-                "description": "State governments",
-                "id": "00"
+                "description": "County governments",
+                "id": "01"
+              },
+              {
+                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
+                "id": "25"
+              },
+              {
+                "description": "Special district governments",
+                "id": "04"
               }
             ],
             "awardCeiling": "5000000",
@@ -13188,7 +13189,7 @@
         "signature": "32a9b527dcbf957888ad3ec190b3eebd2f33bf21e359fffaee5199a32aaa6c0a"
       },
       "337347": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "U.S. Mission to North Macedonia",
           "agencyDetails": {
@@ -13236,7 +13237,7 @@
         "signature": "2d5eb368781027714337c63a3462c54a60b8132009ea80a78cc65d4faac59c77"
       },
       "339728": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "Dept of the Army -- Materiel Command",
           "agencyDetails": {
@@ -13282,7 +13283,7 @@
         "signature": "74f7c7864b181342403e8d8546ec5fd4f92ef08a3900699f1b06b04cb81f7d93"
       },
       "341723": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "Food and Drug Administration",
           "agencyDetails": {
@@ -13298,36 +13299,48 @@
             "agencyContactName": "Shashi Malhotra\r\nGrants Management Specialist",
             "applicantTypes": [
               {
-                "description": "Special district governments",
-                "id": "04"
-              },
-              {
-                "description": "City or township governments",
-                "id": "02"
-              },
-              {
-                "description": "Small businesses",
-                "id": "23"
-              },
-              {
-                "description": "Independent school districts",
-                "id": "05"
-              },
-              {
-                "description": "For profit organizations other than small businesses",
-                "id": "22"
-              },
-              {
-                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "12"
-              },
-              {
                 "description": "State governments",
                 "id": "00"
               },
               {
                 "description": "Private institutions of higher education",
                 "id": "20"
+              },
+              {
+                "description": "Public and State controlled institutions of higher education",
+                "id": "06"
+              },
+              {
+                "description": "For profit organizations other than small businesses",
+                "id": "22"
+              },
+              {
+                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
+                "id": "11"
+              },
+              {
+                "description": "Native American tribal governments (Federally recognized)",
+                "id": "07"
+              },
+              {
+                "description": "Special district governments",
+                "id": "04"
+              },
+              {
+                "description": "Small businesses",
+                "id": "23"
+              },
+              {
+                "description": "City or township governments",
+                "id": "02"
+              },
+              {
+                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "12"
+              },
+              {
+                "description": "County governments",
+                "id": "01"
               },
               {
                 "description": "Public housing authorities/Indian housing authorities",
@@ -13338,20 +13351,8 @@
                 "id": "13"
               },
               {
-                "description": "County governments",
-                "id": "01"
-              },
-              {
-                "description": "Native American tribal governments (Federally recognized)",
-                "id": "07"
-              },
-              {
-                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
-                "id": "11"
-              },
-              {
-                "description": "Public and State controlled institutions of higher education",
-                "id": "06"
+                "description": "Independent school districts",
+                "id": "05"
               }
             ],
             "createTimeStampStr": "2022-08-01-17-36-30",
@@ -13374,7 +13375,7 @@
         "signature": "8dd14bd34ba2024d58ed5b9a77d94ba9a6ca6fd708ab452fb433d35275239457"
       },
       "342810": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "Food and Drug Administration",
           "agencyDetails": {
@@ -13390,56 +13391,56 @@
             "agencyContactName": "Janelle Fundersburg\r\nGrantor",
             "applicantTypes": [
               {
-                "description": "For profit organizations other than small businesses",
-                "id": "22"
-              },
-              {
-                "description": "Small businesses",
-                "id": "23"
-              },
-              {
-                "description": "Private institutions of higher education",
-                "id": "20"
-              },
-              {
-                "description": "Public housing authorities/Indian housing authorities",
-                "id": "08"
-              },
-              {
-                "description": "State governments",
-                "id": "00"
-              },
-              {
-                "description": "Native American tribal governments (Federally recognized)",
-                "id": "07"
+                "description": "Public and State controlled institutions of higher education",
+                "id": "06"
               },
               {
                 "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
                 "id": "13"
               },
               {
-                "description": "Special district governments",
-                "id": "04"
-              },
-              {
-                "description": "Public and State controlled institutions of higher education",
-                "id": "06"
-              },
-              {
-                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
-                "id": "11"
-              },
-              {
-                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "12"
+                "description": "For profit organizations other than small businesses",
+                "id": "22"
               },
               {
                 "description": "County governments",
                 "id": "01"
               },
               {
+                "description": "Native American tribal governments (Federally recognized)",
+                "id": "07"
+              },
+              {
+                "description": "State governments",
+                "id": "00"
+              },
+              {
+                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "12"
+              },
+              {
+                "description": "Private institutions of higher education",
+                "id": "20"
+              },
+              {
+                "description": "Small businesses",
+                "id": "23"
+              },
+              {
+                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
+                "id": "11"
+              },
+              {
                 "description": "Independent school districts",
                 "id": "05"
+              },
+              {
+                "description": "Public housing authorities/Indian housing authorities",
+                "id": "08"
+              },
+              {
+                "description": "Special district governments",
+                "id": "04"
               }
             ],
             "createTimeStampStr": "2022-07-28-17-52-51",
@@ -13462,7 +13463,7 @@
         "signature": "f46bf88b6ef9540fc18efbc2f7c3552fe710fc8ab84ff76e47c5dbab69fd0f29"
       },
       "343653": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "agencyDetails": {
@@ -13605,7 +13606,7 @@
         "signature": "c1884874a18503d07d72bc63fd23ab70be3c5cda74eaaa81d7e2e43305408d83"
       },
       "345738": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "Centers for Disease Control and Prevention - ERA",
           "agencyDetails": {
@@ -13624,6 +13625,46 @@
             "applicantEligibilityDesc": "N/A",
             "applicantTypes": [
               {
+                "description": "Special district governments",
+                "id": "04"
+              },
+              {
+                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
+                "id": "11"
+              },
+              {
+                "description": "State governments",
+                "id": "00"
+              },
+              {
+                "description": "Private institutions of higher education",
+                "id": "20"
+              },
+              {
+                "description": "City or township governments",
+                "id": "02"
+              },
+              {
+                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "12"
+              },
+              {
+                "description": "Public housing authorities/Indian housing authorities",
+                "id": "08"
+              },
+              {
+                "description": "County governments",
+                "id": "01"
+              },
+              {
+                "description": "Native American tribal governments (Federally recognized)",
+                "id": "07"
+              },
+              {
+                "description": "Independent school districts",
+                "id": "05"
+              },
+              {
                 "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
                 "id": "13"
               },
@@ -13636,48 +13677,8 @@
                 "id": "23"
               },
               {
-                "description": "Special district governments",
-                "id": "04"
-              },
-              {
-                "description": "Native American tribal governments (Federally recognized)",
-                "id": "07"
-              },
-              {
                 "description": "Public and State controlled institutions of higher education",
                 "id": "06"
-              },
-              {
-                "description": "Public housing authorities/Indian housing authorities",
-                "id": "08"
-              },
-              {
-                "description": "State governments",
-                "id": "00"
-              },
-              {
-                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "12"
-              },
-              {
-                "description": "County governments",
-                "id": "01"
-              },
-              {
-                "description": "City or township governments",
-                "id": "02"
-              },
-              {
-                "description": "Independent school districts",
-                "id": "05"
-              },
-              {
-                "description": "Private institutions of higher education",
-                "id": "20"
-              },
-              {
-                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
-                "id": "11"
               }
             ],
             "awardCeiling": "5750000",
@@ -17141,7 +17142,7 @@
         "signature": "fc26ab7f8ea0c13f363b5ae625594e1742f009700a9f090e88b11446ef780d40"
       },
       "359150": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "National Institutes of Health",
           "agencyDetails": {
@@ -17160,64 +17161,64 @@
             "applicantEligibilityDesc": "Refer to Section III. Eligibility Information in the NOFO for additional information on eligibility.Foreign Organizations/International Collaborations:Non-domestic (non-U.S.) Entities (Foreign Organizations) are not eligible to apply.Non-domestic (non-U.S.) components of U.S. Organizations are not eligible to apply.Foreign components, as defined in the NIH Grants Policy Statement, are not allowed.",
             "applicantTypes": [
               {
-                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
-                "id": "11"
-              },
-              {
-                "description": "County governments",
-                "id": "01"
-              },
-              {
-                "description": "For profit organizations other than small businesses",
-                "id": "22"
-              },
-              {
-                "description": "Private institutions of higher education",
-                "id": "20"
-              },
-              {
-                "description": "Small businesses",
-                "id": "23"
-              },
-              {
-                "description": "Native American tribal governments (Federally recognized)",
-                "id": "07"
-              },
-              {
-                "description": "Special district governments",
-                "id": "04"
-              },
-              {
-                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "13"
-              },
-              {
-                "description": "City or township governments",
-                "id": "02"
-              },
-              {
-                "description": "Independent school districts",
-                "id": "05"
+                "description": "State governments",
+                "id": "00"
               },
               {
                 "description": "Public housing authorities/Indian housing authorities",
                 "id": "08"
               },
               {
+                "description": "Private institutions of higher education",
+                "id": "20"
+              },
+              {
+                "description": "Special district governments",
+                "id": "04"
+              },
+              {
                 "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
                 "id": "25"
+              },
+              {
+                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
+                "id": "11"
+              },
+              {
+                "description": "Native American tribal governments (Federally recognized)",
+                "id": "07"
               },
               {
                 "description": "Public and State controlled institutions of higher education",
                 "id": "06"
               },
               {
+                "description": "For profit organizations other than small businesses",
+                "id": "22"
+              },
+              {
+                "description": "County governments",
+                "id": "01"
+              },
+              {
+                "description": "Small businesses",
+                "id": "23"
+              },
+              {
+                "description": "Independent school districts",
+                "id": "05"
+              },
+              {
                 "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
                 "id": "12"
               },
               {
-                "description": "State governments",
-                "id": "00"
+                "description": "City or township governments",
+                "id": "02"
+              },
+              {
+                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "13"
               }
             ],
             "awardCeiling": "none",
@@ -17345,7 +17346,7 @@
         "signature": "dbb4c8760321c688a0441c11e91f082ed3feb774bacef8b79bd3dd5c154c58fe"
       },
       "359159": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "National Institutes of Health",
           "agencyDetails": {
@@ -17364,36 +17365,52 @@
             "applicantEligibilityDesc": "Refer to Section III. Eligibility Information in the NOFO for additional information on eligibility.Foreign Organizations/International Collaborations:Non-domestic (non-U.S.) Entities (Foreign Organizations) are not eligible to apply.Non-domestic (non-U.S.) components of U.S. Organizations are not eligible to apply.Foreign components, as defined in the NIH Grants Policy Statement, are not allowed.",
             "applicantTypes": [
               {
-                "description": "County governments",
-                "id": "01"
-              },
-              {
-                "description": "State governments",
-                "id": "00"
-              },
-              {
                 "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
                 "id": "25"
               },
               {
-                "description": "Special district governments",
-                "id": "04"
+                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "13"
               },
               {
-                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "12"
+                "description": "Independent school districts",
+                "id": "05"
+              },
+              {
+                "description": "Public and State controlled institutions of higher education",
+                "id": "06"
               },
               {
                 "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
                 "id": "11"
               },
               {
+                "description": "Public housing authorities/Indian housing authorities",
+                "id": "08"
+              },
+              {
+                "description": "Native American tribal governments (Federally recognized)",
+                "id": "07"
+              },
+              {
                 "description": "Small businesses",
                 "id": "23"
               },
               {
-                "description": "Public housing authorities/Indian housing authorities",
-                "id": "08"
+                "description": "Special district governments",
+                "id": "04"
+              },
+              {
+                "description": "County governments",
+                "id": "01"
+              },
+              {
+                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "12"
+              },
+              {
+                "description": "City or township governments",
+                "id": "02"
               },
               {
                 "description": "Private institutions of higher education",
@@ -17404,24 +17421,8 @@
                 "id": "22"
               },
               {
-                "description": "City or township governments",
-                "id": "02"
-              },
-              {
-                "description": "Public and State controlled institutions of higher education",
-                "id": "06"
-              },
-              {
-                "description": "Native American tribal governments (Federally recognized)",
-                "id": "07"
-              },
-              {
-                "description": "Independent school districts",
-                "id": "05"
-              },
-              {
-                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "13"
+                "description": "State governments",
+                "id": "00"
               }
             ],
             "awardCeiling": "none",
@@ -17447,7 +17448,7 @@
         "signature": "b61ce821091533bb0dfe46e0e8eb0024ef5aab3bb40b2e50799125e1e9dbd788"
       },
       "359161": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "National Institutes of Health",
           "agencyDetails": {
@@ -17470,16 +17471,28 @@
                 "id": "04"
               },
               {
+                "description": "State governments",
+                "id": "00"
+              },
+              {
+                "description": "City or township governments",
+                "id": "02"
+              },
+              {
+                "description": "For profit organizations other than small businesses",
+                "id": "22"
+              },
+              {
+                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "13"
+              },
+              {
                 "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
                 "id": "25"
               },
               {
-                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
-                "id": "11"
-              },
-              {
-                "description": "Private institutions of higher education",
-                "id": "20"
+                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "12"
               },
               {
                 "description": "Public and State controlled institutions of higher education",
@@ -17490,40 +17503,28 @@
                 "id": "23"
               },
               {
-                "description": "State governments",
-                "id": "00"
-              },
-              {
-                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "13"
-              },
-              {
-                "description": "Independent school districts",
-                "id": "05"
-              },
-              {
                 "description": "Native American tribal governments (Federally recognized)",
                 "id": "07"
-              },
-              {
-                "description": "For profit organizations other than small businesses",
-                "id": "22"
-              },
-              {
-                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "12"
-              },
-              {
-                "description": "Public housing authorities/Indian housing authorities",
-                "id": "08"
               },
               {
                 "description": "County governments",
                 "id": "01"
               },
               {
-                "description": "City or township governments",
-                "id": "02"
+                "description": "Independent school districts",
+                "id": "05"
+              },
+              {
+                "description": "Public housing authorities/Indian housing authorities",
+                "id": "08"
+              },
+              {
+                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
+                "id": "11"
+              },
+              {
+                "description": "Private institutions of higher education",
+                "id": "20"
               }
             ],
             "awardCeiling": "none",
@@ -17549,7 +17550,7 @@
         "signature": "e17654e8ad1cc78681a3787316c32a9a126ad6b0ed20df51daa9d78a552b56e5"
       },
       "359169": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "National Institutes of Health",
           "agencyDetails": {
@@ -17568,64 +17569,64 @@
             "applicantEligibilityDesc": "Other Eligible ApplicantsIndian/Native American Tribal Governments (Other than Federally Recognized);Eligible Agencies of the Federal Government;U.S. Territory or Possession;Faith-based or Community-based Organizations;Regional Organizations;Non-domestic (non-U.S.) Entities (Foreign Institutions).",
             "applicantTypes": [
               {
-                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
-                "id": "25"
+                "description": "State governments",
+                "id": "00"
               },
               {
-                "description": "Independent school districts",
-                "id": "05"
-              },
-              {
-                "description": "County governments",
-                "id": "01"
+                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "13"
               },
               {
                 "description": "Private institutions of higher education",
                 "id": "20"
               },
               {
-                "description": "Public and State controlled institutions of higher education",
-                "id": "06"
+                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
+                "id": "11"
+              },
+              {
+                "description": "County governments",
+                "id": "01"
+              },
+              {
+                "description": "Independent school districts",
+                "id": "05"
               },
               {
                 "description": "Special district governments",
                 "id": "04"
               },
               {
-                "description": "For profit organizations other than small businesses",
-                "id": "22"
-              },
-              {
-                "description": "State governments",
-                "id": "00"
-              },
-              {
-                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "12"
-              },
-              {
-                "description": "Native American tribal governments (Federally recognized)",
-                "id": "07"
-              },
-              {
-                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
-                "id": "11"
-              },
-              {
                 "description": "Small businesses",
                 "id": "23"
+              },
+              {
+                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
+                "id": "25"
               },
               {
                 "description": "City or township governments",
                 "id": "02"
               },
               {
+                "description": "Public and State controlled institutions of higher education",
+                "id": "06"
+              },
+              {
+                "description": "Native American tribal governments (Federally recognized)",
+                "id": "07"
+              },
+              {
+                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "12"
+              },
+              {
                 "description": "Public housing authorities/Indian housing authorities",
                 "id": "08"
               },
               {
-                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "13"
+                "description": "For profit organizations other than small businesses",
+                "id": "22"
               }
             ],
             "awardCeiling": "none",
@@ -17651,7 +17652,7 @@
         "signature": "db61425ff0479290527d77722c78aa5711941bb85cb49fc8ffe1c46a158267bc"
       },
       "359170": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "National Institutes of Health",
           "agencyDetails": {
@@ -17670,52 +17671,48 @@
             "applicantEligibilityDesc": "Refer to Section III. Eligibility Information in the NOFO for additional information on eligibilityForeign Organizations/Foreign CollaborationsNon-domestic (non-U.S.) Entities (Foreign Organizations) are eligible to apply.Non-domestic (non-U.S.) components of U.S. Organizations are eligible to apply.Foreign components, as defined in the NIH Grants Policy Statement, are allowed. NIH will no longer issue awards (i.e., new, renewal, or non-competing continuation) to domestic or foreign entities that involve foreign subawards/subcontracts. All NIH-funded research involving foreign subawards/subcontracts must be submitted in response to a NOFO that is specifically designated for funded international collaborations. See NIH Grants Policy Statement 16.8 Collaborative International Research Awards.Applications involving foreign subawards/subcontracts submitted in response to this NOFO will be deemed noncompliant and will not be considered for funding. This policy applies to all monetary international collaborations resulting in foreign subawards/subcontracts, however, it does not preclude unfunded international collaborations or foreign components, funding for foreign consultants, or procurement of unique equipment or supplies from foreign vendors.",
             "applicantTypes": [
               {
-                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
-                "id": "25"
-              },
-              {
-                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
-                "id": "11"
+                "description": "Special district governments",
+                "id": "04"
               },
               {
                 "description": "For profit organizations other than small businesses",
                 "id": "22"
               },
               {
-                "description": "Private institutions of higher education",
-                "id": "20"
+                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
+                "id": "25"
               },
               {
                 "description": "Public housing authorities/Indian housing authorities",
                 "id": "08"
               },
               {
-                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "13"
-              },
-              {
-                "description": "State governments",
-                "id": "00"
-              },
-              {
                 "description": "County governments",
                 "id": "01"
-              },
-              {
-                "description": "Small businesses",
-                "id": "23"
               },
               {
                 "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
                 "id": "12"
               },
               {
-                "description": "Special district governments",
-                "id": "04"
+                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
+                "id": "11"
               },
               {
-                "description": "Public and State controlled institutions of higher education",
-                "id": "06"
+                "description": "Small businesses",
+                "id": "23"
+              },
+              {
+                "description": "State governments",
+                "id": "00"
+              },
+              {
+                "description": "City or township governments",
+                "id": "02"
+              },
+              {
+                "description": "Private institutions of higher education",
+                "id": "20"
               },
               {
                 "description": "Independent school districts",
@@ -17726,8 +17723,12 @@
                 "id": "07"
               },
               {
-                "description": "City or township governments",
-                "id": "02"
+                "description": "Public and State controlled institutions of higher education",
+                "id": "06"
+              },
+              {
+                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "13"
               }
             ],
             "awardCeiling": "800000",
@@ -17753,7 +17754,7 @@
         "signature": "2648105cec965121095193d4b0a3f8c48e716c5fa68faec1f48461860e78b503"
       },
       "359266": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "U.S. Mission to Greece",
           "agencyDetails": {
@@ -17796,7 +17797,7 @@
         "signature": "f1648865b621efacde5194ffaabc83fb019a4eee890fc5b2e595284aff072cc0"
       },
       "359270": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "National Institutes of Health",
           "agencyDetails": {
@@ -17815,44 +17816,12 @@
             "applicantEligibilityDesc": "Refer to Section III. Eligibility Information in the NOFO for additional information on eligibility.Foreign Organizations/International Collaborations:Non-domestic (non-U.S.) Entities (Foreign Organizations) are eligible to apply.Non-domestic (non-U.S.) components of U.S. Organizations are eligible to apply.Foreign components, as defined in the NIH Grants Policy Statement, are allowed.",
             "applicantTypes": [
               {
-                "description": "City or township governments",
-                "id": "02"
-              },
-              {
-                "description": "Public housing authorities/Indian housing authorities",
-                "id": "08"
-              },
-              {
-                "description": "County governments",
-                "id": "01"
-              },
-              {
-                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "12"
-              },
-              {
-                "description": "Private institutions of higher education",
-                "id": "20"
-              },
-              {
-                "description": "Native American tribal governments (Federally recognized)",
-                "id": "07"
-              },
-              {
-                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "13"
-              },
-              {
                 "description": "Public and State controlled institutions of higher education",
                 "id": "06"
               },
               {
-                "description": "State governments",
-                "id": "00"
-              },
-              {
-                "description": "Independent school districts",
-                "id": "05"
+                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "12"
               },
               {
                 "description": "Special district governments",
@@ -17863,16 +17832,48 @@
                 "id": "22"
               },
               {
-                "description": "Small businesses",
-                "id": "23"
+                "description": "Private institutions of higher education",
+                "id": "20"
+              },
+              {
+                "description": "County governments",
+                "id": "01"
+              },
+              {
+                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "13"
+              },
+              {
+                "description": "City or township governments",
+                "id": "02"
+              },
+              {
+                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
+                "id": "25"
+              },
+              {
+                "description": "Public housing authorities/Indian housing authorities",
+                "id": "08"
               },
               {
                 "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
                 "id": "11"
               },
               {
-                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
-                "id": "25"
+                "description": "Small businesses",
+                "id": "23"
+              },
+              {
+                "description": "State governments",
+                "id": "00"
+              },
+              {
+                "description": "Independent school districts",
+                "id": "05"
+              },
+              {
+                "description": "Native American tribal governments (Federally recognized)",
+                "id": "07"
               }
             ],
             "awardCeiling": "none",
@@ -17898,7 +17899,7 @@
         "signature": "60bab2b8758c14924df6869d1ba6e27c7e2038e07d6682eb051341788288ea27"
       },
       "359277": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "National Institutes of Health",
           "agencyDetails": {
@@ -17917,64 +17918,64 @@
             "applicantEligibilityDesc": "Refer to Section III. Eligibility Information in the NOFO for additional information on eligibility.Foreign Organizations/Foreign CollaborationsNon-domestic (non-U.S.) Entities (Foreign Organizations) are eligible to apply.Non-domestic (non-U.S.) components of U.S. Organizations are eligible to apply.Foreign components, as defined in the NIH Grants Policy Statement, are allowed. NIH will no longer issue awards (i.e., new, renewal, or non-competing continuation) to domestic or foreign entities that involve foreign subawards/subcontracts. All NIH-funded research involving foreign subawards/subcontracts must be submitted in response to a NOFO that is specifically designated for funded international collaborations. See NIH Grants Policy Statement 16.8 Collaborative International Research Awards.Applications involving foreign subawards/subcontracts submitted in response to this NOFO will be deemed noncompliant and will not be considered for funding. This policy applies to all monetary international collaborations resulting in foreign subawards/subcontracts, however, it does not preclude unfunded international collaborations or foreign components, funding for foreign consultants, or procurement of unique equipment or supplies from foreign vendors.",
             "applicantTypes": [
               {
-                "description": "City or township governments",
-                "id": "02"
-              },
-              {
-                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "13"
-              },
-              {
-                "description": "For profit organizations other than small businesses",
-                "id": "22"
-              },
-              {
-                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "12"
-              },
-              {
-                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
-                "id": "25"
-              },
-              {
-                "description": "Special district governments",
-                "id": "04"
-              },
-              {
-                "description": "Public housing authorities/Indian housing authorities",
-                "id": "08"
-              },
-              {
-                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
-                "id": "11"
+                "description": "Private institutions of higher education",
+                "id": "20"
               },
               {
                 "description": "State governments",
                 "id": "00"
               },
               {
-                "description": "Private institutions of higher education",
-                "id": "20"
+                "description": "Independent school districts",
+                "id": "05"
               },
               {
-                "description": "Small businesses",
-                "id": "23"
+                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
+                "id": "11"
+              },
+              {
+                "description": "City or township governments",
+                "id": "02"
+              },
+              {
+                "description": "Public housing authorities/Indian housing authorities",
+                "id": "08"
               },
               {
                 "description": "County governments",
                 "id": "01"
               },
               {
-                "description": "Independent school districts",
-                "id": "05"
+                "description": "For profit organizations other than small businesses",
+                "id": "22"
+              },
+              {
+                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "13"
+              },
+              {
+                "description": "Special district governments",
+                "id": "04"
+              },
+              {
+                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
+                "id": "25"
+              },
+              {
+                "description": "Public and State controlled institutions of higher education",
+                "id": "06"
+              },
+              {
+                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "12"
               },
               {
                 "description": "Native American tribal governments (Federally recognized)",
                 "id": "07"
               },
               {
-                "description": "Public and State controlled institutions of higher education",
-                "id": "06"
+                "description": "Small businesses",
+                "id": "23"
               }
             ],
             "awardCeiling": "1500000",
@@ -18000,7 +18001,7 @@
         "signature": "3186ad527637f61183654cbf1032afa066d1e88aa7637addaf10345e1a307da5"
       },
       "359279": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "National Institutes of Health",
           "agencyDetails": {
@@ -18019,6 +18020,18 @@
             "applicantEligibilityDesc": "Refer to Section III. Eligibility Information in the NOFO for additional information on eligibility.Foreign Organizations/International Collaborations:Non-domestic (non-U.S.) Entities (Foreign Organizations) are not eligible to apply.Non-domestic (non-U.S.) components of U.S. Organizations are not eligible to apply.Foreign components, as defined in the NIH Grants Policy Statement, are allowed.",
             "applicantTypes": [
               {
+                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
+                "id": "11"
+              },
+              {
+                "description": "Private institutions of higher education",
+                "id": "20"
+              },
+              {
+                "description": "Special district governments",
+                "id": "04"
+              },
+              {
                 "description": "Small businesses",
                 "id": "23"
               },
@@ -18027,36 +18040,24 @@
                 "id": "25"
               },
               {
-                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
-                "id": "11"
-              },
-              {
                 "description": "State governments",
                 "id": "00"
               },
               {
-                "description": "Special district governments",
-                "id": "04"
+                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "12"
               },
               {
-                "description": "Private institutions of higher education",
-                "id": "20"
-              },
-              {
-                "description": "For profit organizations other than small businesses",
-                "id": "22"
+                "description": "Native American tribal governments (Federally recognized)",
+                "id": "07"
               },
               {
                 "description": "City or township governments",
                 "id": "02"
               },
               {
-                "description": "Public housing authorities/Indian housing authorities",
-                "id": "08"
-              },
-              {
-                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "13"
+                "description": "For profit organizations other than small businesses",
+                "id": "22"
               },
               {
                 "description": "County governments",
@@ -18067,16 +18068,16 @@
                 "id": "06"
               },
               {
+                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "13"
+              },
+              {
+                "description": "Public housing authorities/Indian housing authorities",
+                "id": "08"
+              },
+              {
                 "description": "Independent school districts",
                 "id": "05"
-              },
-              {
-                "description": "Native American tribal governments (Federally recognized)",
-                "id": "07"
-              },
-              {
-                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "12"
               }
             ],
             "awardCeiling": "1250000",
@@ -18102,7 +18103,7 @@
         "signature": "936b8a4ca0ad96cbdbc0e2e6049e64625c163b54988ad2931867d1ecf4cd71b1"
       },
       "359280": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "National Institutes of Health",
           "agencyDetails": {
@@ -18121,20 +18122,28 @@
             "applicantEligibilityDesc": "Refer to Section III. Eligibility Information in the NOFO for additional information on eligibility.Foreign Organizations/International Collaborations:Non-domestic (non-U.S.) Entities (Foreign Organizations) are not eligible to apply.Non-domestic (non-U.S.) components of U.S. Organizations are not eligible to apply.Foreign components, as defined in the NIH Grants Policy Statement, are allowed.",
             "applicantTypes": [
               {
-                "description": "Special district governments",
-                "id": "04"
+                "description": "Small businesses",
+                "id": "23"
               },
               {
-                "description": "State governments",
-                "id": "00"
+                "description": "Native American tribal governments (Federally recognized)",
+                "id": "07"
+              },
+              {
+                "description": "City or township governments",
+                "id": "02"
+              },
+              {
+                "description": "Special district governments",
+                "id": "04"
               },
               {
                 "description": "Private institutions of higher education",
                 "id": "20"
               },
               {
-                "description": "For profit organizations other than small businesses",
-                "id": "22"
+                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
+                "id": "25"
               },
               {
                 "description": "Public housing authorities/Indian housing authorities",
@@ -18145,40 +18154,32 @@
                 "id": "01"
               },
               {
-                "description": "Small businesses",
-                "id": "23"
-              },
-              {
                 "description": "Independent school districts",
                 "id": "05"
               },
               {
-                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
-                "id": "25"
-              },
-              {
-                "description": "Public and State controlled institutions of higher education",
-                "id": "06"
-              },
-              {
-                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
-                "id": "11"
+                "description": "State governments",
+                "id": "00"
               },
               {
                 "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
                 "id": "13"
               },
               {
+                "description": "Public and State controlled institutions of higher education",
+                "id": "06"
+              },
+              {
+                "description": "For profit organizations other than small businesses",
+                "id": "22"
+              },
+              {
+                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
+                "id": "11"
+              },
+              {
                 "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
                 "id": "12"
-              },
-              {
-                "description": "Native American tribal governments (Federally recognized)",
-                "id": "07"
-              },
-              {
-                "description": "City or township governments",
-                "id": "02"
               }
             ],
             "awardCeiling": "2250000",
@@ -20402,7 +20403,7 @@
         "signature": "e4bc876f169fa2dd371b772edd36a33b870d1f057b847bafb5c00195fc6ee643"
       },
       "360048": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "National Institutes of Health",
           "agencyDetails": {
@@ -20421,24 +20422,32 @@
             "applicantEligibilityDesc": "Other Eligible ApplicantsIndian/Native American Tribal Governments (Other than Federally Recognized);Eligible Agencies of the Federal Government;U.S. Territory or Possession;Faith-based or Community-based Organizations;Regional Organizations;Non-domestic (non-U.S.) Entities (Foreign Institutions).",
             "applicantTypes": [
               {
-                "description": "County governments",
-                "id": "01"
+                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
+                "id": "11"
               },
               {
-                "description": "Native American tribal governments (Federally recognized)",
-                "id": "07"
+                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "12"
               },
               {
-                "description": "For profit organizations other than small businesses",
-                "id": "22"
+                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
+                "id": "25"
               },
               {
                 "description": "Independent school districts",
                 "id": "05"
               },
               {
+                "description": "Native American tribal governments (Federally recognized)",
+                "id": "07"
+              },
+              {
                 "description": "Public and State controlled institutions of higher education",
                 "id": "06"
+              },
+              {
+                "description": "State governments",
+                "id": "00"
               },
               {
                 "description": "Public housing authorities/Indian housing authorities",
@@ -20449,36 +20458,28 @@
                 "id": "13"
               },
               {
-                "description": "State governments",
-                "id": "00"
-              },
-              {
-                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "12"
-              },
-              {
-                "description": "City or township governments",
-                "id": "02"
-              },
-              {
                 "description": "Special district governments",
                 "id": "04"
-              },
-              {
-                "description": "Private institutions of higher education",
-                "id": "20"
-              },
-              {
-                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
-                "id": "11"
               },
               {
                 "description": "Small businesses",
                 "id": "23"
               },
               {
-                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
-                "id": "25"
+                "description": "County governments",
+                "id": "01"
+              },
+              {
+                "description": "For profit organizations other than small businesses",
+                "id": "22"
+              },
+              {
+                "description": "City or township governments",
+                "id": "02"
+              },
+              {
+                "description": "Private institutions of higher education",
+                "id": "20"
               }
             ],
             "awardCeiling": "none",
@@ -20843,7 +20844,7 @@
         "signature": "b2a620bccd272198f3acc5b9a54ad55a25fc4337be56a622442cfa2573bb5085"
       },
       "360366": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "National Institutes of Health",
           "agencyDetails": {
@@ -20862,8 +20863,12 @@
             "applicantEligibilityDesc": "Refer to Section III. Eligibility Information in the NOFO for additional information on eligibility.Foreign Organizations/International CollaborationsNon-domestic (non-U.S.) Entities (Foreign Organization) are not eligible to apply.Non-domestic (non-U.S.) components of U.S. Organizations are not eligible to apply.Foreign components, as defined in the NIH Grants Policy Statement, are not allowed.",
             "applicantTypes": [
               {
-                "description": "County governments",
-                "id": "01"
+                "description": "Public and State controlled institutions of higher education",
+                "id": "06"
+              },
+              {
+                "description": "Special district governments",
+                "id": "04"
               },
               {
                 "description": "State governments",
@@ -20874,10 +20879,6 @@
                 "id": "07"
               },
               {
-                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
-                "id": "25"
-              },
-              {
                 "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
                 "id": "11"
               },
@@ -20886,40 +20887,40 @@
                 "id": "22"
               },
               {
-                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "13"
-              },
-              {
-                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "12"
-              },
-              {
-                "description": "Private institutions of higher education",
-                "id": "20"
+                "description": "Public housing authorities/Indian housing authorities",
+                "id": "08"
               },
               {
                 "description": "City or township governments",
                 "id": "02"
               },
               {
-                "description": "Special district governments",
-                "id": "04"
-              },
-              {
                 "description": "Independent school districts",
                 "id": "05"
               },
               {
-                "description": "Public and State controlled institutions of higher education",
-                "id": "06"
+                "description": "Private institutions of higher education",
+                "id": "20"
+              },
+              {
+                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "13"
+              },
+              {
+                "description": "County governments",
+                "id": "01"
               },
               {
                 "description": "Small businesses",
                 "id": "23"
               },
               {
-                "description": "Public housing authorities/Indian housing authorities",
-                "id": "08"
+                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "12"
+              },
+              {
+                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
+                "id": "25"
               }
             ],
             "awardCeiling": "none",
@@ -23538,7 +23539,7 @@
         "signature": "a1ed787f0de104dbe57fcaf04babd4229dcc1ae650c4943201e66fa323389a88"
       },
       "360869": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "National Institutes of Health",
           "agencyDetails": {
@@ -23557,44 +23558,12 @@
             "applicantEligibilityDesc": "Other Eligible ApplicantsIndian/Native American Tribal Governments (Other than Federally Recognized);Eligible Agencies of the Federal Government;U.S. Territory or Possession;Faith-based or Community-based Organizations;Regional Organizations;Non-domestic (non-U.S.) Entities (Foreign Institutions).",
             "applicantTypes": [
               {
-                "description": "City or township governments",
-                "id": "02"
-              },
-              {
-                "description": "Special district governments",
-                "id": "04"
-              },
-              {
-                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "12"
-              },
-              {
-                "description": "Small businesses",
-                "id": "23"
-              },
-              {
-                "description": "State governments",
-                "id": "00"
-              },
-              {
-                "description": "Private institutions of higher education",
-                "id": "20"
-              },
-              {
-                "description": "Public housing authorities/Indian housing authorities",
-                "id": "08"
-              },
-              {
                 "description": "Independent school districts",
                 "id": "05"
               },
               {
-                "description": "Native American tribal governments (Federally recognized)",
-                "id": "07"
-              },
-              {
-                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "13"
+                "description": "Small businesses",
+                "id": "23"
               },
               {
                 "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
@@ -23605,16 +23574,48 @@
                 "id": "01"
               },
               {
-                "description": "Public and State controlled institutions of higher education",
-                "id": "06"
+                "description": "State governments",
+                "id": "00"
               },
               {
                 "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
                 "id": "11"
               },
               {
+                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "13"
+              },
+              {
                 "description": "For profit organizations other than small businesses",
                 "id": "22"
+              },
+              {
+                "description": "City or township governments",
+                "id": "02"
+              },
+              {
+                "description": "Special district governments",
+                "id": "04"
+              },
+              {
+                "description": "Public and State controlled institutions of higher education",
+                "id": "06"
+              },
+              {
+                "description": "Public housing authorities/Indian housing authorities",
+                "id": "08"
+              },
+              {
+                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "12"
+              },
+              {
+                "description": "Private institutions of higher education",
+                "id": "20"
+              },
+              {
+                "description": "Native American tribal governments (Federally recognized)",
+                "id": "07"
               }
             ],
             "awardCeiling": "none",
@@ -23640,7 +23641,7 @@
         "signature": "523fad7bb858f3f826c16c56c6ef90494146b1fed38bd5abaa93d0dc4b64b677"
       },
       "360873": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "National Institutes of Health",
           "agencyDetails": {
@@ -23659,64 +23660,64 @@
             "applicantEligibilityDesc": "Other Eligible ApplicantsIndian/Native American Tribal Governments (Other than Federally Recognized);Eligible Agencies of the Federal Government;U.S. Territory or Possession;Faith-based or Community-based Organizations;Regional Organizations;Non-domestic (non-U.S.) Entities (Foreign Institutions).",
             "applicantTypes": [
               {
-                "description": "State governments",
-                "id": "00"
-              },
-              {
-                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
-                "id": "11"
-              },
-              {
-                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "13"
-              },
-              {
-                "description": "Public housing authorities/Indian housing authorities",
-                "id": "08"
-              },
-              {
-                "description": "For profit organizations other than small businesses",
-                "id": "22"
-              },
-              {
-                "description": "County governments",
-                "id": "01"
-              },
-              {
-                "description": "City or township governments",
-                "id": "02"
-              },
-              {
-                "description": "Independent school districts",
-                "id": "05"
-              },
-              {
-                "description": "Public and State controlled institutions of higher education",
-                "id": "06"
-              },
-              {
                 "description": "Small businesses",
                 "id": "23"
-              },
-              {
-                "description": "Native American tribal governments (Federally recognized)",
-                "id": "07"
               },
               {
                 "description": "Special district governments",
                 "id": "04"
               },
               {
-                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "12"
+                "description": "Public and State controlled institutions of higher education",
+                "id": "06"
+              },
+              {
+                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
+                "id": "11"
+              },
+              {
+                "description": "For profit organizations other than small businesses",
+                "id": "22"
+              },
+              {
+                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "13"
+              },
+              {
+                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
+                "id": "25"
+              },
+              {
+                "description": "City or township governments",
+                "id": "02"
+              },
+              {
+                "description": "Native American tribal governments (Federally recognized)",
+                "id": "07"
+              },
+              {
+                "description": "State governments",
+                "id": "00"
               },
               {
                 "description": "Private institutions of higher education",
                 "id": "20"
               },
               {
-                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
-                "id": "25"
+                "description": "County governments",
+                "id": "01"
+              },
+              {
+                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "12"
+              },
+              {
+                "description": "Public housing authorities/Indian housing authorities",
+                "id": "08"
+              },
+              {
+                "description": "Independent school districts",
+                "id": "05"
               }
             ],
             "awardCeiling": "none",
@@ -25126,7 +25127,7 @@
         "signature": "34016af8a29404f8af7e457efe107814dcea8bcdf6af0d198c98a3b03f32c4bb"
       },
       "361318": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "National Institutes of Health",
           "agencyDetails": {
@@ -25145,12 +25146,24 @@
             "applicantEligibilityDesc": "Foreign Organizations/International CollaborationsNon-domestic (non-U.S.) Entities (Foreign Institutions) are not eligible to apply.Non-domestic (non-U.S.) components of U.S. Organizations are not eligible to apply.",
             "applicantTypes": [
               {
-                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "13"
-              },
-              {
                 "description": "Private institutions of higher education",
                 "id": "20"
+              },
+              {
+                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
+                "id": "11"
+              },
+              {
+                "description": "Native American tribal governments (Federally recognized)",
+                "id": "07"
+              },
+              {
+                "description": "Special district governments",
+                "id": "04"
+              },
+              {
+                "description": "For profit organizations other than small businesses",
+                "id": "22"
               },
               {
                 "description": "Public housing authorities/Indian housing authorities",
@@ -25165,40 +25178,28 @@
                 "id": "06"
               },
               {
-                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "12"
-              },
-              {
-                "description": "Small businesses",
-                "id": "23"
-              },
-              {
-                "description": "State governments",
-                "id": "00"
-              },
-              {
-                "description": "Special district governments",
-                "id": "04"
-              },
-              {
-                "description": "County governments",
-                "id": "01"
-              },
-              {
-                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
-                "id": "11"
-              },
-              {
-                "description": "For profit organizations other than small businesses",
-                "id": "22"
+                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "13"
               },
               {
                 "description": "Independent school districts",
                 "id": "05"
               },
               {
-                "description": "Native American tribal governments (Federally recognized)",
-                "id": "07"
+                "description": "State governments",
+                "id": "00"
+              },
+              {
+                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "12"
+              },
+              {
+                "description": "County governments",
+                "id": "01"
+              },
+              {
+                "description": "Small businesses",
+                "id": "23"
               },
               {
                 "description": "City or township governments",
@@ -25373,7 +25374,7 @@
         "signature": "159e521c7687225c3d3a0ee7ee2104086aa4364a96434d9e52c9b3c386fe835f"
       },
       "361480": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "National Endowment for the Humanities",
           "agencyDetails": {
@@ -25391,22 +25392,6 @@
             "agencyName": "National Endowment for the Humanities",
             "applicantTypes": [
               {
-                "description": "City or township governments",
-                "id": "02"
-              },
-              {
-                "description": "County governments",
-                "id": "01"
-              },
-              {
-                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "12"
-              },
-              {
-                "description": "State governments",
-                "id": "00"
-              },
-              {
                 "description": "Private institutions of higher education",
                 "id": "20"
               },
@@ -25415,12 +25400,28 @@
                 "id": "04"
               },
               {
+                "description": "County governments",
+                "id": "01"
+              },
+              {
                 "description": "Native American tribal governments (Federally recognized)",
                 "id": "07"
               },
               {
+                "description": "City or township governments",
+                "id": "02"
+              },
+              {
                 "description": "Public and State controlled institutions of higher education",
                 "id": "06"
+              },
+              {
+                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "12"
+              },
+              {
+                "description": "State governments",
+                "id": "00"
               }
             ],
             "awardCeiling": "500000",
@@ -25550,7 +25551,7 @@
         "signature": "27912b21e2d5de1e6229296fb2391e26d9c634b5fd0dcc9e13fda6f69ba90e65"
       },
       "361520": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "National Institutes of Health",
           "agencyDetails": {
@@ -25567,24 +25568,24 @@
             "applicantEligibilityDesc": "Other Eligible ApplicantsIndian/Native American Tribal Governments (Other than Federally Recognized);Eligible Agencies of the Federal Government;U.S. Territory or Possession;Faith-based or Community-based Organizations;Regional Organizations;Non-domestic (non-U.S.) Entities (Foreign Institutions).",
             "applicantTypes": [
               {
+                "description": "County governments",
+                "id": "01"
+              },
+              {
                 "description": "Private institutions of higher education",
                 "id": "20"
+              },
+              {
+                "description": "Special district governments",
+                "id": "04"
               },
               {
                 "description": "Independent school districts",
                 "id": "05"
               },
               {
-                "description": "For profit organizations other than small businesses",
-                "id": "22"
-              },
-              {
-                "description": "Public and State controlled institutions of higher education",
-                "id": "06"
-              },
-              {
-                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
-                "id": "25"
+                "description": "Public housing authorities/Indian housing authorities",
+                "id": "08"
               },
               {
                 "description": "State governments",
@@ -25595,36 +25596,36 @@
                 "id": "07"
               },
               {
-                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "12"
-              },
-              {
-                "description": "Special district governments",
-                "id": "04"
-              },
-              {
-                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "13"
-              },
-              {
                 "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
                 "id": "11"
               },
               {
-                "description": "Public housing authorities/Indian housing authorities",
-                "id": "08"
-              },
-              {
-                "description": "County governments",
-                "id": "01"
+                "description": "For profit organizations other than small businesses",
+                "id": "22"
               },
               {
                 "description": "Small businesses",
                 "id": "23"
               },
               {
+                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "13"
+              },
+              {
+                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "12"
+              },
+              {
+                "description": "Public and State controlled institutions of higher education",
+                "id": "06"
+              },
+              {
                 "description": "City or township governments",
                 "id": "02"
+              },
+              {
+                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
+                "id": "25"
               }
             ],
             "createTimeStampStr": "2026-03-16-12-46-19",
@@ -25647,7 +25648,7 @@
         "signature": "c1d7a01f9a2e30236d7db9f8f821a7b5b03cfb49d0dd9522452233ac2391bd50"
       },
       "361526": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "Office of Science",
           "agencyDetails": {
@@ -26026,7 +26027,7 @@
         "signature": "ac2e8c3b0c7de1aaa71d41a7e97c353189af3a0a724324415daded24435ec3bc"
       },
       "361817": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "National Institutes of Health",
           "agencyDetails": {
@@ -26049,8 +26050,16 @@
                 "id": "22"
               },
               {
-                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "13"
+                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
+                "id": "25"
+              },
+              {
+                "description": "Independent school districts",
+                "id": "05"
+              },
+              {
+                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "12"
               },
               {
                 "description": "State governments",
@@ -26061,48 +26070,40 @@
                 "id": "01"
               },
               {
-                "description": "Public housing authorities/Indian housing authorities",
-                "id": "08"
-              },
-              {
-                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
-                "id": "11"
-              },
-              {
                 "description": "City or township governments",
                 "id": "02"
-              },
-              {
-                "description": "Independent school districts",
-                "id": "05"
-              },
-              {
-                "description": "Native American tribal governments (Federally recognized)",
-                "id": "07"
               },
               {
                 "description": "Small businesses",
                 "id": "23"
               },
               {
-                "description": "Special district governments",
-                "id": "04"
-              },
-              {
-                "description": "Private institutions of higher education",
-                "id": "20"
-              },
-              {
                 "description": "Public and State controlled institutions of higher education",
                 "id": "06"
               },
               {
-                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
-                "id": "25"
+                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "13"
               },
               {
-                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "12"
+                "description": "Native American tribal governments (Federally recognized)",
+                "id": "07"
+              },
+              {
+                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
+                "id": "11"
+              },
+              {
+                "description": "Special district governments",
+                "id": "04"
+              },
+              {
+                "description": "Public housing authorities/Indian housing authorities",
+                "id": "08"
+              },
+              {
+                "description": "Private institutions of higher education",
+                "id": "20"
               }
             ],
             "awardCeiling": "none",
@@ -26335,7 +26336,7 @@
         "signature": "3322ba5cc5be8dafd3bb80b6f772c6536bc83843d7577b7efef79cb2cec3cd07"
       },
       "361833": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "National Institutes of Health",
           "agencyDetails": {
@@ -26354,12 +26355,36 @@
             "applicantEligibilityDesc": "Refer to Section III. Eligibility Information in the NOFO for additional information on eligibility.Foreign Organizations/International CollaborationsNon-domestic (non-U.S.) Entities (Foreign Organizations) are not eligible to apply.Non-domestic (non-U.S.) components of U.S. Organizations are not eligible to apply.Foreign components, as defined in the NIH Grants Policy Statement, are allowed.NIH will no longer issue awards (i.e., new, renewal, or non-competing continuation) to domestic or foreign entities that involve foreign subawards/subcontracts. All NIH-funded research involving foreign subawards/subcontracts must be submitted in response to a NOFO that is specifically designated for funded international collaborations. See NIH Grants Policy Statement 16.8 Collaborative International Research Awards.Applications involving foreign subawards/subcontracts submitted in response to this NOFO will be deemed noncompliant and will not be considered for funding. This policy applies to all monetary international collaborations resulting in foreign subawards/subcontracts, however, it does not preclude unfunded international collaborations or foreign components, funding for foreign consultants, or procurement of unique equipment or supplies from foreign vendors.",
             "applicantTypes": [
               {
-                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "12"
-              },
-              {
                 "description": "Special district governments",
                 "id": "04"
+              },
+              {
+                "description": "For profit organizations other than small businesses",
+                "id": "22"
+              },
+              {
+                "description": "Private institutions of higher education",
+                "id": "20"
+              },
+              {
+                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
+                "id": "25"
+              },
+              {
+                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "13"
+              },
+              {
+                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
+                "id": "11"
+              },
+              {
+                "description": "Small businesses",
+                "id": "23"
+              },
+              {
+                "description": "City or township governments",
+                "id": "02"
               },
               {
                 "description": "Public and State controlled institutions of higher education",
@@ -26374,44 +26399,20 @@
                 "id": "00"
               },
               {
-                "description": "County governments",
-                "id": "01"
-              },
-              {
-                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
-                "id": "25"
-              },
-              {
-                "description": "Private institutions of higher education",
-                "id": "20"
-              },
-              {
-                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
-                "id": "11"
-              },
-              {
-                "description": "City or township governments",
-                "id": "02"
-              },
-              {
-                "description": "Public housing authorities/Indian housing authorities",
-                "id": "08"
-              },
-              {
-                "description": "For profit organizations other than small businesses",
-                "id": "22"
-              },
-              {
-                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "13"
-              },
-              {
                 "description": "Independent school districts",
                 "id": "05"
               },
               {
-                "description": "Small businesses",
-                "id": "23"
+                "description": "County governments",
+                "id": "01"
+              },
+              {
+                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "12"
+              },
+              {
+                "description": "Public housing authorities/Indian housing authorities",
+                "id": "08"
               }
             ],
             "awardCeiling": "none",
@@ -26437,7 +26438,7 @@
         "signature": "2af81a88d135cfb70eb993cf57860cd31a5ebacbba434c70b88e430b482625d0"
       },
       "362029": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "National Institute of Food and Agriculture",
           "agencyDetails": {
@@ -27165,7 +27166,7 @@
         "signature": "2f743f2a20ccee91fdc8b8ba0e0f3efa21c4413edd70171cee5d5a87d38127d5"
       },
       "362222": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "agencyDetails": {
@@ -27212,7 +27213,7 @@
         "signature": "954a5a2928bbd560aecaf78ba2d149cee6d98bf2591fe839aae058ac0cd7ac5a"
       },
       "362224": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "agencyDetails": {
@@ -27259,7 +27260,7 @@
         "signature": "b3616d3bfd1a96c96ec4116097b2935e9b76fd1beb3f14ff248534af274d64b6"
       },
       "362225": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "Defense Health Agency Contracting Activity - DHACA",
           "agencyDetails": {
@@ -29414,7 +29415,7 @@
         "signature": "bf229e2873280e20a7ed6f8d399ec17f06dfce5494cde0a994bba9bf1de3ef46"
       },
       "362905": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "DARPA - Information Processing Technologies Office",
           "agencyDetails": {
@@ -29463,7 +29464,7 @@
         "signature": "620e532247cc9c57b3dc9f052264c00f1c517e6277aac54a4bc54d1e1e5bf6c9"
       },
       "362952": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "National Institutes of Health",
           "agencyDetails": {
@@ -29480,20 +29481,12 @@
             "applicantEligibilityDesc": "Other Eligible ApplicantsIndian/Native American Tribal Governments (Other than Federally Recognized);Eligible Agencies of the Federal Government;U.S. Territory or Possession;Faith-based or Community-based Organizations;Regional Organizations;Non-domestic (non-U.S.) Entities (Foreign Institutions).",
             "applicantTypes": [
               {
-                "description": "For profit organizations other than small businesses",
-                "id": "22"
+                "description": "Special district governments",
+                "id": "04"
               },
               {
-                "description": "Native American tribal governments (Federally recognized)",
-                "id": "07"
-              },
-              {
-                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "12"
-              },
-              {
-                "description": "Independent school districts",
-                "id": "05"
+                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
+                "id": "25"
               },
               {
                 "description": "State governments",
@@ -29508,8 +29501,20 @@
                 "id": "06"
               },
               {
-                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
-                "id": "25"
+                "description": "Native American tribal governments (Federally recognized)",
+                "id": "07"
+              },
+              {
+                "description": "Independent school districts",
+                "id": "05"
+              },
+              {
+                "description": "Small businesses",
+                "id": "23"
+              },
+              {
+                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "12"
               },
               {
                 "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
@@ -29520,24 +29525,20 @@
                 "id": "02"
               },
               {
+                "description": "For profit organizations other than small businesses",
+                "id": "22"
+              },
+              {
                 "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
                 "id": "11"
               },
               {
-                "description": "Small businesses",
-                "id": "23"
-              },
-              {
-                "description": "Special district governments",
-                "id": "04"
+                "description": "Public housing authorities/Indian housing authorities",
+                "id": "08"
               },
               {
                 "description": "Private institutions of higher education",
                 "id": "20"
-              },
-              {
-                "description": "Public housing authorities/Indian housing authorities",
-                "id": "08"
               }
             ],
             "createTimeStampStr": "2026-06-24-13-51-14",
@@ -29911,7 +29912,7 @@
         "signature": "12ba27cf1cf25886710f1094aead1ebebf9415725d18106e1b000a00fd013e98"
       },
       "363147": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "Centers for Disease Control and Prevention - ERA",
           "agencyDetails": {
@@ -29928,32 +29929,36 @@
             "applicantEligibilityDesc": "Additional information to be provided in the NOFO.",
             "applicantTypes": [
               {
-                "description": "State governments",
-                "id": "00"
-              },
-              {
-                "description": "Unrestricted (i.e., open to any type of entity above), subject to any clarification in text field entitled \"Additional Information on Eligibility\"",
-                "id": "99"
-              },
-              {
-                "description": "County governments",
-                "id": "01"
+                "description": "For profit organizations other than small businesses",
+                "id": "22"
               },
               {
                 "description": "Native American tribal governments (Federally recognized)",
                 "id": "07"
               },
               {
-                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "13"
+                "description": "Small businesses",
+                "id": "23"
               },
               {
                 "description": "Special district governments",
                 "id": "04"
               },
               {
+                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "13"
+              },
+              {
                 "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
                 "id": "11"
+              },
+              {
+                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "12"
+              },
+              {
+                "description": "Private institutions of higher education",
+                "id": "20"
               },
               {
                 "description": "City or township governments",
@@ -29964,32 +29969,28 @@
                 "id": "05"
               },
               {
-                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "12"
+                "description": "Public and State controlled institutions of higher education",
+                "id": "06"
               },
               {
                 "description": "Public housing authorities/Indian housing authorities",
                 "id": "08"
               },
               {
+                "description": "State governments",
+                "id": "00"
+              },
+              {
                 "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
                 "id": "25"
               },
               {
-                "description": "Public and State controlled institutions of higher education",
-                "id": "06"
+                "description": "County governments",
+                "id": "01"
               },
               {
-                "description": "Small businesses",
-                "id": "23"
-              },
-              {
-                "description": "For profit organizations other than small businesses",
-                "id": "22"
-              },
-              {
-                "description": "Private institutions of higher education",
-                "id": "20"
+                "description": "Unrestricted (i.e., open to any type of entity above), subject to any clarification in text field entitled \"Additional Information on Eligibility\"",
+                "id": "99"
               }
             ],
             "awardCeiling": "400000",
@@ -30464,7 +30465,7 @@
         "signature": "7b0a6dce2305f5b75cef4ece4efbee3bf7282c95dacd4a3117f9555481277754"
       },
       "363369": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "Centers for Disease Control and Prevention - ERA",
           "agencyDetails": {
@@ -30481,64 +30482,64 @@
             "applicantEligibilityDesc": "Non-domestic (non-U.S.) Entities (Foreign Institutions) are not eligible to apply. Non-domestic (non-U.S.) components of U.S. Organizations are not eligible to apply. Foreign components, as defined in the HHS Grants Policy Statement, are not allowed.",
             "applicantTypes": [
               {
-                "description": "State governments",
-                "id": "00"
-              },
-              {
                 "description": "Special district governments",
                 "id": "04"
-              },
-              {
-                "description": "Small businesses",
-                "id": "23"
-              },
-              {
-                "description": "City or township governments",
-                "id": "02"
-              },
-              {
-                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "13"
-              },
-              {
-                "description": "County governments",
-                "id": "01"
-              },
-              {
-                "description": "Public and State controlled institutions of higher education",
-                "id": "06"
-              },
-              {
-                "description": "For profit organizations other than small businesses",
-                "id": "22"
-              },
-              {
-                "description": "Unrestricted (i.e., open to any type of entity above), subject to any clarification in text field entitled \"Additional Information on Eligibility\"",
-                "id": "99"
-              },
-              {
-                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
-                "id": "11"
-              },
-              {
-                "description": "Private institutions of higher education",
-                "id": "20"
-              },
-              {
-                "description": "Independent school districts",
-                "id": "05"
               },
               {
                 "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
                 "id": "12"
               },
               {
+                "description": "Native American tribal governments (Federally recognized)",
+                "id": "07"
+              },
+              {
+                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "13"
+              },
+              {
+                "description": "Unrestricted (i.e., open to any type of entity above), subject to any clarification in text field entitled \"Additional Information on Eligibility\"",
+                "id": "99"
+              },
+              {
+                "description": "City or township governments",
+                "id": "02"
+              },
+              {
+                "description": "Public and State controlled institutions of higher education",
+                "id": "06"
+              },
+              {
                 "description": "Public housing authorities/Indian housing authorities",
                 "id": "08"
               },
               {
-                "description": "Native American tribal governments (Federally recognized)",
-                "id": "07"
+                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
+                "id": "11"
+              },
+              {
+                "description": "Independent school districts",
+                "id": "05"
+              },
+              {
+                "description": "For profit organizations other than small businesses",
+                "id": "22"
+              },
+              {
+                "description": "State governments",
+                "id": "00"
+              },
+              {
+                "description": "Small businesses",
+                "id": "23"
+              },
+              {
+                "description": "County governments",
+                "id": "01"
+              },
+              {
+                "description": "Private institutions of higher education",
+                "id": "20"
               }
             ],
             "awardCeiling": "1400000",
@@ -30563,7 +30564,7 @@
         "signature": "b9841cc1d20778ffeaa06bd854ac5358278b3f64b928037147d7de09cb31a05d"
       },
       "363374": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "Air Force Office of Scientific Research",
           "agencyDetails": {
@@ -30582,12 +30583,12 @@
             "applicantEligibilityDesc": "",
             "applicantTypes": [
               {
-                "description": "Private institutions of higher education",
-                "id": "20"
-              },
-              {
                 "description": "Public and State controlled institutions of higher education",
                 "id": "06"
+              },
+              {
+                "description": "Private institutions of higher education",
+                "id": "20"
               }
             ],
             "awardCeiling": "7000000",
@@ -30614,7 +30615,7 @@
         "signature": "6ac93005700e22e55631b6549680096e18b2bc658b79a2e896291d342c161eec"
       },
       "363378": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "Office of Naval Research",
           "agencyDetails": {
@@ -30663,7 +30664,7 @@
         "signature": "02642eeb140c6be509e779f813b39fe41454ffede3d6cc033a45d45d5c3e8f5f"
       },
       "363379": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "Dept of the Army -- Materiel Command",
           "agencyDetails": {
@@ -30759,7 +30760,7 @@
         "signature": "254dc5443626e129b69fa0a64883db7d4f0d781d0840d310d45488b76c8b11fc"
       },
       "363412": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "Health Resources and Services Administration",
           "agencyDetails": {
@@ -30880,7 +30881,7 @@
         "signature": "45e825b5d547c2003e6c0eeb6938b6a8313306dde7dfe5a8d85ab16f35141e5f"
       },
       "363446": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "National Highway Traffic Safety Administration",
           "agencyDetails": {
@@ -30903,40 +30904,40 @@
                 "id": "11"
               },
               {
-                "description": "Native American tribal governments (Federally recognized)",
-                "id": "07"
-              },
-              {
-                "description": "City or township governments",
-                "id": "02"
-              },
-              {
-                "description": "Public and State controlled institutions of higher education",
-                "id": "06"
+                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "12"
               },
               {
                 "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
                 "id": "13"
               },
               {
-                "description": "Private institutions of higher education",
-                "id": "20"
-              },
-              {
-                "description": "State governments",
-                "id": "00"
-              },
-              {
-                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "12"
-              },
-              {
                 "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
                 "id": "25"
               },
               {
+                "description": "Native American tribal governments (Federally recognized)",
+                "id": "07"
+              },
+              {
+                "description": "Private institutions of higher education",
+                "id": "20"
+              },
+              {
+                "description": "City or township governments",
+                "id": "02"
+              },
+              {
                 "description": "County governments",
                 "id": "01"
+              },
+              {
+                "description": "Public and State controlled institutions of higher education",
+                "id": "06"
+              },
+              {
+                "description": "State governments",
+                "id": "00"
               },
               {
                 "description": "Special district governments",
@@ -31262,7 +31263,7 @@
         "signature": "de29f47abd639c4e5d584e37c8ba9f5a7980c8a7ebabe827f7a9a246b9e2d0e6"
       },
       "363549": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "Washington Headquarters Services",
           "agencyDetails": {
@@ -31454,7 +31455,7 @@
         "signature": "85ae81c95181b27e441406d62d68b954777078178ff03dbfb4c41507bbdb2d14"
       },
       "363632": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "Office of Naval Research",
           "agencyDetails": {
@@ -31549,7 +31550,7 @@
         "signature": "9767bfc56769bc77755dc80e16c9886d8ae710a65aa5c4b7293969348b57fba0"
       },
       "363660": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "Bureau of African Affairs",
           "agencyDetails": {
@@ -31568,8 +31569,8 @@
             "applicantEligibilityDesc": "Public International Organizations are also eligible to apply. See APS for full eligibility criteria.",
             "applicantTypes": [
               {
-                "description": "Small businesses",
-                "id": "23"
+                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
+                "id": "25"
               },
               {
                 "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
@@ -31580,20 +31581,20 @@
                 "id": "20"
               },
               {
+                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "13"
+              },
+              {
+                "description": "Small businesses",
+                "id": "23"
+              },
+              {
                 "description": "For profit organizations other than small businesses",
                 "id": "22"
               },
               {
                 "description": "Public and State controlled institutions of higher education",
                 "id": "06"
-              },
-              {
-                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
-                "id": "25"
-              },
-              {
-                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "13"
               }
             ],
             "awardCeiling": "50000000",
@@ -31716,7 +31717,7 @@
         "signature": "a3c39f3e71e69a42c7cc2246eab782e0a0c189eb2d49850c1b0bb2b0c2d472d2"
       },
       "363678": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "National Institutes of Health",
           "agencyDetails": {
@@ -31733,64 +31734,64 @@
             "applicantEligibilityDesc": "Other Eligible ApplicantsIndian/Native American Tribal Governments (Other than Federally Recognized);Eligible Agencies of the Federal Government;U.S. Territory or Possession;Faith-based or Community-based Organizations;Regional Organizations;Non-domestic (non-U.S.) Entities (Foreign Institutions).",
             "applicantTypes": [
               {
-                "description": "Public and State controlled institutions of higher education",
-                "id": "06"
-              },
-              {
-                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
-                "id": "25"
-              },
-              {
-                "description": "Small businesses",
-                "id": "23"
-              },
-              {
-                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "12"
-              },
-              {
-                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "13"
-              },
-              {
-                "description": "Public housing authorities/Indian housing authorities",
-                "id": "08"
-              },
-              {
-                "description": "Native American tribal governments (Federally recognized)",
-                "id": "07"
-              },
-              {
-                "description": "State governments",
-                "id": "00"
-              },
-              {
-                "description": "Special district governments",
-                "id": "04"
-              },
-              {
-                "description": "Independent school districts",
-                "id": "05"
-              },
-              {
                 "description": "For profit organizations other than small businesses",
                 "id": "22"
+              },
+              {
+                "description": "Public and State controlled institutions of higher education",
+                "id": "06"
               },
               {
                 "description": "City or township governments",
                 "id": "02"
               },
               {
-                "description": "Private institutions of higher education",
-                "id": "20"
+                "description": "Special district governments",
+                "id": "04"
+              },
+              {
+                "description": "Public housing authorities/Indian housing authorities",
+                "id": "08"
+              },
+              {
+                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
+                "id": "11"
+              },
+              {
+                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
+                "id": "25"
+              },
+              {
+                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "12"
+              },
+              {
+                "description": "Independent school districts",
+                "id": "05"
+              },
+              {
+                "description": "Native American tribal governments (Federally recognized)",
+                "id": "07"
               },
               {
                 "description": "County governments",
                 "id": "01"
               },
               {
-                "description": "Native American tribal organizations (other than Federally recognized tribal governments)",
-                "id": "11"
+                "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "13"
+              },
+              {
+                "description": "Private institutions of higher education",
+                "id": "20"
+              },
+              {
+                "description": "State governments",
+                "id": "00"
+              },
+              {
+                "description": "Small businesses",
+                "id": "23"
               }
             ],
             "createTimeStampStr": "2026-08-20-15-08-55",
@@ -32207,7 +32208,7 @@
         "signature": "b4ff4a9c62b85e1e41deeb621f675b043e8e1d94004514c26c62bcf715886458"
       },
       "363720": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "National Institute of Food and Agriculture",
           "agencyDetails": {
@@ -32355,7 +32356,7 @@
         "signature": "749bee769439831ef2eda060814eeecc6b2c719f0a1a530bba4e6f9280e69583"
       },
       "363738": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "DARPA - Defense Sciences Office",
           "agencyDetails": {
@@ -32404,7 +32405,7 @@
         "signature": "72f45c01a3e07d0ad6d8bedd95a8eaa6132e8dfb22b2da8ca05485a51c8ec6c3"
       },
       "363745": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "Air Force Office of Scientific Research",
           "agencyDetails": {
@@ -32423,20 +32424,20 @@
             "applicantEligibilityDesc": "Only some organizations are eligible to submit proposals for conference or workshop support. We can consider conference or workshop funding requests from U.S. institutions of higher education (IHE) or nonprofit organizations, including foreign public entities and foreign organizations operated primarily for scientific, educational, service, charitable, or similar purposes in the public interest.",
             "applicantTypes": [
               {
-                "description": "Private institutions of higher education",
-                "id": "20"
-              },
-              {
                 "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
                 "id": "12"
+              },
+              {
+                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
+                "id": "25"
               },
               {
                 "description": "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
                 "id": "13"
               },
               {
-                "description": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
-                "id": "25"
+                "description": "Private institutions of higher education",
+                "id": "20"
               },
               {
                 "description": "Public and State controlled institutions of higher education",
@@ -32708,7 +32709,7 @@
         "signature": "ead9aef7a23dd28b94fe3764a13ca75a722ade2d380a298a0d2b34f73fbdd12a"
       },
       "363765": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "Institute of Museum and Library Services",
           "agencyDetails": {
@@ -32756,7 +32757,7 @@
         "signature": "60d3c739c4e3cf2967f76648bdec80a944af86906d9897918b249c6e70262640"
       },
       "363766": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "Institute of Museum and Library Services",
           "agencyDetails": {
@@ -35732,7 +35733,7 @@
         "signature": "7093ba0fe9c273e5ba238cc152733036b1f3bb7cac0150eff8f36d3f4650a201"
       },
       "364030": {
-        "fetched_at": "2026-10-17T14:52:02+00:00",
+        "fetched_at": "2026-10-18T15:28:34+00:00",
         "record": {
           "agency": "National Endowment for the Humanities",
           "agencyDetails": {
@@ -35751,8 +35752,16 @@
             "applicantEligibilityDesc": "See C. Eligibility in the Notice of Funding Opportunity for more information.",
             "applicantTypes": [
               {
+                "description": "City or township governments",
+                "id": "02"
+              },
+              {
                 "description": "Public and State controlled institutions of higher education",
                 "id": "06"
+              },
+              {
+                "description": "State governments",
+                "id": "00"
               },
               {
                 "description": "County governments",
@@ -35763,24 +35772,16 @@
                 "id": "07"
               },
               {
-                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
-                "id": "12"
-              },
-              {
                 "description": "Private institutions of higher education",
                 "id": "20"
-              },
-              {
-                "description": "City or township governments",
-                "id": "02"
               },
               {
                 "description": "Special district governments",
                 "id": "04"
               },
               {
-                "description": "State governments",
-                "id": "00"
+                "description": "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
+                "id": "12"
               }
             ],
             "awardCeiling": "325000",
@@ -36549,7 +36550,7 @@
     "watermark": "2026-09-21T12:30:40+00:00"
   },
   "la_ramp": {
-    "last_success": "2026-10-18T11:59:22+00:00",
+    "last_success": "2026-10-18T15:28:34+00:00",
     "missing": {
       "230374": 1792258201,
       "231908": 1792258201,
@@ -39860,12 +39861,12 @@
     "watermark": "2026-10-17T18:00:11+00:00"
   },
   "nyc_city_record": {
-    "last_success": "2026-10-18T11:59:22+00:00",
+    "last_success": "2026-10-18T15:28:34+00:00",
     "query_version": "nyc-procurement-v1",
     "watermark": "2026-10-17T20:48:51+00:00"
   },
   "sam": {
-    "last_success": "2026-10-18T11:59:22+00:00",
+    "last_success": "2026-10-18T15:28:34+00:00",
     "missing": {
       "001e76ea8fcf4d7d9eadac958b93f111": "\"e057c872af58529911408515ea12a603-25\"",
       "00add3aa25fd46fa84f29eda87489aa4": "\"e057c872af58529911408515ea12a603-25\"",
@@ -192617,7 +192618,7 @@
     "head_hash": "ccde9110b7c7476d15cd3a6cf0c82302310e3bceafb30ab12623182580a56092",
     "head_last_modified": "Sat, 17 Oct 2026 18:03:02 GMT",
     "head_updated": "2026-10-17T18:03:01.802000+00:00",
-    "last_success": "2026-10-18T11:59:22+00:00",
+    "last_success": "2026-10-18T15:28:34+00:00",
     "pending": [],
     "query_version": "placsp-atom-v1",
     "versions": {
@@ -204299,6 +204300,406 @@
       "pending": {
         "cutoff": "20261017",
         "seen": [
+          "677656-2026",
+          "677721-2026",
+          "677763-2026",
+          "677777-2026",
+          "677790-2026",
+          "677800-2026",
+          "677811-2026",
+          "677828-2026",
+          "677836-2026",
+          "677856-2026",
+          "677858-2026",
+          "677863-2026",
+          "677866-2026",
+          "677882-2026",
+          "677919-2026",
+          "677943-2026",
+          "677951-2026",
+          "678003-2026",
+          "678011-2026",
+          "678030-2026",
+          "678039-2026",
+          "678043-2026",
+          "678058-2026",
+          "678174-2026",
+          "678176-2026",
+          "678197-2026",
+          "678226-2026",
+          "678241-2026",
+          "678248-2026",
+          "678249-2026",
+          "678271-2026",
+          "678284-2026",
+          "678290-2026",
+          "678328-2026",
+          "678388-2026",
+          "678413-2026",
+          "678426-2026",
+          "678431-2026",
+          "678437-2026",
+          "678440-2026",
+          "678444-2026",
+          "678456-2026",
+          "678466-2026",
+          "678470-2026",
+          "678491-2026",
+          "678492-2026",
+          "678539-2026",
+          "678546-2026",
+          "678549-2026",
+          "678565-2026",
+          "678595-2026",
+          "678598-2026",
+          "678628-2026",
+          "678648-2026",
+          "678654-2026",
+          "678679-2026",
+          "678686-2026",
+          "678689-2026",
+          "678695-2026",
+          "678704-2026",
+          "678766-2026",
+          "678822-2026",
+          "678831-2026",
+          "678844-2026",
+          "678852-2026",
+          "678884-2026",
+          "678896-2026",
+          "678916-2026",
+          "679023-2026",
+          "679042-2026",
+          "679048-2026",
+          "679058-2026",
+          "679072-2026",
+          "679076-2026",
+          "679103-2026",
+          "679209-2026",
+          "679213-2026",
+          "679245-2026",
+          "679248-2026",
+          "679256-2026",
+          "679277-2026",
+          "679296-2026",
+          "679309-2026",
+          "679313-2026",
+          "679367-2026",
+          "679386-2026",
+          "679387-2026",
+          "679425-2026",
+          "679474-2026",
+          "679552-2026",
+          "679620-2026",
+          "679624-2026",
+          "679646-2026",
+          "679725-2026",
+          "679728-2026",
+          "679758-2026",
+          "679779-2026",
+          "679797-2026",
+          "679814-2026",
+          "679861-2026",
+          "679865-2026",
+          "679903-2026",
+          "679909-2026",
+          "679924-2026",
+          "679927-2026",
+          "679928-2026",
+          "679940-2026",
+          "679994-2026",
+          "680008-2026",
+          "680049-2026",
+          "680069-2026",
+          "680104-2026",
+          "680115-2026",
+          "680133-2026",
+          "680176-2026",
+          "680181-2026",
+          "680188-2026",
+          "680200-2026",
+          "680202-2026",
+          "680243-2026",
+          "680245-2026",
+          "680392-2026",
+          "680410-2026",
+          "680426-2026",
+          "680467-2026",
+          "680495-2026",
+          "680535-2026",
+          "680543-2026",
+          "680545-2026",
+          "680570-2026",
+          "680600-2026",
+          "680601-2026",
+          "680648-2026",
+          "680674-2026",
+          "680680-2026",
+          "680682-2026",
+          "680771-2026",
+          "680780-2026",
+          "680840-2026",
+          "680882-2026",
+          "680890-2026",
+          "680891-2026",
+          "680930-2026",
+          "680978-2026",
+          "680988-2026",
+          "680990-2026",
+          "680994-2026",
+          "681005-2026",
+          "681009-2026",
+          "681021-2026",
+          "681026-2026",
+          "681070-2026",
+          "681084-2026",
+          "681086-2026",
+          "681142-2026",
+          "681163-2026",
+          "681197-2026",
+          "681208-2026",
+          "681238-2026",
+          "681262-2026",
+          "681263-2026",
+          "681266-2026",
+          "681292-2026",
+          "681354-2026",
+          "681365-2026",
+          "681384-2026",
+          "681391-2026",
+          "681454-2026",
+          "681497-2026",
+          "681526-2026",
+          "681576-2026",
+          "681585-2026",
+          "681641-2026",
+          "681654-2026",
+          "681675-2026",
+          "681704-2026",
+          "681705-2026",
+          "681757-2026",
+          "681786-2026",
+          "681799-2026",
+          "681832-2026",
+          "681879-2026",
+          "681918-2026",
+          "681919-2026",
+          "681920-2026",
+          "682006-2026",
+          "682028-2026",
+          "682072-2026",
+          "682151-2026",
+          "682174-2026",
+          "682210-2026",
+          "682223-2026",
+          "682233-2026",
+          "682237-2026",
+          "682300-2026",
+          "682322-2026",
+          "682323-2026",
+          "682357-2026",
+          "682369-2026",
+          "682374-2026",
+          "682392-2026",
+          "682428-2026",
+          "682430-2026",
+          "682432-2026",
+          "682456-2026",
+          "682466-2026",
+          "682566-2026",
+          "682596-2026",
+          "682623-2026",
+          "682625-2026",
+          "682626-2026",
+          "682661-2026",
+          "682700-2026",
+          "682701-2026",
+          "682760-2026",
+          "682783-2026",
+          "682794-2026",
+          "682812-2026",
+          "682853-2026",
+          "682862-2026",
+          "682863-2026",
+          "682897-2026",
+          "682902-2026",
+          "682934-2026",
+          "682945-2026",
+          "682956-2026",
+          "683024-2026",
+          "683036-2026",
+          "683043-2026",
+          "683090-2026",
+          "683096-2026",
+          "683114-2026",
+          "683165-2026",
+          "683185-2026",
+          "683186-2026",
+          "683243-2026",
+          "683248-2026",
+          "683250-2026",
+          "683263-2026",
+          "683295-2026",
+          "683301-2026",
+          "683308-2026",
+          "683329-2026",
+          "683344-2026",
+          "683351-2026",
+          "683384-2026",
+          "683422-2026",
+          "683444-2026",
+          "683507-2026",
+          "683543-2026",
+          "683558-2026",
+          "683571-2026",
+          "683594-2026",
+          "683604-2026",
+          "683605-2026",
+          "683628-2026",
+          "683643-2026",
+          "683667-2026",
+          "683685-2026",
+          "683715-2026",
+          "683720-2026",
+          "683735-2026",
+          "683745-2026",
+          "683748-2026",
+          "683811-2026",
+          "683821-2026",
+          "683865-2026",
+          "683901-2026",
+          "683904-2026",
+          "683963-2026",
+          "683967-2026",
+          "684035-2026",
+          "684057-2026",
+          "684060-2026",
+          "684068-2026",
+          "684130-2026",
+          "684172-2026",
+          "684177-2026",
+          "684192-2026",
+          "684202-2026",
+          "684306-2026",
+          "684311-2026",
+          "684329-2026",
+          "684359-2026",
+          "684396-2026",
+          "684427-2026",
+          "684429-2026",
+          "684490-2026",
+          "684516-2026",
+          "684521-2026",
+          "684569-2026",
+          "684587-2026",
+          "684588-2026",
+          "684606-2026",
+          "684619-2026",
+          "684650-2026",
+          "684655-2026",
+          "684659-2026",
+          "684670-2026",
+          "684729-2026",
+          "684762-2026",
+          "684772-2026",
+          "684794-2026",
+          "684795-2026",
+          "684797-2026",
+          "684803-2026",
+          "684805-2026",
+          "684807-2026",
+          "684810-2026",
+          "684811-2026",
+          "684862-2026",
+          "684872-2026",
+          "684893-2026",
+          "684894-2026",
+          "684906-2026",
+          "684918-2026",
+          "684919-2026",
+          "684929-2026",
+          "684933-2026",
+          "684940-2026",
+          "684967-2026",
+          "684979-2026",
+          "684994-2026",
+          "685011-2026",
+          "685099-2026",
+          "685117-2026",
+          "685142-2026",
+          "685155-2026",
+          "685160-2026",
+          "685179-2026",
+          "685185-2026",
+          "685190-2026",
+          "685253-2026",
+          "685268-2026",
+          "685292-2026",
+          "685294-2026",
+          "685340-2026",
+          "685351-2026",
+          "685361-2026",
+          "685395-2026",
+          "685415-2026",
+          "685446-2026",
+          "685462-2026",
+          "685473-2026",
+          "685481-2026",
+          "685488-2026",
+          "685491-2026",
+          "685498-2026",
+          "685506-2026",
+          "685521-2026",
+          "685556-2026",
+          "685588-2026",
+          "685612-2026",
+          "685617-2026",
+          "685627-2026",
+          "685651-2026",
+          "685659-2026",
+          "685672-2026",
+          "685673-2026",
+          "685678-2026",
+          "685684-2026",
+          "685692-2026",
+          "685705-2026",
+          "685711-2026",
+          "685750-2026",
+          "685811-2026",
+          "685815-2026",
+          "685885-2026",
+          "685888-2026",
+          "685890-2026",
+          "685905-2026",
+          "685907-2026",
+          "685909-2026",
+          "685952-2026",
+          "685978-2026",
+          "685981-2026",
+          "685987-2026",
+          "685996-2026",
+          "686001-2026",
+          "686043-2026",
+          "686064-2026",
+          "686095-2026",
+          "686124-2026",
+          "686159-2026",
+          "686168-2026",
+          "686197-2026",
+          "686202-2026",
+          "686203-2026",
+          "686250-2026",
+          "686260-2026",
+          "686270-2026",
+          "686271-2026",
+          "686297-2026",
+          "686301-2026",
+          "686326-2026",
+          "686385-2026",
+          "686402-2026",
+          "686410-2026",
+          "686412-2026",
+          "686416-2026",
           "686447-2026",
           "686460-2026",
           "686471-2026",
@@ -205901,7 +206302,7 @@
           "718613-2026"
         ],
         "started_at": "2026-10-18T00:40:13+00:00",
-        "token": "AAABoU7kzL0AEUNM9LX9w2k22LNlrNKqLU5ceKw/GTUinmZ9Vd2q2jypDBhLQ3meVKAZmkKANaEK1xfimFRC9bp+0FrDbLKGYQYQCGwRXTjuztgkfWDA7w==",
+        "token": "AAABoU+kNwIAEbmQUXHTMNogL0wA3a5MYOSATD5KXoxdpVTkvx0zeLcNsiPk4Rg21rhfUS/EZUo3D8Tax3NETZxzDYtHZf1FKdM5dkJTnJ+f3abw7OVC+Q==",
         "total": 4335
       },
       "query_version": "dc50cd69e699e702424f7a2fa0dbbdb71d2b5ef1ca29fe0e0c611074889e5725"
@@ -205911,155 +206312,156 @@
       "lanes": {
         "11ab5ce5caed75e38e29ac907f78c74b4eff9b587e1230ddb62f2c391a08d081": {
           "query_version": "40380aedca7c1991a49d09af321fd0706402a4cf08a03f2c748073edeab65366",
-          "watermark": "2026-10-18T11:59:22+00:00"
+          "watermark": "2026-10-18T15:28:34+00:00"
         },
         "14cd75ca65a985a5bbc4a704105a9439e293d9d5935b463661683cab3c27bd95": {
           "query_version": "3e1c21c54ed6328ed7e59f7d5f688f18af0281beb7db6479704d55b32a95d8d9",
-          "watermark": "2026-10-18T11:59:22+00:00"
+          "watermark": "2026-10-18T15:28:34+00:00"
         },
         "26ec1234bbb06dabadf6371696f3a89d1306a17e3c5959f0371d064c6a98bf2c": {
           "query_version": "7afd2abcc4510aab89385e30efb66b88bfdcc41a56b6460a78d34f915da3a3ca",
-          "watermark": "2026-10-18T11:59:22+00:00"
+          "watermark": "2026-10-18T15:28:34+00:00"
         },
         "2f70b74c9198cdd44038cbf911489bc90216b327bc13aa26b1121a836b8118f6": {
           "query_version": "bbbb6a8e60bfc5295ba9c441eee1dcb71acbbfbd7f19a046973591ff6f950b09",
-          "watermark": "2026-10-18T11:59:22+00:00"
+          "watermark": "2026-10-18T15:28:34+00:00"
         },
         "33e452ea3fdb3a3588388591d3497c6d551d29655d280243737a66ae92df3976": {
           "query_version": "a93d3f77a6c262742306297a6fc52d267238039299f0fb63c9883a49cddc7a0c",
-          "watermark": "2026-10-18T11:59:22+00:00"
+          "watermark": "2026-10-18T15:28:34+00:00"
         },
         "3bd10c19c56ad6f2692dbeb2826b4eb39ed473e5781709ac2a0a5587750aff05": {
           "query_version": "c90cc95cb9a485a1d120d6eeb956545e1128f01c73c3322e465def713d97ee10",
           "ted_pending": {
-            "from": "2026-10-01T15:18:11+00:00",
-            "through": "2026-10-18T11:59:22+00:00",
-            "until": "2026-10-02T15:18:11+00:00"
-          },
-          "watermark": "2026-10-01T15:18:11+00:00"
-        },
-        "40bcb68618e3c3f8b0ad157a211f8649a7155c763c5f327c72dcdcd3e424fca8": {
-          "query_version": "5666e6eca2cf5cf7499df9dc96635b4dfc9c7feb3202300e7ce5892f6f5e22f3",
-          "ted_pending": {
-            "from": "2026-10-05T15:18:11+00:00",
-            "through": "2026-10-17T20:48:51+00:00",
-            "token": "AAABoU7j+rUAEVofOls3Lf1V0TWYWZxUCwqaLV6BxEINQcsQDDqhmoBQCHl8k19K4KRoa65vzjP4yLzFX5ZfMWRiDhTtQVE0PSeiMnFq9hUv/+mp5twwRA==",
-            "until": "2026-10-06T15:18:11+00:00"
-          },
-          "watermark": "2026-10-05T15:18:11+00:00"
-        },
-        "6170bfd64f43fbd1662575b2f951553fe5ed5f13d672b898a8ab87650fd9c075": {
-          "query_version": "8e4e38ddc89cc9b8a6e37ac941e6922927c9cc09265b82e87a34ac332bfdc604",
-          "watermark": "2026-10-18T11:59:22+00:00"
-        },
-        "7a6afd6cf87dcf1311a0a29c44e670c6b30893471232e97a54c68b5c036bc9bb": {
-          "query_version": "ed7e7bb0ae3d34656bab16c1a52bddbec35811d2f4d669fedf41fbf118208102",
-          "ted_pending": {
             "from": "2026-10-02T15:18:11+00:00",
-            "through": "2026-10-18T06:47:17+00:00",
+            "through": "2026-10-18T11:59:22+00:00",
             "until": "2026-10-03T15:18:11+00:00"
           },
           "watermark": "2026-10-02T15:18:11+00:00"
         },
-        "7fe3402b632566caf5b9ecda4793d43d943791640710ae742280a2b2a96e9f6a": {
-          "query_version": "cb369d24bd446319dfcd80eefa227023f82b000779381cbe9b4021b857835456",
-          "watermark": "2026-10-18T11:59:22+00:00"
+        "40bcb68618e3c3f8b0ad157a211f8649a7155c763c5f327c72dcdcd3e424fca8": {
+          "query_version": "5666e6eca2cf5cf7499df9dc96635b4dfc9c7feb3202300e7ce5892f6f5e22f3",
+          "ted_pending": {
+            "from": "2026-10-06T15:18:11+00:00",
+            "through": "2026-10-17T20:48:51+00:00",
+            "token": "AAABoU+jd/wAEdLDIOho1dNWvUpMCnUnecZ/RGUkB0nnWxs0ZEKcI49QIWAxpO85SpZftImbkFRRVNWlATHnIFHQjQYa4KVm/ksDsJ9Vkgfbb+QR9zuzVw==",
+            "until": "2026-10-07T15:18:11+00:00"
+          },
+          "watermark": "2026-10-06T15:18:11+00:00"
         },
-        "82e1ff44de4fb5104548f16e9332819722288907fccf3bd9b78195f9c52b20e5": {
-          "query_version": "e4f930c300704628d399303774a3c5f144001311ac108acb4701365d161e90a3",
-          "watermark": "2026-10-18T11:59:22+00:00"
-        },
-        "8398e6bc6e98400faa15d671db61f7663f01d7101878695752c0106939620e5f": {
-          "query_version": "0270224221e53d59265ed34289ec0bc90b575ba04fa56116e7b4851e18491e93",
-          "watermark": "2026-10-18T11:59:22+00:00"
-        },
-        "87d7abb7e1e217261ac851ccb81a326985ef0fa77c9ebba962d2f6aadd7cad56": {
-          "query_version": "63e501a91f429a08081ca4534d5dbf597502a62ffd6294bcb0f8042ba6d021be",
-          "watermark": "2026-10-18T11:59:22+00:00"
-        },
-        "96fd416825b66e2a3b08e3fadfb47b92a36049ad7b8d398684c99db67922ee68": {
-          "query_version": "a27bf4738a42f5f054a9543c60db6408c6b5a1f6560c2e89d355aecdf231a49a",
+        "571c63540f593377e2efe2bbe3640b46ea609f4a2a2c748c435939249754c028": {
+          "query_version": "110e786ceb3b346ab53f4486ce7c3a67d42084c79d1bb1c096837d325aaa3d6b",
           "ted_pending": {
             "from": "2026-10-01T15:18:11+00:00",
-            "through": "2026-10-18T11:59:22+00:00",
+            "through": "2026-10-18T15:28:34+00:00",
             "until": "2026-10-02T15:18:11+00:00"
           },
           "watermark": "2026-10-01T15:18:11+00:00"
         },
+        "6170bfd64f43fbd1662575b2f951553fe5ed5f13d672b898a8ab87650fd9c075": {
+          "query_version": "8e4e38ddc89cc9b8a6e37ac941e6922927c9cc09265b82e87a34ac332bfdc604",
+          "watermark": "2026-10-18T15:28:34+00:00"
+        },
+        "7fe3402b632566caf5b9ecda4793d43d943791640710ae742280a2b2a96e9f6a": {
+          "query_version": "cb369d24bd446319dfcd80eefa227023f82b000779381cbe9b4021b857835456",
+          "watermark": "2026-10-18T15:28:34+00:00"
+        },
+        "82e1ff44de4fb5104548f16e9332819722288907fccf3bd9b78195f9c52b20e5": {
+          "query_version": "e4f930c300704628d399303774a3c5f144001311ac108acb4701365d161e90a3",
+          "watermark": "2026-10-18T15:28:34+00:00"
+        },
+        "8398e6bc6e98400faa15d671db61f7663f01d7101878695752c0106939620e5f": {
+          "query_version": "0270224221e53d59265ed34289ec0bc90b575ba04fa56116e7b4851e18491e93",
+          "watermark": "2026-10-18T15:28:34+00:00"
+        },
+        "87d7abb7e1e217261ac851ccb81a326985ef0fa77c9ebba962d2f6aadd7cad56": {
+          "query_version": "63e501a91f429a08081ca4534d5dbf597502a62ffd6294bcb0f8042ba6d021be",
+          "watermark": "2026-10-18T15:28:34+00:00"
+        },
         "9a3208cf91e96a2722a1c849bdf0aa7a357aed8f9bee7ef5689c38e3eee951ec": {
           "query_version": "c59e6c1e9cfa4ae0e81381c008cfc96df09adc1f57b292bfaea1ef58008782b7",
-          "watermark": "2026-10-18T11:59:22+00:00"
+          "watermark": "2026-10-18T15:28:34+00:00"
         },
         "9b662918c0bbd85f28b50c6c204841f0405a096c00729497f1d7a97a791121eb": {
           "query_version": "2fd34bd1ea42035dffd8728298dff7151cd00662c71845422a298149fe6c2ecd",
-          "watermark": "2026-10-18T11:59:22+00:00"
+          "watermark": "2026-10-18T15:28:34+00:00"
         },
         "a0cb76dcb1882e458131b49441ea292d7c7b020a123e88044a5fb67dc91ed18e": {
           "query_version": "98084b948a4b8bba5d8b3057bcbb018a4a5b07299290bc65e7b665303867da34",
-          "watermark": "2026-10-18T11:59:22+00:00"
+          "watermark": "2026-10-18T15:28:34+00:00"
         },
         "a1867398369e70a9fb0caf673c735cb32db315233d09ad6e32077730d73cb9dc": {
           "query_version": "7d951e1f1a5bc19b47354f381e6ab9fbb58977a5fa3511ef0299deab8811e4f2",
-          "watermark": "2026-10-18T11:59:22+00:00"
+          "watermark": "2026-10-18T15:28:34+00:00"
+        },
+        "a9202c7bd5147fe781eca14f4fe8fad29809cdc8d9cd0b714022fa0814de60ca": {
+          "query_version": "807f96263bf8caf04f200d88cc58f9c33ab93471a0af4f7f0755919e60722719",
+          "ted_pending": {
+            "from": "2026-10-01T15:18:11+00:00",
+            "through": "2026-10-18T15:28:34+00:00",
+            "until": "2026-10-02T15:18:11+00:00"
+          },
+          "watermark": "2026-10-01T15:18:11+00:00"
         },
         "aa31a55ea01b5978358f95206f0656da81591b8f2cddb986c108c4f8b076e135": {
           "query_version": "ace1da4995afb52c470f94e014b2252750a5ca3ef8096b0a71faef1a208af675",
           "ted_pending": {
             "from": "2026-09-30T15:18:11+00:00",
             "through": "2026-10-16T23:14:31+00:00",
-            "token": "AAABoU7keSoAEVp3ykIjZhMckerNDfF7LP1j0qDC+OyZO6SCpj2HjdEGrZyH8f/pq4906koJlHqv5J7uuxGfgutUIN42+GvTL/ujttAMgDBPKoJuQKO5qQ==",
+            "token": "AAABoU+j9aQAEdL5PrsXrQ/gq2Zr6VAy7/CZX05/k6loWyu9MxRwt8Nis7DwQIuiPizyu5feD0NgPE14txHHkJJrOxZUj6SpITd9y80WedSyjsZ3OQKGIw==",
             "until": "2026-10-01T15:18:11+00:00"
           },
           "watermark": "2026-09-30T15:18:11+00:00"
         },
         "c41873d508bacef051e04776e968e1010569dcab4895d257fba118af19165ad6": {
           "query_version": "d70e4b4cce87c34c6d9be85930fc54767740c182b51b8bec48359b0e19828438",
-          "watermark": "2026-10-18T11:59:22+00:00"
+          "watermark": "2026-10-18T15:28:34+00:00"
         },
         "cf0143f30cc99269b07ffcc78b0d7513d4354df0111da23500104387ef2a6bb1": {
           "query_version": "20703d2f67ee01853b26f6f23ffc3108d316dd12ef23ccc7f0f9181fd9678e33",
-          "watermark": "2026-10-18T11:59:22+00:00"
+          "watermark": "2026-10-18T15:28:34+00:00"
         },
         "d3d4c16d048bdf8a5ce967bac34de9ffa7d3a43f6d890f48daf565de57ac77f1": {
           "query_version": "74abb9d0461c4d4abad4f6f845d7352f1202204f75e9e53f46a6318b25ba0ace",
-          "watermark": "2026-10-18T11:59:22+00:00"
+          "watermark": "2026-10-18T15:28:34+00:00"
         },
         "d66e624b0a8de68038dab0b93531c30d43f3b347237c6fe64fd58464fdb7a403": {
           "query_version": "4ba4979d2e4b7ba1adfd703b59e4df659ade07b8a53c0a120a0d29610c5f6c2c",
-          "watermark": "2026-10-18T11:59:22+00:00"
+          "watermark": "2026-10-18T15:28:34+00:00"
         },
         "da80af4ab97869937fae815b04dddabb00655911fc1b120881b2819ebfda0552": {
           "query_version": "4969af16a3e3f69abc5dcbf502847b1e3f3e236058aa02fd59c03197956e8707",
-          "watermark": "2026-10-18T11:59:22+00:00"
+          "watermark": "2026-10-18T15:28:34+00:00"
         },
         "e59c6f794730e7006ab18686cdf618428ebcedf606e00e25d3a31357579af300": {
           "query_version": "fdf6887e5978cc06433df39c3d51c15e507d3ef1f78f462f10f6f86f8f00516d",
-          "watermark": "2026-10-18T11:59:22+00:00"
+          "watermark": "2026-10-18T15:28:34+00:00"
         },
         "e7a2c048650ad279f08c6a6bc73f6105b0548f737dbf5768591f06064d72c9a8": {
           "query_version": "a5ddb121b006b65d8c1c59231c61731eb5947582c623090c338da9ddfd1d8fb1",
-          "watermark": "2026-10-18T11:59:22+00:00"
+          "watermark": "2026-10-18T15:28:34+00:00"
         },
         "e7d1e3ad9d98aac5cf7e86d9c9f0828f776ab2f29369c33ab39f2c8590addbc8": {
           "query_version": "ea739458bfc149b7800c70f7e883b130c5b09dfcec4a356b78c4c1232dc4695c",
-          "watermark": "2026-10-18T11:59:22+00:00"
+          "watermark": "2026-10-18T15:28:34+00:00"
         },
         "e971f000d83cf6616292cebc265acb331e0851140b73bd38e98fa6418fa5a0de": {
           "query_version": "36e4e7d3231981d96cb0362dfb1b086ad6e63a6f4ac229b9dd5c8ae5b480ee36",
           "ted_pending": {
-            "from": "2026-10-03T15:18:11+00:00",
+            "from": "2026-10-04T15:18:11+00:00",
             "through": "2026-10-18T00:40:13+00:00",
-            "until": "2026-10-04T15:18:11+00:00"
+            "token": "AAABoU+jKfAAEbjgA/z9XpZCQogs9sRk7r0IGVKBUQCGjFcRU1b4FBy7BIit0AWb3nnNsMkuWUBtli7XAmIwLtoewXSbhLLwMeeEQMo+6s952XZAXjFbFw==",
+            "until": "2026-10-05T15:18:11+00:00"
           },
-          "watermark": "2026-10-03T15:18:11+00:00"
+          "watermark": "2026-10-04T15:18:11+00:00"
         }
       }
     },
-    "watermark": "2026-10-18T11:59:22+00:00"
+    "watermark": "2026-10-18T15:28:34+00:00"
   },
   "upcoming_agreements": {
-    "last_success": "2026-10-18T11:59:22+00:00",
-    "watermark": "2026-10-18T11:59:22+00:00"
+    "last_success": "2026-10-18T15:28:34+00:00",
+    "watermark": "2026-10-18T15:28:34+00:00"
   },
   "usaspending": {
     "last_success": "2026-09-09T23:17:56+00:00",
@@ -206070,18 +206472,6 @@
       "checkpoint": {
         "monthly_cycle": {
           "pending": [
-            {
-              "month": "10-2025",
-              "type": 4
-            },
-            {
-              "month": "10-2025",
-              "type": 5
-            },
-            {
-              "month": "10-2025",
-              "type": 6
-            },
             {
               "month": "10-2025",
               "type": 7
@@ -206117,6 +206507,18 @@
             {
               "month": "10-2025",
               "type": 3
+            },
+            {
+              "month": "10-2025",
+              "type": 4
+            },
+            {
+              "month": "10-2025",
+              "type": 5
+            },
+            {
+              "month": "10-2025",
+              "type": 6
             }
           ],
           "through": "2025-10-01T09:22:36+00:00"
@@ -206129,18 +206531,6 @@
     },
     "monthly_cycle": {
       "pending": [
-        {
-          "month": "09-2026",
-          "type": 52
-        },
-        {
-          "month": "09-2026",
-          "type": 53
-        },
-        {
-          "month": "08-2026",
-          "type": 2
-        },
         {
           "month": "08-2026",
           "type": 3
@@ -206188,6 +206578,18 @@
         {
           "month": "09-2026",
           "type": 51
+        },
+        {
+          "month": "09-2026",
+          "type": 52
+        },
+        {
+          "month": "09-2026",
+          "type": 53
+        },
+        {
+          "month": "08-2026",
+          "type": 2
         }
       ],
       "through": "2026-09-11T13:29:55+00:00"
