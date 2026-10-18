@@ -1772,9 +1772,13 @@ test('@data unmodified public feed retains real records and exposes source facts
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark')
   expect(await page.locator('.signal-row').count()).toBeGreaterThan(0)
   const shown = await page.locator('.row-title').allTextContents()
+  // The default UK&I view includes both countries; each shown title must still
+  // belong to a real published record from that union.
   const actual = new Set(
     dataset.signals
-      .filter((s: { countries: string[] }) => s.countries.includes('GB'))
+      .filter((s: { countries: string[] }) =>
+        s.countries.some((country) => country === 'GB' || country === 'IE'),
+      )
       .map((s: { id: string; title: string }) => dataset.translations?.[s.id]?.title ?? s.title),
   )
   shown.forEach((title) => expect(actual.has(title)).toBe(true))
