@@ -7,7 +7,7 @@ export const defaults: Filters = {
   match: 'all',
   view: 'live',
   sort: 'relevance',
-  market: 'GB',
+  market: 'UKI',
   score: '',
   confidence: '',
   source: '',
@@ -29,6 +29,7 @@ export const defaults: Filters = {
   change: '',
 }
 export const markets = [
+  { id: 'UKI', name: 'UK&I', short: 'UK&I', countries: ['GB', 'IE'], region: 'Europe' },
   { id: 'GB', name: 'United Kingdom', short: 'UK', countries: ['GB'], region: 'Europe' },
   {
     id: 'NORTHAMERICA',
@@ -97,6 +98,7 @@ export const markets = [
 ] as const
 
 export const marketGroups: Record<string, readonly string[]> = {
+  UKI: ['GB', 'IE'],
   NORTHAMERICA: ['US', 'CA'],
   NORDICS: ['SE', 'FI', 'DK', 'NO', 'IS'],
   BENELUX: ['BE', 'NL', 'LU'],
@@ -131,7 +133,7 @@ export const allMarkets = {
 }
 export const defaultMarketOptions = [allMarkets, ...markets]
 
-export function matchesMarket(signal: Signal, market: string) {
+export function matchesMarket(signal: Pick<Signal, 'countries'>, market: string) {
   if (!market || market === 'ALL') return true
   const countries: readonly string[] = markets.find((m) => m.id === market)?.countries || [market]
   return signal.countries.some((country) => countries.includes(country))

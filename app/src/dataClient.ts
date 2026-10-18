@@ -15,6 +15,14 @@ const object = (value: unknown): value is Record<string, unknown> =>
   !!value && typeof value === 'object' && !Array.isArray(value)
 const strings = (value: unknown): value is string[] =>
   Array.isArray(value) && value.every((v) => typeof v === 'string')
+// Public pages are immutable after parsing. Reuse their decoded JSON weight instead
+// of allocating another large string just to decide whether they fit in a cache.
+const decodedWeights = new WeakMap<object, number>()
+function cacheWeight(value: unknown) {
+  return value && typeof value === 'object'
+    ? (decodedWeights.get(value) ?? JSON.stringify(value).length * 2)
+    : JSON.stringify(value).length * 2
+}
 export function isEnglishText(value: unknown): value is EnglishText {
   return (
     object(value) &&
@@ -40,7 +48,7 @@ export class BoundedCache<T> {
     this.entries.set(key, entry)
     return entry.value
   }
-  set(key: string, value: T, bytes = JSON.stringify(value).length * 2) {
+  set(key: string, value: T, bytes = cacheWeight(value)) {
     this.delete(key)
     if (bytes > this.maxBytes) return
     this.entries.set(key, { value, bytes })
@@ -252,7 +260,9 @@ export async function fetchJSON(
       const stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'))
       bytes = await boundedBytes(stream, signal, limit)
     }
-    value = JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(bytes))
+    const text = new TextDecoder('utf-8', { fatal: true }).decode(bytes)
+    value = JSON.parse(text)
+    if (value && typeof value === 'object') decodedWeights.set(value, text.length * 2)
   } else {
     try {
       value = await response.json()

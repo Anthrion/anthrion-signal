@@ -31,6 +31,8 @@ jobs:
         with:
           ref: main
           fetch-depth: 0
+          # Keep commit ancestry; fetch old data blobs only if a check needs them.
+          filter: blob:none
           persist-credentials: false
       - name: Select latest compatible validated export
         id: data

@@ -364,7 +364,7 @@ def run(root, args):
     canonical_body = "\n".join(canonical_signal_json(s) for s in sorted(signals, key=lambda s: s.id)) + "\n"
     atomic_retained_bytes(canonical_path, canonical_body.encode("utf-8"))
     atomic_retained_json(root / "data/current.json", public)
-    atomic_json(root / "data/dedupe_index.json", index)
+    atomic_retained_json(root / "data/dedupe_index.json", index)
     atomic_json(root / "data/run_metadata.json", metadata)
     atomic_json(root / "data/discovery/state.json", {"version": config["capabilities"]["version"],
                                                    "signature": signature, "evaluated_at": now.isoformat()})

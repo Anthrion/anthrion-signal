@@ -309,6 +309,13 @@ async function fixture(page: Page, changeRecord?: (record: Signal) => void) {
       markets: ['GB'],
       view: 'history',
     }
+  awards[0].procedure_history = [history[0]]
+  for (const award of awards)
+    manifest.current_feed!.records[award.id] = {
+      url: `records/${award.id}-${hash}.json.gz`,
+      markets: award.countries,
+      view: 'awards',
+    }
   await page.route('**/data/**', (route) => {
     const path = new URL(route.request().url()).pathname
     if (path.endsWith('/manifest.json')) return route.fulfill({ json: manifest })
@@ -325,6 +332,8 @@ async function fixture(page: Page, changeRecord?: (record: Signal) => void) {
       return compressed({ schema_version: '1.0', signal: record })
     if (path.includes('/records/panel-b-'))
       return compressed({ schema_version: '1.0', signal: other })
+    const award = awards.find((item) => path.endsWith(`/records/${item.id}-${hash}.json.gz`))
+    if (award) return compressed({ schema_version: '1.0', signal: award })
     if (path.endsWith(`/history/abc-${hash}.json.gz`))
       return route.fulfill({
         contentType: 'application/gzip',
@@ -367,7 +376,11 @@ async function fixture(page: Page, changeRecord?: (record: Signal) => void) {
           }),
         ),
       })
-    if (path.includes('/awards/GB-')) return compressed({ schema_version: '1.0', signals: awards })
+    if (path.includes('/awards/GB-'))
+      return compressed({
+        schema_version: '1.0',
+        signals: awards.map((item) => ({ ...item, procedure_history: [], is_summary: true })),
+      })
     if (path.includes('/buyers/'))
       return compressed({
         schema_version: '1.0',
@@ -530,7 +543,7 @@ test('buyer page loads all collected history and restores the prior working view
   await expect(page.locator('.row-select').first()).toBeVisible()
   if (info.project.name === 'mobile')
     await expect(page.locator('.row-select').first()).toBeFocused()
-  await expect(page.getByRole('button', { name: 'United Kingdom', exact: true })).toHaveAttribute(
+  await expect(page.getByRole('button', { name: 'UK&I', exact: true })).toHaveAttribute(
     'aria-pressed',
     'true',
   )
@@ -742,7 +755,7 @@ test('@pr history titles open their own full record, keep language across pages,
   await expect(record.getByRole('link', { name: /Gmail/ })).toBeVisible()
   const draft = new URL((await record.getByRole('link', { name: /Gmail/ }).getAttribute('href'))!)
   const sharedURL = draft.searchParams.get('body')!.match(/View in Anthrion Signal: (.+)/)![1]
-  await expect(record.getByRole('button', { name: /Slack/ })).toBeVisible()
+  await expect(record.getByRole('button', { name: /Slack/ })).toHaveCount(0)
   await expect(record.locator('.supplier-links')).toContainText('Winner 1 Ltd')
   await record.getByRole('button', { name: 'Record language: English' }).click()
   await record.getByRole('menuitemradio', { name: 'Original', exact: true }).click()
@@ -865,7 +878,7 @@ test('@pr reopening All context reuses verified awards after shard eviction and 
   )
 })
 
-test('last view remembers search and matching while shared URLs and UK startup stay predictable', async ({
+test('last view remembers search and matching while shared URLs and UK&I startup stay predictable', async ({
   page,
 }) => {
   await page.goto('./')
@@ -886,7 +899,7 @@ test('last view remembers search and matching while shared URLs and UK startup s
   )
   // The remembered search still matches through capabilities.
   await expect(page.locator('.row-select')).toHaveCount(1)
-  await expect(page.getByRole('button', { name: 'United Kingdom', exact: true })).toHaveAttribute(
+  await expect(page.getByRole('button', { name: 'UK&I', exact: true })).toHaveAttribute(
     'aria-pressed',
     'true',
   )
@@ -898,13 +911,13 @@ test('last view remembers search and matching while shared URLs and UK startup s
     'true',
   )
   await page.goto('./')
-  await expect(page.getByRole('button', { name: 'United Kingdom', exact: true })).toHaveAttribute(
+  await expect(page.getByRole('button', { name: 'UK&I', exact: true })).toHaveAttribute(
     'aria-pressed',
     'true',
   )
 })
 
-test('@pr All leads UK; groups and individual countries can be pinned together and moved', async ({
+test('@pr All leads UK&I; groups and individual countries can be pinned together and moved', async ({
   page,
 }) => {
   await page.goto('./')
@@ -912,10 +925,7 @@ test('@pr All leads UK; groups and individual countries can be pinned together a
     'aria-label',
     'All markets',
   )
-  await expect(page.locator('.market-tabs > button').nth(1)).toHaveAttribute(
-    'aria-label',
-    'United Kingdom',
-  )
+  await expect(page.locator('.market-tabs > button').nth(1)).toHaveAttribute('aria-label', 'UK&I')
   await expect(page.getByRole('button', { name: 'France', exact: true })).toBeAttached()
   await expect(page.getByRole('button', { name: 'Benelux', exact: true })).toBeAttached()
   await page.getByRole('button', { name: 'Organize markets' }).click()
@@ -934,6 +944,10 @@ test('@pr All leads UK; groups and individual countries can be pinned together a
     await expect(
       organizer.getByRole('checkbox', { name: `Pin ${country}`, exact: true }),
     ).toHaveCount(1)
+  await organizer.getByRole('checkbox', { name: 'Pin United Kingdom', exact: true }).check()
+  await expect(
+    organizer.getByRole('checkbox', { name: 'Pin Ireland', exact: true }),
+  ).not.toBeChecked()
   await organizer.getByRole('checkbox', { name: 'Pin Belgium', exact: true }).check()
   await organizer.getByRole('checkbox', { name: 'Pin Germany', exact: true }).check()
   await organizer
@@ -941,10 +955,7 @@ test('@pr All leads UK; groups and individual countries can be pinned together a
     .press('ArrowDown')
   await organizer.getByRole('button', { name: 'Done', exact: true }).click()
   await page.reload()
-  await expect(page.locator('.market-tabs > button').nth(0)).toHaveAttribute(
-    'aria-label',
-    'United Kingdom',
-  )
+  await expect(page.locator('.market-tabs > button').nth(0)).toHaveAttribute('aria-label', 'UK&I')
   await expect(page.locator('.market-tabs > button').nth(1)).toHaveAttribute(
     'aria-label',
     'All markets',
@@ -987,7 +998,7 @@ test('market dragging previews the drop and saves order without changing pins or
     organizer.getByRole('checkbox', { name: 'Pin All markets', exact: true }),
   ).toBeChecked()
   await organizer.getByRole('button', { name: 'Done', exact: true }).click()
-  await expect(page.getByRole('button', { name: 'United Kingdom', exact: true })).toHaveAttribute(
+  await expect(page.getByRole('button', { name: 'UK&I', exact: true })).toHaveAttribute(
     'aria-pressed',
     'true',
   )
@@ -996,7 +1007,7 @@ test('market dragging previews the drop and saves order without changing pins or
     'aria-label',
     'All markets',
   )
-  await expect(page.getByRole('button', { name: 'United Kingdom', exact: true })).toHaveAttribute(
+  await expect(page.getByRole('button', { name: 'UK&I', exact: true })).toHaveAttribute(
     'aria-pressed',
     'true',
   )
@@ -1046,7 +1057,7 @@ test('touch can reorder a market and a cancelled touch leaves the order intact',
   const from = (await organizer
     .getByRole('button', { name: 'Reorder All markets', exact: true })
     .boundingBox())!
-  const to = (await organizer.locator('[data-market-id="GB"]').boundingBox())!
+  const to = (await organizer.locator('[data-market-id="UKI"]').boundingBox())!
   const x = from.x + from.width / 2
   const y = from.y + from.height / 2
   const end = to.y + to.height - 3
@@ -1058,7 +1069,7 @@ test('touch can reorder a market and a cancelled touch leaves the order intact',
   await expect(organizer.getByRole('listitem').first()).toHaveAttribute('data-market-id', '')
   await touch.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x, y }] })
   await touch.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x, y: end }] })
-  await expect(organizer.locator('[data-market-id="NORTHAMERICA"]')).toHaveAttribute(
+  await expect(organizer.locator('[data-market-id="GB"]')).toHaveAttribute(
     'data-drop-before',
     'true',
   )
@@ -1138,13 +1149,18 @@ test('nested buyer and supplier timelines return to the same Context filters and
   await expect(buyer).toBeVisible()
 })
 
-test('awarded supplier links work from the main record and its full details', async ({ page }) => {
+test('@pr awarded summaries hydrate their full history and supplier links', async ({ page }) => {
   await page.goto('./?view=awards')
   await page
     .locator('.row-select')
     .filter({ hasText: 'Customer platform implementation 2024' })
     .click()
   const panel = page.locator('.console-detail:visible')
+  await expect(
+    panel.getByRole('heading', { name: 'Procurement history', exact: true }),
+  ).toBeVisible()
+  await expect(panel.locator('.record-procurement')).toContainText('Council digital service 1')
+  await expect(panel.getByRole('link', { name: /Salesforce/ })).toHaveCount(0)
   await panel
     .getByRole('button', { name: 'View awarded contracts for Example Delivery Ltd' })
     .click()

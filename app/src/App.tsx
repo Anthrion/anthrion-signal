@@ -587,20 +587,30 @@ export default function App() {
     saved,
     time,
   ])
-  const marketCounts = useMemo(
-    () =>
-      Object.fromEntries(
-        Object.entries(data?.current_feed?.markets || {}).map(([id, page]) => [id, page.count]),
-      ),
-    [data],
-  )
+  const marketCounts = useMemo(() => {
+    const counts = Object.fromEntries(
+      Object.entries(data?.current_feed?.markets || {}).map(([id, page]) => [id, page.count]),
+    )
+    if (data?.current_feed) {
+      const records = Object.values(data.current_feed.records)
+      for (const market of markets.filter(
+        (m) => m.countries.length > 1 && counts[m.id] === undefined,
+      ))
+        counts[market.id] = records.filter(
+          (record) =>
+            (!record.view || record.view === 'opportunities') &&
+            matchesMarket({ countries: record.markets }, market.id),
+        ).length
+    }
+    return counts
+  }, [data])
   const marketName =
     markets.find((m) => m.id === filters.market)?.name ||
     data?.markets[filters.market]?.name ||
     (filters.market ? `Market ${filters.market}` : 'All markets')
   const marketEnabled = data
     ? marketIsEnabled(filters.market, data.markets)
-    : filters.market === 'GB'
+    : filters.market === defaults.market
   // The feed's publication time stays while the next market loads, so its notice does not blink.
   const [feedTime, setFeedTime] = useState(data?.generated_at ?? '')
   if (data && data.generated_at !== feedTime) setFeedTime(data.generated_at)
@@ -839,7 +849,7 @@ export default function App() {
     (id) =>
       marketSignals.some((s) => s.id === id) ||
       (data?.current_feed?.records[id]?.view === 'awards' &&
-        (!filters.market || data.current_feed.records[id].markets.includes(filters.market)) &&
+        matchesMarket({ countries: data.current_feed.records[id].markets }, filters.market) &&
         hiddenIds.has(id) === showHidden) ||
       awards.knownSignals.some(
         (s) => s.id === id && matchesMarket(s, filters.market) && hiddenIds.has(id) === showHidden,
@@ -1620,21 +1630,6 @@ function RecordShare({ signal, data }: { signal: Signal; data: Dataset }) {
       >
         <img src={`${assetRoot}gmail.svg`} alt="" width="28" height="28" />
       </a>
-      <button
-        type="button"
-        className="record-integration"
-        disabled
-        aria-label="Slack (coming soon)"
-        title="Slack — coming soon"
-      >
-        <img
-          className="record-integration-slack"
-          src={`${assetRoot}slack.png`}
-          alt=""
-          width="28"
-          height="28"
-        />
-      </button>
       <button
         type="button"
         className="record-integration record-integration-link"

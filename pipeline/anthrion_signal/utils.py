@@ -115,7 +115,7 @@ def read_retained_bytes(path: Path) -> bytes:
     return gzip.decompress(body) if actual.suffix == ".gz" else body
 
 
-def atomic_retained_bytes(path: Path, body: bytes, *, threshold=32 * 1024 * 1024) -> bool:
+def atomic_retained_bytes(path: Path, body: bytes, *, threshold=8 * 1024 * 1024) -> bool:
     """Compress growing Git snapshots atomically; public exports use their own codec.
 
     Write and fsync the replacement before removing the old representation. Gzip's

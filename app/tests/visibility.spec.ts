@@ -155,7 +155,7 @@ test('Added today counts first collection, not updates, and hidden records stay 
   await expect(page.getByRole('heading', { name: 'No hidden signals' })).toBeVisible()
   await page
     .getByRole('navigation', { name: 'Markets' })
-    .getByRole('button', { name: 'United Kingdom', exact: true })
+    .getByRole('button', { name: 'UK&I', exact: true })
     .click()
   await expect(page.locator('.row-title')).toHaveText(['CRM implementation A'])
   await expect(hiddenButton(page)).toHaveAccessibleName('Hidden, 1')

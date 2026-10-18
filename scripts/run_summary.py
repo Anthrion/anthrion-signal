@@ -1,6 +1,7 @@
 import json
 import os
 from pathlib import Path
+from anthrion_signal.utils import read_json
 
 path = Path("data/run_metadata.json")
 if path.exists():
@@ -18,6 +19,14 @@ if path.exists():
         body += f"Pipeline verification planned: **{plan['test_mode']}**. Browser checks run in the publication job.\n\n"
     body += f"Latest completed collection statistics ({run.get('finished_at', 'unknown time')}):\n\n"
     body += "| Metric | Count |\n| --- | ---: |\n" + "\n".join(f"| {label} | {run.get(key, 0)} |" for key, label in labels.items())
+    sources = read_json(Path("data/current.json"), {}).get("sources", [])
+    attention = [source for source in sources if source.get("enabled") and source.get("status") in ("failed", "partial")]
+    if attention:
+        def cell(value):
+            return str(value or "").replace("|", "\\|").replace("\r", " ").replace("\n", " ")
+        body += "\n\n### Collection sources needing attention\n\n"
+        body += "| Source | Status | Records received | Detail |\n| --- | --- | ---: | --- |\n"
+        body += "\n".join(f"| {cell(s.get('name', s['id']))} | {cell(s.get('status'))} | {s.get('records', 0)} | {cell(s.get('message'))} |" for s in attention)
     translation_path = Path("data/translation/summary.json")
     if translation_path.exists():
         translation = json.loads(translation_path.read_text(encoding="utf-8"))

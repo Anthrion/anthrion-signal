@@ -177,7 +177,7 @@ test('@pr source facts, logo, filtering, saving, evidence and search', async ({ 
   page.on('pageerror', (e) => errors.push(e.message))
   await page.goto('./')
   await ready(page)
-  await expectMarket(page, 'United Kingdom')
+  await expectMarket(page, 'UK&I')
   await expect(page.locator('.workspace-brand img')).toHaveAttribute('src', /anthrion-wordmark.svg/)
   await expect
     .poll(() =>
@@ -668,7 +668,7 @@ test('@data all market tabs have real, correctly scoped records and opportunity 
   await ready(page)
   const dataset = await publicJSON(page.request)
   for (const [id, name, countries] of [
-    ['GB', 'United Kingdom', ['GB']],
+    ['UKI', 'UK&I', ['GB', 'IE']],
     ['NORTHAMERICA', 'North America', ['US', 'CA']],
     ['IT', 'Italy', ['IT']],
     ['NORDICS', 'Nordics', ['SE', 'FI', 'DK', 'NO', 'IS']],
@@ -687,7 +687,7 @@ test('@data all market tabs have real, correctly scoped records and opportunity 
     )
     expect(expected.length).toBeGreaterThan(0)
     await expect(page.locator('.feed-heading .count-badge')).toHaveText(String(expected.length))
-    expect(new URL(page.url()).searchParams.get('market') || 'GB').toBe(id)
+    expect(new URL(page.url()).searchParams.get('market') || 'UKI').toBe(id)
   }
   await page.reload()
   await ready(page)
@@ -1772,9 +1772,13 @@ test('@data unmodified public feed retains real records and exposes source facts
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark')
   expect(await page.locator('.signal-row').count()).toBeGreaterThan(0)
   const shown = await page.locator('.row-title').allTextContents()
+  // The default UK&I view includes both countries; each shown title must still
+  // belong to a real published record from that union.
   const actual = new Set(
     dataset.signals
-      .filter((s: { countries: string[] }) => s.countries.includes('GB'))
+      .filter((s: { countries: string[] }) =>
+        s.countries.some((country) => country === 'GB' || country === 'IE'),
+      )
       .map((s: { id: string; title: string }) => dataset.translations?.[s.id]?.title ?? s.title),
   )
   shown.forEach((title) => expect(actual.has(title)).toBe(true))

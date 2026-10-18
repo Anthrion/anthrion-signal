@@ -121,7 +121,16 @@ def check_public_output(path, inventory_path=None):
         if len(page["signals"]) != manifest["count"]:
             raise ValueError("Award history manifest count mismatch")
         for item in page["signals"]:
-            signal = evidence_checked(item, page.get("translations", {}).get(item["id"]))
+            translation = page.get("translations", {}).get(item["id"])
+            if item.get("is_summary") is True:
+                pointer = data.current_feed.get("records", {}).get(item["id"])
+                if not pointer or pointer.get("view") != "awards":
+                    raise ValueError("Award index has no complete record")
+                detail = load(pointer["url"])
+                if item != {**detail["signal"], "procedure_history": [], "is_summary": True} or translation != detail.get("translation"):
+                    raise ValueError("Award index differs from its full source/translation pair")
+                item = {key: value for key, value in item.items() if key != "is_summary"}
+            signal = evidence_checked(item, translation)
             if not is_public_award(signal, datetime.now(UTC)):
                 raise ValueError("Non-awarded record detected in award history")
             award_ids.add(signal.id)

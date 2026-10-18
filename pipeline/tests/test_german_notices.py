@@ -168,6 +168,24 @@ def test_small_request_budget_makes_no_requests():
     http.close()
 
 
+def test_incomplete_format_pair_collects_verified_notices_and_keeps_missing_day_pending():
+    pair = exported_pair()
+    extra = "75f5d711-681f-4628-b70c-45d8a671ed0d"
+    incomplete = zipped({IDENTIFIER + "-01.json": json.dumps({"releases": [ocds()]}),
+                         extra + "-01.json": json.dumps({"releases": [ocds(extra)]})})
+    def handler(request):
+        kind, day = request.url.params["format"], request.url.params["pubDay"]
+        return httpx.Response(200, content=incomplete if day == "2026-09-10" and kind == "ocds.zip" else pair[kind])
+    http = Http(transport=httpx.MockTransport(handler), sleeper=lambda _: None)
+    result = collect_german_notices(SOURCE, {}, FROZEN, http, {"max_pages": 4, "lookback_days": 7}, {})
+    assert not result.complete and len(result.records) == 2
+    assert result.state["pending_days"] == ["2026-09-10"]
+    assert result.state["watermark"] == "2026-09-09"
+    assert all(raw.data["german_notice_id"] == IDENTIFIER for raw in result.records)
+    assert "incomplete days retained" in result.message
+    http.close()
+
+
 def test_tracked_procedure_updates_survive_missing_cpv_and_title():
     record = ocds(award=True)
     record["tender"] = {"title": "Contract awarded"}

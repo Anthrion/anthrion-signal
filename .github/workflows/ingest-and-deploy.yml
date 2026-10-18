@@ -80,6 +80,7 @@ jobs:
         with:
           ref: main
           fetch-depth: 0
+          filter: blob:none
           token: ${{ steps.app-token.outputs.token || github.token }}
           persist-credentials: false
       - name: Set automation commit identity

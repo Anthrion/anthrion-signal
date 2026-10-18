@@ -81,6 +81,32 @@ def test_rehashed_index_cannot_invent_stronger_ranking_evidence(tmp_path, signal
         checker(root / "current.json")
 
 
+def test_award_summary_requires_the_exact_full_record_and_preserved_timeline(tmp_path, signal, config, now):
+    from anthrion_signal.award_history import export_awards
+    award = signal.model_copy(update={"signal_type": "AWARD", "status": "complete"})
+    data = make_feed(tmp_path, signal, config)
+    data.signals, data.translations = [], {}
+    records = {}
+    data.award_history = export_awards(tmp_path, [award], config, now, records)
+    data.current_feed = export_current(tmp_path, data, records)
+    root = tmp_path / "app/public/data"
+    def write_root():
+        body = public_data(data)
+        atomic_json(root / "current.json", body)
+        atomic_json(root / "manifest.json", {**body, "signals": [], "translations": {}})
+    write_root()
+    checker = runpy.run_path(str(Path(__file__).resolve().parents[2] / "scripts/check_public_output.py"))["check_public_output"]
+    assert checker(root / "current.json")[1] == 1
+    pointer = data.award_history["GB"]
+    page = read_json(root / pointer["url"], {})
+    page["signals"][0]["title"] = "Changed scope in the index"
+    pointer["url"] = f"awards/GB-{digest(page)[:16]}.json.gz"
+    atomic_public_json(root / pointer["url"], page)
+    write_root()
+    with pytest.raises(ValueError, match="Award index differs"):
+        checker(root / "current.json")
+
+
 def test_content_change_preserves_previous_manifest_dependencies(tmp_path, signal, config):
     data = make_feed(tmp_path, signal, config)
     old = data.current_feed["records"][signal.id]["url"]
