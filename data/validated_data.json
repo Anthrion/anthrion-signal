@@ -1,15 +1,15 @@
 {
   "version": 1,
-  "generation": 313,
+  "generation": 314,
   "data_code": "abf390b5c036f3032beeac877d906a2ca58edcc1657f6f96f32b08d5ef22b3bb",
-  "sha256": "01b06ca402d9cf3ab50527b686daa2f41dfd4e87fa7e0261ac472109ae704c58",
-  "key": "signal-public-v1-01b06ca402d9cf3ab50527b686daa2f41dfd4e87fa7e0261ac472109ae704c58-39445566879-1",
-  "inputs": "a4648eeeb025dd667f4883fc4b53761997788105aa436238ccd15faacef7722f",
-  "validated_at": "2026-10-20T15:52:13.622435+00:00",
+  "sha256": "b79d5a1d1d6df1c5e2385484db73146be398f36bb5859412a37a12b6b72fff61",
+  "key": "signal-public-v1-b79d5a1d1d6df1c5e2385484db73146be398f36bb5859412a37a12b6b72fff61-39448016630-1",
+  "inputs": "8f39e44e542454b85d5e2da3c37251c323780d8de34f31b0c735b0282749733c",
+  "validated_at": "2026-10-20T16:33:22.343252+00:00",
   "signature": {
     "code": "269b20c440a2998dcc47567d5af7d7ba70df18a0047f8e994e4b71193ecf79af",
-    "content": "6155c67c378f4b17ffcb8bc1225e3691727a9990542234b9a6d31ef36453e253",
-    "translations": "51746446c79808eef100a67b1a8abaa3d4686ee2e56b1fc2e827fc47ec823994",
+    "content": "7f7cd7a4d4315beffb130e2f25e08c1a43b1e2ab01fd24ee8453c17a6fafd6d0",
+    "translations": "7aa303aec8d31bdae3071262b00a029cbb16b603d83b1ac7b0d43787e4404399",
     "health": [
       [
         "find_tender",
@@ -25,7 +25,7 @@
       ],
       [
         "wales",
-        "partial"
+        "failed"
       ],
       [
         "govuk",
