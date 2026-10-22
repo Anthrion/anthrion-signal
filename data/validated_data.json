@@ -1,15 +1,15 @@
 {
   "version": 1,
-  "generation": 335,
+  "generation": 336,
   "data_code": "abf390b5c036f3032beeac877d906a2ca58edcc1657f6f96f32b08d5ef22b3bb",
-  "sha256": "c4079d4a2dbe90779783762b3ebbf5bd42382e6a6d29adec68d60cb2a514b4eb",
-  "key": "signal-public-v1-c4079d4a2dbe90779783762b3ebbf5bd42382e6a6d29adec68d60cb2a514b4eb-39777164843-1",
-  "inputs": "f4d3a638052558ae3794357424a3d670767514aeb4dead0db1dba4304e7a536b",
-  "validated_at": "2026-10-22T12:59:57.018338+00:00",
+  "sha256": "fcb00fad21c18c402dc027a84cdb603756f5ecd8567805df36d6add495178a70",
+  "key": "signal-public-v1-fcb00fad21c18c402dc027a84cdb603756f5ecd8567805df36d6add495178a70-39807169376-1",
+  "inputs": "6ce3a762bd34f24900ef04663dc80afd1cb6eb343d5f4271760ad48351852cde",
+  "validated_at": "2026-10-22T16:37:03.418696+00:00",
   "signature": {
     "code": "269b20c440a2998dcc47567d5af7d7ba70df18a0047f8e994e4b71193ecf79af",
-    "content": "302411f46ef32040e399e96b2241c87ff0d07e4f2ae47f873448dbe3fa12ad08",
-    "translations": "09ef0805b3fc63320e67638c490a460c2dc25db9aab644ed655d5cbfebcfbc8a",
+    "content": "2d998a2a297e3b778db67627d248dbfdc243758d2974f053b961f452faad7cdb",
+    "translations": "f12f530e3b0a3253b1acc43a08c10e89ad3dfb21d5914aff32d4b5457d87b04d",
     "health": [
       [
         "find_tender",
@@ -33,11 +33,11 @@
       ],
       [
         "digital_outcomes",
-        "healthy"
+        "failed"
       ],
       [
         "upcoming_agreements",
-        "failed"
+        "healthy"
       ],
       [
         "ted",
@@ -229,7 +229,7 @@
       ],
       [
         "canada_buys",
-        "partial"
+        "healthy"
       ],
       [
         "seao_qc",
