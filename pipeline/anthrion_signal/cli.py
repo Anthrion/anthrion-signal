@@ -46,9 +46,11 @@ def _collect(source, previous_state, now, config, previous_signals=None):
             next_state["last_success"] = now.isoformat()
         normalised, rejected = [], 0
         families = {s.ocid: s for s in previous_signals or [] if s.ocid}
-        boamp_notices = {alias: s for s in sorted(previous_signals or [], key=lambda s: s.updated_at or s.first_seen_at)
-                        if s.source == "boamp_caribbean"
-                        for alias in s.external_ids if alias.startswith("boamp:")}
+        boamp_notices = {}
+        if source["collector"] == "boamp_caribbean":
+            saved_notices = (s for s in previous_signals or [] if s.source == "boamp_caribbean")
+            boamp_notices = {alias: s for s in sorted(saved_notices, key=lambda s: s.updated_at or s.first_seen_at)
+                            for alias in s.external_ids if alias.startswith("boamp:")}
         # National pre-gates are hints, not irreversible deletions. The common
         # classifier gets their rejected scope too and retains its decision.
         for raw in sorted(result.records + result.rejected_records, key=lambda r: r.data.get("date") or ""):
