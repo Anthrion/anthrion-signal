@@ -5,7 +5,7 @@ import pytest
 
 from anthrion_signal.collectors import RawRecord, SourceUnavailable
 from anthrion_signal.dgcp_notices import (
-    BASE, PREFIX, VERSION, _page, collect_dgcp, normalise_dgcp,
+    BASE, PREFIX, VERSION, PUBLISHED_STATE, _page, collect_dgcp, normalise_dgcp,
 )
 from anthrion_signal.discovery import lifecycle
 from anthrion_signal.utils import digest
@@ -88,6 +88,166 @@ def test_hydrates_generic_titles_and_preserves_original_item_scope():
     assert signal.published_at == row["fecha_publicacion"]
     assert signal.updated_at == row["fecha_publicacion"]  # Never scheduled amendment date.
     assert signal.deadline_at == "2026-11-10T16:00:00+00:00"
+
+
+def test_published_inventory_recovers_older_open_scope_without_annual_history():
+    old = process("OLD-CCC-CP-2026-0001", fecha_publicacion="2026-09-11T08:30:04Z")
+    expired = process("OLD-CCC-CP-2018-0001", fecha_publicacion="2018-07-11T12:02:03Z",
+                      fecha_fin_recepcion_ofertas="2018-08-01T10:00:00Z")
+    source = {**SOURCE, "open_inventory": True, "open_inventory_limit": 2}
+    http = Pages([page([old, expired]), detail(expired), detail(old), page([])])
+    result = collect_dgcp(source, {}, NOW, http, SETTINGS, {})
+    assert result.complete and result.pages == 4
+    assert http.calls[0][1]["params"] == {"estado": PUBLISHED_STATE, "page": 1, "limit": 2}
+    assert "startdate" in http.calls[-1][1]["params"]  # Recent history stays independent.
+    assert result.state["open_total"] == 2 and result.state["open_checked_at"] == NOW.isoformat()
+    assert "open_pending" not in result.state and "open_index" not in result.state
+    signals = {row.ocid: row for row in map(normalise_dgcp, result.records)}
+    assert lifecycle(signals[PREFIX + old["codigo_proceso"]], NOW)[0] == "OPEN"
+    assert "Implementación de CRM" in signals[PREFIX + old["codigo_proceso"]].description
+    assert lifecycle(signals[PREFIX + expired["codigo_proceso"]], NOW)[0] == "EXPIRED"
+    assert signals[PREFIX + expired["codigo_proceso"]].published_at == expired["fecha_publicacion"]
+
+
+def test_published_inventory_hydration_resumes_without_restarting_verified_snapshot():
+    rows = [process(f"OLD-CCC-CP-2026-000{n}", fecha_publicacion=f"2026-09-0{n}T12:00:00Z") for n in range(1, 4)]
+    source = {**SOURCE, "open_inventory": True, "open_inventory_limit": 4}
+    settings = {**SETTINGS, "max_pages": 4}
+    first_http = Pages([page(rows, limit=4), detail(rows[0]), page([])])
+    first = collect_dgcp(source, {}, NOW, first_http, settings, {})
+    assert not first.complete and first.state["open_pending"]["offset"] == 1
+    second_http = Pages([detail(rows[1]), detail(rows[2])])
+    second = collect_dgcp(source, first.state, NOW + timedelta(minutes=1), second_http, settings, {})
+    assert second.complete and "open_pending" not in second.state
+    assert len(second_http.calls) == 2 and all(url == BASE + "ocds/releases" for url, _ in second_http.calls)
+    assert {record.data["id"] for record in first.records + second.records} == {row["codigo_proceso"] for row in rows}
+    assert first.state["open_pending"]["offset"] == 1  # Caller state is never mutated.
+
+
+def test_multi_page_published_inventory_verifies_complete_snapshot_before_hydration():
+    rows = [process(f"OLD-CCC-CP-2026-000{n}", fecha_publicacion=f"2026-09-0{n}T12:00:00Z") for n in range(1, 4)]
+    source = {**SOURCE, "open_inventory": True, "open_inventory_limit": 2}
+    first, second = page(rows[:2], total=3), page(rows[2:], number=2, total=3)
+    http = Pages([first, second, first, second, *(detail(row) for row in rows), page([])])
+    result = collect_dgcp(source, {}, NOW, http, {**SETTINGS, "max_pages": 16}, {})
+    assert result.complete and len(result.records) == 3
+    assert [call[1]["params"]["page"] for call in http.calls[:4]] == [1, 2, 1, 2]
+    assert all(call[1]["params"].get("estado") == PUBLISHED_STATE for call in http.calls[:4])
+    assert result.state["open_total"] == 3
+
+
+@pytest.mark.parametrize("failure", ["truncated", "wrong_state", "total_changed", "duplicate", "changed_recheck", "too_many"])
+def test_published_inventory_does_not_checkpoint_partial_or_unstable_source(failure):
+    one = process("OLD-CCC-CP-2026-0001", fecha_publicacion="2026-09-01T12:00:00Z")
+    two = process("OLD-CCC-CP-2026-0002", fecha_publicacion="2026-09-02T12:00:00Z")
+    source = {**SOURCE, "open_inventory": True, "open_inventory_limit": 1, "open_inventory_max_pages": 2}
+    first, second = page([one], total=2, limit=1), page([two], number=2, total=2, limit=1)
+    if failure == "truncated":
+        responses = [page([], total=1, limit=1)]
+    elif failure == "wrong_state":
+        responses = [page([{**one, "estado_proceso": "Proceso adjudicado y celebrado"}], limit=1)]
+    elif failure == "total_changed":
+        responses = [first, page([two], number=2, total=3, limit=1)]
+    elif failure == "duplicate":
+        responses = [first, page([one], number=2, total=2, limit=1)]
+    elif failure == "changed_recheck":
+        responses = [first, second, page([{**one, "fecha_fin_recepcion_ofertas": "2026-12-01T10:00:00Z"}], total=2, limit=1)]
+    else:
+        responses = [page([one], total=3, limit=1)]
+    http = Pages([*responses, page([])])
+    result = collect_dgcp(source, {}, NOW, http, SETTINGS, {})
+    assert not result.complete and not result.records and "open_checked_at" not in result.state
+    assert "open_pending" not in result.state and result.state["open_index"]["page"] == 1
+    assert result.state["watermark"] == NOW.isoformat()  # Recent collection still runs.
+
+
+def test_published_inventory_refresh_does_not_erase_disappeared_unhydrated_records():
+    old = process("OLD-CCC-CP-2026-0001", fecha_publicacion="2026-09-01T12:00:00Z")
+    state = {"query_version": VERSION, "known": {}, "open_checked_at": (NOW - timedelta(hours=7)).isoformat(),
+             "checked_at": NOW.isoformat(), "watermark": NOW.isoformat(),
+             "open_pending": {"rows": [old], "offset": 0, "through": (NOW - timedelta(hours=7)).isoformat(),
+                              "row_observed_at": {old["codigo_proceso"]: (NOW - timedelta(hours=7)).isoformat()}}}
+    source = {**SOURCE, "open_inventory": True, "open_inventory_limit": 2}
+    result = collect_dgcp(source, state, NOW, Pages([page([]), page([old], limit=1), detail(old)]), SETTINGS, {})
+    assert result.complete and [row.data["id"] for row in result.records] == [old["codigo_proceso"]]
+    assert normalise_dgcp(result.records[0]).status == "active"
+
+
+def test_stale_unknown_published_queue_checks_current_state_before_generic_active_ocds():
+    old = process("OLD-CCC-CP-2026-0001", fecha_publicacion="2026-09-01T12:00:00Z")
+    cancelled = {**old, "estado_proceso": "Cancelado"}
+    state = {"query_version": VERSION, "known": {}, "open_checked_at": (NOW - timedelta(hours=7)).isoformat(),
+             "checked_at": NOW.isoformat(), "watermark": NOW.isoformat(),
+             "open_pending": {"rows": [old], "offset": 0, "through": (NOW - timedelta(hours=7)).isoformat(),
+                              "row_observed_at": {old["codigo_proceso"]: (NOW - timedelta(hours=7)).isoformat()}}}
+    source = {**SOURCE, "open_inventory": True, "open_inventory_limit": 2}
+    # The process has left the published list. OCDS itself still says active;
+    # only its exact current process summary supplies the real cancellation.
+    http = Pages([page([]), page([cancelled], limit=1), detail(old)])
+    result = collect_dgcp(source, state, NOW, http, SETTINGS, {})
+    assert result.complete and result.pages == 3
+    assert http.calls[1][1]["params"] == {"proceso": old["codigo_proceso"], "page": 1, "limit": 1}
+    assert normalise_dgcp(result.records[0]).status == "cancelled"
+    assert result.state["known"][old["codigo_proceso"]]["source_observed_at"] == NOW.isoformat()
+
+
+def test_stale_published_queue_does_not_overrun_budget_for_summary_and_full_detail():
+    old = process("OLD-CCC-CP-2026-0001", fecha_publicacion="2026-09-01T12:00:00Z")
+    state = {"query_version": VERSION, "known": {}, "open_checked_at": NOW.isoformat(),
+             "checked_at": NOW.isoformat(), "watermark": NOW.isoformat(),
+             "open_pending": {"rows": [old], "offset": 0, "through": (NOW - timedelta(hours=7)).isoformat(),
+                              "row_observed_at": {old["codigo_proceso"]: (NOW - timedelta(hours=7)).isoformat()}}}
+    source = {**SOURCE, "open_inventory": True, "open_inventory_limit": 2}
+    http = Pages([])
+    small = collect_dgcp(source, state, NOW, http, {**SETTINGS, "max_pages": 2}, {})
+    assert not small.complete and not http.calls and small.state["open_pending"]["offset"] == 0
+    resumed = collect_dgcp(source, small.state, NOW + timedelta(minutes=1),
+                           Pages([page([old], limit=1), detail(old)]), SETTINGS, {})
+    assert resumed.complete and len(resumed.records) == 1 and "open_pending" not in resumed.state
+
+
+def test_unstable_inventory_cannot_starve_its_verified_detail_queue():
+    old = process("OLD-CCC-CP-2026-0001", fecha_publicacion="2026-09-01T12:00:00Z")
+    state = {"query_version": VERSION, "known": {}, "checked_at": NOW.isoformat(), "watermark": NOW.isoformat(),
+             "open_pending": {"rows": [old], "offset": 0, "through": NOW.isoformat(),
+                              "row_observed_at": {old["codigo_proceso"]: NOW.isoformat()}}}
+    source = {**SOURCE, "open_inventory": True, "open_inventory_limit": 2}
+    http = Pages([page([{**old, "estado_proceso": "Cancelado"}]), detail(old)])
+    result = collect_dgcp(source, state, NOW, http, SETTINGS, {})
+    assert not result.complete and len(result.records) == 1
+    assert "open_pending" not in result.state and "open_index" in result.state
+
+
+def test_published_inventory_keeps_fresh_and_historical_lanes_advancing_within_budget():
+    old = process("OLD-CCC-CP-2026-0001", fecha_publicacion="2026-09-01T12:00:00Z")
+    old2 = process("OLD-CCC-CP-2026-0002", fecha_publicacion="2026-09-02T12:00:00Z")
+    recent = process("RECENT-CCC-CP-2026-0001")
+    new = process("NEW-CCC-CP-2026-0001", fecha_publicacion="2026-10-24T08:00:00Z")
+    state = {"query_version": VERSION, "known": {},
+             "pending": {"from": "2026-10-16", "until": "2026-10-23", "through": NOW.isoformat(),
+                         "page": 1, "limit": 2, "rows": [recent], "offset": 0, "seen_ids": [recent["codigo_proceso"]],
+                         "total": 1, "page_observed_at": NOW.isoformat()}}
+    source = {**SOURCE, "open_inventory": True, "open_inventory_limit": 2}
+    # Eight requests allocate four to the published inventory; the fresh lane
+    # then has two and the historical lane retains two.
+    http = Pages([page([old, old2]), detail(old), detail(old2), page([new]), detail(new), detail(recent)])
+    result = collect_dgcp(source, state, NOW + timedelta(days=1), http, {**SETTINGS, "max_pages": 8}, {})
+    assert result.pages == 6 and result.complete
+    assert {r.data["id"] for r in result.records} == {r["codigo_proceso"] for r in (old, old2, recent, new)}
+    assert "open_pending" not in result.state and "fresh_pending" not in result.state and "pending" not in result.state
+
+
+def test_old_active_status_refresh_is_independent_of_published_inventory_membership():
+    old = process("OLD-CCC-CP-2026-0001", fecha_publicacion="2026-09-01T12:00:00Z")
+    changed = {**old, "estado_proceso": "Cancelado"}
+    state = {"query_version": VERSION,
+             "known": {old["codigo_proceso"]: {"hash": digest(old), "checked_at": (NOW - timedelta(days=2)).isoformat(),
+                                               "published_at": old["fecha_publicacion"], "status": "active"}}}
+    source = {**SOURCE, "open_inventory": True, "open_inventory_limit": 2, "refresh_limit": 1}
+    http = Pages([page([changed], limit=1), detail(changed), page([]), page([])])
+    result = collect_dgcp(source, state, NOW, http, SETTINGS, {})
+    assert result.complete and result.state["known"][old["codigo_proceso"]]["status"] == "cancelled"
+    assert normalise_dgcp(result.records[0]).status == "cancelled"
 
 
 def test_cross_review_missing_history_detail_does_not_starve_later_valid_notices():

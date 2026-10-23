@@ -641,12 +641,15 @@ sources:
     countries: [DO]
     limit: 500
     max_pages_per_run: 64
+    open_inventory: true
+    open_inventory_limit: 1000
+    open_inventory_max_pages: 8
     listing_refresh_hours: 6
     overlap_days: 7
     refresh_hours: 24
     refresh_limit: 8
     cache_days: 90
-    coverage: DGCP public process index with full OCDS tender and item descriptions. Initial recovery and amendment checks resume in bounded batches.
+    coverage: DGCP published-state inventory includes older current notices, alongside recent publication windows and full OCDS tender/item descriptions. Inventory hydration and amendment checks resume in bounded batches; source status and deadlines determine availability.
   - id: ms_tenders
     name: Government of Montserrat tenders
     enabled: true

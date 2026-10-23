@@ -4,6 +4,8 @@ The /ocds/releases/all endpoint is an index, not a bulk release package. Each
 new process is hydrated before classification, including processes whose
 generic title hides relevant items. Publication windows do not expose every
 old amendment, so previously active processes have an independent refresh lane.
+The documented published-state inventory also finds older current tenders
+without hydrating a year of closed procurement.
 """
 
 import copy
@@ -22,6 +24,7 @@ PREFIX = "ocds-6550wx-"
 # occur in the official index. They are encoded query values, never URL paths.
 IDENTIFIER = re.compile(r"\w[\w .-]{1,178}\w")
 TERMINAL = {"cancelled", "withdrawn", "unsuccessful", "complete", "closed", "awarded"}
+PUBLISHED_STATE = "Proceso publicado"
 
 
 def _identifier(value):
@@ -184,6 +187,9 @@ def _finish(result, frozen, refresh_hours):
     if result.state.get("fresh_pending"):
         result.complete = False
         result.message = " ".join(filter(None, [result.message, "DGCP fresh-notice lane resumes next collection."]))
+    if result.state.get("open_index") or result.state.get("open_pending"):
+        result.complete = False
+        result.message = " ".join(filter(None, [result.message, "DGCP published-notice inventory resumes next collection."]))
     retries = result.state.get("detail_retries", {})
     if retries:
         result.complete = False
@@ -196,6 +202,166 @@ def _window(start, frozen, limit):
     return {"from": start.date().isoformat(), "until": frozen.date().isoformat(),
             "through": frozen.isoformat(), "page": 1, "limit": limit,
             "rows": [], "offset": 0, "seen_ids": []}
+
+
+def _hydrate_rows(source, pending, known, frozen, http, result, stop):
+    """Use one detail/retry boundary for all independently observed inventories."""
+    while pending["offset"] < len(pending["rows"]) and result.pages < stop:
+        process = pending["rows"][pending["offset"]]
+        ident = process["codigo_proceso"]
+        observed_at = (pending.get("row_observed_at", {}).get(ident)
+                       or pending.get("page_observed_at") or pending["through"])
+        cached = known.get(ident, {})
+        newer = parse_date(cached.get("source_observed_at") or cached.get("checked_at"))
+        # A fresh inventory or an old-active lookup can supersede a queued
+        # summary. Hydrating its current OCDS must not revive its old status.
+        superseded = newer and newer > parse_date(observed_at)
+        if superseded:
+            result.state.get("detail_retries", {}).pop(ident, None)
+        retry = result.state.get("detail_retries", {}).get(ident)
+        recent_failure = (retry and digest(retry.get("process")) == digest(process)
+                          and parse_date(retry.get("failed_at"))
+                          > frozen - timedelta(hours=max(1, int(source.get("detail_retry_hours", 6)))))
+        if not superseded and not recent_failure and cached.get("hash") != digest(process):
+            try:
+                if (pending.get("refresh_stale_summaries")
+                        and frozen - parse_date(observed_at)
+                        >= timedelta(hours=max(1, int(source.get("listing_refresh_hours", 6))))):
+                    # A published inventory can take several runs to hydrate.
+                    # Its row may since have closed while OCDS still says only
+                    # "active". Absence from a newer inventory is not closure;
+                    # re-read the exact process's authoritative current label.
+                    if result.pages + 2 > stop:
+                        return False
+                    result.pages += 1
+                    package = http.json(BASE + "procesos", params={"proceso": ident, "page": 1, "limit": 1})
+                    current, total = _page(package, 1, 1)
+                    if total != 1 or current[0]["codigo_proceso"] != ident:
+                        raise SourceUnavailable("DGCP queued process lookup is missing or ambiguous")
+                    process, observed_at = current[0], frozen.isoformat()
+                    pending["rows"][pending["offset"]] = process
+                    pending.setdefault("row_observed_at", {})[ident] = observed_at
+                if cached.get("hash") != digest(process):
+                    known[ident] = _detail(source, ident, process, frozen, http, result, observed_at)
+            except SourceUnavailable as exc:
+                if exc.retry_at or exc.status_code in {401, 403, 429, 503}:
+                    raise
+                # Retain the unresolved identifier and summary explicitly;
+                # a single missing detail cannot block every later row.
+                result.state.setdefault("detail_retries", {})[ident] = {
+                    "process": process, "source_observed_at": observed_at,
+                    "failed_at": frozen.isoformat(), "message": str(exc),
+                }
+                defer_collection(result, exc)
+        pending["offset"] += 1
+    return pending["offset"] == len(pending["rows"])
+
+
+def _published_index(limit, frozen):
+    return {"page": 1, "limit": limit, "rows": [], "seen_ids": [],
+            "page_hashes": [], "row_observed_at": {}, "through": frozen.isoformat()}
+
+
+def _queue_published(index, state, known):
+    """Refresh pending facts in place; neither a new scan nor absence deletes work."""
+    pending = state.get("open_pending", {"rows": [], "offset": 0, "row_observed_at": {}})
+    rows = pending["rows"][pending["offset"]:]
+    observations = pending.get("row_observed_at", {})
+    positions = {row["codigo_proceso"]: number for number, row in enumerate(rows)}
+    # Older publication dates are precisely the gap filled by this lane. This
+    # changes only hydration order, never the records selected or their scope.
+    for row in sorted(index["rows"], key=lambda item: parse_date(item["fecha_publicacion"])):
+        ident = row["codigo_proceso"]
+        observed = index["row_observed_at"][ident]
+        cached = known.get(ident, {})
+        newer = parse_date(cached.get("source_observed_at") or cached.get("checked_at"))
+        if cached.get("hash") == digest(row) or (newer and newer > parse_date(observed)):
+            continue
+        if ident in positions:
+            if (parse_date(observations.get(ident)) or parse_date(index["through"])) > parse_date(observed):
+                continue
+            rows[positions[ident]] = row
+        else:
+            positions[ident] = len(rows)
+            rows.append(row)
+        observations[ident] = observed
+    if rows:
+        state["open_pending"] = {"rows": rows, "offset": 0, "through": index["through"],
+                                 "row_observed_at": {row["codigo_proceso"]: observations[row["codigo_proceso"]]
+                                                     for row in rows}}
+
+
+def _scan_published(source, known, frozen, http, result, stop, hours, force=False):
+    """Snapshot the exact documented state filter, then resume complete details.
+
+    The publisher does not promise stable ordering. Multi-page snapshots need
+    a second identical page pass before they replace the inventory checkpoint.
+    A changed/partial index cannot silently declare coverage or erase a queue.
+    """
+    state = result.state
+    checked = parse_date(state.get("open_checked_at"))
+    due = force or not checked or frozen - checked >= timedelta(hours=hours)
+    index = state.get("open_index")
+    if not index and due:
+        index = _published_index(max(1, min(int(source.get("open_inventory_limit", 1000)), 1000)), frozen)
+        state["open_index"] = index
+    if index:
+        # At most half of this lane's requests go to listing pages when a
+        # detail queue exists, so even an unstable source cannot starve it.
+        index_stop = stop if not state.get("open_pending") else result.pages + max(1, (stop - result.pages) // 2)
+        max_pages = max(1, int(source.get("open_inventory_max_pages", 8)))
+        try:
+            while result.pages < min(stop, index_stop):
+                verifying = "verify_page" in index
+                number = index["verify_page"] if verifying else index["page"]
+                result.pages += 1
+                package = http.json(BASE + "procesos", params={
+                    "estado": PUBLISHED_STATE, "page": number, "limit": index["limit"],
+                })
+                rows, total = _page(package, number, index["limit"])
+                if any(row.get("estado_proceso") != PUBLISHED_STATE for row in rows):
+                    raise SourceUnavailable("DGCP ignored its published-process state filter")
+                if total > index["limit"] * max_pages:
+                    raise SourceUnavailable("DGCP published inventory exceeds its bounded page allowance")
+                if "total" in index and index["total"] != total:
+                    raise SourceUnavailable("DGCP published inventory changed during its snapshot")
+                page_hash = digest(rows)
+                if verifying:
+                    if index["page_hashes"][number - 1] != page_hash:
+                        raise SourceUnavailable("DGCP published inventory ordering or content changed during its snapshot")
+                    index["verify_page"] += 1
+                    finished = number == len(index["page_hashes"])
+                else:
+                    seen = set(index["seen_ids"])
+                    if any(row["codigo_proceso"] in seen for row in rows):
+                        raise SourceUnavailable("DGCP published inventory repeated a process across pages")
+                    index["rows"].extend(rows)
+                    index["seen_ids"].extend(row["codigo_proceso"] for row in rows)
+                    index["page_hashes"].append(page_hash)
+                    index["row_observed_at"].update({row["codigo_proceso"]: frozen.isoformat() for row in rows})
+                    index["total"] = total
+                    index["page"] += 1
+                    finished = number * index["limit"] >= total
+                    if finished and number > 1:
+                        index["verify_page"] = 1
+                        finished = False
+                if finished:
+                    _queue_published(index, state, known)
+                    state.update(open_checked_at=frozen.isoformat(), open_total=total)
+                    state.pop("open_index", None)
+                    break
+        except SourceUnavailable as exc:
+            # The previously verified hydration queue remains intact. Replay
+            # an uncertain index from page one instead of trusting its offset.
+            state["open_index"] = _published_index(index["limit"], frozen)
+            if exc.retry_at or exc.status_code in {401, 403, 429, 503}:
+                raise
+            defer_collection(result, exc)
+    pending = state.get("open_pending")
+    if pending:
+        pending["refresh_stale_summaries"] = True
+        if _hydrate_rows(source, pending, known, frozen, http, result, stop):
+            state.pop("open_pending", None)
 
 
 def _scan_window(source, pending, known, frozen, http, result, stop):
@@ -220,37 +386,7 @@ def _scan_window(source, pending, known, frozen, http, result, stop):
                 raise SourceUnavailable("DGCP process page ignored its publication window")
             pending["seen_ids"] = [*pending.get("seen_ids", []), *(row["codigo_proceso"] for row in rows)]
             pending.update(rows=rows, offset=0, total=total, page_observed_at=frozen.isoformat())
-        while pending["offset"] < len(pending["rows"]) and result.pages < stop:
-            process = pending["rows"][pending["offset"]]
-            ident = process["codigo_proceso"]
-            observed_at = pending.get("page_observed_at") or pending["through"]
-            cached = known.get(ident, {})
-            newer = parse_date(cached.get("source_observed_at") or cached.get("checked_at"))
-            # The fresh lane or an old-active lookup may have observed a later
-            # cancellation/reopening than this queued page. Reading its OCDS
-            # now does not make the older summary status a new observation.
-            superseded = newer and newer > parse_date(observed_at)
-            if superseded:
-                result.state.get("detail_retries", {}).pop(ident, None)
-            retry = result.state.get("detail_retries", {}).get(ident)
-            recent_failure = (retry and digest(retry.get("process")) == digest(process)
-                              and parse_date(retry.get("failed_at"))
-                              > frozen - timedelta(hours=max(1, int(source.get("detail_retry_hours", 6)))))
-            if not superseded and not recent_failure and cached.get("hash") != digest(process):
-                try:
-                    known[ident] = _detail(source, ident, process, frozen, http, result, observed_at)
-                except SourceUnavailable as exc:
-                    if exc.retry_at or exc.status_code in {401, 403, 429, 503}:
-                        raise
-                    # Retain the unresolved identifier and summary explicitly;
-                    # a single missing detail cannot block every later row.
-                    result.state.setdefault("detail_retries", {})[ident] = {
-                        "process": process, "source_observed_at": observed_at,
-                        "failed_at": frozen.isoformat(), "message": str(exc),
-                    }
-                    defer_collection(result, exc)
-            pending["offset"] += 1
-        if pending["offset"] < len(pending["rows"]):
+        if not _hydrate_rows(source, pending, known, frozen, http, result, stop):
             return False
         if pending["page"] * limit >= pending["total"]:
             return True
@@ -318,6 +454,18 @@ def collect_dgcp(source, state, frozen, http, settings, terms):
             defer_collection(result, exc)
             if exc.retry_at or exc.status_code in {401, 403, 429, 503}:
                 return result
+
+    if source.get("open_inventory"):
+        try:
+            # This lane fills the older-live recall gap. Its share cannot
+            # consume the fresh-publication or historical-replay allowance.
+            stop = result.pages + max(0, (budget - result.pages) // 2)
+            _scan_published(source, known, frozen, http, result, stop,
+                            max(1, int(source.get("listing_refresh_hours", 6))), bool(settings.get("refresh_daily")))
+        except SourceUnavailable as exc:
+            defer_collection(result, exc)
+            if exc.retry_at or exc.status_code in {401, 403, 429, 503}:
+                return _finish(result, frozen, refresh_hours)
 
     pending = result.state.get("pending")
     resumed_history = bool(pending)

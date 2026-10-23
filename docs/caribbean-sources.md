@@ -19,7 +19,7 @@ group identifier to prevent regional notices disappearing from All.
 | Source | Coverage | Access and collection |
 | --- | --- | --- |
 | [World Bank](https://projects.worldbank.org/en/projects-operations/procurement) | Project notices for AG, BB, BZ, DM, DO, GD, GY, HT, JM, KN, LC, VC, SR, TT and explicit Caribbean/OECS regional projects | Keyless public procurement API. Full notice text, rotating country lanes, one-year rolling inventory and bounded refresh. This is project coverage, not complete national coverage. |
-| [Dominican Republic DGCP](https://datosabiertos.dgcp.gob.do/api-dgcp/docs/index.html) | Public national process index and complete OCDS scope | Keyless API. Hydrate every new process, including item descriptions under generic titles. Independent fresh and historical lanes, active-notice refresh and explicit retry queues. |
+| [Dominican Republic DGCP](https://datosabiertos.dgcp.gob.do/api-dgcp/docs/index.html) | Public national process index and complete OCDS scope | Keyless API. A separate published-state inventory finds older current notices. Hydrate full item descriptions, including generic titles, with independent fresh/historical lanes, active-notice refresh and explicit retry queues. |
 | [BOAMP](https://boamp-datadila.opendatasoft.com/pages/api-boamp/) | Guadeloupe, Martinique, Saint Martin and Saint Barthelemy | DILA's free public API. Original French FNSimple, MAPA and eForms notices. Actual performance/buyer addresses determine territory; publication distribution tags do not. |
 | [Montserrat](https://tenders.gov.ms) | Government tender notice pages | Robots-aware public HTML collection. Full notice descriptions and source document links. |
 | [Saint Lucia](https://www.finance.gov.lc/tenders/index) | Ministry of Finance public notices | Robots-aware listing and detail collection. Actual response wording determines deadlines. Award notices remain historical. |
@@ -34,6 +34,15 @@ Each source has a request budget and a resumable checkpoint. A budget limit or u
 is reported as partial coverage. Initial recovery can therefore take multiple collections.
 Healthy collection means the configured scan completed, not that every tender in a country was
 published by that source or that Anthrion satisfies its participation conditions.
+
+DGCP's documented `estado=Proceso publicado` filter returned 828 notices during verification;
+124 were published more than 14 days earlier. The independent inventory closes that observed
+initial-publication gap. Nineteen returned deadlines had already passed, so published state alone
+does not establish an available response route. Multi-page inventories require a second identical
+complete pass before their detail queue is updated. Pending details survive later refreshes and
+source disappearance; missing from a list never means cancelled. Queue entries older than six
+hours refresh their exact process summary before full detail retrieval, so an old published label
+cannot override a subsequently closed or cancelled process.
 
 ## Languages and relevance
 
