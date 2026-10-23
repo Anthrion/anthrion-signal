@@ -1,5 +1,271 @@
 {
-  "evaluated_at": "2026-10-23T17:31:43+00:00",
-  "signature": "deade6fdcfa16f7fa635e4c765951b394dd2a3ee96994052bb2c66a629d1a1a8",
+  "evaluated_at": "2026-10-23T20:59:51+00:00",
+  "market_catalogues": [
+    {
+      "markets": {
+        "AT": {
+          "coverage": "TED notices; national-only procurement is not included. Collection and historical recovery are bounded.",
+          "enabled": true,
+          "name": "Austria",
+          "ted_codes": [
+            "AUT"
+          ]
+        },
+        "BE": {
+          "coverage": "TED notices; national-only procurement is not included. Collection and historical recovery are bounded.",
+          "enabled": true,
+          "name": "Belgium",
+          "ted_codes": [
+            "BEL"
+          ]
+        },
+        "BG": {
+          "coverage": "TED notices; national-only procurement is not included.",
+          "enabled": true,
+          "name": "Bulgaria",
+          "ted_codes": [
+            "BGR"
+          ]
+        },
+        "CA": {
+          "coverage": "CanadaBuys federal open and new tenders, and current fiscal-year tender and award notices. Provincial, municipal and older historical coverage is not complete.",
+          "enabled": true,
+          "name": "Canada",
+          "ted_codes": []
+        },
+        "CH": {
+          "coverage": "TED notices only; Swiss national portals are not connected. Collection and historical recovery are bounded.",
+          "enabled": true,
+          "name": "Switzerland",
+          "ted_codes": [
+            "CHE"
+          ]
+        },
+        "CY": {
+          "coverage": "TED notices; national-only procurement is not included.",
+          "enabled": true,
+          "name": "Cyprus",
+          "ted_codes": [
+            "CYP"
+          ]
+        },
+        "CZ": {
+          "coverage": "TED notices; national-only procurement is not included.",
+          "enabled": true,
+          "name": "Czechia",
+          "ted_codes": [
+            "CZE"
+          ]
+        },
+        "DE": {
+          "coverage": "TED and completed German national notice exports. Collection and historical recovery are bounded.",
+          "enabled": true,
+          "name": "Germany",
+          "ted_codes": [
+            "DEU"
+          ]
+        },
+        "DK": {
+          "coverage": "TED notices; national-only procurement is not included.",
+          "enabled": true,
+          "name": "Denmark",
+          "ted_codes": [
+            "DNK"
+          ]
+        },
+        "EE": {
+          "coverage": "TED notices; national-only procurement is not included.",
+          "enabled": true,
+          "name": "Estonia",
+          "ted_codes": [
+            "EST"
+          ]
+        },
+        "ES": {
+          "coverage": "TED and PLACSP contracting profiles, excluding minor contracts. Collection and historical recovery are bounded.",
+          "enabled": true,
+          "name": "Spain",
+          "ted_codes": [
+            "ESP"
+          ]
+        },
+        "FI": {
+          "coverage": "TED notices; national-only procurement is not included.",
+          "enabled": true,
+          "name": "Finland",
+          "ted_codes": [
+            "FIN"
+          ]
+        },
+        "FR": {
+          "coverage": "TED notices; national-only procurement is not included. Collection and historical recovery are bounded.",
+          "enabled": true,
+          "name": "France",
+          "ted_codes": [
+            "FRA"
+          ]
+        },
+        "GB": {
+          "enabled": true,
+          "name": "United Kingdom",
+          "ted_codes": [
+            "GBR"
+          ]
+        },
+        "GR": {
+          "coverage": "TED notices; national-only procurement is not included.",
+          "enabled": true,
+          "name": "Greece",
+          "ted_codes": [
+            "GRC"
+          ]
+        },
+        "HR": {
+          "coverage": "TED notices; national-only procurement is not included.",
+          "enabled": true,
+          "name": "Croatia",
+          "ted_codes": [
+            "HRV"
+          ]
+        },
+        "HU": {
+          "coverage": "TED notices; national-only procurement is not included.",
+          "enabled": true,
+          "name": "Hungary",
+          "ted_codes": [
+            "HUN"
+          ]
+        },
+        "IE": {
+          "coverage": "TED notices; national-only procurement is not included. Collection and historical recovery are bounded.",
+          "enabled": true,
+          "name": "Ireland",
+          "ted_codes": [
+            "IRL"
+          ]
+        },
+        "IS": {
+          "coverage": "TED notices; national-only procurement is not included.",
+          "enabled": true,
+          "name": "Iceland",
+          "ted_codes": [
+            "ISL"
+          ]
+        },
+        "IT": {
+          "coverage": "TED notices; national-only procurement is not included.",
+          "enabled": true,
+          "name": "Italy",
+          "ted_codes": [
+            "ITA"
+          ]
+        },
+        "LT": {
+          "coverage": "TED notices; national-only procurement is not included.",
+          "enabled": true,
+          "name": "Lithuania",
+          "ted_codes": [
+            "LTU"
+          ]
+        },
+        "LU": {
+          "coverage": "TED notices; national-only procurement is not included.",
+          "enabled": true,
+          "name": "Luxembourg",
+          "ted_codes": [
+            "LUX"
+          ]
+        },
+        "LV": {
+          "coverage": "TED notices; national-only procurement is not included.",
+          "enabled": true,
+          "name": "Latvia",
+          "ted_codes": [
+            "LVA"
+          ]
+        },
+        "MT": {
+          "coverage": "TED notices; national-only procurement is not included.",
+          "enabled": true,
+          "name": "Malta",
+          "ted_codes": [
+            "MLT"
+          ]
+        },
+        "NL": {
+          "coverage": "TED notices; national-only procurement is not included. Collection and historical recovery are bounded.",
+          "enabled": true,
+          "name": "Netherlands",
+          "ted_codes": [
+            "NLD"
+          ]
+        },
+        "NO": {
+          "coverage": "TED notices; national-only procurement is not included.",
+          "enabled": true,
+          "name": "Norway",
+          "ted_codes": [
+            "NOR"
+          ]
+        },
+        "PL": {
+          "coverage": "TED notices; national-only procurement is not included.",
+          "enabled": true,
+          "name": "Poland",
+          "ted_codes": [
+            "POL"
+          ]
+        },
+        "PT": {
+          "coverage": "TED notices; national-only procurement is not included.",
+          "enabled": true,
+          "name": "Portugal",
+          "ted_codes": [
+            "PRT"
+          ]
+        },
+        "RO": {
+          "coverage": "TED notices; national-only procurement is not included.",
+          "enabled": true,
+          "name": "Romania",
+          "ted_codes": [
+            "ROU"
+          ]
+        },
+        "SE": {
+          "coverage": "TED notices; national-only procurement is not included.",
+          "enabled": true,
+          "name": "Sweden",
+          "ted_codes": [
+            "SWE"
+          ]
+        },
+        "SI": {
+          "coverage": "TED notices; national-only procurement is not included.",
+          "enabled": true,
+          "name": "Slovenia",
+          "ted_codes": [
+            "SVN"
+          ]
+        },
+        "SK": {
+          "coverage": "TED notices; national-only procurement is not included.",
+          "enabled": true,
+          "name": "Slovakia",
+          "ted_codes": [
+            "SVK"
+          ]
+        },
+        "US": {
+          "coverage": "SAM.gov public daily federal notices, Grants.gov funding, NYC City Record and LA RAMP. Federal historical archives and restricted attachments are not included.",
+          "enabled": true,
+          "name": "United States",
+          "ted_codes": []
+        }
+      },
+      "signature": "deade6fdcfa16f7fa635e4c765951b394dd2a3ee96994052bb2c66a629d1a1a8"
+    }
+  ],
+  "signature": "a677e696632739a21ebb9d02e798ceab68b519cd6fad2ee71d8802993fd1c696",
   "version": "2026-09-18.2"
 }
