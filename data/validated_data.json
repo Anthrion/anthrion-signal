@@ -1,15 +1,15 @@
 {
   "version": 1,
-  "generation": 351,
+  "generation": 352,
   "data_code": "4a1c27340e5b836a75ecd0a84155ceae78497399cc70b933d89d76a58d17b86e",
-  "sha256": "f7afb0d555d458b84103b2dc131571095ee1b0030284865b4bc66f08041e2de4",
-  "key": "signal-public-v1-f7afb0d555d458b84103b2dc131571095ee1b0030284865b4bc66f08041e2de4-40018754191-1",
-  "inputs": "303347b2034037327ac5c80fc2af902ac1af0e65685f6f97c12df2b23efb9e13",
-  "validated_at": "2026-10-23T21:55:39.552656+00:00",
+  "sha256": "593ebcd5222e2ba3f64d604c8d792dedfd534ad3e0ba2aef7e565089c1e0654d",
+  "key": "signal-public-v1-593ebcd5222e2ba3f64d604c8d792dedfd534ad3e0ba2aef7e565089c1e0654d-40020996963-1",
+  "inputs": "ddb209ea86011ed2a4e450c7a445dfd545d87292c3ee61dffc6ee1e8ae804b2d",
+  "validated_at": "2026-10-23T22:54:14.926082+00:00",
   "signature": {
     "code": "5feb2ba5238db6500aa16c3cce2d985add24eea9946d55266d47f618270e45d1",
-    "content": "c6eb27cea5989f7f326fb48433e3165f2303f770abf9f74d5d86a465e90cfc2b",
-    "translations": "e5876fb0c07f0fdb7cbdc7edfd1800b116467b4098096adc7d4f185fd45ba318",
+    "content": "ff7408a14d8fb31d6bdc490d54383d22a0632971f02c66b74d53bc7bc1082c2d",
+    "translations": "5082fd8e25f576fcf0e70391fcda78e63b38fa9ca0d412df69f8134fcc8d063a",
     "health": [
       [
         "find_tender",
@@ -305,7 +305,7 @@
       ],
       [
         "dominican_dgcp",
-        "partial"
+        "failed"
       ],
       [
         "ms_tenders",
@@ -313,7 +313,7 @@
       ],
       [
         "lc_finance",
-        "partial"
+        "failed"
       ]
     ],
     "day": "2026-10-23"
