@@ -585,3 +585,93 @@ sources:
       Research candidate only. Establish the exact distribution's licence, lifecycle, fields and
       retrieval contract before collection. General website terms do not establish every dataset's
       terms. Mexico is not enabled as a market or added to the North America group.
+  - id: boamp_caribbean
+    name: BOAMP French Caribbean notices
+    enabled: true
+    collector: boamp_caribbean
+    source_type: official_notice
+    url: https://boamp-datadila.opendatasoft.com/api/explore/v2.1/catalog/datasets/boamp/records
+    website: https://www.boamp.fr
+    docs: https://boamp-datadila.opendatasoft.com/pages/api-boamp/
+    country: CARIBBEANREGIONAL
+    countries: [GP, MQ, MF, BL]
+    limit: 100
+    max_pages_per_run: 20
+    refresh_hours: 12
+    coverage: Full BOAMP notice text for Guadeloupe, Martinique, Saint Martin and Saint Barthelemy, routed by actual project or buyer address. Publication distribution tags alone do not establish territory.
+  - id: caribbean_cdb
+    name: Caribbean Development Bank procurement
+    enabled: true
+    collector: caribbean_cdb
+    source_type: official_notice
+    url: https://www.caribank.org/work-with-us/procurement/procurement-notices
+    website: https://www.caribank.org
+    docs: https://www.caribank.org/work-with-us/procurement
+    country: CARIBBEANREGIONAL
+    countries: [BB, BZ, DM, GD, GY, JM, TT, TC, CARIBBEANREGIONAL]
+    max_pages: 40
+    refresh_hours: 6
+    include_general: true
+    coverage: CDB public procurement and general procurement notices. Bank-funded projects and corporate procurement only; national procurement outside these projects is not included.
+  - id: caribbean_worldbank
+    name: World Bank Caribbean procurement
+    enabled: true
+    collector: worldbank_caribbean
+    source_type: official_notice
+    url: https://search.worldbank.org/api/v2/procnotices
+    website: https://projects.worldbank.org/en/projects-operations/procurement
+    docs: https://search.worldbank.org/api/v2/procnotices?format=json&rows=1
+    country: CARIBBEANREGIONAL
+    countries: [AG, BB, BZ, DM, DO, GD, GY, HT, JM, KN, LC, VC, SR, TT, CARIBBEANREGIONAL]
+    page_size: 50
+    max_pages: 80
+    lookback_days: 365
+    refresh_hours: 6
+    coverage: World Bank project procurement notices for Caribbean beneficiaries, including regional projects. National procurement outside those projects is not included.
+  - id: dominican_dgcp
+    name: Dominican Republic DGCP
+    enabled: true
+    collector: dgcp
+    source_type: official_notice
+    url: https://datosabiertos.dgcp.gob.do/api-dgcp/v1/procesos
+    website: https://datosabiertos.dgcp.gob.do/
+    docs: https://datosabiertos.dgcp.gob.do/api-dgcp/docs/index.html
+    record_url: https://datosabiertos.dgcp.gob.do/api-dgcp/v1/ocds/releases?ocid={ocid}
+    country: DO
+    countries: [DO]
+    limit: 500
+    max_pages_per_run: 64
+    listing_refresh_hours: 6
+    overlap_days: 7
+    refresh_hours: 24
+    refresh_limit: 8
+    cache_days: 90
+    coverage: DGCP public process index with full OCDS tender and item descriptions. Initial recovery and amendment checks resume in bounded batches.
+  - id: ms_tenders
+    name: Government of Montserrat tenders
+    enabled: true
+    collector: caribbean_portal
+    portal: montserrat
+    source_type: official_notice
+    url: https://tenders.gov.ms
+    website: https://tenders.gov.ms
+    country: MS
+    countries: [MS]
+    max_pages_per_run: 40
+    refresh_hours: 12
+    detail_cache_hours: 24
+    coverage: Public tender listings and full notice pages. Restricted attachments are not collected.
+  - id: lc_finance
+    name: Saint Lucia Ministry of Finance tenders
+    enabled: true
+    collector: caribbean_portal
+    portal: saint_lucia
+    source_type: official_notice
+    url: https://www.finance.gov.lc/tenders/index
+    website: https://www.finance.gov.lc
+    country: LC
+    countries: [LC]
+    max_pages_per_run: 40
+    refresh_hours: 12
+    detail_cache_hours: 24
+    coverage: Ministry of Finance public notice pages, including explicitly identified awards. Catalogue display expiry is not used as a response deadline.

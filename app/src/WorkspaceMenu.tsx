@@ -5,6 +5,7 @@ import type { Dataset, DisplayLanguage } from './types'
 import { date, defaultMarketOptions, download, markets } from './lib'
 import { createBackup, restoreBackup, setPreference, usePreferences } from './preferences'
 import { countryCoverage } from './coverage'
+import { selectableMarket } from './caribbean'
 import CoverageMap from './CoverageMap'
 import './workspace-menu.css'
 
@@ -205,7 +206,7 @@ export function WorkspaceMenu({
               countries={countries}
               selected={selectedCountries}
               onSelect={(id) => {
-                onMarket(id)
+                onMarket(selectableMarket(id))
                 onClose()
               }}
             />

@@ -220,7 +220,9 @@ test('@data published historical records match every market manifest and stay ou
   expect(data.signals.every((s) => !isHistoricalAward(s))).toBe(true)
   // Groups can load the union of country shards, avoiding another copy on disk.
   const published = Object.keys(data.award_history || {})
-  expect(published.every((id) => markets.some((m) => m.id === id))).toBe(true)
+  // Caribbean keeps country shards for provenance but exposes only its group in the picker.
+  const partitions = new Set(markets.flatMap((market) => [market.id, ...market.countries]))
+  expect(published.every((id) => partitions.has(id))).toBe(true)
   for (const market of markets.filter((m) => m.countries.length === 1))
     expect(published).toContain(market.id)
   for (const [market, manifest] of Object.entries(data.award_history!)) {

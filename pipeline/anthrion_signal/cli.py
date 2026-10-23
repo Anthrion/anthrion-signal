@@ -13,7 +13,7 @@ from .config import capability_catalog, evidence_catalog, load_config
 from .discovery import discovery_signature, is_public_opportunity, lifecycle, ranking_key
 from .discovery_cache import ClassificationCache
 from .discovery_retention import read_rejected, retain_rejected
-from .dedupe import reconcile
+from .dedupe import older_revision, reconcile
 from .models import Dataset, EnglishText, Signal, SourceHealth
 from .normalise import NORMALISERS, set_hashes
 from .notice_dates import response_deadline_instant
@@ -46,16 +46,34 @@ def _collect(source, previous_state, now, config, previous_signals=None):
             next_state["last_success"] = now.isoformat()
         normalised, rejected = [], 0
         families = {s.ocid: s for s in previous_signals or [] if s.ocid}
+        boamp_notices = {alias: s for s in sorted(previous_signals or [], key=lambda s: s.updated_at or s.first_seen_at)
+                        if s.source == "boamp_caribbean"
+                        for alias in s.external_ids if alias.startswith("boamp:")}
         # National pre-gates are hints, not irreversible deletions. The common
         # classifier gets their rejected scope too and retains its decision.
         for raw in sorted(result.records + result.rejected_records, key=lambda r: r.data.get("date") or ""):
             try:
-                signal = (NORMALISERS[raw.kind](raw, prior=families.get(raw.data.get("ocid")))
-                          if raw.kind in ("ocds", "german_ocds") else NORMALISERS[raw.kind](raw))
+                if raw.kind == "boamp_caribbean":
+                    linked = raw.data.get("annonce_lie") or []
+                    linked = linked if isinstance(linked, list) else [linked]
+                    prior = next((boamp_notices["boamp:" + str(ident)]
+                                  for ident in [raw.data.get("idweb"), *linked]
+                                  if "boamp:" + str(ident) in boamp_notices), None)
+                    signal = NORMALISERS[raw.kind](raw, prior=prior)
+                else:
+                    signal = (NORMALISERS[raw.kind](raw, prior=families.get(raw.data.get("ocid")))
+                              if raw.kind in ("ocds", "german_ocds") else NORMALISERS[raw.kind](raw))
                 if signal:
                     normalised.append(signal)
                     if signal.ocid:
                         families[signal.ocid] = signal
+                    if raw.kind == "boamp_caribbean":
+                        # Replayed initials must not replace a newer canonical
+                        # correction before another sparse amendment is normalized.
+                        for alias in signal.external_ids:
+                            saved = boamp_notices.get(alias)
+                            if alias.startswith("boamp:") and (saved is None or not older_revision(signal, saved)):
+                                boamp_notices[alias] = signal
             except (ValueError, KeyError, TypeError):
                 rejected += 1
         # A source schema regression must not silently advance its retrieval checkpoint.

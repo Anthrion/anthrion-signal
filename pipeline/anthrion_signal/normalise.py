@@ -466,7 +466,34 @@ def normalise_canada(raw):
     return normalise_canada_buys(raw)
 
 
+def normalise_caribbean_portals(raw):
+    from .caribbean_portals import normalise_caribbean_portal
+    return normalise_caribbean_portal(raw)
+
+
+def normalise_caribbean_worldbank(raw):
+    from .caribbean_worldbank import normalise_worldbank_caribbean
+    return normalise_worldbank_caribbean(raw)
+
+
+def normalise_dgcp(raw):
+    from .dgcp_notices import normalise_dgcp as normalise
+    return normalise(raw)
+
+
+def normalise_cdb(raw):
+    from .caribbean_cdb import normalise_cdb as normalise
+    return normalise(raw)
+
+
+def normalise_boamp(raw, prior=None):
+    from .boamp_caribbean import normalise_boamp_caribbean
+    return normalise_boamp_caribbean(raw, prior)
+
+
 NORMALISERS = {"ocds": normalise_ocds, "govuk": normalise_govuk, "html": normalise_html, "ted": normalise_ted,
                "usaspending": normalise_usaspending, "grants": normalise_grants,
                "german_ocds": normalise_german, "nyc_city_record": normalise_nyc, "spain_placsp": normalise_spain,
-               "la_ramp": normalise_ramp, "sam_csv": normalise_sam, "canada_buys": normalise_canada}
+               "la_ramp": normalise_ramp, "sam_csv": normalise_sam, "canada_buys": normalise_canada,
+               "caribbean_portal": normalise_caribbean_portals, "worldbank_caribbean": normalise_caribbean_worldbank,
+               "dgcp": normalise_dgcp, "caribbean_cdb": normalise_cdb, "boamp_caribbean": normalise_boamp}

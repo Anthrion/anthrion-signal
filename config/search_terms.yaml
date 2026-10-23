@@ -11,6 +11,27 @@ supplementary: [commercial pipeline, procurement pipeline, upcoming procurement,
 exclusions: [road resurfacing, building construction, catering services, grounds maintenance, office furniture, medical consumables, refuse collection, asbestos removal, boiler replacement, security guarding]
 govuk_queries: [commercial pipeline digital, procurement pipeline technology, Salesforce, CRM transformation, case management, contact centre, citizen services, digital transformation procurement, data platform, artificial intelligence procurement, generative AI, AI agents, automation integration]
 markets:
+  GP: {name: Guadeloupe, enabled: true, ted_codes: [], coverage: 'BOAMP public notices attributed to Guadeloupe from project or buyer location. Local-only notices outside BOAMP are not included.'}
+  MQ: {name: Martinique, enabled: true, ted_codes: [], coverage: 'BOAMP public notices attributed to Martinique from project or buyer location. Local-only notices outside BOAMP are not included.'}
+  MF: {name: Saint Martin, enabled: true, ted_codes: [], coverage: 'BOAMP public notices with explicit Saint Martin project or buyer location. Local-only notices outside BOAMP are not included.'}
+  BL: {name: Saint Barthelemy, enabled: true, ted_codes: [], coverage: 'BOAMP public notices with explicit Saint Barthelemy project or buyer location. Local-only notices outside BOAMP are not included.'}
+  TC: {name: Turks and Caicos Islands, enabled: true, ted_codes: [], coverage: 'CDB project procurement only; national procurement coverage is incomplete.'}
+  AG: {name: Antigua and Barbuda, enabled: true, ted_codes: [], coverage: 'World Bank project procurement only; national procurement coverage is incomplete.'}
+  BB: {name: Barbados, enabled: true, ted_codes: [], coverage: 'World Bank and CDB project procurement only; national procurement coverage is incomplete.'}
+  BZ: {name: Belize, enabled: true, ted_codes: [], coverage: 'World Bank and CDB project procurement only; national procurement coverage is incomplete.'}
+  DM: {name: Dominica, enabled: true, ted_codes: [], coverage: 'World Bank and CDB project procurement only; national procurement coverage is incomplete.'}
+  DO: {name: Dominican Republic, enabled: true, ted_codes: [], coverage: 'DGCP public processes with full OCDS scope, plus World Bank project notices. Recovery and amendment checks are bounded.'}
+  GD: {name: Grenada, enabled: true, ted_codes: [], coverage: 'World Bank and CDB project procurement only; national procurement coverage is incomplete.'}
+  GY: {name: Guyana, enabled: true, ted_codes: [], coverage: 'World Bank and CDB project procurement only; national procurement coverage is incomplete.'}
+  HT: {name: Haiti, enabled: true, ted_codes: [], coverage: 'World Bank project procurement only; national procurement coverage is incomplete.'}
+  JM: {name: Jamaica, enabled: true, ted_codes: [], coverage: 'World Bank and CDB project procurement only; national procurement coverage is incomplete.'}
+  KN: {name: Saint Kitts and Nevis, enabled: true, ted_codes: [], coverage: 'World Bank project procurement only; national procurement coverage is incomplete.'}
+  LC: {name: Saint Lucia, enabled: true, ted_codes: [], coverage: 'Ministry of Finance public notices and World Bank project procurement; national procurement coverage is incomplete.'}
+  MS: {name: Montserrat, enabled: true, ted_codes: [], coverage: 'Government tender notice pages. Restricted attachments are not collected.'}
+  SR: {name: Suriname, enabled: true, ted_codes: [], coverage: 'World Bank project procurement only; national procurement coverage is incomplete.'}
+  TT: {name: Trinidad and Tobago, enabled: true, ted_codes: [], coverage: 'World Bank and CDB project procurement only; national procurement coverage is incomplete.'}
+  VC: {name: Saint Vincent and the Grenadines, enabled: true, ted_codes: [], coverage: 'World Bank project procurement only; national procurement coverage is incomplete.'}
+  CARIBBEANREGIONAL: {name: Caribbean regional projects, enabled: true, ted_codes: [], coverage: 'Explicit regional Caribbean and OECS project notices; these are not assigned to a single country.'}
   GB: {name: United Kingdom, enabled: true, ted_codes: [GBR]}
   CA: {name: Canada, enabled: true, ted_codes: [], coverage: 'CanadaBuys federal open and new tenders, and current fiscal-year tender and award notices. Provincial, municipal and older historical coverage is not complete.'}
   US: {name: United States, enabled: true, ted_codes: [], coverage: 'SAM.gov public daily federal notices, Grants.gov funding, NYC City Record and LA RAMP. Federal historical archives and restricted attachments are not included.'}

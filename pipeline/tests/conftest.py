@@ -31,7 +31,7 @@ def config():
 
 @pytest.fixture
 def source(config):
-    return config["sources"]["sources"][0]
+    return next(source for source in config["sources"]["sources"] if source["id"] == "find_tender")
 
 
 @pytest.fixture
