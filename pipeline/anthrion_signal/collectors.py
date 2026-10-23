@@ -963,11 +963,38 @@ def collect_canada(source, state, frozen, http, settings, terms):
     return collect_canada_buys(source, state, frozen, http, settings, terms)
 
 
+def collect_caribbean_portals(source, state, frozen, http, settings, terms):
+    from .caribbean_portals import collect_caribbean_portal
+    return collect_caribbean_portal(source, state, frozen, http, settings, terms)
+
+
+def collect_caribbean_worldbank(source, state, frozen, http, settings, terms):
+    from .caribbean_worldbank import collect_worldbank_caribbean
+    return collect_worldbank_caribbean(source, state, frozen, http, settings, terms)
+
+
+def collect_dgcp(source, state, frozen, http, settings, terms):
+    from .dgcp_notices import collect_dgcp as collect
+    return collect(source, state, frozen, http, settings, terms)
+
+
+def collect_cdb(source, state, frozen, http, settings, terms):
+    from .caribbean_cdb import collect_cdb as collect
+    return collect(source, state, frozen, http, settings, terms)
+
+
+def collect_boamp(source, state, frozen, http, settings, terms):
+    from .boamp_caribbean import collect_boamp_caribbean
+    return collect_boamp_caribbean(source, state, frozen, http, settings, terms)
+
+
 COLLECTORS = {"ocds_cursor": collect_cursor, "ocds_monthly": collect_monthly, "govuk": collect_govuk,
               "digital_outcomes": collect_digital, "upcoming_agreements": collect_upcoming, "ted": collect_ted,
               "usaspending": collect_usaspending, "grants": collect_grants, "german_daily": collect_german_daily,
               "nyc_city_record": collect_nyc, "spain_atom": collect_spain, "la_ramp": collect_ramp,
-              "sam_csv": collect_sam, "canada_buys": collect_canada}
+              "sam_csv": collect_sam, "canada_buys": collect_canada,
+              "caribbean_portal": collect_caribbean_portals, "worldbank_caribbean": collect_caribbean_worldbank,
+              "dgcp": collect_dgcp, "caribbean_cdb": collect_cdb, "boamp_caribbean": collect_boamp}
 
 
 def collect_with_backfill(source, state, frozen, http, settings, terms, charter):

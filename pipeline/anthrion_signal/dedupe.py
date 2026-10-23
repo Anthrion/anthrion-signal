@@ -17,6 +17,10 @@ def exact_keys(s):
 
 
 def compatible_identifiers(left, right):
+    if (left.source == right.source == "dominican_dgcp" and left.ocid and left.ocid == right.ocid):
+        # DGCP's one full process snapshot becomes AWARD only after verified
+        # whole-process closure. Supplier names are optional, not proof of closure.
+        return left.lot_id == right.lot_id
     if left.signal_type != "AWARD" and len(left.lot_ids) > 1 and right.signal_type == "AWARD":
         if not right.lot_id or set(right.lot_ids) != set(left.lot_ids):
             return False
@@ -70,11 +74,31 @@ def merge_provenance(previous, incoming):
     return sorted(versions.values(), key=observed_at)[-60:]
 
 
+def older_revision(incoming, current):
+    if current.source == incoming.source == "dominican_dgcp":
+        # DGCP's release date can remain its original publication date through
+        # later amendments. Order authoritative full snapshots by observation.
+        return parse_date(incoming.last_seen_at) < parse_date(current.last_seen_at)
+    incoming_date = parse_date(incoming.updated_at) or parse_date(incoming.first_seen_at)
+    current_date = parse_date(current.updated_at) or parse_date(current.first_seen_at)
+    if incoming_date == current_date and current.source == incoming.source == "boamp_caribbean":
+        # BOAMP publishes days, not intra-day timestamps. A known predecessor
+        # cannot replace its correction just because it was retrieved again.
+        # Use the exact notice identified by primary provenance, not ID order.
+        def notice_alias(signal):
+            return next(("boamp:" + p.release_id for p in signal.provenance
+                         if p.source == "boamp_caribbean" and p.url == signal.primary_source_url and p.release_id), None)
+        incoming_alias, current_alias = notice_alias(incoming), notice_alias(current)
+        if incoming_alias and current_alias and incoming_alias != current_alias and incoming_alias in current.external_ids:
+            return True
+    return incoming_date < current_date
+
+
 def merge(old, incoming):
     old_payload = material_payload(old)
     merged = old.model_copy(deep=True)
-    older = (parse_date(incoming.updated_at) or parse_date(incoming.first_seen_at)) < (
-        parse_date(old.updated_at) or parse_date(old.first_seen_at))
+    older = older_revision(incoming, old)
+    dgcp_snapshot = old.source == incoming.source == "dominican_dgcp"
     if not older:
         # Retained releases from the older schema carry only scalar prices.
         # Apply the normal evidence policy to that release before merging, so
@@ -101,6 +125,23 @@ def merge(old, incoming):
         # NYC sometimes retains a placeholder date after explicitly postponing bids.
         if incoming.source == "nyc_city_record" and incoming.status == "postponed" and incoming.deadline_at is None:
             merged.deadline_at = None
+        if incoming.source == "boamp_caribbean" and incoming.status in {"amended", "cancelled"}:
+            # BOAMP corrections can retain obsolete structured dates. Never
+            # restore the previous deadline when the correction cannot verify it.
+            merged.deadline_at = incoming.deadline_at
+            merged.response_deadlines = incoming.response_deadlines
+            merged.deadlines = incoming.deadlines or [
+                fact.model_copy(update={"status": "superseded"}) for fact in old.deadlines][-20:]
+        if dgcp_snapshot:
+            # This endpoint supplies full current OCDS scope, not a sparse
+            # release. Removed awards, dates and values must not survive as
+            # current facts. Earlier source versions remain in provenance.
+            for field in ("status", "deadline_at", "response_deadlines", "winners", "incumbent_supplier",
+                          "award_statuses", "award_date", "lot_ids", "lots", "contract_start", "contract_end",
+                          "extension_end", "amount", "value_min", "value_max", "currency", "eligibility_text"):
+                setattr(merged, field, getattr(incoming, field))
+            merged.deadlines = incoming.deadlines or [
+                fact.model_copy(update={"status": "superseded"}) for fact in old.deadlines][-20:]
         if old.source == incoming.source == "sam":
             # SAM's full snapshot may remove a date or restore a previously
             # unlisted notice. Unknown bid status must not inherit a closed one.

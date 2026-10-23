@@ -1,0 +1,3213 @@
+[
+  {
+    "idweb": "26-103716",
+    "contractfolderid": null,
+    "objet": "P26-031 Guyane (973) – Maripasoula – Camp LUNIER – 9ème RIMa –  Remise à niveau du soutien électrique du site",
+    "code_departement": [
+      "973",
+      "972",
+      "971"
+    ],
+    "dateparution": "2026-10-23",
+    "datelimitereponse": "2026-11-12T16:00:00+00:00",
+    "nomacheteur": "DID Cayenne",
+    "titulaire": null,
+    "nature": "APPEL_OFFRE",
+    "nature_libelle": "Avis de marché",
+    "etat": "INITIAL",
+    "annonce_lie": null,
+    "donnees": {
+      "FNSimple": {
+        "organisme": {
+          "nomOfficiel": "DID Cayenne",
+          "typeIdentificationNational": {
+            "siret": ""
+          },
+          "codeIdentificationNational": "13000190200241",
+          "ville": "CAYENNE",
+          "cp": "97300",
+          "grpCommandes": {
+            "non": ""
+          }
+        },
+        "initial": {
+          "communication": {
+            "urlDocConsul": "https://www.marches-publics.gouv.fr/entreprise/consultation/3093112?orgAcronyme=g7h",
+            "identifiantInterne": "P26-031",
+            "docSecurite": {
+              "oui": ""
+            },
+            "urlSecurite": {
+              "non": ""
+            }
+          },
+          "procedure": {
+            "procedureAdapteeO": "",
+            "capaciteTech": "VOIR LE RC",
+            "techAchat": {
+              "autres": ""
+            },
+            "dateReceptionOffres": "2026-11-12T16:00:00",
+            "presOffres": {
+              "interdite": ""
+            },
+            "nbCandidatReduit": {
+              "non": ""
+            },
+            "attributionSansNegociation": {
+              "oui": {
+                "@ns2:type": "ns4:boolean",
+                "#text": "true"
+              }
+            },
+            "variantes": {
+              "non": {
+                "@ns2:type": "ns4:boolean",
+                "#text": "true"
+              }
+            }
+          },
+          "natureMarche": {
+            "intitule": "travaux de remise en conformité et d’adaptation des installations électriques du camp Lunier se trouvant à Maripasoula.",
+            "codeCPV": {
+              "objetPrincipal": {
+                "classPrincipale": "45311200"
+              }
+            },
+            "natureMarche": {
+              "travaux": ""
+            },
+            "description": "travaux de remise en conformité et d’adaptation des installations électriques du camp Lunier se trouvant à Maripasoula.",
+            "lieuExecution": "MARIPASOULA",
+            "dureeMois": "8",
+            "valeurEstimee": {
+              "@devise": "EUR",
+              "fourchette": {
+                "valeurBasse": "400000",
+                "valeurHaute": "450000"
+              }
+            },
+            "tranches": {
+              "non": {
+                "@ns2:type": "ns4:boolean",
+                "#text": "true"
+              }
+            },
+            "reservationMarche": {
+              "non": ""
+            },
+            "lotsMarche": {
+              "non": {
+                "@ns2:type": "ns4:boolean",
+                "#text": "true"
+              }
+            }
+          },
+          "informComplementaire": {
+            "non": ""
+          }
+        }
+      }
+    }
+  },
+  {
+    "idweb": "26-103698",
+    "contractfolderid": null,
+    "objet": "Réalisation du bilan mi-parcours du plan régional de prévention et de gestion des déchets (Prpgd)",
+    "code_departement": [
+      "971"
+    ],
+    "dateparution": "2026-10-23",
+    "datelimitereponse": null,
+    "nomacheteur": "Région Guadeloupe",
+    "titulaire": null,
+    "nature": "RECTIFICATIF",
+    "nature_libelle": "Rectificatif",
+    "etat": "RECTIFICATIF",
+    "annonce_lie": [
+      "26-101646"
+    ],
+    "donnees": {
+      "FNSimple": {
+        "organisme": {
+          "nomOfficiel": "Région Guadeloupe",
+          "typeIdentificationNational": {
+            "siret": ""
+          },
+          "codeIdentificationNational": "23971001500029",
+          "ville": "Basse-Terre",
+          "cp": "97100",
+          "grpCommandes": {
+            "non": ""
+          }
+        },
+        "rectificatif": {
+          "avisInitial": {
+            "idWeb": "26-101646"
+          },
+          "natureMarche": {
+            "intitule": "Réalisation du bilan mi-parcours du plan régional de prévention et de gestion des déchets (PRPGD)",
+            "codeCPV": {
+              "objetPrincipal": {
+                "classPrincipale": "79311000"
+              }
+            },
+            "natureMarche": {
+              "services": ""
+            },
+            "description": "La mission confiée au titulaire consiste à réaliser une évaluation technique, stratégique et opérationnelle de la mise en oeuvre du PRPGD, afin d'en apprécier le niveau d'atteinte des objectifs fixés, d'identifier les éventuels écarts constatés ainsi que de proposer des orientations et recommandations pour la période 2027- 2032.\n\nLe contrat est conclu pour une durée de 12 mois à compter de la notification du contrat",
+            "criteresAttrib": "énoncé dans le Rc"
+          },
+          "infosRectif": "Rubrique : Date et heure limites de réception des plis, Au lieu de 16/11/2026 à 12h00, lire 30/11/2026 à 12h00"
+        }
+      }
+    }
+  },
+  {
+    "idweb": "26-103594",
+    "contractfolderid": null,
+    "objet": "Marché de prestation de formation professionnelle initiale des sapeurs-pompiers",
+    "code_departement": [
+      "978"
+    ],
+    "dateparution": "2026-10-23",
+    "datelimitereponse": null,
+    "nomacheteur": "STIS (978)",
+    "titulaire": null,
+    "nature": "RECTIFICATIF",
+    "nature_libelle": "Rectificatif",
+    "etat": "RECTIFICATIF",
+    "annonce_lie": [
+      "26-101686"
+    ],
+    "donnees": {
+      "FNSimple": {
+        "organisme": {
+          "nomOfficiel": "STIS (978)",
+          "typeIdentificationNational": {
+            "siret": ""
+          },
+          "codeIdentificationNational": "93769118600012",
+          "ville": "Saint-Martin",
+          "cp": "97150",
+          "grpCommandes": {
+            "non": ""
+          }
+        },
+        "rectificatif": {
+          "avisInitial": {
+            "idWeb": "26-101686"
+          },
+          "natureMarche": {
+            "intitule": "Formation professionnelle initiale des sapeurs-pompiers",
+            "codeCPV": {
+              "objetPrincipal": {
+                "classPrincipale": "80530000"
+              }
+            },
+            "natureMarche": {
+              "services": ""
+            },
+            "description": "Marché de prestation de formation professionnelle initiale des sapeurs-pompiers"
+          },
+          "infosRectif": "Suites aux question des candidats et conformément à l'article 3 du RC, le DCE a été modifié.\nLes candidats devront alors répondre sur la base du dossier modifié "
+        }
+      }
+    }
+  },
+  {
+    "idweb": "26-103580",
+    "contractfolderid": null,
+    "objet": "Travaux d'aménagement d'un plateau de bureaux au R+2 des locaux Orchidée de la CACEM",
+    "code_departement": [
+      "972"
+    ],
+    "dateparution": "2026-10-23",
+    "datelimitereponse": "2026-11-13T12:00:00+00:00",
+    "nomacheteur": "CACEM - Communauté d'Agglomération Centre Martinique",
+    "titulaire": null,
+    "nature": "APPEL_OFFRE",
+    "nature_libelle": "Avis de marché",
+    "etat": "INITIAL",
+    "annonce_lie": null,
+    "donnees": {
+      "FNSimple": {
+        "organisme": {
+          "nomOfficiel": "CACEM - Communauté d'Agglomération Centre Martinique",
+          "typeIdentificationNational": {
+            "siret": ""
+          },
+          "codeIdentificationNational": "24972006100103",
+          "ville": "Fort de france cedex martinique",
+          "cp": "97204",
+          "grpCommandes": {
+            "non": ""
+          }
+        },
+        "initial": {
+          "communication": {
+            "urlProfilAch": "https://www.achatpublic.com/sdm/ent/gen/ent_detail.do?PCSLID=CSL_2026_TGz15a29HN",
+            "identifiantInterne": "2026_ATI_45",
+            "docSecurite": {
+              "oui": ""
+            },
+            "urlSecurite": {
+              "non": ""
+            }
+          },
+          "procedure": {
+            "procedureAdapteeO": "",
+            "capaciteExercice": "Voir RC",
+            "techAchat": {
+              "autres": ""
+            },
+            "dateReceptionOffres": "2026-11-13T12:00:00",
+            "presOffres": {
+              "interdite": ""
+            },
+            "nbCandidatReduit": {
+              "non": ""
+            },
+            "attributionSansNegociation": {
+              "oui": ""
+            },
+            "variantes": {
+              "non": ""
+            }
+          },
+          "natureMarche": {
+            "intitule": "Travaux d'aménagement d'un plateau de bureaux au R+2 des locaux Orchidée de la CACEM",
+            "codeCPV": {
+              "objetPrincipal": {
+                "classPrincipale": "45330000"
+              }
+            },
+            "natureMarche": {
+              "travaux": ""
+            },
+            "description": "Travaux d'aménagement d'un plateau de bureaux au R+2 des locaux Orchidée de la CACEM",
+            "lieuExecution": "Martinique",
+            "tranches": {
+              "non": ""
+            },
+            "reservationMarche": {
+              "non": ""
+            },
+            "lotsMarche": {
+              "oui": ""
+            }
+          },
+          "lots": {
+            "lot": [
+              {
+                "description": "Lot 1 - Aménagement intérieur (sol - cloisons - peinture - faux-plafond)",
+                "codeCPV": {
+                  "objetPrincipal": {
+                    "classPrincipale": "45421152"
+                  }
+                },
+                "estimationValeur": {
+                  "@devise": "EUR",
+                  "valeur": "0.00"
+                },
+                "lieuExecutionLivraison": "Martinique"
+              },
+              {
+                "description": "Lot 2 - Plomberie Sanitaires et Faïences",
+                "codeCPV": {
+                  "objetPrincipal": {
+                    "classPrincipale": "45330000"
+                  }
+                },
+                "estimationValeur": {
+                  "@devise": "EUR",
+                  "valeur": "0.00"
+                },
+                "lieuExecutionLivraison": "Martinique"
+              }
+            ]
+          },
+          "informComplementaire": {
+            "non": "",
+            "autresInformComplementaire": "Deux visites seront organisées :\n-\tMardi 27 octobre 2026 à 9h00\n-\tJeudi 29 octobre 2026 à 9h00\n\nLieu de rendez-vous : 2ème étage de l'immeuble Orchidée - ZAC de Rivière-Roche 97200 Fort de France.\n\nLes candidats devront s’inscrire à l’adresses e-mail suivante : scupit@cacem-mq.com ."
+          }
+        }
+      }
+    }
+  },
+  {
+    "idweb": "26-102567",
+    "contractfolderid": "55c42057-b5fd-4daa-bacb-e8edef86902c",
+    "objet": "Entretien des stations du TCSP",
+    "code_departement": [
+      "972"
+    ],
+    "dateparution": "2026-10-23",
+    "datelimitereponse": "2026-11-25T16:00:00+00:00",
+    "nomacheteur": "Martinique Transport",
+    "titulaire": null,
+    "nature": "APPEL_OFFRE",
+    "nature_libelle": "Avis de marché",
+    "etat": "INITIAL",
+    "annonce_lie": null,
+    "donnees": {
+      "EFORMS": {
+        "ContractNotice": {
+          "ext:UBLExtensions": {
+            "ext:UBLExtension": {
+              "ext:ExtensionContent": {
+                "efext:EformsExtension": {
+                  "efac:NoticeSubType": {
+                    "cbc:SubTypeCode": {
+                      "@listName": "notice-subtype",
+                      "#text": "16"
+                    }
+                  },
+                  "efac:Organizations": {
+                    "efac:Organization": [
+                      {
+                        "efac:Company": {
+                          "cbc:WebsiteURI": "http://www.martiniquetransport.e-marchespublics.com",
+                          "cac:PartyIdentification": {
+                            "cbc:ID": {
+                              "@schemeName": "organization",
+                              "#text": "ORG-0001"
+                            }
+                          },
+                          "cac:PartyName": {
+                            "cbc:Name": {
+                              "@languageID": "FRA",
+                              "#text": "Martinique Transport"
+                            }
+                          },
+                          "cac:PostalAddress": {
+                            "cbc:StreetName": "Rue Gaston Defferre",
+                            "cbc:AdditionalStreetName": "CS70473",
+                            "cbc:CityName": "Fort de France",
+                            "cbc:PostalZone": "97256",
+                            "cbc:CountrySubentityCode": {
+                              "@listName": "nuts",
+                              "#text": "FRY20"
+                            },
+                            "cac:Country": {
+                              "cbc:IdentificationCode": {
+                                "@listName": "country",
+                                "#text": "FRA"
+                              }
+                            }
+                          },
+                          "cac:PartyLegalEntity": {
+                            "cbc:CompanyID": "20007535600010"
+                          }
+                        }
+                      },
+                      {
+                        "efac:Company": {
+                          "cac:PartyIdentification": {
+                            "cbc:ID": {
+                              "@schemeName": "organization",
+                              "#text": "ORG-0002"
+                            }
+                          },
+                          "cac:PartyName": {
+                            "cbc:Name": {
+                              "@languageID": "FRA",
+                              "#text": "Tribunal administratif"
+                            }
+                          },
+                          "cac:PostalAddress": {
+                            "cbc:StreetName": "12 Rue du Citronnier",
+                            "cbc:CityName": "Schoelcher",
+                            "cbc:PostalZone": "97271",
+                            "cbc:CountrySubentityCode": {
+                              "@listName": "nuts",
+                              "#text": "FRY20"
+                            },
+                            "cac:Country": {
+                              "cbc:IdentificationCode": {
+                                "@listName": "country",
+                                "#text": "FRA"
+                              }
+                            }
+                          },
+                          "cac:PartyLegalEntity": {
+                            "cbc:CompanyID": "17972000800012"
+                          }
+                        }
+                      },
+                      {
+                        "efac:Company": {
+                          "cac:PartyIdentification": {
+                            "cbc:ID": {
+                              "@schemeName": "organization",
+                              "#text": "ORG-0003"
+                            }
+                          },
+                          "cac:PartyName": {
+                            "cbc:Name": {
+                              "@languageID": "FRA",
+                              "#text": "Comité Consultatif du Règlement Amiable des litiges"
+                            }
+                          },
+                          "cac:PostalAddress": {
+                            "cbc:CityName": "PARIS",
+                            "cbc:PostalZone": "75700",
+                            "cbc:CountrySubentityCode": {
+                              "@listName": "nuts",
+                              "#text": "FR101"
+                            },
+                            "cac:Country": {
+                              "cbc:IdentificationCode": {
+                                "@listName": "country",
+                                "#text": "FRA"
+                              }
+                            }
+                          },
+                          "cac:PartyLegalEntity": {
+                            "cbc:CompanyID": "17750000600024"
+                          }
+                        }
+                      },
+                      {
+                        "efac:Company": {
+                          "cbc:WebsiteURI": "www.dematis.com",
+                          "cac:PartyIdentification": {
+                            "cbc:ID": {
+                              "@schemeName": "organization",
+                              "#text": "ORG-0000"
+                            }
+                          },
+                          "cac:PartyName": {
+                            "cbc:Name": {
+                              "@languageID": "FRA",
+                              "#text": "DEMATIS"
+                            }
+                          },
+                          "cac:PostalAddress": {
+                            "cbc:CityName": "Paris",
+                            "cbc:PostalZone": "75015",
+                            "cbc:CountrySubentityCode": {
+                              "@listName": "nuts",
+                              "#text": "FR101"
+                            },
+                            "cac:Country": {
+                              "cbc:IdentificationCode": {
+                                "@listName": "country",
+                                "#text": "FRA"
+                              }
+                            }
+                          },
+                          "cac:PartyLegalEntity": {
+                            "cbc:CompanyID": "45072478600030"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "cbc:UBLVersionID": "2.3",
+          "cbc:CustomizationID": "eforms-sdk-1.13",
+          "cbc:ID": {
+            "@schemeName": "notice-id",
+            "#text": "c4d80b6e-b9b4-4718-9631-37acc59b37d4"
+          },
+          "cbc:ContractFolderID": "55c42057-b5fd-4daa-bacb-e8edef86902c",
+          "cbc:IssueDate": "2026-10-21+02:00",
+          "cbc:IssueTime": "19:40:07+02:00",
+          "cbc:VersionID": "01",
+          "cbc:RegulatoryDomain": "32014L0024",
+          "cbc:NoticeTypeCode": {
+            "@listName": "competition",
+            "#text": "cn-standard"
+          },
+          "cbc:NoticeLanguageCode": {
+            "@listName": "language",
+            "#text": "FRA"
+          },
+          "cac:ContractingParty": {
+            "cbc:BuyerProfileURI": "https://martiniquetransport.e-marchespublics.com",
+            "cac:ContractingPartyType": {
+              "cbc:PartyTypeCode": {
+                "@listName": "buyer-legal-type",
+                "#text": "grp-p-aut"
+              }
+            },
+            "cac:ContractingActivity": {
+              "cbc:ActivityTypeCode": {
+                "@listName": "authority-activity",
+                "#text": "econ-aff"
+              }
+            },
+            "cac:Party": {
+              "cac:PartyIdentification": {
+                "cbc:ID": "ORG-0001"
+              },
+              "cac:ServiceProviderParty": {
+                "cbc:ServiceTypeCode": {
+                  "@listName": "organisation-role",
+                  "#text": "ted-esen"
+                },
+                "cac:Party": {
+                  "cac:PartyIdentification": {
+                    "cbc:ID": "ORG-0000"
+                  }
+                }
+              }
+            }
+          },
+          "cac:TenderingTerms": {
+            "cac:TendererQualificationRequest": {
+              "cac:SpecificTendererRequirement": {
+                "cbc:TendererRequirementTypeCode": {
+                  "@listName": "exclusion-grounds-source",
+                  "#text": "epo-procurement-document"
+                }
+              }
+            },
+            "cac:LotDistribution": {
+              "cbc:MaximumLotsAwardedNumeric": "2",
+              "cbc:MaximumLotsSubmittedNumeric": "2"
+            }
+          },
+          "cac:TenderingProcess": {
+            "cbc:Description": {
+              "@languageID": "FRA",
+              "#text": "Appel d'offre ouvert - décomposition en deux lots - reprise du personnel prévue - absence de visite des sites (voir règlement de consultation pour compléments)"
+            },
+            "cbc:ProcedureCode": {
+              "@listName": "procurement-procedure-type",
+              "#text": "open"
+            },
+            "cac:ProcessJustification": {
+              "cbc:ProcessReasonCode": {
+                "@listName": "accelerated-procedure",
+                "#text": "false"
+              }
+            }
+          },
+          "cac:ProcurementProject": {
+            "cbc:ID": "26SIP10",
+            "cbc:Name": {
+              "@languageID": "FRA",
+              "#text": "Entretien des stations du TCSP"
+            },
+            "cbc:Description": {
+              "@languageID": "FRA",
+              "#text": "Entretien courant et en profondeur des stations du site propre comportant un abri voyageur, et de l'ensemble du quai d'embarquement et autour de l'abri (zone d'arrêt et équipements compris - environ 60 à 80 mètres) - 20 stations correspondant à 27 arrêts."
+            },
+            "cbc:ProcurementTypeCode": {
+              "@listName": "contract-nature",
+              "#text": "services"
+            },
+            "cac:RequestedTenderTotal": {
+              "ext:UBLExtensions": {
+                "ext:UBLExtension": {
+                  "ext:ExtensionContent": {
+                    "efext:EformsExtension": {
+                      "efbc:FrameworkMaximumAmount": {
+                        "@currencyID": "EUR",
+                        "#text": "1030000"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "cac:MainCommodityClassification": {
+              "cbc:ItemClassificationCode": {
+                "@listName": "cpv",
+                "#text": "90600000"
+              }
+            },
+            "cac:RealizedLocation": {
+              "cbc:Description": {
+                "@languageID": "FRA",
+                "#text": "Ligne A et B du TCSP - 20 stations représentant 27 points d'arrêt."
+              },
+              "cac:Address": {
+                "cbc:CountrySubentityCode": {
+                  "@listName": "nuts",
+                  "#text": "FRY20"
+                },
+                "cac:Country": {
+                  "cbc:IdentificationCode": {
+                    "@listName": "country",
+                    "#text": "FRA"
+                  }
+                }
+              }
+            }
+          },
+          "cac:ProcurementProjectLot": [
+            {
+              "cbc:ID": {
+                "@schemeName": "Lot",
+                "#text": "LOT-0001"
+              },
+              "cac:TenderingTerms": {
+                "cbc:VariantConstraintCode": {
+                  "@listName": "permission",
+                  "#text": "not-allowed"
+                },
+                "cbc:FundingProgramCode": {
+                  "@listName": "eu-funded",
+                  "#text": "no-eu-funds"
+                },
+                "cbc:RequiredCurriculaCode": {
+                  "@listName": "requirement-stage",
+                  "#text": "not-requ"
+                },
+                "cbc:MultipleTendersCode": {
+                  "@listName": "permission",
+                  "#text": "not-allowed"
+                },
+                "cac:CallForTendersDocumentReference": {
+                  "cbc:ID": "DOC-1",
+                  "cbc:DocumentType": "non-restricted-document",
+                  "cac:Attachment": {
+                    "cac:ExternalReference": {
+                      "cbc:URI": "https://martiniquetransport.e-marchespublics.com/pack/annonce_marche_public_25504_1188995.html"
+                    }
+                  }
+                },
+                "cac:TendererQualificationRequest": [
+                  {
+                    "cac:SpecificTendererRequirement": {
+                      "cbc:TendererRequirementTypeCode": {
+                        "@listName": "reserved-procurement",
+                        "#text": "none"
+                      }
+                    }
+                  },
+                  {
+                    "cac:SpecificTendererRequirement": {
+                      "cbc:TendererRequirementTypeCode": {
+                        "@listName": "selection-criteria-source",
+                        "#text": "epo-procurement-document"
+                      }
+                    }
+                  }
+                ],
+                "cac:ContractExecutionRequirement": [
+                  {
+                    "cbc:ExecutionRequirementCode": {
+                      "@listName": "conditions",
+                      "#text": "performance"
+                    },
+                    "cbc:Description": {
+                      "@languageID": "FRA",
+                      "#text": "Accord-cadre à bon de commande sans minimum et avec montants maximums par lot prévus aux documents de la consultation."
+                    }
+                  },
+                  {
+                    "cbc:ExecutionRequirementCode": {
+                      "@listName": "ecatalog-submission",
+                      "#text": "not-allowed"
+                    }
+                  },
+                  {
+                    "cbc:ExecutionRequirementCode": {
+                      "@listName": "reserved-execution",
+                      "#text": "no"
+                    }
+                  },
+                  {
+                    "cbc:ExecutionRequirementCode": {
+                      "@listName": "einvoicing",
+                      "#text": "required"
+                    }
+                  }
+                ],
+                "cac:AwardingTerms": {
+                  "cac:AwardingCriterion": {
+                    "cac:SubordinateAwardingCriterion": [
+                      {
+                        "cbc:AwardingCriterionTypeCode": {
+                          "@listName": "award-criterion-type",
+                          "#text": "price"
+                        },
+                        "cbc:Name": {
+                          "@languageID": "FRA",
+                          "#text": "Prix des prestations"
+                        },
+                        "cbc:Description": {
+                          "@languageID": "FRA",
+                          "#text": "Prix unitaire par stations (comportant 1 ou 2 arrêts) - voir DQE"
+                        }
+                      },
+                      {
+                        "cbc:AwardingCriterionTypeCode": {
+                          "@listName": "award-criterion-type",
+                          "#text": "quality"
+                        },
+                        "cbc:Name": {
+                          "@languageID": "FRA",
+                          "#text": "Valeur technique"
+                        },
+                        "cbc:Description": {
+                          "@languageID": "FRA",
+                          "#text": "o Organisation générale \no Matériel et équipements\no Modes opératoires et déroulement du service \no Qualité, sécurité, formation\no Environnement"
+                        }
+                      }
+                    ]
+                  }
+                },
+                "cac:AdditionalInformationParty": {
+                  "cac:PartyIdentification": {
+                    "cbc:ID": "ORG-0001"
+                  }
+                },
+                "cac:TenderRecipientParty": {
+                  "cbc:EndpointID": "https://www.martiniquetransport.e-marchespublics.com"
+                },
+                "cac:TenderValidityPeriod": {
+                  "cbc:DurationMeasure": {
+                    "@unitCode": "MONTH",
+                    "#text": "6"
+                  }
+                },
+                "cac:AppealTerms": {
+                  "cac:PresentationPeriod": {
+                    "cbc:Description": {
+                      "@languageID": "FRA",
+                      "#text": "Référé précontractuel prévu aux articles L.551-1 à L.551-12 du Code de justice administrative (CJA), et pouvant être exercé avant la signature du contrat. Référé contractuel prévu aux articlesL.551-13 à L.551-23 du CJA, et pouvant être exercé dans les délais prévus à l'article R. 551-7 du CJA. Recours pour excès de pouvoir contre une décision administrative prévu aux articles R. 421-1 à R. 421-7 du CJA, et pouvant être exercé dans les 2 mois suivant la notification ou publication de la décision de l'organisme (le recours ne peut plus, toutefois, être exercé après la signature du contrat). Recours de pleine juridiction ouvert aux tiers justifiant d'un intérêt lésé, et pouvant être exercé dans les deux mois suivant la date à laquelle la conclusion du contrat est rendue publique"
+                    }
+                  },
+                  "cac:AppealInformationParty": {
+                    "cac:PartyIdentification": {
+                      "cbc:ID": "ORG-0002"
+                    }
+                  },
+                  "cac:AppealReceiverParty": {
+                    "cac:PartyIdentification": {
+                      "cbc:ID": "ORG-0002"
+                    }
+                  },
+                  "cac:MediationParty": {
+                    "cac:PartyIdentification": {
+                      "cbc:ID": "ORG-0003"
+                    }
+                  }
+                },
+                "cac:Language": {
+                  "cbc:ID": "FRA"
+                },
+                "cac:PostAwardProcess": {
+                  "cbc:ElectronicOrderUsageIndicator": "false",
+                  "cbc:ElectronicPaymentUsageIndicator": "true"
+                }
+              },
+              "cac:TenderingProcess": {
+                "cbc:SubmissionMethodCode": {
+                  "@listName": "esubmission",
+                  "#text": "required"
+                },
+                "cbc:GovernmentAgreementConstraintIndicator": "true",
+                "cac:TenderSubmissionDeadlinePeriod": {
+                  "cbc:EndDate": "2026-11-25-04:00",
+                  "cbc:EndTime": "12:00:00-04:00"
+                },
+                "cac:OpenTenderEvent": {
+                  "cbc:OccurrenceDate": "2026-11-25-04:00",
+                  "cbc:OccurrenceTime": "12:30:00-04:00"
+                },
+                "cac:AuctionTerms": {
+                  "cbc:AuctionConstraintIndicator": "false"
+                },
+                "cac:FrameworkAgreement": {
+                  "cbc:MaximumOperatorQuantity": "0"
+                },
+                "cac:ContractingSystem": [
+                  {
+                    "cbc:ContractingSystemTypeCode": {
+                      "@listName": "framework-agreement",
+                      "#text": "fa-wo-rc"
+                    }
+                  },
+                  {
+                    "cbc:ContractingSystemTypeCode": {
+                      "@listName": "dps-usage",
+                      "#text": "none"
+                    }
+                  }
+                ]
+              },
+              "cac:ProcurementProject": {
+                "cbc:ID": "1",
+                "cbc:Name": {
+                  "@languageID": "FRA",
+                  "#text": "Entretien courant des stations du site propre comportant chacune un abri voyageur, et de l'ensemble du quai d'embarquement et autour de l'abri (zone d'arrêt et équipements compris - environ 60 à 80 mètres)"
+                },
+                "cbc:Description": {
+                  "@languageID": "FRA",
+                  "#text": "Prestations de niveau I :\nL'essuyage systématique des points d'appui, d'assise des usagers de l'abri voyageur et dépoussiérage des équipements audios et vidéos fixés sous le plafond de la station et sur le mât.\nL'essuyage des différentes parties (Candélabre, mât de vidéo surveillance, distributeurs automatiques de tickets (DAT), borne d'informations des horaires, panneau d'informations)\n Prestations de niveau II :\nLe vidage des corbeilles présentes sur le site ; (2 corbeilles sur les stations \" standard \" \nNettoyage des corbeilles \nRemplacement des sacs poubelles (50 litres)\nLe ramassage de tout déchet (produit ou trouvé) de types reste alimentaire, emballage, papier, verre, métal, non issus d'éléments fonctionnels de la station (cassés ou dégradés) et présent sur l'aire de travail (ensemble de la zone du point d'arrêt ou du pôle d'échange)\nL'évacuation des déchets doit avoir lieu immédiatement après chaque intervention."
+                },
+                "cbc:ProcurementTypeCode": {
+                  "@listName": "contract-nature",
+                  "#text": "services"
+                },
+                "cbc:Note": {
+                  "@languageID": "FRA",
+                  "#text": "Accord cadre mono-attributaire à bon de commande sans minimum et avec un maximum de 170 000 euros HT la première période d'un an et de 200 000,00 euros HT pour chaque période suivante. Prend effet à compter de la notification. Les valeurs estimées s'entendent comme montant maximum cumulé sur la durée total du marché reconductions comprises"
+                },
+                "cac:RequestedTenderTotal": {
+                  "cbc:EstimatedOverallContractAmount": {
+                    "@currencyID": "EUR",
+                    "#text": "770000"
+                  }
+                },
+                "cac:MainCommodityClassification": {
+                  "cbc:ItemClassificationCode": {
+                    "@listName": "cpv",
+                    "#text": "90600000"
+                  }
+                },
+                "cac:AdditionalCommodityClassification": {
+                  "cbc:ItemClassificationCode": {
+                    "@listName": "cpv",
+                    "#text": "45233229"
+                  }
+                },
+                "cac:RealizedLocation": {
+                  "cbc:Description": {
+                    "@languageID": "FRA",
+                    "#text": "Le long des Lignes A et B du TCSP : 20 stations représentant 27 points d'arrêts"
+                  },
+                  "cac:Address": {
+                    "cbc:CountrySubentityCode": {
+                      "@listName": "nuts",
+                      "#text": "FRY20"
+                    },
+                    "cac:Country": {
+                      "cbc:IdentificationCode": {
+                        "@listName": "country",
+                        "#text": "FRA"
+                      }
+                    }
+                  }
+                },
+                "cac:PlannedPeriod": {
+                  "cbc:DurationMeasure": {
+                    "@unitCode": "MONTH",
+                    "#text": "12"
+                  }
+                },
+                "cac:ContractExtension": {
+                  "cbc:OptionsDescription": {
+                    "@languageID": "FRA",
+                    "#text": "Reconductible 3 fois pour une durée d'un an à chaque période"
+                  },
+                  "cbc:MaximumNumberNumeric": "3",
+                  "cac:Renewal": {
+                    "cac:Period": {
+                      "cbc:Description": {
+                        "@languageID": "FRA",
+                        "#text": "La reconduction est tacite et le titulaire ne peut s'y opposer. Martinique Transport peut décider de ne pas reconduire l'accord-cadre. Cette décision est notifiée au titulaire par écrit au moins trois (3) mois avant la date d'échéance de la période en cours ; à défaut, la reconduction est réputée acquise. La non-reconduction n'ouvre droit à aucune indemnité au profit du titulaire."
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "cbc:ID": {
+                "@schemeName": "Lot",
+                "#text": "LOT-0002"
+              },
+              "cac:TenderingTerms": {
+                "cbc:VariantConstraintCode": {
+                  "@listName": "permission",
+                  "#text": "not-allowed"
+                },
+                "cbc:FundingProgramCode": {
+                  "@listName": "eu-funded",
+                  "#text": "no-eu-funds"
+                },
+                "cbc:RequiredCurriculaCode": {
+                  "@listName": "requirement-stage",
+                  "#text": "not-requ"
+                },
+                "cbc:MultipleTendersCode": {
+                  "@listName": "permission",
+                  "#text": "not-allowed"
+                },
+                "cac:CallForTendersDocumentReference": {
+                  "cbc:ID": "DOC-1",
+                  "cbc:DocumentType": "non-restricted-document",
+                  "cac:Attachment": {
+                    "cac:ExternalReference": {
+                      "cbc:URI": "https://martiniquetransport.e-marchespublics.com/pack/annonce_marche_public_25504_1188995.html"
+                    }
+                  }
+                },
+                "cac:TendererQualificationRequest": [
+                  {
+                    "cac:SpecificTendererRequirement": {
+                      "cbc:TendererRequirementTypeCode": {
+                        "@listName": "reserved-procurement",
+                        "#text": "none"
+                      }
+                    }
+                  },
+                  {
+                    "cac:SpecificTendererRequirement": {
+                      "cbc:TendererRequirementTypeCode": {
+                        "@listName": "selection-criteria-source",
+                        "#text": "epo-procurement-document"
+                      }
+                    }
+                  }
+                ],
+                "cac:ContractExecutionRequirement": [
+                  {
+                    "cbc:ExecutionRequirementCode": {
+                      "@listName": "conditions",
+                      "#text": "performance"
+                    },
+                    "cbc:Description": {
+                      "@languageID": "FRA",
+                      "#text": "Accord-cadre à bon de commande sans minimum et avec montants maximums par lot prévus aux documents de la consultation."
+                    }
+                  },
+                  {
+                    "cbc:ExecutionRequirementCode": {
+                      "@listName": "ecatalog-submission",
+                      "#text": "not-allowed"
+                    }
+                  },
+                  {
+                    "cbc:ExecutionRequirementCode": {
+                      "@listName": "reserved-execution",
+                      "#text": "no"
+                    }
+                  },
+                  {
+                    "cbc:ExecutionRequirementCode": {
+                      "@listName": "einvoicing",
+                      "#text": "required"
+                    }
+                  }
+                ],
+                "cac:AwardingTerms": {
+                  "cac:AwardingCriterion": {
+                    "cac:SubordinateAwardingCriterion": [
+                      {
+                        "cbc:AwardingCriterionTypeCode": {
+                          "@listName": "award-criterion-type",
+                          "#text": "price"
+                        },
+                        "cbc:Name": {
+                          "@languageID": "FRA",
+                          "#text": "Prix des prestations"
+                        },
+                        "cbc:Description": {
+                          "@languageID": "FRA",
+                          "#text": "Prix unitaire par stations (comportant 1 ou 2 arrêts) - voir DQE"
+                        }
+                      },
+                      {
+                        "cbc:AwardingCriterionTypeCode": {
+                          "@listName": "award-criterion-type",
+                          "#text": "quality"
+                        },
+                        "cbc:Name": {
+                          "@languageID": "FRA",
+                          "#text": "Valeur technique"
+                        },
+                        "cbc:Description": {
+                          "@languageID": "FRA",
+                          "#text": "o Organisation générale \r\no Matériel et équipements\r\no Modes opératoires et déroulement du service \r\no Qualité, sécurité, formation\r\no Environnement"
+                        }
+                      }
+                    ]
+                  }
+                },
+                "cac:AdditionalInformationParty": {
+                  "cac:PartyIdentification": {
+                    "cbc:ID": "ORG-0001"
+                  }
+                },
+                "cac:TenderRecipientParty": {
+                  "cbc:EndpointID": "https://www.martiniquetransport.e-marchespublics.com"
+                },
+                "cac:TenderValidityPeriod": {
+                  "cbc:DurationMeasure": {
+                    "@unitCode": "MONTH",
+                    "#text": "6"
+                  }
+                },
+                "cac:AppealTerms": {
+                  "cac:PresentationPeriod": {
+                    "cbc:Description": {
+                      "@languageID": "FRA",
+                      "#text": "Référé précontractuel prévu aux articles L.551-1 à L.551-12 du Code de justice administrative (CJA), et pouvant être exercé avant la signature du contrat. Référé contractuel prévu aux articlesL.551-13 à L.551-23 du CJA, et pouvant être exercé dans les délais prévus à l'article R. 551-7 du CJA. Recours pour excès de pouvoir contre une décision administrative prévu aux articles R. 421-1 à R. 421-7 du CJA, et pouvant être exercé dans les 2 mois suivant la notification ou publication de la décision de l'organisme (le recours ne peut plus, toutefois, être exercé après la signature du contrat). Recours de pleine juridiction ouvert aux tiers justifiant d'un intérêt lésé, et pouvant être exercé dans les deux mois suivant la date à laquelle la conclusion du contrat est rendue publique"
+                    }
+                  },
+                  "cac:AppealInformationParty": {
+                    "cac:PartyIdentification": {
+                      "cbc:ID": "ORG-0002"
+                    }
+                  },
+                  "cac:AppealReceiverParty": {
+                    "cac:PartyIdentification": {
+                      "cbc:ID": "ORG-0002"
+                    }
+                  },
+                  "cac:MediationParty": {
+                    "cac:PartyIdentification": {
+                      "cbc:ID": "ORG-0003"
+                    }
+                  }
+                },
+                "cac:Language": {
+                  "cbc:ID": "FRA"
+                },
+                "cac:PostAwardProcess": {
+                  "cbc:ElectronicOrderUsageIndicator": "false",
+                  "cbc:ElectronicPaymentUsageIndicator": "true"
+                }
+              },
+              "cac:TenderingProcess": {
+                "cbc:SubmissionMethodCode": {
+                  "@listName": "esubmission",
+                  "#text": "required"
+                },
+                "cbc:GovernmentAgreementConstraintIndicator": "true",
+                "cac:TenderSubmissionDeadlinePeriod": {
+                  "cbc:EndDate": "2026-11-25-04:00",
+                  "cbc:EndTime": "12:00:00-04:00"
+                },
+                "cac:OpenTenderEvent": {
+                  "cbc:OccurrenceDate": "2026-11-25-04:00",
+                  "cbc:OccurrenceTime": "12:30:00-04:00"
+                },
+                "cac:AuctionTerms": {
+                  "cbc:AuctionConstraintIndicator": "false"
+                },
+                "cac:FrameworkAgreement": {
+                  "cbc:MaximumOperatorQuantity": "0"
+                },
+                "cac:ContractingSystem": [
+                  {
+                    "cbc:ContractingSystemTypeCode": {
+                      "@listName": "framework-agreement",
+                      "#text": "fa-wo-rc"
+                    }
+                  },
+                  {
+                    "cbc:ContractingSystemTypeCode": {
+                      "@listName": "dps-usage",
+                      "#text": "none"
+                    }
+                  }
+                ]
+              },
+              "cac:ProcurementProject": {
+                "cbc:ID": "2",
+                "cbc:Name": {
+                  "@languageID": "FRA",
+                  "#text": "Entretien en profondeur des stations du site propre comportant chacune un abri voyageur, et de l'ensemble du quai d'embarquement et autour de l'abri (zone d'arrêt et équipements compris - environ 60 à 80 mètres)"
+                },
+                "cbc:Description": {
+                  "@languageID": "FRA",
+                  "#text": "Le nettoyage intérieur et extérieur (façades, toitures et plafonds) de l'abri voyageur et son séchage (usage de produits antistatiques recommandé) ;\r\nLe nettoyage du quai, des bancs, des  gardes corps à l'aide de karcher ou autre produits adéquats\r\nLe nettoyage des gouttières ;\r\nL'enlèvement systématique des graffitis, des affiches (sauf indication contraire de MARTINIQUE TRANSPORT dans le cadre d'une campagne d'affichage approuvée) ;\r\nLe nettoyage des sols et murs (usage de produits adéquats) ;\r\nLe désherbage manuel de toutes les aires minéralisées du point d'embarquement et débarquement des passagers (notamment les pieds de bordures de trottoirs et jointures du quai) ;"
+                },
+                "cbc:ProcurementTypeCode": {
+                  "@listName": "contract-nature",
+                  "#text": "services"
+                },
+                "cbc:Note": {
+                  "@languageID": "FRA",
+                  "#text": "Accord cadre mono-attributaire à bon de commande sans minimum et avec un maximum de 50 000 euros HT la première période d'un an et de 70 000,00 euros HT pour chaque période suivante. Prend effet à compter de la notification. Les valeurs estimées s'entendent comme montant maximum cumulé sur la durée total du marché reconductions comprises"
+                },
+                "cbc:SMESuitableIndicator": "true",
+                "cac:RequestedTenderTotal": {
+                  "cbc:EstimatedOverallContractAmount": {
+                    "@currencyID": "EUR",
+                    "#text": "260000"
+                  }
+                },
+                "cac:MainCommodityClassification": {
+                  "cbc:ItemClassificationCode": {
+                    "@listName": "cpv",
+                    "#text": "90600000"
+                  }
+                },
+                "cac:RealizedLocation": {
+                  "cbc:Description": {
+                    "@languageID": "FRA",
+                    "#text": "Le long des Lignes A et B du TCSP : 20 stations représentant 27 points d'arrêts"
+                  },
+                  "cac:Address": {
+                    "cbc:CountrySubentityCode": {
+                      "@listName": "nuts",
+                      "#text": "FRY20"
+                    },
+                    "cac:Country": {
+                      "cbc:IdentificationCode": {
+                        "@listName": "country",
+                        "#text": "FRA"
+                      }
+                    }
+                  }
+                },
+                "cac:PlannedPeriod": {
+                  "cbc:DurationMeasure": {
+                    "@unitCode": "MONTH",
+                    "#text": "12"
+                  }
+                },
+                "cac:ContractExtension": {
+                  "cbc:OptionsDescription": {
+                    "@languageID": "FRA",
+                    "#text": "Reconductible 3 fois pour une durée d'un an à chaque période"
+                  },
+                  "cbc:MaximumNumberNumeric": "3",
+                  "cac:Renewal": {
+                    "cac:Period": {
+                      "cbc:Description": {
+                        "@languageID": "FRA",
+                        "#text": "La reconduction est tacite et le titulaire ne peut s'y opposer. Martinique Transport peut décider de ne pas reconduire l'accord-cadre. Cette décision est notifiée au titulaire par écrit au moins trois (3) mois avant la date d'échéance de la période en cours ; à défaut, la reconduction est réputée acquise. La non-reconduction n'ouvre droit à aucune indemnité au profit du titulaire."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "idweb": "26-102530",
+    "contractfolderid": "51b65bec-6aad-4521-a89a-7d612af948e8",
+    "objet": "MAINTENANCE ET MISE EN CONFORMITE DES ASCENSEURS ET MONTE CHARGES PRESENTS SUR LE PATRIMOINE BATI ET LES EQUIPEMENTS DE LA COLLECTIVITE TERRITORIALE DE MARTINIQUE - 2EME CONSULTATION",
+    "code_departement": [
+      "972"
+    ],
+    "dateparution": "2026-10-23",
+    "datelimitereponse": null,
+    "nomacheteur": "COLLECTIVITE TERRITORIALE DE MARTINIQUE",
+    "titulaire": [
+      "TK Elevator France SAS"
+    ],
+    "nature": "ATTRIBUTION",
+    "nature_libelle": "Résultat de marché",
+    "etat": "INITIAL",
+    "annonce_lie": [
+      "26-41963"
+    ],
+    "donnees": {
+      "EFORMS": {
+        "ContractAwardNotice": {
+          "ext:UBLExtensions": {
+            "ext:UBLExtension": {
+              "ext:ExtensionContent": {
+                "efext:EformsExtension": {
+                  "efac:NoticeResult": {
+                    "cbc:TotalAmount": {
+                      "@currencyID": "EUR",
+                      "#text": "2000000"
+                    },
+                    "efbc:OverallMaximumFrameworkContractsAmount": {
+                      "@currencyID": "EUR",
+                      "#text": "2000000"
+                    },
+                    "efac:LotResult": [
+                      {
+                        "cbc:ID": {
+                          "@schemeName": "result",
+                          "#text": "RES-0001"
+                        },
+                        "cbc:TenderResultCode": {
+                          "@listName": "winner-selection-status",
+                          "#text": "selec-w"
+                        },
+                        "efac:LotTender": {
+                          "cbc:ID": "TEN-0001"
+                        },
+                        "efac:FrameworkAgreementValues": {
+                          "cbc:MaximumValueAmount": {
+                            "@currencyID": "EUR",
+                            "#text": "2000000"
+                          }
+                        },
+                        "efac:ReceivedSubmissionsStatistics": {
+                          "efbc:StatisticsCode": {
+                            "@listName": "received-submission-type",
+                            "#text": "t-esubm"
+                          },
+                          "efbc:StatisticsNumeric": "3"
+                        },
+                        "efac:SettledContract": {
+                          "cbc:ID": "CON-0001"
+                        },
+                        "efac:TenderLot": {
+                          "cbc:ID": "LOT-0001"
+                        }
+                      },
+                      {
+                        "cbc:ID": {
+                          "@schemeName": "result",
+                          "#text": "RES-0002"
+                        },
+                        "cbc:TenderResultCode": {
+                          "@listName": "winner-selection-status",
+                          "#text": "clos-nw"
+                        },
+                        "efac:DecisionReason": {
+                          "efbc:DecisionReasonCode": {
+                            "@listName": "non-award-justification",
+                            "#text": "all-rej"
+                          }
+                        },
+                        "efac:ReceivedSubmissionsStatistics": {
+                          "efbc:StatisticsCode": {
+                            "@listName": "received-submission-type",
+                            "#text": "t-esubm"
+                          },
+                          "efbc:StatisticsNumeric": "3"
+                        },
+                        "efac:TenderLot": {
+                          "cbc:ID": "LOT-0002"
+                        }
+                      }
+                    ],
+                    "efac:LotTender": {
+                      "cbc:ID": {
+                        "@schemeName": "tender",
+                        "#text": "TEN-0001"
+                      },
+                      "efbc:TenderRankedIndicator": "true",
+                      "cac:LegalMonetaryTotal": {
+                        "cbc:PayableAmount": {
+                          "@currencyID": "EUR",
+                          "#text": "776430"
+                        }
+                      },
+                      "efac:SubcontractingTerm": {
+                        "efbc:TermCode": {
+                          "@listName": "applicability",
+                          "#text": "not-known"
+                        }
+                      },
+                      "efac:TenderingParty": {
+                        "cbc:ID": "TPA-0001"
+                      },
+                      "efac:TenderLot": {
+                        "cbc:ID": "LOT-0001"
+                      },
+                      "efac:TenderReference": {
+                        "cbc:ID": "TK Elevator France SAS"
+                      }
+                    },
+                    "efac:SettledContract": {
+                      "cbc:ID": {
+                        "@schemeName": "contract",
+                        "#text": "CON-0001"
+                      },
+                      "cbc:AwardDate": "2026-07-22+02:00",
+                      "cbc:IssueDate": "2026-09-25+02:00",
+                      "efbc:ContractFrameworkIndicator": "true",
+                      "cac:NoticeDocumentReference": {
+                        "cbc:ID": "284796-2026"
+                      },
+                      "efac:ContractReference": {
+                        "cbc:ID": "TK Elevator France SAS"
+                      },
+                      "efac:LotTender": {
+                        "cbc:ID": "TEN-0001"
+                      }
+                    },
+                    "efac:TenderingParty": {
+                      "cbc:ID": {
+                        "@schemeName": "tendering-party",
+                        "#text": "TPA-0001"
+                      },
+                      "cbc:Name": "TK Elevator France SAS",
+                      "efac:Tenderer": {
+                        "cbc:ID": "ORG-0003"
+                      }
+                    }
+                  },
+                  "efac:NoticeSubType": {
+                    "cbc:SubTypeCode": {
+                      "@listName": "notice-subtype",
+                      "#text": "29"
+                    }
+                  },
+                  "efac:Organizations": {
+                    "efac:Organization": [
+                      {
+                        "efac:Company": {
+                          "cbc:EndpointID": "https://collectiviteterritorialedemartinique.achatpublic.com",
+                          "cac:PartyIdentification": {
+                            "cbc:ID": {
+                              "@schemeName": "organization",
+                              "#text": "ORG-0001"
+                            }
+                          },
+                          "cac:PartyName": {
+                            "cbc:Name": {
+                              "@languageID": "FRA",
+                              "#text": "COLLECTIVITE TERRITORIALE DE MARTINIQUE"
+                            }
+                          },
+                          "cac:PostalAddress": {
+                            "cbc:StreetName": "RUE GASTON DEFFERRE CS 30137",
+                            "cbc:CityName": "Fort-de-france cedex",
+                            "cbc:PostalZone": "97201",
+                            "cbc:CountrySubentityCode": {
+                              "@listName": "nuts",
+                              "#text": "FRY20"
+                            },
+                            "cac:Country": {
+                              "cbc:IdentificationCode": {
+                                "@listName": "country",
+                                "#text": "FRA"
+                              }
+                            }
+                          },
+                          "cac:PartyLegalEntity": {
+                            "cbc:CompanyID": "20005550700012"
+                          }
+                        }
+                      },
+                      {
+                        "efac:Company": {
+                          "cac:PartyIdentification": {
+                            "cbc:ID": {
+                              "@schemeName": "organization",
+                              "#text": "ORG-0002"
+                            }
+                          },
+                          "cac:PartyName": {
+                            "cbc:Name": {
+                              "@languageID": "FRA",
+                              "#text": "Tribunal administratif de Martinique"
+                            }
+                          },
+                          "cac:PostalAddress": {
+                            "cbc:CityName": "SCHOELCHER CEDEX",
+                            "cbc:PostalZone": "97271",
+                            "cbc:CountrySubentityCode": {
+                              "@listName": "nuts",
+                              "#text": "FRY20"
+                            },
+                            "cac:Country": {
+                              "cbc:IdentificationCode": {
+                                "@listName": "country",
+                                "#text": "FRA"
+                              }
+                            }
+                          },
+                          "cac:PartyLegalEntity": {
+                            "cbc:CompanyID": "17972000800020"
+                          }
+                        }
+                      },
+                      {
+                        "efac:Company": {
+                          "efbc:CompanySizeCode": {
+                            "@listName": "economic-operator-size",
+                            "#text": "sme"
+                          },
+                          "cac:PartyIdentification": {
+                            "cbc:ID": {
+                              "@schemeName": "organization",
+                              "#text": "ORG-0003"
+                            }
+                          },
+                          "cac:PartyName": {
+                            "cbc:Name": {
+                              "@languageID": "FRA",
+                              "#text": "TK Elevator France SAS"
+                            }
+                          },
+                          "cac:PostalAddress": {
+                            "cbc:StreetName": "Quartier Petit Pré",
+                            "cbc:CityName": "LE LAMENTIN",
+                            "cbc:PostalZone": "97232",
+                            "cbc:CountrySubentityCode": {
+                              "@listName": "nuts",
+                              "#text": "FRY20"
+                            },
+                            "cac:Country": {
+                              "cbc:IdentificationCode": {
+                                "@listName": "country",
+                                "#text": "FRA"
+                              }
+                            }
+                          },
+                          "cac:PartyLegalEntity": {
+                            "cbc:CompanyID": "722 024 742 02772"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "cbc:UBLVersionID": "2.3",
+          "cbc:CustomizationID": "eforms-sdk-1.13",
+          "cbc:ID": {
+            "@schemeName": "notice-id",
+            "#text": "6271ee51-e074-4dfb-90f8-b4ee78197357"
+          },
+          "cbc:ContractFolderID": "51b65bec-6aad-4521-a89a-7d612af948e8",
+          "cbc:IssueDate": "2026-10-21+02:00",
+          "cbc:IssueTime": "16:30:48+02:00",
+          "cbc:VersionID": "01",
+          "cbc:RegulatoryDomain": "32014L0024",
+          "cbc:NoticeTypeCode": {
+            "@listName": "result",
+            "#text": "can-standard"
+          },
+          "cbc:NoticeLanguageCode": {
+            "@listName": "language",
+            "#text": "FRA"
+          },
+          "cac:ContractingParty": {
+            "cbc:BuyerProfileURI": "https://collectiviteterritorialedemartinique.achatpublic.com",
+            "cac:ContractingPartyType": {
+              "cbc:PartyTypeCode": {
+                "@listName": "buyer-legal-type",
+                "#text": "la"
+              }
+            },
+            "cac:ContractingActivity": {
+              "cbc:ActivityTypeCode": {
+                "@listName": "authority-activity",
+                "#text": "gen-pub"
+              }
+            },
+            "cac:Party": {
+              "cac:PartyIdentification": {
+                "cbc:ID": "ORG-0001"
+              }
+            }
+          },
+          "cac:TenderingProcess": {
+            "cbc:ProcedureCode": {
+              "@listName": "procurement-procedure-type",
+              "#text": "open"
+            },
+            "cac:NoticeDocumentReference": {
+              "cbc:ID": "1c348c8d-2de6-44b5-88c9-0a133f745945-01"
+            },
+            "cac:ProcessJustification": {
+              "cbc:ProcessReasonCode": {
+                "@listName": "accelerated-procedure",
+                "#text": "false"
+              }
+            }
+          },
+          "cac:ProcurementProject": {
+            "cbc:ID": "2025_DAO_0666",
+            "cbc:Name": {
+              "@languageID": "FRA",
+              "#text": "MAINTENANCE ET MISE EN CONFORMITE DES ASCENSEURS ET MONTE CHARGES PRESENTS SUR LE PATRIMOINE BATI ET LES EQUIPEMENTS DE LA COLLECTIVITE TERRITORIALE DE MARTINIQUE - 2EME CONSULTATION"
+            },
+            "cbc:Description": {
+              "@languageID": "FRA",
+              "#text": "La présente consultation concerne :\nMAINTENANCE ET MISE EN CONFORMITE DES ASCENSEURS ET MONTE CHARGES PRESENTS SUR LE PATRIMOINE BATI ET LES EQUIPEMENTS DE LA COLLECTIVITE TERRITORIALE DE MARTINIQUE - 2EME CONSULTATION\nSont notamment concernées les prestations suivantes :\n✓ Maintenance préventive Ascenseurs et Monte Charges\n✓ Maintenance corrective et mise en conformité des Ascenseurs et Monte Charges"
+            },
+            "cbc:ProcurementTypeCode": {
+              "@listName": "contract-nature",
+              "#text": "services"
+            },
+            "cac:RequestedTenderTotal": {
+              "cbc:EstimatedOverallContractAmount": {
+                "@currencyID": "EUR",
+                "#text": "4000000"
+              }
+            },
+            "cac:MainCommodityClassification": {
+              "cbc:ItemClassificationCode": {
+                "@listName": "cpv",
+                "#text": "50750000"
+              }
+            },
+            "cac:RealizedLocation": {
+              "cbc:Description": {
+                "@languageID": "FRA",
+                "#text": "Procédure ouverte (articles L.21242, R.21242 1°et R.21612 à R.21615 du Code de la Commande Publique) avec Publication au JOUE. Le marché est à prix mixtes : Une partie à prix forfaitaire, sur la base des prix indiqués à l'acte d'engagement et dans la Décomposition du prix global et forfaitaire sera utilisée pour la maintenance préventive des ascenseurs et monte-charges. Une partie en accord cadre à bons de commande sur la base du Bordereau des Prix Unitaires, avec un maximum annuel, en application de l'article R2162-2 du Code de la commande publique sera utilisée pour la maintenance corrective et la mise en conformité des ascenseurs et monte-charges. Le Représentant de l’Acheteur limite à un (1) le nombre maximal de lots qu’un même candidat peut se voir attribuer.  Financement : fonds propre de la Collectivité Territoriale de Martinique - paiement : virement administratif délai laissé au soumissionnaire attributaire pour déduire les pièces prévues à l'article R.21428 du Code de la Commande Publique : 10 jours calendaires délai global de paiement : 30 jours - avance de 10% prévue variation des prix : prix révisable"
+              },
+              "cac:Address": {
+                "cbc:CountrySubentityCode": {
+                  "@listName": "nuts",
+                  "#text": "FRY20"
+                },
+                "cac:Country": {
+                  "cbc:IdentificationCode": {
+                    "@listName": "country",
+                    "#text": "FRA"
+                  }
+                }
+              }
+            }
+          },
+          "cac:ProcurementProjectLot": [
+            {
+              "cbc:ID": {
+                "@schemeName": "Lot",
+                "#text": "LOT-0001"
+              },
+              "cac:TenderingTerms": {
+                "cbc:FundingProgramCode": {
+                  "@listName": "eu-funded",
+                  "#text": "no-eu-funds"
+                },
+                "cac:AwardingTerms": {
+                  "cac:AwardingCriterion": {
+                    "cbc:CalculationExpression": {
+                      "@languageID": "FRA",
+                      "#text": "1 - Valeur technique : 60.0 %\n1.1- Exploitation et organisation pour l'exécution de la prestation : 25.0 %\n1.2- Moyens humains dédiés au marché : 10.0 %\n1.3- Moyens matériels dédiés au marché : 10.0 %\n1.4- Caractéristiques techniques du matériel : 5,0 %\n1.5-Temps de mise à disposition des pièces détachées : 5.0 %\n1.6 - Qualité de la note environnementale : 5.0 %\n2 - Prix des prestations : 40.0 %\n2-1 Montant de la DPGF (Maintenance préventive) : 15%\n2-2 Montant de la simulation : 25%"
+                    },
+                    "cac:SubordinateAwardingCriterion": {
+                      "ext:UBLExtensions": {
+                        "ext:UBLExtension": {
+                          "ext:ExtensionContent": {
+                            "efext:EformsExtension": {
+                              "efac:AwardCriterionParameter": [
+                                {
+                                  "efbc:ParameterNumeric": "100"
+                                },
+                                {
+                                  "efbc:ParameterNumeric": "105"
+                                },
+                                {
+                                  "efbc:ParameterNumeric": "100"
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      },
+                      "cbc:AwardingCriterionTypeCode": {
+                        "@listName": "award-criterion-type",
+                        "#text": "cost"
+                      },
+                      "cbc:Description": {
+                        "@languageID": "FRA",
+                        "#text": "Avant de procéder à l'examen des candidatures, s'il apparaît que des pièces du dossier de candidature sont manquantes ou incomplètes, le pouvoir adjudicateur peut décider de demander à tous les candidats concernés de produire ou compléter ces pièces dans un délai maximum de 10 jours. Les critères de sélection des candidatures qui seront utilisés sont les capacités professionnelles, techniques et économiques et financières."
+                      }
+                    }
+                  }
+                },
+                "cac:AppealTerms": {
+                  "cac:PresentationPeriod": {
+                    "cbc:Description": {
+                      "@languageID": "FRA",
+                      "#text": "Tribunal administratif de Martinique"
+                    }
+                  },
+                  "cac:AppealReceiverParty": {
+                    "cac:PartyIdentification": {
+                      "cbc:ID": "ORG-0002"
+                    }
+                  }
+                }
+              },
+              "cac:TenderingProcess": {
+                "cbc:GovernmentAgreementConstraintIndicator": "true",
+                "cac:AuctionTerms": {
+                  "cbc:AuctionConstraintIndicator": "false"
+                },
+                "cac:FrameworkAgreement": {
+                  "cac:SubsequentProcessTenderRequirement": {
+                    "cbc:Name": "buyer-categories"
+                  }
+                },
+                "cac:ContractingSystem": [
+                  {
+                    "cbc:ContractingSystemTypeCode": {
+                      "@listName": "framework-agreement",
+                      "#text": "fa-wo-rc"
+                    }
+                  },
+                  {
+                    "cbc:ContractingSystemTypeCode": {
+                      "@listName": "dps-usage",
+                      "#text": "none"
+                    }
+                  }
+                ]
+              },
+              "cac:ProcurementProject": {
+                "cbc:ID": "2025_DAO_0666 lot1",
+                "cbc:Name": {
+                  "@languageID": "FRA",
+                  "#text": "Lot n° 1 : Secteur Centre Nord"
+                },
+                "cbc:Description": {
+                  "@languageID": "FRA",
+                  "#text": "concernées les prestations suivantes :\n✓ Maintenance préventive Ascenseurs et Monte Charges\n✓ Maintenance corrective et mise en conformité des Ascenseurs et Monte Charges"
+                },
+                "cbc:ProcurementTypeCode": {
+                  "@listName": "contract-nature",
+                  "#text": "services"
+                },
+                "cac:RequestedTenderTotal": {
+                  "cbc:EstimatedOverallContractAmount": {
+                    "@currencyID": "EUR",
+                    "#text": "2000000"
+                  }
+                },
+                "cac:MainCommodityClassification": {
+                  "cbc:ItemClassificationCode": {
+                    "@listName": "cpv",
+                    "#text": "50750000"
+                  }
+                },
+                "cac:RealizedLocation": {
+                  "cbc:Description": {
+                    "@languageID": "FRA",
+                    "#text": "Le nombre de participant n'est pas limité. La valeur indiquée dans le champ 5.1.15 relève d'une obligation technique du cadre de l'avis et ne reflète pas une limitation réelle. Lot 1 : Secteur Centre - Nord : Grand-Rivière, Macouba, Basse Pointe, Lorrain, Marigot, Sainte-Marie, Trinité, Robert, Schoelcher, Case-Pilote, Bellefontaine, Morne Vert, Carbet, Saint-Pierre, Fonds Saint-Denis, Prêcheur, Morne Rouge, Ajoupa-Bouillon Fort de FRANCE rive droite Levassor, A titre indicatif, la dépense prévisionnelle annuelle est de 600 000 Euros HT. Le montant maxi de cet accord-cadre est de 2 000 000 Euros HT."
+                  },
+                  "cac:Address": {
+                    "cbc:CountrySubentityCode": {
+                      "@listName": "nuts",
+                      "#text": "FRY20"
+                    },
+                    "cac:Country": {
+                      "cbc:IdentificationCode": {
+                        "@listName": "country",
+                        "#text": "FRA"
+                      }
+                    }
+                  }
+                },
+                "cac:PlannedPeriod": {
+                  "cbc:DurationMeasure": {
+                    "@unitCode": "MONTH",
+                    "#text": "12"
+                  }
+                }
+              }
+            },
+            {
+              "cbc:ID": {
+                "@schemeName": "Lot",
+                "#text": "LOT-0002"
+              },
+              "cac:TenderingTerms": {
+                "cbc:FundingProgramCode": {
+                  "@listName": "eu-funded",
+                  "#text": "no-eu-funds"
+                },
+                "cac:AwardingTerms": {
+                  "cac:AwardingCriterion": {
+                    "cbc:CalculationExpression": {
+                      "@languageID": "FRA",
+                      "#text": "1 - Valeur technique : 60.0 %\n1.1- Exploitation et organisation pour l'exécution de la prestation : 25.0 %\n1.2- Moyens humains dédiés au marché : 10.0 %\n1.3- Moyens matériels dédiés au marché : 10.0 %\n1.4- Caractéristiques techniques du matériel : 5,0 %\n1.5-Temps de mise à disposition des pièces détachées : 5.0 %\n1.6 - Qualité de la note environnementale : 5.0 %\n2 - Prix des prestations : 40.0 %\n2-1 Montant de la DPGF (Maintenance préventive) : 15%\n2-2 Montant de la simulation : 25%"
+                    },
+                    "cac:SubordinateAwardingCriterion": {
+                      "ext:UBLExtensions": {
+                        "ext:UBLExtension": {
+                          "ext:ExtensionContent": {
+                            "efext:EformsExtension": {
+                              "efac:AwardCriterionParameter": [
+                                {
+                                  "efbc:ParameterNumeric": "100"
+                                },
+                                {
+                                  "efbc:ParameterNumeric": "100"
+                                },
+                                {
+                                  "efbc:ParameterNumeric": "100"
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      },
+                      "cbc:AwardingCriterionTypeCode": {
+                        "@listName": "award-criterion-type",
+                        "#text": "cost"
+                      },
+                      "cbc:Description": {
+                        "@languageID": "FRA",
+                        "#text": "Avant de procéder à l'examen des candidatures, s'il apparaît que des pièces du dossier de candidature sont manquantes ou incomplètes, le pouvoir adjudicateur peut décider de demander à tous les candidats concernés de produire ou compléter ces pièces dans un délai maximum de 10 jours. Les critères de sélection des candidatures qui seront utilisés sont les capacités professionnelles, techniques et économiques et financières."
+                      }
+                    }
+                  }
+                },
+                "cac:AppealTerms": {
+                  "cac:PresentationPeriod": {
+                    "cbc:Description": {
+                      "@languageID": "FRA",
+                      "#text": "Tribunal administratif de Martinique"
+                    }
+                  },
+                  "cac:AppealReceiverParty": {
+                    "cac:PartyIdentification": {
+                      "cbc:ID": "ORG-0002"
+                    }
+                  }
+                }
+              },
+              "cac:TenderingProcess": {
+                "ext:UBLExtensions": {
+                  "ext:UBLExtension": {
+                    "ext:ExtensionContent": {
+                      "efext:EformsExtension": {
+                        "efbc:ProcedureRelaunchIndicator": "true"
+                      }
+                    }
+                  }
+                },
+                "cbc:GovernmentAgreementConstraintIndicator": "true",
+                "cac:AuctionTerms": {
+                  "cbc:AuctionConstraintIndicator": "false"
+                },
+                "cac:FrameworkAgreement": {
+                  "cac:SubsequentProcessTenderRequirement": {
+                    "cbc:Name": "buyer-categories"
+                  }
+                },
+                "cac:ContractingSystem": [
+                  {
+                    "cbc:ContractingSystemTypeCode": {
+                      "@listName": "dps-usage",
+                      "#text": "none"
+                    }
+                  },
+                  {
+                    "cbc:ContractingSystemTypeCode": {
+                      "@listName": "framework-agreement",
+                      "#text": "fa-wo-rc"
+                    }
+                  }
+                ]
+              },
+              "cac:ProcurementProject": {
+                "cbc:ID": "2025_DAO_0666 lot2",
+                "cbc:Name": {
+                  "@languageID": "FRA",
+                  "#text": "lot 2 :Secteur Centre Sud"
+                },
+                "cbc:Description": {
+                  "@languageID": "FRA",
+                  "#text": "La présente consultation concerne :\nMAINTENANCE ET MISE EN CONFORMITE DES ASCENSEURS ET MONTE CHARGES PRESENTS SUR LE PATRIMOINE BATI ET LES EQUIPEMENTS DE LA COLLECTIVITE TERRITORIALE DE MARTINIQUE\nSont notamment concernées les prestations suivantes :\n✓ Maintenance préventive Ascenseurs et Monte Charges\n✓ Maintenance corrective et mise en conformité des Ascenseurs et Monte Charges"
+                },
+                "cbc:ProcurementTypeCode": {
+                  "@listName": "contract-nature",
+                  "#text": "services"
+                },
+                "cac:RequestedTenderTotal": {
+                  "cbc:EstimatedOverallContractAmount": {
+                    "@currencyID": "EUR",
+                    "#text": "2000000"
+                  }
+                },
+                "cac:MainCommodityClassification": {
+                  "cbc:ItemClassificationCode": {
+                    "@listName": "cpv",
+                    "#text": "50750000"
+                  }
+                },
+                "cac:RealizedLocation": {
+                  "cbc:Description": {
+                    "@languageID": "FRA",
+                    "#text": "Le nombre de participant n'est pas limité. La valeur indiquée dans le champ 5.1.15 relève d'une obligation technique du cadre de l'avis et ne reflète pas une limitation réelle. Lot 2 : Secteur Centre - SUD : Fort de FRANCE rive Gauche Levassor, Lamentin, Saint-Joseph, Gros-Morne, François, Ducos, Saint Esprit, Rivière Salée, Rivière Pilote, Vauclin, Anses d'Arlet, Trois Ilets, Diamant, Sainte Luce, Marin, Sainte-Anne A titre indicatif, la dépense prévisionnelle annuelle est de 600 000 € HT. Le montant maxi de cet accord-cadre est de 2 000 000 € HT."
+                  },
+                  "cac:Address": {
+                    "cbc:CountrySubentityCode": {
+                      "@listName": "nuts",
+                      "#text": "FRY20"
+                    },
+                    "cac:Country": {
+                      "cbc:IdentificationCode": {
+                        "@listName": "country",
+                        "#text": "FRA"
+                      }
+                    }
+                  }
+                },
+                "cac:PlannedPeriod": {
+                  "cbc:DurationMeasure": {
+                    "@unitCode": "MONTH",
+                    "#text": "12"
+                  }
+                }
+              }
+            }
+          ],
+          "cac:TenderResult": {
+            "cbc:AwardDate": "2000-01-01Z"
+          }
+        }
+      }
+    }
+  },
+  {
+    "idweb": "26-103047",
+    "contractfolderid": null,
+    "objet": "Mission de Maîtrise d’œuvre pour la restauration écologique de la rivière Nogent",
+    "code_departement": [
+      "971"
+    ],
+    "dateparution": "2026-10-22",
+    "datelimitereponse": null,
+    "nomacheteur": "Parc National de la Guadeloupe",
+    "titulaire": null,
+    "nature": "RECTIFICATIF",
+    "nature_libelle": "Rectificatif",
+    "etat": "RECTIFICATIF",
+    "annonce_lie": [
+      "26-91195"
+    ],
+    "donnees": {
+      "MAPA": {
+        "organisme": {
+          "acheteurPublic": "Parc National de la Guadeloupe",
+          "adr": {
+            "voie": {
+              "typevoie": "Monteran",
+              "nomvoie": "Monteran"
+            },
+            "cp": "97120",
+            "ville": "SAINT CLAUDE"
+          },
+          "urlProfilAcheteur": "https://www.marches-publics.gouv.fr/entreprise",
+          "classificationOrganisme": "5"
+        },
+        "rectificatif": {
+          "avisInitial": {
+            "idWeb": "26-91195",
+            "datePublication": "2026-09-21"
+          },
+          "description": {
+            "objet": "Le Parc national de la Guadeloupe (PNG) porte un projet de restauration écologique de la rivière Nogent, dont l’objectif principal est l’arasement d’un seuil orphelin constitué d’un ancien ouvrage en palplanches, aujourd’hui sans usage fonctionnel.\nCette intervention vise à restaurer la dynamique naturelle du cours d’eau et à améliorer durablement son fonctionnement hydraulique et écologique. À c",
+            "marcheFournitures": "",
+            "CPV": {
+              "objetPrincipal": {
+                "classPrincipale": "71313000"
+              }
+            },
+            "lieuExecutionLivraison": {
+              "voie": {
+                "num": "**",
+                "typevoie": "Monteran",
+                "nomvoie": "Monteran"
+              },
+              "cp": "97120",
+              "ville": "Saint Claude"
+            }
+          },
+          "procedure": {
+            "procedureAdaptee": ""
+          },
+          "infosRectif": {
+            "rubDelais": "ReceptionOffres",
+            "auLieuDeDate": "2026-11-02T17:00:00",
+            "lireDate": "2026-11-20T17:00:00"
+          }
+        }
+      }
+    }
+  },
+  {
+    "idweb": "26-102186",
+    "contractfolderid": "8a952834-682f-44e6-bf07-6961fbfb6112",
+    "objet": "Réalisation d’une étude intégrée multi aléas portant sur les inondations en contexte urbain littoral, au stade faisabilité /pré-dimensionnement",
+    "code_departement": [
+      "971"
+    ],
+    "dateparution": "2026-10-22",
+    "datelimitereponse": "2026-11-13T16:00:00+00:00",
+    "nomacheteur": "Cap Excellence (971)",
+    "titulaire": null,
+    "nature": "APPEL_OFFRE",
+    "nature_libelle": "Avis de marché",
+    "etat": "ANNULATION",
+    "annonce_lie": [
+      "26-99273"
+    ],
+    "donnees": {
+      "EFORMS": {
+        "ContractNotice": {
+          "ext:UBLExtensions": {
+            "ext:UBLExtension": {
+              "ext:ExtensionContent": {
+                "efext:EformsExtension": {
+                  "efac:Changes": {
+                    "efbc:ChangedNoticeIdentifier": "714061-2026",
+                    "efac:ChangeReason": {
+                      "cbc:ReasonCode": {
+                        "@listName": "change-corrig-justification",
+                        "#text": "cancel"
+                      }
+                    }
+                  },
+                  "efac:NoticeSubType": {
+                    "cbc:SubTypeCode": {
+                      "@listName": "notice-subtype",
+                      "#text": "16"
+                    }
+                  },
+                  "efac:Organizations": {
+                    "efac:Organization": [
+                      {
+                        "efac:Company": {
+                          "cbc:WebsiteURI": "https://www.marches-securises.fr",
+                          "cbc:EndpointID": "http://www.capexcellence.net",
+                          "cac:PartyIdentification": {
+                            "cbc:ID": "ORG-0001"
+                          },
+                          "cac:PartyName": {
+                            "cbc:Name": {
+                              "@languageID": "FRA",
+                              "#text": "Cap Excellence (971)"
+                            }
+                          },
+                          "cac:PostalAddress": {
+                            "cbc:StreetName": "18 boulevard Légitimus",
+                            "cbc:CityName": "Pointe à Pitre",
+                            "cbc:PostalZone": "97110",
+                            "cbc:CountrySubentityCode": {
+                              "@listName": "nuts",
+                              "#text": "FRY10"
+                            },
+                            "cac:Country": {
+                              "cbc:IdentificationCode": {
+                                "@listName": "country",
+                                "#text": "FRA"
+                              }
+                            }
+                          },
+                          "cac:PartyLegalEntity": {
+                            "cbc:CompanyID": "20001865300010"
+                          }
+                        }
+                      },
+                      {
+                        "efac:Company": {
+                          "cac:PartyIdentification": {
+                            "cbc:ID": "ORG-0003"
+                          },
+                          "cac:PartyName": {
+                            "cbc:Name": {
+                              "@languageID": "FRA",
+                              "#text": "Tribunal Administratif de la Guadeloupe"
+                            }
+                          },
+                          "cac:PostalAddress": {
+                            "cbc:StreetName": "Cité Guillard, 34 chemin des Bougainvilliers",
+                            "cbc:CityName": "BASSE-TERRE",
+                            "cbc:PostalZone": "97100",
+                            "cbc:CountrySubentityCode": {
+                              "@listName": "nuts",
+                              "#text": "FRY10"
+                            },
+                            "cac:Country": {
+                              "cbc:IdentificationCode": {
+                                "@listName": "country",
+                                "#text": "FRA"
+                              }
+                            }
+                          },
+                          "cac:PartyLegalEntity": {
+                            "cbc:CompanyID": "17971000900038"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "cbc:UBLVersionID": "2.3",
+          "cbc:CustomizationID": "eforms-sdk-1.12",
+          "cbc:ID": {
+            "@schemeName": "notice-id",
+            "#text": "1da113b5-e909-40aa-8976-c319753f8371"
+          },
+          "cbc:ContractFolderID": "8a952834-682f-44e6-bf07-6961fbfb6112",
+          "cbc:IssueDate": "2026-10-20Z",
+          "cbc:IssueTime": "18:08:41Z",
+          "cbc:VersionID": "01",
+          "cbc:RegulatoryDomain": "32014L0024",
+          "cbc:NoticeTypeCode": {
+            "@listName": "competition",
+            "#text": "cn-standard"
+          },
+          "cbc:NoticeLanguageCode": {
+            "@listName": "language",
+            "#text": "FRA"
+          },
+          "cac:ContractingParty": {
+            "cbc:BuyerProfileURI": "https://www.marches-securises.fr",
+            "cac:ContractingPartyType": {
+              "cbc:PartyTypeCode": {
+                "@listName": "buyer-legal-type",
+                "#text": "body-pl"
+              }
+            },
+            "cac:ContractingActivity": {
+              "cbc:ActivityTypeCode": {
+                "@listName": "authority-activity",
+                "#text": "gen-pub"
+              }
+            },
+            "cac:Party": {
+              "cac:PartyIdentification": {
+                "cbc:ID": "ORG-0001"
+              }
+            }
+          },
+          "cac:TenderingTerms": {
+            "cac:TendererQualificationRequest": {
+              "cac:SpecificTendererRequirement": {
+                "cbc:TendererRequirementTypeCode": {
+                  "@listName": "exclusion-grounds-source",
+                  "#text": "epo-procurement-document"
+                }
+              }
+            },
+            "cac:LotDistribution": {
+              "cbc:MaximumLotsAwardedNumeric": "2",
+              "cbc:MaximumLotsSubmittedNumeric": "2"
+            }
+          },
+          "cac:TenderingProcess": {
+            "ext:UBLExtensions": {
+              "ext:UBLExtension": {
+                "ext:ExtensionContent": {
+                  "efext:EformsExtension": {
+                    "efbc:ProcedureRelaunchIndicator": "false"
+                  }
+                }
+              }
+            },
+            "cbc:ProcedureCode": {
+              "@listName": "procurement-procedure-type",
+              "#text": "open"
+            },
+            "cbc:PartPresentationCode": {
+              "@listName": "tenderlot-presentation",
+              "#text": "all"
+            },
+            "cac:ProcessJustification": {
+              "cbc:ProcessReasonCode": {
+                "@listName": "accelerated-procedure",
+                "#text": "false"
+              }
+            }
+          },
+          "cac:ProcurementProject": {
+            "cbc:ID": "2026F10",
+            "cbc:Name": {
+              "@languageID": "FRA",
+              "#text": "Réalisation d’une étude intégrée multi aléas portant sur les inondations en contexte urbain littoral, au stade faisabilité /pré-dimensionnement"
+            },
+            "cbc:Description": {
+              "@languageID": "FRA",
+              "#text": "Le présent marché a pour objet la réalisation d'une étude intégrée multi-aléas portant sur les inondations en contexte urbain littoral,au stade faisabilité/pré-dimensionnement. \nL'étude doit permettre de caractériser, comparer et hiérarchiser des solutions de réduction du risque tenant compte simultanément du ruissellement urbain, de la submersion marine temporaire, de la submersion chronique, des interactions avec les réseaux d'eaux pluviales et des contraintes d'exploitation, puis d'alimenter une lecture socio-économique de type analyse cout bénéfice dans la perspective des arbitrages du maître d'ouvrage. \nIl s'agit d'une mission de cadrage technique, de comparaison de variantes, d'identification de niveaux de service et de protection pertinents, d'estimation d'ordres de grandeur de coûts et de préparation d'un programme d'actions hiérarchisé dans la perspective d'un 3ème Programme d'Action de Prévention des Inondations (PAPI) à l'horizon 2030 incluant ces travaux et un plan de financement associés."
+            },
+            "cbc:ProcurementTypeCode": {
+              "@listName": "contract-nature",
+              "#text": "services"
+            },
+            "cac:MainCommodityClassification": {
+              "cbc:ItemClassificationCode": {
+                "@listName": "cpv",
+                "#text": "75200000"
+              }
+            }
+          },
+          "cac:ProcurementProjectLot": [
+            {
+              "cbc:ID": {
+                "@schemeName": "Lot",
+                "#text": "LOT-0001"
+              },
+              "cac:TenderingTerms": {
+                "cbc:FundingProgramCode": {
+                  "@listName": "eu-funded",
+                  "#text": "eu-funds"
+                },
+                "cac:CallForTendersDocumentReference": {
+                  "cbc:ID": "_DEFAULT_VALUE_CHANGE_ME_",
+                  "cbc:DocumentType": "non-restricted-document",
+                  "cac:Attachment": {
+                    "cac:ExternalReference": {
+                      "cbc:URI": "https://www.marches-securises.fr"
+                    }
+                  }
+                },
+                "cac:TendererQualificationRequest": [
+                  {
+                    "cac:SpecificTendererRequirement": {
+                      "cbc:TendererRequirementTypeCode": {
+                        "@listName": "selection-criteria-source",
+                        "#text": "epo-procurement-document"
+                      }
+                    }
+                  },
+                  {
+                    "cac:SpecificTendererRequirement": {
+                      "cbc:TendererRequirementTypeCode": {
+                        "@listName": "reserved-procurement",
+                        "#text": "none"
+                      }
+                    }
+                  },
+                  {
+                    "cbc:CompanyLegalFormCode": {
+                      "@listName": "required",
+                      "#text": "false"
+                    }
+                  }
+                ],
+                "cac:ContractExecutionRequirement": [
+                  {
+                    "cbc:ExecutionRequirementCode": {
+                      "@listName": "reserved-execution",
+                      "#text": "no"
+                    }
+                  },
+                  {
+                    "cbc:ExecutionRequirementCode": {
+                      "@listName": "einvoicing",
+                      "#text": "required"
+                    }
+                  },
+                  {
+                    "cbc:ExecutionRequirementCode": {
+                      "@listName": "ecatalog-submission",
+                      "#text": "not-allowed"
+                    }
+                  }
+                ],
+                "cac:TenderRecipientParty": {
+                  "cbc:EndpointID": "https://www.marches-securises.fr"
+                },
+                "cac:TenderValidityPeriod": {
+                  "cbc:DurationMeasure": {
+                    "@unitCode": "DAY",
+                    "#text": "180"
+                  }
+                },
+                "cac:AppealTerms": {
+                  "cac:PresentationPeriod": {
+                    "cbc:Description": {
+                      "@languageID": "FRA",
+                      "#text": "- Référé précontractuel :\nLe candidat peut, s'il le souhaite, exercer un référé précontractuel contre la présente procédure de passation, devant le président du tribunal administratif, avant la signature du marché public.\n- Recours pour excès de pouvoir :\nLe candidat peut, s'il le souhaite, exercer un recours pour excès de pouvoir contre la présente décision, devant le tribunal administratif. Le juge doit être saisi dans un délai de deux mois à compter de la notification du présent courrier."
+                    }
+                  },
+                  "cac:AppealInformationParty": {
+                    "cac:PartyIdentification": {
+                      "cbc:ID": "ORG-0003"
+                    }
+                  },
+                  "cac:AppealReceiverParty": {
+                    "cac:PartyIdentification": {
+                      "cbc:ID": "ORG-0003"
+                    }
+                  }
+                },
+                "cac:Language": {
+                  "cbc:ID": "FRA"
+                },
+                "cac:PostAwardProcess": {
+                  "cbc:ElectronicOrderUsageIndicator": "false",
+                  "cbc:ElectronicPaymentUsageIndicator": "false"
+                }
+              },
+              "cac:TenderingProcess": {
+                "cbc:SubmissionMethodCode": {
+                  "@listName": "esubmission",
+                  "#text": "required"
+                },
+                "cbc:GovernmentAgreementConstraintIndicator": "false",
+                "cac:TenderSubmissionDeadlinePeriod": {
+                  "cbc:EndDate": "2026-11-13-04:00",
+                  "cbc:EndTime": "12:00:00-04:00"
+                },
+                "cac:AuctionTerms": {
+                  "cbc:AuctionConstraintIndicator": "false"
+                },
+                "cac:ContractingSystem": [
+                  {
+                    "cbc:ContractingSystemTypeCode": {
+                      "@listName": "framework-agreement",
+                      "#text": "none"
+                    }
+                  },
+                  {
+                    "cbc:ContractingSystemTypeCode": {
+                      "@listName": "dps-usage",
+                      "#text": "none"
+                    }
+                  }
+                ]
+              },
+              "cac:ProcurementProject": {
+                "cbc:ID": "2026F10-01",
+                "cbc:Name": {
+                  "@languageID": "FRA",
+                  "#text": "Etude intégrée d'inondation multi aléas : Ruissellement urbain, submersion marine temporaire, submersion chronique, Interactions avec les réseaux et lecture AMC/ACB"
+                },
+                "cbc:Description": {
+                  "@languageID": "FRA",
+                  "#text": "Etude intégrée d'inondation multi aléas : Ruissellement urbain, submersion marine temporaire, submersion chronique, Interactions avec les réseaux et lecture AMC/ACB"
+                },
+                "cbc:ProcurementTypeCode": {
+                  "@listName": "contract-nature",
+                  "#text": "services"
+                },
+                "cac:MainCommodityClassification": {
+                  "cbc:ItemClassificationCode": {
+                    "@listName": "cpv",
+                    "#text": "75200000"
+                  }
+                },
+                "cac:PlannedPeriod": {
+                  "cbc:DurationMeasure": {
+                    "@unitCode": "MONTH",
+                    "#text": "24"
+                  }
+                }
+              }
+            },
+            {
+              "cbc:ID": {
+                "@schemeName": "Lot",
+                "#text": "LOT-0002"
+              },
+              "cac:TenderingTerms": {
+                "cbc:FundingProgramCode": {
+                  "@listName": "eu-funded",
+                  "#text": "eu-funds"
+                },
+                "cac:CallForTendersDocumentReference": {
+                  "cbc:ID": "_DEFAULT_VALUE_CHANGE_ME_",
+                  "cbc:DocumentType": "non-restricted-document",
+                  "cac:Attachment": {
+                    "cac:ExternalReference": {
+                      "cbc:URI": "https://www.marches-securises.fr"
+                    }
+                  }
+                },
+                "cac:TendererQualificationRequest": [
+                  {
+                    "cac:SpecificTendererRequirement": {
+                      "cbc:TendererRequirementTypeCode": {
+                        "@listName": "selection-criteria-source",
+                        "#text": "epo-procurement-document"
+                      }
+                    }
+                  },
+                  {
+                    "cac:SpecificTendererRequirement": {
+                      "cbc:TendererRequirementTypeCode": {
+                        "@listName": "reserved-procurement",
+                        "#text": "none"
+                      }
+                    }
+                  },
+                  {
+                    "cbc:CompanyLegalFormCode": {
+                      "@listName": "required",
+                      "#text": "false"
+                    }
+                  }
+                ],
+                "cac:ContractExecutionRequirement": [
+                  {
+                    "cbc:ExecutionRequirementCode": {
+                      "@listName": "reserved-execution",
+                      "#text": "no"
+                    }
+                  },
+                  {
+                    "cbc:ExecutionRequirementCode": {
+                      "@listName": "einvoicing",
+                      "#text": "required"
+                    }
+                  },
+                  {
+                    "cbc:ExecutionRequirementCode": {
+                      "@listName": "ecatalog-submission",
+                      "#text": "not-allowed"
+                    }
+                  }
+                ],
+                "cac:TenderRecipientParty": {
+                  "cbc:EndpointID": "https://www.marches-securises.fr"
+                },
+                "cac:TenderValidityPeriod": {
+                  "cbc:DurationMeasure": {
+                    "@unitCode": "DAY",
+                    "#text": "180"
+                  }
+                },
+                "cac:AppealTerms": {
+                  "cac:PresentationPeriod": {
+                    "cbc:Description": {
+                      "@languageID": "FRA",
+                      "#text": "- Référé précontractuel :\nLe candidat peut, s'il le souhaite, exercer un référé précontractuel contre la présente procédure de passation, devant le président du tribunal administratif, avant la signature du marché public.\n- Recours pour excès de pouvoir :\nLe candidat peut, s'il le souhaite, exercer un recours pour excès de pouvoir contre la présente décision, devant le tribunal administratif. Le juge doit être saisi dans un délai de deux mois à compter de la notification du présent courrier."
+                    }
+                  },
+                  "cac:AppealInformationParty": {
+                    "cac:PartyIdentification": {
+                      "cbc:ID": "ORG-0003"
+                    }
+                  },
+                  "cac:AppealReceiverParty": {
+                    "cac:PartyIdentification": {
+                      "cbc:ID": "ORG-0003"
+                    }
+                  }
+                },
+                "cac:Language": {
+                  "cbc:ID": "FRA"
+                },
+                "cac:PostAwardProcess": {
+                  "cbc:ElectronicOrderUsageIndicator": "false",
+                  "cbc:ElectronicPaymentUsageIndicator": "false"
+                }
+              },
+              "cac:TenderingProcess": {
+                "cbc:SubmissionMethodCode": {
+                  "@listName": "esubmission",
+                  "#text": "required"
+                },
+                "cbc:GovernmentAgreementConstraintIndicator": "false",
+                "cac:TenderSubmissionDeadlinePeriod": {
+                  "cbc:EndDate": "2026-11-13-04:00",
+                  "cbc:EndTime": "12:00:00-04:00"
+                },
+                "cac:AuctionTerms": {
+                  "cbc:AuctionConstraintIndicator": "false"
+                },
+                "cac:ContractingSystem": [
+                  {
+                    "cbc:ContractingSystemTypeCode": {
+                      "@listName": "framework-agreement",
+                      "#text": "none"
+                    }
+                  },
+                  {
+                    "cbc:ContractingSystemTypeCode": {
+                      "@listName": "dps-usage",
+                      "#text": "none"
+                    }
+                  }
+                ]
+              },
+              "cac:ProcurementProject": {
+                "cbc:ID": "2026F10-02",
+                "cbc:Name": {
+                  "@languageID": "FRA",
+                  "#text": "Travaux topographiques"
+                },
+                "cbc:Description": {
+                  "@languageID": "FRA",
+                  "#text": "Travaux topographiques"
+                },
+                "cbc:ProcurementTypeCode": {
+                  "@listName": "contract-nature",
+                  "#text": "services"
+                },
+                "cac:MainCommodityClassification": {
+                  "cbc:ItemClassificationCode": {
+                    "@listName": "cpv",
+                    "#text": "71351810"
+                  }
+                },
+                "cac:AdditionalCommodityClassification": {
+                  "cbc:ItemClassificationCode": {
+                    "@listName": "cpv",
+                    "#text": "71351923"
+                  }
+                },
+                "cac:PlannedPeriod": {
+                  "cbc:DurationMeasure": {
+                    "@unitCode": "MONTH",
+                    "#text": "24"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "idweb": "26-102086",
+    "contractfolderid": "892c0322-fcb1-4e73-8237-c3c8c634b443",
+    "objet": "MANDAT DE MAITRISE D'OUVRAGE REAMENAGEMENT DU PORT DEPARTEMENTAL DE PORT-LOUIS",
+    "code_departement": [
+      "971"
+    ],
+    "dateparution": "2026-10-22",
+    "datelimitereponse": "2026-10-20T17:00:00+00:00",
+    "nomacheteur": "Conseil Départemental de la Guadeloupe",
+    "titulaire": null,
+    "nature": "APPEL_OFFRE",
+    "nature_libelle": "Avis de marché",
+    "etat": "RECTIFICATIF",
+    "annonce_lie": [
+      "26-87218"
+    ],
+    "donnees": {
+      "EFORMS": {
+        "ContractNotice": {
+          "ext:UBLExtensions": {
+            "ext:UBLExtension": {
+              "ext:ExtensionContent": {
+                "efext:EformsExtension": {
+                  "efac:Changes": {
+                    "efbc:ChangedNoticeIdentifier": "625680-2026",
+                    "efac:Change": {
+                      "efbc:ChangeDescription": {
+                        "@languageID": "FRA",
+                        "#text": "La date limite de réception des offres a été reportée au Lundi 09 Novembre 2026 - 13h00"
+                      },
+                      "efbc:ProcurementDocumentsChangeDate": "2026-10-20-04:00",
+                      "efbc:ProcurementDocumentsChangeIndicator": "true",
+                      "efac:ChangedSection": {
+                        "efbc:ChangedSectionIdentifier": "LOT-0001"
+                      }
+                    },
+                    "efac:ChangeReason": {
+                      "cbc:ReasonCode": {
+                        "@listName": "change-corrig-justification",
+                        "#text": "cor-buy"
+                      }
+                    }
+                  },
+                  "efac:NoticeSubType": {
+                    "cbc:SubTypeCode": {
+                      "@listName": "notice-subtype",
+                      "#text": "16"
+                    }
+                  },
+                  "efac:Organizations": {
+                    "efac:Organization": [
+                      {
+                        "efac:Company": {
+                          "cbc:WebsiteURI": "https://www.marches-securises.fr",
+                          "cbc:EndpointID": "http://www.cg971.fr",
+                          "cac:PartyIdentification": {
+                            "cbc:ID": "ORG-0001"
+                          },
+                          "cac:PartyName": {
+                            "cbc:Name": {
+                              "@languageID": "FRA",
+                              "#text": "Conseil Départemental de la Guadeloupe"
+                            }
+                          },
+                          "cac:PostalAddress": {
+                            "cbc:StreetName": "Boulevard Félix Eboué",
+                            "cbc:CityName": "Basse-Terre",
+                            "cbc:PostalZone": "97100",
+                            "cbc:CountrySubentityCode": {
+                              "@listName": "nuts",
+                              "#text": "FRY10"
+                            },
+                            "cac:Country": {
+                              "cbc:IdentificationCode": {
+                                "@listName": "country",
+                                "#text": "FRA"
+                              }
+                            }
+                          },
+                          "cac:PartyLegalEntity": {
+                            "cbc:CompanyID": "22971001700018"
+                          }
+                        }
+                      },
+                      {
+                        "efac:Company": {
+                          "cbc:WebsiteURI": "http://guadeloupe.tribunal-administratif.fr",
+                          "cac:PartyIdentification": {
+                            "cbc:ID": "ORG-0003"
+                          },
+                          "cac:PartyName": {
+                            "cbc:Name": {
+                              "@languageID": "FRA",
+                              "#text": "TRIBUNAL ADMINISTRATIF DE LA GUADELOUPE"
+                            }
+                          },
+                          "cac:PostalAddress": {
+                            "cbc:StreetName": "34 Chemin des Bougainvilliers - Cité Guillard",
+                            "cbc:CityName": "BASSE-TERRE",
+                            "cbc:PostalZone": "97100",
+                            "cbc:CountrySubentityCode": {
+                              "@listName": "nuts",
+                              "#text": "FRY10"
+                            },
+                            "cac:Country": {
+                              "cbc:IdentificationCode": {
+                                "@listName": "country",
+                                "#text": "FRA"
+                              }
+                            }
+                          },
+                          "cac:PartyLegalEntity": {
+                            "cbc:CompanyID": "17971000900038"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "cbc:UBLVersionID": "2.3",
+          "cbc:CustomizationID": "eforms-sdk-1.12",
+          "cbc:ID": {
+            "@schemeName": "notice-id",
+            "#text": "5c110ac2-b3ff-4ef2-9ce8-c9dd4cf8d7a7"
+          },
+          "cbc:ContractFolderID": "892c0322-fcb1-4e73-8237-c3c8c634b443",
+          "cbc:IssueDate": "2026-10-20Z",
+          "cbc:IssueTime": "10:33:16Z",
+          "cbc:VersionID": "01",
+          "cbc:RegulatoryDomain": "32014L0024",
+          "cbc:NoticeTypeCode": {
+            "@listName": "competition",
+            "#text": "cn-standard"
+          },
+          "cbc:NoticeLanguageCode": {
+            "@listName": "language",
+            "#text": "FRA"
+          },
+          "cac:ContractingParty": {
+            "cbc:BuyerProfileURI": "https://www.marches-securises.fr",
+            "cac:ContractingPartyType": {
+              "cbc:PartyTypeCode": {
+                "@listName": "buyer-legal-type",
+                "#text": "la"
+              }
+            },
+            "cac:ContractingActivity": {
+              "cbc:ActivityTypeCode": {
+                "@listName": "authority-activity",
+                "#text": "gen-pub"
+              }
+            },
+            "cac:Party": {
+              "cac:PartyIdentification": {
+                "cbc:ID": "ORG-0001"
+              }
+            }
+          },
+          "cac:TenderingTerms": {
+            "cac:TendererQualificationRequest": {
+              "cac:SpecificTendererRequirement": {
+                "cbc:TendererRequirementTypeCode": {
+                  "@listName": "exclusion-grounds-source",
+                  "#text": "epo-procurement-document"
+                }
+              }
+            }
+          },
+          "cac:TenderingProcess": {
+            "ext:UBLExtensions": {
+              "ext:UBLExtension": {
+                "ext:ExtensionContent": {
+                  "efext:EformsExtension": {
+                    "efbc:ProcedureRelaunchIndicator": "false"
+                  }
+                }
+              }
+            },
+            "cbc:ProcedureCode": {
+              "@listName": "procurement-procedure-type",
+              "#text": "open"
+            },
+            "cac:ProcessJustification": {
+              "cbc:ProcessReasonCode": {
+                "@listName": "accelerated-procedure",
+                "#text": "false"
+              }
+            }
+          },
+          "cac:ProcurementProject": {
+            "cbc:ID": "2026-12",
+            "cbc:Name": {
+              "@languageID": "FRA",
+              "#text": "MANDAT DE MAITRISE D’OUVRAGE REAMENAGEMENT DU PORT DEPARTEMENTAL DE PORT-LOUIS"
+            },
+            "cbc:Description": {
+              "@languageID": "FRA",
+              "#text": "MANDAT DE MAITRISE D'OUVRAGE REAMENAGEMENT DU PORT DEPARTEMENTAL DE PORT-LOUIS - LOT UNIQUE"
+            },
+            "cbc:ProcurementTypeCode": {
+              "@listName": "contract-nature",
+              "#text": "services"
+            },
+            "cac:MainCommodityClassification": {
+              "cbc:ItemClassificationCode": {
+                "@listName": "cpv",
+                "#text": "75130000"
+              }
+            },
+            "cac:AdditionalCommodityClassification": [
+              {
+                "cbc:ItemClassificationCode": {
+                  "@listName": "cpv",
+                  "#text": "71248000"
+                }
+              },
+              {
+                "cbc:ItemClassificationCode": {
+                  "@listName": "cpv",
+                  "#text": "71541000"
+                }
+              },
+              {
+                "cbc:ItemClassificationCode": {
+                  "@listName": "cpv",
+                  "#text": "71247000"
+                }
+              }
+            ],
+            "cac:RealizedLocation": {
+              "cac:Address": {
+                "cbc:StreetName": "Port de PORT-LOUIS",
+                "cbc:CityName": "PORT-LOUIS",
+                "cbc:PostalZone": "97117",
+                "cbc:CountrySubentityCode": {
+                  "@listName": "nuts",
+                  "#text": "FRY10"
+                },
+                "cac:Country": {
+                  "cbc:IdentificationCode": {
+                    "@listName": "country",
+                    "#text": "FRA"
+                  }
+                }
+              }
+            }
+          },
+          "cac:ProcurementProjectLot": {
+            "cbc:ID": {
+              "@schemeName": "Lot",
+              "#text": "LOT-0001"
+            },
+            "cac:TenderingTerms": {
+              "cbc:VariantConstraintCode": {
+                "@listName": "permission",
+                "#text": "not-allowed"
+              },
+              "cbc:FundingProgramCode": {
+                "@listName": "eu-funded",
+                "#text": "no-eu-funds"
+              },
+              "cac:CallForTendersDocumentReference": {
+                "cbc:ID": "_DEFAULT_VALUE_CHANGE_ME_",
+                "cbc:DocumentType": "non-restricted-document",
+                "cac:Attachment": {
+                  "cac:ExternalReference": {
+                    "cbc:URI": "www.marches-securises.fr"
+                  }
+                }
+              },
+              "cac:TendererQualificationRequest": [
+                {
+                  "cac:SpecificTendererRequirement": {
+                    "cbc:TendererRequirementTypeCode": {
+                      "@listName": "selection-criteria-source",
+                      "#text": "epo-procurement-document"
+                    }
+                  }
+                },
+                {
+                  "cac:SpecificTendererRequirement": {
+                    "cbc:TendererRequirementTypeCode": {
+                      "@listName": "reserved-procurement",
+                      "#text": "none"
+                    }
+                  }
+                },
+                {
+                  "cbc:CompanyLegalFormCode": {
+                    "@listName": "required",
+                    "#text": "false"
+                  }
+                }
+              ],
+              "cac:ContractExecutionRequirement": [
+                {
+                  "cbc:ExecutionRequirementCode": {
+                    "@listName": "reserved-execution",
+                    "#text": "no"
+                  }
+                },
+                {
+                  "cbc:ExecutionRequirementCode": {
+                    "@listName": "einvoicing",
+                    "#text": "required"
+                  }
+                },
+                {
+                  "cbc:ExecutionRequirementCode": {
+                    "@listName": "ecatalog-submission",
+                    "#text": "not-allowed"
+                  }
+                }
+              ],
+              "cac:AwardingTerms": {
+                "cac:AwardingCriterion": {
+                  "cac:SubordinateAwardingCriterion": [
+                    {
+                      "ext:UBLExtensions": {
+                        "ext:UBLExtension": {
+                          "ext:ExtensionContent": {
+                            "efext:EformsExtension": {
+                              "efac:AwardCriterionParameter": {
+                                "efbc:ParameterCode": {
+                                  "@listName": "number-weight",
+                                  "#text": "per-exa"
+                                },
+                                "efbc:ParameterNumeric": "45"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "cbc:AwardingCriterionTypeCode": {
+                        "@listName": "award-criterion-type",
+                        "#text": "quality"
+                      },
+                      "cbc:Description": {
+                        "@languageID": "FRA",
+                        "#text": "VALEUR TECHNIQUE"
+                      }
+                    },
+                    {
+                      "ext:UBLExtensions": {
+                        "ext:UBLExtension": {
+                          "ext:ExtensionContent": {
+                            "efext:EformsExtension": {
+                              "efac:AwardCriterionParameter": {
+                                "efbc:ParameterCode": {
+                                  "@listName": "number-weight",
+                                  "#text": "per-exa"
+                                },
+                                "efbc:ParameterNumeric": "45"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "cbc:AwardingCriterionTypeCode": {
+                        "@listName": "award-criterion-type",
+                        "#text": "price"
+                      },
+                      "cbc:Description": {
+                        "@languageID": "FRA",
+                        "#text": "PRIX"
+                      }
+                    },
+                    {
+                      "ext:UBLExtensions": {
+                        "ext:UBLExtension": {
+                          "ext:ExtensionContent": {
+                            "efext:EformsExtension": {
+                              "efac:AwardCriterionParameter": {
+                                "efbc:ParameterCode": {
+                                  "@listName": "number-weight",
+                                  "#text": "per-exa"
+                                },
+                                "efbc:ParameterNumeric": "5"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "cbc:AwardingCriterionTypeCode": {
+                        "@listName": "award-criterion-type",
+                        "#text": "quality"
+                      },
+                      "cbc:Description": {
+                        "@languageID": "FRA",
+                        "#text": "PERFORMANCE ENVIRONNEMENTALE"
+                      }
+                    },
+                    {
+                      "ext:UBLExtensions": {
+                        "ext:UBLExtension": {
+                          "ext:ExtensionContent": {
+                            "efext:EformsExtension": {
+                              "efac:AwardCriterionParameter": {
+                                "efbc:ParameterCode": {
+                                  "@listName": "number-weight",
+                                  "#text": "per-exa"
+                                },
+                                "efbc:ParameterNumeric": "5"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "cbc:AwardingCriterionTypeCode": {
+                        "@listName": "award-criterion-type",
+                        "#text": "quality"
+                      },
+                      "cbc:Description": {
+                        "@languageID": "FRA",
+                        "#text": "PERFORMANCE EN MATIERE D'INSERTION SOCIALE"
+                      }
+                    }
+                  ]
+                }
+              },
+              "cac:AdditionalInformationParty": {
+                "cac:PartyIdentification": {
+                  "cbc:ID": "ORG-0001"
+                }
+              },
+              "cac:DocumentProviderParty": {
+                "cac:PartyIdentification": {
+                  "cbc:ID": "ORG-0001"
+                }
+              },
+              "cac:TenderRecipientParty": {
+                "cbc:EndpointID": "www.marches-securises.fr"
+              },
+              "cac:TenderValidityPeriod": {
+                "cbc:DurationMeasure": {
+                  "@unitCode": "DAY",
+                  "#text": "180"
+                }
+              },
+              "cac:AppealTerms": {
+                "cac:PresentationPeriod": {
+                  "cbc:Description": {
+                    "@languageID": "FRA",
+                    "#text": "voir RC"
+                  }
+                },
+                "cac:AppealReceiverParty": {
+                  "cac:PartyIdentification": {
+                    "cbc:ID": "ORG-0003"
+                  }
+                }
+              },
+              "cac:Language": {
+                "cbc:ID": "FRA"
+              },
+              "cac:PostAwardProcess": {
+                "cbc:ElectronicOrderUsageIndicator": "false",
+                "cbc:ElectronicPaymentUsageIndicator": "false"
+              }
+            },
+            "cac:TenderingProcess": {
+              "cbc:SubmissionMethodCode": {
+                "@listName": "esubmission",
+                "#text": "required"
+              },
+              "cbc:GovernmentAgreementConstraintIndicator": "true",
+              "cac:TenderSubmissionDeadlinePeriod": {
+                "cbc:EndDate": "2026-10-20-04:00",
+                "cbc:EndTime": "13:00:00-04:00"
+              },
+              "cac:AuctionTerms": {
+                "cbc:AuctionConstraintIndicator": "false"
+              },
+              "cac:ContractingSystem": [
+                {
+                  "cbc:ContractingSystemTypeCode": {
+                    "@listName": "framework-agreement",
+                    "#text": "none"
+                  }
+                },
+                {
+                  "cbc:ContractingSystemTypeCode": {
+                    "@listName": "dps-usage",
+                    "#text": "none"
+                  }
+                }
+              ]
+            },
+            "cac:ProcurementProject": {
+              "cbc:Name": {
+                "@languageID": "FRA",
+                "#text": "MANDAT DE MAITRISE D’OUVRAGE REAMENAGEMENT DU PORT DEPARTEMENTAL DE PORT-LOUIS"
+              },
+              "cbc:Description": {
+                "@languageID": "FRA",
+                "#text": "Le mandataire aura la charge de conduire les études nécessaires à la bonne réalisation des travaux ainsi que d’obtenir les autorisations environnementales nécessaires à la réalisation de l’opération."
+              },
+              "cbc:ProcurementTypeCode": {
+                "@listName": "contract-nature",
+                "#text": "services"
+              },
+              "cac:MainCommodityClassification": {
+                "cbc:ItemClassificationCode": {
+                  "@listName": "cpv",
+                  "#text": "75130000"
+                }
+              },
+              "cac:RealizedLocation": {
+                "cac:Address": {
+                  "cbc:StreetName": "PORT LOUIS",
+                  "cbc:CityName": "PORT LOUIS",
+                  "cbc:PostalZone": "97117",
+                  "cbc:CountrySubentityCode": {
+                    "@listName": "nuts",
+                    "#text": "FRY10"
+                  },
+                  "cac:Country": {
+                    "cbc:IdentificationCode": {
+                      "@listName": "country",
+                      "#text": "FRA"
+                    }
+                  }
+                }
+              },
+              "cac:PlannedPeriod": {
+                "cbc:DurationMeasure": {
+                  "@unitCode": "MONTH",
+                  "#text": "36"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "idweb": "26-102178",
+    "contractfolderid": null,
+    "objet": "Mission de maîtrise d'oeuvre pour les travaux de réfection et de rénovation des équipements exploités par la SOGES",
+    "code_departement": [
+      "972"
+    ],
+    "dateparution": "2026-10-20",
+    "datelimitereponse": "2026-11-20T12:00:00+00:00",
+    "nomacheteur": "SPL SOGES",
+    "titulaire": null,
+    "nature": "APPEL_OFFRE",
+    "nature_libelle": "Avis de marché",
+    "etat": "INITIAL",
+    "annonce_lie": null,
+    "donnees": {
+      "MAPA": {
+        "organisme": {
+          "acheteurPublic": "SPL SOGES",
+          "adr": {
+            "voie": {
+              "nomvoie": "ZA Les côteaux"
+            },
+            "cp": "97228",
+            "ville": "SAINTE-LUCE"
+          },
+          "urlProfilAcheteur": "https://www.marches-securises.fr",
+          "classificationOrganisme": "6"
+        },
+        "initial": {
+          "natureMarche": {
+            "services": ""
+          },
+          "description": {
+            "objet": "Mission de maîtrise d'oeuvre pour les travaux de réfection et de rénovation des équipements exploités par la SOGES",
+            "lieuExecution": {
+              "voie": {
+                "nomvoie": "ZA Les côteaux"
+              },
+              "cp": "97228",
+              "ville": "SAINTE-LUCE"
+            }
+          },
+          "caracteristiques": {
+            "variantes": {
+              "non": ""
+            },
+            "principales": "Mission de maîtrise d'oeuvre pour les travaux de réfection et de rénovation des équipements exploités par la SOGES"
+          },
+          "duree": {
+            "txtLibre": "La durée du marché est de 24 mois."
+          },
+          "conditions": {
+            "garanties": "Néant",
+            "euro": "",
+            "langueFR": ""
+          },
+          "justifications": {
+            "justificationAutre": [
+              "Situation juridique: Le candidat peut présenter sa candidature sous forme d’un document unique de marché européen (DUME), en lieu et place des formulaires DC1 et DC2. En cas de groupement d’opérateurs économiques, chacun des membres du groupement fournira un formulaire DUME complété.",
+              "Capacité économique et financière: 1. Déclaration concernant le chiffre d'affaires global du candidat et, le cas échéant, le chiffre d'affaires du domaine d'activité faisant l'objet du marché public, portant au maximum sur les trois derniers exercices disponibles en fonction de la date de création de l'entreprise ou du début d'activité de l'opérateur économique, dans la mesure où les informations sur ces chiffres d'affaires sont disponibles.\n2. L'attestation d'assurance responsabilité civile professionnelle\n3. Le candidat pourra prouver sa capacité  financière par tout autre document considéré comme équivalent par le pouvoir adjudicateur s'il est objectivement dans l'impossibilité de produire l'un des renseignements demandés relatifs à sa capacité financière.",
+              "Capacité technique: 1. Une liste des principales livraisons effectuées ou des principaux services fournis au cours des trois dernières années, indiquant le montant, la date et le destinataire public ou privé. Les livraisons et les prestations de services sont prouvées par des attestations du destinataire ou, à défaut, par une déclaration de l'opérateur économique.\n2. Capacité d'exercer le métier d'architecte: attestation d'inscription à un tableau régional à l'ordre des architectes, ou pour les architectes étrangers la preuve d'une autorisation d'exercice dans leur pays d'origine (cf. Loi 77-2 du 3 janvier 1977).\n3. Inscription du candidat à un registre professionnel, pour l'activité des bureaux d'études fluides, électricité, structure, coordonnateur SSI, VRD, OPC... dont l'attestation ne sera uniquement exigée que des seuls candidats admis à remettre des prestations;"
+            ]
+          },
+          "criteres": {
+            "critereCDC": ""
+          },
+          "procedure": {
+            "procedureAdaptee": ""
+          },
+          "delais": {
+            "receptionOffres": "2026-11-20T12:00:00",
+            "validite": {
+              "nbJours": "120"
+            }
+          },
+          "renseignements": {
+            "idMarche": "DCE/2026/17",
+            "rensgComplt": "Les offres peuvent uniquement être remises électroniquement.\nRemarques sur les critères d'attribution : Voir RC\n"
+          },
+          "adressesComplt": {
+            "admOuTech": {
+              "adm": {
+                "PersonneMorale": "SPL SOGES",
+                "adr": {
+                  "voie": {
+                    "nomvoie": "ZA Les côteaux"
+                  },
+                  "cp": "97228",
+                  "ville": "SAINTE-LUCE"
+                }
+              },
+              "tech": {
+                "PersonneMorale": "SPL SOGES",
+                "adr": {
+                  "voie": {
+                    "nomvoie": "ZA Les côteaux"
+                  },
+                  "cp": "97228",
+                  "ville": "SAINTE-LUCE"
+                }
+              }
+            },
+            "document": {
+              "PersonneMorale": "SPL SOGES",
+              "adr": {
+                "voie": {
+                  "nomvoie": "ZA Les côteaux"
+                },
+                "cp": "97228",
+                "ville": "SAINTE-LUCE"
+              }
+            },
+            "envoi": {
+              "PersonneMorale": "SPL SOGES",
+              "adr": {
+                "voie": {
+                  "nomvoie": "ZA Les côteaux"
+                },
+                "cp": "97228",
+                "ville": "SAINTE-LUCE"
+              }
+            }
+          },
+          "marcheUnique": "",
+          "infosSup": ""
+        }
+      }
+    }
+  },
+  {
+    "idweb": "26-101686",
+    "contractfolderid": null,
+    "objet": "Marché de prestation de formation professionnelle initiale des sapeurs-pompiers",
+    "code_departement": [
+      "978"
+    ],
+    "dateparution": "2026-10-19",
+    "datelimitereponse": "2026-11-10T16:00:00+00:00",
+    "nomacheteur": "STIS (978)",
+    "titulaire": null,
+    "nature": "APPEL_OFFRE",
+    "nature_libelle": "Avis de marché",
+    "etat": "INITIAL",
+    "annonce_lie": null,
+    "donnees": {
+      "FNSimple": {
+        "organisme": {
+          "nomOfficiel": "STIS (978)",
+          "typeIdentificationNational": {
+            "siret": ""
+          },
+          "codeIdentificationNational": "93769118600012",
+          "ville": "Saint-Martin",
+          "cp": "97150",
+          "grpCommandes": {
+            "non": ""
+          }
+        },
+        "initial": {
+          "communication": {
+            "urlProfilAch": "https://www.marches-securises.fr",
+            "docSecurite": {
+              "oui": ""
+            },
+            "urlSecurite": {
+              "non": ""
+            }
+          },
+          "procedure": {
+            "procedureAdapteeO": "",
+            "capaciteExercice": "Voir règlement de la consultation",
+            "capaciteEcoFin": "Voir règlement de la consultation",
+            "capaciteTech": "Voir règlement de la consultation",
+            "techAchat": {
+              "autres": ""
+            },
+            "dateReceptionOffres": "2026-11-10T16:00:00",
+            "presOffres": {
+              "exigee": ""
+            },
+            "nbCandidatReduit": {
+              "non": ""
+            },
+            "attributionSansNegociation": {
+              "oui": ""
+            },
+            "variantes": {
+              "non": ""
+            },
+            "criteresAttrib": "Voir règlement de la consultation"
+          },
+          "natureMarche": {
+            "intitule": "Formation professionnelle initiale des sapeurs-pompiers",
+            "codeCPV": {
+              "objetPrincipal": {
+                "classPrincipale": "80530000"
+              }
+            },
+            "natureMarche": {
+              "services": ""
+            },
+            "description": "Marché de prestation de formation professionnelle initiale des sapeurs-pompiers",
+            "lieuExecution": "FRANCE HEXAGONALE et OUTRE-MER",
+            "dureeMois": "3",
+            "valeurEstimee": {
+              "@devise": "EUR",
+              "valeur": "195000"
+            },
+            "tranches": {
+              "non": ""
+            },
+            "reservationMarche": {
+              "non": ""
+            },
+            "lotsMarche": {
+              "non": ""
+            }
+          },
+          "informComplementaire": {
+            "non": ""
+          }
+        }
+      }
+    }
+  }
+]

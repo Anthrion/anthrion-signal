@@ -1,4 +1,5 @@
 import type { Dataset, Filters, Signal } from './types'
+import { caribbeanCountries, caribbeanCountryNames } from './caribbean'
 import { dateOnlyEnd, deadlineEventValue, validCalendarDate } from './deadlineMath'
 
 export const defaults: Filters = {
@@ -65,9 +66,16 @@ export const markets = [
     countries: ['BE', 'NL', 'LU'],
     region: 'Western Europe',
   },
+  { id: 'FR', name: 'France', short: 'FR', countries: ['FR'], region: 'Europe' },
+  {
+    id: 'CARIBBEAN',
+    name: 'Caribbean',
+    short: 'Caribbean',
+    countries: caribbeanCountries,
+    region: 'Caribbean',
+  },
   ...(
     [
-      ['FR', 'France'],
       ['BE', 'Belgium'],
       ['IE', 'Ireland'],
       ['NL', 'Netherlands'],
@@ -98,6 +106,7 @@ export const markets = [
 ] as const
 
 export const marketGroups: Record<string, readonly string[]> = {
+  CARIBBEAN: caribbeanCountries,
   UKI: ['GB', 'IE'],
   NORTHAMERICA: ['US', 'CA'],
   NORDICS: ['SE', 'FI', 'DK', 'NO', 'IS'],
@@ -108,7 +117,9 @@ export function countryLabels(signal: Pick<Signal, 'countries'>) {
   return [...new Set(signal.countries)]
     .map(
       (id) =>
-        markets.find((market) => market.id === id && market.countries.length === 1)?.name || id,
+        caribbeanCountryNames[id] ||
+        markets.find((market) => market.id === id && market.countries.length === 1)?.name ||
+        id,
     )
     .join(' · ')
 }

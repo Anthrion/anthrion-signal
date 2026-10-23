@@ -7,7 +7,8 @@ import gzip
 import json
 
 from .attachments import hydrate_cached_documents
-from .discovery import discovery_signature, is_public_award, lifecycle, prefilter, ranking_key
+from .discovery import is_public_award, lifecycle, prefilter, ranking_key
+from .discovery_cache import discovery_cache_signatures
 from .discovery_retention import read_rejected
 from .models import Signal
 from .markets import MARKETS
@@ -36,7 +37,7 @@ def retained_history(root, canonical):
     return list(latest.values())
 
 
-def prepare_awards(root, canonical, config, now):
+def prepare_awards(root, canonical, config, now, *, previous_markets=None):
     """Select the same relevant, retained awards for publication and translation."""
     history = retained_history(root, canonical)
     backfill_retained_facts(history, read_json(root / "data/source_state.json", {}))
@@ -57,8 +58,18 @@ def prepare_awards(root, canonical, config, now):
         cache = {}
     if not isinstance(cache, dict):
         cache = {}
-    signature = discovery_signature(config)
-    old = cache.get("records", {}) if cache.get("signature") == signature else {}
+    signatures = discovery_cache_signatures(root, config, previous_markets)
+    compatible = signatures.accepts(cache.get("signature"), cache.get("markets"))
+    if not compatible and previous_markets is None and cache.get("signature"):
+        # Standalone callers can migrate legacy caches too. Export passes the
+        # catalogue it already loaded, avoiding a second large dataset read.
+        try:
+            previous = read_json(root / "data/current.json", {})
+        except (OSError, ValueError, EOFError):
+            previous = {}
+        compatible = signatures.accepts(cache["signature"], previous.get("markets") if isinstance(previous, dict) else None)
+    signature = signatures.signature
+    old = cache.get("records", {}) if compatible else {}
     if not isinstance(old, dict):
         old = {}
     decisions, pending = {}, []
@@ -86,7 +97,7 @@ def prepare_awards(root, canonical, config, now):
     for signal in candidates:
         decisions[signal.id]["values"] = {field: getattr(signal, field) for field in DECISION_FIELDS}
         signal.lifecycle_state, signal.lifecycle_reason = lifecycle(signal, now)
-    new_cache = {"signature": signature, "records": decisions}
+    new_cache = {"signature": signature, "markets": config["search_terms"]["markets"], "records": decisions}
     if cache != new_cache:
         atomic_bytes(path, gzip.compress(json.dumps(new_cache, ensure_ascii=False, sort_keys=True).encode(), mtime=0))
     threshold = config["capabilities"]["discovery"]["minimum_candidate_score"]
@@ -94,8 +105,8 @@ def prepare_awards(root, canonical, config, now):
     return awards, history, translations
 
 
-def export_awards(root, canonical, config, now, record_manifest=None, context_signals=None):
-    awards, history, translations = prepare_awards(root, canonical, config, now)
+def export_awards(root, canonical, config, now, record_manifest=None, context_signals=None, *, previous_markets=None):
+    awards, history, translations = prepare_awards(root, canonical, config, now, previous_markets=previous_markets)
     public_records = awards + (context_signals or [])
     for signal in history + public_records:
         enrich_signal(signal)

@@ -61,6 +61,7 @@ describe('personal views and market preferences', () => {
       'GR',
       'BENELUX',
       'FR',
+      'CARIBBEAN',
     ])
     expect(
       normaliseMarketPreferences({
@@ -77,6 +78,7 @@ describe('personal views and market preferences', () => {
     expect(readPersonalWorkspace(legacy).state.marketPreferences.pinned).toEqual([
       '',
       'FR',
+      'CARIBBEAN',
       'BENELUX',
     ])
   })
@@ -209,7 +211,7 @@ describe('personal views and market preferences', () => {
       pinned: ['FR', 'FR', 'invalid'],
       order: ['IE', 'FR', 'invalid'],
     })
-    expect(arranged.pinned).toEqual(['FR'])
+    expect(arranged.pinned).toEqual(['FR', 'CARIBBEAN'])
     expect(arranged.order.slice(0, 2)).toEqual(['IE', 'FR'])
     expect(arranged.order).toContain('GB')
     expect(arranged.order).not.toContain('invalid')

@@ -10,10 +10,10 @@ from .collectors import Http, collect_with_backfill, hydrate_sparse
 from .award_history import export_awards
 from .attachments import enrich_documents, hydrate_cached_documents
 from .config import capability_catalog, evidence_catalog, load_config
-from .discovery import discovery_signature, is_public_opportunity, lifecycle, ranking_key
-from .discovery_cache import ClassificationCache
+from .discovery import is_public_opportunity, lifecycle, ranking_key
+from .discovery_cache import ClassificationCache, DiscoverySignatures, discovery_cache_signatures, read_discovery_state
 from .discovery_retention import read_rejected, retain_rejected
-from .dedupe import reconcile
+from .dedupe import older_revision, reconcile
 from .models import Dataset, EnglishText, Signal, SourceHealth
 from .normalise import NORMALISERS, set_hashes
 from .notice_dates import response_deadline_instant
@@ -46,16 +46,36 @@ def _collect(source, previous_state, now, config, previous_signals=None):
             next_state["last_success"] = now.isoformat()
         normalised, rejected = [], 0
         families = {s.ocid: s for s in previous_signals or [] if s.ocid}
+        boamp_notices = {}
+        if source["collector"] == "boamp_caribbean":
+            saved_notices = (s for s in previous_signals or [] if s.source == "boamp_caribbean")
+            boamp_notices = {alias: s for s in sorted(saved_notices, key=lambda s: s.updated_at or s.first_seen_at)
+                            for alias in s.external_ids if alias.startswith("boamp:")}
         # National pre-gates are hints, not irreversible deletions. The common
         # classifier gets their rejected scope too and retains its decision.
         for raw in sorted(result.records + result.rejected_records, key=lambda r: r.data.get("date") or ""):
             try:
-                signal = (NORMALISERS[raw.kind](raw, prior=families.get(raw.data.get("ocid")))
-                          if raw.kind in ("ocds", "german_ocds") else NORMALISERS[raw.kind](raw))
+                if raw.kind == "boamp_caribbean":
+                    linked = raw.data.get("annonce_lie") or []
+                    linked = linked if isinstance(linked, list) else [linked]
+                    prior = next((boamp_notices["boamp:" + str(ident)]
+                                  for ident in [raw.data.get("idweb"), *linked]
+                                  if "boamp:" + str(ident) in boamp_notices), None)
+                    signal = NORMALISERS[raw.kind](raw, prior=prior)
+                else:
+                    signal = (NORMALISERS[raw.kind](raw, prior=families.get(raw.data.get("ocid")))
+                              if raw.kind in ("ocds", "german_ocds") else NORMALISERS[raw.kind](raw))
                 if signal:
                     normalised.append(signal)
                     if signal.ocid:
                         families[signal.ocid] = signal
+                    if raw.kind == "boamp_caribbean":
+                        # Replayed initials must not replace a newer canonical
+                        # correction before another sparse amendment is normalized.
+                        for alias in signal.external_ids:
+                            saved = boamp_notices.get(alias)
+                            if alias.startswith("boamp:") and (saved is None or not older_revision(signal, saved)):
+                                boamp_notices[alias] = signal
             except (ValueError, KeyError, TypeError):
                 rejected += 1
         # A source schema regression must not silently advance its retrieval checkpoint.
@@ -140,11 +160,12 @@ def project_source_removals(signals, state, retrieved_at):
     return [updates.get(signal.id, signal) for signal in signals] if updates else signals
 
 
-def prepare_current(root, *, save_cache=False):
+def prepare_current(root, *, save_cache=False, dataset=None):
     """Classify current candidates without writing award shards or public assets."""
-    data = Dataset.model_validate(read_json(root / "data/current.json", {}))
+    data = dataset if dataset is not None else Dataset.model_validate(read_json(root / "data/current.json", {}))
     config = load_config(root)
-    signature = discovery_signature(config)
+    signatures = discovery_cache_signatures(root, config, data.markets)
+    signature = signatures.signature
     canonical = root / "data/signals.jsonl"
     canonical_signals = [Signal.model_validate_json(line) for line in jsonl_lines(read_retained_bytes(canonical).decode("utf-8"))] if retained_path(canonical).exists() else data.signals
     state = read_json(root / "data/source_state.json", {})
@@ -152,8 +173,8 @@ def prepare_current(root, *, save_cache=False):
     canonical_signals = project_source_removals(canonical_signals, state, observed_at)
     backfill_retained_facts(canonical_signals, state)
     backfill_retained_facts(data.signals, state)
-    cache = ClassificationCache(root, config)
-    recovering = data.run.get("discovery_signature") != signature and retained_path(canonical).exists()
+    cache = ClassificationCache(root, config, signatures=signatures)
+    recovering = not signatures.accepts(data.run.get("discovery_signature")) and retained_path(canonical).exists()
     lost = set()
     if recovering:
         # A rule release must be able to restore previously suppressed candidates
@@ -218,9 +239,12 @@ def prepare_current(root, *, save_cache=False):
 
 
 def export(root):
-    data, canonical_signals, config = prepare_current(root, save_cache=True)
+    previous = Dataset.model_validate(read_json(root / "data/current.json", {}))
+    previous_markets = previous.markets
+    data, canonical_signals, config = prepare_current(root, save_cache=True, dataset=previous)
     award_records = {}
-    data.award_history = export_awards(root, canonical_signals, config, datetime.now(UTC), award_records, data.signals)
+    data.award_history = export_awards(root, canonical_signals, config, datetime.now(UTC), award_records, data.signals,
+                                     previous_markets=previous_markets)
     data.current_feed = export_current(root, data, award_records)
     target = root / "app/public/data"
     target.mkdir(parents=True, exist_ok=True)
@@ -286,13 +310,15 @@ def run(root, args):
             state[sid], health[sid] = new_state, status
             raw_count += count
             print(f"{status.name}: {status.status}, {count} records", flush=True)
-    discovery_state = read_json(root / "data/discovery/state.json", {})
-    signature = discovery_signature(config)
-    replay = discovery_state.get("signature") != signature or getattr(args, "command", "ingest") == "rescore"
+    discovery_state = read_discovery_state(root)
+    signatures = DiscoverySignatures(config, (previous_data or {}).get("markets"), discovery_state.get("market_catalogues"))
+    signature = signatures.signature
+    signatures.accepts((previous_data or {}).get("run", {}).get("discovery_signature"))
+    replay = not signatures.accepts(discovery_state.get("signature")) or getattr(args, "command", "ingest") == "rescore"
     replayed = project_source_removals(read_rejected(root), state, now.isoformat()) if replay else []
     # Current retrieval follows replay so newer status updates remain authoritative.
     incoming = replayed + incoming
-    cache = ClassificationCache(root, config)
+    cache = ClassificationCache(root, config, signatures=signatures)
     cache.classify(incoming, available_translations(root, incoming))
     # Replayed source versions already have durable evidence; do not duplicate
     # the entire rejection history into a new date partition on every release.
@@ -367,7 +393,8 @@ def run(root, args):
     atomic_retained_json(root / "data/dedupe_index.json", index)
     atomic_json(root / "data/run_metadata.json", metadata)
     atomic_json(root / "data/discovery/state.json", {"version": config["capabilities"]["version"],
-                                                   "signature": signature, "evaluated_at": now.isoformat()})
+                                                   "signature": signature, "evaluated_at": now.isoformat(),
+                                                   "market_catalogues": signatures.transitions()})
     cache.save()
     history = root / "data/history.jsonl"
     if not same_content:

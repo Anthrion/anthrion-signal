@@ -324,7 +324,7 @@ async function fixture(page: Page, changeRecord?: (record: Signal) => void) {
         contentType: 'application/gzip',
         body: gzipSync(JSON.stringify(value)),
       })
-    if (path.includes('/current/GB-'))
+    if (path.includes('/current/GB-') || path.includes('/current/CARIBBEAN-'))
       return compressed({ schema_version: '1.0', signals: [summary] })
     if (path.includes('/current/FR-'))
       return compressed({ schema_version: '1.0', signals: [other] })
@@ -1079,6 +1079,59 @@ test('touch can reorder a market and a cancelled touch leaves the order intact',
     organizer.getByRole('checkbox', { name: 'Pin All markets', exact: true }),
   ).toBeChecked()
   await touch.detach()
+})
+
+test('@pr Caribbean stays a single market with country labels and saved pin controls', async ({
+  page,
+}) => {
+  const { record, manifest } = await fixture(page, (item) => {
+    item.countries = ['DO']
+  })
+  manifest.markets = { ...manifest.markets, DO: { name: 'Dominican Republic', enabled: true } }
+  manifest.current_feed!.markets.CARIBBEAN = { url: `current/CARIBBEAN-${hash}.json.gz`, count: 1 }
+  manifest.current_feed!.records[record.id].markets = ['DO', 'CARIBBEAN']
+  await page.goto('./?market=CARIBBEAN&view=all')
+  await expect(page.locator('.row-select')).toHaveCount(1)
+  await expect(page.locator('.row-select')).toContainText('Dominican Republic')
+  const tabs = page.locator('.market-tabs')
+  const order = await tabs.locator(':scope > button').allTextContents()
+  expect(order.findIndex((name) => name.includes('Caribbean'))).toBe(
+    order.findIndex((name) => name.includes('France')) + 1,
+  )
+  await page.getByRole('button', { name: 'Organize markets' }).click()
+  const organizer = page.getByRole('dialog', { name: 'Organize markets' })
+  await expect(
+    organizer.getByRole('checkbox', { name: 'Pin Caribbean', exact: true }),
+  ).toBeChecked()
+  await expect(
+    organizer.getByRole('checkbox', { name: 'Pin Dominican Republic', exact: true }),
+  ).toHaveCount(0)
+  await expect(
+    organizer.getByRole('checkbox', { name: 'Pin Saint Lucia', exact: true }),
+  ).toHaveCount(0)
+  await organizer.getByRole('button', { name: 'Reorder Caribbean', exact: true }).press('ArrowUp')
+  await organizer.getByRole('button', { name: 'Done', exact: true }).click()
+  await page.reload()
+  const moved = await tabs.locator(':scope > button').allTextContents()
+  expect(moved.findIndex((name) => name.includes('Caribbean'))).toBeLessThan(
+    moved.findIndex((name) => name.includes('France')),
+  )
+  await page.getByRole('button', { name: 'Organize markets' }).click()
+  await organizer.getByRole('checkbox', { name: 'Pin Caribbean', exact: true }).uncheck()
+  await organizer.getByRole('button', { name: 'Done', exact: true }).click()
+  await page.reload()
+  await expect(tabs.getByRole('button', { name: 'Caribbean', exact: true })).toHaveCount(0)
+  await page.locator('.more-markets-trigger').click()
+  const menu = page.getByRole('menu', { name: 'More markets' })
+  await expect(
+    menu.getByRole('menuitemradio', { name: 'Dominican Republic', exact: true }),
+  ).toHaveCount(0)
+  await menu.getByRole('menuitemradio', { name: 'Caribbean', exact: true }).click()
+  await expect(page.locator('.row-select')).toHaveCount(1)
+  await page.locator('.row-select').click()
+  await expect(
+    page.locator('.console-detail:visible').getByRole('heading', { name: title, exact: true }),
+  ).toBeVisible()
 })
 
 test('All and grouped markets can be unpinned and remain selectable from More', async ({

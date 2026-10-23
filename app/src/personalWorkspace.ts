@@ -77,13 +77,32 @@ export function emptyPersonalWorkspace(): PersonalWorkspace {
     version: 1,
     savedViews: [],
     marketPreferences: {
-      pinned: ['', 'UKI', 'NORTHAMERICA', 'IT', 'NORDICS', 'DACH', 'ES', 'GR', 'BENELUX', 'FR'],
+      pinned: [
+        '',
+        'UKI',
+        'NORTHAMERICA',
+        'IT',
+        'NORDICS',
+        'DACH',
+        'ES',
+        'GR',
+        'BENELUX',
+        'FR',
+        'CARIBBEAN',
+      ],
       order: defaultMarketOptions.map((m) => m.id),
     },
   }
 }
 export function normaliseMarketPreferences(value: MarketPreferences): MarketPreferences {
   const known = new Set<string>(defaultMarketOptions.map((m) => m.id))
+  // Add the new default after France once. The saved order then records that
+  // migration, so a later explicit unpin or drag is never undone.
+  if (!value.order.includes('CARIBBEAN')) {
+    const afterFrance = (ids: string[]) =>
+      ids.flatMap((id) => (id === 'FR' ? [id, 'CARIBBEAN'] : [id]))
+    value = { order: afterFrance(value.order), pinned: afterFrance(value.pinned) }
+  }
   // Upgrade the former UK tab once; retain both country choices in the organizer.
   // An explicitly saved starting market or shared GB/IE link remains independent.
   if (!value.order.includes('UKI'))
