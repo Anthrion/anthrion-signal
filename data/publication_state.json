@@ -1,7 +1,7 @@
 {
   "code": "5feb2ba5238db6500aa16c3cce2d985add24eea9946d55266d47f618270e45d1",
-  "content": "df89b157b2490cf0f62e76ef92ad586312283e480c8235c6542700eb39c4b9d3",
-  "translations": "33e911d5e958ea319ea20616e32e7fdd20a900e504cff1522a7e710b7ffc7bca",
+  "content": "c6eb27cea5989f7f326fb48433e3165f2303f770abf9f74d5d86a465e90cfc2b",
+  "translations": "e5876fb0c07f0fdb7cbdc7edfd1800b116467b4098096adc7d4f185fd45ba318",
   "health": [
     [
       "find_tender",
@@ -17,7 +17,7 @@
     ],
     [
       "wales",
-      "failed"
+      "partial"
     ],
     [
       "govuk",
@@ -45,7 +45,7 @@
     ],
     [
       "spain",
-      "healthy"
+      "partial"
     ],
     [
       "nyc_city_record",
@@ -221,7 +221,7 @@
     ],
     [
       "canada_buys",
-      "partial"
+      "healthy"
     ],
     [
       "seao_qc",
@@ -282,6 +282,30 @@
     [
       "comprasmx",
       "disabled"
+    ],
+    [
+      "boamp_caribbean",
+      "healthy"
+    ],
+    [
+      "caribbean_cdb",
+      "failed"
+    ],
+    [
+      "caribbean_worldbank",
+      "healthy"
+    ],
+    [
+      "dominican_dgcp",
+      "partial"
+    ],
+    [
+      "ms_tenders",
+      "healthy"
+    ],
+    [
+      "lc_finance",
+      "partial"
     ]
   ],
   "day": "2026-10-23"
