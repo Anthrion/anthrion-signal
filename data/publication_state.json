@@ -1,11 +1,11 @@
 {
   "code": "5feb2ba5238db6500aa16c3cce2d985add24eea9946d55266d47f618270e45d1",
-  "content": "713ac596e3372c1985285bd54742d3abcf57212f7fdf58555d4c4a4cd84a491b",
-  "translations": "0d67870e65c9a41d7970502518e2d9f4dc2a9c07315e57aa9758fed946931d36",
+  "content": "67a62b1742c12ee5ea47f0f8c647cb83374a11db81b1242a5d71fcb9e28f84dc",
+  "translations": "653cdae8d87601cc777f7b331a4847e6cc7a4547d8cd9cf5353bb670030b7742",
   "health": [
     [
       "find_tender",
-      "failed"
+      "healthy"
     ],
     [
       "contracts_finder",
@@ -21,7 +21,7 @@
     ],
     [
       "govuk",
-      "healthy"
+      "partial"
     ],
     [
       "digital_outcomes",
