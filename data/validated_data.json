@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "generation": 357,
+  "generation": 358,
   "data_code": "4a1c27340e5b836a75ecd0a84155ceae78497399cc70b933d89d76a58d17b86e",
-  "sha256": "deda9c206f63467b275f0151ecb2a05fa89526d5133a95c4db4c24eda95b3924",
-  "key": "signal-public-v1-deda9c206f63467b275f0151ecb2a05fa89526d5133a95c4db4c24eda95b3924-40064269495-1",
-  "inputs": "105ac006e1758d06601630bc73fa975ffbdb95144d2a74d29ceb950f2243abf2",
-  "validated_at": "2026-10-24T05:31:12.666625+00:00",
+  "sha256": "5c1f3354e0617ffa432e38ca3b139b75571299e5ed1e97df1392f3ce86edaf6e",
+  "key": "signal-public-v1-5c1f3354e0617ffa432e38ca3b139b75571299e5ed1e97df1392f3ce86edaf6e-40074859547-1",
+  "inputs": "f2869e32d1378ecf85573635a6200b399cd8a63ed01ce84d1e93d027405fa353",
+  "validated_at": "2026-10-24T08:21:29.277437+00:00",
   "signature": {
     "code": "5feb2ba5238db6500aa16c3cce2d985add24eea9946d55266d47f618270e45d1",
-    "content": "713ac596e3372c1985285bd54742d3abcf57212f7fdf58555d4c4a4cd84a491b",
-    "translations": "0d67870e65c9a41d7970502518e2d9f4dc2a9c07315e57aa9758fed946931d36",
+    "content": "67a62b1742c12ee5ea47f0f8c647cb83374a11db81b1242a5d71fcb9e28f84dc",
+    "translations": "653cdae8d87601cc777f7b331a4847e6cc7a4547d8cd9cf5353bb670030b7742",
     "health": [
       [
         "find_tender",
-        "failed"
+        "healthy"
       ],
       [
         "contracts_finder",
@@ -29,7 +29,7 @@
       ],
       [
         "govuk",
-        "healthy"
+        "partial"
       ],
       [
         "digital_outcomes",
