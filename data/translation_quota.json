@@ -4939,20 +4939,24 @@
       }
     },
     "40074859547-1": {
-      "closed": false,
+      "closed": true,
       "day": "2026-10-24",
       "limits": {
         "gemini-3.1-flash-lite": 75,
         "gemini-3.5-flash-lite": 75
       },
-      "used": {}
+      "started": true,
+      "used": {
+        "gemini-3.1-flash-lite": 5,
+        "gemini-3.5-flash-lite": 46
+      }
     }
   },
   "models": {
     "gemini-3.1-flash-lite": {
       "blocked_reason": "transient",
       "blocked_until": 1792819093.263992,
-      "consecutive_errors": 1,
+      "consecutive_errors": 0,
       "days": {
         "2026-09-12": 9,
         "2026-09-13": 420,
@@ -4996,19 +5000,28 @@
         "2026-10-21": 136,
         "2026-10-22": 246,
         "2026-10-23": 413,
-        "2026-10-24": 75
+        "2026-10-24": 5
       },
-      "recent": [],
+      "recent": [
+        {
+          "at": 1792828961.0733154,
+          "tokens": 11838
+        },
+        {
+          "at": 1792828961.1964853,
+          "tokens": 3893
+        }
+      ],
       "usage": {
-        "candidatesTokenCount": 11498070,
-        "promptTokenCount": 15056482,
+        "candidatesTokenCount": 11503669,
+        "promptTokenCount": 15063467,
         "thoughtsTokenCount": 0
       }
     },
     "gemini-3.5-flash-lite": {
       "blocked_reason": "transient",
-      "blocked_until": 1792794802.9401536,
-      "consecutive_errors": 0,
+      "blocked_until": 1792829115.814511,
+      "consecutive_errors": 2,
       "days": {
         "2026-09-12": 16,
         "2026-09-13": 500,
@@ -5052,12 +5065,25 @@
         "2026-10-21": 500,
         "2026-10-22": 500,
         "2026-10-23": 499,
-        "2026-10-24": 75
+        "2026-10-24": 46
       },
-      "recent": [],
+      "recent": [
+        {
+          "at": 1792828985.2928762,
+          "tokens": 21493
+        },
+        {
+          "at": 1792828985.4306002,
+          "tokens": 13479
+        },
+        {
+          "at": 1792828985.5108662,
+          "tokens": 5183
+        }
+      ],
       "usage": {
-        "candidatesTokenCount": 23491690,
-        "promptTokenCount": 30653085,
+        "candidatesTokenCount": 23539913,
+        "promptTokenCount": 30715795,
         "thoughtsTokenCount": 0
       }
     }
