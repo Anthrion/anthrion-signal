@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "generation": 359,
+  "generation": 360,
   "data_code": "4a1c27340e5b836a75ecd0a84155ceae78497399cc70b933d89d76a58d17b86e",
-  "sha256": "a03f5e3fec7e18bd657536f5583b216eda94d0e6372f1523d81af5bd717444eb",
-  "key": "signal-public-v1-a03f5e3fec7e18bd657536f5583b216eda94d0e6372f1523d81af5bd717444eb-40081701206-1",
-  "inputs": "ec8ca5843776502985d506295908ee2343ae6f3c10eba7465321c5343bf796ba",
-  "validated_at": "2026-10-24T10:07:49.026032+00:00",
+  "sha256": "2890956e88d467d2e6618b4a95cd82fd433c4b9e302d2c86a625acbdcceb7743",
+  "key": "signal-public-v1-2890956e88d467d2e6618b4a95cd82fd433c4b9e302d2c86a625acbdcceb7743-40093141783-1",
+  "inputs": "53be71cc047c5cbb20a365c4fbb697f5c7de777bec8d66ca9e2e6abba303fdef",
+  "validated_at": "2026-10-24T13:14:10.263476+00:00",
   "signature": {
     "code": "5feb2ba5238db6500aa16c3cce2d985add24eea9946d55266d47f618270e45d1",
-    "content": "a20b44bd1e203c0897618af13b135d6c0abf3388ccdccc90bc31629af2d4c982",
-    "translations": "653cdae8d87601cc777f7b331a4847e6cc7a4547d8cd9cf5353bb670030b7742",
+    "content": "0fc13ddf35b562e9a840b4adad7b539bce31a9370e2307499c68dfe0716f58c6",
+    "translations": "e15f63e9c9210716c95889a2a36b859029af62356057c465f5f256dd1b3405c8",
     "health": [
       [
         "find_tender",
-        "healthy"
+        "partial"
       ],
       [
         "contracts_finder",
@@ -21,11 +21,11 @@
       ],
       [
         "scotland",
-        "healthy"
+        "partial"
       ],
       [
         "wales",
-        "partial"
+        "failed"
       ],
       [
         "govuk",
