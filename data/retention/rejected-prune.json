@@ -1,13 +1,24 @@
 {
   "applied": true,
-  "at": "2026-10-25T00:40:19.319266+00:00",
-  "candidate_records": 0,
-  "records": [],
-  "recovery_commit": "0c41dc27f1370f21c570ca5ceda3bd1ebd82d8f9",
-  "removed_bytes": 0,
-  "retained_heads_sha256": "85808ce23671988aee84ea62e6b130b66e13408638b8676919c901274efdc552",
+  "at": "2026-10-26T00:25:59.176599+00:00",
+  "candidate_records": 1,
+  "records": [
+    {
+      "bucket": "30.jsonl.gz",
+      "hashes": [
+        "7c989ce0824ef4372bc5959093a71961fe3e1c91796079ec6e7a9677a31a9b72"
+      ],
+      "id": "sig_5fb8b416a036a4876827",
+      "reason": "Every version is old, inactive and explicitly physical/non-technical; no retained dependency.",
+      "title": "Maintenance and Conservation Works to Listed Domestic House",
+      "url": "https://www.find-tender.service.gov.uk/Notice/024597-2026"
+    }
+  ],
+  "recovery_commit": "e2c158420209ae6fcf2f043fc4f07adfc25afd75",
+  "removed_bytes": 634,
+  "retained_heads_sha256": "b8e0b610e8aff26b323c441ecc988de07904b151d898e78ccc4974ee98d61f8f",
   "signature": {
-    "day": "2026-10-25",
+    "day": "2026-10-26",
     "discovery": "a677e696632739a21ebb9d02e798ceab68b519cd6fad2ee71d8802993fd1c696",
     "policy": "unused-physical-inactive-1"
   }
