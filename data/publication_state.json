@@ -1,11 +1,11 @@
 {
   "code": "5feb2ba5238db6500aa16c3cce2d985add24eea9946d55266d47f618270e45d1",
-  "content": "df1da35b2ecb280ddd35c068501b98f424d3c18b1212370cb4dabf2fe73bbbc1",
-  "translations": "fe8ea1e73d7c6e5288f72a9474e86088b4548185aede1038ec195230f8faea89",
+  "content": "2e599a2bb600edb46c66674c9482fbafc56e5d7f8cef43301c36448fede83212",
+  "translations": "3acf4b32fa7c127656cb31db80c2e5f27b317f407657ddc62a16b45ac9cc953e",
   "health": [
     [
       "find_tender",
-      "healthy"
+      "partial"
     ],
     [
       "contracts_finder",
@@ -21,7 +21,7 @@
     ],
     [
       "govuk",
-      "healthy"
+      "partial"
     ],
     [
       "digital_outcomes",
@@ -221,7 +221,7 @@
     ],
     [
       "canada_buys",
-      "partial"
+      "healthy"
     ],
     [
       "seao_qc",
@@ -297,7 +297,7 @@
     ],
     [
       "dominican_dgcp",
-      "partial"
+      "failed"
     ],
     [
       "ms_tenders",
@@ -305,7 +305,7 @@
     ],
     [
       "lc_finance",
-      "failed"
+      "partial"
     ]
   ],
   "day": "2026-10-26"
