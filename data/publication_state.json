@@ -1,11 +1,11 @@
 {
   "code": "5feb2ba5238db6500aa16c3cce2d985add24eea9946d55266d47f618270e45d1",
-  "content": "a59e1f2576ed7e638d126b809014af75e5913178c21f997bfdebbe7a2239d7a1",
-  "translations": "84540563ebd2a4dd2a3bdfdc5ce84037f07600ec20b33a0cb8725a3744e440c2",
+  "content": "9ed05c2562b2e1b3a25bcd4e64726e5a5364eb87f067db418713ea129d14f474",
+  "translations": "06867b1f93a2f5b143dca8562a3fd731c8f7b8294e3417e589d0b6d8e4a257ec",
   "health": [
     [
       "find_tender",
-      "partial"
+      "healthy"
     ],
     [
       "contracts_finder",
@@ -17,11 +17,11 @@
     ],
     [
       "wales",
-      "partial"
+      "failed"
     ],
     [
       "govuk",
-      "partial"
+      "healthy"
     ],
     [
       "digital_outcomes",
@@ -305,7 +305,7 @@
     ],
     [
       "lc_finance",
-      "partial"
+      "failed"
     ]
   ],
   "day": "2026-10-26"
