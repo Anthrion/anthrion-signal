@@ -1,7 +1,7 @@
 {
   "code": "5feb2ba5238db6500aa16c3cce2d985add24eea9946d55266d47f618270e45d1",
-  "content": "f5b31b04c44e51b67d43dd9d72756ed9f3fc9c8ac6f74f6e7c922707c8c1e925",
-  "translations": "98f656e393aab82630602955319adf9a447058b4bda469e945303c6ad1576972",
+  "content": "80b3829f6fd1c21ba960e55d3c7a0a5d6e4c1fee73347a508c22cabed5a1cb4f",
+  "translations": "fbd6e0d375a1ff08c0000e67e933ea259ee50ca1c7eaacea8315bedaa74f35ee",
   "health": [
     [
       "find_tender",
@@ -21,7 +21,7 @@
     ],
     [
       "govuk",
-      "partial"
+      "healthy"
     ],
     [
       "digital_outcomes",
@@ -221,7 +221,7 @@
     ],
     [
       "canada_buys",
-      "healthy"
+      "partial"
     ],
     [
       "seao_qc",
@@ -305,7 +305,7 @@
     ],
     [
       "lc_finance",
-      "partial"
+      "failed"
     ]
   ],
   "day": "2026-10-26"
