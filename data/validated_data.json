@@ -1,15 +1,15 @@
 {
   "version": 1,
-  "generation": 400,
+  "generation": 401,
   "data_code": "4a1c27340e5b836a75ecd0a84155ceae78497399cc70b933d89d76a58d17b86e",
-  "sha256": "a5b9c10bf2622bde9253bebeed4950d950518e8cdc36966ee72393405b05bd31",
-  "key": "signal-public-v1-a5b9c10bf2622bde9253bebeed4950d950518e8cdc36966ee72393405b05bd31-40599532525-1",
-  "inputs": "58167153132798ed46805069ae487a6240d86f36a8dcd8f12b3edbe807848c8a",
-  "validated_at": "2026-10-27T23:51:11.395170+00:00",
+  "sha256": "1699a0e8a7a68684e9612c68e72c25c28f5959b030aba74b536ab49cda396c7f",
+  "key": "signal-public-v1-1699a0e8a7a68684e9612c68e72c25c28f5959b030aba74b536ab49cda396c7f-40610847617-1",
+  "inputs": "d9faaebd99b1cb10d63d9abda5ddeff56a5d2d86ae27d387248ab503a1753905",
+  "validated_at": "2026-10-28T01:41:22.020495+00:00",
   "signature": {
     "code": "5feb2ba5238db6500aa16c3cce2d985add24eea9946d55266d47f618270e45d1",
-    "content": "246a34e2dab62133bf84cebf1bc40bee546aae56762b6fd18c55c3dad6935e21",
-    "translations": "5298b29866b308f3d4be3e081dba8e96b18b9118eb0297ce5a24c69b2c66207c",
+    "content": "7122b9e3045f867e40afa2b63370df2c48de9b6f147fbbb97988373639a5df25",
+    "translations": "d8c9818645a99baf412f6fc85ce7fc467ad9fcec94c3aac206ab2ed63daa4786",
     "health": [
       [
         "find_tender",
@@ -29,7 +29,7 @@
       ],
       [
         "govuk",
-        "partial"
+        "healthy"
       ],
       [
         "digital_outcomes",
@@ -61,7 +61,7 @@
       ],
       [
         "la_ramp",
-        "failed"
+        "healthy"
       ],
       [
         "grants",
@@ -229,7 +229,7 @@
       ],
       [
         "canada_buys",
-        "healthy"
+        "partial"
       ],
       [
         "seao_qc",
@@ -305,7 +305,7 @@
       ],
       [
         "dominican_dgcp",
-        "failed"
+        "partial"
       ],
       [
         "ms_tenders",
@@ -313,9 +313,9 @@
       ],
       [
         "lc_finance",
-        "failed"
+        "partial"
       ]
     ],
-    "day": "2026-10-27"
+    "day": "2026-10-28"
   }
 }
