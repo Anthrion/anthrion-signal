@@ -5526,19 +5526,23 @@
       }
     },
     "40809256770-1": {
-      "closed": false,
+      "closed": true,
       "day": "2026-10-28",
       "limits": {
         "gemini-3.1-flash-lite": 75,
         "gemini-3.5-flash-lite": 75
       },
-      "used": {}
+      "started": true,
+      "used": {
+        "gemini-3.1-flash-lite": 7,
+        "gemini-3.5-flash-lite": 22
+      }
     }
   },
   "models": {
     "gemini-3.1-flash-lite": {
       "blocked_reason": "transient",
-      "blocked_until": 1793222445.7460804,
+      "blocked_until": 1793244802.3956685,
       "consecutive_errors": 1,
       "days": {
         "2026-09-12": 9,
@@ -5587,19 +5591,48 @@
         "2026-10-25": 163,
         "2026-10-26": 87,
         "2026-10-27": 215,
-        "2026-10-28": 176
+        "2026-10-28": 108
       },
-      "recent": [],
+      "recent": [
+        {
+          "at": 1793244703.3204122,
+          "tokens": 20572
+        },
+        {
+          "at": 1793244703.5244572,
+          "tokens": 6519
+        },
+        {
+          "at": 1793244722.004441,
+          "tokens": 21433
+        },
+        {
+          "at": 1793244722.1661794,
+          "tokens": 13833
+        },
+        {
+          "at": 1793244722.289184,
+          "tokens": 4390
+        },
+        {
+          "at": 1793244736.6179347,
+          "tokens": 12920
+        },
+        {
+          "at": 1793244736.7721496,
+          "tokens": 4353
+        }
+      ],
       "usage": {
-        "candidatesTokenCount": 12785270,
-        "promptTokenCount": 16735713,
+        "candidatesTokenCount": 12792645,
+        "promptTokenCount": 16745164,
         "thoughtsTokenCount": 0
       }
     },
     "gemini-3.5-flash-lite": {
       "blocked_reason": "transient",
-      "blocked_until": 1793204452.5391023,
-      "consecutive_errors": 0,
+      "blocked_until": 1793244764.2969656,
+      "consecutive_errors": 1,
       "days": {
         "2026-09-12": 16,
         "2026-09-13": 500,
@@ -5647,12 +5680,12 @@
         "2026-10-25": 499,
         "2026-10-26": 463,
         "2026-10-27": 499,
-        "2026-10-28": 394
+        "2026-10-28": 341
       },
       "recent": [],
       "usage": {
-        "candidatesTokenCount": 26687329,
-        "promptTokenCount": 34793357,
+        "candidatesTokenCount": 26716808,
+        "promptTokenCount": 34831682,
         "thoughtsTokenCount": 0
       }
     }
