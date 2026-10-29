@@ -1,15 +1,15 @@
 {
   "version": 1,
-  "generation": 408,
+  "generation": 409,
   "data_code": "4a1c27340e5b836a75ecd0a84155ceae78497399cc70b933d89d76a58d17b86e",
-  "sha256": "a738901dea89cb4a8d2ce209b027056ddc1d4c1ac1c2ee3041c324a4b17b9a0d",
-  "key": "signal-public-v1-a738901dea89cb4a8d2ce209b027056ddc1d4c1ac1c2ee3041c324a4b17b9a0d-40767372257-1",
-  "inputs": "75f5887659e5272542b7f23f011e31989a5f74c138d1b094316f5906ae3c0514",
-  "validated_at": "2026-10-28T21:43:03.137143+00:00",
+  "sha256": "3e0af51989de28d75afd3eb11a60f1831d8f71445aab69d9ef0ea7ee71c21790",
+  "key": "signal-public-v1-3e0af51989de28d75afd3eb11a60f1831d8f71445aab69d9ef0ea7ee71c21790-40788786860-1",
+  "inputs": "225098ccad55b4f4bb50fd5549388813018594d5abaeae103091b5adc0ac3fcb",
+  "validated_at": "2026-10-29T00:41:13.358975+00:00",
   "signature": {
     "code": "5feb2ba5238db6500aa16c3cce2d985add24eea9946d55266d47f618270e45d1",
-    "content": "b481734a4d2ad40a4df7af25e412e6d21d63b6d1b47871e03cb10a771367f438",
-    "translations": "81c2d6cdab52bfcb3efdd6391c1c45bfcfee906652d976a5c9794321f4a32ab8",
+    "content": "22bd5358372d59836d0eadd5233c031923f20bba35795e644221092cbdbfe35f",
+    "translations": "ffe79d997b774695099b2e7cf35e3071c12efa193b2901d08ce5d27ec9a74be4",
     "health": [
       [
         "find_tender",
@@ -53,7 +53,7 @@
       ],
       [
         "spain",
-        "healthy"
+        "partial"
       ],
       [
         "nyc_city_record",
@@ -305,7 +305,7 @@
       ],
       [
         "dominican_dgcp",
-        "partial"
+        "failed"
       ],
       [
         "ms_tenders",
@@ -313,9 +313,9 @@
       ],
       [
         "lc_finance",
-        "partial"
+        "failed"
       ]
     ],
-    "day": "2026-10-28"
+    "day": "2026-10-29"
   }
 }
