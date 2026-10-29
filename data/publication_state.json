@@ -1,7 +1,7 @@
 {
   "code": "5feb2ba5238db6500aa16c3cce2d985add24eea9946d55266d47f618270e45d1",
-  "content": "b481734a4d2ad40a4df7af25e412e6d21d63b6d1b47871e03cb10a771367f438",
-  "translations": "81c2d6cdab52bfcb3efdd6391c1c45bfcfee906652d976a5c9794321f4a32ab8",
+  "content": "22bd5358372d59836d0eadd5233c031923f20bba35795e644221092cbdbfe35f",
+  "translations": "ffe79d997b774695099b2e7cf35e3071c12efa193b2901d08ce5d27ec9a74be4",
   "health": [
     [
       "find_tender",
@@ -45,7 +45,7 @@
     ],
     [
       "spain",
-      "healthy"
+      "partial"
     ],
     [
       "nyc_city_record",
@@ -297,7 +297,7 @@
     ],
     [
       "dominican_dgcp",
-      "partial"
+      "failed"
     ],
     [
       "ms_tenders",
@@ -305,8 +305,8 @@
     ],
     [
       "lc_finance",
-      "partial"
+      "failed"
     ]
   ],
-  "day": "2026-10-28"
+  "day": "2026-10-29"
 }
