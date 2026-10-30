@@ -1,15 +1,15 @@
 {
   "version": 1,
-  "generation": 422,
+  "generation": 423,
   "data_code": "4a1c27340e5b836a75ecd0a84155ceae78497399cc70b933d89d76a58d17b86e",
-  "sha256": "de8dbee73b0b2e600d68739f56a8e83e7afdb91838edc3c4b42e0029206a82b1",
-  "key": "signal-public-v1-de8dbee73b0b2e600d68739f56a8e83e7afdb91838edc3c4b42e0029206a82b1-41036275021-1",
-  "inputs": "73740a6779e821db782ada2e53646fc9851030fcbb5ee340c3ffe2320832adae",
-  "validated_at": "2026-10-30T10:49:57.013609+00:00",
+  "sha256": "690aee03daa0fbef454a0cea77a50c00e6133837ee524e055b19b82f1e751a6b",
+  "key": "signal-public-v1-690aee03daa0fbef454a0cea77a50c00e6133837ee524e055b19b82f1e751a6b-41088383165-1",
+  "inputs": "4e9a945549bf485493da174d96b65398328bbc0118b815a769f9c76b10fe6194",
+  "validated_at": "2026-10-30T17:14:56.836449+00:00",
   "signature": {
     "code": "5feb2ba5238db6500aa16c3cce2d985add24eea9946d55266d47f618270e45d1",
-    "content": "67028a654b74ad30a33250d6c614315ed52b6f48cce36d149cfe2e728324dc60",
-    "translations": "482f0369b5488308445ccdb876a8aaf87510469817904285835b6d5fdaa678eb",
+    "content": "9237495e7451406b0101832de73e59f31340448af773ff08c30f96499f0b2bbc",
+    "translations": "83c5396ccd6fd4bdae2a207860f6f11696ff9bbeee7a6b130741a9d143696fee",
     "health": [
       [
         "find_tender",
@@ -141,7 +141,7 @@
       ],
       [
         "sam",
-        "partial"
+        "healthy"
       ],
       [
         "ungm",
@@ -313,7 +313,7 @@
       ],
       [
         "lc_finance",
-        "partial"
+        "failed"
       ]
     ],
     "day": "2026-10-30"
