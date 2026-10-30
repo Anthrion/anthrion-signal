@@ -1,14 +1,14 @@
 {
   "version": 1,
-  "generation": 417,
+  "generation": 418,
   "data_code": "4a1c27340e5b836a75ecd0a84155ceae78497399cc70b933d89d76a58d17b86e",
-  "sha256": "0f63e62f4cdb79d30395b39dd0acc86b3ab9814a66e0ab9d57c4aa50ea71b281",
-  "key": "signal-public-v1-0f63e62f4cdb79d30395b39dd0acc86b3ab9814a66e0ab9d57c4aa50ea71b281-40962758080-1",
-  "inputs": "287e6a93e7e88b064a1148bda9a3d861dd1b3eb884f63a4c3f5cf90c329540cf",
-  "validated_at": "2026-10-29T23:02:29.918551+00:00",
+  "sha256": "1122111da68bc1b1d8b89473aad9d2592adc4df2cb79b19d249b2c0a41b8607c",
+  "key": "signal-public-v1-1122111da68bc1b1d8b89473aad9d2592adc4df2cb79b19d249b2c0a41b8607c-40973776177-1",
+  "inputs": "38d57d58ef879c1d2f20450469e7dbb2d6bbf3fc8adaa8145509df6a159de191",
+  "validated_at": "2026-10-30T00:10:30.662990+00:00",
   "signature": {
     "code": "5feb2ba5238db6500aa16c3cce2d985add24eea9946d55266d47f618270e45d1",
-    "content": "0333ab7c5a9a9ad84ecf699e3b3785dbffddc3bb56c2563577d02d3b8fa5fced",
+    "content": "3a637c00db80933506aac722c5a275fa25648a7abbab157fe6995b3383972393",
     "translations": "15db22cd8763d13fde463cc7429d773baef28d40d2fda5263c31929e97752564",
     "health": [
       [
@@ -316,6 +316,6 @@
         "partial"
       ]
     ],
-    "day": "2026-10-29"
+    "day": "2026-10-30"
   }
 }
