@@ -133,8 +133,8 @@ def test_data_validation_precedes_the_cache_receipt_and_only_pipeline_success_is
     by_name = {step.get("name"): step for step in steps}
     order = ["Verify pipeline changes", "Validate pipeline and public dataset",
              "Compact retained versions and prune unused inactive notices", "Package validated public data",
-             "Cache validated public data", "Require the saved cache before recording its receipt",
-             "Record successful pipeline regression", "Persist canonical state"]
+             "Cache validated public data", "Record successful pipeline regression",
+             "Store and verify durable public export", "Persist canonical state"]
     assert [steps.index(by_name[name]) for name in order] == sorted(steps.index(by_name[name]) for name in order)
     assert "steps.plan.outputs.full_tests == 'true'" in by_name["Validate pipeline and public dataset"]["if"]
     retention = by_name["Compact retained versions and prune unused inactive notices"]
@@ -162,7 +162,8 @@ def test_long_builds_refresh_scoped_credentials_before_each_write_phase():
     for token in (translation_token, publication_token):
         assert token["uses"].startswith("actions/create-github-app-token@")
         assert token["with"]["owner"] == "Anthrion"
-        assert token["with"]["repositories"] == "anthrion-signal"
+        assert token["with"]["repositories"] == "${{ github.event.repository.name }}"
+        assert "github.repository_owner == 'Anthrion'" in token["if"]
         assert {k: v for k, v in token["with"].items() if k.startswith("permission-")} == {
             "permission-contents": "write",
         }
@@ -170,7 +171,7 @@ def test_long_builds_refresh_scoped_credentials_before_each_write_phase():
     assert "SIGNAL_GEMINI_FREE_TIER_CONFIRMED == 'true'" in translation_token["if"]
     assert "steps.translation-token.outcome == 'success'" in by_name["Translate new and outstanding records"]["if"]
     assert steps.index(by_name["Collect public opportunities"]) < steps.index(translation_token)
-    for name in ("Translate new and outstanding records", "Checkpoint private translation progress"):
+    for name in ("Translate new and outstanding records", "Checkpoint verified translation progress"):
         assert steps.index(translation_token) < steps.index(by_name[name])
         assert by_name[name]["env"]["GH_TOKEN"] == "${{ steps.translation-token.outputs.token || github.token }}"
     for name in ("Validate pipeline and public dataset", "Verify pipeline changes"):

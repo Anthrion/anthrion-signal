@@ -79,6 +79,7 @@ Python 3.12+ and Node 22 are recommended.
 python -m venv .venv
 .\.venv\Scripts\python -m pip install -e '.[test]'
 Copy-Item .env.example .env
+.\.venv\Scripts\python scripts/release_storage.py restore --repo Anthrion/anthrion-signal
 .\.venv\Scripts\python -m anthrion_signal.cli ingest --days 7 --max-pages 12
 cd app
 npm ci
@@ -117,7 +118,7 @@ The workflow requests collection **at XX:50 every hour, day and night**, with `E
 
 The repository is currently public, so standard GitHub-hosted runner use is free. External procurement requests do not consume GitHub REST API quota. Hourly scheduling means approximately 720-744 cycles per month, not a monthly API-call entitlement. Providers impose separate limits: daily sources skip completed snapshots, partial work resumes, caches avoid needless detail fetches, and Retry-After delays are respected. Storage, larger runners and any future private-repository allowance are separate. See the cited budget report.
 
-UI releases reuse an immutable, validated public-data export when the pipeline and data contracts match. Missing or corrupt caches, dependency changes, schema changes and unknown files take the full verification path. Changed source data still passes dataset, evidence, dependency and translation validation; identical inputs can reuse their previous result. Full pipeline regression runs after pipeline changes and on the first successful collection/check of each London day. A manual run can force it.
+UI releases reuse an immutable, validated public-data export when the pipeline and data contracts match. Missing or corrupt caches fall back to the checksummed Release asset. Incompatible or unavailable verified exports, dependency changes, schema changes and unknown files take the full verification path. Changed source data still passes dataset, evidence, dependency and translation validation; identical inputs can reuse their previous result. Full pipeline regression runs after pipeline changes and on the first successful collection/check of each London day. A manual run can force it.
 
 PRs keep the required `test` check without rebuilding the full public dataset: frontend unit tests, fixture-backed production compilation and critical desktop/mobile journeys. Pipeline, contract, dependency, automation and unknown changes also run the Python suite and relevance benchmark. The full browser regression suite and real-data integration remain required before publication; failed releases leave the existing live site in place. Fixture preparation runs only on PRs, cannot overwrite an existing export, and creates no release receipt.
 
@@ -131,7 +132,7 @@ Publication is recorded only after deployment succeeds. Times are scheduled star
 
 ## Retention and Verification
 
-Growing retained `signals.jsonl`, `current.json` and `source_state.json` snapshots use deterministic, lossless gzip at 8 MiB. Readers accept their legacy plain representation as well. An atomic replacement and byte-for-byte migration check preserve every source fact. Public browser JSON stays unchanged. The automation guard rejects new Git blobs at 95 MiB before pushing, including an oversized intermediate commit later deleted. Compression addresses the immediate file limit; fixed notice-ID partitions and cold monthly archives are the next storage step as the repository grows. See the [measured build and storage report](docs/collection-and-build-2026-09-19.md).
+Growing retained snapshots use deterministic, lossless gzip. Large records, collection cursors and cached translations are stored in checksummed GitHub Release assets, split into bounded parts; they are no longer committed to Git. Git contains source and a small allowlist of control files, each below 256 KiB. Automation and PR checks reject bulk data even if an intermediate commit subsequently removes it. The public site still uses the same Pages data paths. Current and previous snapshots, recent work, daily and weekly recovery points are retained; superseded managed backups expire. See [Release storage and recovery](docs/release-storage.md).
 
 Canonical records retain 180 days of recent updates plus future deadlines or contract ends. Older records move into monthly compressed archives with a matching index; later related notices can restore history. The browser first loads a manifest and content-hashed market search indexes, then fetches full records and buyer history as needed. Original and translated descriptions stay in the search index so lazy loading does not remove text from search. Public `current.json` remains a compatibility fallback; private canonical stores and archive files are not served.
 

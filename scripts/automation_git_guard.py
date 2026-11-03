@@ -5,7 +5,9 @@ import re
 import subprocess
 from pathlib import Path
 
-MAX_BLOB_BYTES = 95 * 1024 * 1024
+from storage_policy import CONTROL_FILES, CONTROL_LIMIT
+
+MAX_BLOB_BYTES = CONTROL_LIMIT
 
 
 def check_blob_sizes(root, objects):
@@ -17,7 +19,7 @@ def check_blob_sizes(root, objects):
     for line in sizes.decode().splitlines():
         _, kind, size = line.split()
         if kind == "blob" and int(size) >= MAX_BLOB_BYTES:
-            raise RuntimeError("A generated file exceeds the 95 MiB safety limit; compress or partition it before pushing")
+            raise RuntimeError("A Git control file exceeds its safety limit; large retained data belongs in Release snapshots")
 
 
 def git(root, *args):
@@ -30,6 +32,8 @@ def check_paths(raw):
     paths = [path for path in raw.split(b"\0") if path]
     if any(not path.startswith(b"data/") or b".." in path.split(b"/") for path in paths):
         raise RuntimeError("Automation may commit and push only files inside data/")
+    if any(path.decode("utf-8") not in CONTROL_FILES for path in paths):
+        raise RuntimeError("Automation may commit only approved small control files; use Release snapshots for retained data")
 
 
 def check_staged(root):
@@ -51,11 +55,33 @@ def check_unpushed(root):
     check_blob_sizes(root, [line.split(" ", 1)[0] for line in objects])
 
 
+def check_retained_tree(root, ref="HEAD"):
+    """Human PRs may edit code, but cannot accidentally reintroduce bulk state."""
+    entries = git(root, "ls-tree", "-r", "-z", ref, "--", "data/").split(b"\0")
+    objects = []
+    for entry in filter(None, entries):
+        metadata, path = entry.split(b"\t", 1)
+        mode, kind, oid = metadata.split()
+        check_paths(path + b"\0")
+        if kind != b"blob" or mode not in (b"100644", b"100755"):
+            raise RuntimeError("Git control files must be regular files")
+        objects.append(oid.decode())
+    check_blob_sizes(root, objects)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("mode", choices=["staged", "unpushed"])
+    parser.add_argument("mode", choices=["staged", "unpushed", "retained-tree"])
+    parser.add_argument("--base")
     args = parser.parse_args()
-    (check_staged if args.mode == "staged" else check_unpushed)(Path.cwd())
+    root = Path.cwd()
+    if args.mode == "retained-tree":
+        check_retained_tree(root)
+        if args.base:
+            for ref in git(root, "rev-list", f"{args.base}..HEAD").decode().splitlines():
+                check_retained_tree(root, ref)
+    else:
+        (check_staged if args.mode == "staged" else check_unpushed)(root)
 
 
 if __name__ == "__main__":

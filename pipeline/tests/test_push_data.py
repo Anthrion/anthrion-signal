@@ -28,7 +28,7 @@ def writers(tmp_path, monkeypatch):
     git(first, "config", "user.email", "test@example.invalid")
     git(first, "config", "commit.gpgsign", "false")
     (first / "data").mkdir()
-    (first / "data/state.json").write_text("{}")
+    (first / "data/verification_state.json").write_text("{}")
     (first / "pipeline.py").write_text("original")
     git(first, "add", ".")
     git(first, "commit", "-m", "Initial")
@@ -50,24 +50,44 @@ def test_parallel_publication_and_quota_reservation_preserve_both_and_unstaged_p
     module, collector, publisher, remote, git, commit = writers
     commit(collector, "data/translation_quota.json", '{"reserved":20}')
     # Collection can have outstanding work while its quota reservation is pushed.
-    (collector / "data/state.json").write_text('{"new_notice":true}')
+    (collector / "data/verification_state.json").write_text('{"new_notice":true}')
     commit(publisher, "data/publication_state.json", '{"published":true}')
     module.push(publisher)
     module.push(collector)
     assert git(remote, "show", "main:data/translation_quota.json").stdout == '{"reserved":20}'
     assert git(remote, "show", "main:data/publication_state.json").stdout == '{"published":true}'
-    assert (collector / "data/state.json").read_text() == '{"new_notice":true}'
-    assert git(remote, "show", "main:data/state.json").stdout == '{}'
+    assert (collector / "data/verification_state.json").read_text() == '{"new_notice":true}'
+    assert git(remote, "show", "main:data/verification_state.json").stdout == '{}'
 
 
 def test_concurrent_conflicting_data_is_not_silently_overwritten(writers):
     module, first, second, remote, git, commit = writers
-    commit(first, "data/state.json", '{"version":1}')
-    commit(second, "data/state.json", '{"version":2}')
+    commit(first, "data/verification_state.json", '{"version":1}')
+    commit(second, "data/verification_state.json", '{"version":2}')
     module.push(second)
     with pytest.raises(subprocess.CalledProcessError):
         module.push(first)
-    assert git(remote, "show", "main:data/state.json").stdout == '{"version":2}'
+    assert git(remote, "show", "main:data/verification_state.json").stdout == '{"version":2}'
+
+
+def test_quota_push_does_not_erase_snapshot_base_and_cannot_mask_a_newer_writer(writers):
+    module, collector, other, remote, git, commit = writers
+    pointer = "data/retained_state.json"
+    commit(collector, pointer, '{"version":1}')
+    module.push(collector)
+    git(other, "pull", "--ff-only")
+    (collector / "tmp").mkdir()
+    marker = collector / "tmp/state-publish-base.json"
+    marker.write_text('{"version":1}')
+    commit(collector, "data/translation_quota.json", '{"reserved":10}')
+    module.push(collector)
+    assert json.loads(marker.read_text()) == {"version": 1}
+    commit(other, pointer, '{"version":2}')
+    module.push(other)
+    commit(collector, "data/translation_quota.json", '{"reserved":20}')
+    with pytest.raises(RuntimeError, match="Another writer"):
+        module.push(collector)
+    assert git(remote, "show", "main:" + pointer).stdout == '{"version":2}'
 
 
 def test_source_changes_after_validation_cannot_be_claimed_by_an_old_receipt(writers):
@@ -99,7 +119,7 @@ def test_storage_quota_stops_retries_and_preserves_unpublished_work(writers, mon
     else:
         monkeypatch.delenv("GITHUB_ACTIONS", raising=False)
     commit(collector, "data/translation_quota.json", '{"reserved":20}')
-    (collector / "data/state.json").write_text('{"new_notice":true}')
+    (collector / "data/verification_state.json").write_text('{"new_notice":true}')
     original = module.subprocess.run
     pushes = []
 
@@ -118,7 +138,7 @@ def test_storage_quota_stops_retries_and_preserves_unpublished_work(writers, mon
     assert "Contact GitHub Support" in capsys.readouterr().err
     assert git(remote, "cat-file", "-e", "main:data/translation_quota.json", check=False).returncode != 0
     assert git(collector, "show", "HEAD:data/translation_quota.json").stdout == '{"reserved":20}'
-    assert (collector / "data/state.json").read_text() == '{"new_notice":true}'
+    assert (collector / "data/verification_state.json").read_text() == '{"new_notice":true}'
     marker = collector / module.STORAGE_BLOCK
     assert marker.exists() == in_actions
     if in_actions:
@@ -147,7 +167,7 @@ def test_storage_block_does_not_prevent_a_fresh_workflow_attempt(writers, monkey
 
 def test_transient_push_failure_retains_bounded_retry(writers, monkeypatch):
     module, collector, _, remote, git, commit = writers
-    commit(collector, "data/state.json", '{"new_notice":true}')
+    commit(collector, "data/verification_state.json", '{"new_notice":true}')
     original = module.subprocess.run
     pushes = []
 
@@ -161,5 +181,5 @@ def test_transient_push_failure_retains_bounded_retry(writers, monkeypatch):
     monkeypatch.setattr(module.subprocess, "run", temporary_failure)
     module.push(collector)
     assert len(pushes) == 2
-    assert git(remote, "show", "main:data/state.json").stdout == '{"new_notice":true}'
+    assert git(remote, "show", "main:data/verification_state.json").stdout == '{"new_notice":true}'
     assert not (collector / module.STORAGE_BLOCK).exists()

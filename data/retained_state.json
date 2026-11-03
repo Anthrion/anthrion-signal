@@ -1,0 +1,37 @@
+{
+  "previous": {
+    "records": null,
+    "translations": null
+  },
+  "components": {
+    "records": {
+      "version": 1,
+      "kind": "records",
+      "digest": "3e653cc13c0080792bc51b1fe7d5a6c038731df7bca027425d1a61ab187dfe4f",
+      "tag": "signal-data-v1-records-3e653cc13c0080792bc51b1fe7d5a6c038731df7bca027425d1a61ab187dfe4f",
+      "release_id": 433305541,
+      "assets": [
+        {
+          "name": "records-000.tar",
+          "bytes": 658513920,
+          "sha256": "4b1bae9c10609a13bf267daa7cdc6f52a296429b79f30efe025d9fc8907af056"
+        }
+      ]
+    },
+    "translations": {
+      "version": 1,
+      "kind": "translations",
+      "digest": "8cf31546d995d81c5e46beeacd4642a60f9f7e08fbfd8751540cf5f87d4fd80c",
+      "tag": "signal-data-v1-translations-8cf31546d995d81c5e46beeacd4642a60f9f7e08fbfd8751540cf5f87d4fd80c",
+      "release_id": 433308977,
+      "assets": [
+        {
+          "name": "translations-000.tar",
+          "bytes": 59760640,
+          "sha256": "772f1dcda8d1295daea99e1319398433b2179ef322d99742c753ae2f151a3baa"
+        }
+      ]
+    }
+  },
+  "version": 1
+}

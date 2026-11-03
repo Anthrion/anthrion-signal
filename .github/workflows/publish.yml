@@ -14,6 +14,7 @@ jobs:
     timeout-minutes: 120
     env:
       EXECUTION_WORKFLOW_SHA: ${{ github.workflow_sha }}
+      VITE_BASE_PATH: /${{ github.event.repository.name }}/
     # Hold one short lock through compilation, checks, deploy and its receipt.
     concurrency:
       group: anthrion-signal-publication
@@ -38,12 +39,18 @@ jobs:
         id: data
         run: python scripts/release_bundle.py select
       - name: Restore validated export
+        id: cache
         if: steps.data.outputs.eligible == 'true'
+        continue-on-error: true
         uses: actions/cache/restore@v4
         with:
           path: tmp/public-data.tar.gz
           key: ${{ steps.data.outputs.key }}
-          fail-on-cache-miss: true
+      - name: Verify cache or download durable export
+        if: steps.data.outputs.eligible == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/release_storage.py ensure-public
       - name: Verify and unpack public data
         if: steps.data.outputs.eligible == 'true'
         run: python scripts/release_bundle.py restore
@@ -62,8 +69,6 @@ jobs:
       - name: Test and build dashboard
         if: steps.plan.outputs.deploy == 'true'
         working-directory: app
-        env:
-          VITE_BASE_PATH: /${{ github.event.repository.name }}/
         run: |
           npm ci
           npm test
@@ -100,14 +105,14 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
       - name: Create publication receipt token
-        if: steps.deployment.outcome == 'success' && github.repository == 'Anthrion/anthrion-signal'
+        if: steps.deployment.outcome == 'success' && github.repository_owner == 'Anthrion' && vars.ANTHRION_APP_CLIENT_ID != ''
         id: receipt-token
         uses: actions/create-github-app-token@v3
         with:
           client-id: ${{ vars.ANTHRION_APP_CLIENT_ID }}
           private-key: ${{ secrets.ANTHRION_APP_PRIVATE_KEY }}
           owner: Anthrion
-          repositories: anthrion-signal
+          repositories: ${{ github.event.repository.name }}
           permission-contents: write
       - name: Record successful publication
         if: steps.deployment.outcome == 'success'

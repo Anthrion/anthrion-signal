@@ -157,6 +157,19 @@ def test_pack_includes_only_the_validated_dependency_graph_and_rejects_changed_p
         bundle.pack(tmp_path)
 
 
+def test_repository_rename_rebuilds_site_paths_without_discarding_verified_data(bundle, tmp_path, monkeypatch):
+    proof = receipt()
+    bundle.write_json(tmp_path / "data/publication_state.json", {**proof["signature"], "code": "ui-code"})
+    bundle.write_json(tmp_path / "data/published_release.json", {"generation": 2, "site_base": "/staging/"})
+    monkeypatch.setenv("VITE_BASE_PATH", "/staging/")
+    assert not bundle.publication_plan(tmp_path, proof)["deploy"]
+    monkeypatch.setenv("VITE_BASE_PATH", "/anthrion-signal/")
+    plan = bundle.publication_plan(tmp_path, proof)
+    assert plan["deploy"]
+    assert plan["site_base"] == "/anthrion-signal/"
+    assert plan["key"] == proof["key"]
+
+
 def test_pull_request_cannot_supply_its_own_receipt_or_use_ui_path_for_data_edits(bundle, tmp_path, monkeypatch):
     bundle.write_json(tmp_path / bundle.RECEIPT, receipt())
     outputs = []

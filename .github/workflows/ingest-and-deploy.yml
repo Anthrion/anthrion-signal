@@ -25,7 +25,9 @@ permissions:
 
 jobs:
   plan:
-    if: github.ref == 'refs/heads/main'
+    if: >-
+      github.ref == 'refs/heads/main' &&
+      (github.event_name != 'schedule' || github.repository == 'Anthrion/anthrion-signal')
     runs-on: ubuntu-latest
     outputs:
       needs_data: ${{ github.event_name == 'schedule' || inputs.collect == true || inputs.full_tests == true || steps.cache-check.outcome != 'success' }}
@@ -44,11 +46,13 @@ jobs:
         with:
           path: tmp/public-data.tar.gz
           key: ${{ steps.data.outputs.key }}
-      - name: Verify cached bytes
+      - name: Verify cached bytes or restore durable export
         id: cache-check
-        if: steps.cache.outputs.cache-hit == 'true'
+        if: steps.data.outputs.eligible == 'true'
         continue-on-error: true
-        run: python scripts/release_bundle.py check
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/release_storage.py ensure-public
 
   build:
     needs: plan
@@ -67,14 +71,14 @@ jobs:
       actions: write
     steps:
       - name: Create company automation token
-        if: github.repository == 'Anthrion/anthrion-signal'
+        if: github.repository_owner == 'Anthrion' && vars.ANTHRION_APP_CLIENT_ID != ''
         id: app-token
         uses: actions/create-github-app-token@v3
         with:
           client-id: ${{ vars.ANTHRION_APP_CLIENT_ID }}
           private-key: ${{ secrets.ANTHRION_APP_PRIVATE_KEY }}
           owner: Anthrion
-          repositories: anthrion-signal
+          repositories: ${{ github.event.repository.name }}
           permission-contents: write
       - uses: actions/checkout@v4
         with:
@@ -104,6 +108,12 @@ jobs:
           cache: pip
           cache-dependency-path: pyproject.toml
       - run: pip install -e '.[test]'
+      - name: Restore verified retained records and translations
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python scripts/automation_git_guard.py retained-tree
+          python scripts/release_storage.py restore
       - name: Plan collection and verification
         id: plan
         env:
@@ -124,9 +134,11 @@ jobs:
           key: ${{ steps.previous-data.outputs.key }}
       - name: Check previous export integrity
         id: previous-check
-        if: steps.previous-cache.outputs.cache-hit == 'true'
+        if: steps.previous-data.outputs.eligible == 'true'
         continue-on-error: true
-        run: python scripts/release_bundle.py check
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/release_storage.py ensure-public
       - name: Collect public opportunities
         id: collect
         if: steps.plan.outputs.collect == 'true'
@@ -139,7 +151,7 @@ jobs:
       - name: Create translation checkpoint token
         id: translation-token
         if: >-
-          github.repository == 'Anthrion/anthrion-signal' &&
+          github.repository_owner == 'Anthrion' && vars.ANTHRION_APP_CLIENT_ID != '' &&
           steps.plan.outputs.full_tests != 'true' &&
           vars.SIGNAL_GEMINI_FREE_TIER_CONFIRMED == 'true'
         # Optional translation waits for another refresh if token creation fails.
@@ -149,7 +161,7 @@ jobs:
           client-id: ${{ vars.ANTHRION_APP_CLIENT_ID }}
           private-key: ${{ secrets.ANTHRION_APP_PRIVATE_KEY }}
           owner: Anthrion
-          repositories: anthrion-signal
+          repositories: ${{ github.event.repository.name }}
           permission-contents: write
       - name: Translate new and outstanding records
         id: translate
@@ -159,8 +171,7 @@ jobs:
         # Confirm the existing project's free tier before enabling calls after transfer.
         if: >-
           steps.plan.outputs.full_tests != 'true' &&
-          (github.repository != 'Anthrion/anthrion-signal' ||
-          (vars.SIGNAL_GEMINI_FREE_TIER_CONFIRMED == 'true' && steps.translation-token.outcome == 'success'))
+          vars.SIGNAL_GEMINI_FREE_TIER_CONFIRMED == 'true' && steps.translation-token.outcome == 'success'
         continue-on-error: true
         env:
           GH_TOKEN: ${{ steps.translation-token.outputs.token || github.token }}
@@ -170,15 +181,16 @@ jobs:
           # hourly collection's translation window short; neither quota changes.
           TRANSLATION_SECONDS: ${{ steps.plan.outputs.collect == 'true' && '300' || '900' }}
         run: python scripts/translate_records.py records --github-checkpoint --max-calls 150 --max-seconds "$TRANSLATION_SECONDS"
-      - name: Checkpoint private translation progress
-        if: always() && steps.translate.outcome != 'skipped'
+      - name: Checkpoint verified translation progress
+        if: always() && (steps.translate.outcome == 'success' || steps.translate.outcome == 'failure')
         continue-on-error: true
         env:
           GH_TOKEN: ${{ steps.translation-token.outputs.token || github.token }}
         run: |
           git config user.name "$SIGNAL_GIT_NAME"
           git config user.email "$SIGNAL_GIT_EMAIL"
-          git add -- data/translation data/translation_quota.json
+          python scripts/release_storage.py save-translations
+          git add -- data/retained_state.json data/translation_quota.json
           if ! git diff --cached --quiet; then
             python scripts/automation_git_guard.py staged
             git commit -m 'Checkpoint static English translations [skip ci]'
@@ -194,7 +206,7 @@ jobs:
         run: |
           python -m pytest -q
           python scripts/relevance_benchmark.py evaluate --output artifacts/relevance-benchmark.json --fail-on-regression
-          python -m ruff check pipeline scripts/refresh_plan.py scripts/translate_records.py scripts/publication_state.py scripts/reconcile_release_data.py scripts/audit_translations.py scripts/audit_relevance.py scripts/automation_git_guard.py scripts/timestamp_source.py scripts/compress_retained_data.py scripts/release_bundle.py scripts/push_data.py scripts/prune_public_cache.py scripts/maintain_rejected.py
+          python -m ruff check pipeline scripts/refresh_plan.py scripts/translate_records.py scripts/publication_state.py scripts/reconcile_release_data.py scripts/audit_translations.py scripts/audit_relevance.py scripts/automation_git_guard.py scripts/timestamp_source.py scripts/compress_retained_data.py scripts/release_bundle.py scripts/push_data.py scripts/prune_public_cache.py scripts/maintain_rejected.py scripts/release_storage.py scripts/storage_policy.py scripts/storage_health.py
       - name: Compare validated data inputs
         id: inputs
         run: python scripts/release_bundle.py unchanged
@@ -217,40 +229,36 @@ jobs:
         run: python scripts/release_bundle.py pack
       - name: Cache validated public data
         if: steps.validate.outcome == 'success'
+        continue-on-error: true
         uses: actions/cache/save@v4
         with:
           path: tmp/public-data.tar.gz
           key: ${{ steps.bundle.outputs.key }}
-      - name: Confirm cached data is available
-        id: confirm-cache
-        if: steps.validate.outcome == 'success'
-        uses: actions/cache/restore@v4
-        with:
-          path: tmp/public-data.tar.gz
-          key: ${{ steps.bundle.outputs.key }}
-          lookup-only: true
-      - name: Require the saved cache before recording its receipt
-        if: steps.validate.outcome == 'success'
-        env:
-          CACHE_HIT: ${{ steps.confirm-cache.outputs.cache-hit }}
-        run: test "$CACHE_HIT" = true
       - name: Record successful pipeline regression
         if: steps.plan.outputs.full_tests == 'true'
         run: python scripts/refresh_plan.py passed
       - name: Create publication data token
         id: publication-data-token
-        if: github.repository == 'Anthrion/anthrion-signal'
+        if: github.repository_owner == 'Anthrion' && vars.ANTHRION_APP_CLIENT_ID != ''
         uses: actions/create-github-app-token@v3
         with:
           client-id: ${{ vars.ANTHRION_APP_CLIENT_ID }}
           private-key: ${{ secrets.ANTHRION_APP_PRIVATE_KEY }}
           owner: Anthrion
-          repositories: anthrion-signal
+          repositories: ${{ github.event.repository.name }}
           permission-contents: write
+      - name: Store and verify durable public export
+        if: steps.validate.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ steps.publication-data-token.outputs.token || github.token }}
+        run: python scripts/release_storage.py upload-public
       - name: Persist canonical state
         env:
           GH_TOKEN: ${{ steps.publication-data-token.outputs.token || github.token }}
         run: |
+          python scripts/release_storage.py save-records
+          python scripts/release_storage.py save-translations
+          python scripts/storage_health.py
           git config user.name "$SIGNAL_GIT_NAME"
           git config user.email "$SIGNAL_GIT_EMAIL"
           git add data
@@ -260,9 +268,15 @@ jobs:
             python scripts/push_data.py --validated
           fi
       - name: Bound public export cache storage
+        continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
         run: python scripts/prune_public_cache.py
+      - name: Bound retained snapshot storage
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ steps.publication-data-token.outputs.token || github.token }}
+        run: python scripts/release_storage.py prune
       - name: Record run summary
         if: always()
         env:

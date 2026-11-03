@@ -7,7 +7,8 @@ import pytest
 
 
 @pytest.fixture
-def guard():
+def guard(monkeypatch):
+    monkeypatch.syspath_prepend(str(Path(__file__).resolve().parents[2] / "scripts"))
     path = Path(__file__).resolve().parents[2] / "scripts/automation_git_guard.py"
     spec = importlib.util.spec_from_file_location("automation_git_guard", path)
     module = importlib.util.module_from_spec(spec)
@@ -28,7 +29,7 @@ def repository(tmp_path, monkeypatch):
     git("config", "user.email", "test@example.invalid")
     git("config", "commit.gpgsign", "false")
     (tmp_path / "data").mkdir()
-    (tmp_path / "data/state.json").write_text("{}")
+    (tmp_path / "data/verification_state.json").write_text("{}")
     (tmp_path / "source.py").write_text("initial")
     git("add", ".")
     git("commit", "-m", "Initial")
@@ -38,11 +39,20 @@ def repository(tmp_path, monkeypatch):
 
 def test_data_checkpoint_can_be_committed_and_pushed(guard, repository):
     root, git = repository
-    (root / "data/state.json").write_text('{"updated": true}')
+    (root / "data/verification_state.json").write_text('{"updated": true}')
     git("add", "data")
     guard.check_staged(root)
     git("commit", "-m", "Checkpoint")
     guard.check_unpushed(root)
+
+
+def test_bulk_data_cannot_reenter_even_through_a_human_source_pr(guard, repository):
+    root, git = repository
+    (root / "data/signals.jsonl.gz").write_bytes(b"small now, large on each future collection")
+    git("add", "data")
+    git("commit", "-m", "Accidental retained data")
+    with pytest.raises(RuntimeError, match="approved small control"):
+        guard.check_retained_tree(root)
 
 
 def test_pre_staged_source_change_is_rejected(guard, repository):
@@ -55,7 +65,7 @@ def test_pre_staged_source_change_is_rejected(guard, repository):
 
 def test_move_out_of_data_is_rejected(guard, repository):
     root, git = repository
-    git("mv", "data/state.json", "moved.json")
+    git("mv", "data/verification_state.json", "moved.json")
     with pytest.raises(RuntimeError):
         guard.check_staged(root)
 
@@ -74,12 +84,12 @@ def test_source_change_followed_by_revert_cannot_hide_in_net_diff(guard, reposit
 def test_oversized_blob_is_rejected_even_if_deleted_by_a_later_commit(guard, repository, monkeypatch):
     root, git = repository
     monkeypatch.setattr(guard, "MAX_BLOB_BYTES", 20)
-    (root / "data/oversize.json").write_text("x" * 21)
+    (root / "data/translation_quota.json").write_text("x" * 21)
     git("add", "data")
     with pytest.raises(RuntimeError, match="safety limit"):
         guard.check_staged(root)
     git("commit", "-m", "Oversized data")
-    git("rm", "data/oversize.json")
+    git("rm", "data/translation_quota.json")
     git("commit", "-m", "Remove oversized data")
     with pytest.raises(RuntimeError, match="safety limit"):
         guard.check_unpushed(root)

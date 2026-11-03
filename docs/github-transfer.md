@@ -1,5 +1,11 @@
 # Signal: company GitHub setup and operating guide
 
+November 2026 storage update: the repository is being recreated with the same
+roles, rules, App permissions and website address. Large generated data now lives
+in verified Release snapshots. See [storage and recovery](release-storage.md).
+The September rollout evidence below documents the original repository setup;
+its historic PR and commit links belong to the preserved archive after the rename.
+
 Updated 17 September 2026. Signal is now public at
 [`Anthrion/anthrion-signal`](https://github.com/Anthrion/anthrion-signal); timestamp
 evidence is stored separately in private `Anthrion/Timestamps`.

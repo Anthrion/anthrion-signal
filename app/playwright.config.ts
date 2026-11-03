@@ -1,6 +1,7 @@
 import { defineConfig } from '@playwright/test'
 
 const browserName = process.env.SIGNAL_TEST_BROWSER === 'webkit' ? 'webkit' : 'chromium'
+const localUrl = `http://127.0.0.1:4174${process.env.VITE_BASE_PATH || '/anthrion-signal/'}`
 
 export default defineConfig({
   testDir: './tests',
@@ -10,13 +11,13 @@ export default defineConfig({
     ? undefined
     : {
         command: `npm run ${process.env.SIGNAL_TEST_PREVIEW === 'true' ? 'preview' : 'dev'} -- --host 127.0.0.1 --port 4174 --strictPort`,
-        url: 'http://127.0.0.1:4174/anthrion-signal/',
+        url: localUrl,
         reuseExistingServer: !process.env.CI,
         timeout: 30000,
       },
   use: {
     browserName,
-    baseURL: process.env.SIGNAL_TEST_URL || 'http://127.0.0.1:4174/anthrion-signal/',
+    baseURL: process.env.SIGNAL_TEST_URL || localUrl,
     headless: true,
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',

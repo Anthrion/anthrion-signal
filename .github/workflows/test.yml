@@ -22,12 +22,22 @@ jobs:
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: python scripts/pr_checks.py
+      - name: Keep generated state out of Git history
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: python scripts/automation_git_guard.py retained-tree --base "$BASE_SHA"
       - uses: actions/setup-python@v5
         if: steps.changes.outputs.pipeline == 'true'
         with:
           python-version: '3.12'
           cache: pip
           cache-dependency-path: pyproject.toml
+      - name: Restore accepted retained data for relevance checks
+        if: steps.changes.outputs.pipeline == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: python scripts/release_storage.py restore --base "$BASE_SHA"
       - name: Pipeline code and relevance regression
         if: steps.changes.outputs.pipeline == 'true'
         run: |
@@ -35,7 +45,7 @@ jobs:
           python -m pytest -q
           python scripts/review_records.py validate --output artifacts/reviewed-records.json
           python scripts/relevance_benchmark.py evaluate --output artifacts/relevance-benchmark.json --fail-on-regression
-          python -m ruff check pipeline scripts/refresh_plan.py scripts/translate_records.py scripts/publication_state.py scripts/reconcile_release_data.py scripts/audit_translations.py scripts/audit_relevance.py scripts/automation_git_guard.py scripts/timestamp_source.py scripts/compress_retained_data.py scripts/release_bundle.py scripts/push_data.py scripts/prune_public_cache.py scripts/check_public_output.py scripts/pr_checks.py scripts/maintain_rejected.py
+          python -m ruff check pipeline scripts/refresh_plan.py scripts/translate_records.py scripts/publication_state.py scripts/reconcile_release_data.py scripts/audit_translations.py scripts/audit_relevance.py scripts/automation_git_guard.py scripts/timestamp_source.py scripts/compress_retained_data.py scripts/release_bundle.py scripts/push_data.py scripts/prune_public_cache.py scripts/check_public_output.py scripts/pr_checks.py scripts/maintain_rejected.py scripts/release_storage.py scripts/storage_policy.py scripts/storage_health.py
       - uses: actions/setup-node@v4
         with:
           node-version: '22'

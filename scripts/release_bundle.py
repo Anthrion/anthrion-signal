@@ -11,6 +11,7 @@ from datetime import UTC, datetime
 from pathlib import Path, PurePosixPath
 
 from refresh_plan import code_digest, data_digest, is_ui_path, read_state
+from storage_policy import CONTROL_FILES
 
 PREFIX = "signal-public-v1-"
 MAX_BYTES = 900 * 1024 * 1024
@@ -20,8 +21,7 @@ MAX_ARCHIVE = MAX_BYTES
 MAX_FILES = 100_000
 RECEIPT = "data/validated_data.json"
 ARCHIVE = "tmp/public-data.tar.gz"
-BOOKKEEPING = {RECEIPT, "data/publication_state.json", "data/published_release.json",
-               "data/verification_state.json", "data/ui_verification_state.json", "data/translation_quota.json"}
+BOOKKEEPING = CONTROL_FILES
 
 
 def public_json_path(name):
@@ -189,6 +189,7 @@ def pack(root):
     key = f"{PREFIX}{sha}-{os.getenv('GITHUB_RUN_ID', '0')}-{os.getenv('GITHUB_RUN_ATTEMPT', '0')}"
     candidate = {"version": 1, "generation": int(receipt.get("generation", 0)) + 1,
                  "data_code": fingerprint, "sha256": sha, "key": key,
+                 "public_bytes": sum(path.stat().st_size for path in files), "public_files": len(files),
                  "inputs": input_digest(root),
                  "validated_at": datetime.now(UTC).isoformat(), "signature": signature_for(root)}
     write_json(root / RECEIPT, candidate)
@@ -204,9 +205,11 @@ def publication_plan(root, receipt, force=False):
         raise ValueError("An older data generation cannot replace the live release")
     verification = {"code": signature["code"], "day": datetime.now(UTC).date().isoformat()}
     full = force or read_state(root / "data/ui_verification_state.json") != verification
-    return {"deploy": force or previous != signature, "full_ui": full,
+    site_base = os.getenv("VITE_BASE_PATH", "")
+    moved = bool(site_base and published.get("site_base") != site_base)
+    return {"deploy": force or moved or previous != signature, "full_ui": full,
             "signature": signature, "verification": verification,
-            "generation": receipt["generation"], "key": receipt["key"]}
+            "generation": receipt["generation"], "key": receipt["key"], "site_base": site_base}
 
 
 def main():
@@ -238,7 +241,13 @@ def main():
         if not plan.get("deploy"):
             raise ValueError("Only a planned successful publication may be recorded")
         write_json(root / "data/publication_state.json", plan["signature"])
-        write_json(root / "data/published_release.json", {k: plan[k] for k in ("generation", "key")})
+        published = {k: plan[k] for k in ("generation", "key")}
+        if plan.get("site_base"):
+            published["site_base"] = plan["site_base"]
+        selected = read_state(root / "tmp/selected-data.json")
+        if selected.get("storage"):
+            published["storage"] = selected["storage"]
+        write_json(root / "data/published_release.json", published)
         if plan["full_ui"]:
             write_json(root / "data/ui_verification_state.json", plan["verification"])
 

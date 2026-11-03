@@ -12,6 +12,10 @@ Read docs/github-transfer.md before changing automation, signing, timestamping o
 - Scheduled automation may persist only generated data/. Preserve the remote quota reservation
   before any translation API call, validation before publication, and successful-deployment
   recording after publication. A source change needs the normal human review path.
+- Large generated state belongs in verified Release assets, never Git. Only the small
+  `scripts/storage_policy.py` control-file allowlist is tracked under data/. Restore the
+  accepted snapshot before collection or relevance checks; see docs/release-storage.md.
+  Do not merge old repository history into this fresh repository or force-add bulk data.
 - Keep Signal public and timestamp records private. Timestamp trusted main-history source SHAs,
   verify receipts against an independently pinned root, and never overwrite earlier evidence.
   A timestamp failure must not block the independent collection/deployment workflow.

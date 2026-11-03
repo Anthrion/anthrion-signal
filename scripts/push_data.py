@@ -7,6 +7,7 @@ import sys
 from pathlib import Path
 
 from refresh_plan import data_digest, read_state
+from release_storage import check_state_base, write_json
 
 
 class RepositoryStorageBlocked(RuntimeError):
@@ -53,6 +54,7 @@ def push(root, *, validated=False):
     expected = read_state(root / "data/validated_data.json").get("data_code") if validated else None
     for _ in range(3):
         subprocess.run(["git", "fetch", "origin", "main"], cwd=root, check=True)
+        check_state_base(root)
         subprocess.run(["git", "rebase", "--autostash", "origin/main"], cwd=root, check=True)
         conflicts = subprocess.run(["git", "diff", "--name-only", "--diff-filter=U"], cwd=root,
                                    capture_output=True, check=True).stdout
@@ -69,6 +71,9 @@ def push(root, *, validated=False):
         sys.stdout.write(result.stdout)
         sys.stderr.write(result.stderr)
         if result.returncode == 0:
+            marker = root / "tmp/state-publish-base.json"
+            if marker.exists():
+                write_json(marker, read_state(root / "data/retained_state.json"))
             return
         if "repository is above its size quota" in (result.stdout + result.stderr).casefold():
             record_storage_block(root)
