@@ -8,6 +8,7 @@ __pycache__/
 .env.*
 !.env.example
 *.pem
+!pipeline/anthrion_signal/certificates/sectigo-public-server-authentication-dv-r36.pem
 *.key
 /private key*.txt
 node_modules/
