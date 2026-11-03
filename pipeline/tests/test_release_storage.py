@@ -1,6 +1,7 @@
 import importlib
 import io
 import json
+import subprocess
 import tarfile
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
@@ -213,3 +214,29 @@ def test_safe_reads_retry_transient_errors_but_mutations_do_not(storage, tmp_pat
     with pytest.raises(RuntimeError):
         store.api("releases", method="POST", body={})
     assert len(calls) == 1
+
+
+def test_recent_pointer_history_protects_old_export_used_by_concurrent_publisher(storage, tmp_path, monkeypatch):
+    now = datetime(2026, 11, 3, 12, tzinfo=UTC)
+    def git(*args):
+        return subprocess.check_output(["git", "-c", "commit.gpgsign=false", *args], cwd=tmp_path, text=True)
+    git("init", "--initial-branch=main")
+    git("config", "user.name", "Snapshot test")
+    git("config", "user.email", "snapshot@example.invalid")
+    def commit(number, hours, published):
+        stamp = (now - timedelta(hours=hours)).isoformat()
+        monkeypatch.setenv("GIT_AUTHOR_DATE", stamp)
+        monkeypatch.setenv("GIT_COMMITTER_DATE", stamp)
+        for filename, identifier in (("validated_data", number), ("published_release", published)):
+            put(tmp_path, f"data/{filename}.json", json.dumps({
+                "storage": descriptor(storage, "public", f"{identifier:064x}", identifier),
+            }).encode())
+        git("add", "data")
+        git("commit", "-m", f"Export {number}")
+    commit(10, 250, 10)
+    commit(11, 100, 11)
+    commit(12, 8, 11)  # A publisher selected this old export just before export 13.
+    commit(13, 1, 11)
+    commit(14, 0, 11)  # More than one newer export can arrive during a slow publish.
+    git("update-ref", "refs/remotes/origin/main", "HEAD")
+    assert storage.recent_public_releases(tmp_path, now) == {11, 12, 13, 14}

@@ -338,7 +338,7 @@ def protected_releases(root):
 
 
 def retention_candidates(releases, protected, now):
-    """Preserve in-flight work, accepted states, seven daily and four weekly recovery points."""
+    """Preserve in-flight work, accepted states and daily/weekly recovery windows."""
     keep, managed = set(protected), []
     for release in releases:
         tag = release.get("tag_name", "")
@@ -364,11 +364,38 @@ def retention_candidates(releases, protected, now):
     return [entry for _, _, entry in managed if entry["id"] not in keep]
 
 
+def recent_public_releases(root, now):
+    """Protect exports a concurrent publisher could have selected before a pointer changed."""
+    names = ("data/validated_data.json", "data/published_release.json")
+    cutoff = (now - timedelta(hours=6)).isoformat()
+    history = subprocess.check_output([
+        "git", "log", "--first-parent", f"--since-as-filter={cutoff}",
+        "--format=%H %P", "origin/main", "--", *names,
+    ], cwd=root, text=True)
+    # Include the parent state: a week-old export might have been selected just
+    # before today's replacement. Asset upload age alone cannot protect it.
+    revisions = {sha for line in history.splitlines() for sha in line.split()[:2]}
+    protected = set()
+    for revision in revisions:
+        present = subprocess.check_output([
+            "git", "ls-tree", "--name-only", revision, "--", *names,
+        ], cwd=root, text=True).splitlines()
+        for name in present:
+            value = json.loads(subprocess.check_output([
+                "git", "show", f"{revision}:{name}",
+            ], cwd=root, text=True))
+            if descriptor := value.get("storage"):
+                validate_descriptor(descriptor)
+                protected.add(descriptor["release_id"])
+    return protected
+
+
 def prune(root, store):
     # Fetch small accepted pointers immediately before pruning. The writer's own
     # pending snapshot is included too, including translation-only checkpoints.
     subprocess.run(["git", "fetch", "origin", "main"], cwd=root, check=True)
-    protected = protected_releases(root)
+    now = datetime.now(UTC)
+    protected = protected_releases(root) | recent_public_releases(root, now)
     for name in (STATE_POINTER, "data/validated_data.json", "data/published_release.json"):
         result = subprocess.run(["git", "show", f"origin/main:{name}"], cwd=root, capture_output=True, text=True)
         if result.returncode:
@@ -383,7 +410,7 @@ def prune(root, store):
             protected.add(item["release_id"])
     pages = json.loads(store.command(["api", "--paginate", "--slurp", f"repos/{store.repo}/releases?per_page=100"]))
     releases = [release for page in pages for release in page]
-    candidates = retention_candidates(releases, protected, datetime.now(UTC))
+    candidates = retention_candidates(releases, protected, now)
     for release in candidates:
         store.api(f"releases/{release['id']}", method="DELETE")
         # These generated tags have no source-history role. Human v* release tags

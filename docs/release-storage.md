@@ -53,6 +53,8 @@ marker. Other releases and human `v*` tags are never pruned. Retention keeps:
 - Both accepted current components and their immediately previous components.
 - The current validated export and the export actually published on Pages.
 - Every managed upload younger than six hours, including resumed uploads on old commits.
+- Public exports referenced before or after accepted pointer changes in the last six
+  hours, so concurrent publication cannot lose an older export it already selected.
 - The newest snapshot of each kind on each day in the last seven days.
 - The newest snapshot of each kind in each calendar week represented in the last 28 days.
 
