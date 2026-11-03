@@ -1,9 +1,5 @@
 {
   "previous": {
-    "records": null,
-    "translations": null
-  },
-  "components": {
     "records": {
       "version": 1,
       "kind": "records",
@@ -15,6 +11,23 @@
           "name": "records-000.tar",
           "bytes": 658513920,
           "sha256": "4b1bae9c10609a13bf267daa7cdc6f52a296429b79f30efe025d9fc8907af056"
+        }
+      ]
+    },
+    "translations": null
+  },
+  "components": {
+    "records": {
+      "version": 1,
+      "kind": "records",
+      "digest": "96fa5e7712c2ef3c503529ce98ac7d3b8c4b8cb38b40680dd381355d06ca6eb7",
+      "tag": "signal-data-v1-records-96fa5e7712c2ef3c503529ce98ac7d3b8c4b8cb38b40680dd381355d06ca6eb7",
+      "release_id": 433349429,
+      "assets": [
+        {
+          "name": "records-000.tar",
+          "bytes": 666705920,
+          "sha256": "3e73af6f386a795a99a9dc214bfc2a51a0220e7d56c9623ee186f98466990fba"
         }
       ]
     },

@@ -1,19 +1,21 @@
 {
   "version": 1,
-  "generation": 430,
-  "data_code": "4a1c27340e5b836a75ecd0a84155ceae78497399cc70b933d89d76a58d17b86e",
-  "sha256": "d19bdfefcd61db15b111e6c202577f85c248c3c89bc0081c81d2d47616d3f517",
-  "key": "signal-public-v1-d19bdfefcd61db15b111e6c202577f85c248c3c89bc0081c81d2d47616d3f517-41181079528-1",
-  "inputs": "96fe3f9fcaa50ff366ccd96ee526185c9b18c1171ec81c97fd9e8082e14b53ac",
-  "validated_at": "2026-10-31T08:40:56.620878+00:00",
+  "generation": 431,
+  "data_code": "f3435e14fb90fa4b4aac3c21aaa3c67c537955732dd47ce29133c4d1049ae33b",
+  "sha256": "322984835749c23563d947ca8adf5727ddad649371ecfa3b0720a8a078d2fb82",
+  "key": "signal-public-v1-322984835749c23563d947ca8adf5727ddad649371ecfa3b0720a8a078d2fb82-41736557170-1",
+  "public_bytes": 588431064,
+  "public_files": 71439,
+  "inputs": "81f008482ac259f129e2da33fad9a1f97f2b91a720643840d0bf2b9d97d7f8d5",
+  "validated_at": "2026-11-03T23:57:12.124264+00:00",
   "signature": {
-    "code": "5feb2ba5238db6500aa16c3cce2d985add24eea9946d55266d47f618270e45d1",
-    "content": "b4cab953156e90353861eec55800993d234cd934ceae79eff7b200dd26220e1c",
-    "translations": "bfdcca0e70d60b366b255935615bc3afc48b030a805e9cbeafb6daab871cd9e7",
+    "code": "f3fc0f267c4f2622ba00391cf12d67ae7ca0c46229e44758041ccdc0f2ce3e13",
+    "content": "9e5a4ea29748e1932d0ecf76bd4e1dfd6474e1e91e08e16a2e56b8a502be77de",
+    "translations": "acab1c84e440ed90cbc91528f19cf009fe833e54be0221426eb950e9e43f2b1e",
     "health": [
       [
         "find_tender",
-        "healthy"
+        "partial"
       ],
       [
         "contracts_finder",
@@ -33,7 +35,7 @@
       ],
       [
         "digital_outcomes",
-        "healthy"
+        "partial"
       ],
       [
         "upcoming_agreements",
@@ -53,7 +55,7 @@
       ],
       [
         "spain",
-        "healthy"
+        "partial"
       ],
       [
         "nyc_city_record",
@@ -61,7 +63,7 @@
       ],
       [
         "la_ramp",
-        "healthy"
+        "failed"
       ],
       [
         "grants",
@@ -313,9 +315,23 @@
       ],
       [
         "lc_finance",
-        "failed"
+        "partial"
       ]
     ],
-    "day": "2026-10-31"
+    "day": "2026-11-03"
+  },
+  "storage": {
+    "version": 1,
+    "kind": "public",
+    "digest": "322984835749c23563d947ca8adf5727ddad649371ecfa3b0720a8a078d2fb82",
+    "tag": "signal-data-v1-public-322984835749c23563d947ca8adf5727ddad649371ecfa3b0720a8a078d2fb82",
+    "release_id": 433349231,
+    "assets": [
+      {
+        "name": "public-data.tar.gz",
+        "bytes": 574373982,
+        "sha256": "322984835749c23563d947ca8adf5727ddad649371ecfa3b0720a8a078d2fb82"
+      }
+    ]
   }
 }
