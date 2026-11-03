@@ -1,0 +1,244 @@
+import { publicJSON } from './fixtures/publicData'
+import { datasetFixture } from './fixtures/dataset'
+import { test, expect, type Page } from '@playwright/test'
+import AxeBuilder from '@axe-core/playwright'
+import type { Dataset, Signal } from '../src/types'
+import { recordDataset } from './fixtures/record'
+import { isHistoricalAward, markets, matchesMarket, priorityTier } from '../src/lib'
+
+const gbPath = 'awards/GB-0123456789abcdef.json'
+const nordicPath = 'awards/NORDICS-fedcba9876543210.json'
+
+async function fixture(page: Page, fail: boolean | 'malformed' = false) {
+  const original: Dataset = datasetFixture()
+  const data = recordDataset(original, { deadline_at: '2099-10-01' })
+  const base: Signal = {
+    ...data.signals[0],
+    signal_type: 'AWARD',
+    status: 'complete',
+    lifecycle_state: 'AWARDED',
+    deadline_at: '2024-01-01',
+    updated_at: '2025-04-01T12:00:00Z',
+    incumbent_supplier: 'Example Delivery Ltd',
+    procurement_stage: 'award',
+  }
+  const awards: Signal[] = [
+    {
+      ...base,
+      id: 'ai-award',
+      title: 'AI support assistant',
+      delivery_priority: 'ai',
+      matched_capabilities: ['ai'],
+      updated_at: '2026-08-01T12:00:00Z',
+    },
+    {
+      ...base,
+      id: 'crm-award',
+      title: 'Customer platform implementation',
+      delivery_priority: 'platform',
+      matched_capabilities: ['crm'],
+    },
+    {
+      ...base,
+      id: 'other-award',
+      title: 'Digital engineering',
+      delivery_priority: 'other',
+      matched_capabilities: [],
+    },
+    { ...base, id: 'cancelled-award', title: 'Cancelled award', status: 'cancelled' },
+  ]
+  data.award_history = { GB: { url: gbPath, count: 4 }, NORDICS: { url: nordicPath, count: 1 } }
+  await page.route('**/data/current.json', (route) => route.fulfill({ json: data }))
+  let requests = 0
+  await page.route(`**/data/${gbPath}`, (route) => {
+    requests++
+    return fail && requests === 1
+      ? fail === 'malformed'
+        ? route.fulfill({ json: { schema_version: '1.0', signals: [{ id: 'broken' }] } })
+        : route.fulfill({ status: 503 })
+      : route.fulfill({ json: { schema_version: '1.0', signals: awards } })
+  })
+  await page.route(`**/data/${nordicPath}`, (route) =>
+    route.fulfill({
+      json: {
+        schema_version: '1.0',
+        signals: [{ ...base, id: 'se-award', title: 'Kundplattform', countries: ['SE'] }],
+        translations: {
+          'se-award': {
+            source_hash: 'fixture',
+            version: 'fixture',
+            title: 'Nordic customer platform',
+            description: 'Implementation of CRM software.',
+          },
+        },
+      },
+    }),
+  )
+  return { requests: () => requests }
+}
+
+test.beforeEach(async ({ page }) => {
+  await page.route('**/data/manifest.json', (route) => route.fulfill({ status: 404 }))
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await page.clock.setFixedTime(new Date('2026-09-18T12:00:00Z'))
+})
+
+/** The refiners: glass cards on wide screens, a row of chips on phones. */
+const refiners = (page: Page) => page.locator('.discovery-card, .compact-refiners > button')
+const refiner = (page: Page, label: string) => refiners(page).filter({ hasText: label })
+/** Each refiner's count, in order. The labels themselves carry no digits. */
+const refinerCounts = async (page: Page) =>
+  (await refiners(page).allTextContents()).map((text) => text.replace(/\D/g, ''))
+
+test('Awarded is the sixth refiner, lazy loads and preserves capability priority', async ({
+  page,
+}, info) => {
+  const counter = await fixture(page)
+  await page.goto('./?view=all')
+  await expect(page.locator('.row-select').first()).toBeVisible()
+  expect(counter.requests()).toBe(0)
+  // Awarded follows the five live refiners and, until its records load, shows the market's
+  // published total. The Sort menu only sorts.
+  await expect(refiners(page)).toHaveText([
+    /All Signals/,
+    /Live Opportunities/,
+    /Pre-market/,
+    /Closing Soon/,
+    /Added today/,
+    /Awarded/,
+  ])
+  await expect(refiner(page, 'Awarded')).toHaveAttribute('aria-pressed', 'false')
+  const counts = await refinerCounts(page)
+  expect(counts[5]).toBe('4')
+  const liveCounts = counts.slice(0, 5)
+  await page.getByRole('button', { name: 'Sort opportunities: Best match' }).click()
+  await expect(page.getByRole('menuitemradio')).toHaveText([
+    'Best match',
+    'Most recent',
+    'Recently updated',
+    'Soonest deadline',
+    'Highest value',
+    'Lowest value',
+    'Capability A-Z',
+  ])
+  await page.keyboard.press('Escape')
+  expect(counter.requests()).toBe(0)
+  await refiner(page, 'Awarded').click()
+  await expect(page.locator('.row-title')).toHaveText([
+    'Customer platform implementation',
+    'AI support assistant',
+    'Digital engineering',
+  ])
+  expect(counter.requests()).toBe(1)
+  await expect(page).toHaveURL(/view=awards/)
+  await expect(refiner(page, 'Awarded')).toHaveAttribute('aria-pressed', 'true')
+  // The live refiners keep their counts; Awarded now counts the awarded records it lists.
+  await expect.poll(() => refinerCounts(page)).toEqual([...liveCounts, '3'])
+  // Awards have a single meaningful order, so the Sort control names it instead of a menu.
+  await expect(page.getByRole('button', { name: 'Sorted by Latest awards' })).toBeDisabled()
+  await page.locator('.row-select').first().click()
+  const panel = page.locator('.console-detail:visible')
+  await expect(panel).toContainText('Example Delivery Ltd')
+  await expect(panel.locator('.inspector-facts dt')).toHaveText([
+    'Notice type',
+    'Published amount',
+    'Award notice published',
+  ])
+  await expect(panel.getByRole('link', { name: /Add deadline/ })).toHaveCount(0)
+  const gmail = new URL(
+    (await panel
+      .getByRole('link', { name: /Share this opportunity in Gmail/ })
+      .getAttribute('href'))!,
+  )
+  expect(gmail.searchParams.get('body')).toContain('view=awards')
+  if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
+    await page.screenshot({ path: `../artifacts/awarded-${info.project.name}.png` })
+  expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([])
+  // Mobile detail is closed before returning to the list.
+  if (info.project.name === 'mobile')
+    await page.getByRole('button', { name: 'Close panel' }).click()
+  await page
+    .locator('.signal-row')
+    .first()
+    .getByRole('button', { name: 'Save opportunity in this browser' })
+    .click()
+  await expect(page.getByRole('button', { name: /Saved opportunities/ })).toHaveAccessibleName(
+    'Saved opportunities, 1',
+  )
+  await page.getByRole('button', { name: /Saved opportunities/ }).click()
+  await expect(page.locator('.row-title')).toHaveText(['Customer platform implementation'])
+  await page.reload()
+  await expect(page.locator('.row-title')).toHaveText(['Customer platform implementation'])
+  await refiner(page, 'Awarded').click()
+  await page.getByRole('textbox', { name: 'Search opportunities' }).fill('AI support')
+  await expect(page.locator('.row-title')).toHaveText(['AI support assistant'])
+  await page.getByRole('button', { name: 'Clear search' }).click()
+  // Another refiner returns to the normal feed.
+  await refiner(page, 'All Signals').click()
+  await expect(page).not.toHaveURL(/view=awards/)
+  await expect(page.locator('.row-title')).toHaveCount(2)
+})
+
+test('award deep links survive reload and market changes', async ({ page }) => {
+  await fixture(page)
+  await page.goto('./?view=awards&market=NORDICS&signal=se-award')
+  await expect(page.locator('.console-detail:visible h2')).toHaveText('Nordic customer platform')
+  await page.reload()
+  await expect(page.locator('.console-detail:visible h2')).toHaveText('Nordic customer platform')
+  if (page.viewportSize()!.width <= 900)
+    await page.getByRole('button', { name: 'Close panel' }).click()
+  await page
+    .getByRole('navigation', { name: 'Markets' })
+    .getByRole('button', { name: 'UK&I', exact: true })
+    .click()
+  await expect(page.locator('.row-title').first()).toHaveText('Customer platform implementation')
+  await expect(page).toHaveURL(/view=awards/)
+  await page.getByRole('textbox', { name: 'Search opportunities' }).fill('not-present')
+  await expect(page.getByText('No matching signals', { exact: true })).toBeVisible()
+})
+
+for (const failure of [true, 'malformed'] as const)
+  test(`history failure ${failure} is recoverable and never displayed as an empty successful result`, async ({
+    page,
+  }) => {
+    await fixture(page, failure)
+    await page.goto('./?view=awards')
+    await expect(page.getByRole('alert')).toContainText(
+      'Awarded records are temporarily unavailable',
+    )
+    await expect(page.getByText('No matching signals', { exact: true })).toHaveCount(0)
+    await page.getByRole('button', { name: 'Try again', exact: true }).click()
+    await expect(page.locator('.row-title').first()).toHaveText('Customer platform implementation')
+  })
+
+test('@data published historical records match every market manifest and stay out of live data', async ({
+  page,
+}) => {
+  test.setTimeout(300000)
+  await page.unroute('**/data/manifest.json')
+  const data: Dataset = await publicJSON(page.request)
+  expect(data.signals.every((s) => !isHistoricalAward(s))).toBe(true)
+  // Groups can load the union of country shards, avoiding another copy on disk.
+  const published = Object.keys(data.award_history || {})
+  // Caribbean keeps country shards for provenance but exposes only its group in the picker.
+  const partitions = new Set(markets.flatMap((market) => [market.id, ...market.countries]))
+  expect(published.every((id) => partitions.has(id))).toBe(true)
+  for (const market of markets.filter((m) => m.countries.length === 1))
+    expect(published).toContain(market.id)
+  for (const [market, manifest] of Object.entries(data.award_history!)) {
+    await test.step(`${market}: ${manifest.count} historical records`, async () => {
+      const payload: { signals: Signal[] } = await publicJSON(page.request, manifest.url)
+      expect(payload.signals).toHaveLength(manifest.count)
+      expect(payload.signals.every((s) => isHistoricalAward(s) && matchesMarket(s, market))).toBe(
+        true,
+      )
+      await page.goto(`./?view=awards&market=${market}`)
+      if (!manifest.count) return
+      await expect(page.locator('.row-select').first()).toBeVisible({ timeout: 45000 })
+      const id = await page.locator('.row-motion').first().getAttribute('data-signal-id')
+      const first = payload.signals.find((s) => s.id === id)!
+      expect(first).toBeDefined()
+      expect(priorityTier(first)).toBe(Math.min(...payload.signals.map(priorityTier)))
+    })
+  }
+})

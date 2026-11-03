@@ -1,0 +1,315 @@
+{
+  "current_records": 5522,
+  "award_records": 17265,
+  "record_detail_count": 22787,
+  "capability_counts": {
+    "awards_classified": 2184,
+    "awards_public": 2184,
+    "opportunities_classified": 916,
+    "opportunities_public": 916
+  },
+  "dropped_capability_records": 0,
+  "dropped_capabilities": [],
+  "controls": [
+    {
+      "notice": "577910-2026",
+      "published_current": true,
+      "ids": [
+        "sig_70502cde0a440de97729"
+      ],
+      "capabilities": {
+        "sig_70502cde0a440de97729": [
+          "crm"
+        ]
+      }
+    },
+    {
+      "notice": "576561-2026",
+      "published_current": true,
+      "ids": [
+        "sig_596d4d2c711e0db6d8af"
+      ],
+      "capabilities": {
+        "sig_596d4d2c711e0db6d8af": [
+          "crm"
+        ]
+      }
+    },
+    {
+      "notice": "589996-2026",
+      "published_current": true,
+      "ids": [
+        "sig_1fa7a58383baf2fddf74"
+      ],
+      "capabilities": {
+        "sig_1fa7a58383baf2fddf74": [
+          "salesforce"
+        ]
+      }
+    },
+    {
+      "notice": "367551-2026",
+      "published_current": true,
+      "ids": [
+        "sig_8a2e5e657cb794b86679"
+      ],
+      "capabilities": {
+        "sig_8a2e5e657cb794b86679": [
+          "ai"
+        ]
+      }
+    }
+  ],
+  "markets": {
+    "AT": {
+      "count": 41,
+      "url": "current/AT-a413da670dd61587.json",
+      "bytes": 243374
+    },
+    "BE": {
+      "count": 125,
+      "url": "current/BE-57137786e92ab1ca.json",
+      "bytes": 762133
+    },
+    "BENELUX": {
+      "count": 401,
+      "url": "current/BENELUX-ae602297f51bf713.json",
+      "bytes": 2307651
+    },
+    "BG": {
+      "count": 27,
+      "url": "current/BG-7e02ccba10be886e.json",
+      "bytes": 350600
+    },
+    "CH": {
+      "count": 66,
+      "url": "current/CH-e206e38ef824bb91.json",
+      "bytes": 388273
+    },
+    "CY": {
+      "count": 8,
+      "url": "current/CY-1150c258fe232960.json",
+      "bytes": 48146
+    },
+    "CZ": {
+      "count": 180,
+      "url": "current/CZ-ca3de1f23594e650.json",
+      "bytes": 1093032
+    },
+    "DACH": {
+      "count": 779,
+      "url": "current/DACH-e7ffb6af0ce9b0c4.json",
+      "bytes": 6552808
+    },
+    "DE": {
+      "count": 673,
+      "url": "current/DE-7c294a331424b794.json",
+      "bytes": 5932826
+    },
+    "DK": {
+      "count": 94,
+      "url": "current/DK-f7c59690b51095ee.json",
+      "bytes": 840405
+    },
+    "EE": {
+      "count": 21,
+      "url": "current/EE-b5598fbe08adc73e.json",
+      "bytes": 130634
+    },
+    "ES": {
+      "count": 856,
+      "url": "current/ES-9df67cd61cf7c532.json",
+      "bytes": 5349331
+    },
+    "FI": {
+      "count": 274,
+      "url": "current/FI-476d7d751a939369.json",
+      "bytes": 2652758
+    },
+    "FR": {
+      "count": 378,
+      "url": "current/FR-87a1019a17e5ce26.json",
+      "bytes": 2359800
+    },
+    "GB": {
+      "count": 451,
+      "url": "current/GB-a3b60649ffede234.json",
+      "bytes": 4145073
+    },
+    "GR": {
+      "count": 58,
+      "url": "current/GR-879b4bd49d53b641.json",
+      "bytes": 544808
+    },
+    "HR": {
+      "count": 26,
+      "url": "current/HR-8ae7bd044a635d06.json",
+      "bytes": 154952
+    },
+    "HU": {
+      "count": 23,
+      "url": "current/HU-b8ae97089c32709d.json",
+      "bytes": 252127
+    },
+    "IE": {
+      "count": 139,
+      "url": "current/IE-c3f9dad6203830bf.json",
+      "bytes": 1157966
+    },
+    "IS": {
+      "count": 17,
+      "url": "current/IS-cc6e043c3128dce8.json",
+      "bytes": 95249
+    },
+    "IT": {
+      "count": 169,
+      "url": "current/IT-4fb76f239c1aab9b.json",
+      "bytes": 1044936
+    },
+    "LT": {
+      "count": 112,
+      "url": "current/LT-8e27864ed0fbbfe4.json",
+      "bytes": 731998
+    },
+    "LU": {
+      "count": 35,
+      "url": "current/LU-93b9ffee8e4950db.json",
+      "bytes": 203771
+    },
+    "LV": {
+      "count": 26,
+      "url": "current/LV-98ce95a4a9bf7361.json",
+      "bytes": 140019
+    },
+    "MT": {
+      "count": 11,
+      "url": "current/MT-2086543b2e7b2702.json",
+      "bytes": 78555
+    },
+    "NL": {
+      "count": 244,
+      "url": "current/NL-2c665dba2ce706c3.json",
+      "bytes": 1371041
+    },
+    "NO": {
+      "count": 415,
+      "url": "current/NO-ff124c7a7437108d.json",
+      "bytes": 2842834
+    },
+    "NORDICS": {
+      "count": 1096,
+      "url": "current/NORDICS-9c49773a71e103fd.json",
+      "bytes": 8268175
+    },
+    "PL": {
+      "count": 501,
+      "url": "current/PL-31d14409fb5e0ece.json",
+      "bytes": 4162437
+    },
+    "PT": {
+      "count": 37,
+      "url": "current/PT-461fd469f3d59da7.json",
+      "bytes": 194029
+    },
+    "RO": {
+      "count": 102,
+      "url": "current/RO-3cedd84de10023b0.json",
+      "bytes": 860155
+    },
+    "SE": {
+      "count": 300,
+      "url": "current/SE-453ee00a0ad3357b.json",
+      "bytes": 1871461
+    },
+    "SI": {
+      "count": 37,
+      "url": "current/SI-94918719a9fce5ba.json",
+      "bytes": 211733
+    },
+    "SK": {
+      "count": 48,
+      "url": "current/SK-3628ade6a80c9d68.json",
+      "bytes": 320314
+    },
+    "US": {
+      "count": 58,
+      "url": "current/US-76e21a640617469d.json",
+      "bytes": 526946
+    }
+  },
+  "document_statuses": {
+    "linked": 18617,
+    "cached": 2
+  },
+  "amount_kinds": {
+    "unknown": 17306,
+    "estimated_contract": 5430,
+    "grant_range": 51
+  },
+  "deadline_precisions": {
+    "instant": 10885,
+    "date": 3637
+  },
+  "buyer_pages": 7795,
+  "buyer_records": 48759,
+  "largest_buyer_history": 501,
+  "buyer_history_complete_against_retained_records": true,
+  "referenced_files": 30654,
+  "referenced_bytes": 558329342,
+  "all_generated_files": 67098,
+  "all_generated_bytes": 1073237890,
+  "initial_manifest_bytes": 4618828,
+  "initial_manifest_gzip_bytes": 674518,
+  "legacy_current_bytes": 70232297,
+  "legacy_current_gzip_bytes": 8718803,
+  "largest_referenced_files": [
+    [
+      "current.json",
+      70232297
+    ],
+    [
+      "awards/GB-908925977d239e10.json",
+      66281103
+    ],
+    [
+      "awards/ES-b1f7666c102e80ae.json",
+      23069774
+    ],
+    [
+      "awards/DE-ad8baf1604dbfe76.json",
+      22098482
+    ],
+    [
+      "awards/DACH-ad8baf1604dbfe76.json",
+      22098482
+    ],
+    [
+      "awards/NORDICS-340b5822155bd833.json",
+      12157000
+    ],
+    [
+      "current/NORDICS-9c49773a71e103fd.json",
+      8268175
+    ],
+    [
+      "awards/GR-d717dd7b1e8ec1c2.json",
+      7577357
+    ],
+    [
+      "current/DACH-e7ffb6af0ce9b0c4.json",
+      6552808
+    ],
+    [
+      "current/DE-7c294a331424b794.json",
+      5932826
+    ],
+    [
+      "current/ES-9df67cd61cf7c532.json",
+      5349331
+    ],
+    [
+      "manifest.json",
+      4618828
+    ]
+  ]
+}

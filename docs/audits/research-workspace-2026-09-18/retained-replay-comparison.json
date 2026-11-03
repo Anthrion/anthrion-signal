@@ -1,0 +1,83 @@
+{
+  "retained": 81186,
+  "unchanged_source_and_translation_content": true,
+  "removed_candidates": {
+    "count": 23,
+    "sources": {
+      "ted": 23
+    },
+    "reasons": {
+      "Traffic engineering studies, diagnosis or measurement without a separately stated business-application, Salesforce or AI delivery scope.": 1,
+      "Archaeologist services for physical works or fieldwork without a separately stated business-application, Salesforce or AI delivery scope.": 1,
+      "Human recruitment and onboarding programme consultancy without separately stated software delivery.": 1,
+      "Resale or renewal of unrelated product licences without a separately stated business-application, Salesforce or AI delivery scope.": 13,
+      "Consultancy to identify, prepare or administer grant calls and projects without a separately stated business-application, Salesforce or AI delivery scope.": 2,
+      "Administrative and logistical support for a policy programme without separately stated software delivery.": 1,
+      "Execution of surveys or market research without a separately stated business-application, Salesforce or AI delivery scope.": 3,
+      "Engineering or safety inspection of physical transport infrastructure without a separately stated business-application, Salesforce or AI delivery scope.": 1
+    }
+  },
+  "recovered_candidates": {
+    "count": 7,
+    "sources": {
+      "ted": 4,
+      "spain": 3
+    },
+    "reasons": {}
+  },
+  "removed_published": {
+    "count": 5,
+    "sources": {
+      "ted": 5
+    },
+    "reasons": {
+      "Traffic engineering studies, diagnosis or measurement without a separately stated business-application, Salesforce or AI delivery scope.": 1,
+      "Archaeologist services for physical works or fieldwork without a separately stated business-application, Salesforce or AI delivery scope.": 1,
+      "Human recruitment and onboarding programme consultancy without separately stated software delivery.": 1,
+      "Consultancy to identify, prepare or administer grant calls and projects without a separately stated business-application, Salesforce or AI delivery scope.": 1,
+      "Administrative and logistical support for a policy programme without separately stated software delivery.": 1
+    }
+  },
+  "removed_live": {
+    "count": 5,
+    "sources": {
+      "ted": 5
+    },
+    "reasons": {
+      "Traffic engineering studies, diagnosis or measurement without a separately stated business-application, Salesforce or AI delivery scope.": 1,
+      "Archaeologist services for physical works or fieldwork without a separately stated business-application, Salesforce or AI delivery scope.": 1,
+      "Human recruitment and onboarding programme consultancy without separately stated software delivery.": 1,
+      "Consultancy to identify, prepare or administer grant calls and projects without a separately stated business-application, Salesforce or AI delivery scope.": 1,
+      "Administrative and logistical support for a policy programme without separately stated software delivery.": 1
+    }
+  },
+  "recovered_live": {
+    "count": 0,
+    "sources": {},
+    "reasons": {}
+  },
+  "removed_awards": {
+    "count": 6,
+    "sources": {
+      "ted": 6
+    },
+    "reasons": {
+      "Resale or renewal of unrelated product licences without a separately stated business-application, Salesforce or AI delivery scope.": 5,
+      "Execution of surveys or market research without a separately stated business-application, Salesforce or AI delivery scope.": 1
+    }
+  },
+  "recovered_awards": {
+    "count": 3,
+    "sources": {
+      "ted": 3
+    },
+    "reasons": {}
+  },
+  "changed_published_labels": {
+    "count": 8,
+    "sources": {
+      "ted": 8
+    },
+    "reasons": {}
+  }
+}

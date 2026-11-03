@@ -1,0 +1,71 @@
+name: Tests
+on:
+  pull_request:
+concurrency:
+  group: signal-pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  # This name remains the required repository check.
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          filter: blob:none
+          persist-credentials: false
+      - name: Select PR code checks
+        id: changes
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: python scripts/pr_checks.py
+      - uses: actions/setup-python@v5
+        if: steps.changes.outputs.pipeline == 'true'
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - name: Pipeline code and relevance regression
+        if: steps.changes.outputs.pipeline == 'true'
+        run: |
+          pip install -e '.[test]'
+          python -m pytest -q
+          python scripts/review_records.py validate --output artifacts/reviewed-records.json
+          python scripts/relevance_benchmark.py evaluate --output artifacts/relevance-benchmark.json --fail-on-regression
+          python -m ruff check pipeline scripts/refresh_plan.py scripts/translate_records.py scripts/publication_state.py scripts/reconcile_release_data.py scripts/audit_translations.py scripts/audit_relevance.py scripts/automation_git_guard.py scripts/timestamp_source.py scripts/compress_retained_data.py scripts/release_bundle.py scripts/push_data.py scripts/prune_public_cache.py scripts/check_public_output.py scripts/pr_checks.py scripts/maintain_rejected.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+      - name: Test and build dashboard
+        working-directory: app
+        # Real source-data export and validation run once, before publication.
+        run: |
+          npm ci
+          npm test
+          node build/preparePrData.mjs
+          npm run build
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('app/package-lock.json') }}
+      - name: Install browser
+        working-directory: app
+        run: npx playwright install --with-deps chromium
+      - name: Critical desktop and mobile journeys
+        working-directory: app
+        env:
+          SIGNAL_TEST_PREVIEW: 'true'
+        run: npm run test:e2e:pr
+      - name: Preserve failed browser diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-failure-${{ github.run_id }}
+          path: app/test-results/
+          if-no-files-found: ignore
+          retention-days: 3

@@ -1,0 +1,1046 @@
+{
+  "source_head_before_reconciliation": "538231790d39fd232cf132916a36318ef3d40310",
+  "merged_remote_head": "38addf330be60871c10adabeb79cf58b6a1e1c1e",
+  "source_integrity": {
+    "local_all_retained_ids": 81186,
+    "remote_all_retained_ids": 84045,
+    "combined_all_retained_ids": 87073,
+    "final_all_retained_ids": 87073,
+    "missing_local_ids": [],
+    "missing_remote_ids": [],
+    "local_retained_records": 33814,
+    "remote_retained_records": 32019,
+    "candidate_canonical": 17769,
+    "final_canonical": 17760,
+    "canonical_bytes": 95928704,
+    "canonical_hash_errors": [],
+    "amount_scalar_mismatches": [],
+    "source_changes_during_offline_replay": [
+      {
+        "id": "sig_00f9a5b69cdc563a5780",
+        "changes": {
+          "raw_source_hash": {
+            "before": "a53368dd52e3d9359e8fddefa13d6124e4297b6d4eeea98bf4f1bcf55c2701e6",
+            "after": "2ff29996315a0ce31db68b7bbc180182d37278c4e8230581409c05c7582d1fc6"
+          }
+        }
+      },
+      {
+        "id": "sig_074133449d01a02e57ca",
+        "changes": {
+          "raw_source_hash": {
+            "before": "80173bc7401c3c5945f6f37996375827e1bb94909f632a0f57006403cad425d9",
+            "after": "50e4a486740df46ced16f933b42dcadfdb348fa5f6f6fbc44a971898818664b7"
+          }
+        }
+      },
+      {
+        "id": "sig_1c91ae1f5fa224b6310c",
+        "changes": {
+          "raw_source_hash": {
+            "before": "cfdcf92e9dc9a9118e18474466074c464cc57989559ba8367bcb1e63e7fe998c",
+            "after": "4cf18bde1a130bbaa2a5562f43e292606d7ca03ec1c3b1b88b11436722a0e553"
+          }
+        }
+      },
+      {
+        "id": "sig_23470009fcdc2e0b4ac4",
+        "changes": {
+          "raw_source_hash": {
+            "before": "4b01984d74a8db22c5a9ae33b0c75414b49645601cd9b31b1fdf0d3316cac92f",
+            "after": "517e32e90a3846ce1baeab72173a993aeb088823053eab1082ec77b737b54e68"
+          }
+        }
+      },
+      {
+        "id": "sig_2ffcb5c5d8a068f3245e",
+        "changes": {
+          "raw_source_hash": {
+            "before": "986b6bc763959fe430ffd5e5d3556b93d5b32927a740eebe99cf92c8f1ea2807",
+            "after": "022670858a19b3599c5074fec39c3f266aa574f715834e1ab4d1af5d38b707de"
+          }
+        }
+      },
+      {
+        "id": "sig_4c818cbdb41f4fa3d2d5",
+        "changes": {
+          "raw_source_hash": {
+            "before": "6c48f22588d4236f9d2a53e89901c7fd52fb0e6f11535884fd5ec43bcc26cf61",
+            "after": "538aae3c764fbb0682d409114855bdfe31b61f37db02e633ddde1533fc0c1863"
+          }
+        }
+      },
+      {
+        "id": "sig_6b8167651bc974859d9b",
+        "changes": {
+          "raw_source_hash": {
+            "before": "e1ef083093bffcc70b09fa1bc6ee5972fbf903191a61b2060e60cbe6947dc5e0",
+            "after": "0e8e95287b45d235acd88c050431b010556cf918ccb19a0aaf86ba440a339317"
+          }
+        }
+      },
+      {
+        "id": "sig_6f8b10450509451db80a",
+        "changes": {
+          "raw_source_hash": {
+            "before": "99662971d7f0e5ed5189a1fc7ffcbd266248b7ee9c2c45df46054a3b090a4a6e",
+            "after": "a03734f6949d982f59d12301e0ebbf798484fc7289adaaca2d687c038d53d3bd"
+          }
+        }
+      },
+      {
+        "id": "sig_9c7c07c05e2c26a05f8a",
+        "changes": {
+          "raw_source_hash": {
+            "before": "1901df0daa5c42e875093a2a160a5d06f540f7cda497e583f711eac06fdad6bb",
+            "after": "80a618d6d7802bae260b10d46f15255f4c721d049d081f45b8ad5341d2669244"
+          }
+        }
+      },
+      {
+        "id": "sig_a1e252d14be972eded4a",
+        "changes": {
+          "raw_source_hash": {
+            "before": "18ee33bfa075dc6df67406172679a7122e68d1b79f30dbfce8591433af50bbcc",
+            "after": "7d1812a056f85123acad36cbfa25d5e5d740e68f8191d4c241d0d35792bd977b"
+          }
+        }
+      },
+      {
+        "id": "sig_b597df20b7998aa9aa67",
+        "changes": {
+          "raw_source_hash": {
+            "before": "7f0447af604e4a79a24565e3d9df8f71c140efe2bed13d781839c73cddbb3330",
+            "after": "c166d4264ce8aea58aecfbbc554c872f0effa7fe50dd682eb4ce379ca971e679"
+          }
+        }
+      },
+      {
+        "id": "sig_b958b4ac5ca772f5ee3b",
+        "changes": {
+          "raw_source_hash": {
+            "before": "8f36a53a26dceb40b1975d92142c6a103b8e607b2c4f294073dd2041dbcd8b19",
+            "after": "7f1331a3f1bdc2df08680ae10f3b8be3769c0a59ba813e9d62ed6655694efa50"
+          }
+        }
+      },
+      {
+        "id": "sig_c624eadf81db35e75490",
+        "changes": {
+          "raw_source_hash": {
+            "before": "38e17d08a9efabfb302092bcb2545569cf0a8f2513813f6a1817567f94deb090",
+            "after": "73c714ff949f406e37ca89c8f7873b864410b61bbb890761fa2795578982b868"
+          }
+        }
+      },
+      {
+        "id": "sig_df375385d8c44e0cdd7d",
+        "changes": {
+          "raw_source_hash": {
+            "before": "473ca09fe9ed3600821b9f0772cd485573bd5d3209f29d01992022e226574f07",
+            "after": "81224f9e91d8136e7c2b03f795c935477f4ba575466c325e7bf2f6e099d6a297"
+          }
+        }
+      }
+    ],
+    "lost_source_members_during_replay": [],
+    "candidate_records_moved_to_rejected_only": [],
+    "grant_corrections": [
+      {
+        "id": "sig_03fee59f618258543f29",
+        "expected": {
+          "buyer_name": "Air Force Office of Scientific Research",
+          "deadline_at": "2026-12-04"
+        },
+        "preserved": true
+      },
+      {
+        "id": "sig_0539033341b24467d5d7",
+        "expected": {
+          "deadline_at": "2076-08-20"
+        },
+        "preserved": true
+      },
+      {
+        "id": "sig_08f754b7228c4f5a38d6",
+        "expected": {
+          "deadline_at": "2026-10-05"
+        },
+        "preserved": true
+      },
+      {
+        "id": "sig_325da810c3f0bcbb629a",
+        "expected": {
+          "deadline_at": "2099-01-01"
+        },
+        "preserved": true
+      },
+      {
+        "id": "sig_3f61ca32354a48bbd5cd",
+        "expected": {
+          "buyer_name": "Defense Health Agency Contracting Activity - DHACA",
+          "deadline_at": "2027-09-30"
+        },
+        "preserved": true
+      },
+      {
+        "id": "sig_45528045fdbcb37d9128",
+        "expected": {
+          "buyer_name": "Department of Commerce"
+        },
+        "preserved": true
+      },
+      {
+        "id": "sig_45573c842e993565cc80",
+        "expected": {
+          "buyer_name": "Department of Commerce"
+        },
+        "preserved": true
+      },
+      {
+        "id": "sig_4d2c5259822d64148bd2",
+        "expected": {
+          "deadline_at": "2026-09-29"
+        },
+        "preserved": true
+      },
+      {
+        "id": "sig_5b288e9e6ddd92f410b7",
+        "expected": {
+          "deadline_at": "2027-07-02"
+        },
+        "preserved": true
+      },
+      {
+        "id": "sig_6908ad36d3cca0926c26",
+        "expected": {
+          "buyer_name": "Office of Science",
+          "deadline_at": "2026-10-19"
+        },
+        "preserved": true
+      },
+      {
+        "id": "sig_6f8b10450509451db80a",
+        "expected": {
+          "buyer_name": "Department of Commerce"
+        },
+        "preserved": true
+      },
+      {
+        "id": "sig_ad9432e0e83f65d510af",
+        "expected": {
+          "buyer_name": "Department of Commerce"
+        },
+        "preserved": true
+      },
+      {
+        "id": "sig_b597df20b7998aa9aa67",
+        "expected": {
+          "deadline_at": "2027-12-23"
+        },
+        "preserved": true
+      },
+      {
+        "id": "sig_b99bb07e2dc71f020694",
+        "expected": {
+          "buyer_name": "Department of Commerce"
+        },
+        "preserved": true
+      },
+      {
+        "id": "sig_d8ab2d4d79da0530f259",
+        "expected": {
+          "buyer_name": "Department of Commerce"
+        },
+        "preserved": true
+      },
+      {
+        "id": "sig_e3c5630449c1cbff05f3",
+        "expected": {
+          "buyer_name": "Department of Commerce"
+        },
+        "preserved": true
+      },
+      {
+        "id": "sig_fb8a0001472daa3dcc2a",
+        "expected": {
+          "buyer_name": "Economic Development Administration"
+        },
+        "preserved": true
+      }
+    ],
+    "sparse_amount_preserved": true,
+    "sparse_amount_provenance_preserved": true,
+    "current_before": 5522,
+    "current_after": 5571,
+    "current_added_ids": [
+      "sig_014d6bb9ab68582a49aa",
+      "sig_0cc396de5878c3ab1d62",
+      "sig_0eae879ae512de7f35df",
+      "sig_0f4acffe8b96858b06e8",
+      "sig_12a083211a68763a96cf",
+      "sig_13b3d9f50c7057b16c7b",
+      "sig_160207dca5ea209a0888",
+      "sig_1b55ab34f73b7244ed42",
+      "sig_1f4ced0ec1c5cb1aa223",
+      "sig_227cf709ded8f3ff677d",
+      "sig_24fa5ad9a56d82e291fb",
+      "sig_2bafb64eb186700f2fc3",
+      "sig_2d4dfe5963948efeddf4",
+      "sig_3702bd1c5c5b310e8b6b",
+      "sig_386ca583829de162b3f9",
+      "sig_4201b44d0e5522361e80",
+      "sig_43da106ddac55bab645f",
+      "sig_45182218dce81071619d",
+      "sig_458037be25f5ba8cc32b",
+      "sig_45e97f5fea3d93df9ef6",
+      "sig_482c9301eb09a942aa13",
+      "sig_49c71aecc7397cddb572",
+      "sig_4e67a403ee267a83f45f",
+      "sig_5326b4ee44c0cd0253c4",
+      "sig_55c0472dec40beba8774",
+      "sig_570a93e10203605d93c6",
+      "sig_5dfc79b86b8f09b5bbcc",
+      "sig_60106b1aa7da1b8b3fdd",
+      "sig_62522eb6d83997d63de7",
+      "sig_62819e008bd495e29677",
+      "sig_62987cd25cfad51665eb",
+      "sig_69706ca107dfae3cae74",
+      "sig_7049458a4d87c38bed06",
+      "sig_77b4630c4861b5e0fcf8",
+      "sig_77d9cd84c3c2c22d895a",
+      "sig_7c09272ff893611299f6",
+      "sig_7cf8d25e03ec8987a7bb",
+      "sig_7faf977bbff5b0b617b7",
+      "sig_8075417ecc550404a8bd",
+      "sig_8f725e9deebf240eabb9",
+      "sig_8f8fe033e8b931460120",
+      "sig_95cf6ff52a51fe4a7325",
+      "sig_9a85ef24387ca4be5193",
+      "sig_b56f6a6e867dc4fcdfc8",
+      "sig_b5985a63429e567d221d",
+      "sig_bdf7858df5dadef98053",
+      "sig_be2cc03ac99b768078dd",
+      "sig_bf3ae200ba572e488c45",
+      "sig_c1bd567ef6b192706741",
+      "sig_c8e879876c698e7d7049",
+      "sig_ce1cacd4f4495ca5fe1a",
+      "sig_ce9a1175d9d1efa34095",
+      "sig_d5e4e2e84d0bbdda4c45",
+      "sig_d899525985c0fb046ac7",
+      "sig_e34b701d0405bda264b2",
+      "sig_e4ac7884f9f15a586da8",
+      "sig_e6c8004ba45d0cab79eb",
+      "sig_f7630f833fbf9fc33299"
+    ],
+    "current_removed_ids": [
+      "sig_01a1217df31055c06d08",
+      "sig_01bbc2a3ec354d799657",
+      "sig_3f48ed6824978de23d58",
+      "sig_591d934d9259361b3d1a",
+      "sig_8c1fbea6c174be0938f4",
+      "sig_c0cf503a69650d89f983",
+      "sig_d0ffb1b4d1030e8b1fd3",
+      "sig_e7a9e31d4ad8fb062768",
+      "sig_f0daf73d5b74f4895cca"
+    ],
+    "awards_before": 17265,
+    "awards_after": 17831,
+    "controls": {
+      "sig_70502cde0a440de97729": {
+        "current": true,
+        "deadline_at": "2026-09-21T21:59:59+00:00"
+      },
+      "sig_596d4d2c711e0db6d8af": {
+        "current": true,
+        "deadline_at": "2026-09-22T10:00:00+00:00"
+      },
+      "sig_1fa7a58383baf2fddf74": {
+        "current": true,
+        "deadline_at": "2026-09-25T15:00:00+00:00"
+      },
+      "sig_8a2e5e657cb794b86679": {
+        "current": true,
+        "deadline_at": "2033-12-31"
+      }
+    },
+    "checkpoint_parity": [
+      {
+        "path": "data/translation/cache.json",
+        "matches_latest_remote_bytes": true,
+        "sha256": "adcc1749088743cc850232bcc7e4dd1100d9b01245ad036ed547bfb91a050d1c"
+      },
+      {
+        "path": "data/translation/summary.json",
+        "matches_latest_remote_bytes": true,
+        "sha256": "4e7c8fba9f04e5a5da3f709c676abe54fd5708dcba2083a079554e6ced113a3f"
+      },
+      {
+        "path": "data/translation/translations.en.json",
+        "matches_latest_remote_bytes": true,
+        "sha256": "caf1f0cc5469a6e9fee3d6bf7e6a8b0b809f4c53edb355830cc9ccd2d7be9a4d"
+      },
+      {
+        "path": "data/translation_quota.json",
+        "matches_latest_remote_bytes": true,
+        "sha256": "a4c8d8170eaf5f14bc24a7c8d77e73f2941127d90748892c5765d4616317a6e5"
+      },
+      {
+        "path": "data/publication_state.json",
+        "matches_latest_remote_bytes": true,
+        "sha256": "7339b9162cab235e427eba32085ef56ec1642544321ab7141f8b8126543be7ff"
+      },
+      {
+        "path": "data/verification_state.json",
+        "matches_latest_remote_bytes": true,
+        "sha256": "08defb87d9f765a648249e3751607ed56b5ae086de4448743dd1b72795a73abe"
+      }
+    ],
+    "final_engine_signature": "055b0c069ba3c7ff28f8158fcb1fbbe8f7ae3051eaee9b7a577af3088310afa7",
+    "source_change_field_counts": {
+      "raw_source_hash": 14
+    },
+    "source_changes_exactly_match_reviewed_evidence": true
+  },
+  "reviewed_source_version_changes": {
+    "reviewed_changes": 14,
+    "changed_fields": [
+      "raw_source_hash"
+    ],
+    "source_text_changed": false,
+    "publication_dates_changed": false,
+    "earlier_content_provenance_must_be_retained": true,
+    "evidence": "Frozen candidate and offline replay source rows; no new network request and no inferred publication-date change.",
+    "decisions": [
+      {
+        "id": "sig_00f9a5b69cdc563a5780",
+        "source": "scotland",
+        "before": {
+          "source": "scotland",
+          "source_name": "Public Contracts Scotland",
+          "url": "https://www.publiccontractsscotland.gov.uk/search/show/search_view.aspx?ID=SEP564425",
+          "release_id": "rls-44-SEP564425",
+          "ocid": "ocds-r6ebe6-0000842877",
+          "retrieved_at": "2026-09-18T01:37:13+00:00",
+          "published_at": "2026-09-14T00:00:00+00:00",
+          "raw_hash": "a53368dd52e3d9359e8fddefa13d6124e4297b6d4eeea98bf4f1bcf55c2701e6"
+        },
+        "accepted": {
+          "source": "scotland",
+          "source_name": "Public Contracts Scotland",
+          "url": "https://www.publiccontractsscotland.gov.uk/search/show/search_view.aspx?ID=SEP564425",
+          "release_id": "rls-58-SEP564425",
+          "ocid": "ocds-r6ebe6-0000842877",
+          "retrieved_at": "2026-09-19T05:11:46+00:00",
+          "published_at": "2026-09-14T00:00:00+00:00",
+          "raw_hash": "2ff29996315a0ce31db68b7bbc180182d37278c4e8230581409c05c7582d1fc6"
+        },
+        "decision": "Accept the more recently retrieved retained raw-source reference; source text and publication metadata remain unchanged. Keep distinct older provenance content identities too."
+      },
+      {
+        "id": "sig_074133449d01a02e57ca",
+        "source": "scotland",
+        "before": {
+          "source": "scotland",
+          "source_name": "Public Contracts Scotland",
+          "url": "https://api.publiccontractsscotland.gov.uk/v1/Notice?id=ocds-r6ebe6-0000807416",
+          "release_id": "rls-19-SEP564264",
+          "ocid": "ocds-r6ebe6-0000807416",
+          "retrieved_at": "2026-09-18T01:37:13+00:00",
+          "published_at": "2026-09-10T11:41:55+00:00",
+          "raw_hash": "80173bc7401c3c5945f6f37996375827e1bb94909f632a0f57006403cad425d9"
+        },
+        "accepted": {
+          "source": "scotland",
+          "source_name": "Public Contracts Scotland",
+          "url": "https://api.publiccontractsscotland.gov.uk/v1/Notice?id=ocds-r6ebe6-0000807416",
+          "release_id": "rls-21-SEP564264",
+          "ocid": "ocds-r6ebe6-0000807416",
+          "retrieved_at": "2026-09-19T05:11:46+00:00",
+          "published_at": "2026-09-10T11:41:55+00:00",
+          "raw_hash": "50e4a486740df46ced16f933b42dcadfdb348fa5f6f6fbc44a971898818664b7"
+        },
+        "decision": "Accept the more recently retrieved retained raw-source reference; source text and publication metadata remain unchanged. Keep distinct older provenance content identities too."
+      },
+      {
+        "id": "sig_1c91ae1f5fa224b6310c",
+        "source": "scotland",
+        "before": {
+          "source": "scotland",
+          "source_name": "Public Contracts Scotland",
+          "url": "https://www.publiccontractsscotland.gov.uk/search/show/search_view.aspx?ID=SEP563880",
+          "release_id": "rls-129-SEP563880",
+          "ocid": "ocds-r6ebe6-0000842008",
+          "retrieved_at": "2026-09-18T01:37:13+00:00",
+          "published_at": "2026-09-07T00:00:00+00:00",
+          "raw_hash": "cfdcf92e9dc9a9118e18474466074c464cc57989559ba8367bcb1e63e7fe998c"
+        },
+        "accepted": {
+          "source": "scotland",
+          "source_name": "Public Contracts Scotland",
+          "url": "https://www.publiccontractsscotland.gov.uk/search/show/search_view.aspx?ID=SEP563880",
+          "release_id": "rls-143-SEP563880",
+          "ocid": "ocds-r6ebe6-0000842008",
+          "retrieved_at": "2026-09-19T05:11:46+00:00",
+          "published_at": "2026-09-07T00:00:00+00:00",
+          "raw_hash": "4cf18bde1a130bbaa2a5562f43e292606d7ca03ec1c3b1b88b11436722a0e553"
+        },
+        "decision": "Accept the more recently retrieved retained raw-source reference; source text and publication metadata remain unchanged. Keep distinct older provenance content identities too."
+      },
+      {
+        "id": "sig_23470009fcdc2e0b4ac4",
+        "source": "scotland",
+        "before": {
+          "source": "scotland",
+          "source_name": "Public Contracts Scotland",
+          "url": "https://www.publiccontractsscotland.gov.uk/search/show/search_view.aspx?ID=SEP563857",
+          "release_id": "rls-133-SEP563857",
+          "ocid": "ocds-r6ebe6-0000494140",
+          "retrieved_at": "2026-09-18T01:37:13+00:00",
+          "published_at": "2026-09-04T00:00:00+00:00",
+          "raw_hash": "4b01984d74a8db22c5a9ae33b0c75414b49645601cd9b31b1fdf0d3316cac92f"
+        },
+        "accepted": {
+          "source": "scotland",
+          "source_name": "Public Contracts Scotland",
+          "url": "https://www.publiccontractsscotland.gov.uk/search/show/search_view.aspx?ID=SEP563857",
+          "release_id": "rls-147-SEP563857",
+          "ocid": "ocds-r6ebe6-0000494140",
+          "retrieved_at": "2026-09-19T05:11:46+00:00",
+          "published_at": "2026-09-04T00:00:00+00:00",
+          "raw_hash": "517e32e90a3846ce1baeab72173a993aeb088823053eab1082ec77b737b54e68"
+        },
+        "decision": "Accept the more recently retrieved retained raw-source reference; source text and publication metadata remain unchanged. Keep distinct older provenance content identities too."
+      },
+      {
+        "id": "sig_2ffcb5c5d8a068f3245e",
+        "source": "scotland",
+        "before": {
+          "source": "scotland",
+          "source_name": "Public Contracts Scotland",
+          "url": "https://api.publiccontractsscotland.gov.uk/v1/Notice?id=ocds-r6ebe6-0000842910",
+          "release_id": "rls-18-SEP564440",
+          "ocid": "ocds-r6ebe6-0000842910",
+          "retrieved_at": "2026-09-18T01:37:13+00:00",
+          "published_at": "2026-09-14T00:00:00+00:00",
+          "raw_hash": "986b6bc763959fe430ffd5e5d3556b93d5b32927a740eebe99cf92c8f1ea2807"
+        },
+        "accepted": {
+          "source": "scotland",
+          "source_name": "Public Contracts Scotland",
+          "url": "https://api.publiccontractsscotland.gov.uk/v1/Notice?id=ocds-r6ebe6-0000842910",
+          "release_id": "rls-26-SEP564440",
+          "ocid": "ocds-r6ebe6-0000842910",
+          "retrieved_at": "2026-09-19T05:11:46+00:00",
+          "published_at": "2026-09-14T00:00:00+00:00",
+          "raw_hash": "022670858a19b3599c5074fec39c3f266aa574f715834e1ab4d1af5d38b707de"
+        },
+        "decision": "Accept the more recently retrieved retained raw-source reference; source text and publication metadata remain unchanged. Keep distinct older provenance content identities too."
+      },
+      {
+        "id": "sig_4c818cbdb41f4fa3d2d5",
+        "source": "scotland",
+        "before": {
+          "source": "scotland",
+          "source_name": "Public Contracts Scotland",
+          "url": "https://api.publiccontractsscotland.gov.uk/v1/Notice?id=ocds-r6ebe6-0000842271",
+          "release_id": "rls-33-SEP563948",
+          "ocid": "ocds-r6ebe6-0000842271",
+          "retrieved_at": "2026-09-18T01:37:13+00:00",
+          "published_at": "2026-09-07T00:00:00+00:00",
+          "raw_hash": "6c48f22588d4236f9d2a53e89901c7fd52fb0e6f11535884fd5ec43bcc26cf61"
+        },
+        "accepted": {
+          "source": "scotland",
+          "source_name": "Public Contracts Scotland",
+          "url": "https://api.publiccontractsscotland.gov.uk/v1/Notice?id=ocds-r6ebe6-0000842271",
+          "release_id": "rls-41-SEP563948",
+          "ocid": "ocds-r6ebe6-0000842271",
+          "retrieved_at": "2026-09-19T05:11:46+00:00",
+          "published_at": "2026-09-07T00:00:00+00:00",
+          "raw_hash": "538aae3c764fbb0682d409114855bdfe31b61f37db02e633ddde1533fc0c1863"
+        },
+        "decision": "Accept the more recently retrieved retained raw-source reference; source text and publication metadata remain unchanged. Keep distinct older provenance content identities too."
+      },
+      {
+        "id": "sig_6b8167651bc974859d9b",
+        "source": "scotland",
+        "before": {
+          "source": "scotland",
+          "source_name": "Public Contracts Scotland",
+          "url": "https://www.publiccontractsscotland.gov.uk/search/show/search_view.aspx?ID=SEP563558",
+          "release_id": "rls-183-SEP563558",
+          "ocid": "ocds-r6ebe6-0000841384",
+          "retrieved_at": "2026-09-18T01:37:13+00:00",
+          "published_at": "2026-09-01T00:00:00+00:00",
+          "raw_hash": "e1ef083093bffcc70b09fa1bc6ee5972fbf903191a61b2060e60cbe6947dc5e0"
+        },
+        "accepted": {
+          "source": "scotland",
+          "source_name": "Public Contracts Scotland",
+          "url": "https://www.publiccontractsscotland.gov.uk/search/show/search_view.aspx?ID=SEP563558",
+          "release_id": "rls-197-SEP563558",
+          "ocid": "ocds-r6ebe6-0000841384",
+          "retrieved_at": "2026-09-19T05:11:46+00:00",
+          "published_at": "2026-09-01T00:00:00+00:00",
+          "raw_hash": "0e8e95287b45d235acd88c050431b010556cf918ccb19a0aaf86ba440a339317"
+        },
+        "decision": "Accept the more recently retrieved retained raw-source reference; source text and publication metadata remain unchanged. Keep distinct older provenance content identities too."
+      },
+      {
+        "id": "sig_6f8b10450509451db80a",
+        "source": "grants",
+        "before": {
+          "source": "grants",
+          "source_name": "Grants.gov",
+          "url": "https://www.grants.gov/search-results-detail/332126",
+          "release_id": "332126",
+          "ocid": null,
+          "retrieved_at": "2026-09-17T01:47:43+00:00",
+          "published_at": "2021-03-15T00:00:00+00:00",
+          "raw_hash": "99662971d7f0e5ed5189a1fc7ffcbd266248b7ee9c2c45df46054a3b090a4a6e"
+        },
+        "accepted": {
+          "source": "grants",
+          "source_name": "Grants.gov",
+          "url": "https://www.grants.gov/search-results-detail/332126",
+          "release_id": "332126",
+          "ocid": null,
+          "retrieved_at": "2026-09-18T06:43:47+00:00",
+          "published_at": "2021-03-15T00:00:00+00:00",
+          "raw_hash": "a03734f6949d982f59d12301e0ebbf798484fc7289adaaca2d687c038d53d3bd"
+        },
+        "decision": "Accept the more recently retrieved retained raw-source reference; source text and publication metadata remain unchanged. Keep distinct older provenance content identities too."
+      },
+      {
+        "id": "sig_9c7c07c05e2c26a05f8a",
+        "source": "scotland",
+        "before": {
+          "source": "scotland",
+          "source_name": "Public Contracts Scotland",
+          "url": "https://www.publiccontractsscotland.gov.uk/search/show/search_view.aspx?ID=SEP564009",
+          "release_id": "rls-104-SEP564009",
+          "ocid": "ocds-r6ebe6-0000832743",
+          "retrieved_at": "2026-09-18T01:37:13+00:00",
+          "published_at": "2026-09-08T00:00:00+00:00",
+          "raw_hash": "1901df0daa5c42e875093a2a160a5d06f540f7cda497e583f711eac06fdad6bb"
+        },
+        "accepted": {
+          "source": "scotland",
+          "source_name": "Public Contracts Scotland",
+          "url": "https://www.publiccontractsscotland.gov.uk/search/show/search_view.aspx?ID=SEP564009",
+          "release_id": "rls-118-SEP564009",
+          "ocid": "ocds-r6ebe6-0000832743",
+          "retrieved_at": "2026-09-19T05:11:46+00:00",
+          "published_at": "2026-09-08T00:00:00+00:00",
+          "raw_hash": "80a618d6d7802bae260b10d46f15255f4c721d049d081f45b8ad5341d2669244"
+        },
+        "decision": "Accept the more recently retrieved retained raw-source reference; source text and publication metadata remain unchanged. Keep distinct older provenance content identities too."
+      },
+      {
+        "id": "sig_a1e252d14be972eded4a",
+        "source": "scotland",
+        "before": {
+          "source": "scotland",
+          "source_name": "Public Contracts Scotland",
+          "url": "https://www.publiccontractsscotland.gov.uk/search/show/search_view.aspx?ID=SEP563629",
+          "release_id": "rls-171-SEP563629",
+          "ocid": "ocds-r6ebe6-0000831506",
+          "retrieved_at": "2026-09-18T01:37:13+00:00",
+          "published_at": "2026-09-02T00:00:00+00:00",
+          "raw_hash": "18ee33bfa075dc6df67406172679a7122e68d1b79f30dbfce8591433af50bbcc"
+        },
+        "accepted": {
+          "source": "scotland",
+          "source_name": "Public Contracts Scotland",
+          "url": "https://www.publiccontractsscotland.gov.uk/search/show/search_view.aspx?ID=SEP563629",
+          "release_id": "rls-185-SEP563629",
+          "ocid": "ocds-r6ebe6-0000831506",
+          "retrieved_at": "2026-09-19T05:11:46+00:00",
+          "published_at": "2026-09-02T00:00:00+00:00",
+          "raw_hash": "7d1812a056f85123acad36cbfa25d5e5d740e68f8191d4c241d0d35792bd977b"
+        },
+        "decision": "Accept the more recently retrieved retained raw-source reference; source text and publication metadata remain unchanged. Keep distinct older provenance content identities too."
+      },
+      {
+        "id": "sig_b597df20b7998aa9aa67",
+        "source": "grants",
+        "before": {
+          "source": "grants",
+          "source_name": "Grants.gov",
+          "url": "https://www.grants.gov/search-results-detail/357339",
+          "release_id": "357339",
+          "ocid": null,
+          "retrieved_at": "2026-09-17T06:47:00+00:00",
+          "published_at": "2024-11-22T00:00:00+00:00",
+          "raw_hash": "7f0447af604e4a79a24565e3d9df8f71c140efe2bed13d781839c73cddbb3330"
+        },
+        "accepted": {
+          "source": "grants",
+          "source_name": "Grants.gov",
+          "url": "https://www.grants.gov/search-results-detail/357339",
+          "release_id": "357339",
+          "ocid": null,
+          "retrieved_at": "2026-09-18T11:53:56+00:00",
+          "published_at": "2024-11-22T00:00:00+00:00",
+          "raw_hash": "c166d4264ce8aea58aecfbbc554c872f0effa7fe50dd682eb4ce379ca971e679"
+        },
+        "decision": "Accept the more recently retrieved retained raw-source reference; source text and publication metadata remain unchanged. Keep distinct older provenance content identities too."
+      },
+      {
+        "id": "sig_b958b4ac5ca772f5ee3b",
+        "source": "grants",
+        "before": {
+          "source": "grants",
+          "source_name": "Grants.gov",
+          "url": "https://www.grants.gov/search-results-detail/362098",
+          "release_id": "362098",
+          "ocid": null,
+          "retrieved_at": "2026-09-17T12:14:17+00:00",
+          "published_at": "2026-04-28T00:00:00+00:00",
+          "raw_hash": "8f36a53a26dceb40b1975d92142c6a103b8e607b2c4f294073dd2041dbcd8b19"
+        },
+        "accepted": {
+          "source": "grants",
+          "source_name": "Grants.gov",
+          "url": "https://www.grants.gov/search-results-detail/362098",
+          "release_id": "362098",
+          "ocid": null,
+          "retrieved_at": "2026-09-18T17:53:22+00:00",
+          "published_at": "2026-04-28T00:00:00+00:00",
+          "raw_hash": "7f1331a3f1bdc2df08680ae10f3b8be3769c0a59ba813e9d62ed6655694efa50"
+        },
+        "decision": "Accept the more recently retrieved retained raw-source reference; source text and publication metadata remain unchanged. Keep distinct older provenance content identities too."
+      },
+      {
+        "id": "sig_c624eadf81db35e75490",
+        "source": "scotland",
+        "before": {
+          "source": "scotland",
+          "source_name": "Public Contracts Scotland",
+          "url": "https://www.publiccontractsscotland.gov.uk/search/show/search_view.aspx?ID=SEP563632",
+          "release_id": "rls-16-SEP563632",
+          "ocid": "ocds-r6ebe6-0000841479",
+          "retrieved_at": "2026-09-18T01:37:13+00:00",
+          "published_at": "2026-09-02T00:00:00+00:00",
+          "raw_hash": "38e17d08a9efabfb302092bcb2545569cf0a8f2513813f6a1817567f94deb090"
+        },
+        "accepted": {
+          "source": "scotland",
+          "source_name": "Public Contracts Scotland",
+          "url": "https://www.publiccontractsscotland.gov.uk/search/show/search_view.aspx?ID=SEP563632",
+          "release_id": "rls-18-SEP563632",
+          "ocid": "ocds-r6ebe6-0000841479",
+          "retrieved_at": "2026-09-19T05:11:46+00:00",
+          "published_at": "2026-09-02T00:00:00+00:00",
+          "raw_hash": "73c714ff949f406e37ca89c8f7873b864410b61bbb890761fa2795578982b868"
+        },
+        "decision": "Accept the more recently retrieved retained raw-source reference; source text and publication metadata remain unchanged. Keep distinct older provenance content identities too."
+      },
+      {
+        "id": "sig_df375385d8c44e0cdd7d",
+        "source": "scotland",
+        "before": {
+          "source": "scotland",
+          "source_name": "Public Contracts Scotland",
+          "url": "https://api.publiccontractsscotland.gov.uk/v1/Notice?id=ocds-r6ebe6-0000842515",
+          "release_id": "rls-33-SEP564126",
+          "ocid": "ocds-r6ebe6-0000842515",
+          "retrieved_at": "2026-09-18T01:37:13+00:00",
+          "published_at": "2026-09-09T00:00:00+00:00",
+          "raw_hash": "473ca09fe9ed3600821b9f0772cd485573bd5d3209f29d01992022e226574f07"
+        },
+        "accepted": {
+          "source": "scotland",
+          "source_name": "Public Contracts Scotland",
+          "url": "https://api.publiccontractsscotland.gov.uk/v1/Notice?id=ocds-r6ebe6-0000842515",
+          "release_id": "rls-40-SEP564126",
+          "ocid": "ocds-r6ebe6-0000842515",
+          "retrieved_at": "2026-09-19T05:11:46+00:00",
+          "published_at": "2026-09-09T00:00:00+00:00",
+          "raw_hash": "81224f9e91d8136e7c2b03f795c935477f4ba575466c325e7bf2f6e099d6a297"
+        },
+        "decision": "Accept the more recently retrieved retained raw-source reference; source text and publication metadata remain unchanged. Keep distinct older provenance content identities too."
+      }
+    ]
+  },
+  "fact_repairs": {
+    "amount_records": 8,
+    "canonical_after_sha256": "f311c82cced553c2b8260abcabd40c88b04fdcdbe667e16c6d74db888ce7b645",
+    "canonical_before_sha256": "b2545d54fa57f0b5d040e8c1772e5175c386ade600295c37ca3fbf1e9993f402",
+    "classification_unchanged_for_each_repaired_record": true,
+    "content_digest_after": "f4a6214f84e4bc62593d8f70dd3d81c8cdd92126c254934f79028b0b038eaa8d",
+    "content_digest_before": "01e107238cab43ae2e30d1ac8d279aeb81bdd40b168698df9b4d026bab1efdeb",
+    "current_changed_ids": [
+      "sig_b54763ae594c7673f8c2",
+      "sig_13fe546da905733482b4"
+    ],
+    "provenance_records": 9,
+    "unique_repaired_records": 17
+  },
+  "publication": {
+    "current_records": 5571,
+    "award_records": 17831,
+    "record_detail_count": 23402,
+    "capability_counts": {
+      "awards_records": 17831,
+      "awards_capabilities": 2256,
+      "opportunities_records": 5571,
+      "opportunities_capabilities": 936
+    },
+    "dropped_or_added_capability_records": 0,
+    "capability_differences": [],
+    "buyer_pages": 7894,
+    "buyer_records": 51105,
+    "largest_buyer_history": 517,
+    "buyer_history_complete_against_retained_records": true,
+    "referenced_files": 31368,
+    "referenced_bytes": 573597967,
+    "all_referenced_content_hashes_valid": true,
+    "all_market_and_award_index_counts_valid": true,
+    "initial_manifest_bytes": 4739810,
+    "legacy_current_bytes": 71142178,
+    "final_engine_signature": "055b0c069ba3c7ff28f8158fcb1fbbe8f7ae3051eaee9b7a577af3088310afa7"
+  },
+  "current_membership": {
+    "before": 5522,
+    "after": 5571,
+    "added": 58,
+    "removed": 9,
+    "removal_reason_counts": {
+      "source_status_expired": 9
+    },
+    "all_removals_accounted_for": true,
+    "removed_records": [
+      {
+        "id": "sig_01a1217df31055c06d08",
+        "title": "Dirección, coordinación, recogida de datos y análisis de la encuesta de bienes de equipo de Paridades de Poder Adquisitivo 2027",
+        "source_url": "https://contrataciondelestado.es/wps/poc?idEvl=f3axZNkJoRGExvMJXBMHHQ%3D%3D&uri=deeplink%3Adetalle_licitacion",
+        "explanation": "source_status_expired",
+        "retained": true,
+        "lifecycle": "EXPIRED",
+        "lifecycle_reason": "The published response deadline has passed.",
+        "source_status_before": "active",
+        "source_status_after": "expired",
+        "deadline_before": null,
+        "deadline_after": null,
+        "prefilter_score": 12.0,
+        "exclusion_reasons": [],
+        "scope_evidence": [],
+        "current_aliases": [],
+        "source_changes": {
+          "status": {
+            "before": "active",
+            "after": "expired"
+          }
+        }
+      },
+      {
+        "id": "sig_01bbc2a3ec354d799657",
+        "title": "Renovación del mantenimiento y soporte integral de las licencias del software ESRI de la GMU",
+        "source_url": "https://contrataciondelestado.es/wps/poc?idEvl=ScSIsmmx2D0adbH3CysQuQ%3D%3D&uri=deeplink%3Adetalle_licitacion",
+        "explanation": "source_status_expired",
+        "retained": true,
+        "lifecycle": "EXPIRED",
+        "lifecycle_reason": "The published response deadline has passed.",
+        "source_status_before": "active",
+        "source_status_after": "expired",
+        "deadline_before": null,
+        "deadline_after": null,
+        "prefilter_score": 12.0,
+        "exclusion_reasons": [],
+        "scope_evidence": [],
+        "current_aliases": [],
+        "source_changes": {
+          "status": {
+            "before": "active",
+            "after": "expired"
+          }
+        }
+      },
+      {
+        "id": "sig_3f48ed6824978de23d58",
+        "title": "Contrato de asistencia técnica para la gestión e implementación del plan de actuación integrado (PAI) Benidorm Open Arena del Ayuntamiento de Benidorm",
+        "source_url": "https://contrataciondelestado.es/wps/poc?idEvl=oeCs7zR%2BMHf10HRJw8TEnQ%3D%3D&uri=deeplink%3Adetalle_licitacion",
+        "explanation": "source_status_expired",
+        "retained": true,
+        "lifecycle": "EXPIRED",
+        "lifecycle_reason": "The published response deadline has passed.",
+        "source_status_before": "active",
+        "source_status_after": "expired",
+        "deadline_before": null,
+        "deadline_after": null,
+        "prefilter_score": 12.0,
+        "exclusion_reasons": [],
+        "scope_evidence": [],
+        "current_aliases": [],
+        "source_changes": {
+          "status": {
+            "before": "active",
+            "after": "expired"
+          }
+        }
+      },
+      {
+        "id": "sig_591d934d9259361b3d1a",
+        "title": "El suministro, instalación, configuración, puesta en servicio, mantenimiento y soporte de un sistema integral de digitalización del servicio municipal de abastecimiento de agua potable del Ayuntamiento de Ardales, mediante la implantación de un sistema de telelectura basado en tecnología LoRaWAN.",
+        "source_url": "https://contrataciondelestado.es/wps/poc?idEvl=TePdFdS3zoTL1rX3q%2FMAPA%3D%3D&uri=deeplink%3Adetalle_licitacion",
+        "explanation": "source_status_expired",
+        "retained": true,
+        "lifecycle": "EXPIRED",
+        "lifecycle_reason": "The published response deadline has passed.",
+        "source_status_before": "active",
+        "source_status_after": "expired",
+        "deadline_before": null,
+        "deadline_after": null,
+        "prefilter_score": 12.0,
+        "exclusion_reasons": [],
+        "scope_evidence": [],
+        "current_aliases": [],
+        "source_changes": {
+          "status": {
+            "before": "active",
+            "after": "expired"
+          }
+        }
+      },
+      {
+        "id": "sig_8c1fbea6c174be0938f4",
+        "title": "Adquisición y mantenimiento de las licencias software de los productos COGNOS de MC MUTUAL",
+        "source_url": "https://contrataciondelestado.es/wps/poc?idEvl=V9ZjVmmyZTuOUi78BmzhOQ%3D%3D&uri=deeplink%3Adetalle_licitacion",
+        "explanation": "source_status_expired",
+        "retained": true,
+        "lifecycle": "EXPIRED",
+        "lifecycle_reason": "The published response deadline has passed.",
+        "source_status_before": "active",
+        "source_status_after": "expired",
+        "deadline_before": null,
+        "deadline_after": null,
+        "prefilter_score": 12.0,
+        "exclusion_reasons": [],
+        "scope_evidence": [],
+        "current_aliases": [],
+        "source_changes": {
+          "status": {
+            "before": "active",
+            "after": "expired"
+          }
+        }
+      },
+      {
+        "id": "sig_c0cf503a69650d89f983",
+        "title": "Suministro de Software de Gestión de Servicios TI",
+        "source_url": "https://contrataciondelestado.es/wps/poc?idEvl=Tc%2Fl08bGzNsmMOlAXxDEjw%3D%3D&uri=deeplink%3Adetalle_licitacion",
+        "explanation": "source_status_expired",
+        "retained": true,
+        "lifecycle": "EXPIRED",
+        "lifecycle_reason": "The published response deadline has passed.",
+        "source_status_before": "active",
+        "source_status_after": "expired",
+        "deadline_before": null,
+        "deadline_after": null,
+        "prefilter_score": 12.0,
+        "exclusion_reasons": [],
+        "scope_evidence": [],
+        "current_aliases": [],
+        "source_changes": {
+          "status": {
+            "before": "active",
+            "after": "expired"
+          }
+        }
+      },
+      {
+        "id": "sig_d0ffb1b4d1030e8b1fd3",
+        "title": "Suministro de una plataforma integrada de gestion de vulnerabilidades",
+        "source_url": "https://contrataciondelestado.es/wps/poc?idEvl=3nE3zX%2BhYC7ECtSnloz%2BZQ%3D%3D&uri=deeplink%3Adetalle_licitacion",
+        "explanation": "source_status_expired",
+        "retained": true,
+        "lifecycle": "EXPIRED",
+        "lifecycle_reason": "The published response deadline has passed.",
+        "source_status_before": "active",
+        "source_status_after": "expired",
+        "deadline_before": null,
+        "deadline_after": null,
+        "prefilter_score": 12.0,
+        "exclusion_reasons": [],
+        "scope_evidence": [],
+        "current_aliases": [],
+        "source_changes": {
+          "status": {
+            "before": "active",
+            "after": "expired"
+          }
+        }
+      },
+      {
+        "id": "sig_e7a9e31d4ad8fb062768",
+        "title": "20269V32 Servicio de asistencia técnica para la digitalización y normalización de expedientes de la CITAAM y el estudio de un sistema de explotación futuro",
+        "source_url": "https://contrataciondelestado.es/wps/poc?idEvl=Uy7JVIr7mWRVYjgxA4nMUw%3D%3D&uri=deeplink%3Adetalle_licitacion",
+        "explanation": "source_status_expired",
+        "retained": true,
+        "lifecycle": "EXPIRED",
+        "lifecycle_reason": "The published response deadline has passed.",
+        "source_status_before": "active",
+        "source_status_after": "expired",
+        "deadline_before": null,
+        "deadline_after": null,
+        "prefilter_score": 12.0,
+        "exclusion_reasons": [],
+        "scope_evidence": [],
+        "current_aliases": [],
+        "source_changes": {
+          "status": {
+            "before": "active",
+            "after": "expired"
+          }
+        }
+      },
+      {
+        "id": "sig_f0daf73d5b74f4895cca",
+        "title": "Contrato plurianual de servicios de asistencia técnica para la implantación y el desarrollo de la comunicación clara en el Ayuntamiento de Madrid",
+        "source_url": "https://contrataciondelestado.es/wps/poc?idEvl=0K%2FyNMHq0fXua%2Fi14w%2FPLA%3D%3D&uri=deeplink%3Adetalle_licitacion",
+        "explanation": "source_status_expired",
+        "retained": true,
+        "lifecycle": "EXPIRED",
+        "lifecycle_reason": "The published response deadline has passed.",
+        "source_status_before": "active",
+        "source_status_after": "expired",
+        "deadline_before": null,
+        "deadline_after": null,
+        "prefilter_score": 12.0,
+        "exclusion_reasons": [],
+        "scope_evidence": [],
+        "current_aliases": [],
+        "source_changes": {
+          "status": {
+            "before": "active",
+            "after": "expired"
+          }
+        }
+      }
+    ]
+  },
+  "offline_checkpoint_parity": {
+    "collector_calls": 0,
+    "corrected_export_used_existing_classification_cache": true,
+    "model_calls": 0,
+    "signature": "055b0c069ba3c7ff28f8158fcb1fbbe8f7ae3051eaee9b7a577af3088310afa7",
+    "tsa_calls": 0,
+    "unchanged_checkpoint_sha256": {
+      "data/publication_state.json": "7339b9162cab235e427eba32085ef56ec1642544321ab7141f8b8126543be7ff",
+      "data/source_state.json": "35e5fe57d07285af189ee39bf8e69ce5e385eb4910a4fff3cec72ba126dfb636",
+      "data/translation/cache.json": "adcc1749088743cc850232bcc7e4dd1100d9b01245ad036ed547bfb91a050d1c",
+      "data/translation/summary.json": "4e7c8fba9f04e5a5da3f709c676abe54fd5708dcba2083a079554e6ced113a3f",
+      "data/translation/translations.en.json": "caf1f0cc5469a6e9fee3d6bf7e6a8b0b809f4c53edb355830cc9ccd2d7be9a4d",
+      "data/translation_quota.json": "a4c8d8170eaf5f14bc24a7c8d77e73f2941127d90748892c5765d4616317a6e5",
+      "data/verification_state.json": "08defb87d9f765a648249e3751607ed56b5ae086de4448743dd1b72795a73abe"
+    }
+  },
+  "local_validation": {
+    "python_tests_passed": 1484,
+    "python_seconds": 256.21,
+    "ruff": "passed"
+  },
+  "boundary": "Frozen pre-merge validation snapshot; no claim of a completed GitHub merge, hosted build or deployment."
+}

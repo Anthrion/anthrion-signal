@@ -1,0 +1,557 @@
+{
+  "purpose": "Validated pre-deployment data reconciliation; not a production deployment receipt.",
+  "accepted_feature_sha": "9cb44cd2024a5097ff45306fe17bfe97b679e639",
+  "candidate_remote_sha": "79f1e4eb1264a176420bef6546fdaa5259fdb633",
+  "integrated_remote_sha": "619d0fe5bd835d6db14941d7d15b8525dca8c387",
+  "later_metadata_only_supplements": {
+    "data/translation/summary.json": "6320be1b7c35039d15e0a30d9110e3514d9a7a648c2ddf6dd5bea53c359d0004"
+  },
+  "source_code_unchanged_from_accepted_feature": true,
+  "content_digest": "55c8bab04ba49eb182c022416cb6d283527bd7311b13c99667108e6a1af98c52",
+  "engine_signature": "055b0c069ba3c7ff28f8158fcb1fbbe8f7ae3051eaee9b7a577af3088310afa7",
+  "source_checks": {
+    "local_all_retained_ids": 87073,
+    "remote_all_retained_ids": 85585,
+    "final_all_retained_ids": 88630,
+    "missing_local_ids": [],
+    "missing_remote_ids": [],
+    "local_rejected_source_versions": 56851,
+    "remote_rejected_source_versions": 57800,
+    "missing_local_rejected_source_versions": [],
+    "missing_remote_rejected_source_versions": [],
+    "canonical_records": 18153,
+    "canonical_bytes": 97678451,
+    "canonical_hash_errors": [],
+    "typed_amount_mismatches": [],
+    "dedupe_index_complete_and_all_alias_targets_valid": true,
+    "source_changes_during_export": [],
+    "export_provenance_losses": [],
+    "export_source_member_losses": [],
+    "accepted_provenance_identities_missing_from_all_retained_stores": [],
+    "remote_provenance_identities_missing_from_all_retained_stores": [],
+    "legacy_group_provenance_missing_after_notice_split": [],
+    "original_source_text_versions_preserved_in_frozen_git_snapshots": true,
+    "grant_corrections": [
+      {
+        "id": "sig_03fee59f618258543f29",
+        "expected": {
+          "buyer_name": "Air Force Office of Scientific Research",
+          "deadline_at": "2026-12-04"
+        },
+        "preserved": true
+      },
+      {
+        "id": "sig_0539033341b24467d5d7",
+        "expected": {
+          "deadline_at": "2076-08-20"
+        },
+        "preserved": true
+      },
+      {
+        "id": "sig_08f754b7228c4f5a38d6",
+        "expected": {
+          "deadline_at": "2026-10-05"
+        },
+        "preserved": true
+      },
+      {
+        "id": "sig_325da810c3f0bcbb629a",
+        "expected": {
+          "deadline_at": "2099-01-01"
+        },
+        "preserved": true
+      },
+      {
+        "id": "sig_3f61ca32354a48bbd5cd",
+        "expected": {
+          "buyer_name": "Defense Health Agency Contracting Activity - DHACA",
+          "deadline_at": "2027-09-30"
+        },
+        "preserved": true
+      },
+      {
+        "id": "sig_45528045fdbcb37d9128",
+        "expected": {
+          "buyer_name": "Department of Commerce"
+        },
+        "preserved": true
+      },
+      {
+        "id": "sig_45573c842e993565cc80",
+        "expected": {
+          "buyer_name": "Department of Commerce"
+        },
+        "preserved": true
+      },
+      {
+        "id": "sig_4d2c5259822d64148bd2",
+        "expected": {
+          "deadline_at": "2026-09-29"
+        },
+        "preserved": true
+      },
+      {
+        "id": "sig_5b288e9e6ddd92f410b7",
+        "expected": {
+          "deadline_at": "2027-07-02"
+        },
+        "preserved": true
+      },
+      {
+        "id": "sig_6908ad36d3cca0926c26",
+        "expected": {
+          "buyer_name": "Office of Science",
+          "deadline_at": "2026-10-19"
+        },
+        "preserved": true
+      },
+      {
+        "id": "sig_6f8b10450509451db80a",
+        "expected": {
+          "buyer_name": "Department of Commerce"
+        },
+        "preserved": true
+      },
+      {
+        "id": "sig_ad9432e0e83f65d510af",
+        "expected": {
+          "buyer_name": "Department of Commerce"
+        },
+        "preserved": true
+      },
+      {
+        "id": "sig_b597df20b7998aa9aa67",
+        "expected": {
+          "deadline_at": "2027-12-23"
+        },
+        "preserved": true
+      },
+      {
+        "id": "sig_b99bb07e2dc71f020694",
+        "expected": {
+          "buyer_name": "Department of Commerce"
+        },
+        "preserved": true
+      },
+      {
+        "id": "sig_d8ab2d4d79da0530f259",
+        "expected": {
+          "buyer_name": "Department of Commerce"
+        },
+        "preserved": true
+      },
+      {
+        "id": "sig_e3c5630449c1cbff05f3",
+        "expected": {
+          "buyer_name": "Department of Commerce"
+        },
+        "preserved": true
+      },
+      {
+        "id": "sig_fb8a0001472daa3dcc2a",
+        "expected": {
+          "buyer_name": "Economic Development Administration"
+        },
+        "preserved": true
+      }
+    ],
+    "sparse_amount_preserved": true,
+    "sparse_amount_proof_preserved": true,
+    "prior_amount_repairs": [
+      {
+        "id": "sig_06f57db15ffc3332eccc",
+        "amount_preserved": true
+      },
+      {
+        "id": "sig_13fe546da905733482b4",
+        "amount_preserved": true
+      },
+      {
+        "id": "sig_1f115bf68341288c92b5",
+        "amount_preserved": true
+      },
+      {
+        "id": "sig_315510f63cb048bb633a",
+        "amount_preserved": true
+      },
+      {
+        "id": "sig_48ca44311b2bb4724259",
+        "amount_preserved": true
+      },
+      {
+        "id": "sig_910e0390b791f37ecc03",
+        "amount_preserved": true
+      },
+      {
+        "id": "sig_c8517917b4df15c8dc14",
+        "amount_preserved": true
+      },
+      {
+        "id": "sig_d8baeb1a82f8663785cf",
+        "amount_preserved": true
+      }
+    ],
+    "new_amount_revisions": [
+      {
+        "id": "sig_7a6bccee4c71e0c0005b",
+        "amount_preserved": true
+      },
+      {
+        "id": "sig_7ab26c54d025adaacc5d",
+        "amount_preserved": true
+      },
+      {
+        "id": "sig_8baac68f64751a16ad1d",
+        "amount_preserved": true
+      }
+    ],
+    "controls": {
+      "sig_70502cde0a440de97729": {
+        "current": true,
+        "deadline_at": "2026-09-21T21:59:59+00:00"
+      },
+      "sig_596d4d2c711e0db6d8af": {
+        "current": true,
+        "deadline_at": "2026-09-22T10:00:00+00:00"
+      },
+      "sig_1fa7a58383baf2fddf74": {
+        "current": true,
+        "deadline_at": "2026-09-25T15:00:00+00:00"
+      },
+      "sig_8a2e5e657cb794b86679": {
+        "current": true,
+        "deadline_at": "2033-12-31"
+      }
+    },
+    "current_and_run_digest_agree": true,
+    "discovery_signatures_agree": true,
+    "identical_run_objects_in_all_four_locations": true,
+    "offline_collection_counters_zero_and_no_stale_ingest_fields": true,
+    "current_matches_canonical_hashes": true
+  },
+  "public_checks": {
+    "current_records": 5586,
+    "award_records": 18079,
+    "record_detail_count": 23665,
+    "capability_counts": {
+      "awards_records": 18079,
+      "awards_capabilities": 2295,
+      "opportunities_records": 5586,
+      "opportunities_capabilities": 939
+    },
+    "dropped_or_added_capability_records": 0,
+    "capability_differences": [],
+    "buyer_pages": 7922,
+    "buyer_records": 51696,
+    "largest_buyer_history": 518,
+    "buyer_history_complete_against_retained_records": true,
+    "referenced_files": 31659,
+    "referenced_bytes": 579106980,
+    "all_referenced_content_hashes_valid": true,
+    "all_market_and_award_index_counts_valid": true,
+    "initial_manifest_bytes": 4791109,
+    "legacy_current_bytes": 71276675,
+    "final_engine_signature": "055b0c069ba3c7ff28f8158fcb1fbbe8f7ae3051eaee9b7a577af3088310afa7",
+    "incremental_public_objects": {
+      "accepted_referenced_paths": 31368,
+      "candidate_referenced_paths": 31659,
+      "shared_referenced_paths": 23860,
+      "new_required_immutable_paths": 7799,
+      "new_required_immutable_bytes": 316625567,
+      "mutable_root_replacements": 2,
+      "no_longer_referenced_paths": 7508,
+      "comparison": "Accepted 9cb44cd reference graph versus candidate 79f1e4e reconciliation; no storage upload performed."
+    }
+  },
+  "current_membership": {
+    "before": 5571,
+    "after": 5586,
+    "added_ids": [
+      "sig_065bbffc05d7a21b1ea8",
+      "sig_0ab62027f0fd34a66610",
+      "sig_208451091a9dd0c73974",
+      "sig_2f1bf4cef468a8232b9a",
+      "sig_33b6b37cb39b9938d468",
+      "sig_8ca4db10df8ef7fe3dd2",
+      "sig_905b791b0536980ade25",
+      "sig_94f64dae69fa3264105c",
+      "sig_98f095b963cadd612a65",
+      "sig_9ea9b4d6ca32a8bdf237",
+      "sig_b3a3d2d998df568bf4a4",
+      "sig_bcf44fdc8c2690220717",
+      "sig_cde5d93312bfc32c6a2c",
+      "sig_d5f18202961a550afe3d",
+      "sig_da07ea0a9c485446bd9a",
+      "sig_f39e1119fdcfe02fd7c1"
+    ],
+    "removals": [
+      {
+        "id": "sig_9154e2562cf69ea1a392",
+        "title": "Framework agreement for Azure cloud services and accompanying services",
+        "reason": "source_status_awarded",
+        "source_status": "awarded",
+        "retained": true
+      }
+    ],
+    "addition_basis": "Nine were already public in the pinned main snapshot; seven are distinct SAP notices restored from a legacy aggregate."
+  },
+  "notice_identity_repairs": {
+    "legacy_aggregate_count": 3,
+    "official_notices": 21,
+    "restored_ids": 18,
+    "preserved_original_ids": [
+      "sig_4055b8743226311a6d88",
+      "sig_8d519b720e663435947e",
+      "sig_c6902959c34405ab7336"
+    ],
+    "mapping": [
+      {
+        "publication_number": "155511-2026",
+        "notice_uuid": "e281cdd6-82b5-44c4-bfb4-c0489a84514c",
+        "procedure_uuid": "a3c41d8a-75e7-4503-93b5-79351863ffb7",
+        "typed_lot_ids": [
+          "LOT-0001",
+          "LOT-0002",
+          "LOT-0003",
+          "LOT-0004",
+          "LOT-0005",
+          "LOT-0006",
+          "LOT-0007",
+          "LOT-0008"
+        ],
+        "signal_id": "sig_4055b8743226311a6d88",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/155511-2026"
+      },
+      {
+        "publication_number": "202077-2026",
+        "notice_uuid": "5607d17f-4c16-4c0c-9fe9-660f5e54e21b",
+        "procedure_uuid": "a3c41d8a-75e7-4503-93b5-79351863ffb7",
+        "typed_lot_ids": [
+          "LOT-0003"
+        ],
+        "signal_id": "sig_57a76ff189b01a93264f",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/202077-2026"
+      },
+      {
+        "publication_number": "236842-2026",
+        "notice_uuid": "d90a637b-b9a1-4d60-8ffb-d8e7efda16ac",
+        "procedure_uuid": "a3c41d8a-75e7-4503-93b5-79351863ffb7",
+        "typed_lot_ids": [
+          "LOT-0004",
+          "LOT-0005"
+        ],
+        "signal_id": "sig_69974d63f44a5614f618",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/236842-2026"
+      },
+      {
+        "publication_number": "623735-2026",
+        "notice_uuid": "6f7e58ac-9471-49f6-8757-8bf2351374bd",
+        "procedure_uuid": "64b8f1f7-a288-419c-9f5f-9c4397808734",
+        "typed_lot_ids": [
+          "LOT-0028"
+        ],
+        "signal_id": "sig_8d519b720e663435947e",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/623735-2026"
+      },
+      {
+        "publication_number": "624168-2026",
+        "notice_uuid": "0daafec5-9e18-41b9-883d-5de37103a951",
+        "procedure_uuid": "64b8f1f7-a288-419c-9f5f-9c4397808734",
+        "typed_lot_ids": [
+          "LOT-0025"
+        ],
+        "signal_id": "sig_985c771bbe6ef3ffdad4",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/624168-2026"
+      },
+      {
+        "publication_number": "624479-2026",
+        "notice_uuid": "f1d22a7c-bc7c-4af6-981f-99e7e99e8620",
+        "procedure_uuid": "64b8f1f7-a288-419c-9f5f-9c4397808734",
+        "typed_lot_ids": [
+          "LOT-0012"
+        ],
+        "signal_id": "sig_63d9547eb39fe896184d",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/624479-2026"
+      },
+      {
+        "publication_number": "624864-2026",
+        "notice_uuid": "7d9339b7-022d-4dcb-ad12-4242fb3d9fb7",
+        "procedure_uuid": "64b8f1f7-a288-419c-9f5f-9c4397808734",
+        "typed_lot_ids": [
+          "LOT-0028"
+        ],
+        "signal_id": "sig_d5e7dce76f437d78a709",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/624864-2026"
+      },
+      {
+        "publication_number": "625037-2026",
+        "notice_uuid": "20503193-c9e2-4dce-bcdd-8d01590bd710",
+        "procedure_uuid": "64b8f1f7-a288-419c-9f5f-9c4397808734",
+        "typed_lot_ids": [
+          "LOT-0012"
+        ],
+        "signal_id": "sig_ea1abec62205b155529a",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/625037-2026"
+      },
+      {
+        "publication_number": "625071-2026",
+        "notice_uuid": "e9f35e7d-ce0b-4676-880a-e28cb19e8685",
+        "procedure_uuid": "64b8f1f7-a288-419c-9f5f-9c4397808734",
+        "typed_lot_ids": [
+          "LOT-0025"
+        ],
+        "signal_id": "sig_7cde8e5b1476c6700080",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/625071-2026"
+      },
+      {
+        "publication_number": "625310-2026",
+        "notice_uuid": "d3f5c6be-eada-41f7-8ab9-da6903728cfd",
+        "procedure_uuid": "64b8f1f7-a288-419c-9f5f-9c4397808734",
+        "typed_lot_ids": [
+          "LOT-0003"
+        ],
+        "signal_id": "sig_67d85905466d0c5740c0",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/625310-2026"
+      },
+      {
+        "publication_number": "625522-2026",
+        "notice_uuid": "d95db952-5d55-4066-9156-eff386b0b13a",
+        "procedure_uuid": "64b8f1f7-a288-419c-9f5f-9c4397808734",
+        "typed_lot_ids": [
+          "LOT-0019"
+        ],
+        "signal_id": "sig_5278df16ef92e88fd14c",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/625522-2026"
+      },
+      {
+        "publication_number": "625667-2026",
+        "notice_uuid": "e45e3097-3ab9-429e-9fb7-86de42fb5414",
+        "procedure_uuid": "64b8f1f7-a288-419c-9f5f-9c4397808734",
+        "typed_lot_ids": [
+          "LOT-0003"
+        ],
+        "signal_id": "sig_16c48f5c7d835be61eed",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/625667-2026"
+      },
+      {
+        "publication_number": "625893-2026",
+        "notice_uuid": "2c1ebdd8-e48b-4529-81a3-9be507e70bfb",
+        "procedure_uuid": "64b8f1f7-a288-419c-9f5f-9c4397808734",
+        "typed_lot_ids": [
+          "LOT-0019"
+        ],
+        "signal_id": "sig_cebe994c2fbe3469b675",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/625893-2026"
+      },
+      {
+        "publication_number": "588695-2026",
+        "notice_uuid": "067817a8-0f8b-4408-b79a-89ff94a8a0d4",
+        "procedure_uuid": "a1ba3346-e39c-4e3b-a0e6-ab79f8f87ba6",
+        "typed_lot_ids": [
+          "LOT-0000"
+        ],
+        "signal_id": "sig_c6902959c34405ab7336",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/588695-2026"
+      },
+      {
+        "publication_number": "589049-2026",
+        "notice_uuid": "9ff0959a-2541-41b7-8f3f-2abf8903d1cb",
+        "procedure_uuid": "062e1ae2-1028-4d37-b73a-8af984d93cf9",
+        "typed_lot_ids": [
+          "LOT-0000"
+        ],
+        "signal_id": "sig_208451091a9dd0c73974",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/589049-2026"
+      },
+      {
+        "publication_number": "589188-2026",
+        "notice_uuid": "40f68016-bd32-4c7c-8c9d-b9985da957a9",
+        "procedure_uuid": "e8ff37df-8062-4380-afea-6d4fc34ce71b",
+        "typed_lot_ids": [
+          "LOT-0000"
+        ],
+        "signal_id": "sig_bcf44fdc8c2690220717",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/589188-2026"
+      },
+      {
+        "publication_number": "589199-2026",
+        "notice_uuid": "ed006b51-c62c-42bc-9836-61b62ffb1eb3",
+        "procedure_uuid": "01406e15-3bb1-42b3-90de-4880e3c75df9",
+        "typed_lot_ids": [
+          "LOT-0000"
+        ],
+        "signal_id": "sig_905b791b0536980ade25",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/589199-2026"
+      },
+      {
+        "publication_number": "589328-2026",
+        "notice_uuid": "87f15bb0-e670-4063-9e7c-1b0e62012174",
+        "procedure_uuid": "596f80c5-5245-4e4c-a4a2-bd80ff9192a5",
+        "typed_lot_ids": [
+          "LOT-0000"
+        ],
+        "signal_id": "sig_b3a3d2d998df568bf4a4",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/589328-2026"
+      },
+      {
+        "publication_number": "589716-2026",
+        "notice_uuid": "8e0b57bc-5170-4b31-bebf-04a32d9f8102",
+        "procedure_uuid": "4c2d0388-40d3-4c8e-963c-efd5ca78368a",
+        "typed_lot_ids": [
+          "LOT-0000"
+        ],
+        "signal_id": "sig_d5f18202961a550afe3d",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/589716-2026"
+      },
+      {
+        "publication_number": "589843-2026",
+        "notice_uuid": "d49c22cc-198a-480f-846f-ecaace4248cb",
+        "procedure_uuid": "7f20fd48-9bd8-42e8-a524-427b7e5ae9d4",
+        "typed_lot_ids": [
+          "LOT-0000"
+        ],
+        "signal_id": "sig_98f095b963cadd612a65",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/589843-2026"
+      },
+      {
+        "publication_number": "589986-2026",
+        "notice_uuid": "44fc9b72-540e-45cc-9ab0-117d83442712",
+        "procedure_uuid": "137ba7ec-8126-4550-bafb-479f61a19bca",
+        "typed_lot_ids": [
+          "LOT-0000"
+        ],
+        "signal_id": "sig_065bbffc05d7a21b1ea8",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/589986-2026"
+      }
+    ],
+    "proof_policy": "Prior proof identities and documents are retained on the exact official notice URL. Original aggregate text remains in pinned Git history and frozen review snapshots.",
+    "identity_policy": "Same procedure, local lot label, date or contract number does not establish whole-notice replacement. Exact replays and archive restores retain all distinct notice IDs.",
+    "amount_policy": "Accepted official normalization is unchanged. Notice total-value is not relabelled as a lot payable amount. SAP numeric amounts are unknown where API numeric fields are absent; original prose remains available."
+  },
+  "known_discovery_boundary": {
+    "classification_policy_changed": false,
+    "description": "Sparse CPV-only records can remain in All Signals without a supported capability. Inclusion does not certify technical scope, supplier eligibility or an open deadline.",
+    "reviewed_inherited_examples": [
+      "sig_da07ea0a9c485446bd9a",
+      "sig_94f64dae69fa3264105c"
+    ],
+    "benchmark_limit": "Reviewed regression cases and retained-source checks do not measure complete market recall or population accuracy."
+  },
+  "frozen_review_snapshot_sha256": {
+    "source-integrity.json": "c88c4227cc3de8786755f9b8f66432d9e8f25e8cb6f6f3cf86e85aab6a1a9567",
+    "public-verification.json": "cc8ac8125bf1f8a34d24bfe7dea0d61fc568823996596e98ea20d64c90944a0b",
+    "current-membership-delta.json": "d7bd7d8778fbcec93c55949e07590202ee2ba51d5a9f3ff97fe3edbdef59bc3f",
+    "candidate-handoff.json": "ba6a60a991df99866df42e2c8b3d46c226e4bab3aca5bc6c3a9d3f708036c3a6",
+    "final-export-summary.json": "599cc2cf6deacd958dee0a5311812bf7098924bc8b9ee48f8aa189c1cf56daf5",
+    "root-integration.json": "e8175766e4fce08b6fba457ec32598bba08620132d13f5e99103e2842ded159a",
+    "ted-thirteen-notices-official-api.json": "6d16441ecbd5e70e7a61365df32375772b20d5409e2f142fe44eac1cba19559e",
+    "ted-thirteen-notices-normalized.json": "007556a0838d7e8807e102c1de0939ef1b68fde49188ca63fd222d4e78fe26a8",
+    "ted-lot-identity-evidence-and-mapping.json": "201faaea7d951894f345ba527b3fa98883cef6bf804b91a36197751d0df34934",
+    "ted-notice-identity-repair.json": "f6573598e2d63b9b103db2067e7b3ea71c34570d1b8051aa9222013e6538a1f0",
+    "ted-sap-eight-notices-official-api.json": "a92f6eb68993a62391f5ac2b8c549d551deef25408708589ba7fee01ed8b4c5d",
+    "ted-sap-eight-notices-normalized.json": "b84b7bab1852659681c671499f5e0ae8561ae4cbcbcea91aa38b6b79c37f1604",
+    "ted-sap-eight-notices-identity-evidence.json": "a2ccee3af2344bd7042bad128c1f26bb268727fc3681da7e41c1787ec4bbf7d8",
+    "ted-sap-notice-identity-repair.json": "b8232666d76eefde7042144590963aaa96e210654c58cdf253955a491932f227",
+    "inherited-cpv-discovery-boundary.md": "c7bb0a55d1701453cf1d4ae7849cf70f77d3c5f991c6e6be332ddc54f78be88b"
+  }
+}

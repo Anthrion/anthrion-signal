@@ -1,0 +1,413 @@
+"""High-recall candidate discovery. These signals are not technical fit scores."""
+import re
+from pathlib import Path
+
+from .capability_matching import (affirmed, business_application_development, capability_hits, evidence_excerpt,
+                                  has_software, unrelated_supply)
+from .procurement_scope import addressable_delivery, generic_digital_scope, scope_exclusion
+from .notice_dates import digital_deadline, digital_deadline_instant, digital_window_uncertain, engagement_notice_deadline, signal_response_deadline
+from .utils import digest, parse_date, unique
+from .vocabulary import phrase_hits, search_text
+
+ACTIONABLE = {"OPEN", "EARLY_ENGAGEMENT", "FUTURE"}
+TERMINAL = {"AWARDED", "CLOSED", "EXPIRED", "CANCELLED", "WITHDRAWN"}
+PLATFORM_FAMILIES = {"salesforce", "crm", "relationships", "service", "contact_centre", "portals",
+    "sales_revenue", "marketing", "data", "integration", "analytics", "field_service", "transformation",
+    "workflow", "managed", "industry", "external_integration", "collaboration"}
+AI_FAMILIES = {"ai", "genai", "automation", "knowledge"}
+SUPPLIER_LABEL = re.compile(r"(?:^|;)\s*(?P<name>[^;\n]{2,200});\s*(?:company|supplier|manufacturer|contractor)\s+name\b", re.IGNORECASE)
+RECIPIENT_ORGANISATION = re.compile(
+    r"\b(?:for|at|within|serving)\s+(?:(?:the|each)\s+)?(?:\d+(?:st|nd|rd|th|\?)*\s+)?"
+    r"(?:software engineering|digital transformation|information technology|artificial intelligence|systems integration)"
+    r"\s+(?:group|division|department|office|directorate)\b", re.IGNORECASE)
+# Eligibility and non-opportunity blockers, not scope: a reviewed restoration never clears them.
+TEST_PLACEHOLDER = "The source explicitly marks the notice and multiple procurement fields as test placeholders."
+NO_OPPORTUNITY = "General publication without a current supplier opportunity or explicit future buying intent."
+EMPLOYEE_VACANCY = "Permanent employee vacancy, not a supplier engagement."
+PUBLIC_INSTITUTIONS_ONLY = "The notice explicitly restricts participation to public institutions, not company suppliers."
+PLATFORM_RESTRICTION = "Explicit competing-platform restriction with no separately stated AI or integration scope."
+OPPORTUNITY_BLOCKERS = frozenset({TEST_PLACEHOLDER, NO_OPPORTUNITY, EMPLOYEE_VACANCY, PUBLIC_INSTITUTIONS_ONLY,
+                                PLATFORM_RESTRICTION})
+
+
+def discovery_signature(config):
+    """Replay after policy or engine changes, even without a manual version bump.
+
+    Reviewed restorations are policy: only a replay recovers a rejected notice.
+    """
+    directory = Path(__file__).parent
+    modules = ("discovery.py", "capability_matching.py", "procurement_scope.py", "vocabulary.py", "translation.py",
+               "notice_dates.py", "record_reviews.py")
+    policy = {key: config[key] for key in ("company_profile", "search_terms", "capabilities")}
+    return digest({"policy": {**policy, "reviewed_inclusions": config.get("reviewed_inclusions", [])},
+                   "engine": {name: (directory / name).read_text(encoding="utf-8") for name in modules}})
+
+
+def is_award_intelligence(signal):
+    """Keep awards and unconfirmed award-derived renewals out of the public feed."""
+    return bool(signal.signal_type == "AWARD" or signal.status.casefold() == "awarded"
+            or signal.lifecycle_state == "AWARDED"
+            or (signal.signal_type == "RENEWAL_SIGNAL" and
+                (signal.related_signal_id or signal.status.casefold() == "inferred" or signal.renewal_basis)))
+
+
+def discovery_text(value):
+    # Submission instructions and portal hostnames are not buyer technology requirements.
+    value = re.sub(r"https?://\S+", " ", value, flags=re.IGNORECASE)
+    # A contact mailbox such as "ddat.crm@dft.gov.uk" names who answers questions,
+    # never the purchased scope; its local part must not become a capability.
+    value = re.sub(r"[\w.+-]+@[\w-]+(?:\.[\w-]+)+", " ", value)
+    # American Petroleum Institute standards ("API 653", "API RP 1604") govern tank
+    # and pipework inspection; they are not application programming interfaces.
+    # Masked neutrally, like URLs and mailboxes, so no substitute words can match.
+    value = re.sub(r"\bAPI[\s-]+(?:(?:RP|STD|Spec|MPMS)[\s-]+)?\d{3,4}\b", " ", value, flags=re.IGNORECASE)
+    value = SUPPLIER_LABEL.sub("; published supplier; company name", value)
+    # Regulatory clause headings and structured contact-role cells are not the
+    # purchased scope. Match their syntax, not the surrounding procurement's
+    # industry, and preserve any separate software deliverable in the same notice.
+    value = re.sub(r"(?:\b(?:52|252)\.|^\s*)\d{3}-\d{1,4},?\s+[^()\n]{1,220}"
+                   r"\((?:JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)[A-Z.]*\s+\d{4}\)",
+                   " acquisition clause ", value, flags=re.IGNORECASE)
+    value = re.sub(r"(?<=\|)\s*[A-Z][A-Z &/.-]{0,30}\|\s*\+?\d[\d() -]{6,}\d\s*\|",
+                   " contact role | telephone |", value)
+    # An organisation receiving services may have a technical name even when
+    # the contract buys physical work for its buildings. This does not mask a
+    # requirement to provide software engineering or an implementation team.
+    value = RECIPIENT_ORGANISATION.sub(" for the receiving organisation ", value)
+    value = re.sub(r"\b(?:AI\s+software\s+[\"']?)?(?:AI[ _-]*)?(?:Bietercockpit|Vergabemanager)\b", "bidding client", value, flags=re.IGNORECASE)
+    value = re.sub(r"\b(?:[a-z0-9-]+\.)+[a-z]{2,24}/[^\s<>]*", " ", value, flags=re.IGNORECASE)
+    # A conditional supplier certification ("If you ... provide any IT systems ... you will
+    # need to have a Cyber Security Essentials Plus Certificate") is an eligibility condition
+    # on bidders, not the purchased scope. Mask only the clause: bullets or lot text that
+    # follow it without a full stop must stay matchable.
+    value = re.sub(r"\bif you\b[^.!?]{0,160}\byou will (?:be )?need to (?:have|hold)\b[^.!?]{0,40}"
+                   r"\bcyber\b[^.!?]{0,40}\bcertific\w*", " ", value, flags=re.IGNORECASE)
+    sentences = re.split(r"(?<=[.!?])\s+|\n+", value)
+    registration = re.compile(
+        r"\b(?:log\s?in|logging in|sign in|user guide|guidance for suppliers|"
+        r"procurement responses|advertises? procurement|upload\w*|download\w*|"
+        r"to register with|register (?:here|your (?:organisation|organization|interest))|"
+        r"registering with (?:an? |the )?(?:supplier|e-?procurement|e-?tendering|procurement) (?:portal|system|platform)|"
+        r"submit (?:your |the |a )?(?:bid|tender|proposal|response)|"
+        r"(?:register|apply) (?:and apply )?(?:via|on|through)|"
+        r"(?:responses?|bids?|proposals?|applications?|submissions?)\b[^.!?]{0,120}\bsubmitted|being released through|"
+        r"(?:supplier portal|platform) (?:help|support hours)|registering for an account|email subscriptions|"
+        r"(?:ofertas|proposiciones)\b[^.!?]{0,80}\b(?:presentaran|presentarán)|"
+        r"to access the solicitation|this will take you to the public portal|"
+        r"(?:visit|check)\b[^.!?]{0,60}\bportal|contact\b[^.!?]{0,60}\bservice desk|"
+        r"available (?:online )?(?:through|on|via)|will be using)\b", re.IGNORECASE)
+    build_scope = re.compile(r"\b(?:(?:develop|implement|build|replace|upgrade|design|configure)\w*|procur(?:e[ds]?|ing))\b[^.!?]{0,90}"
+                             r"\b(?:portal|software|platform|application|database)\b", re.IGNORECASE)
+    # This published administrative boilerplate describes an existing submission
+    # service, not the work being funded by the surrounding opportunity.
+    # The named bidding client is masked above, preserving other scope in its sentence.
+    submission_platform = re.compile(r"EDA is excited to announce the launch of its new grants management platform|"
+        r"EDGE was developed to streamline the application and grants management process", re.IGNORECASE)
+    administration = re.compile(
+        r"\b(?:click the activation link|complete your (?:online )?registration|register your business)\b[^.!?]{0,160}\b(?:ariba|commerce cloud)\b|"
+        r"\b(?:ariba|commerce cloud)\b[^.!?]{0,160}\b(?:complete your registration|register your business)\b|"
+        r"\b(?:questions?|proposals?|responses?)\b[^.!?]{0,60}\bgenerated by (?:AI|artificial intelligence)\b|"
+        r"\bpricing for (?:this|the) (?:quotation|solicitation)\b|"
+        r"\b(?:contractual documents|copies)\b[^.!?]{0,160}\b(?:transmitted|sent|deposited)\b|"
+        r"\bcontractor performance assessment reporting system\b|"
+        r"\binvoice processing platform\b|"
+        r"\bIPP is\b[^.!?]{0,90}\binvoicing system\b|"
+        r"\b(?:use|using)\b[^.!?]{0,80}\b(?:phone|intercom)\b[^.!?]{0,120}\b(?:door|entry|security guard)\b|"
+        r"\b(?:after[- ]hours (?:contact|email)|contact (?:number|information|details)|remove themselves)\b"
+        r"[^.!?]{0,160}\b(?:notification|alert|registration) system\b|"
+        r"\bto gain access\b[^.!?]{0,100}\b(?:offerors?|bidders?|suppliers?)\b[^.!?]{0,90}\buser roles\b|"
+        r"\b(?:has|have) transitioned to an electronic invoicing system\b", re.IGNORECASE)
+    # Purchasing an administrative system is still software work. Only existing
+    # submission/payment/evaluation machinery is excluded from matching text.
+    commissioned = re.compile(r"\b(?:develop|build|implement|replace|upgrade|configure|integrate|maintain)\w*\b"
+                              r"[^.!?]{0,80}\b(?:software|platform|system|application)\b", re.IGNORECASE)
+    bidding_context = re.compile(r"\b(?:suppliers?|procurement|tender\w*|bids?|proposals?|proposers?|email subscriptions|applications?|submissions?|quotations?|ofertas|proposiciones|licitadores|e-sourcing|"
+                                 r"e-tendering|atamis|passport|isupplier|ariba)\b", re.IGNORECASE)
+    return search_text(" ".join(sentence for sentence in sentences
+                               if not submission_platform.search(sentence)
+                               and not (administration.search(sentence) and not commissioned.search(sentence))
+                               and not (registration.search(sentence)
+                                       and bidding_context.search(sentence)
+                                       and re.search(r"\b(?:portal|platform|database system|sede electr[oó]nica|atamis|e-sourcing|e-tendering|passport|isupplier|service desk|ariba)\b", sentence, re.IGNORECASE)
+                                       and not build_scope.search(sentence))))
+
+
+def contains(text, phrase):
+    return search_text(phrase) in text
+
+
+def scope_segments(basis, field, value):
+    # Resolve recipient context before sentence splitting: OCR punctuation in a
+    # numbered unit name must not detach its technical name from "services for".
+    # Equal-length masking keeps every evidence quote an exact original span.
+    matching = RECIPIENT_ORGANISATION.sub(lambda match: " " * len(match.group()), value)
+    boundaries = [] if field == "title" else list(re.finditer(r"(?<!\b[A-Z]\.)(?<=[.!?;])\s+|\n+", value))
+    start = 0
+    for boundary in [*boundaries, None]:
+        end = boundary.start() if boundary else len(value)
+        quote = value[start:end]
+        if quote.strip():
+            yield {"basis": basis, "field": field, "quote": quote, "text": discovery_text(matching[start:end])}
+        start = boundary.end() if boundary else end
+
+
+def lifecycle(signal, now):
+    status = signal.status.casefold().replace("-", "_")
+    deadline = signal_response_deadline(signal)
+    if signal.source == "digital_outcomes":
+        # An initial application deadline takes precedence over a later,
+        # invitation-only stage. Re-evaluate retained detail after parser releases.
+        deadline = digital_deadline_instant(digital_deadline(signal.description) or signal.deadline_at) or deadline
+    elif not deadline:
+        deadline = engagement_notice_deadline(signal)
+    # Explicit source headings can contradict an incorrectly selected notice
+    # category. These are status labels, not words anywhere in the description.
+    if re.match(r"^(?:CANCELLED|CANCELED|AVLYST|KESKEYTETTY|PERUTTU)\b", signal.title.strip()):
+        return "CLOSED", "The source title explicitly marks this procurement as cancelled or discontinued."
+    if re.match(r"^Bekanntmachung\s+Vergebener\s+Auftrag\b", signal.title.strip(), re.IGNORECASE):
+        return "AWARDED", "The source title explicitly announces an awarded contract."
+    if (re.match(r"^Transparenzbekanntmachung\b", signal.title.strip(), re.IGNORECASE)
+            and re.search(r"135.*(?:Abs\.?\s*3|absatz\s*3)", signal.title, re.IGNORECASE)):
+        return "CLOSED", "Prior transparency announcement of a direct award, not an open supplier competition."
+    if (signal.notice_type or "").casefold() in ("veat", "dir-awa-pre"):
+        return "CLOSED", "Direct-award transparency notice, not an open supplier competition."
+    if status in ("cancelled", "canceled", "unsuccessful"):
+        return "CANCELLED", "The source reports cancellation or an unsuccessful procurement."
+    if status == "withdrawn":
+        return "WITHDRAWN", "The source reports withdrawal."
+    if status == "not_listed":
+        return "CLOSED", "No longer listed in two independently updated complete open-opportunity snapshots."
+    if status == "restricted":
+        return "CLOSED", "The procurement route requires existing contract participation rights."
+    if signal.signal_type == "AWARD" or status == "awarded":
+        return "AWARDED", "Published award intelligence, not an open bid."
+    if status in ("closed", "complete", "completed", "terminated"):
+        return "CLOSED", "The source reports a closed procurement."
+    if status == "postponed":
+        return "UNKNOWN", "The source postpones bidding without a confirmed replacement response window."
+    if status == "expired" or (deadline and deadline <= now):
+        return "EXPIRED", "The published response deadline has passed."
+    if signal.source == "digital_outcomes" and digital_window_uncertain(signal.description, deadline, now):
+        return "UNKNOWN", "A current application window is not confirmed by the published timeline."
+    if signal.signal_type == "RENEWAL_SIGNAL":
+        return "FUTURE", "Inferred from a published contract end; replacement procurement is unconfirmed."
+    if signal.signal_type in ("EARLY_MARKET_ENGAGEMENT", "RFI"):
+        published = parse_date(signal.last_material_update) or parse_date(signal.published_at)
+        if deadline or status == "active" or (published and (now - published).days <= 90):
+            return "EARLY_ENGAGEMENT", "Early-stage buyer engagement; confirm response terms in the notice."
+        return "UNKNOWN", "Older engagement notice without a confirmed response window."
+    if signal.signal_type in ("PIPELINE", "FUTURE_OPPORTUNITY", "STRATEGIC_INTENT") or signal.procurement_stage == "planning":
+        return "FUTURE", "Published future intent; an open competition is not confirmed."
+    if status in ("active", "open") or deadline:
+        return "OPEN", "The source reports an active process or a future response deadline."
+    return "UNKNOWN", "The notice does not establish a current response window."
+
+
+def is_public_opportunity(signal, now):
+    if (signal.status.casefold() in ("postponed", "unverified") or is_award_intelligence(signal)
+            or lifecycle(signal, now)[0] in TERMINAL or signal.exclusion_reasons):
+        return False
+    checks = getattr(signal.analysis, "eligibility_checks", [])
+    return not any(check.status == "CONFIRMED_BLOCKER" for check in checks)
+
+
+def is_public_award(signal, now):
+    """Confirmed historical awards only; never inferred renewals or failed awards."""
+    return (signal.signal_type != "RENEWAL_SIGNAL" and not signal.related_signal_id
+            and (not signal.award_statuses or "active" in signal.award_statuses)
+            and (signal.notice_type or "").upper() != "UK5"
+            and lifecycle(signal, now)[0] == "AWARDED" and not signal.exclusion_reasons)
+
+
+def hard_exclusions(signal, charter, scope_evidence=False):
+    policy = charter["discovery"]
+    text = discovery_text(signal.title + " " + signal.description)
+    title = discovery_text(signal.title)
+    reasons = []
+    placeholder_fields = re.findall(r"\b(summary of work|description|how to apply|timeline)\s+(?:test|dummy|placeholder)\b", text)
+    if (re.match(r"^\s*(?:test|dummy|placeholder)\s*(?:[-:]|$)", signal.title, re.IGNORECASE)
+            and len(set(placeholder_fields)) >= 2):
+        reasons.append(TEST_PLACEHOLDER)
+    if signal.source == "govuk":
+        directory_or_retrospective = signal.notice_type in policy.get("non_opportunity_formats", [])
+        buying_intent = any(contains(text, p) for p in policy.get("publication_intent", policy["commercial_intent"]))
+        if directory_or_retrospective or not buying_intent:
+            reasons.append(NO_OPPORTUNITY)
+    staffing = any(contains(text, p) for p in ("contract staffing", "supplier", "consultancy", "professional services", "contractor"))
+    if any(contains(text, p) for p in policy["permanent_roles"]) and not staffing:
+        reasons.append(EMPLOYEE_VACANCY)
+    technical = any(contains(text, p) for p in policy["technical_context"])
+    physical_title = any(contains(title, p) for p in policy.get("physical_scope_titles", []))
+    digital_title = any(contains(title, p) for p in policy.get("digital_scope_titles", []))
+    digital_lot = bool(re.search(r"\blot\s+\d+[^.!?\n]{0,180}\b(?:software|crm|digital platform|system integration)\b", signal.description, re.IGNORECASE))
+    if not scope_evidence and ((not technical and any(contains(text, p) for p in policy["irrelevant_physical"])) or (physical_title and not digital_title and not digital_lot)):
+        reasons.append("Physical goods or works without a stated technology-services scope.")
+    non_technical_codes = tuple(policy.get("non_technical_cpv_prefixes", []))
+    non_technical = (bool(signal.cpv_codes) and bool(non_technical_codes)
+                     and all(code.startswith(non_technical_codes) for code in signal.cpv_codes))
+    non_technical |= any(contains(text, p) for p in policy.get("non_technical_service_phrases", []))
+    software_scope = scope_evidence or digital_title or digital_lot or any(contains(text, p) for p in policy.get("software_scope_terms", []))
+    if non_technical and not software_scope:
+        reasons.append("Non-technology service delivery without a stated software, AI or systems scope.")
+    if any(contains(text, p) for p in policy.get("company_excluding_eligibility", [])):
+        reasons.append(PUBLIC_INSTITUTIONS_ONLY)
+    # A competing installed system is not a lock-in. Require an explicit no-alternatives
+    # clause in the same sentence, and retain any separately addressable AI/API scope.
+    separate = any(contains(text, p) for p in ("AI assistant", "AI agent", "artificial intelligence", "integration", "integrate", "API", "middleware", "or equivalent", "or Salesforce"))
+    for sentence in re.split(r"[.!?;\n]", signal.title + ". " + signal.description):
+        normalized = search_text(sentence)
+        platform = any(contains(normalized, p) for p in policy["incompatible_platforms"])
+        locked = any(contains(normalized, p) for p in policy["mandatory_constraints"] if p != "mandatory")
+        if platform and locked and not separate:
+            reasons.append(PLATFORM_RESTRICTION)
+            break
+    return reasons
+
+
+DOS_SUMMARY = re.compile(r"\bSummary of (?:the )?work\s+(?P<body>.*?)"
+                         r"(?=(?:\s\d{1,2}\.\s+|\n[ \t]*)(?:Pricing model|Latest start date|Expected contract length|"
+                         r"Location|Organisation the work is for|Why the work is being done|Problem to be solved)\b|$)",
+                         re.IGNORECASE | re.DOTALL)
+DOS_PLACEHOLDER_WORDS = {"test", "tests", "testing", "this", "is", "the", "tbc", "tbd", "none"}
+
+
+def digital_outcomes_call_off(signal):
+    """Recover stated digital work from a call-off summary, never catalogue boilerplate."""
+    if signal.source != "digital_outcomes":
+        return False
+    text = re.sub(r"https?://\S+", " ", signal.description or "")
+    summary = DOS_SUMMARY.search(text)
+    if not summary:
+        return False
+    body = " ".join(summary["body"].split())
+    words = [w for w in re.findall(r"[^\W\d_]{2,}", body) if w.casefold() not in DOS_PLACEHOLDER_WORDS]
+    if len(words) < 6 or re.match(r"\s*(?:this is (?:a )?|please )?(?:test|dummy|placeholder)\b", body, re.IGNORECASE):
+        return False
+    # Recruitment alone is a human service; a separately commissioned discovery,
+    # prototype or build remains addressable even when it includes participants.
+    if re.search(r"\b(?:recruit\w*|participants?)\b", body, re.IGNORECASE):
+        commissioned = re.compile(r"\b(?:deliver|build|develop|implement|create|configure|design)\w*\s+"
+                                  r"(?:(?:a|an|the|our|new|bespoke|custom|discovery|alpha|beta|digital)\s+){0,5}"
+                                  r"(?:software|application|platform|digital service|prototypes?|build|service)\b", re.IGNORECASE)
+        return any(commissioned.search(clause) and not re.search(
+            r"\b(?:will not|shall not|not (?:required|commissioned)|no (?:design|development|build))\b", clause, re.IGNORECASE)
+            for clause in re.split(r"[.;]", body))
+    delivery = re.search(r"\b(?:digital (?:service|capabilit|moderni|deliver)|software|"
+                         r"(?:alpha|beta) (?:prototype|build)|(?:discovery|user research)[ /-]+alpha|"
+                         r"(?:design|build|develop|implement)\w*\b.{0,70}\b(?:application|platform|service))", body, re.IGNORECASE)
+    return bool(delivery)
+
+
+def prefilter(signals, profile, terms, charter=None, translations=None):
+    # Compatibility for external callers; production always supplies the expanded charter.
+    caps = charter["capabilities"] if charter else [dict(c, needs=c["terms"]) for c in profile["capabilities"]]
+    for signal in signals:
+        if signal.source == "digital_outcomes":
+            deadline = digital_deadline(signal.description)
+            if deadline:
+                signal.deadline_at = deadline
+                signal.response_deadlines = [deadline]
+        text = discovery_text(signal.title + " " + signal.description)
+        title = discovery_text(signal.title)
+        documents = [("original", signal.title, signal.description)]
+        translated = (translations or {}).get(signal.id)
+        if translated and not isinstance(translated, dict):
+            translated = translated.model_dump()
+        if translated and translated.get("source_hash") == digest([signal.title, signal.description]):
+            documents.append(("english_translation", translated["title"], translated["description"]))
+        segments = [segment for basis, heading, description in documents
+                    for field, value in (("title", heading), ("description", description))
+                    for segment in scope_segments(basis, field, value)]
+        labelled_suppliers = {search_text(match["name"]).strip()
+                              for _, _, description in documents for match in SUPPLIER_LABEL.finditer(description)}
+        for segment in segments:
+            if segment["field"] == "description":
+                for supplier in labelled_suppliers:
+                    segment["text"] = re.sub(r"(?<!\w)" + re.escape(supplier) + r"(?!\w)",
+                                             "published supplier", segment["text"])
+        # An authority's name can contain "Digital Transformation", "AI", etc.
+        # Mask only the complete multiword identity in matching text, never the
+        # source quote or a separate statement of the work being commissioned.
+        buyers = [signal.buyer_name]
+        if translated and translated.get("source_hash") == digest([signal.title, signal.description]):
+            buyers.append(translated.get("buyer_name", ""))
+        for buyer in buyers:
+            identity = search_text(buyer).strip()
+            if len(identity.split()) >= 2 and len(identity) >= 12:
+                for segment in segments:
+                    segment["text"] = re.sub(r"(?<!\w)" + re.escape(identity) + r"(?!\w)",
+                                             "contracting authority", segment["text"])
+        addressable = addressable_delivery(segments)
+        families, hits, strengths, primary_families, evidence, discovery_hints = [], [], [], [], [], []
+        software_cpv = any(code.startswith(("48", "72")) for code in signal.cpv_codes)
+        for cap in caps:
+            matches = capability_hits(cap, segments, software_cpv, signal.signal_type == "FUNDING")
+            discovery_hints.extend(e["phrase"] for e in matches if e["strength"] == "hint")
+            matches = [e for e in matches if e["strength"] != "hint"]
+            explicit = [e["phrase"] for e in matches if e["strength"] == "explicit"]
+            needs = [e["phrase"] for e in matches if e["strength"] == "needs"]
+            contextual = [e["phrase"] for e in matches if e["strength"] == "contextual"]
+            if explicit or needs or contextual:
+                evidence.extend(sorted(matches, key=lambda e: ({"explicit": 0, "needs": 1, "contextual": 2}[e["strength"]], e["basis"] != "original"))[:2])
+                if explicit or needs:
+                    primary_families.append(cap["id"])
+                families.append(cap["id"])
+                hits.extend(explicit + needs + contextual)
+                strength = 46 if explicit else 32 if needs else 16
+                if any(contains(title, p) for p in explicit + needs):
+                    strength += 12
+                strengths.append(strength)
+        cpv = any(code.startswith(tuple(terms["cpv_prefixes"])) for code in signal.cpv_codes)
+        digital_scope = unique(p for segment in segments for p in phrase_hits(segment["text"], (
+            "software development", "website development", "software engineering", "digital telephony",
+            "open banking", "application development", "information systems development", "software implementation"))
+            if affirmed(segment["text"], p)
+            and (p != "application development" or business_application_development(segment["text"])))
+        digital_scope = unique(digital_scope + generic_digital_scope(segments))
+        dos_call_off = digital_outcomes_call_off(signal)
+        if dos_call_off:
+            digital_scope = unique(digital_scope + ["Digital Outcomes framework call-off"])
+        score = min(100, max(strengths, default=0) + min(24, max(0, len(families) - 1) * 6) + (12 if cpv else 0))
+        # Unclassified digital delivery remains a reviewable candidate, not an invented capability.
+        if digital_scope or discovery_hints:
+            score = max(score, 12)
+        # A classification code corroborates evidence read from the notice. Alone it
+        # records the buyer's purchasing category, not a requirement anyone can deliver.
+        if (charter and charter["discovery"].get("cpv_requires_corroboration")
+                and cpv and not (families or digital_scope or discovery_hints)
+                and not (addressable or any(has_software(segment["text"]) for segment in segments))):
+            score = 0
+        # Pipeline/consulting vocabulary alone identifies buying stage, not our scope.
+        # Digital Outcomes scope comes from its stated work summary.
+        if families and set(families) <= {"pipeline", "staffing", "external_integration"} and not cpv and not dos_call_off:
+            score = min(score, 10)
+        signal.prefilter_score = score
+        signal.prefilter_matches = unique(hits + [f"Published digital scope: {p}" for p in digital_scope]
+                                          + (["Relevant CPV classification"] if cpv else []))[:40]
+        signal.discovery_families = families
+        signal.delivery_priority = ("platform" if PLATFORM_FAMILIES.intersection(primary_families)
+                                    else "ai" if AI_FAMILIES.intersection(primary_families) or "ai" in families else "other")
+        signal.matched_capabilities = families
+        signal.discovery_version = charter["version"] if charter else None
+        meaningful = set(primary_families) - {"staffing", "managed", "transformation"}
+        signal.exclusion_reasons = hard_exclusions(signal, charter,
+            bool(meaningful) or bool(addressable) or bool(digital_scope)) if charter else []
+        for _, heading, description in documents:
+            reason = None if addressable else unrelated_supply(discovery_text(heading), discovery_text(description), evidence, signal.cpv_codes)
+            if reason:
+                signal.exclusion_reasons = unique([*signal.exclusion_reasons, reason])
+        scope = scope_exclusion(segments, signal.cpv_codes)
+        signal.scope_evidence = [scope] if scope else []
+        if scope:
+            signal.exclusion_reasons = unique([*signal.exclusion_reasons, scope["reason"]])
+        signal.capability_evidence = [{**e, "quote": evidence_excerpt(e["quote"], e["phrase"])} for e in evidence]
+        if signal.exclusion_reasons:
+            signal.prefilter_score = 0
+        buyer = text + search_text(signal.buyer_name)
+        signal.categories = [s["label"] for s in profile["sectors"] if any(contains(buyer, p) for p in s["terms"])]
+
+
+def ranking_key(signal, now):
+    published = parse_date(signal.published_at) or parse_date(signal.first_seen_at)
+    return ({"platform": 0, "ai": 1, "other": 2}[signal.delivery_priority],
+            -published.timestamp() if published else 0, signal.id)

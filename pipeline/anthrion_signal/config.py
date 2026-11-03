@@ -1,0 +1,102 @@
+import json
+import os
+from pathlib import Path
+
+import yaml
+from dotenv import load_dotenv
+
+
+class UniqueKeyLoader(yaml.SafeLoader):
+    """Reject accidental overwrites, especially duplicated language packs."""
+
+    def construct_mapping(self, node, deep=False):
+        self.flatten_mapping(node)
+        seen = set()
+        for key_node, _ in node.value:
+            key = self.construct_object(key_node, deep=deep)
+            if key in seen:
+                raise ValueError(f"Duplicate configuration key: {key}")
+            seen.add(key)
+        return super().construct_mapping(node, deep=deep)
+
+
+def review_rows(root: Path):
+    """Unvalidated ledger rows for collection-time readers; export validates the whole ledger."""
+    path = root / "config/record_reviews.json"
+    ledger = json.loads(path.read_bytes()) if path.exists() else {}
+    rows = ledger.get("records") if isinstance(ledger, dict) else None
+    return [row for row in rows if isinstance(row, dict)] if isinstance(rows, list) else []
+
+
+def reviewed_inclusions(root: Path):
+    """Restoration identities for the discovery signature; other ledger edits never replay.
+
+    Quotes are included: a repaired quote must replay a suspended restoration. URLs are
+    provenance that never changes collection, so refreshing one does not replay.
+    """
+    def quotes(evidence):
+        return ([[e.get("field"), e.get("quote")] for e in evidence if isinstance(e, dict)]
+                if isinstance(evidence, list) else evidence)
+    return sorted(([row.get("id"), row.get("source_hash"), row.get("priority"), quotes(row.get("evidence"))]
+                   for row in review_rows(root) if row.get("decision") == "include"), key=json.dumps)
+
+
+def load_config(root: Path):
+    load_dotenv(root / ".env", override=False)
+    result = {name: yaml.load((root / "config" / f"{name}.yaml").read_text(encoding="utf-8"), Loader=UniqueKeyLoader)
+              for name in ("sources", "company_profile", "scoring", "search_terms", "capabilities", "discovery_languages")}
+    if sum(result["scoring"]["weights"].values()) != 100:
+        raise ValueError("Scoring weights must sum to 100")
+    capabilities = result["capabilities"]["capabilities"]
+    identifiers = [c["id"] for c in capabilities]
+    if len(set(identifiers)) != len(identifiers):
+        raise ValueError("Capability identifiers must be unique")
+    result["search_terms"]["discovery_english_phrases"] = list(dict.fromkeys(
+        p for c in capabilities if c["id"] not in ("pipeline", "staffing")
+        for p in c.get("explicit", []) + c.get("needs", [])))
+    for language, families in result["discovery_languages"].items():
+        if set(families) - set(identifiers):
+            raise ValueError(f"Unknown capability in {language} discovery pack")
+        for capability in capabilities:
+            capability.setdefault("aliases", []).extend(families.get(capability["id"], []))
+    result["search_terms"]["govuk_queries"] = list(dict.fromkeys(
+        result["search_terms"]["govuk_queries"] + [q for c in capabilities for q in c.get("queries", [])]))
+    result["search_terms"]["discovery_phrases"] = list(dict.fromkeys(
+        p for c in capabilities if c["id"] not in ("pipeline", "staffing")
+        for p in c.get("explicit", []) + c.get("needs", []) + c.get("aliases", [])))
+    result["reviewed_inclusions"] = reviewed_inclusions(root)
+    result["runtime"] = {
+        "model": "",
+        "max_ai_calls": 0,
+        "ai_concurrency": 1,
+        "ai_min_score": 25,
+        "max_pages": int(os.getenv("MAX_PAGES_PER_SOURCE", "80")),
+        "lookback_days": int(os.getenv("INITIAL_LOOKBACK_DAYS", "14")),
+        "retention_days": int(os.getenv("RETENTION_DAYS", "180")),
+    }
+    return result
+
+
+def capability_catalog(config):
+    charter = config["capabilities"]
+    return {c["id"]: {"label": c["label"], "group": "capabilities", "document": charter["source"],
+                         "quote": f"{charter['charter']} Relevant functional scope: {', '.join(c.get('needs', []))}."}
+            for c in charter["capabilities"]}
+
+
+def evidence_catalog(profile):
+    catalog = {}
+    for group in ("capabilities", "delivery_models", "sectors", "references"):
+        for entry in profile[group]:
+            catalog[entry["id"]] = {"label": entry.get("label", entry.get("name")), "group": group,
+                                    **entry["evidence"], "document": profile["source_document"]}
+    catalog["geographies"] = {"label": "European delivery presence", "group": "geography",
+                              **profile["geographies"]["evidence"], "document": profile["source_document"]}
+    catalog["governance"] = {"label": "Governance & sovereignty", "group": "governance",
+                             **profile["governance"]["evidence"], "document": profile["source_document"]}
+    # Explicit eligibility facts are opt-in. Null never proves ineligibility.
+    for key, value in profile.get("eligibility", {}).items():
+        if value is not None:
+            catalog[f"eligibility.{key}"] = {"label": key, "group": "eligibility", "quote": str(value),
+                                            "document": "Company eligibility configuration"}
+    return catalog

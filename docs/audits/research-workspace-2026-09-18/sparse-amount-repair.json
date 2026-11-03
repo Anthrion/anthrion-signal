@@ -1,0 +1,52 @@
+{
+  "applied": true,
+  "canonical_after_sha256": "a1db06cbed91dedeef7db52a00d0a89396d8ed8ad82832822ae00812aa0a7b89",
+  "canonical_before_sha256": "838778bade5e6c275475a63101c460fce45923e3e0bcd49ba838ff714c869828",
+  "changed_fields": [
+    "amount",
+    "content_hash",
+    "material_change_hash",
+    "provenance"
+  ],
+  "new_amount": {
+    "currency": "EUR",
+    "kind": "estimated_contract",
+    "maximum": 8264463.0,
+    "minimum": null,
+    "source_label": "estimated-value-proc",
+    "source_url": "https://ted.europa.eu/en/notice/-/detail/694369-2023"
+  },
+  "new_hashes": {
+    "content_hash": "ec87babc9796a2ae4fdb36fccf15b9d22b00cf79d51b56822e0d9e7068d8da53",
+    "fingerprint": "5921003fd9c5cb3b112061cbe0057b4a3a849ff1cf8df967618f2fd6dcab65c8",
+    "material_change_hash": "ec87babc9796a2ae4fdb36fccf15b9d22b00cf79d51b56822e0d9e7068d8da53",
+    "raw_source_hash": "086e3ff0f708be20362d3c9a030826d4fbf843dc26e05912687ba42a5e77f903"
+  },
+  "notice_number": "694369-2023",
+  "old_amount": {
+    "currency": null,
+    "kind": "estimated_contract",
+    "maximum": null,
+    "minimum": null,
+    "source_label": "estimated-value-proc",
+    "source_url": "https://ted.europa.eu/en/notice/-/detail/731503-2024"
+  },
+  "old_hashes": {
+    "content_hash": "bc90355f720d32727b70c0529957fa9487cb430d7c12efadb0cdc6255b0b96be",
+    "fingerprint": "5921003fd9c5cb3b112061cbe0057b4a3a849ff1cf8df967618f2fd6dcab65c8",
+    "material_change_hash": "bc90355f720d32727b70c0529957fa9487cb430d7c12efadb0cdc6255b0b96be",
+    "raw_source_hash": "086e3ff0f708be20362d3c9a030826d4fbf843dc26e05912687ba42a5e77f903"
+  },
+  "retained_snapshot_sha256": "b46ad56aeb863396d289d92704e78e4d1bdf58ecec841dd32bfba76b157e9006",
+  "signal_id": "sig_1eefb3458cf75443874b",
+  "source_proof": {
+    "ocid": null,
+    "published_at": "2023-11-15T00:00:00+00:00",
+    "raw_hash": "1c8639013ee4e7b9fb950417d1ac1e1cd39f1300d0a295463b29b957b4c545ed",
+    "release_id": "694369-2023",
+    "retrieved_at": "2026-09-18T22:10:25.694845+00:00",
+    "source": "ted",
+    "source_name": "TED Europe",
+    "url": "https://ted.europa.eu/en/notice/-/detail/694369-2023"
+  }
+}

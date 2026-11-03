@@ -1,0 +1,415 @@
+{
+  "affected_records": 17,
+  "applied": true,
+  "canonical_after_sha256": "2760676f2707cecd3c023aeb4c170eec296decafe96d1e5384c6cec1680f20bc",
+  "canonical_before_sha256": "f5d979bee9bc24b8ef9bcb858598e9718d182af2ec7bb01780b0877154fbe8ce",
+  "changes": [
+    {
+      "cached_fact_basis": "Retained Grants.gov detail cache",
+      "changes": {
+        "buyer_name": {
+          "after": "Air Force Office of Scientific Research",
+          "before": "Laura Plati\nGrantor"
+        },
+        "content_hash": {
+          "after": "50173d6ebdd4a977e6d84a6494200d35b9b22267d407d21c627b74e81b2b710c",
+          "before": "e94d0a31a9800f8ca29db6ac389950be2272acdc424b7a5af0f5cdec84450e8e"
+        },
+        "deadline_at": {
+          "after": "2026-12-04",
+          "before": "2026-12-04T00:00:00+00:00"
+        },
+        "fingerprint": {
+          "after": "aa5a7e035ea41d89d9b057be074e1f547acf6354952ed023c5c774a0b8a4beb0",
+          "before": "8dd4beb78996e5e2cdb1dfd3dcb851656e7cb82e897589b9bde2d776834bf56d"
+        },
+        "material_change_hash": {
+          "after": "50173d6ebdd4a977e6d84a6494200d35b9b22267d407d21c627b74e81b2b710c",
+          "before": "e94d0a31a9800f8ca29db6ac389950be2272acdc424b7a5af0f5cdec84450e8e"
+        }
+      },
+      "id": "sig_03fee59f618258543f29",
+      "raw_source_hash": "e0924b87add3ea4d828df990ad2ad4058387a4270f97896ac31c57191901a767",
+      "source_url": "https://www.grants.gov/search-results-detail/363829"
+    },
+    {
+      "cached_fact_basis": "Retained Grants.gov detail cache",
+      "changes": {
+        "content_hash": {
+          "after": "59e6f3251173f256cc48f7caba279fe07ef97d1f1c1d1f46f468895a0cf1ee0c",
+          "before": "cc55ccf3754f2e7830db68cabf642c40b397c4dae45b51ab97b50925c9586780"
+        },
+        "deadline_at": {
+          "after": "2076-08-20",
+          "before": "2076-08-20T00:00:00+00:00"
+        },
+        "material_change_hash": {
+          "after": "59e6f3251173f256cc48f7caba279fe07ef97d1f1c1d1f46f468895a0cf1ee0c",
+          "before": "cc55ccf3754f2e7830db68cabf642c40b397c4dae45b51ab97b50925c9586780"
+        }
+      },
+      "id": "sig_0539033341b24467d5d7",
+      "raw_source_hash": "b7ed9b8dde226e2c6e525c7da8b51be95ad1c5fbdecc857c4d3dc8d7923e0e80",
+      "source_url": "https://www.grants.gov/search-results-detail/362063"
+    },
+    {
+      "cached_fact_basis": "Retained Grants.gov detail cache",
+      "changes": {
+        "content_hash": {
+          "after": "cfb09a494b6148c0dee24a92182f5a78bbfa3df255cf6bd0e80822fc8fc43ce4",
+          "before": "586450c523fa3075f1fd0a471711ed1e53716a386bf1d4bbecf27e0125c856aa"
+        },
+        "deadline_at": {
+          "after": "2026-10-05",
+          "before": "2026-10-05T00:00:00+00:00"
+        },
+        "material_change_hash": {
+          "after": "cfb09a494b6148c0dee24a92182f5a78bbfa3df255cf6bd0e80822fc8fc43ce4",
+          "before": "586450c523fa3075f1fd0a471711ed1e53716a386bf1d4bbecf27e0125c856aa"
+        }
+      },
+      "id": "sig_08f754b7228c4f5a38d6",
+      "raw_source_hash": "4e021c7e17052c351ef12ccdcff49c418c97f2b8091011d75d722852a022de99",
+      "source_url": "https://www.grants.gov/search-results-detail/363797"
+    },
+    {
+      "cached_fact_basis": "Retained Grants.gov detail cache",
+      "changes": {
+        "content_hash": {
+          "after": "adff8c8413892190f52a3f0ad40bb1264147faf1e0f0144302100b347422fa31",
+          "before": "9cee2f78313732ae1e8711ca50009f9dd3530a2f1a60384991ee35e9c9aafdfd"
+        },
+        "deadline_at": {
+          "after": "2099-01-01",
+          "before": "2099-01-01T00:00:00+00:00"
+        },
+        "material_change_hash": {
+          "after": "adff8c8413892190f52a3f0ad40bb1264147faf1e0f0144302100b347422fa31",
+          "before": "9cee2f78313732ae1e8711ca50009f9dd3530a2f1a60384991ee35e9c9aafdfd"
+        }
+      },
+      "id": "sig_325da810c3f0bcbb629a",
+      "raw_source_hash": "6ee3c0d6eeb7f1dc31a0ac0e20a367363fabf8c00dfd00da3097dad00c5041ec",
+      "source_url": "https://www.grants.gov/search-results-detail/363786"
+    },
+    {
+      "cached_fact_basis": "Retained Grants.gov detail cache",
+      "changes": {
+        "buyer_name": {
+          "after": "Defense Health Agency Contracting Activity - DHACA",
+          "before": "Elena G Howell\nGrants Officer"
+        },
+        "content_hash": {
+          "after": "e917d1f8352cab2d4adc9d1f72799207c63e636a28ba05c3ad325b29cafef4f5",
+          "before": "5dab855731167c92aeeec2ff707aad6cb8a805d5cadd7596a11abcee3bb2c580"
+        },
+        "deadline_at": {
+          "after": "2027-09-30",
+          "before": "2027-09-30T00:00:00+00:00"
+        },
+        "fingerprint": {
+          "after": "f90a3eca11625865cb64554c8a3752efb78811c6f632aa2b5d4d22630db8bce7",
+          "before": "3584e11fd5d54950d6d83e55755308ab51cc9e533fa01a697159fc6eeabd91af"
+        },
+        "material_change_hash": {
+          "after": "e917d1f8352cab2d4adc9d1f72799207c63e636a28ba05c3ad325b29cafef4f5",
+          "before": "5dab855731167c92aeeec2ff707aad6cb8a805d5cadd7596a11abcee3bb2c580"
+        }
+      },
+      "id": "sig_3f61ca32354a48bbd5cd",
+      "raw_source_hash": "1ec84cc740b717030bd55a5fcafd66f5c43c739b35016e235d9efe64e96679c1",
+      "source_url": "https://www.grants.gov/search-results-detail/343725"
+    },
+    {
+      "cached_fact_basis": "Retained Grants.gov detail cache",
+      "changes": {
+        "buyer_name": {
+          "after": "Department of Commerce",
+          "before": "Bernadette Grafton\nProgram Analyst"
+        },
+        "content_hash": {
+          "after": "b3fb6f3d76eeed0a43836b2038c65a622d1fdb908c8ad005ca70f913d7b2c5db",
+          "before": "70d42334780578e6ad6c5d071413769adc9a03f9bc9e30d5312b0acb5c93f53a"
+        },
+        "fingerprint": {
+          "after": "88acaf6c1d052601b567308b87aad4576fb781153c79c92eeee2a7d3a89f9fb0",
+          "before": "a17d36567527f80c88aced8436ed274806d1e59bf9365b370a45ed7c09a8ff5b"
+        },
+        "material_change_hash": {
+          "after": "b3fb6f3d76eeed0a43836b2038c65a622d1fdb908c8ad005ca70f913d7b2c5db",
+          "before": "70d42334780578e6ad6c5d071413769adc9a03f9bc9e30d5312b0acb5c93f53a"
+        }
+      },
+      "id": "sig_45528045fdbcb37d9128",
+      "raw_source_hash": "9f9de05f79f43fab812365017906f129a7c7eb4e48caffe5ff449b24bbdc5a01",
+      "source_url": "https://www.grants.gov/search-results-detail/332127"
+    },
+    {
+      "cached_fact_basis": "Retained Grants.gov detail cache",
+      "changes": {
+        "buyer_name": {
+          "after": "Department of Commerce",
+          "before": "Bernadette Grafton\nProgram Analyst"
+        },
+        "content_hash": {
+          "after": "2389345108ed6d89b595aeb35737c8ae28c6b8c65d3c29c306da307bd347651b",
+          "before": "fb882e5349bb100042d854f6d96a4cb7f2b846205a7cf01561d013e69c4ead28"
+        },
+        "fingerprint": {
+          "after": "323b822a44d12190e88c36844358e221b29b7f87f7957c48fe5d19d7524c4364",
+          "before": "1cee713d84883030ab42d043031400d120f0c751821aab577fdd46c9115743b6"
+        },
+        "material_change_hash": {
+          "after": "2389345108ed6d89b595aeb35737c8ae28c6b8c65d3c29c306da307bd347651b",
+          "before": "fb882e5349bb100042d854f6d96a4cb7f2b846205a7cf01561d013e69c4ead28"
+        }
+      },
+      "id": "sig_45573c842e993565cc80",
+      "raw_source_hash": "ae43146956760f978e26bed2d5a72bd9130f613d2e1efc4097bfca29d603d020",
+      "source_url": "https://www.grants.gov/search-results-detail/332138"
+    },
+    {
+      "cached_fact_basis": "Retained Grants.gov detail cache",
+      "changes": {
+        "content_hash": {
+          "after": "073c4882c6001e9b5419316d20b0e8f7e89bc47aa44ba45e1d67e3e578275bea",
+          "before": "6e25e8878708207efafe0c00c836587db30356f1a804bd6999bd6275d92ebc9e"
+        },
+        "deadline_at": {
+          "after": "2026-09-29",
+          "before": "2026-09-29T00:00:00+00:00"
+        },
+        "material_change_hash": {
+          "after": "073c4882c6001e9b5419316d20b0e8f7e89bc47aa44ba45e1d67e3e578275bea",
+          "before": "6e25e8878708207efafe0c00c836587db30356f1a804bd6999bd6275d92ebc9e"
+        }
+      },
+      "id": "sig_4d2c5259822d64148bd2",
+      "raw_source_hash": "0050c4e646c9aeb4e7e2e06966075af14832211729afd5a87e27d71c7f2e4b83",
+      "source_url": "https://www.grants.gov/search-results-detail/361249"
+    },
+    {
+      "cached_fact_basis": "Retained Grants.gov detail cache",
+      "changes": {
+        "content_hash": {
+          "after": "3a98697393a7fc5e34fc4bf2ad43531e3b6f1e752e75410409d87eee26998dec",
+          "before": "4b79ac943a53bf2b2baaffdd2b3b02f61a9084c222647661fd2da0e4642ae87c"
+        },
+        "deadline_at": {
+          "after": "2027-07-02",
+          "before": "2027-07-02T00:00:00+00:00"
+        },
+        "material_change_hash": {
+          "after": "3a98697393a7fc5e34fc4bf2ad43531e3b6f1e752e75410409d87eee26998dec",
+          "before": "4b79ac943a53bf2b2baaffdd2b3b02f61a9084c222647661fd2da0e4642ae87c"
+        }
+      },
+      "id": "sig_5b288e9e6ddd92f410b7",
+      "raw_source_hash": "2b2b5b636bcd3656ac2ad4a4dda56063b184a85d54e2703b7fcc3f025e7e024b",
+      "source_url": "https://www.grants.gov/search-results-detail/357570"
+    },
+    {
+      "cached_fact_basis": "Retained Grants.gov detail cache",
+      "changes": {
+        "buyer_name": {
+          "after": "Office of Science",
+          "before": "Michael S Zarkin\nGrants Management Specialist"
+        },
+        "content_hash": {
+          "after": "a4a2094b1014475861f140fb4bcc1a338d25206de284316758cbf60e6f1bc4de",
+          "before": "2069f966bc35f4087f6bd427f03a5ae617a9d1b038d45e69cf55928d5dfc3afe"
+        },
+        "deadline_at": {
+          "after": "2026-10-19",
+          "before": "2026-10-19T00:00:00+00:00"
+        },
+        "fingerprint": {
+          "after": "5061f6b6e145968aad75577514e3b818883a1b0496cc81d856d09c365bc3a828",
+          "before": "b8c6ca522b886ac04fd52895b2b4b94db8cf78c2448dd1a3d55903617cc20431"
+        },
+        "material_change_hash": {
+          "after": "a4a2094b1014475861f140fb4bcc1a338d25206de284316758cbf60e6f1bc4de",
+          "before": "2069f966bc35f4087f6bd427f03a5ae617a9d1b038d45e69cf55928d5dfc3afe"
+        }
+      },
+      "id": "sig_6908ad36d3cca0926c26",
+      "raw_source_hash": "77f5d3cb871ea3acc76993279c35046fe9b134fe5d408c6734af593c12f0835a",
+      "source_url": "https://www.grants.gov/search-results-detail/363869"
+    },
+    {
+      "cached_fact_basis": "Retained Grants.gov detail cache",
+      "changes": {
+        "buyer_name": {
+          "after": "Department of Commerce",
+          "before": "Bernadette Grafton\nProgram Analyst"
+        },
+        "content_hash": {
+          "after": "c9fcf49e6d148bc576fe020f056e97a2eca9f54313576f55059837ccbcf1c2fd",
+          "before": "294bddfe4b2ff608ec2a8c921e610308ec4c576a931f4db34da4dbcad620cedd"
+        },
+        "fingerprint": {
+          "after": "ea5a260566f735494b9fefc3c0c562a47f63ecfbecd6a79a8a8abf212b59bbed",
+          "before": "24bf460f495596d0ea882ca82e31005dea1960195696a8c49a9228eeef7fb300"
+        },
+        "material_change_hash": {
+          "after": "c9fcf49e6d148bc576fe020f056e97a2eca9f54313576f55059837ccbcf1c2fd",
+          "before": "294bddfe4b2ff608ec2a8c921e610308ec4c576a931f4db34da4dbcad620cedd"
+        }
+      },
+      "id": "sig_6f8b10450509451db80a",
+      "raw_source_hash": "99662971d7f0e5ed5189a1fc7ffcbd266248b7ee9c2c45df46054a3b090a4a6e",
+      "source_url": "https://www.grants.gov/search-results-detail/332126"
+    },
+    {
+      "cached_fact_basis": "Retained Grants.gov detail cache",
+      "changes": {
+        "buyer_name": {
+          "after": "Department of Commerce",
+          "before": "Bernadette Grafton\nProgram Analyst"
+        },
+        "content_hash": {
+          "after": "1315c296b5e558719ee8adf28171540e8016cf3a42da0ae1e13b908826de2bd1",
+          "before": "33fd84f6e14ab985d4f6ee19e9959e0789e32ba375a81570d4dc525023b4dd6b"
+        },
+        "fingerprint": {
+          "after": "2882bdc9af97edee10e747dbcb6ad4c56485022026ff807eb335319da528305b",
+          "before": "c1a4d14aee6836ed2ffe85361dbd86a29f1de90a55ebcf90145117c381805213"
+        },
+        "material_change_hash": {
+          "after": "1315c296b5e558719ee8adf28171540e8016cf3a42da0ae1e13b908826de2bd1",
+          "before": "33fd84f6e14ab985d4f6ee19e9959e0789e32ba375a81570d4dc525023b4dd6b"
+        }
+      },
+      "id": "sig_ad9432e0e83f65d510af",
+      "raw_source_hash": "ebfae31a5eec4d3759856804e6dac35f9e49d1649c041a0d2d23d8cabc58a1b7",
+      "source_url": "https://www.grants.gov/search-results-detail/332052"
+    },
+    {
+      "cached_fact_basis": "Retained Grants.gov detail cache",
+      "changes": {
+        "content_hash": {
+          "after": "4a8c7ece77276e8762ca330614c4bf80c0d6df010b9cdb0fbd9a0cec2c381e9b",
+          "before": "1b7009c0a5cd935af6d0bc9ede206050a44d6a7d8b96c9eebb85c1bfb3f961af"
+        },
+        "deadline_at": {
+          "after": "2027-12-23",
+          "before": "2027-12-23T00:00:00+00:00"
+        },
+        "material_change_hash": {
+          "after": "4a8c7ece77276e8762ca330614c4bf80c0d6df010b9cdb0fbd9a0cec2c381e9b",
+          "before": "1b7009c0a5cd935af6d0bc9ede206050a44d6a7d8b96c9eebb85c1bfb3f961af"
+        }
+      },
+      "id": "sig_b597df20b7998aa9aa67",
+      "raw_source_hash": "7f0447af604e4a79a24565e3d9df8f71c140efe2bed13d781839c73cddbb3330",
+      "source_url": "https://www.grants.gov/search-results-detail/357339"
+    },
+    {
+      "cached_fact_basis": "Retained Grants.gov detail cache",
+      "changes": {
+        "buyer_name": {
+          "after": "Department of Commerce",
+          "before": "Bernadette Grafton\nProgram Analyst"
+        },
+        "content_hash": {
+          "after": "3bc5cf032cebcf98b8760692cb139c00a418793cb68437a2e9a26d8c7e00e418",
+          "before": "369cc79dd2f56da6cc287fe9c645af0a7aed244ecabd8db5335b0ec1eab78b56"
+        },
+        "fingerprint": {
+          "after": "761ad72d3a90cec833202114dc6313765ccf9448dad6188efdea44316614a7a3",
+          "before": "904a9688b283cc2060fd8079022c456921b95896f8af4ed443dda06d33da8c25"
+        },
+        "material_change_hash": {
+          "after": "3bc5cf032cebcf98b8760692cb139c00a418793cb68437a2e9a26d8c7e00e418",
+          "before": "369cc79dd2f56da6cc287fe9c645af0a7aed244ecabd8db5335b0ec1eab78b56"
+        }
+      },
+      "id": "sig_b99bb07e2dc71f020694",
+      "raw_source_hash": "f0552928e3d98bf9c6da252aef4808bd8f11f3c442ef84dc207bd9bd2dc8c16e",
+      "source_url": "https://www.grants.gov/search-results-detail/332125"
+    },
+    {
+      "cached_fact_basis": "Retained Grants.gov detail cache",
+      "changes": {
+        "buyer_name": {
+          "after": "Department of Commerce",
+          "before": "Bernadette Grafton\nProgram Analyst"
+        },
+        "content_hash": {
+          "after": "b1b222c861402be23ce7cbba936e32318f66b021a65fd43022685459ce11b255",
+          "before": "0f48cd1cb55c56e9c99c8137fe70472513ae4474b0982044b63c05a57748ef9d"
+        },
+        "fingerprint": {
+          "after": "65468e536926e02f59b782017b46b94d04cd14384832ba80c3b78a1b27f672e9",
+          "before": "94c694a2616a1ca7cfbf1b03c4e7b991f3db5044017355b9a084bb6a29aea3de"
+        },
+        "material_change_hash": {
+          "after": "b1b222c861402be23ce7cbba936e32318f66b021a65fd43022685459ce11b255",
+          "before": "0f48cd1cb55c56e9c99c8137fe70472513ae4474b0982044b63c05a57748ef9d"
+        }
+      },
+      "id": "sig_d8ab2d4d79da0530f259",
+      "raw_source_hash": "0b4b44ba679194f7d2965716824542c75eba8a1e2cf07cf07c7f8b49701a987c",
+      "source_url": "https://www.grants.gov/search-results-detail/332137"
+    },
+    {
+      "cached_fact_basis": "Retained Grants.gov detail cache",
+      "changes": {
+        "buyer_name": {
+          "after": "Department of Commerce",
+          "before": "Bernadette Grafton\nProgram Analyst"
+        },
+        "content_hash": {
+          "after": "d4571da951953d3e36344977605ba45eb7506b4a8b2bfbd3982e68cab375632c",
+          "before": "f9865363db401bbb0b583f3156699b657e2697eaeed162bc0a51a68825ef3ce6"
+        },
+        "fingerprint": {
+          "after": "b7388a36f0b341a64aa001486c9046e6ea0b8080367af83120148dc8fb07ef89",
+          "before": "198cba7d15ef95ca5a29a1276c425771a783101d7823706fe1fb4852c755e0e8"
+        },
+        "material_change_hash": {
+          "after": "d4571da951953d3e36344977605ba45eb7506b4a8b2bfbd3982e68cab375632c",
+          "before": "f9865363db401bbb0b583f3156699b657e2697eaeed162bc0a51a68825ef3ce6"
+        }
+      },
+      "id": "sig_e3c5630449c1cbff05f3",
+      "raw_source_hash": "831f566c6e9a429d2bb0d3698520e60239f8914fabd81530382cf37d90b533a8",
+      "source_url": "https://www.grants.gov/search-results-detail/334079"
+    },
+    {
+      "cached_fact_basis": "Retained Grants.gov detail cache",
+      "changes": {
+        "buyer_name": {
+          "after": "Economic Development Administration",
+          "before": "Riley Oleary\nPolicy Analyst"
+        },
+        "content_hash": {
+          "after": "fe9c09bf36730f7a706c16de564979211c93463893267a1800e2185c6f748578",
+          "before": "7e72ea88eb66d09000885e602743699d09d1c3ccf6be9a990fcc72bdaac7d2d1"
+        },
+        "fingerprint": {
+          "after": "f2bc0aaaf51f1147799d8469864fec5b5dc69fa7f97848e4e43abc6c616c5171",
+          "before": "0cdeadcf58eb9e930622ee4f47212d469c5e47c795b61b295985fd94c28cb91a"
+        },
+        "material_change_hash": {
+          "after": "fe9c09bf36730f7a706c16de564979211c93463893267a1800e2185c6f748578",
+          "before": "7e72ea88eb66d09000885e602743699d09d1c3ccf6be9a990fcc72bdaac7d2d1"
+        }
+      },
+      "id": "sig_fb8a0001472daa3dcc2a",
+      "raw_source_hash": "bf2bcd3160e50a111ec850c9e78da26f40b018dc7a6f32f3643eedab86af1370",
+      "source_url": "https://www.grants.gov/search-results-detail/347414"
+    }
+  ],
+  "checked_at": "2026-09-19T00:14:34.688784+00:00",
+  "field_counts": {
+    "buyer_name": 11,
+    "content_hash": 17,
+    "deadline_at": 9,
+    "fingerprint": 11,
+    "material_change_hash": 17
+  },
+  "prior_full_replay_count": 47720,
+  "unchanged_public_membership_and_classification": true,
+  "unchanged_source_text_raw_hash_provenance_exact_keys_and_lot_outcomes": true
+}

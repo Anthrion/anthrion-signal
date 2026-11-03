@@ -1,0 +1,440 @@
+{
+  "active_recoveries": [
+    {
+      "id": "sig_30340d7ebc8cbf778525",
+      "lifecycle": "OPEN",
+      "reasons": [],
+      "source": "scotland",
+      "title": "C002201 Provision of a radiology online learning platform for all Radiology Doctors in Training in Scotland.",
+      "url": "https://api.publiccontractsscotland.gov.uk/v1/Notice?id=ocds-r6ebe6-0000840848"
+    },
+    {
+      "id": "sig_b54763ae594c7673f8c2",
+      "lifecycle": "OPEN",
+      "reasons": [],
+      "source": "digital_outcomes",
+      "title": "Digital Multi-Capability Services for Children & Families, Regions and wider DfE Services",
+      "url": "https://redirect.contractawardservice.gca.gov.uk/digital-outcomes/opportunities/opportunity-details/project/80252"
+    }
+  ],
+  "availability_recoveries": [
+    {
+      "id": "sig_612a31196a67f6f10354",
+      "lifecycle": "OPEN",
+      "reasons": [],
+      "source": "digital_outcomes",
+      "title": "RM1043.9-1-HOME OFFICE - Metis Architecture Services",
+      "url": "https://redirect.contractawardservice.gca.gov.uk/digital-outcomes/opportunities/opportunity-details/project/80109"
+    }
+  ],
+  "availability_removals": [
+    {
+      "id": "sig_b8d2566e687029caea5a",
+      "lifecycle": "EXPIRED",
+      "reasons": [],
+      "source": "digital_outcomes",
+      "title": "RM1043.9-2-Ministry Of Justice - Digital Outcomes",
+      "url": "https://redirect.contractawardservice.gca.gov.uk/digital-outcomes/opportunities/opportunity-details/project/74461"
+    }
+  ],
+  "counts_after": {
+    "published_before": 2857,
+    "published_excluded": 11,
+    "relevance": {
+      "below_threshold": 15162,
+      "candidate": 27848,
+      "excluded": 22159
+    },
+    "retained": 65169,
+    "unpublished_available_candidates": 49
+  },
+  "counts_before": {
+    "published_before": 2857,
+    "published_excluded": 0,
+    "relevance": {
+      "below_threshold": 15164,
+      "candidate": 27872,
+      "excluded": 22133
+    },
+    "retained": 65169,
+    "unpublished_available_candidates": 44
+  },
+  "observation_time": "2026-09-18T06:43:47+00:00",
+  "policy": "2026-09-18.1",
+  "published_tag_changes": 23,
+  "retained_published_tag_changes": 17,
+  "scope_removals": [
+    {
+      "id": "sig_5485d4092ed80bdeff22",
+      "lifecycle": "EARLY_ENGAGEMENT",
+      "reasons": [
+        "Non-technology service delivery without a stated software, AI or systems scope."
+      ],
+      "source": "find_tender",
+      "title": "PME Erasmus",
+      "url": "https://www.find-tender.service.gov.uk/Notice/085085-2026"
+    },
+    {
+      "id": "sig_5838cac639cd2297dfd3",
+      "lifecycle": "OPEN",
+      "reasons": [
+        "Occupational health or workplace safety services without a separately stated business-application, Salesforce or AI delivery scope."
+      ],
+      "source": "germany",
+      "title": "Commissioning of external safety-related support/occupational safety specialist - SiFa",
+      "url": "https://oeffentlichevergabe.de/ui/de/notices/25792312"
+    },
+    {
+      "id": "sig_6c981bbe68982b5ebafc",
+      "lifecycle": "UNKNOWN",
+      "reasons": [],
+      "source": "scotland",
+      "title": "Mechanical & Public Health Framework (MPHF) (2026-30)",
+      "url": "https://www.publiccontractsscotland.gov.uk/search/show/search_view.aspx?ID=APR553860"
+    },
+    {
+      "id": "sig_80307656b4ae4bf0f8b0",
+      "lifecycle": "FUTURE",
+      "reasons": [
+        "Non-technology service delivery without a stated software, AI or systems scope."
+      ],
+      "source": "find_tender",
+      "title": "Richmond Electric Outdoor Saunas",
+      "url": "https://www.find-tender.service.gov.uk/Notice/088420-2026"
+    },
+    {
+      "id": "sig_818f3c31f9b6d2d0db02",
+      "lifecycle": "OPEN",
+      "reasons": [],
+      "source": "find_tender",
+      "title": "Shopmobility",
+      "url": "https://www.find-tender.service.gov.uk/Notice/087691-2026"
+    },
+    {
+      "id": "sig_8218dad4a44ee63f62fa",
+      "lifecycle": "FUTURE",
+      "reasons": [
+        "Business promotion or partnership development consultancy without a separately stated business-application, Salesforce or AI delivery scope."
+      ],
+      "source": "contracts_finder",
+      "title": "Business Engagement Consultancy for Faculty of Health and Life Sciences- Expressions of Interest",
+      "url": "https://www.contractsfinder.service.gov.uk/Notice/a291b5dc-6aae-4229-8ed7-47230917f785"
+    },
+    {
+      "id": "sig_84287d20e16d82006a75",
+      "lifecycle": "OPEN",
+      "reasons": [
+        "Occupational health or workplace safety services without a separately stated business-application, Salesforce or AI delivery scope."
+      ],
+      "source": "ted",
+      "title": "Safety engineering and occupational health services",
+      "url": "https://ted.europa.eu/en/notice/-/detail/616500-2026"
+    },
+    {
+      "id": "sig_8bc0e0980aa8ee6ca948",
+      "lifecycle": "OPEN",
+      "reasons": [],
+      "source": "find_tender",
+      "title": "PAN3612 - Procurement of Housing Training and Learning Framework",
+      "url": "https://www.find-tender.service.gov.uk/Notice/086867-2026"
+    },
+    {
+      "id": "sig_bb0518cfc3dc3f4f3ef9",
+      "lifecycle": "FUTURE",
+      "reasons": [
+        "Physical computing, network or measurement equipment without a separately stated business-application, Salesforce or AI delivery scope."
+      ],
+      "source": "scotland",
+      "title": "Energy-Efficient Audio-Visual Equipment and Solutions",
+      "url": "https://www.publiccontractsscotland.gov.uk/search/show/search_view.aspx?ID=JUL560733"
+    },
+    {
+      "id": "sig_c33fe617e6d71b8423dd",
+      "lifecycle": "OPEN",
+      "reasons": [
+        "Coding or classification of survey responses as a service without a separately stated business-application, Salesforce or AI delivery scope."
+      ],
+      "source": "find_tender",
+      "title": "SIC and SOC Coding of the Graduate Outcomes survey",
+      "url": "https://www.find-tender.service.gov.uk/Notice/085347-2026"
+    },
+    {
+      "id": "sig_cd24866af8aff1b503e6",
+      "lifecycle": "EARLY_ENGAGEMENT",
+      "reasons": [],
+      "source": "find_tender",
+      "title": "Managed lettings services for The Sir John Brunner Foundation",
+      "url": "https://www.find-tender.service.gov.uk/Notice/085027-2026"
+    }
+  ],
+  "signature": "8628cd13e9ac938884ab6cd4574fb92825f9108f674dbcdaf647c69cdab7a93c",
+  "snapshot_hash": "b5bf4e40fd7f985a355f69ca050621571fb333cbc91ad3d52d38ba13149f0566",
+  "source_counts": {
+    "contracts_finder": 15707,
+    "digital_outcomes": 38,
+    "find_tender": 2121,
+    "germany": 3579,
+    "govuk": 8362,
+    "grants": 419,
+    "la_ramp": 417,
+    "nyc_city_record": 307,
+    "scotland": 2633,
+    "spain": 12977,
+    "ted": 18447,
+    "upcoming_agreements": 51,
+    "usaspending": 97,
+    "wales": 14
+  },
+  "source_health": [
+    {
+      "id": "find_tender",
+      "last_success": "2026-09-18T06:43:47+00:00",
+      "message": null,
+      "records": 4,
+      "status": "healthy"
+    },
+    {
+      "id": "contracts_finder",
+      "last_success": "2026-09-18T06:43:47+00:00",
+      "message": null,
+      "records": 725,
+      "status": "healthy"
+    },
+    {
+      "id": "scotland",
+      "last_success": "2026-09-18T06:43:47+00:00",
+      "message": null,
+      "records": 290,
+      "status": "healthy"
+    },
+    {
+      "id": "wales",
+      "last_success": null,
+      "message": "Source data conversion failed (HTTP 500); latest public listing retained with partial coverage.",
+      "records": 10,
+      "status": "partial"
+    },
+    {
+      "id": "govuk",
+      "last_success": null,
+      "message": "Some search queries are still catching up; offsets are retained.",
+      "records": 1193,
+      "status": "partial"
+    },
+    {
+      "id": "digital_outcomes",
+      "last_success": "2026-09-18T06:43:47+00:00",
+      "message": null,
+      "records": 39,
+      "status": "healthy"
+    },
+    {
+      "id": "upcoming_agreements",
+      "last_success": "2026-09-18T06:43:47+00:00",
+      "message": null,
+      "records": 49,
+      "status": "healthy"
+    },
+    {
+      "id": "ted",
+      "last_success": "2026-09-13T14:07:52+00:00",
+      "message": "Classification search retained; additional keyword windows are catching up within the page budget.",
+      "records": 2595,
+      "status": "partial"
+    },
+    {
+      "id": "germany",
+      "last_success": "2026-09-18T06:43:47+00:00",
+      "message": null,
+      "records": 0,
+      "status": "healthy"
+    },
+    {
+      "id": "spain",
+      "last_success": null,
+      "message": "PLACSP page budget reached; older notice windows will resume next run.",
+      "records": 642,
+      "status": "partial"
+    },
+    {
+      "id": "nyc_city_record",
+      "last_success": "2026-09-18T06:43:47+00:00",
+      "message": null,
+      "records": 0,
+      "status": "healthy"
+    },
+    {
+      "id": "la_ramp",
+      "last_success": "2026-09-17T06:47:00+00:00",
+      "message": "LA RAMP returned an incomplete snapshot",
+      "records": 0,
+      "status": "failed"
+    },
+    {
+      "id": "grants",
+      "last_success": "2026-09-18T06:43:47+00:00",
+      "message": null,
+      "records": 403,
+      "status": "healthy"
+    }
+  ],
+  "transitions": {
+    "below_threshold -> below_threshold": 15147,
+    "below_threshold -> candidate": 11,
+    "below_threshold -> excluded": 6,
+    "candidate -> below_threshold": 15,
+    "candidate -> candidate": 27836,
+    "candidate -> excluded": 21,
+    "excluded -> candidate": 1,
+    "excluded -> excluded": 22132
+  },
+  "uncertain_published_windows": [
+    {
+      "id": "sig_01348e7b27a4973fe5ff",
+      "lifecycle": "UNKNOWN",
+      "reasons": [],
+      "source": "digital_outcomes",
+      "title": "RM1043.9-2-Ministry Of Justice",
+      "url": "https://redirect.contractawardservice.gca.gov.uk/digital-outcomes/opportunities/opportunity-details/project/76119"
+    },
+    {
+      "id": "sig_1ced85245423d163ea34",
+      "lifecycle": "UNKNOWN",
+      "reasons": [],
+      "source": "digital_outcomes",
+      "title": "FCDO/DDaT: Digital and Data: CPG/13857/2026 - Digital Products and Services,Corporate Enquiries Handling",
+      "url": "https://redirect.contractawardservice.gca.gov.uk/digital-outcomes/opportunities/opportunity-details/project/74534"
+    },
+    {
+      "id": "sig_2b62ef0dd2d936419258",
+      "lifecycle": "UNKNOWN",
+      "reasons": [],
+      "source": "digital_outcomes",
+      "title": "HOS0069 - Digital Delivery Partner (Work Package A – Discovery & Design)",
+      "url": "https://redirect.contractawardservice.gca.gov.uk/digital-outcomes/opportunities/opportunity-details/project/74078"
+    },
+    {
+      "id": "sig_6d4aa3f709819a3c1e27",
+      "lifecycle": "UNKNOWN",
+      "reasons": [],
+      "source": "digital_outcomes",
+      "title": "prj_14708 HMCTS Software Engineering Centre of Excellence",
+      "url": "https://redirect.contractawardservice.gca.gov.uk/digital-outcomes/opportunities/opportunity-details/project/74607"
+    },
+    {
+      "id": "sig_b5a9044288adcfdb5a8e",
+      "lifecycle": "UNKNOWN",
+      "reasons": [],
+      "source": "digital_outcomes",
+      "title": "RM1043.9-1-Clackmannanshire Council",
+      "url": "https://redirect.contractawardservice.gca.gov.uk/digital-outcomes/opportunities/opportunity-details/project/74112"
+    },
+    {
+      "id": "sig_c76005130777954dddf6",
+      "lifecycle": "UNKNOWN",
+      "reasons": [],
+      "source": "digital_outcomes",
+      "title": "prj_16059 Managed Service Procurement for the Resettlement Passport (RP)",
+      "url": "https://redirect.contractawardservice.gca.gov.uk/digital-outcomes/opportunities/opportunity-details/project/75525"
+    },
+    {
+      "id": "sig_e75ba743401c8a7c8c17",
+      "lifecycle": "UNKNOWN",
+      "reasons": [],
+      "source": "digital_outcomes",
+      "title": "RM1043.9-1-Peabody Website",
+      "url": "https://redirect.contractawardservice.gca.gov.uk/digital-outcomes/opportunities/opportunity-details/project/73661"
+    },
+    {
+      "id": "sig_e8145ecd6415d86aeab5",
+      "lifecycle": "UNKNOWN",
+      "reasons": [],
+      "source": "digital_outcomes",
+      "title": "prj_17750 HMCTS Digital Engineering Communities of Practice",
+      "url": "https://redirect.contractawardservice.gca.gov.uk/digital-outcomes/opportunities/opportunity-details/project/76294"
+    },
+    {
+      "id": "sig_f927269b067eb3cdc652",
+      "lifecycle": "UNKNOWN",
+      "reasons": [],
+      "source": "digital_outcomes",
+      "title": "prj_16447 - Community Payback - next stage of modernisation",
+      "url": "https://redirect.contractawardservice.gca.gov.uk/digital-outcomes/opportunities/opportunity-details/project/74629"
+    }
+  ],
+  "unpublished_unknown_candidates": 46,
+  "award_history": {
+    "market_entries": 16068,
+    "unique_notice_ids": 16048,
+    "market_counts": {
+      "DE": 2767,
+      "ES": 3205,
+      "GB": 7526,
+      "GR": 373,
+      "IT": 456,
+      "NORDICS": 1643,
+      "US": 98
+    },
+    "original_language_fallback": true,
+    "additional_translation_requests": 0
+  },
+  "baseline_revision": "c199809567c9895c25f497564fdd1586e610072f",
+  "la_ramp_recheck": {
+    "at": "2026-09-18T09:43:11.779586+00:00",
+    "health": {
+      "countries": [
+        "US"
+      ],
+      "coverage": "Official open bid listings. Task-order-only routes are excluded until participation rights are confirmed; full terms remain in the original notice.",
+      "enabled": true,
+      "id": "la_ramp",
+      "last_attempt": "2026-09-18T09:43:10.417348+00:00",
+      "last_success": "2026-09-18T09:43:10.417348+00:00",
+      "message": null,
+      "name": "Los Angeles RAMP",
+      "records": 431,
+      "status": "healthy",
+      "website": "https://www.rampla.org"
+    },
+    "normalised": 431,
+    "raw_count": 431,
+    "source": "la_ramp"
+  },
+  "public_relevance_comparison": {
+    "after": 2846,
+    "before": 2857,
+    "countries_after": {
+      "DE": 628,
+      "DK": 73,
+      "ES": 731,
+      "FI": 206,
+      "GB": 442,
+      "GR": 47,
+      "IS": 14,
+      "IT": 118,
+      "NO": 323,
+      "SE": 222,
+      "US": 58
+    },
+    "countries_before": {
+      "DE": 630,
+      "DK": 73,
+      "ES": 731,
+      "FI": 206,
+      "GB": 451,
+      "GR": 47,
+      "IS": 14,
+      "IT": 118,
+      "NO": 323,
+      "SE": 222,
+      "US": 58
+    },
+    "newly_tagged": 12,
+    "snapshot": "2026-09-18T06:43:47+00:00",
+    "snapshot_hash": "1394b256af531f679fe48edef82187366d5533da25117e981491ad10260b8487",
+    "untagged_after": 2287,
+    "untagged_before": 2299
+  },
+  "report_generated_at": "2026-09-18T10:14:43.733538+00:00",
+  "source_preservation": "Original titles, source hashes and source URLs unchanged for all 65,169 retained identities."
+}

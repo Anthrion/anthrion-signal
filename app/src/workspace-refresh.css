@@ -1,0 +1,493 @@
+/* Workspace refresh: denser chrome, one complete record, live refiners. */
+
+/* Slimmer glass refiners: the same material with a two-line face. The band holds the face size,
+   so the export beside the cards is sized and centred with them. */
+.discovery-band {
+  --discovery-face: 76;
+}
+.discovery {
+  /* Six cards where each keeps ~150px; narrower bands show fewer and scroll. */
+  --discovery-max: 6;
+  --discovery-value-size: 27px;
+  /* The glass bends into its lower rim this far above the bottom edge; text stays above it. */
+  --glass-rim: 15px;
+  padding-bottom: 4px;
+}
+.discovery-viewport,
+.discovery-export {
+  height: calc(var(--discovery-face) * 1px + 24px);
+}
+.carousel-arrow {
+  top: calc(var(--discovery-face) * 0.5px - 5px);
+}
+.discovery-slide {
+  flex-basis: calc(100% / min(var(--discovery-slots, 5), var(--discovery-max)));
+}
+.discovery-card {
+  grid-template-rows: auto auto;
+  align-content: center;
+  row-gap: 3px;
+  column-gap: 10px;
+  padding: 0 18px var(--glass-rim);
+}
+.discovery-value {
+  /* Up to 12,345 stays clear of the icon as the card narrows. */
+  font-size: clamp(22px, calc((100cqi - 71px) / 3), var(--discovery-value-size));
+}
+.discovery-icon {
+  width: 23px;
+  height: 23px;
+}
+.discovery-name {
+  /* One line above the rim: the label shrinks with the card, then shortens. */
+  font-size: clamp(12.5px, calc((100cqi - 36px) / 8.9), 14px);
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.discovery-name-short {
+  display: none;
+}
+@container (max-width: 146px) {
+  .discovery-name-long:has(+ .discovery-name-short) {
+    display: none;
+  }
+  .discovery-name-short {
+    display: inline;
+  }
+}
+
+/* Chip refiners: the compact preference on desktop and the default on narrow screens. */
+.compact-refiners {
+  flex-wrap: nowrap;
+  gap: 6px;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  scroll-snap-type: x proximity;
+}
+.compact-refiners button {
+  flex: 0 0 auto;
+  gap: 8px;
+  min-height: 36px;
+  padding: 0 13px;
+  border-radius: 8px;
+  font-size: 12px;
+  white-space: nowrap;
+  scroll-snap-align: start;
+}
+.compact-refiners button > svg {
+  color: var(--ice);
+}
+.compact-refiners button[aria-pressed='true'] > svg {
+  color: var(--mint);
+}
+.compact-refiners small {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  opacity: 1;
+  font-variant-numeric: tabular-nums;
+}
+.compact-refiners button[aria-pressed='true'] small {
+  color: var(--mint);
+}
+
+/* Search box owns its options; the chip row only appears while something narrows the feed. */
+.search-workspace {
+  padding: 0 0 12px;
+}
+.state-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 9px;
+  border: 1px solid var(--line-strong);
+  border-radius: 5px;
+  color: var(--text);
+  background: var(--surface-hover);
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+/* Result rows */
+.row-deadline {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.row-deadline em {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--amber);
+  font-style: normal;
+  font-weight: 600;
+}
+.row-utilities .hide-toggle {
+  color: var(--dim);
+}
+.row-utilities .hide-toggle:hover {
+  color: var(--text);
+}
+.row-utilities .hide-toggle:disabled {
+  opacity: 0.5;
+}
+
+/* Record: one scroll holds the notice, its dates, lots, documents and source history. */
+.buyer-history-link .buyer-history-count {
+  margin-left: 6px;
+  color: var(--dim);
+  font-size: 12px;
+  text-transform: none;
+  white-space: nowrap;
+}
+.fact-absent {
+  color: var(--dim);
+}
+.record-integration-link {
+  color: var(--muted);
+}
+.record-integration-link:hover {
+  color: var(--text);
+  border-color: var(--muted);
+  background: var(--surface-hover);
+}
+.summary-tools {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 26px;
+  margin-bottom: 6px;
+}
+.summary-tools .translation-status {
+  margin: 0;
+}
+.language-peek {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  padding: 3px 8px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  color: var(--muted);
+  font-size: 11px;
+}
+.language-peek:hover {
+  color: var(--text);
+  border-color: var(--line-strong);
+}
+.read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 34px;
+  margin-top: 10px;
+  color: var(--ice);
+  font-size: 13px;
+}
+.read-more:hover {
+  color: var(--text);
+}
+.record-details {
+  display: grid;
+  margin-top: 26px;
+}
+.record-section {
+  padding: 18px 0;
+  border-top: 1px solid var(--line);
+}
+.record-section > h3,
+.record-procurement .procurement-history > h3 {
+  margin: 0 0 12px;
+  color: var(--ice);
+  font-size: 13px;
+  font-weight: 450;
+}
+.record-section .deadline-event:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+.record-procurement:not(:has(.procurement-history > *)) {
+  display: none;
+}
+.record-procurement .procurement-history > h3:first-child {
+  margin-top: 0;
+}
+.record-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 14px 20px;
+  margin: 0;
+}
+.record-facts dt {
+  margin-bottom: 4px;
+  color: var(--muted);
+  font-size: 11px;
+}
+.record-facts dd {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+.record-history {
+  border-top: 1px solid var(--line);
+  padding: 6px 0 4px;
+}
+.record-history > summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  color: var(--muted);
+  font-size: 13px;
+  cursor: pointer;
+  list-style: none;
+}
+.record-history > summary::-webkit-details-marker {
+  display: none;
+}
+.record-history > summary:hover,
+.record-history[open] > summary {
+  color: var(--text);
+}
+.record-history > :not(summary) {
+  margin-top: 10px;
+}
+.record-history .record-facts {
+  margin-top: 18px;
+}
+.record-action-dock .record-detail-button {
+  color: var(--muted);
+  font-size: 12px;
+}
+.record-action-dock .record-detail-button > span {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+}
+.record-action-dock .record-detail-button small {
+  color: var(--dim);
+  font-size: 11px;
+}
+.record-action-dock .record-detail-button:hover {
+  color: var(--text);
+}
+
+/* Header: two collections beside the workspace menu. */
+.workspace-nav {
+  gap: 20px;
+}
+.workspace-nav button[aria-pressed='true'] {
+  color: var(--text);
+  box-shadow: 0 2px var(--mint);
+}
+.workspace-tools .icon-button {
+  width: 38px;
+  height: 38px;
+  color: var(--text);
+}
+
+/* Market row: counts in More, and the menu stays inside small screens. */
+.more-market-menu > button > span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.more-market-menu > button > small {
+  flex-shrink: 0;
+  color: var(--dim);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+}
+.more-market-menu > button[data-empty] {
+  color: var(--dim);
+}
+
+.market-section .language-switch {
+  flex: 0 0 auto;
+}
+.market-section .language-switch > button {
+  min-height: 28px;
+  padding-inline: 10px;
+}
+.language-switch .language-short {
+  display: none;
+}
+
+/* Context: the record card leads; the page name no longer takes a hero band. */
+.research-page:not(.research-record-page) .research-hero {
+  margin-bottom: 18px;
+}
+.research-page .research-hero h1 {
+  font-size: clamp(22px, 2vw, 30px);
+  margin: 0 0 4px;
+}
+
+/* Short laptop screens keep the markets and refiners, with less air around them. */
+@media (min-width: 901px) and (max-height: 800px) {
+  .market-section {
+    min-height: 56px;
+    padding-block: 2px 0;
+  }
+  .market-tabs button {
+    min-height: 40px;
+    padding-bottom: 10px;
+  }
+  .discovery-band {
+    --discovery-face: 70;
+  }
+  .discovery {
+    --discovery-value-size: 25px;
+  }
+}
+@media (max-width: 1140px) {
+  .discovery {
+    --discovery-max: 5;
+  }
+}
+@media (max-width: 1000px) {
+  .discovery {
+    --discovery-max: 4;
+  }
+}
+@media (max-width: 900px) {
+  .workspace-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    align-items: center;
+    row-gap: 10px;
+  }
+  .workspace-search {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+  .workspace-nav {
+    gap: 14px;
+  }
+  .workspace-tools {
+    border: 0;
+    padding-left: 0;
+  }
+  .compact-reading .discovery-band {
+    padding: 8px 0 10px;
+  }
+  .compact-refiners {
+    margin-inline: -18px;
+    padding-inline: 18px;
+  }
+  .modal.drawer .record-action-dock {
+    padding-inline: 16px;
+  }
+}
+@media (max-width: 620px) {
+  .workspace-search {
+    flex-wrap: nowrap;
+  }
+  .workspace-search .search-box {
+    flex: 1 1 auto;
+    flex-basis: auto;
+    min-width: 0;
+  }
+  .workspace-search .filter-button {
+    position: relative;
+    width: 42px;
+    margin-right: 0;
+    padding: 0;
+  }
+  .workspace-search .filter-button > span:not(.filter-count) {
+    display: none;
+  }
+  .workspace-search .filter-button .filter-count {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+  }
+  .sort-trigger {
+    width: 42px;
+    padding: 0;
+    justify-content: center;
+  }
+  .sort-trigger > svg:first-child {
+    display: block;
+  }
+  .sort-trigger > span,
+  .sort-trigger > svg:last-child {
+    display: none;
+  }
+  .compact-refiners {
+    margin-inline: -12px;
+    padding-inline: 12px;
+  }
+  .market-section {
+    gap: 4px;
+  }
+  .more-market-menu {
+    position: fixed;
+    top: auto;
+    left: 12px;
+    right: 12px;
+    width: auto;
+    max-width: none;
+    margin-top: 6px;
+  }
+  .record-facts {
+    grid-template-columns: 1fr 1fr;
+  }
+  /* No room for the date on phones; screen readers still hear when the source was checked. */
+  .record-action-dock .record-detail-button small {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .market-section .language-switch > button {
+    padding-inline: 8px;
+  }
+  .language-switch .language-long {
+    display: none;
+  }
+  .language-switch .language-short {
+    display: inline;
+  }
+}
+/* Small phones: the brand scales so the collections and menu keep their row. */
+@media (max-width: 420px) {
+  .workspace-brand {
+    gap: 7px;
+  }
+  .workspace-brand img {
+    width: 118px;
+    height: 26px;
+  }
+  .workspace-brand em {
+    font-size: 23px;
+  }
+  .workspace-nav {
+    gap: 12px;
+  }
+}
+@media (max-width: 350px) {
+  .workspace-brand img {
+    width: 98px;
+  }
+  .workspace-brand em {
+    font-size: 20px;
+  }
+  .workspace-nav {
+    gap: 10px;
+  }
+  .workspace-nav button {
+    gap: 5px;
+  }
+}

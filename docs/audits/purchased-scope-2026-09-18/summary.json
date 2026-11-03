@@ -1,0 +1,191 @@
+{
+  "snapshot_commit": "6c80ec383c78e5610c798f823c6f4b7a6edfbf2d",
+  "at": "2026-09-18T19:14:50+00:00",
+  "baseline_signature": "87aa0f515d4d821e7828c60787d238f476cf6aa94ab4e60c77b467e25774804e",
+  "revised_signature": "dc80db167fe1f25dea77207d31ee36244b117589b056b9e15d5fd9fbc1436b07",
+  "published_snapshot": 2964,
+  "before": {
+    "retained": 74820,
+    "candidate": 29351,
+    "public": 3008,
+    "award": 16950,
+    "other": 2505,
+    "platform": 385,
+    "ai": 118
+  },
+  "after": {
+    "retained": 74820,
+    "candidate": 29201,
+    "public": 2921,
+    "award": 16924,
+    "other": 2483,
+    "platform": 325,
+    "ai": 113
+  },
+  "comparison": {
+    "retained": 74820,
+    "unchanged_source_and_translation_content": true,
+    "removed_candidates": {
+      "count": 155,
+      "sources": {
+        "ted": 53,
+        "spain": 43,
+        "find_tender": 13,
+        "germany": 25,
+        "grants": 3,
+        "scotland": 11,
+        "contracts_finder": 6,
+        "digital_outcomes": 1
+      },
+      "reasons": {
+        "Execution of surveys or market research without a separately stated business-application, Salesforce or AI delivery scope.": 6,
+        "Physical IT, printing or compute capacity supply without a separately stated business-application, Salesforce or AI delivery scope.": 23,
+        "Engineering or surveying advice for physical infrastructure without a separately stated business-application, Salesforce or AI delivery scope.": 5,
+        "Physical security, cameras or access hardware without a separately stated business-application, Salesforce or AI delivery scope.": 3,
+        "Specialist physical equipment or consumables without a separately stated business-application, Salesforce or AI delivery scope.": 10,
+        "Occupational health or workplace safety services without a separately stated business-application, Salesforce or AI delivery scope.": 4,
+        "Legal representation or insurance services without a separately stated business-application, Salesforce or AI delivery scope.": 8,
+        "Physical construction, refurbishment, engineering or ecological works without a separately stated business-application, Salesforce or AI delivery scope.": 12,
+        "Non-technology service delivery without a stated software, AI or systems scope.": 19,
+        "Physical field surveys or sampling without a separately stated business-application, Salesforce or AI delivery scope.": 5,
+        "Human employment support or coaching services without a separately stated business-application, Salesforce or AI delivery scope.": 2,
+        "Specialist advice on physical assets, radiation safety or agricultural production without a separately stated business-application, Salesforce or AI delivery scope.": 4,
+        "Physical plant efficiency testing or wastewater sampling without a separately stated business-application, Salesforce or AI delivery scope.": 2,
+        "Creative, advertising or public relations services without a separately stated business-application, Salesforce or AI delivery scope.": 3,
+        "Business promotion or partnership development consultancy without a separately stated business-application, Salesforce or AI delivery scope.": 2,
+        "Access to published books or journals rather than delivery of a digital system without a separately stated business-application, Salesforce or AI delivery scope.": 4,
+        "Property appraisal services without a separately stated business-application, Salesforce or AI delivery scope.": 4,
+        "The source explicitly marks the notice and multiple procurement fields as test placeholders.": 1,
+        "Industry representation and liaison rather than delivery of a digital system without a separately stated business-application, Salesforce or AI delivery scope.": 1,
+        "Physical fitness equipment and servicing without a separately stated business-application, Salesforce or AI delivery scope.": 1,
+        "Laboratory or clinical incubation equipment without a separately stated business-application, Salesforce or AI delivery scope.": 1
+      }
+    },
+    "recovered_candidates": {
+      "count": 5,
+      "sources": {
+        "contracts_finder": 4,
+        "find_tender": 1
+      },
+      "reasons": {}
+    },
+    "removed_published": {
+      "count": 88,
+      "sources": {
+        "ted": 35,
+        "find_tender": 11,
+        "spain": 7,
+        "germany": 22,
+        "grants": 3,
+        "scotland": 8,
+        "contracts_finder": 1,
+        "digital_outcomes": 1
+      },
+      "reasons": {
+        "Execution of surveys or market research without a separately stated business-application, Salesforce or AI delivery scope.": 5,
+        "Physical IT, printing or compute capacity supply without a separately stated business-application, Salesforce or AI delivery scope.": 17,
+        "Engineering or surveying advice for physical infrastructure without a separately stated business-application, Salesforce or AI delivery scope.": 4,
+        "Physical security, cameras or access hardware without a separately stated business-application, Salesforce or AI delivery scope.": 2,
+        "Specialist physical equipment or consumables without a separately stated business-application, Salesforce or AI delivery scope.": 7,
+        "Occupational health or workplace safety services without a separately stated business-application, Salesforce or AI delivery scope.": 3,
+        "Physical construction, refurbishment, engineering or ecological works without a separately stated business-application, Salesforce or AI delivery scope.": 12,
+        "Non-technology service delivery without a stated software, AI or systems scope.": 2,
+        "Legal representation or insurance services without a separately stated business-application, Salesforce or AI delivery scope.": 3,
+        "Physical field surveys or sampling without a separately stated business-application, Salesforce or AI delivery scope.": 5,
+        "Human employment support or coaching services without a separately stated business-application, Salesforce or AI delivery scope.": 2,
+        "Specialist advice on physical assets, radiation safety or agricultural production without a separately stated business-application, Salesforce or AI delivery scope.": 4,
+        "Physical plant efficiency testing or wastewater sampling without a separately stated business-application, Salesforce or AI delivery scope.": 2,
+        "Creative, advertising or public relations services without a separately stated business-application, Salesforce or AI delivery scope.": 3,
+        "Business promotion or partnership development consultancy without a separately stated business-application, Salesforce or AI delivery scope.": 2,
+        "Access to published books or journals rather than delivery of a digital system without a separately stated business-application, Salesforce or AI delivery scope.": 3,
+        "Property appraisal services without a separately stated business-application, Salesforce or AI delivery scope.": 3,
+        "The source explicitly marks the notice and multiple procurement fields as test placeholders.": 1,
+        "Industry representation and liaison rather than delivery of a digital system without a separately stated business-application, Salesforce or AI delivery scope.": 1,
+        "Physical fitness equipment and servicing without a separately stated business-application, Salesforce or AI delivery scope.": 1,
+        "Laboratory or clinical incubation equipment without a separately stated business-application, Salesforce or AI delivery scope.": 1
+      }
+    },
+    "removed_live": {
+      "count": 88,
+      "sources": {
+        "ted": 35,
+        "find_tender": 11,
+        "spain": 7,
+        "germany": 22,
+        "grants": 3,
+        "scotland": 8,
+        "contracts_finder": 1,
+        "digital_outcomes": 1
+      },
+      "reasons": {
+        "Execution of surveys or market research without a separately stated business-application, Salesforce or AI delivery scope.": 5,
+        "Physical IT, printing or compute capacity supply without a separately stated business-application, Salesforce or AI delivery scope.": 17,
+        "Engineering or surveying advice for physical infrastructure without a separately stated business-application, Salesforce or AI delivery scope.": 4,
+        "Physical security, cameras or access hardware without a separately stated business-application, Salesforce or AI delivery scope.": 2,
+        "Specialist physical equipment or consumables without a separately stated business-application, Salesforce or AI delivery scope.": 7,
+        "Occupational health or workplace safety services without a separately stated business-application, Salesforce or AI delivery scope.": 3,
+        "Physical construction, refurbishment, engineering or ecological works without a separately stated business-application, Salesforce or AI delivery scope.": 12,
+        "Non-technology service delivery without a stated software, AI or systems scope.": 2,
+        "Legal representation or insurance services without a separately stated business-application, Salesforce or AI delivery scope.": 3,
+        "Physical field surveys or sampling without a separately stated business-application, Salesforce or AI delivery scope.": 5,
+        "Human employment support or coaching services without a separately stated business-application, Salesforce or AI delivery scope.": 2,
+        "Specialist advice on physical assets, radiation safety or agricultural production without a separately stated business-application, Salesforce or AI delivery scope.": 4,
+        "Physical plant efficiency testing or wastewater sampling without a separately stated business-application, Salesforce or AI delivery scope.": 2,
+        "Creative, advertising or public relations services without a separately stated business-application, Salesforce or AI delivery scope.": 3,
+        "Business promotion or partnership development consultancy without a separately stated business-application, Salesforce or AI delivery scope.": 2,
+        "Access to published books or journals rather than delivery of a digital system without a separately stated business-application, Salesforce or AI delivery scope.": 3,
+        "Property appraisal services without a separately stated business-application, Salesforce or AI delivery scope.": 3,
+        "The source explicitly marks the notice and multiple procurement fields as test placeholders.": 1,
+        "Industry representation and liaison rather than delivery of a digital system without a separately stated business-application, Salesforce or AI delivery scope.": 1,
+        "Physical fitness equipment and servicing without a separately stated business-application, Salesforce or AI delivery scope.": 1,
+        "Laboratory or clinical incubation equipment without a separately stated business-application, Salesforce or AI delivery scope.": 1
+      }
+    },
+    "recovered_live": {
+      "count": 1,
+      "sources": {
+        "contracts_finder": 1
+      },
+      "reasons": {}
+    },
+    "removed_awards": {
+      "count": 30,
+      "sources": {
+        "spain": 7,
+        "ted": 12,
+        "scotland": 3,
+        "contracts_finder": 5,
+        "germany": 3
+      },
+      "reasons": {
+        "Legal representation or insurance services without a separately stated business-application, Salesforce or AI delivery scope.": 4,
+        "Non-technology service delivery without a stated software, AI or systems scope.": 8,
+        "Specialist physical equipment or consumables without a separately stated business-application, Salesforce or AI delivery scope.": 3,
+        "Occupational health or workplace safety services without a separately stated business-application, Salesforce or AI delivery scope.": 1,
+        "Physical IT, printing or compute capacity supply without a separately stated business-application, Salesforce or AI delivery scope.": 2,
+        "Execution of surveys or market research without a separately stated business-application, Salesforce or AI delivery scope.": 1,
+        "Property appraisal services without a separately stated business-application, Salesforce or AI delivery scope.": 1
+      }
+    },
+    "recovered_awards": {
+      "count": 4,
+      "sources": {
+        "find_tender": 1,
+        "contracts_finder": 3
+      },
+      "reasons": {}
+    },
+    "changed_published_labels": {
+      "count": 46,
+      "sources": {
+        "spain": 13,
+        "ted": 33
+      },
+      "reasons": {}
+    }
+  },
+  "reviewed_regression_cases": {
+    "exclude": 124,
+    "retain": 39
+  }
+}

@@ -1,0 +1,247 @@
+{
+  "countries": {
+    "DE": 9991,
+    "DK": 426,
+    "ES": 18274,
+    "FI": 1265,
+    "GB": 28927,
+    "GR": 818,
+    "IS": 36,
+    "IT": 1157,
+    "NO": 1368,
+    "SE": 1746,
+    "US": 1240
+  },
+  "grain": "Latest retained notice identity, not unique contracts or suppliers",
+  "invalid_observation_times": 0,
+  "invalid_source_urls": 0,
+  "missing": {
+    "buyer_name": 149,
+    "cpv_codes": 11009,
+    "currency": 20923,
+    "deadline_at": 36977,
+    "description": 521,
+    "incumbent_supplier": 33297,
+    "primary_source_url": 0,
+    "published_at": 218,
+    "title": 0,
+    "value_max": 22018
+  },
+  "negative_value": 0,
+  "retained_id_count": 65169,
+  "reversed_value_range": 57,
+  "sources": {
+    "contracts_finder": {
+      "missing": {
+        "buyer_name": 0,
+        "cpv_codes": 0,
+        "currency": 373,
+        "deadline_at": 194,
+        "description": 0,
+        "incumbent_supplier": 1146,
+        "primary_source_url": 0,
+        "published_at": 0,
+        "title": 0,
+        "value_max": 373
+      },
+      "rows": 15707
+    },
+    "digital_outcomes": {
+      "missing": {
+        "buyer_name": 0,
+        "cpv_codes": 38,
+        "currency": 6,
+        "deadline_at": 33,
+        "description": 0,
+        "incumbent_supplier": 38,
+        "primary_source_url": 0,
+        "published_at": 38,
+        "title": 0,
+        "value_max": 6
+      },
+      "rows": 38
+    },
+    "find_tender": {
+      "missing": {
+        "buyer_name": 0,
+        "cpv_codes": 937,
+        "currency": 1184,
+        "deadline_at": 1653,
+        "description": 10,
+        "incumbent_supplier": 859,
+        "primary_source_url": 0,
+        "published_at": 0,
+        "title": 0,
+        "value_max": 1311
+      },
+      "rows": 2121
+    },
+    "germany": {
+      "missing": {
+        "buyer_name": 1,
+        "cpv_codes": 144,
+        "currency": 3054,
+        "deadline_at": 1413,
+        "description": 0,
+        "incumbent_supplier": 3309,
+        "primary_source_url": 0,
+        "published_at": 0,
+        "title": 0,
+        "value_max": 3094
+      },
+      "rows": 3579
+    },
+    "govuk": {
+      "missing": {
+        "buyer_name": 128,
+        "cpv_codes": 8362,
+        "currency": 8362,
+        "deadline_at": 8362,
+        "description": 486,
+        "incumbent_supplier": 8362,
+        "primary_source_url": 0,
+        "published_at": 0,
+        "title": 0,
+        "value_max": 8362
+      },
+      "rows": 8362
+    },
+    "grants": {
+      "missing": {
+        "buyer_name": 0,
+        "cpv_codes": 419,
+        "currency": 0,
+        "deadline_at": 59,
+        "description": 0,
+        "incumbent_supplier": 419,
+        "primary_source_url": 0,
+        "published_at": 0,
+        "title": 0,
+        "value_max": 206
+      },
+      "rows": 419
+    },
+    "la_ramp": {
+      "missing": {
+        "buyer_name": 0,
+        "cpv_codes": 417,
+        "currency": 417,
+        "deadline_at": 1,
+        "description": 0,
+        "incumbent_supplier": 417,
+        "primary_source_url": 0,
+        "published_at": 0,
+        "title": 0,
+        "value_max": 417
+      },
+      "rows": 417
+    },
+    "nyc_city_record": {
+      "missing": {
+        "buyer_name": 0,
+        "cpv_codes": 307,
+        "currency": 230,
+        "deadline_at": 86,
+        "description": 25,
+        "incumbent_supplier": 230,
+        "primary_source_url": 0,
+        "published_at": 0,
+        "title": 0,
+        "value_max": 230
+      },
+      "rows": 307
+    },
+    "scotland": {
+      "missing": {
+        "buyer_name": 0,
+        "cpv_codes": 117,
+        "currency": 2091,
+        "deadline_at": 2027,
+        "description": 0,
+        "incumbent_supplier": 769,
+        "primary_source_url": 0,
+        "published_at": 0,
+        "title": 0,
+        "value_max": 2091
+      },
+      "rows": 2633
+    },
+    "spain": {
+      "missing": {
+        "buyer_name": 18,
+        "cpv_codes": 106,
+        "currency": 18,
+        "deadline_at": 12977,
+        "description": 0,
+        "incumbent_supplier": 6435,
+        "primary_source_url": 0,
+        "published_at": 32,
+        "title": 0,
+        "value_max": 18
+      },
+      "rows": 12977
+    },
+    "ted": {
+      "missing": {
+        "buyer_name": 0,
+        "cpv_codes": 0,
+        "currency": 5129,
+        "deadline_at": 10028,
+        "description": 0,
+        "incumbent_supplier": 11248,
+        "primary_source_url": 0,
+        "published_at": 0,
+        "title": 0,
+        "value_max": 5851
+      },
+      "rows": 18447
+    },
+    "upcoming_agreements": {
+      "missing": {
+        "buyer_name": 0,
+        "cpv_codes": 51,
+        "currency": 51,
+        "deadline_at": 44,
+        "description": 0,
+        "incumbent_supplier": 51,
+        "primary_source_url": 0,
+        "published_at": 51,
+        "title": 0,
+        "value_max": 51
+      },
+      "rows": 51
+    },
+    "usaspending": {
+      "missing": {
+        "buyer_name": 2,
+        "cpv_codes": 97,
+        "currency": 0,
+        "deadline_at": 97,
+        "description": 0,
+        "incumbent_supplier": 0,
+        "primary_source_url": 0,
+        "published_at": 97,
+        "title": 0,
+        "value_max": 0
+      },
+      "rows": 97
+    },
+    "wales": {
+      "missing": {
+        "buyer_name": 0,
+        "cpv_codes": 14,
+        "currency": 8,
+        "deadline_at": 3,
+        "description": 0,
+        "incumbent_supplier": 14,
+        "primary_source_url": 0,
+        "published_at": 0,
+        "title": 0,
+        "value_max": 8
+      },
+      "rows": 14
+    }
+  },
+  "stored_versions": 76712,
+  "unique_ids": 65169
+}

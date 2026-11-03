@@ -1,0 +1,103 @@
+import { publicJSON } from './fixtures/publicData'
+import { test, expect, type Page } from '@playwright/test'
+import { markets } from '../src/lib'
+import { amountPresentation } from '../src/publicFacts'
+import { deadlineFact } from '../src/ResearchUI'
+import type { Dataset } from '../src/types'
+
+test.beforeEach(async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+})
+
+/** The refiners: glass cards on wide screens, a row of chips on phones. */
+const refiners = (page: Page) => page.locator('.discovery-card, .compact-refiners > button')
+
+test('@data published data renders real records across every market', async ({ page }, info) => {
+  test.setTimeout(180000)
+  const errors: string[] = []
+  page.on('pageerror', (error) => errors.push(error.message))
+  page.on('response', (response) => {
+    if (response.status() >= 400) errors.push(`${response.status()} ${response.url()}`)
+  })
+  const dataset: Dataset = await publicJSON(page.request)
+  expect(dataset.schema_version).toBe('2.0')
+  expect(dataset.signals.length).toBeGreaterThan(0)
+  expect(dataset.run.scheduled_times).toEqual(
+    Array.from({ length: 24 }, (_, hour) => `${String(hour).padStart(2, '0')}:50`),
+  )
+  for (const market of markets) {
+    await page.goto(`./?view=all&market=${market.id}`)
+    await expect(refiners(page)).toHaveCount(6)
+    const tab = page
+      .getByRole('navigation', { name: 'Markets' })
+      .getByRole('button', { name: market.name, exact: true })
+    if (await tab.count()) await expect(tab).toHaveAttribute('aria-pressed', 'true')
+    else await expect(page.locator('.more-markets-trigger')).toContainText(market.name)
+    // The first refiner, All Signals, counts the market's current records.
+    const total = refiners(page).first().locator('.discovery-value, small')
+    await expect(total).toHaveText(/^\d[\d,]*$/)
+    const count = Number((await total.textContent())!.replaceAll(',', ''))
+    if (count === 0) {
+      await expect(page.locator('.signal-row')).toHaveCount(0)
+      continue
+    }
+    const row = page.locator('.signal-row').first()
+    await expect(row).toBeVisible()
+    const title = (await row.locator('.row-title').textContent())!
+    const id = await row.evaluate((element) =>
+      element.closest('[data-signal-id]')!.getAttribute('data-signal-id'),
+    )
+    const signal = dataset.signals.find((item) => item.id === id)
+    expect(signal).toBeDefined()
+    expect(dataset.translations?.[signal!.id]?.title ?? signal!.title).toBe(title)
+    expect(signal!.countries.some((country) => market.countries.includes(country))).toBe(true)
+    await row.locator('.row-select').click()
+    const panel = page.locator('.console-detail:visible')
+    await expect(panel.locator('.inspector-heading h2')).toHaveText(title)
+    await expect(panel.locator('.inspector-facts dt')).toHaveText([
+      'Notice type',
+      amountPresentation(signal!).label,
+      deadlineFact(signal!).label,
+    ])
+    const source = panel.getByRole('link', { name: 'Open source notice' })
+    await expect(source).toHaveAttribute('href', signal!.primary_source_url)
+    const url = new URL(signal!.primary_source_url)
+    expect(['https:', 'http:']).toContain(url.protocol)
+    expect(url.username + url.password).toBe('')
+    await expect(panel.locator('.record-action-dock')).toBeInViewport()
+    // The record is complete in one scroll: the dock's source button opens its source history.
+    const origin = signal!.provenance[0]
+    const sourceButton = panel.locator('.record-action-dock').getByRole('button')
+    await expect(sourceButton).toContainText(origin?.source_name || 'Source')
+    await sourceButton.click()
+    const history = panel.locator('.record-history')
+    await expect(history).toHaveAttribute('open', '')
+    if (origin)
+      await expect(history.locator('.provenance-list')).toContainText(
+        `Reference ${origin.release_id || 'Not published'}`,
+      )
+  }
+  await page.goto('./?view=all')
+  await expect(page.locator('.signal-row').first()).toBeVisible()
+  if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
+    await page.screenshot({ path: `../artifacts/data-refresh-${info.project.name}.png` })
+  expect(errors).toEqual([])
+})
+
+test('@data published feed supports search, filters and browser refresh', async ({ page }) => {
+  await page.goto('./?view=all')
+  await expect(page.locator('.signal-row').first()).toBeVisible()
+  const search = page.getByRole('textbox', { name: 'Search opportunities' })
+  await search.fill('no-such-opportunity-refresh-smoke')
+  await expect(page.getByText('No matching signals', { exact: true })).toBeVisible()
+  await page.getByRole('button', { name: 'Clear search' }).click()
+  await expect(page.locator('.signal-row').first()).toBeVisible()
+  await page.getByRole('button', { name: 'Filters', exact: true }).click()
+  await page.getByLabel('Buyer', { exact: true }).fill('no-such-buyer-refresh-smoke')
+  await page.getByRole('button', { name: 'Show 0 signals' }).click()
+  await expect(page.getByText('No matching signals', { exact: true })).toBeVisible()
+  await page.getByRole('button', { name: 'Remove Buyer filter', exact: true }).click()
+  await expect(page.locator('.signal-row').first()).toBeVisible()
+  await page.reload()
+  await expect(page.locator('.signal-row').first()).toBeVisible()
+})

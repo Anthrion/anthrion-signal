@@ -1,0 +1,255 @@
+{
+  "scope": "Review of every final fixed-input policy inclusion and published-label delta; not population accuracy or independent human ground truth.",
+  "reviewer": "Primary release agent, with a separate policy agent review",
+  "baseline_engine": "c0ef4f82c7c1d4c01b7288c424f717aa25568f2dc915b1c7374dc470ad87044c",
+  "final_engine": "055b0c069ba3c7ff28f8158fcb1fbbe8f7ae3051eaee9b7a577af3088310afa7",
+  "decisions": {
+    "removed_candidates": [
+      {
+        "id": "sig_0022e51e31802f9174d8",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/592599-2026",
+        "reasons": [
+          "Traffic engineering studies, diagnosis or measurement without a separately stated business-application, Salesforce or AI delivery scope."
+        ]
+      },
+      {
+        "id": "sig_007020ae3cdf4214dfdf",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/554696-2026",
+        "reasons": [
+          "Archaeologist services for physical works or fieldwork without a separately stated business-application, Salesforce or AI delivery scope."
+        ]
+      },
+      {
+        "id": "sig_0eba2bff8f3bec8978d4",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/628481-2026",
+        "reasons": [
+          "Human recruitment and onboarding programme consultancy without separately stated software delivery."
+        ]
+      },
+      {
+        "id": "sig_3209db629cf49dc28cb1",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/645981-2026",
+        "reasons": [
+          "Resale or renewal of unrelated product licences without a separately stated business-application, Salesforce or AI delivery scope."
+        ]
+      },
+      {
+        "id": "sig_86d375547dc8f5eb5871",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/781689-2025",
+        "reasons": [
+          "Consultancy to identify, prepare or administer grant calls and projects without a separately stated business-application, Salesforce or AI delivery scope."
+        ]
+      },
+      {
+        "id": "sig_8d7d62b54b6f7dcce81d",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/403102-2026",
+        "reasons": [
+          "Administrative and logistical support for a policy programme without separately stated software delivery."
+        ]
+      },
+      {
+        "id": "sig_99b6272796774f28ad05",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/628876-2026",
+        "reasons": [
+          "Resale or renewal of unrelated product licences without a separately stated business-application, Salesforce or AI delivery scope."
+        ]
+      },
+      {
+        "id": "sig_1e14ee8c347d479cec51",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/613285-2025",
+        "reasons": [
+          "Resale or renewal of unrelated product licences without a separately stated business-application, Salesforce or AI delivery scope."
+        ]
+      },
+      {
+        "id": "sig_52187c40af9367c92169",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/623307-2025",
+        "reasons": [
+          "Resale or renewal of unrelated product licences without a separately stated business-application, Salesforce or AI delivery scope."
+        ]
+      },
+      {
+        "id": "sig_9798f383940f257cd7ba",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/621738-2025",
+        "reasons": [
+          "Execution of surveys or market research without a separately stated business-application, Salesforce or AI delivery scope."
+        ]
+      },
+      {
+        "id": "sig_52007a2e00f66559fe13",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/690635-2025",
+        "reasons": [
+          "Resale or renewal of unrelated product licences without a separately stated business-application, Salesforce or AI delivery scope."
+        ]
+      },
+      {
+        "id": "sig_86c4d038adacd1154d11",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/686472-2025",
+        "reasons": [
+          "Resale or renewal of unrelated product licences without a separately stated business-application, Salesforce or AI delivery scope."
+        ]
+      },
+      {
+        "id": "sig_e839ad407f292a34ec55",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/714250-2025",
+        "reasons": [
+          "Execution of surveys or market research without a separately stated business-application, Salesforce or AI delivery scope."
+        ]
+      },
+      {
+        "id": "sig_3977a6ee994d1543c634",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/790366-2025",
+        "reasons": [
+          "Resale or renewal of unrelated product licences without a separately stated business-application, Salesforce or AI delivery scope."
+        ]
+      },
+      {
+        "id": "sig_5f93289e191a478c122c",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/795431-2025",
+        "reasons": [
+          "Resale or renewal of unrelated product licences without a separately stated business-application, Salesforce or AI delivery scope."
+        ]
+      },
+      {
+        "id": "sig_a69fce235fef5f8c6f6d",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/763209-2025",
+        "reasons": [
+          "Resale or renewal of unrelated product licences without a separately stated business-application, Salesforce or AI delivery scope."
+        ]
+      },
+      {
+        "id": "sig_de888fffe3fc8f3a317f",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/726469-2025",
+        "reasons": [
+          "Execution of surveys or market research without a separately stated business-application, Salesforce or AI delivery scope."
+        ]
+      },
+      {
+        "id": "sig_ec4d87e57116456825b9",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/859862-2025",
+        "reasons": [
+          "Engineering or safety inspection of physical transport infrastructure without a separately stated business-application, Salesforce or AI delivery scope."
+        ]
+      },
+      {
+        "id": "sig_fee354f9ef9999b9a730",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/737747-2025",
+        "reasons": [
+          "Resale or renewal of unrelated product licences without a separately stated business-application, Salesforce or AI delivery scope."
+        ]
+      },
+      {
+        "id": "sig_ad9c9540f51fa1c2145b",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/855374-2025",
+        "reasons": [
+          "Resale or renewal of unrelated product licences without a separately stated business-application, Salesforce or AI delivery scope."
+        ]
+      },
+      {
+        "id": "sig_15cbbf797e9680440865",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/138652-2026",
+        "reasons": [
+          "Resale or renewal of unrelated product licences without a separately stated business-application, Salesforce or AI delivery scope."
+        ]
+      },
+      {
+        "id": "sig_4867b73a100c28cf0b3f",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/77998-2026",
+        "reasons": [
+          "Resale or renewal of unrelated product licences without a separately stated business-application, Salesforce or AI delivery scope."
+        ]
+      },
+      {
+        "id": "sig_4e93c073abf8f2376d22",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/130398-2026",
+        "reasons": [
+          "Consultancy to identify, prepare or administer grant calls and projects without a separately stated business-application, Salesforce or AI delivery scope."
+        ]
+      }
+    ],
+    "recovered_candidates": [
+      {
+        "id": "sig_8edb4ce4033c2a91d8a6",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/605774-2026",
+        "reasons": []
+      },
+      {
+        "id": "sig_42351cb0b27dc3557764",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/641214-2025",
+        "reasons": []
+      },
+      {
+        "id": "sig_0ebfab55cdb756c94608",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/661514-2025",
+        "reasons": []
+      },
+      {
+        "id": "sig_ac6ffbc5520c25cace08",
+        "source_url": "https://contrataciondelestado.es/wps/poc?idEvl=bjKCmqqB5XC2gkLQ8TeYKA%3D%3D&uri=deeplink%3Adetalle_licitacion",
+        "reasons": []
+      },
+      {
+        "id": "sig_67179526ffda0dda5868",
+        "source_url": "https://contrataciondelestado.es/wps/poc?idEvl=8AgV95UUwKGP66GS%2BONYvQ%3D%3D&uri=deeplink%3Adetalle_licitacion",
+        "reasons": []
+      },
+      {
+        "id": "sig_678c4552c7cd00d45a0b",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/81839-2026",
+        "reasons": []
+      },
+      {
+        "id": "sig_f069c66e7640a1ac21f2",
+        "source_url": "https://contrataciondelestado.es/wps/poc?idEvl=oQOjVyxcuKIeC9GJQOEBkQ%3D%3D&uri=deeplink%3Adetalle_licitacion",
+        "reasons": []
+      }
+    ],
+    "changed_published_labels": [
+      {
+        "id": "sig_04e7c3b2d8d3e3650ffd",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/578510-2026",
+        "reasons": []
+      },
+      {
+        "id": "sig_28a0c7393db821c40347",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/252179-2026",
+        "reasons": []
+      },
+      {
+        "id": "sig_4fe82aeb97d611016de8",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/571229-2026",
+        "reasons": []
+      },
+      {
+        "id": "sig_59ecf9ec5d9b63754f91",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/623258-2026",
+        "reasons": []
+      },
+      {
+        "id": "sig_6a1ab7eeffc90609670d",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/586420-2026",
+        "reasons": []
+      },
+      {
+        "id": "sig_81844aa7fe1b05a773e1",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/607506-2026",
+        "reasons": []
+      },
+      {
+        "id": "sig_8dafb53bac6b86e26a33",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/611655-2026",
+        "reasons": []
+      },
+      {
+        "id": "sig_bda49b90c001c8864941",
+        "source_url": "https://ted.europa.eu/en/notice/-/detail/344897-2024",
+        "reasons": []
+      }
+    ]
+  },
+  "rationale": {
+    "removed_candidates": "The advertised deliverables are traffic engineering, archaeology, human recruitment, grant-administration/policy support, survey execution, civil inspections, or named-product licence purchases; no separately stated business-software/AI work rescues them. Records remain retained.",
+    "recovered_candidates": "Five explicit software/component scopes are preserved (including two versions of one Greek notice); sparse network-management and mixed central hardware/software support scopes remain conservatively available for review.",
+    "changed_published_labels": "Eight native French passages explicitly support the shown digital capability. The negative reference to a new WebMethods integration platform does not create a capability match."
+  }
+}

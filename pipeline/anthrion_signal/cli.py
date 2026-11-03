@@ -1,0 +1,447 @@
+import argparse
+import json
+import os
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from datetime import UTC, datetime
+from pathlib import Path
+
+from .canonical import canonical_signal_json
+from .collectors import Http, collect_with_backfill, hydrate_sparse
+from .award_history import export_awards
+from .attachments import enrich_documents, hydrate_cached_documents
+from .config import capability_catalog, evidence_catalog, load_config
+from .discovery import is_public_opportunity, lifecycle, ranking_key
+from .discovery_cache import ClassificationCache, DiscoverySignatures, discovery_cache_signatures, read_discovery_state
+from .discovery_retention import read_rejected, retain_rejected
+from .dedupe import older_revision, reconcile
+from .models import Dataset, EnglishText, Signal, SourceHealth
+from .normalise import NORMALISERS, set_hashes
+from .notice_dates import response_deadline_instant
+from .public_context import backfill_retained_facts, public_signal
+from .public_feed import atomic_public_json, export_current
+from .retention import archive_expired, restore_matching
+from .record_reviews import INCLUSION_MARKER, apply_reviews, load_reviews
+from .translation import available_translations
+from .utils import (atomic_json, atomic_retained_bytes, atomic_retained_json, digest,
+                    jsonl_lines, parse_date, read_json, read_retained_bytes, retained_path)
+
+SCHEDULED_TIMES = [f"{hour:02}:50" for hour in range(24)]
+
+
+def _collect(source, previous_state, now, config, previous_signals=None):
+    state = previous_state.get(source["id"], {})
+    health = SourceHealth(id=source["id"], name=source["name"], website=source["website"], enabled=source["enabled"],
+                          countries=source.get("countries", [source["country"]] if source.get("country") else []), coverage=source.get("coverage"),
+                          status="not_checked", last_success=state.get("last_success"), last_attempt=now.isoformat())
+    http = Http(os.getenv("SIGNAL_USER_AGENT", "AnthrionSignal/1.0"))
+    try:
+        result = collect_with_backfill(source, state, now, http, config["runtime"], config["search_terms"], config["capabilities"])
+        hydrate_sparse(result, source, now, http, config["runtime"])
+        health.records = len(result.records) + len(result.rejected_records)
+        health.status = "healthy" if result.complete else "partial" if health.records else "failed"
+        health.message = result.message
+        next_state = result.state
+        if result.complete:
+            health.last_success = now.isoformat()
+            next_state["last_success"] = now.isoformat()
+        normalised, rejected = [], 0
+        families = {s.ocid: s for s in previous_signals or [] if s.ocid}
+        boamp_notices = {}
+        if source["collector"] == "boamp_caribbean":
+            saved_notices = (s for s in previous_signals or [] if s.source == "boamp_caribbean")
+            boamp_notices = {alias: s for s in sorted(saved_notices, key=lambda s: s.updated_at or s.first_seen_at)
+                            for alias in s.external_ids if alias.startswith("boamp:")}
+        # National pre-gates are hints, not irreversible deletions. The common
+        # classifier gets their rejected scope too and retains its decision.
+        for raw in sorted(result.records + result.rejected_records, key=lambda r: r.data.get("date") or ""):
+            try:
+                if raw.kind == "boamp_caribbean":
+                    linked = raw.data.get("annonce_lie") or []
+                    linked = linked if isinstance(linked, list) else [linked]
+                    prior = next((boamp_notices["boamp:" + str(ident)]
+                                  for ident in [raw.data.get("idweb"), *linked]
+                                  if "boamp:" + str(ident) in boamp_notices), None)
+                    signal = NORMALISERS[raw.kind](raw, prior=prior)
+                else:
+                    signal = (NORMALISERS[raw.kind](raw, prior=families.get(raw.data.get("ocid")))
+                              if raw.kind in ("ocds", "german_ocds") else NORMALISERS[raw.kind](raw))
+                if signal:
+                    normalised.append(signal)
+                    if signal.ocid:
+                        families[signal.ocid] = signal
+                    if raw.kind == "boamp_caribbean":
+                        # Replayed initials must not replace a newer canonical
+                        # correction before another sparse amendment is normalized.
+                        for alias in signal.external_ids:
+                            saved = boamp_notices.get(alias)
+                            if alias.startswith("boamp:") and (saved is None or not older_revision(signal, saved)):
+                                boamp_notices[alias] = signal
+            except (ValueError, KeyError, TypeError):
+                rejected += 1
+        # A source schema regression must not silently advance its retrieval checkpoint.
+        if rejected:
+            health.status = "partial"
+            health.message = f"{rejected} records could not be normalised; retrieval checkpoint retained."
+            next_state = state
+            health.last_success = state.get("last_success")
+        elif source["collector"] == "sam_csv" and next_state.get("snapshot_etag") != state.get("snapshot_etag"):
+            from .sam_opportunities import removed_sam_records
+            normalised.extend(removed_sam_records(previous_signals or [], next_state, now.isoformat()))
+        elif source["collector"] == "canada_buys":
+            from .canada_buys import removed_canada_records
+            open_snapshot = next_state.get("feeds", {}).get("open", {})
+            if open_snapshot.get("checked_at") == now.isoformat():
+                formerly_unlisted = {alias for s in previous_signals or [] if s.source == "canada_buys" and s.status == "not_listed"
+                                     for alias in s.external_ids}
+                for signal in normalised:
+                    if signal.status == "active" and any(alias in formerly_unlisted and
+                            alias.removeprefix("canadabuys:") in open_snapshot.get("hashes", {}) for alias in signal.external_ids):
+                        # A fresh, verified open snapshot can relist an unchanged
+                        # notice. Its publisher amendment date remains older than
+                        # our closure; record this observed availability change so
+                        # reconciliation can reopen it, including resumed batches.
+                        signal.updated_at = signal.last_material_update = now.isoformat()
+                        set_hashes(signal)
+            if open_snapshot.get("etag") != state.get("feeds", {}).get("open", {}).get("etag"):
+                received = {signal.id for signal in normalised}
+                # A newly published revision or explicit cancellation takes precedence
+                # over absence from the independently refreshed daily open list.
+                normalised.extend(removed_canada_records([s for s in previous_signals or [] if s.id not in received], next_state, now.isoformat()))
+        return source["id"], normalised, next_state, health, len(result.records) + len(result.rejected_records)
+    except Exception as exc:
+        health.status = "failed"
+        health.message = "Source temporarily unavailable; previous records retained."
+        print(f"Source {source['id']}: {type(exc).__name__}", flush=True)
+        return source["id"], [], state, health, 0
+    finally:
+        http.close()
+
+
+def derive_renewals(signals, now, config):
+    result = []
+    horizon = config["scoring"]["recommendation"]["renewal_horizon_days"]
+    for signal in signals:
+        if signal.signal_type != "AWARD" or signal.related_signal_id:
+            continue
+        end = parse_date(signal.extension_end or signal.contract_end)
+        if not end or not 0 <= (end - now).days <= horizon:
+            continue
+        renewal = signal.model_copy(deep=True)
+        renewal.id = signal.id + "_renewal"
+        renewal.related_signal_id = signal.id
+        renewal.signal_type, renewal.procurement_stage = "RENEWAL_SIGNAL", "planning"
+        renewal.renewal_basis = f"Published {'maximum extension' if signal.extension_end else 'contract'} end: {end.date()}. A replacement procurement has not been confirmed."
+        renewal.deadline_at = None
+        renewal.status = "inferred"
+        set_hashes(renewal)
+        result.append(renewal)
+    return result
+
+
+def lead_keys(signals):
+    """Identities through which a retained lead receives its later notices."""
+    return ({s.id for s in signals}, {s.ocid for s in signals if s.ocid},
+            {alias for s in signals for alias in s.external_ids})
+
+
+def follows(signal, keys):
+    ids, ocids, aliases = keys
+    return signal.id in ids or signal.ocid in ocids or bool(aliases.intersection(signal.external_ids))
+
+
+def project_source_removals(signals, state, retrieved_at):
+    """Apply compact verified source tombstones without reading rejection history."""
+    from .canada_buys import removed_canada_records
+    from .sam_opportunities import removed_sam_records
+
+    removed = removed_sam_records(signals, state.get("sam", {}), retrieved_at)
+    removed += removed_canada_records(signals, state.get("canada_buys", {}), retrieved_at)
+    updates = {signal.id: signal for signal in removed}
+    return [updates.get(signal.id, signal) for signal in signals] if updates else signals
+
+
+def prepare_current(root, *, save_cache=False, dataset=None):
+    """Classify current candidates without writing award shards or public assets."""
+    data = dataset if dataset is not None else Dataset.model_validate(read_json(root / "data/current.json", {}))
+    config = load_config(root)
+    signatures = discovery_cache_signatures(root, config, data.markets)
+    signature = signatures.signature
+    canonical = root / "data/signals.jsonl"
+    canonical_signals = [Signal.model_validate_json(line) for line in jsonl_lines(read_retained_bytes(canonical).decode("utf-8"))] if retained_path(canonical).exists() else data.signals
+    state = read_json(root / "data/source_state.json", {})
+    observed_at = datetime.now(UTC).isoformat()
+    canonical_signals = project_source_removals(canonical_signals, state, observed_at)
+    backfill_retained_facts(canonical_signals, state)
+    backfill_retained_facts(data.signals, state)
+    cache = ClassificationCache(root, config, signatures=signatures)
+    recovering = not signatures.accepts(data.run.get("discovery_signature")) and retained_path(canonical).exists()
+    lost = set()
+    if recovering:
+        # A rule release must be able to restore previously suppressed candidates
+        # even on an existing-data deployment. Availability is still checked below.
+        known = {s.id for s in canonical_signals}
+        rejected = project_source_removals([s for s in read_rejected(root) if s.id not in known], state, observed_at)
+        recovered = [s for s in rejected
+            if is_public_opportunity(s.model_copy(update={"exclusion_reasons": []}), datetime.now(UTC))]
+        # A restored notice's own retained cancellations, awards and change notices
+        # are not opportunities, but must still reconcile with it.
+        leads = lead_keys([s for s in recovered if s.id in cache.inclusions])
+        ids = {s.id for s in recovered}
+        recovered += [s for s in rejected if s.id not in ids and follows(s, leads)]
+        # Reuse collection's identity/status reconciliation: an old rejected tender
+        # must not resurrect a subsequently awarded/cancelled archived procurement.
+        restored = restore_matching(root, recovered, known)
+        data.signals, _, _ = reconcile(canonical_signals + restored, recovered)
+        # A restoration merged into another identity no longer applies; report it.
+        lost = leads[0] - {s.id for s in data.signals}
+        backfill_retained_facts(data.signals, state)
+    data.signals = project_source_removals(data.signals, state, observed_at)
+    translations = available_translations(root, data.signals)
+    cache.classify(data.signals, translations)
+    if save_cache:
+        cache.save()
+    data.signals = [s for s in data.signals if is_public_opportunity(s, datetime.now(UTC)) and
+                    s.prefilter_score >= config["capabilities"]["discovery"]["minimum_candidate_score"]]
+    public_ids = {s.id for s in data.signals}
+    data.translations = {key: EnglishText.model_validate(value)
+                         for key, value in translations.items() if key in public_ids}
+    data.capabilities = [{"id": c["id"], "label": c["label"], "family": c["family"],
+        "search_terms": c.get("explicit", []) + c.get("needs", []) + c.get("aliases", [])}
+        for c in config["capabilities"]["capabilities"] if c["id"] != "pipeline"]
+    data.run.update(scheduled_timezone="Europe/London", scheduled_times=SCHEDULED_TIMES)
+    data.run["discovery_version"] = config["capabilities"]["version"]
+    data.run["discovery_signature"] = signature
+    data.run["public_signals"] = len(data.signals)
+    data.markets = config["search_terms"]["markets"]
+    for health in data.sources:
+        source = next((s for s in config["sources"]["sources"] if s["id"] == health.id), {})
+        previous_countries = set(health.countries)
+        health.countries = source.get("countries", [source["country"]] if source.get("country") else [])
+        health.coverage = source.get("coverage")
+        if source.get("enabled") and set(health.countries) - previous_countries:
+            health.status = "partial"
+            health.message = "Expanded country coverage is awaiting collection; retained records remain available."
+    for signal in data.signals:
+        signal.lifecycle_state, signal.lifecycle_reason = lifecycle(signal, datetime.now(UTC))
+    hydrate_cached_documents(root, data.signals)
+    before_reviews = len(data.signals)
+    data.signals = apply_reviews(data.signals, load_reviews(root))
+    visible_ids = {signal.id for signal in data.signals}
+    data.translations = {key: value for key, value in data.translations.items() if key in visible_ids}
+    data.run["reviewed_exclusions"] = before_reviews - len(data.signals)
+    data.run["reviewed_inclusions"] = sum(INCLUSION_MARKER in s.prefilter_matches for s in data.signals)
+    # Only a recovery classifies retained notices; otherwise keep collection's count,
+    # which also saw restorations that are hidden from the current records.
+    stale = len(cache.stale_inclusions | lost)
+    data.run["reviewed_inclusions_stale"] = stale if recovering else data.run.get("reviewed_inclusions_stale", stale)
+    data.run["public_signals"] = len(data.signals)
+    return data, canonical_signals, config
+
+
+def export(root):
+    previous = Dataset.model_validate(read_json(root / "data/current.json", {}))
+    previous_markets = previous.markets
+    data, canonical_signals, config = prepare_current(root, save_cache=True, dataset=previous)
+    award_records = {}
+    data.award_history = export_awards(root, canonical_signals, config, datetime.now(UTC), award_records, data.signals,
+                                     previous_markets=previous_markets)
+    data.current_feed = export_current(root, data, award_records)
+    target = root / "app/public/data"
+    target.mkdir(parents=True, exist_ok=True)
+    public = public_data(data)
+    atomic_public_json(target / "current.json.gz", public)
+    # Remove only the obsolete mutable root; immutable dependencies stay available.
+    (target / "current.json").unlink(missing_ok=True)
+    atomic_public_json(target / "manifest.json", {**public, "signals": [], "translations": {}})
+    return data
+
+
+def public_data(dataset):
+    result = dataset.model_dump(exclude={"signals", "run"})
+    result["signals"] = [public_signal(signal, dataset.translations.get(signal.id)) for signal in dataset.signals]
+    result["run"] = {key: value for key, value in dataset.run.items() if key not in
+        {"gemini_calls", "cache_hits", "ai_failures", "candidates_shortlisted", "high_fit_signals"}}
+    return result
+
+
+def run(root, args):
+    config = load_config(root)
+    now = datetime.now(UTC).replace(microsecond=0)
+    runtime = config["runtime"]
+    runtime["refresh_daily"] = bool(getattr(args, "refresh_daily", False))
+    if args.days is not None:
+        runtime["lookback_days"] = args.days
+    if args.max_pages is not None:
+        runtime["max_pages"] = args.max_pages
+    if args.max_ai:
+        raise ValueError("Model analysis has been removed. Collection uses source facts only.")
+    state_path = root / "data/source_state.json"
+    state = read_json(state_path, {})
+    previous_data = read_json(root / "data/current.json", None)
+    canonical_path = root / "data/signals.jsonl"
+    previous = [Signal.model_validate_json(line) for line in jsonl_lines(read_retained_bytes(canonical_path).decode("utf-8"))] if retained_path(canonical_path).exists() else []
+    previous = project_source_removals(previous, state, now.isoformat())
+    backfill_retained_facts(previous, state)
+    wanted = set(args.sources.split(",")) if args.sources else None
+    all_sources = config["sources"]["sources"]
+    if wanted and not wanted.issubset({s["id"] for s in all_sources}):
+        raise ValueError("Unknown source requested")
+    selected = [s for s in all_sources if s["enabled"] and (not wanted or s["id"] in wanted)]
+    if getattr(args, "command", "ingest") == "rescore":
+        selected = []
+    old_health = {s["id"]: s for s in (previous_data or {}).get("sources", [])}
+    health = {}
+    incoming, raw_count = [], 0
+    for source in all_sources:
+        old = old_health.get(source["id"])
+        health[source["id"]] = SourceHealth.model_validate(old) if old else SourceHealth(
+            id=source["id"], name=source["name"], website=source["website"], enabled=source["enabled"],
+            status="not_checked" if source["enabled"] else "disabled")
+        health[source["id"]].enabled = source["enabled"]
+        health[source["id"]].countries = source.get("countries", [source["country"]] if source.get("country") else [])
+        health[source["id"]].coverage = source.get("coverage")
+        if not source["enabled"]:
+            health[source["id"]].status = "disabled"
+    with ThreadPoolExecutor(max_workers=3) as pool:
+        futures = [pool.submit(_collect, source, state, now, config, previous) for source in selected]
+        for future in as_completed(futures):
+            sid, records, new_state, status, count = future.result()
+            incoming.extend(records)
+            state[sid], health[sid] = new_state, status
+            raw_count += count
+            print(f"{status.name}: {status.status}, {count} records", flush=True)
+    discovery_state = read_discovery_state(root)
+    signatures = DiscoverySignatures(config, (previous_data or {}).get("markets"), discovery_state.get("market_catalogues"))
+    signature = signatures.signature
+    signatures.accepts((previous_data or {}).get("run", {}).get("discovery_signature"))
+    replay = not signatures.accepts(discovery_state.get("signature")) or getattr(args, "command", "ingest") == "rescore"
+    replayed = project_source_removals(read_rejected(root), state, now.isoformat()) if replay else []
+    # Current retrieval follows replay so newer status updates remain authoritative.
+    incoming = replayed + incoming
+    cache = ClassificationCache(root, config, signatures=signatures)
+    cache.classify(incoming, available_translations(root, incoming))
+    # Replayed source versions already have durable evidence; do not duplicate
+    # the entire rejection history into a new date partition on every release.
+    rejected_count = retain_rejected(root, incoming[len(replayed):], now, config["capabilities"]["discovery"]["minimum_candidate_score"])
+    known_ids = {s.id for s in previous}
+    # Sparse awards and cancellations must still retire a previously collected lead,
+    # including a restored lead first admitted with its replayed relatives.
+    leads = lead_keys([*previous, *(s for s in incoming if s.id in cache.matched_inclusions)])
+    incoming = [s for s in incoming if s.prefilter_score >= config["capabilities"]["discovery"]["minimum_candidate_score"]
+                or follows(s, leads)]
+    previous.extend(restore_matching(root, incoming, {s.id for s in previous}))
+    signals, index, stats = reconcile(previous, incoming)
+    signals = project_source_removals(signals, state, now.isoformat())
+    # A restoration merged into another identity no longer applies; report it.
+    lost = cache.matched_inclusions - {s.id for s in signals}
+    # Replayed legacy releases can share a timestamp with corrected records and
+    # reintroduce contact-as-buyer or manufactured midnight fields during merge.
+    # Restore retained source facts before scope, availability and persistence.
+    backfill_retained_facts(signals, state)
+    signals = [s for s in signals if not (s.source == "govuk" and s.notice_type in
+               ("person", "role", "organisation", "minister", "world_location", "statistics_announcement"))]
+    cache.classify(signals, available_translations(root, signals))
+    print(f"Reconciled {len(signals)} candidates; applying source-based discovery and availability rules", flush=True)
+    ai_stats = {"gemini_calls": 0, "cache_hits": 0, "ai_failures": 0}
+    for s in signals:
+        deadlines = sorted(value for value in s.response_deadlines if parse_date(value))
+        if deadlines:
+            upcoming = [value for value in deadlines if response_deadline_instant(value) > now]
+            s.deadline_at = min(upcoming) if upcoming else max(deadlines)
+        set_hashes(s)
+        s.lifecycle_state, s.lifecycle_reason = lifecycle(s, now)
+        s.fit_score, s.confidence_score, s.known_weight = None, 0, 0
+        s.score_components, s.score_explanation, s.ai_status = [], "", "disabled"
+    signals = archive_expired(root, signals, now, runtime["retention_days"])
+    available = [s for s in signals if is_public_opportunity(s, now)]
+    current = [s for s in available if s.prefilter_score >= config["capabilities"]["discovery"]["minimum_candidate_score"]]
+    current.sort(key=lambda s: ranking_key(s, now))
+    if selected:
+        enrich_documents(root, current, all_sources, now, limit=min(2, runtime["max_pages"]))
+    content_digest = digest([(s.id, s.content_hash, s.delivery_priority, s.matched_capabilities, s.lifecycle_state) for s in current])
+    same_content = (previous_data or {}).get("run", {}).get("content_digest") == content_digest
+    metadata = {"started_at": now.isoformat(), "finished_at": datetime.now(UTC).isoformat(), "operation": getattr(args, "command", "ingest"),
+        "discovery_version": config["capabilities"]["version"],
+        "discovery_signature": signature,
+        "rejected_records_retained": rejected_count, "rejected_records_replayed": len(replayed),
+        "sources_attempted": len(selected), "sources_succeeded": sum(health[s["id"]].status == "healthy" for s in selected),
+        "raw_records": raw_count, "canonical_signals": len(signals), "candidates_shortlisted": sum(s.prefilter_score >= runtime["ai_min_score"] and not s.related_signal_id for s in current),
+        "public_signals": len(current), "suppressed_unavailable_signals": len(signals) - len(available),
+        "suppressed_scope_signals": len(available) - len(current),
+        "reviewed_inclusions": sum(INCLUSION_MARKER in s.prefilter_matches for s in current),
+        "reviewed_inclusions_stale": len(cache.stale_inclusions | lost),
+        "new_public_signals": sum(s.id not in known_ids for s in current),
+        **stats, **ai_stats, "high_fit_signals": sum(s.fit_score is not None and s.fit_score >= config["scoring"]["recommendation"]["strong_fit"] for s in current),
+        "content_digest": content_digest, "content_changed": not same_content, "deployment_status": "awaiting_build",
+        "scheduled_timezone": "Europe/London", "scheduled_times": SCHEDULED_TIMES}
+    dataset = Dataset(schema_version="2.0", generated_at=now.isoformat(),
+        data_updated_at=previous_data["data_updated_at"] if same_content else now.isoformat(),
+        profile_version=config["company_profile"]["version"], scoring_version="none", run=metadata,
+        sources=list(health.values()), capabilities=[{"id": c["id"], "label": c["label"], "family": c["family"],
+            "search_terms": c.get("explicit", []) + c.get("needs", []) + c.get("aliases", [])} for c in config["capabilities"]["capabilities"]],
+        markets=config["search_terms"]["markets"], evidence_catalog={**evidence_catalog(config["company_profile"]), **capability_catalog(config)}, signals=current)
+    if not signals and previous_data:
+        raise ValueError("Refusing to replace the previous public dataset with an empty dataset")
+    if not signals:
+        raise ValueError("No source records available; retry ingestion before publishing")
+    public = public_data(dataset)
+    Dataset.model_validate(public)
+    root.joinpath("data").mkdir(exist_ok=True)
+    canonical_body = "\n".join(canonical_signal_json(s) for s in sorted(signals, key=lambda s: s.id)) + "\n"
+    atomic_retained_bytes(canonical_path, canonical_body.encode("utf-8"))
+    atomic_retained_json(root / "data/current.json", public)
+    atomic_retained_json(root / "data/dedupe_index.json", index)
+    atomic_json(root / "data/run_metadata.json", metadata)
+    atomic_json(root / "data/discovery/state.json", {"version": config["capabilities"]["version"],
+                                                   "signature": signature, "evaluated_at": now.isoformat(),
+                                                   "market_catalogues": signatures.transitions()})
+    cache.save()
+    history = root / "data/history.jsonl"
+    if not same_content:
+        with history.open("a", encoding="utf-8") as stream:
+            stream.write(json.dumps({"at": now.isoformat(), **stats, "content_digest": content_digest}) + "\n")
+    # Watermarks are persisted last so interrupted publication causes overlap, never a skipped window.
+    atomic_retained_json(state_path, state)
+    if not getattr(args, "no_export", False):
+        export(root)
+    print(json.dumps(metadata, indent=2), flush=True)
+    return dataset
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Collect, verify, rank and publish Anthrion opportunities")
+    parser.add_argument("command", choices=["ingest", "rescore", "validate", "export"])
+    parser.add_argument("--root", type=Path, default=Path.cwd())
+    parser.add_argument("--sources")
+    parser.add_argument("--days", type=int)
+    parser.add_argument("--max-pages", type=int)
+    parser.add_argument("--refresh-daily", action="store_true", help="Refresh daily snapshots without overriding provider retry delays")
+    parser.add_argument("--max-ai", type=int)
+    parser.add_argument("--no-ai", action="store_true")
+    parser.add_argument("--no-export", action="store_true", help="Save retained data; leave public asset export to the validation step")
+    args = parser.parse_args()
+    if (args.days is not None and args.days < 1) or (args.max_pages is not None and args.max_pages < 1) or (args.max_ai is not None and args.max_ai < 0):
+        parser.error("Days and page budget must be positive; AI-call budget must be non-negative")
+    root = args.root.resolve()
+    if args.command == "validate":
+        dataset = Dataset.model_validate(read_json(root / "data/current.json", {}))
+        print(f"Validated {len(dataset.signals)} public signals")
+        return
+    if args.command == "export":
+        export(root)
+        return
+    lock = root / "data/.lock"
+    lock.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        with lock.open("x") as stream:
+            stream.write(str(os.getpid()))
+    except FileExistsError:
+        raise SystemExit("An ingestion lock exists. Confirm no collector is running before removing data/.lock.") from None
+    try:
+        run(root, args)
+    finally:
+        lock.unlink(missing_ok=True)
+
+
+if __name__ == "__main__":
+    main()

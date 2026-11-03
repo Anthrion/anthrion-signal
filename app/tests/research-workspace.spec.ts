@@ -1,0 +1,1451 @@
+import { test, expect, type Page } from '@playwright/test'
+import AxeBuilder from '@axe-core/playwright'
+import { gzipSync } from 'node:zlib'
+import type { Dataset, HistoryRecord, Signal } from '../src/types'
+import { recordDataset } from './fixtures/record'
+
+const hash = 'abcdef0123456789'
+const source = 'https://example.com/notices/customer-platform'
+const title = 'Customer services platform and casework transformation'
+const quote =
+  'Implement Salesforce and integrate customer casework with the existing finance platform.'
+const metadata = {
+  schema_version: '2.0',
+  generated_at: '2026-09-18T12:00:00Z',
+  data_updated_at: '2026-09-18T12:00:00Z',
+  profile_version: '1',
+  scoring_version: '1',
+  signals: [],
+  translations: {},
+  sources: [
+    {
+      id: 'find_a_tender',
+      name: 'Find a Tender',
+      enabled: true,
+      status: 'healthy',
+      website: 'https://example.com',
+      last_attempt: null,
+      last_success: null,
+      records: 2,
+      message: null,
+    },
+  ],
+  capabilities: [
+    {
+      id: 'salesforce',
+      label: 'Salesforce platform',
+      family: 'CRM & platforms',
+      search_terms: ['salesforce', 'kundenplattform'],
+    },
+    {
+      id: 'service',
+      label: 'Case management & service',
+      family: 'Service transformation',
+      search_terms: ['case management', 'fallmanagement'],
+    },
+  ],
+  evidence_catalog: {},
+  markets: { GB: { name: 'United Kingdom', enabled: true }, FR: { name: 'France', enabled: true } },
+  run: {
+    sources_attempted: 1,
+    sources_succeeded: 1,
+    raw_records: 2,
+    new_signals: 2,
+    material_updates: 0,
+  },
+} satisfies Dataset
+
+async function fixture(page: Page, changeRecord?: (record: Signal) => void) {
+  const dataset = recordDataset(metadata, {
+    id: 'panel-a',
+    title,
+    buyer_name: 'Northbridge Council',
+    buyer_id: 'buyer_northbridge',
+    buyer_identity_basis: 'identifier',
+    procedure_id: 'proc-2026',
+    primary_source_url: source,
+    description: `${quote}\n\nThe authority seeks a delivery partner for configuration, migration and support. Framework membership must be confirmed before bidding.`,
+    deadline_at: '2026-11-20',
+    response_deadlines: [],
+    signal_type: 'LIVE_TENDER',
+    matched_capabilities: ['salesforce', 'service'],
+    amount: {
+      kind: 'estimated_contract',
+      minimum: 250000,
+      maximum: 750000,
+      currency: 'GBP',
+      source_label: 'Estimated contract range',
+      source_url: source,
+    },
+    deadlines: [
+      {
+        kind: 'questions',
+        date: '2026-11-06',
+        precision: 'date',
+        source_text: 'Questions due 6 November',
+        source_url: source,
+        status: 'current',
+      },
+      {
+        kind: 'tender',
+        date: '2026-11-20',
+        time: '14:00',
+        timezone: 'Europe/London',
+        precision: 'local_time',
+        source_text: '20 November at 14:00 London',
+        source_url: source,
+        status: 'current',
+      },
+    ],
+    capability_evidence: [
+      {
+        capability: 'salesforce',
+        phrase: 'salesforce',
+        strength: 'explicit',
+        basis: 'original',
+        field: 'description',
+        quote,
+        source_url: source,
+        language: 'en',
+        context: 'delivery',
+        source_hash: 'source-v1',
+        translated_quote:
+          'Implement Salesforce and connect customer casework with the finance platform.',
+      },
+      {
+        capability: 'service',
+        phrase: 'casework',
+        strength: 'needs',
+        basis: 'original',
+        field: 'description',
+        quote,
+        source_url: source,
+        language: 'en',
+        context: 'delivery',
+        source_hash: 'source-v1',
+      },
+    ],
+    delivery_role: { kind: 'direct_supplier', evidence: [] },
+    participation_requirements: [
+      {
+        id: 'framework',
+        requirement: 'Framework membership',
+        status: 'needs_checking',
+        source_quote: 'Framework membership must be confirmed before bidding.',
+        source_url: source,
+        company_evidence: null,
+      },
+    ],
+    buyer_history_ref: {
+      url: `buyers/buyer_northbridge-${hash}.json.gz`,
+      count: 55,
+      identity_basis: 'identifier',
+    },
+    documents: [
+      {
+        title: 'Service specification',
+        url: 'https://example.com/specification.pdf',
+        kind: 'specification',
+        status: 'cached',
+        revision: '2',
+        retrieved_at: '2026-09-18T12:00:00Z',
+        page_count: 18,
+        content_hash: 'revision-two',
+        pages: [
+          {
+            page: 7,
+            text: 'The supplier shall implement the case management workflow and preserve audit records.',
+          },
+        ],
+        previous_revisions: [
+          { content_hash: 'revision-one', revision: '1', retrieved_at: '2026-09-10T10:00:00Z' },
+        ],
+      },
+    ],
+    lots: [
+      {
+        id: '2',
+        title: 'Customer platform implementation',
+        description: 'Configuration and integration of the casework platform.',
+        status: 'active',
+        source_url: source,
+      },
+    ],
+  })
+  const record = dataset.signals[0]
+  changeRecord?.(record)
+  const summary = {
+    ...record,
+    is_summary: true,
+    description: '',
+    documents: [],
+    capability_evidence: [],
+    ranking_evidence: record.capability_evidence?.map(
+      ({ capability, strength, field, context }) => ({
+        capability,
+        strength,
+        field,
+        context,
+      }),
+    ),
+    participation_requirements: [],
+    search_text: `${record.title} ${record.description}`,
+  }
+  const other = {
+    ...dataset.signals[1],
+    deadline_at: '2026-11-20',
+    countries: ['FR'],
+    title: 'Portail citoyen',
+    buyer_id: 'buyer_other',
+    matched_capabilities: ['service'],
+    amount: undefined,
+    deadlines: [],
+    search_text: 'Portail citoyen customer platform',
+  }
+  const manifest: Dataset = {
+    ...metadata,
+    current_feed: {
+      version: '1.0',
+      markets: {
+        GB: { url: `current/GB-${hash}.json.gz`, count: 1 },
+        FR: { url: `current/FR-${hash}.json.gz`, count: 1 },
+      },
+      records: {
+        [record.id]: {
+          url: `records/panel-a-${hash}.json.gz`,
+          markets: ['GB'],
+          view: 'opportunities',
+        },
+        [other.id]: {
+          url: `records/panel-b-${hash}.json.gz`,
+          markets: ['FR'],
+          view: 'opportunities',
+        },
+      },
+    },
+    award_history: { GB: { url: `awards/GB-${hash}.json.gz`, count: 2 } },
+  }
+  const awards: Signal[] = [
+    {
+      ...record,
+      id: 'award-a',
+      title: 'Customer platform implementation 2024',
+      status: 'awarded',
+      signal_type: 'AWARD',
+      lifecycle_state: 'AWARDED',
+      award_statuses: ['active'],
+      related_signal_id: null,
+      award_date: '2024-05-12',
+      incumbent_supplier: 'Example Delivery Ltd',
+      winners: [
+        { name: 'Example Delivery Ltd', identifiers: [], lot_ids: ['2'], source_url: source },
+      ],
+      procedure_id: 'proc-2024',
+      amount: {
+        kind: 'award',
+        maximum: 450000,
+        minimum: null,
+        currency: 'GBP',
+        source_label: 'Award',
+        source_url: source,
+      },
+    },
+    {
+      ...record,
+      id: 'award-b',
+      buyer_id: 'buyer_other',
+      title: 'Case management renewal',
+      status: 'awarded',
+      signal_type: 'AWARD',
+      lifecycle_state: 'AWARDED',
+      award_statuses: ['active'],
+      related_signal_id: null,
+      award_date: '2025-03-12',
+      incumbent_supplier: 'Another Supplier Ltd',
+      procedure_id: 'proc-other',
+    },
+  ]
+  const history: HistoryRecord[] = Array.from({ length: 55 }, (_, i) => ({
+    signal_id: `history-${i}`,
+    source: record.source,
+    countries: record.countries,
+    buyer_id: record.buyer_id,
+    buyer_name: record.buyer_name,
+    signal_type: 'AWARD',
+    award_statuses: ['active'],
+    procedure_id: `history-proc-${i}`,
+    title: `Council digital service ${i + 1}`,
+    status: 'awarded',
+    source_url: `${source}?notice=${i}`,
+    lot_ids: ['2'],
+    published_at: '2024-05-11',
+    award_date: '2024-05-12',
+    supplier: `Winner ${i + 1} Ltd`,
+    amount: {
+      kind: 'award',
+      maximum: 250000,
+      minimum: null,
+      currency: 'GBP',
+      source_label: 'Award value',
+      source_url: source,
+    },
+    contract_start: '2024-06-01',
+    contract_end: '2027-06-01',
+    lots: record.lots,
+  }))
+  history[1] = {
+    ...history[1],
+    supplier: '',
+    winners: [],
+    lots: [],
+    lot_ids: [],
+    amount: undefined,
+    contract_start: undefined,
+    contract_end: undefined,
+  }
+  for (const item of history)
+    manifest.current_feed!.records[item.signal_id] = {
+      url: `history/abc-${hash}.json.gz`,
+      markets: ['GB'],
+      view: 'history',
+    }
+  awards[0].procedure_history = [history[0]]
+  for (const award of awards)
+    manifest.current_feed!.records[award.id] = {
+      url: `records/${award.id}-${hash}.json.gz`,
+      markets: award.countries,
+      view: 'awards',
+    }
+  await page.route('**/data/**', (route) => {
+    const path = new URL(route.request().url()).pathname
+    if (path.endsWith('/manifest.json')) return route.fulfill({ json: manifest })
+    const compressed = (value: unknown) =>
+      route.fulfill({
+        contentType: 'application/gzip',
+        body: gzipSync(JSON.stringify(value)),
+      })
+    if (path.includes('/current/GB-') || path.includes('/current/CARIBBEAN-'))
+      return compressed({ schema_version: '1.0', signals: [summary] })
+    if (path.includes('/current/FR-'))
+      return compressed({ schema_version: '1.0', signals: [other] })
+    if (path.includes('/records/panel-a-'))
+      return compressed({ schema_version: '1.0', signal: record })
+    if (path.includes('/records/panel-b-'))
+      return compressed({ schema_version: '1.0', signal: other })
+    const award = awards.find((item) => path.endsWith(`/records/${item.id}-${hash}.json.gz`))
+    if (award) return compressed({ schema_version: '1.0', signal: award })
+    if (path.endsWith(`/history/abc-${hash}.json.gz`))
+      return route.fulfill({
+        contentType: 'application/gzip',
+        body: gzipSync(
+          JSON.stringify({
+            schema_version: '1.0',
+            records: Object.fromEntries(
+              history.map((historical) => [
+                historical.signal_id,
+                {
+                  signal: {
+                    ...record,
+                    id: historical.signal_id,
+                    title: historical.title,
+                    description: 'Complete retained scope for this historical contract.',
+                    signal_type: historical.signal_type || 'AWARD',
+                    status: historical.status,
+                    lifecycle_state: historical.signal_type === 'LIVE_TENDER' ? 'OPEN' : 'AWARDED',
+                    award_statuses: historical.award_statuses,
+                    incumbent_supplier: historical.supplier,
+                    winners: historical.winners || [],
+                    award_date: historical.award_date,
+                    primary_source_url: historical.source_url,
+                    exclusion_reasons:
+                      historical.signal_type === 'LIVE_TENDER'
+                        ? []
+                        : ['outside_current_delivery_scope'],
+                  },
+                  translation: historical.title_en
+                    ? {
+                        source_hash: 'history-source',
+                        version: 'test',
+                        title: historical.title_en,
+                        description: 'Complete retained scope for this historical contract.',
+                      }
+                    : undefined,
+                },
+              ]),
+            ),
+          }),
+        ),
+      })
+    if (path.includes('/awards/GB-'))
+      return compressed({
+        schema_version: '1.0',
+        signals: awards.map((item) => ({ ...item, procedure_history: [], is_summary: true })),
+      })
+    if (path.includes('/buyers/'))
+      return compressed({
+        schema_version: '1.0',
+        buyer_id: record.buyer_id,
+        buyer_name: record.buyer_name,
+        identity_basis: 'identifier',
+        records: history,
+      })
+    return route.fulfill({ status: 404 })
+  })
+  return { record, manifest, history }
+}
+async function openRecord(page: Page) {
+  await page.goto('./')
+  await expect(page.locator('.row-select').first()).toBeVisible()
+  if (page.viewportSize()!.width <= 900) await page.locator('.row-select').first().click()
+  const panel = page.locator('.console-detail:visible')
+  await expect(panel.getByRole('heading', { name: title })).toBeVisible()
+  return panel
+}
+/** Refresh and preferences such as the Compact refiners live in the workspace menu. */
+async function openWorkspaceMenu(page: Page) {
+  await page.getByRole('button', { name: 'Workspace menu', exact: true }).click()
+  const menu = page.getByRole('dialog', { name: 'Workspace', exact: true })
+  await expect(menu).toBeVisible()
+  return menu
+}
+async function chooseCompactRefiners(page: Page) {
+  const menu = await openWorkspaceMenu(page)
+  const compact = menu
+    .getByRole('radiogroup', { name: 'Refiners' })
+    .getByRole('radio', { name: 'Compact', exact: true })
+  await compact.click()
+  await expect(compact).toBeChecked()
+  await menu.getByRole('button', { name: 'Close workspace menu', exact: true }).click()
+  await expect(menu).toHaveCount(0)
+}
+test.beforeEach(async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await page.clock.setFixedTime(new Date('2026-09-18T12:00:00Z'))
+  await fixture(page)
+})
+
+test('default summary selection loads full evidence and precise commercial facts', async ({
+  page,
+}, info) => {
+  const requests: string[] = []
+  page.on('request', (request) => requests.push(request.url()))
+  const panel = await openRecord(page)
+  await expect(panel.locator('.inspector-facts')).toContainText('Estimated contract value')
+  await expect(panel.locator('.inspector-facts')).toContainText('14:00 Europe/London')
+  if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
+    await page.screenshot({ path: `../artifacts/research-overview-${info.project.name}.png` })
+  await expect(panel.locator('.capability-tags')).toContainText('Salesforce platform')
+  await expect(
+    panel.locator('.capability-tags button, .evidence-sheet, .decision-brief, .original-notice'),
+  ).toHaveCount(0)
+  await expect(panel.locator('.inspector-summary')).toContainText(quote)
+  await expect(page.locator('.row-numbers')).not.toContainText(['Estimated contract value'])
+  expect(requests.some((url) => url.includes('/records/panel-a-'))).toBe(true)
+  expect(requests.some((url) => url.includes('/current/FR-'))).toBe(false)
+  await expect(page.getByRole('button', { name: /Mark working/ })).toHaveCount(0)
+  if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
+    await page.screenshot({
+      path: `../artifacts/research-record-${info.project.name}.png`,
+      fullPage: false,
+    })
+  expect(
+    (await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze())
+      .violations,
+  ).toEqual([])
+})
+
+test('simplified record keeps the same response stage as its calendar', async ({ page }) => {
+  await fixture(page, (record) => {
+    const original = 'Implementieren Sie Salesforce und integrieren Sie die Kundenfallbearbeitung.'
+    record.capability_evidence = [
+      {
+        ...record.capability_evidence![0],
+        basis: 'english_translation',
+        language: 'de',
+        original_quote: original,
+        translated_quote: quote,
+      },
+    ]
+    record.deadlines = [
+      { ...record.deadlines![1], kind: 'invited_submission', date: '2026-12-20' },
+      { ...record.deadlines![1], kind: 'tender', date: '2026-11-20' },
+      { ...record.deadlines![1], kind: 'expression_of_interest', date: '2026-10-05' },
+    ]
+  })
+  const panel = await openRecord(page)
+  await expect(panel.locator('.inspector-facts')).toContainText('Expressions of interest due')
+  await expect(panel.locator('.inspector-facts')).toContainText('5 Oct 2026')
+  await expect(
+    panel.getByRole('link', {
+      name: 'Add deadline to Google Calendar (opens a new tab)',
+      exact: true,
+    }),
+  ).toHaveAttribute('href', /20261005T130000Z/)
+  await expect(panel.locator('.decision-brief, .evidence-sheet')).toHaveCount(0)
+})
+
+test('document revisions and page-linked evidence remain source traceable', async ({ page }) => {
+  await fixture(page, (record) => {
+    record.provenance = [{ ...record.provenance[0], url: source }]
+    record.documents.push({ title: 'Notice listing', url: source, kind: 'notice' })
+  })
+  const panel = await openRecord(page)
+  // Documents and source history are part of the one complete record, in its single scroll.
+  const record = panel.locator('.inspector-scroll')
+  await expect(record.locator('.source-document').first()).toContainText('Revision 2')
+  await record.getByText('Read page evidence', { exact: true }).click()
+  await expect(record.getByRole('link', { name: 'Page 7' })).toHaveAttribute(
+    'href',
+    'https://example.com/specification.pdf#page=7',
+  )
+  await expect(record.locator('.document-pages')).toContainText('preserve audit records')
+  // The dock names the source and when it was checked, and opens the source history.
+  const history = record.locator('.record-history')
+  const sourceButton = panel.locator('.record-action-dock').getByRole('button', {
+    name: /^Find a Tender/,
+  })
+  await expect(sourceButton).toContainText('checked 11 Sep')
+  await sourceButton.click()
+  await expect(history).toHaveJSProperty('open', true)
+  await expect(history.locator('.provenance-list')).toContainText('Find a Tender')
+  await expect(history.locator('.provenance-list')).toContainText('Reference panel-notice')
+  // The notice, its listing document and its provenance share one link: the dock's source notice.
+  await expect(panel.locator(`a[href="${source}"]`)).toHaveCount(1)
+  await expect(
+    panel
+      .locator('.record-action-dock')
+      .getByRole('link', { name: 'Open source notice', exact: true }),
+  ).toHaveAttribute('href', source)
+})
+
+test('buyer page loads all collected history and restores the prior working view', async ({
+  page,
+}, info) => {
+  const panel = await openRecord(page)
+  await panel.getByRole('button', { name: 'View buyer history for Northbridge Council' }).click()
+  const research = page.getByRole('dialog', { name: 'Buyer history' })
+  await expect(research.locator('.research-hero')).toContainText('Northbridge Council')
+  await expect(research.locator('.surface-heading').first()).toContainText('55 collected')
+  await expect(research.locator('.research-timeline > li')).toHaveCount(50)
+  await research.getByRole('button', { name: /Show more history/ }).click()
+  await expect(research.locator('.research-timeline > li')).toHaveCount(55)
+  const sparseRecord = research.locator('.research-timeline > li').nth(1)
+  await expect(sparseRecord.locator('.award-winner, .history-contract')).toHaveCount(0)
+  expect(await sparseRecord.innerText()).not.toMatch(/(?:^|\n)0(?:\n|$)/)
+  await research.getByText('Contract & lot details').first().click()
+  await expect(research.locator('.history-contract').first()).toContainText('2027')
+  if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
+    await page.screenshot({
+      path: `../artifacts/research-buyer-${info.project.name}.png`,
+      fullPage: false,
+    })
+  await research.getByRole('button', { name: 'Back to results' }).click()
+  await expect(page.locator('.row-select').first()).toBeVisible()
+  if (info.project.name === 'mobile')
+    await expect(page.locator('.row-select').first()).toBeFocused()
+  await expect(page.getByRole('button', { name: 'UK&I', exact: true })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  )
+})
+
+test('buyer history links retained supplier awards outside the main feed and returns to the clicked row', async ({
+  page,
+}) => {
+  const { history } = await fixture(page)
+  history[52].supplier = history[0].supplier
+  history[52].award_date = '2023-05-12'
+  const panel = await openRecord(page)
+  await panel.getByRole('button', { name: 'View buyer history for Northbridge Council' }).click()
+  const buyer = page.getByRole('dialog', { name: 'Buyer history' })
+  const company = buyer.getByRole('button', {
+    name: 'View awarded contracts for Winner 1 Ltd',
+    exact: true,
+  })
+  await expect(company).toHaveCount(1)
+  await company.click()
+  const supplier = page.getByRole('dialog', { name: 'Supplier history' })
+  await expect(supplier.locator('.research-timeline > li')).toHaveCount(2)
+  await expect(supplier.locator('.research-timeline')).toContainText('Council digital service 1')
+  await expect(supplier.locator('.research-timeline')).toContainText('Council digital service 53')
+  await expect(supplier.locator('.research-surface > .metal-edge')).toHaveCount(1)
+  await expect(supplier.locator(`a[href="${source}?notice=0"]`)).toHaveCount(1)
+  await supplier.getByRole('button', { name: 'Back', exact: true }).click()
+  await expect(company).toBeFocused()
+  await expect(buyer.locator('.research-surface > .metal-edge')).toHaveCount(1)
+})
+
+test('label-only lots and repeated listing links collapse while separate historical sources remain', async ({
+  page,
+}) => {
+  const { record, history } = await fixture(page)
+  record.lot_ids = ['LOT-0001', 'LOT-0002']
+  record.lots = record.lot_ids.map((id, i) => ({
+    id,
+    title: `Lot ${i + 1}`,
+    description: '',
+    status: 'unknown',
+    source_url: `${source}#lot-${i + 1}`,
+  }))
+  record.procedure_history = [
+    {
+      signal_id: record.id,
+      title,
+      status: 'active',
+      source_url: `${source}#history`,
+      lot_ids: record.lot_ids,
+      lots: record.lots,
+    },
+    {
+      signal_id: record.id,
+      title: '',
+      status: 'unknown',
+      source_url: 'https://other.example.org/notice/12',
+      lot_ids: [],
+    },
+  ]
+  history.splice(0, history.length, record.procedure_history[0], {
+    ...history[0],
+    lots: record.lots,
+  })
+  record.buyer_history_ref!.count = 2
+  const panel = await openRecord(page)
+  await panel.getByRole('button', { name: 'View buyer history for Northbridge Council' }).click()
+  const buyer = page.getByRole('dialog', { name: 'Buyer history' })
+  const selected = buyer.locator('.buyer-context > .research-surface').first()
+  await expect(selected.locator('.lot-summary')).toHaveText('Lots LOT-0001 · LOT-0002')
+  await expect(selected.locator('.lot-grid, .research-timeline')).toHaveCount(0)
+  await expect(buyer.getByRole('heading', { name: 'Published lots', exact: true })).toHaveCount(0)
+  await expect(buyer.locator(`a[href="${source}"]`)).toHaveCount(1)
+  await expect(buyer.locator(`a[href="${source}?notice=0"]`)).toHaveCount(1)
+  await expect(selected.locator('a[href="https://other.example.org/notice/12"]')).toHaveCount(1)
+  await expect(buyer.locator('.research-page-header .glass-source-button')).toHaveCount(0)
+  await expect(buyer.locator('.research-surface > .metal-edge')).toHaveCount(1)
+  await expect(selected.locator('.source-origin')).toContainText([
+    'example.com',
+    'other.example.org',
+  ])
+})
+
+test('buyer lots reuse exact cached text and separate notice revisions have distinct labels', async ({
+  page,
+}, info) => {
+  const { record } = await fixture(page)
+  record.title = 'Belastingapplicatie'
+  record.description = 'De gemeente zoekt een nieuwe belastingapplicatie.'
+  record.primary_source_url = 'https://ted.europa.eu/en/notice/-/detail/635439-2026'
+  record.source_urls = [
+    record.primary_source_url,
+    'https://ted.europa.eu/en/notice/-/detail/434650-2026',
+  ]
+  record.provenance = record.provenance.map((item) => ({ ...item, url: record.primary_source_url }))
+  record.provenance.push({ ...record.provenance[0], url: record.source_urls[1] })
+  record.procedure_history = record.source_urls.map((source_url) => ({
+    signal_id: record.id,
+    title: record.title,
+    status: 'active',
+    source_url,
+    lot_ids: [],
+  }))
+  record.lots = [
+    {
+      id: '1',
+      title: record.title,
+      description: record.description,
+      status: 'active',
+      source_url: record.primary_source_url,
+    },
+    {
+      id: '2',
+      title: 'Apart perceel',
+      description: 'Een andere opdracht zonder vertaling.',
+      status: 'active',
+      source_url: record.primary_source_url,
+    },
+  ]
+  await page.route('**/data/records/panel-a-*', (route) =>
+    route.fulfill({
+      json: {
+        schema_version: '1.0',
+        signal: record,
+        translation: {
+          source_hash: 'exact-original',
+          version: 'test',
+          title: 'Tax application',
+          description: 'The council needs a new tax application.',
+        },
+      },
+    }),
+  )
+  await page.goto('./')
+  if (info.project.name === 'mobile') await page.locator('.row-select').first().click()
+  await page.locator('.console-detail:visible .buyer-history-link').click()
+  const buyer = page.getByRole('dialog', { name: 'Buyer history', exact: true })
+  const aside = buyer.locator('.buyer-context')
+  await expect(aside.locator('.lot-grid')).toContainText('The council needs a new tax application.')
+  await expect(aside.locator('.lot-grid')).toContainText('Een andere opdracht zonder vertaling.')
+  await expect(aside.locator('.source-origin')).toContainText(['635439-2026', '434650-2026'])
+  await buyer.getByRole('button', { name: 'Record language: English' }).click()
+  await buyer.getByRole('menuitemradio', { name: 'Original', exact: true }).click()
+  await expect(aside.locator('.lot-grid')).toContainText(record.description)
+  await expect(aside.locator('.lot-grid')).not.toContainText(
+    'The council needs a new tax application.',
+  )
+})
+
+test('title research compares source-linked awards with explicit relationship and filters', async ({
+  page,
+}, info) => {
+  const panel = await openRecord(page)
+  await panel.getByRole('button', { name: title, exact: true }).click()
+  const research = page.getByRole('dialog', { name: 'Opportunity research' })
+  await expect(research.locator('.research-split > section')).toHaveCount(3)
+  await expect(research.locator('.research-current > .metal-edge')).toHaveCount(1)
+  await expect(
+    research.locator('.research-signals > .metal-edge, .research-awards > .metal-edge'),
+  ).toHaveCount(0)
+  await expect(research.locator('.related-award')).toHaveCount(2)
+  await expect(research.locator('.related-award').first()).toContainText('Same buyer')
+  await expect(research.locator('.related-award').last().locator('.award-reason')).toHaveText(
+    'Salesforce platform · Case management & service',
+  )
+  const awards = research.locator('.research-awards')
+  await awards.locator('.related-filter-menu > summary').click()
+  await awards.getByLabel('Supplier', { exact: true }).fill('Example Delivery')
+  await expect(research.locator('.related-award')).toHaveCount(1)
+  await awards.getByLabel('Award date filter').selectOption('from')
+  await awards.getByLabel('From', { exact: true }).fill('2025-01-01')
+  await expect(awards.getByText('No matching awards', { exact: true })).toBeVisible()
+  await awards
+    .locator('.related-filter-panel')
+    .getByRole('button', { name: 'Clear filters' })
+    .click()
+  await awards.getByRole('button', { name: 'Done', exact: true }).click()
+  if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
+    await page.screenshot({
+      path: `../artifacts/research-comparison-${info.project.name}.png`,
+      fullPage: false,
+    })
+})
+
+test('@pr history titles open their own full record, keep language across pages, and hide Salesforce for completed awards', async ({
+  page,
+}) => {
+  const { history } = await fixture(page)
+  history[0].title = 'Dossierdienst voor de gemeente'
+  history[0].title_en = 'Council casework service'
+  history[0].award_date = undefined
+  history[2].signal_type = 'LIVE_TENDER'
+  history[2].status = 'active'
+  history[2].award_statuses = []
+  history[2].supplier = ''
+  history[2].winners = []
+  history[2].award_date = undefined
+  const panel = await openRecord(page)
+  await panel.getByRole('button', { name: 'View buyer history for Northbridge Council' }).click()
+  const buyer = page.getByRole('dialog', { name: 'Buyer history' })
+  const titleLink = buyer.getByRole('button', { name: 'Council casework service', exact: true })
+  await titleLink.click()
+  const record = page.getByRole('dialog', { name: 'Full record', exact: true })
+  await expect(record.getByText('Award notice published', { exact: true })).toBeVisible()
+  await expect(record.locator('.inspector-summary')).toContainText(
+    'Complete retained scope for this historical contract.',
+  )
+  await expect(record.locator('[aria-label*="Salesforce"]')).toHaveCount(0)
+  await expect(record.getByRole('link', { name: /Gmail/ })).toBeVisible()
+  const draft = new URL((await record.getByRole('link', { name: /Gmail/ }).getAttribute('href'))!)
+  const sharedURL = draft.searchParams.get('body')!.match(/View in Anthrion Signal: (.+)/)![1]
+  await expect(record.getByRole('button', { name: /Slack/ })).toHaveCount(0)
+  await expect(record.locator('.supplier-links')).toContainText('Winner 1 Ltd')
+  await record.getByRole('button', { name: 'Record language: English' }).click()
+  await record.getByRole('menuitemradio', { name: 'Original', exact: true }).click()
+  await expect(
+    record.getByRole('heading', { name: 'Dossierdienst voor de gemeente' }),
+  ).toBeVisible()
+  await record.getByRole('button', { name: 'Back', exact: true }).click()
+  await expect(
+    buyer.getByRole('button', { name: 'Dossierdienst voor de gemeente', exact: true }),
+  ).toBeFocused()
+  // Both records share a compressed bucket; a cached bucket must resolve the new identity.
+  await buyer.getByRole('button', { name: 'Council digital service 3', exact: true }).click()
+  await expect(
+    record.getByRole('heading', { name: 'Council digital service 3', exact: true }),
+  ).toBeVisible()
+  await expect(
+    record.getByRole('link', { name: 'Open source notice', exact: true }),
+  ).toHaveAttribute('href', history[2].source_url!)
+  await expect(record.locator('[aria-label*="Salesforce"]')).toHaveCount(0)
+  await record.getByRole('button', { name: 'Back', exact: true }).click()
+  await buyer.getByRole('button', { name: 'Back to results', exact: true }).click()
+  await page.reload()
+  // The results carry the same choice in the market row's English/Original switch.
+  await expect(
+    page
+      .getByRole('radiogroup', { name: 'Record language' })
+      .getByRole('radio', { name: 'Original', exact: true }),
+  ).toBeChecked()
+  await page.goto(sharedURL)
+  const sharedRecord = page.locator('.console-detail:visible')
+  await expect(sharedRecord.locator('.inspector-summary')).toContainText(
+    'Complete retained scope for this historical contract.',
+  )
+  await expect(sharedRecord.locator('.supplier-links')).toContainText('Winner 1 Ltd')
+  await expect(sharedRecord.locator('[aria-label*="Salesforce"]')).toHaveCount(0)
+})
+
+test('@pr related live and awarded titles open full details and awarded context points back to open signals', async ({
+  page,
+}, info) => {
+  await page.goto('./?market=&view=all')
+  if (info.project.name === 'mobile') await page.locator('.row-select').first().click()
+  await page
+    .locator('.console-detail:visible')
+    .getByRole('button', { name: title, exact: true })
+    .click()
+  const context = page.getByRole('dialog', { name: 'Opportunity research' })
+  await expect(context.locator('.research-signals .related-signal')).toHaveCount(1)
+  await context
+    .locator('.research-signals')
+    .getByRole('button', { name: 'Portail citoyen', exact: true })
+    .click()
+  const full = page.getByRole('dialog', { name: 'Full record', exact: true })
+  await expect(full.locator('[aria-label*="Salesforce"]')).toBeVisible()
+  await full.getByRole('button', { name: 'Back', exact: true }).click()
+  await context
+    .locator('.research-awards')
+    .getByRole('button', { name: 'Customer platform implementation 2024', exact: true })
+    .click()
+  await expect(full.locator('[aria-label*="Salesforce"]')).toHaveCount(0)
+  await full
+    .getByRole('button', { name: 'Customer platform implementation 2024', exact: true })
+    .click()
+  const awardedContext = page.getByRole('dialog', { name: 'Opportunity research' }).last()
+  await expect(awardedContext.locator('.research-signals')).toContainText(title)
+  await expect(awardedContext.locator('.research-current > .metal-edge')).toHaveCount(1)
+  await expect(awardedContext.locator('.research-awards > .metal-edge')).toHaveCount(0)
+  expect(
+    (await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze())
+      .violations,
+  ).toEqual([])
+})
+
+test('@pr reopening All context reuses verified awards after shard eviction and revalidates changed manifests', async ({
+  page,
+}, info) => {
+  const { manifest } = await fixture(page)
+  const awardHistory: NonNullable<Dataset['award_history']> = { ...manifest.award_history }
+  for (const market of 'AT BE BG CA CH CY CZ DE DK EE ES FI FR GR HR HU IE IT LT LU LV MT NL NO PL PT RO SE SI SK US'.split(
+    ' ',
+  ))
+    awardHistory[market] = { url: `awards/${market}-${hash}.json`, count: 0 }
+  Object.assign(manifest, { award_history: awardHistory })
+  await page.route('**/data/awards/*', (route) =>
+    route.request().url().includes('/GB-')
+      ? route.fallback()
+      : route.fulfill({ json: { schema_version: '1.0', signals: [] } }),
+  )
+  let downloads = 0
+  page.on('request', (request) => {
+    if (request.url().includes('/data/awards/')) downloads++
+  })
+  await page.goto('./?market=&view=all')
+  const open = async () => {
+    if (info.project.name === 'mobile') await page.locator('.row-select').first().click()
+    await page
+      .locator('.console-detail:visible')
+      .getByRole('button', { name: title, exact: true })
+      .click()
+  }
+  const context = page.getByRole('dialog', { name: 'Opportunity research' })
+  await open()
+  await expect(context.locator('.research-awards .surface-heading')).toContainText('2 matches')
+  const initialDownloads = downloads
+  expect(initialDownloads).toBeGreaterThan(12)
+  await context.getByRole('button', { name: 'Back to results', exact: true }).click()
+  await open()
+  await expect(context.locator('.research-awards .surface-heading')).toContainText('2 matches')
+  expect(downloads).toBe(initialDownloads)
+  await context.getByRole('button', { name: 'Back to results', exact: true }).click()
+  awardHistory.GB = { ...awardHistory.GB, count: 3 }
+  const menu = await openWorkspaceMenu(page)
+  const refresh = menu.getByRole('button', { name: 'Check for updates', exact: true })
+  await refresh.click()
+  await expect(refresh).toBeEnabled()
+  await menu.getByRole('button', { name: 'Close workspace menu', exact: true }).click()
+  await open()
+  await expect(context.locator('.research-awards')).toContainText(
+    'Awarded records are temporarily unavailable',
+  )
+})
+
+test('last view remembers search and matching while shared URLs and UK&I startup stay predictable', async ({
+  page,
+}) => {
+  await page.goto('./')
+  await page.getByRole('textbox', { name: 'Search opportunities' }).fill('kundenplattform')
+  await expect(page.locator('.row-select')).toHaveCount(1)
+  // The search scope lives inside the search box, under Search options.
+  await page.getByRole('button', { name: 'Search options', exact: true }).click()
+  const searchIn = page
+    .getByRole('dialog', { name: 'Search options' })
+    .getByRole('radiogroup', { name: 'Search in' })
+  await searchIn.getByRole('radio', { name: 'Exact source text', exact: true }).click()
+  await expect(page.getByText('No matching signals', { exact: true })).toBeVisible()
+  await searchIn.getByRole('radio', { name: 'Text + capabilities', exact: true }).click()
+  await expect(page.locator('.row-select')).toHaveCount(1)
+  await page.goto('./')
+  await expect(page.getByRole('textbox', { name: 'Search opportunities' })).toHaveValue(
+    'kundenplattform',
+  )
+  // The remembered search still matches through capabilities.
+  await expect(page.locator('.row-select')).toHaveCount(1)
+  await expect(page.getByRole('button', { name: 'UK&I', exact: true })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  )
+  await expect(page.getByText('Saved views', { exact: true })).toHaveCount(0)
+  await page.goto('./?market=FR&view=all')
+  await expect(page.getByRole('textbox', { name: 'Search opportunities' })).toHaveValue('')
+  await expect(page.getByRole('button', { name: 'France', exact: true })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  )
+  await page.goto('./')
+  await expect(page.getByRole('button', { name: 'UK&I', exact: true })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  )
+})
+
+test('@pr All leads UK&I; groups and individual countries can be pinned together and moved', async ({
+  page,
+}) => {
+  await page.goto('./')
+  await expect(page.locator('.market-tabs > button').nth(0)).toHaveAttribute(
+    'aria-label',
+    'All markets',
+  )
+  await expect(page.locator('.market-tabs > button').nth(1)).toHaveAttribute('aria-label', 'UK&I')
+  await expect(page.getByRole('button', { name: 'France', exact: true })).toBeAttached()
+  await expect(page.getByRole('button', { name: 'Benelux', exact: true })).toBeAttached()
+  await page.getByRole('button', { name: 'Organize markets' }).click()
+  const organizer = page.getByRole('dialog', { name: 'Organize markets' })
+  await expect(
+    organizer.getByRole('checkbox', { name: 'Pin All markets', exact: true }),
+  ).toBeChecked()
+  for (const country of [
+    'Germany',
+    'Austria',
+    'Switzerland',
+    'Belgium',
+    'Netherlands',
+    'Luxembourg',
+  ])
+    await expect(
+      organizer.getByRole('checkbox', { name: `Pin ${country}`, exact: true }),
+    ).toHaveCount(1)
+  await organizer.getByRole('checkbox', { name: 'Pin United Kingdom', exact: true }).check()
+  await expect(
+    organizer.getByRole('checkbox', { name: 'Pin Ireland', exact: true }),
+  ).not.toBeChecked()
+  await organizer.getByRole('checkbox', { name: 'Pin Belgium', exact: true }).check()
+  await organizer.getByRole('checkbox', { name: 'Pin Germany', exact: true }).check()
+  await organizer
+    .getByRole('button', { name: 'Reorder All markets', exact: true })
+    .press('ArrowDown')
+  await organizer.getByRole('button', { name: 'Done', exact: true }).click()
+  await page.reload()
+  await expect(page.locator('.market-tabs > button').nth(0)).toHaveAttribute('aria-label', 'UK&I')
+  await expect(page.locator('.market-tabs > button').nth(1)).toHaveAttribute(
+    'aria-label',
+    'All markets',
+  )
+  for (const market of ['Belgium', 'Germany', 'DACH', 'Benelux'])
+    await expect(page.getByRole('button', { name: market, exact: true })).toBeAttached()
+  await page.getByRole('button', { name: 'All markets', exact: true }).click()
+  await expect(page.locator('.row-select')).toHaveCount(2)
+  await expect(page.locator('.row-country')).toHaveText(['United Kingdom', 'France'])
+  await page.getByRole('button', { name: 'United Kingdom', exact: true }).click()
+  await expect(page.locator('.row-country')).toHaveCount(0)
+})
+
+test('market dragging previews the drop and saves order without changing pins or selection', async ({
+  page,
+}, info) => {
+  await page.goto('./')
+  await page.getByRole('button', { name: 'Organize markets' }).click()
+  const organizer = page.getByRole('dialog', { name: 'Organize markets' })
+  const handle = organizer.getByRole('button', { name: 'Reorder All markets', exact: true })
+  const from = (await handle.boundingBox())!
+  const to = (await organizer.locator('[data-market-id="IT"]').boundingBox())!
+  await page.mouse.move(from.x + from.width / 2, from.y + from.height / 2)
+  await page.mouse.down()
+  await page.mouse.move(from.x + from.width / 2, to.y + to.height - 3, { steps: 12 })
+  await expect(organizer.locator('[data-market-id="NORDICS"]')).toHaveAttribute(
+    'data-drop-before',
+    'true',
+  )
+  await expect(organizer.locator('.market-drag-preview')).toContainText('All markets')
+  if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
+    await page.screenshot({ path: `../artifacts/market-drag-${info.project.name}.png` })
+  await page.mouse.up()
+  await expect(organizer.locator('.market-drag-preview')).toHaveCount(0)
+  await expect(organizer.locator('[data-market-id="IT"] + li')).toHaveAttribute(
+    'data-market-id',
+    '',
+  )
+  await expect(
+    organizer.getByRole('checkbox', { name: 'Pin All markets', exact: true }),
+  ).toBeChecked()
+  await organizer.getByRole('button', { name: 'Done', exact: true }).click()
+  await expect(page.getByRole('button', { name: 'UK&I', exact: true })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  )
+  await page.reload()
+  await expect(page.locator('.market-tabs > button').nth(3)).toHaveAttribute(
+    'aria-label',
+    'All markets',
+  )
+  await expect(page.getByRole('button', { name: 'UK&I', exact: true })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  )
+})
+
+test('market drag scrolls the list and Escape cancels without saving or closing the picker', async ({
+  page,
+}) => {
+  await page.goto('./')
+  await page.getByRole('button', { name: 'Organize markets' }).click()
+  const organizer = page.getByRole('dialog', { name: 'Organize markets' })
+  const list = organizer.getByRole('list', { name: 'Market order' })
+  const handle = organizer.getByRole('button', { name: 'Reorder All markets', exact: true })
+  const from = (await handle.boundingBox())!
+  const bounds = (await list.boundingBox())!
+  await page.mouse.move(from.x + from.width / 2, from.y + from.height / 2)
+  await page.mouse.down()
+  await page.mouse.move(from.x + from.width / 2, bounds.y + bounds.height - 2, { steps: 10 })
+  await expect.poll(() => list.evaluate((element) => element.scrollTop)).toBeGreaterThan(200)
+  await page.keyboard.press('Escape')
+  await page.mouse.up()
+  await expect(organizer).toBeVisible()
+  await expect(organizer.locator('.market-drag-preview')).toHaveCount(0)
+  await expect(organizer.getByRole('listitem').first()).toHaveAttribute('data-market-id', '')
+  await handle.press('End')
+  await expect(organizer.getByRole('listitem').last()).toHaveAttribute('data-market-id', '')
+  await expect(handle).toBeFocused()
+  await handle.press('Home')
+  await expect(organizer.getByRole('listitem').first()).toHaveAttribute('data-market-id', '')
+  await expect(handle).toBeFocused()
+  const result = await new AxeBuilder({ page }).include('.market-organizer').analyze()
+  expect(result.violations).toEqual([])
+})
+
+test('touch can reorder a market and a cancelled touch leaves the order intact', async ({
+  page,
+  browserName,
+}, info) => {
+  test.skip(
+    browserName !== 'chromium' || info.project.name !== 'mobile',
+    'Chromium mobile touch protocol check',
+  )
+  await page.goto('./')
+  await page.getByRole('button', { name: 'Organize markets' }).click()
+  const organizer = page.getByRole('dialog', { name: 'Organize markets' })
+  const touch = await page.context().newCDPSession(page)
+  const from = (await organizer
+    .getByRole('button', { name: 'Reorder All markets', exact: true })
+    .boundingBox())!
+  const to = (await organizer.locator('[data-market-id="UKI"]').boundingBox())!
+  const x = from.x + from.width / 2
+  const y = from.y + from.height / 2
+  const end = to.y + to.height - 3
+  await touch.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x, y }] })
+  await touch.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x, y: end }] })
+  await expect(organizer.locator('.market-drag-preview')).toBeVisible()
+  await touch.send('Input.dispatchTouchEvent', { type: 'touchCancel', touchPoints: [] })
+  await expect(organizer.locator('.market-drag-preview')).toHaveCount(0)
+  await expect(organizer.getByRole('listitem').first()).toHaveAttribute('data-market-id', '')
+  await touch.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x, y }] })
+  await touch.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x, y: end }] })
+  await expect(organizer.locator('[data-market-id="GB"]')).toHaveAttribute(
+    'data-drop-before',
+    'true',
+  )
+  await touch.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] })
+  await expect(organizer.getByRole('listitem').nth(1)).toHaveAttribute('data-market-id', '')
+  await expect(
+    organizer.getByRole('checkbox', { name: 'Pin All markets', exact: true }),
+  ).toBeChecked()
+  await touch.detach()
+})
+
+test('@pr Caribbean stays a single market with country labels and saved pin controls', async ({
+  page,
+}) => {
+  const { record, manifest } = await fixture(page, (item) => {
+    item.countries = ['DO']
+  })
+  manifest.markets = { ...manifest.markets, DO: { name: 'Dominican Republic', enabled: true } }
+  manifest.current_feed!.markets.CARIBBEAN = { url: `current/CARIBBEAN-${hash}.json.gz`, count: 1 }
+  manifest.current_feed!.records[record.id].markets = ['DO', 'CARIBBEAN']
+  await page.goto('./?market=CARIBBEAN&view=all')
+  await expect(page.locator('.row-select')).toHaveCount(1)
+  await expect(page.locator('.row-select')).toContainText('Dominican Republic')
+  const tabs = page.locator('.market-tabs')
+  const order = await tabs.locator(':scope > button').allTextContents()
+  expect(order.findIndex((name) => name.includes('Caribbean'))).toBe(
+    order.findIndex((name) => name.includes('France')) + 1,
+  )
+  await page.getByRole('button', { name: 'Organize markets' }).click()
+  const organizer = page.getByRole('dialog', { name: 'Organize markets' })
+  await expect(
+    organizer.getByRole('checkbox', { name: 'Pin Caribbean', exact: true }),
+  ).toBeChecked()
+  await expect(
+    organizer.getByRole('checkbox', { name: 'Pin Dominican Republic', exact: true }),
+  ).toHaveCount(0)
+  await expect(
+    organizer.getByRole('checkbox', { name: 'Pin Saint Lucia', exact: true }),
+  ).toHaveCount(0)
+  await organizer.getByRole('button', { name: 'Reorder Caribbean', exact: true }).press('ArrowUp')
+  await organizer.getByRole('button', { name: 'Done', exact: true }).click()
+  await page.reload()
+  const moved = await tabs.locator(':scope > button').allTextContents()
+  expect(moved.findIndex((name) => name.includes('Caribbean'))).toBeLessThan(
+    moved.findIndex((name) => name.includes('France')),
+  )
+  await page.getByRole('button', { name: 'Organize markets' }).click()
+  await organizer.getByRole('checkbox', { name: 'Pin Caribbean', exact: true }).uncheck()
+  await organizer.getByRole('button', { name: 'Done', exact: true }).click()
+  await page.reload()
+  await expect(tabs.getByRole('button', { name: 'Caribbean', exact: true })).toHaveCount(0)
+  await page.locator('.more-markets-trigger').click()
+  const menu = page.getByRole('menu', { name: 'More markets' })
+  await expect(
+    menu.getByRole('menuitemradio', { name: 'Dominican Republic', exact: true }),
+  ).toHaveCount(0)
+  await menu.getByRole('menuitemradio', { name: 'Caribbean', exact: true }).click()
+  await expect(page.locator('.row-select')).toHaveCount(1)
+  await page.locator('.row-select').click()
+  await expect(
+    page.locator('.console-detail:visible').getByRole('heading', { name: title, exact: true }),
+  ).toBeVisible()
+})
+
+test('All and grouped markets can be unpinned and remain selectable from More', async ({
+  page,
+}) => {
+  await page.goto('./')
+  await page.getByRole('button', { name: 'Organize markets' }).click()
+  const organizer = page.getByRole('dialog', { name: 'Organize markets' })
+  for (const name of ['All markets', 'Benelux', 'France'])
+    await organizer.getByRole('checkbox', { name: `Pin ${name}`, exact: true }).uncheck()
+  await organizer.getByRole('button', { name: 'Done', exact: true }).click()
+  await page.reload()
+  await expect(
+    page.locator('.market-tabs').getByRole('button', { name: 'All markets', exact: true }),
+  ).toHaveCount(0)
+  await page.locator('.more-markets-trigger').click()
+  const menu = page.getByRole('menu', { name: 'More markets' })
+  for (const name of ['All markets', 'Benelux', 'France', 'Belgium'])
+    await expect(menu.getByRole('menuitemradio', { name, exact: true })).toBeAttached()
+  await menu.getByRole('menuitemradio', { name: 'All markets', exact: true }).click()
+  await expect(page.locator('.row-select')).toHaveCount(2)
+  await expect(page.locator('.more-markets-trigger')).toContainText('All markets')
+})
+
+test('nested buyer and supplier timelines return to the same Context filters and focus', async ({
+  page,
+}) => {
+  const panel = await openRecord(page)
+  await panel.getByRole('button', { name: title, exact: true }).click()
+  const context = page.getByRole('dialog', { name: 'Opportunity research' })
+  await expect(context.getByRole('heading', { name: 'Context', exact: true })).toBeVisible()
+  await expect(context.locator('.research-current > .metal-edge')).toHaveCount(1)
+  await expect(context.locator('.research-surface > .metal-edge')).toHaveCount(1)
+  await expect(context.locator('.decision-brief, .original-notice, .evidence-sheet')).toHaveCount(0)
+  await expect(context.locator('.research-description')).toContainText(quote)
+  await expect(context.locator('.workspace-brand img')).toHaveAttribute(
+    'src',
+    /anthrion-wordmark.svg$/,
+  )
+  await context.locator('.research-awards .related-filter-menu > summary').click()
+  await context.getByLabel('Supplier', { exact: true }).fill('Example Delivery')
+  await context
+    .locator('.research-awards')
+    .getByRole('button', { name: 'Done', exact: true })
+    .click()
+  const winner = context.getByRole('button', {
+    name: 'View awarded contracts for Example Delivery Ltd',
+  })
+  await winner.click()
+  const supplier = page.getByRole('dialog', { name: 'Supplier history' })
+  await expect(
+    supplier.getByRole('heading', { name: 'Example Delivery Ltd', exact: true }),
+  ).toBeVisible()
+  await expect(supplier.locator('.research-timeline > li')).toHaveCount(1)
+  await supplier.getByRole('button', { name: 'View buyer history for Northbridge Council' }).click()
+  const buyer = page.getByRole('dialog', { name: 'Buyer history' })
+  await expect(buyer.locator('.surface-heading').first()).toContainText('55 collected')
+  await buyer.getByRole('button', { name: 'Back', exact: true }).click()
+  await expect(supplier).toBeVisible()
+  await supplier.getByRole('button', { name: 'Back', exact: true }).click()
+  await expect(context.getByLabel('Supplier', { exact: true })).toHaveValue('Example Delivery')
+  await expect(winner).toBeFocused()
+  await expect(context.locator('.related-award')).toHaveCount(1)
+  await context
+    .locator('.related-award')
+    .getByRole('button', { name: 'View buyer history for Northbridge Council' })
+    .click()
+  await expect(buyer).toBeVisible()
+})
+
+test('@pr awarded summaries hydrate their full history and supplier links', async ({ page }) => {
+  await page.goto('./?view=awards')
+  await page
+    .locator('.row-select')
+    .filter({ hasText: 'Customer platform implementation 2024' })
+    .click()
+  const panel = page.locator('.console-detail:visible')
+  await expect(
+    panel.getByRole('heading', { name: 'Procurement history', exact: true }),
+  ).toBeVisible()
+  await expect(panel.locator('.record-procurement')).toContainText('Council digital service 1')
+  await expect(panel.getByRole('link', { name: /Salesforce/ })).toHaveCount(0)
+  await panel
+    .getByRole('button', { name: 'View awarded contracts for Example Delivery Ltd' })
+    .click()
+  await expect(
+    page.getByRole('dialog', { name: 'Supplier history' }).locator('.research-timeline > li'),
+  ).toHaveCount(1)
+})
+
+test('slow details stay in a loading state before source research can open', async ({
+  page,
+}, info) => {
+  let release = () => {}
+  const pending = new Promise<void>((resolve) => {
+    release = resolve
+  })
+  await page.route('**/data/records/panel-a-*', async (route) => {
+    await pending
+    await route.fallback()
+  })
+  await page.goto('./')
+  await expect(page.locator('.row-select').first()).toBeVisible()
+  if (info.project.name === 'mobile') await page.locator('.row-select').first().click()
+  // Phones open the record in a drawer titled with its notice type.
+  const record =
+    info.project.name === 'mobile'
+      ? page.getByRole('dialog', { name: 'Live tender', exact: true })
+      : page.locator('.console-inspector')
+  await expect(record.getByText('Loading full record…')).toBeVisible()
+  await expect(record.getByRole('button', { name: title, exact: true })).toHaveCount(0)
+  release()
+  await expect(record.getByRole('button', { name: title, exact: true })).toBeVisible()
+  await record.getByRole('button', { name: 'View buyer history for Northbridge Council' }).click()
+  await expect(
+    page.getByRole('dialog', { name: 'Buyer history' }).locator('.surface-heading').first(),
+  ).toContainText('55 collected')
+})
+
+test('an open research page updates source and translation together after a delayed revision', async ({
+  page,
+}) => {
+  const { record, manifest } = await fixture(page)
+  const panel = await openRecord(page)
+  await panel.getByRole('button', { name: title, exact: true }).click()
+  const research = page.getByRole('dialog', { name: 'Opportunity research' })
+  await expect(research.locator('.research-current h2')).toHaveText(title)
+  const revised = {
+    ...record,
+    title: 'Original title revision two',
+    description: 'Version two original source description.',
+    capability_evidence: [
+      {
+        ...record.capability_evidence![0],
+        quote: 'Version two source scope.',
+        source_hash: 'source-v2',
+      },
+    ],
+  }
+  const english = {
+    source_hash: 'source-v2',
+    version: 'v2',
+    title: 'Updated English title',
+    description: 'Updated English description',
+  }
+  const nextHash = 'fedcba9876543210'
+  await page.route('**/data/manifest.json', (route) =>
+    route.fulfill({
+      json: {
+        ...manifest,
+        current_feed: {
+          ...manifest.current_feed,
+          markets: {
+            ...manifest.current_feed!.markets,
+            GB: { url: `current/GB-${nextHash}.json`, count: 1 },
+          },
+          records: {
+            ...manifest.current_feed!.records,
+            [record.id]: {
+              url: `records/${record.id}-${nextHash}.json`,
+              markets: ['GB'],
+              view: 'opportunities',
+            },
+          },
+        },
+      },
+    }),
+  )
+  await page.route(`**/data/current/GB-${nextHash}.json`, (route) =>
+    route.fulfill({
+      json: {
+        schema_version: '1.0',
+        signals: [
+          { ...revised, is_summary: true, description: '', search_text: revised.description },
+        ],
+        translations: { [record.id]: english },
+      },
+    }),
+  )
+  let release = () => {}
+  const pending = new Promise<void>((resolve) => {
+    release = resolve
+  })
+  await page.route(`**/data/records/${record.id}-${nextHash}.json`, async (route) => {
+    await pending
+    await route.fulfill({ json: { schema_version: '1.0', signal: revised, translation: english } })
+  })
+  // The refresh lives in the workspace menu, behind the modal research page; the menu opens
+  // above the page, which stays open underneath.
+  await page.evaluate(() =>
+    document.querySelector<HTMLButtonElement>('[aria-label="Workspace menu"]')!.click(),
+  )
+  const menu = page.getByRole('dialog', { name: 'Workspace', exact: true })
+  await menu.getByRole('button', { name: 'Check for updates', exact: true }).click()
+  await expect(page.locator('.console-inspector')).toContainText('Loading full record…')
+  await menu.getByRole('button', { name: 'Close workspace menu', exact: true }).click()
+  await expect(research).toBeVisible()
+  await expect(research.locator('.research-current h2')).toHaveText(title)
+  await expect(research.locator('.research-description')).toContainText(quote)
+  release()
+  await expect(research.locator('.research-current h2')).toHaveText(english.title)
+  await expect(research.locator('.research-description')).toContainText(english.description)
+  await expect(research.locator('.original-notice')).toHaveCount(0)
+})
+
+test('direct record links load the requested country before choosing a default row', async ({
+  page,
+}) => {
+  await page.goto('./?signal=panel-b')
+  await expect(page.locator('.console-detail:visible h2')).toHaveText('Portail citoyen')
+  await expect(page).toHaveURL(/market=FR/)
+  await expect(page.getByRole('button', { name: 'France', exact: true })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  )
+  await expect(
+    page.getByText('This opportunity is no longer available', { exact: true }),
+  ).toHaveCount(0)
+})
+
+test('More markets exposes individual countries with hover and keyboard navigation', async ({
+  page,
+}) => {
+  await page.goto('./')
+  const trigger = page.locator('.more-markets-trigger')
+  await trigger.focus()
+  await trigger.press('ArrowDown')
+  const menu = page.getByRole('menu', { name: 'More markets' })
+  await expect(menu).toBeVisible()
+  await expect(menu.getByRole('menuitemradio', { name: 'Benelux', exact: true })).toHaveCount(0)
+  await expect(
+    menu.getByRole('menuitemradio', {
+      name: /^(Germany|Austria|Switzerland|Belgium|Netherlands|Luxembourg)$/,
+    }),
+  ).toHaveCount(6)
+  await page.keyboard.press('End')
+  await expect(menu.getByRole('menuitemradio').last()).toBeFocused()
+  await page.keyboard.press('Escape')
+  await expect(menu).toHaveCount(0)
+  await expect(trigger).toBeFocused()
+  await trigger.hover()
+  await expect(menu).toBeVisible()
+})
+
+test('record separator supports keyboard resizing, persistence and compact reading', async ({
+  page,
+}, info) => {
+  test.skip(info.project.name !== 'desktop', 'Desktop has resizable side-by-side panes.')
+  await openRecord(page)
+  const separator = page.getByRole('separator', { name: 'Resize record pane' })
+  await separator.focus()
+  await separator.press('ArrowLeft')
+  await expect(separator).toHaveAttribute('aria-valuenow', '48')
+  await chooseCompactRefiners(page)
+  await expect(page.locator('.compact-refiners')).toBeVisible()
+  await page.reload()
+  await expect(separator).toHaveAttribute('aria-valuenow', '48')
+  await expect(page.locator('.compact-refiners')).toBeVisible()
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
+  const handle = (await separator.boundingBox())!
+  await page.mouse.move(handle.x + handle.width / 2, handle.y + handle.height / 2)
+  await page.mouse.down()
+  await page.mouse.move(handle.x + 85, handle.y + handle.height / 2)
+  await page.mouse.up()
+  await expect
+    .poll(async () => Number(await separator.getAttribute('aria-valuenow')))
+    .toBeGreaterThan(48)
+  await separator.press('End')
+  await page.setViewportSize({ width: 950, height: 760 })
+  await expect
+    .poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth))
+    .toBe(true)
+  await expect(page.locator('.console-inspector')).toBeVisible()
+  await page.setViewportSize({ width: 720, height: 525 })
+  await expect
+    .poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth))
+    .toBe(true)
+})
+
+test('long source records retain readable widths and dock actions in compact and 200%-equivalent viewports', async ({
+  page,
+}, info) => {
+  test.skip(info.project.name !== 'desktop', 'Reflow is exercised once from a desktop workspace.')
+  await fixture(page, (record) => {
+    record.title = `${title} with regional departments, shared services and cross-agency integration`
+    record.buyer_name =
+      'Landesbetrieb für Informationstechnik und Digitalisierung der regionalen öffentlichen Verwaltung'
+    record.description = Array.from({ length: 8 }, () => record.description).join('\n\n')
+  })
+  for (const [width, height] of [
+    [1280, 720],
+    [901, 600],
+    [720, 450],
+  ]) {
+    await page.setViewportSize({ width, height })
+    await page.goto('./')
+    await expect(page.locator('.row-select').first()).toBeVisible()
+    // The Compact refiners preference persists; narrow screens always use the chips.
+    if (!(await page.locator('.compact-refiners').count())) await chooseCompactRefiners(page)
+    await expect(page.locator('.compact-refiners')).toBeVisible()
+    expect((await page.locator('.discovery-band').boundingBox())!.height).toBeLessThan(90)
+    if (width <= 900) await page.locator('.row-select').first().click()
+    const panel = page.locator('.console-detail:visible')
+    await expect(panel).toBeVisible()
+    const dock = panel.locator('.record-action-dock')
+    // The source-history button names the source and when it was checked.
+    const sourceHistory = dock.getByRole('button', { name: /^Find a Tender/ })
+    await expect(sourceHistory).toContainText('checked 11 Sep')
+    await expect(sourceHistory).toBeInViewport()
+    await expect(
+      dock.getByRole('link', { name: 'Open source notice', exact: true }),
+    ).toBeInViewport()
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
+    if (process.env.SIGNAL_CAPTURE_DESIGN === 'true')
+      await page.screenshot({ path: `../artifacts/research-long-${width}x${height}.png` })
+  }
+})

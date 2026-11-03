@@ -1,0 +1,182 @@
+import importlib.util
+import json
+import sys
+from datetime import UTC, datetime, timedelta
+from pathlib import Path
+from types import SimpleNamespace
+
+import pytest
+import yaml
+
+ROOT = Path(__file__).resolve().parents[2]
+spec = importlib.util.spec_from_file_location("refresh_plan", ROOT / "scripts/refresh_plan.py")
+refresh = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(refresh)
+NOW = datetime(2026, 9, 12, 12, 50, tzinfo=UTC)
+
+
+def write(path, value):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(value), encoding="utf-8")
+
+
+@pytest.fixture
+def root(tmp_path, monkeypatch):
+    monkeypatch.setattr(refresh, "data_digest", lambda root: "tested-code")
+    return tmp_path
+
+
+def test_full_suite_is_due_until_a_success_is_recorded(root, monkeypatch):
+    plan = refresh.make_plan(root, NOW, "schedule")
+    assert plan["full_tests"]
+    assert not (root / "data/verification_state.json").exists()
+    write(root / "tmp/refresh-plan.json", plan)
+    (root / "data").mkdir()
+    monkeypatch.chdir(root)
+    monkeypatch.setattr(sys, "argv", ["refresh_plan.py", "passed"])
+    refresh.main()
+    assert not refresh.make_plan(root, NOW, "schedule")["full_tests"]
+    assert refresh.make_plan(root, NOW + timedelta(days=1), "schedule")["full_tests"]
+    assert refresh.make_plan(root, NOW, "push")["full_tests"]
+    assert refresh.make_plan(root, NOW, "workflow_dispatch", force_full=True)["full_tests"]
+    monkeypatch.setattr(refresh, "data_digest", lambda root: "changed-code")
+    assert refresh.make_plan(root, NOW, "schedule")["full_tests"]
+
+
+def test_daily_suite_uses_london_day_and_retries_after_a_missed_tick(root):
+    before_midnight = datetime(2026, 9, 12, 22, 50, tzinfo=UTC)
+    plan = refresh.make_plan(root, before_midnight, "schedule")
+    write(root / "data/verification_state.json", plan["signature"])
+    assert refresh.make_plan(root, before_midnight + timedelta(hours=1), "schedule")["full_tests"]
+    assert refresh.make_plan(root, before_midnight + timedelta(hours=8), "schedule")["full_tests"]
+
+
+def test_translation_checks_do_not_increase_source_polling_even_when_delayed(root):
+    assert not refresh.make_plan(root, NOW, "schedule", schedule="5,20,35 * * * *")["collect"]
+    assert refresh.make_plan(root, NOW + timedelta(minutes=17), "schedule", schedule="50 * * * *")["collect"]
+    workflow = yaml.load((ROOT / ".github/workflows/ingest-and-deploy.yml").read_text(), Loader=yaml.BaseLoader)
+    assert [item["cron"] for item in workflow["on"]["schedule"]] == ["50 * * * *", "5,20,35 * * * *"]
+    steps = {step.get("name"): step for step in workflow["jobs"]["build"]["steps"]}
+    assert steps["Plan collection and verification"]["env"]["SCHEDULE_TRIGGER"] == "${{ github.event.schedule }}"
+    assert steps["Verify pipeline changes"]["if"] == "steps.plan.outputs.full_tests == 'true'"
+    assert "--no-export" in steps["Collect public opportunities"]["run"]
+    assert "if" not in steps["Compress retained snapshots"]
+    assert "unchanged" in steps["Validate pipeline and public dataset"]["if"]
+
+
+@pytest.mark.parametrize("value", [None, [], {"code": "tested-code"}, "invalid-json"])
+def test_missing_or_invalid_verification_state_requires_full_tests(root, value):
+    write(root / "data/verification_state.json", value)
+    assert refresh.make_plan(root, NOW, "schedule")["full_tests"]
+
+
+def test_smoke_run_cannot_mark_full_regression_as_passed(root, monkeypatch):
+    write(root / "tmp/refresh-plan.json", {"full_tests": False})
+    monkeypatch.chdir(root)
+    monkeypatch.setattr(sys, "argv", ["refresh_plan.py", "passed"])
+    with pytest.raises(SystemExit):
+        refresh.main()
+    assert not (root / "data/verification_state.json").exists()
+
+
+def test_queued_duplicate_skips_only_recent_successful_scheduled_collection(root):
+    previous = {"operation": "ingest", "sources_succeeded": 3,
+                "finished_at": (NOW - timedelta(minutes=8)).isoformat()}
+    write(root / "data/run_metadata.json", previous)
+    assert not refresh.make_plan(root, NOW, "schedule")["collect"]
+    assert refresh.make_plan(root, NOW, "workflow_dispatch", collect_requested=True)["collect"]
+    assert not refresh.make_plan(root, NOW, "workflow_dispatch", collect_requested=False)["collect"]
+    assert not refresh.make_plan(root, NOW, "push")["collect"]
+    assert refresh.make_plan(root, NOW + timedelta(minutes=22), "schedule")["collect"]
+    assert refresh.make_plan(root, NOW + timedelta(hours=14), "schedule")["collect"]
+    for changes in [{"operation": "rescore"}, {"sources_succeeded": 0},
+                    {"finished_at": "broken"}, {"finished_at": "2026-09-12T12:49:00"},
+                    {"finished_at": (NOW + timedelta(minutes=1)).isoformat()}]:
+        write(root / "data/run_metadata.json", {**previous, **changes})
+        assert refresh.make_plan(root, NOW, "schedule")["collect"]
+
+
+def test_data_commits_do_not_reset_code_signature_but_any_application_file_does(monkeypatch):
+    def digest(*entries):
+        monkeypatch.setattr(refresh.subprocess, "run", lambda *a, **kw: SimpleNamespace(
+            stdout=b"\0".join(entries) + b"\0"))
+        return refresh.code_digest(ROOT)
+
+    app = b"100644 blob abc\tapp/src/App.tsx"
+    expected = digest(app)
+    assert expected == digest(app, b"100644 blob def\tdata/current.json",
+                              b"100644 blob ghi\tdata/verification_state.json",
+                              b"100644 blob jkl\tREADME.md")
+    for path in [b"config/sources.yaml", b"pipeline/anthrion_signal/cli.py", b"app/package-lock.json",
+                 b"scripts/refresh_plan.py", b".github/workflows/ingest-and-deploy.yml"]:
+        assert expected != digest(app, b"100644 blob xyz\t" + path)
+
+
+def test_ui_changes_reuse_data_but_contracts_dependencies_and_unknown_files_do_not(monkeypatch):
+    entries = [b"100644 blob abc\tpipeline/anthrion_signal/cli.py"]
+    monkeypatch.setattr(refresh.subprocess, "run", lambda *a, **kw: SimpleNamespace(stdout=b"\0".join(entries)))
+    original = refresh.data_digest(ROOT)
+    for path in ("app/src/styles.css", "app/src/ResearchUI.tsx", "app/tests/dashboard.spec.ts", "app/public/brand.svg"):
+        entries.append(f"100644 blob ui\t{path}".encode())
+        assert refresh.data_digest(ROOT) == original
+    for path in ("app/src/types.ts", "app/src/dataClient.ts", "app/src/useOpportunityData.ts",
+                 "app/package-lock.json", "app/build/publicData.mjs", "config/sources.yaml",
+                 "scripts/check_public_output.py", ".github/workflows/publish.yml", "new-export-config.json"):
+        entries.append(f"100644 blob changed\t{path}".encode())
+        assert refresh.data_digest(ROOT) != original
+        entries.pop()
+
+
+def test_data_validation_precedes_the_cache_receipt_and_only_pipeline_success_is_recorded():
+    workflow = yaml.load((ROOT / ".github/workflows/ingest-and-deploy.yml").read_text(), Loader=yaml.BaseLoader)
+    steps = workflow["jobs"]["build"]["steps"]
+    by_name = {step.get("name"): step for step in steps}
+    order = ["Verify pipeline changes", "Validate pipeline and public dataset",
+             "Compact retained versions and prune unused inactive notices", "Package validated public data",
+             "Cache validated public data", "Require the saved cache before recording its receipt",
+             "Record successful pipeline regression", "Persist canonical state"]
+    assert [steps.index(by_name[name]) for name in order] == sorted(steps.index(by_name[name]) for name in order)
+    assert "steps.plan.outputs.full_tests == 'true'" in by_name["Validate pipeline and public dataset"]["if"]
+    retention = by_name["Compact retained versions and prune unused inactive notices"]
+    assert retention["if"] == "steps.validate.outcome == 'success'"
+    assert "prune --apply --daily" in retention["run"]
+    assert "--validated" in by_name["Persist canonical state"]["run"]
+    assert "--github-checkpoint" in by_name["Translate new and outstanding records"]["run"]
+    assert steps.index(by_name["Translate new and outstanding records"]) < steps.index(by_name["Validate pipeline and public dataset"])
+    assert workflow["jobs"]["build"]["concurrency"]["queue"] == "max"
+
+
+def test_long_builds_refresh_scoped_credentials_before_each_write_phase():
+    workflow = yaml.load((ROOT / ".github/workflows/ingest-and-deploy.yml").read_text(),
+                         Loader=yaml.BaseLoader)
+    build = workflow["jobs"]["build"]
+    assert int(build["timeout-minutes"]) > 60
+    steps = build["steps"]
+    by_name = {step.get("name"): step for step in steps}
+    checkout = next(step for step in steps if step.get("uses", "").startswith("actions/checkout@"))
+    assert checkout["with"]["persist-credentials"] == "false"
+    assert "gh auth setup-git --hostname github.com" in by_name["Set automation commit identity"]["run"]
+
+    translation_token = by_name["Create translation checkpoint token"]
+    publication_token = by_name["Create publication data token"]
+    for token in (translation_token, publication_token):
+        assert token["uses"].startswith("actions/create-github-app-token@")
+        assert token["with"]["owner"] == "Anthrion"
+        assert token["with"]["repositories"] == "anthrion-signal"
+        assert {k: v for k, v in token["with"].items() if k.startswith("permission-")} == {
+            "permission-contents": "write",
+        }
+    assert "full_tests != 'true'" in translation_token["if"]
+    assert "SIGNAL_GEMINI_FREE_TIER_CONFIRMED == 'true'" in translation_token["if"]
+    assert "steps.translation-token.outcome == 'success'" in by_name["Translate new and outstanding records"]["if"]
+    assert steps.index(by_name["Collect public opportunities"]) < steps.index(translation_token)
+    for name in ("Translate new and outstanding records", "Checkpoint private translation progress"):
+        assert steps.index(translation_token) < steps.index(by_name[name])
+        assert by_name[name]["env"]["GH_TOKEN"] == "${{ steps.translation-token.outputs.token || github.token }}"
+    for name in ("Validate pipeline and public dataset", "Verify pipeline changes"):
+        assert steps.index(by_name[name]) < steps.index(publication_token)
+    assert "continue-on-error" not in publication_token
+    assert steps.index(publication_token) < steps.index(by_name["Persist canonical state"])
+    assert by_name["Persist canonical state"]["env"]["GH_TOKEN"] == (
+        "${{ steps.publication-data-token.outputs.token || github.token }}"
+    )

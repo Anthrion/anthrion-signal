@@ -1,0 +1,42 @@
+{
+  "name": "anthrion-signal-app",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "test:e2e:pr": "playwright test --grep @pr",
+    "format": "prettier --write src tests *.ts *.json index.html",
+    "format:check": "prettier --check src tests *.ts *.json index.html",
+    "test:e2e:ui": "playwright test --grep-invert @data",
+    "test:e2e:data": "playwright test --grep @data",
+    "capture:record": "playwright test --config playwright.design.config.ts"
+  },
+  "dependencies": {
+    "@paper-design/shaders-react": "0.0.80",
+    "@tanstack/react-virtual": "3.14.11",
+    "embla-carousel-autoplay": "8.6.0",
+    "embla-carousel-react": "8.6.0",
+    "lucide-react": "0.468.0",
+    "motion": "12.23.26",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "three": "0.180.0"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@playwright/test": "1.58.2",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
+    "@types/three": "0.180.0",
+    "@vitejs/plugin-react": "5.0.4",
+    "prettier": "3.9.6",
+    "typescript": "5.9.3",
+    "vite": "6.4.3",
+    "vitest": "4.1.11"
+  }
+}
