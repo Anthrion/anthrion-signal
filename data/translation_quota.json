@@ -52,13 +52,16 @@
       }
     },
     "41891690468-1": {
-      "closed": false,
+      "closed": true,
       "day": "2026-11-04",
       "limits": {
         "gemini-3.1-flash-lite": 75,
         "gemini-3.5-flash-lite": 75
       },
-      "used": {}
+      "started": true,
+      "used": {
+        "gemini-3.5-flash-lite": 40
+      }
     }
   },
   "models": {
@@ -67,7 +70,7 @@
       "blocked_until": 1793818435.6971502,
       "consecutive_errors": 0,
       "days": {
-        "2026-11-04": 133
+        "2026-11-04": 58
       },
       "recent": [],
       "usage": {
@@ -78,15 +81,60 @@
     },
     "gemini-3.5-flash-lite": {
       "blocked_reason": "transient",
-      "blocked_until": 1793818692.9535944,
+      "blocked_until": 1793822253.4679017,
       "consecutive_errors": 1,
       "days": {
-        "2026-11-04": 261
+        "2026-11-04": 226
       },
-      "recent": [],
+      "recent": [
+        {
+          "at": 1793822136.718208,
+          "tokens": 21169
+        },
+        {
+          "at": 1793822136.863968,
+          "tokens": 16664
+        },
+        {
+          "at": 1793822145.2453318,
+          "tokens": 9825
+        },
+        {
+          "at": 1793822145.369137,
+          "tokens": 2356
+        },
+        {
+          "at": 1793822156.979157,
+          "tokens": 25046
+        },
+        {
+          "at": 1793822157.1543674,
+          "tokens": 16466
+        },
+        {
+          "at": 1793822157.249742,
+          "tokens": 6749
+        },
+        {
+          "at": 1793822175.7390218,
+          "tokens": 13900
+        },
+        {
+          "at": 1793822175.8922985,
+          "tokens": 4291
+        },
+        {
+          "at": 1793822190.0772665,
+          "tokens": 15368
+        },
+        {
+          "at": 1793822190.2881951,
+          "tokens": 4895
+        }
+      ],
       "usage": {
-        "candidatesTokenCount": 28152951,
-        "promptTokenCount": 36733523,
+        "candidatesTokenCount": 28212709,
+        "promptTokenCount": 36806566,
         "thoughtsTokenCount": 0
       }
     }
