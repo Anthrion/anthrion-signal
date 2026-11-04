@@ -29,6 +29,13 @@ replacing retained files. It never overwrites quota reservations or publication
 controls. A compare-and-swap check prevents an old collector from overwriting a
 newer accepted snapshot. Upload failures leave the accepted pointer unchanged.
 
+Quota reservations and daily counters older than the current and two previous
+Pacific quota days move losslessly into monthly translation-snapshot files. Current
+reservations, recent-day usage, rate backoff and cumulative token totals remain in
+the Git ledger. Archive files are uploaded and verified before the smaller ledger
+and its snapshot pointer are committed together; this does not refund reservations
+or reset the provider's current quota.
+
 ## Developer setup
 
 Install Python dependencies and GitHub CLI, authenticate `gh`, then run from the

@@ -131,6 +131,7 @@ def test_input_cache_ignores_quota_and_receipts_but_tracks_source_and_translatio
     before = bundle.input_digest(tmp_path)
     for name in bundle.BOOKKEEPING:
         bundle.write_json(tmp_path / name, {"updated": "today"})
+    bundle.write_json(tmp_path / "data/translation/quota-history/2026-09.json", {"old_usage": 500})
     assert before == bundle.input_digest(tmp_path)
     bundle.write_json(tmp_path / "data/translation/cache.json", {"title": "CRM system"})
     assert before != bundle.input_digest(tmp_path)

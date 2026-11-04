@@ -41,8 +41,8 @@ def digest_file(path):
 def input_digest(root):
     digest = hashlib.sha256()
     paths = []
-    # Raw downloads/model caches are not export inputs; retained canonical facts are.
-    ignored = {"data/raw", "data/ai_cache", "data/documents/blobs"}
+    # Quota archives, raw downloads and model caches are not public export inputs.
+    ignored = {"data/raw", "data/ai_cache", "data/documents/blobs", "data/translation/quota-history"}
     for directory, folders, files in os.walk(root / "data"):
         folders[:] = [name for name in folders if (Path(directory) / name).relative_to(root).as_posix() not in ignored]
         paths.extend(Path(directory) / name for name in files)

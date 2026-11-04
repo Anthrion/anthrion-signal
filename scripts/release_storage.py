@@ -435,6 +435,12 @@ def main():
             state = read_state(root / STATE_POINTER)
         restore_state(root, store, state)
     elif args.mode.startswith("save-"):
+        if args.mode == "save-translations":
+            from quota_history import archive_quota_history
+            if archive_quota_history(root):
+                print("Older quota history prepared for the verified translation snapshot; current usage preserved.")
+        # A failed upload aborts before the workflow commits the quota/pointer
+        # pair. The archived evidence and current ledger become durable together.
         save_component(root, store, args.mode.removeprefix("save-"))
     elif args.mode == "upload-public":
         from release_bundle import ARCHIVE, RECEIPT, check_archive
