@@ -1,21 +1,21 @@
 {
   "version": 1,
-  "generation": 432,
+  "generation": 433,
   "data_code": "a2b7b3d7e3585515a85a825da927206aa25fe96c2ce0e6d62ff4b93d4ade7349",
-  "sha256": "0e15ff66de2df2ed2fe7045e52b291ecf09e914fda446f095f633cd939a96c40",
-  "key": "signal-public-v1-0e15ff66de2df2ed2fe7045e52b291ecf09e914fda446f095f633cd939a96c40-41744668913-1",
-  "public_bytes": 588418328,
-  "public_files": 71435,
-  "inputs": "9e40ba0cb758874154860031b3f5e08138fb388facc040a3735571281aa5504a",
-  "validated_at": "2026-11-04T00:46:11.520289+00:00",
+  "sha256": "aecb7c652140fbb1833b733add5493ef036dd777a3cb353aa1bd650527342252",
+  "key": "signal-public-v1-aecb7c652140fbb1833b733add5493ef036dd777a3cb353aa1bd650527342252-41803275284-1",
+  "public_bytes": 592291579,
+  "public_files": 71832,
+  "inputs": "c60366e35895a574a5c30142f832c8d755bd40bb1876e4cd98fc31c901e21fd1",
+  "validated_at": "2026-11-04T09:55:30.246426+00:00",
   "signature": {
     "code": "1c149b77778b30e632c56ec8770f3cf8eeee2234444bc5e63b0f244bea15e472",
-    "content": "9e5a4ea29748e1932d0ecf76bd4e1dfd6474e1e91e08e16a2e56b8a502be77de",
-    "translations": "acab1c84e440ed90cbc91528f19cf009fe833e54be0221426eb950e9e43f2b1e",
+    "content": "c418468f6a8edbe5cc52e86b13a78e760ba6bc5eb7a75798e6e6311d89012ea5",
+    "translations": "dfa583424f9e334f0ae9338c2128cc3e0300a1f7043691c9e4410edaff870879",
     "health": [
       [
         "find_tender",
-        "partial"
+        "healthy"
       ],
       [
         "contracts_finder",
@@ -35,7 +35,7 @@
       ],
       [
         "digital_outcomes",
-        "partial"
+        "healthy"
       ],
       [
         "upcoming_agreements",
@@ -63,7 +63,7 @@
       ],
       [
         "la_ramp",
-        "failed"
+        "healthy"
       ],
       [
         "grants",
@@ -315,7 +315,7 @@
       ],
       [
         "lc_finance",
-        "partial"
+        "failed"
       ]
     ],
     "day": "2026-11-04"
@@ -323,14 +323,14 @@
   "storage": {
     "version": 1,
     "kind": "public",
-    "digest": "0e15ff66de2df2ed2fe7045e52b291ecf09e914fda446f095f633cd939a96c40",
-    "tag": "signal-data-v1-public-0e15ff66de2df2ed2fe7045e52b291ecf09e914fda446f095f633cd939a96c40",
-    "release_id": 433384218,
+    "digest": "aecb7c652140fbb1833b733add5493ef036dd777a3cb353aa1bd650527342252",
+    "tag": "signal-data-v1-public-aecb7c652140fbb1833b733add5493ef036dd777a3cb353aa1bd650527342252",
+    "release_id": 433759244,
     "assets": [
       {
         "name": "public-data.tar.gz",
-        "bytes": 574353826,
-        "sha256": "0e15ff66de2df2ed2fe7045e52b291ecf09e914fda446f095f633cd939a96c40"
+        "bytes": 578135799,
+        "sha256": "aecb7c652140fbb1833b733add5493ef036dd777a3cb353aa1bd650527342252"
       }
     ]
   }
