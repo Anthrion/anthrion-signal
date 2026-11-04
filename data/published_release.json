@@ -1,4 +1,19 @@
 {
-  "generation": 430,
-  "key": "signal-public-v1-d19bdfefcd61db15b111e6c202577f85c248c3c89bc0081c81d2d47616d3f517-41181079528-1"
+  "generation": 431,
+  "key": "signal-public-v1-322984835749c23563d947ca8adf5727ddad649371ecfa3b0720a8a078d2fb82-41736557170-1",
+  "site_base": "/anthrion-signal-replacement/",
+  "storage": {
+    "version": 1,
+    "kind": "public",
+    "digest": "322984835749c23563d947ca8adf5727ddad649371ecfa3b0720a8a078d2fb82",
+    "tag": "signal-data-v1-public-322984835749c23563d947ca8adf5727ddad649371ecfa3b0720a8a078d2fb82",
+    "release_id": 433349231,
+    "assets": [
+      {
+        "name": "public-data.tar.gz",
+        "bytes": 574373982,
+        "sha256": "322984835749c23563d947ca8adf5727ddad649371ecfa3b0720a8a078d2fb82"
+      }
+    ]
+  }
 }

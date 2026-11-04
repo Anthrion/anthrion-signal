@@ -1,11 +1,11 @@
 {
-  "code": "5feb2ba5238db6500aa16c3cce2d985add24eea9946d55266d47f618270e45d1",
-  "content": "b4cab953156e90353861eec55800993d234cd934ceae79eff7b200dd26220e1c",
-  "translations": "bfdcca0e70d60b366b255935615bc3afc48b030a805e9cbeafb6daab871cd9e7",
+  "code": "f3fc0f267c4f2622ba00391cf12d67ae7ca0c46229e44758041ccdc0f2ce3e13",
+  "content": "9e5a4ea29748e1932d0ecf76bd4e1dfd6474e1e91e08e16a2e56b8a502be77de",
+  "translations": "acab1c84e440ed90cbc91528f19cf009fe833e54be0221426eb950e9e43f2b1e",
   "health": [
     [
       "find_tender",
-      "healthy"
+      "partial"
     ],
     [
       "contracts_finder",
@@ -25,7 +25,7 @@
     ],
     [
       "digital_outcomes",
-      "healthy"
+      "partial"
     ],
     [
       "upcoming_agreements",
@@ -45,7 +45,7 @@
     ],
     [
       "spain",
-      "healthy"
+      "partial"
     ],
     [
       "nyc_city_record",
@@ -53,7 +53,7 @@
     ],
     [
       "la_ramp",
-      "healthy"
+      "failed"
     ],
     [
       "grants",
@@ -305,8 +305,8 @@
     ],
     [
       "lc_finance",
-      "failed"
+      "partial"
     ]
   ],
-  "day": "2026-10-31"
+  "day": "2026-11-03"
 }
