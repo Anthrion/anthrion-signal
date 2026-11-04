@@ -6,10 +6,10 @@ All four failed collection/deployment runs received this server rejection:
 
 > Repository is above its size quota. Contact GitHub Support for further assistance.
 
-Runs: [41205812066](https://github.com/Anthrion/anthrion-signal/actions/runs/41205812066),
-[41207698218](https://github.com/Anthrion/anthrion-signal/actions/runs/41207698218),
-[41226656475](https://github.com/Anthrion/anthrion-signal/actions/runs/41226656475),
-[41231375513](https://github.com/Anthrion/anthrion-signal/actions/runs/41231375513).
+Runs: [41205812066](https://github.com/Anthrion/anthrion-signal-archive-2026-11-03/actions/runs/41205812066),
+[41207698218](https://github.com/Anthrion/anthrion-signal-archive-2026-11-03/actions/runs/41207698218),
+[41226656475](https://github.com/Anthrion/anthrion-signal-archive-2026-11-03/actions/runs/41226656475),
+[41231375513](https://github.com/Anthrion/anthrion-signal-archive-2026-11-03/actions/runs/41231375513).
 
 The last accepted main commit is `fe4f28eb1a4191193884c3b702a686e1dfe56eef`.
 The last successful workflow finished at 08:50 UTC on 31 October. The failure is
@@ -117,6 +117,6 @@ lift the write block for recovery and reclaim historical storage, including any
 repository-network/PR references that would keep obsolete data objects reachable.
 We have not force-pushed, deleted repository history, or disabled protections.
 
-Example failed run: https://github.com/Anthrion/anthrion-signal/actions/runs/41231375513
+Example failed run: https://github.com/Anthrion/anthrion-signal-archive-2026-11-03/actions/runs/41231375513
 
 This request is prepared for the owner; it has not been sent.

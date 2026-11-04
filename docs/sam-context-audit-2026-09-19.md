@@ -1,6 +1,6 @@
 # SAM bootstrap and administrative-context audit
 
-The [first successful collection](https://github.com/Anthrion/anthrion-signal/actions/runs/35452932660) processed 3,000 SAM notices from a verified public extract, leaving 80,951 new or changed notices in its resumable backlog. This partial status describes coverage still being processed. The run published 5,644 current records and 19,430 awards across all sources, passed desktop/mobile data checks, and completed in 21m 11s from job start to publication recording. This is one observed run, not a guaranteed runtime.
+The [first successful collection](https://github.com/Anthrion/anthrion-signal-archive-2026-11-03/actions/runs/35452932660) processed 3,000 SAM notices from a verified public extract, leaving 80,951 new or changed notices in its resumable backlog. This partial status describes coverage still being processed. The run published 5,644 current records and 19,430 awards across all sources, passed desktop/mobile data checks, and completed in 21m 11s from job start to publication recording. This is one observed run, not a guaranteed runtime.
 
 The retained canonical file was 19,882,634 bytes after compression. The temporary SAM CSV is not committed. The public site was 609.9 MiB before the subsequent research-history metadata release; total publication size still needs monitoring as coverage grows.
 

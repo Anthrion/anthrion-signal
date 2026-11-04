@@ -1,8 +1,9 @@
 # Signal: company GitHub setup and operating guide
 
-November 2026 storage update: the repository is being recreated with the same
+4 November 2026 storage update: the repository was recreated with the same
 roles, rules, App permissions and website address. Large generated data now lives
-in verified Release snapshots. See [storage and recovery](release-storage.md).
+in verified Release snapshots. See the [completed migration and limits audit](repository-migration-2026-11-03.md)
+and [storage and recovery](release-storage.md).
 The September rollout evidence below documents the original repository setup;
 its historic PR and commit links belong to the preserved archive after the rename.
 
@@ -11,8 +12,9 @@ Updated 17 September 2026. Signal is now public at
 evidence is stored separately in private `Anthrion/Timestamps`.
 
 **Configuration, App data saves, tested deployment and private timestamp verification are complete.**
-The three approved company changes are applied: the Signal-only exception to the older
-combined rule, the Steven-only team, and the App installed only on Signal. Other projects'
+The approved company setup is retained: the Signal-only exception to the older
+combined rule, the Steven-only team, and the dedicated App. Its existing installation
+now covers the active Signal repository and its preserved history archive. Other projects'
 protections, company billing, archive secret scope and other people's notifications were
 not changed. AI reviews remain deferred.
 
@@ -88,10 +90,10 @@ Sources: [Actions billing](https://docs.github.com/en/billing/concepts/product-b
 | Item | Status | Where / example |
 | --- | --- | --- |
 | Transfer and local remote | Complete | Public `Anthrion/anthrion-signal`; origin points to the company repository. |
-| Review rule | Active, ID 23605431 | **Signal → Settings → Rules → Rulesets → signal-review**. One approval, Code Owner review, stale approval dismissal and `test` required. |
+| Review rule | Active, ID 26492898 | **Signal → Settings → Rules → Rulesets → signal-review**. One approval, Code Owner review, stale approval dismissal and `test` required. |
 | Steven-only team | Complete | **Anthrion → Teams → Signal maintainer** contains only `stevostar1234`, with Signal Write access and an Always-allow review bypass. |
-| Human signatures | Active, ID 23605432 | **signal-signatures** has only the App bypass. Steven still signs. |
-| History protection | Active, ID 23605434 | **signal-history** blocks force pushes and deletion, without bypass. |
+| Human signatures | Active, ID 26492896 | **signal-signatures** has only the App bypass. Steven still signs. |
+| History protection | Active, ID 26492894 | **signal-history** blocks force pushes and deletion, without bypass. |
 | Combined company rule exception | Complete | Signal is excluded from `default-branch-protection` after replacement rules were created. **Keep the exclusion**; do not reapply the conflicting combined rule. Other projects retain their existing rules. |
 | Merge methods | Complete, per Steven's latest choice | **Settings → General → Pull Requests**: merge, squash and rebase all enabled. Signed-commit rules still apply. |
 | Automation App | Installed, credential saved | **Anthrion → Settings → Developer settings → GitHub Apps → Anthrion Signal automation**. Contents write + Metadata read, installed only on Signal, no webhook. |
@@ -277,11 +279,11 @@ private timestamping and safe rerun are verified. No automatic AI reviews are en
 
 ### Live verification, 17 September 2026
 
-- [Signed setup commit](https://github.com/Anthrion/anthrion-signal/commit/1fa88b41c1c9b3f7a9af2d230710891306b71ffa): GitHub reports Verified; Steven's direct push used only the review/check bypass.
-- [Required tests](https://github.com/Anthrion/anthrion-signal/actions/runs/35237337536): 659 Python tests and 32 frontend tests passed, plus Ruff and the frontend build.
-- [Production deployment](https://github.com/Anthrion/anthrion-signal/actions/runs/35237337608): App authentication, data checkpoint, 107 passing browser checks, Pages deployment and publication record succeeded.
-- [Private baseline timestamp](https://github.com/Anthrion/anthrion-signal/actions/runs/35237388066): verified against the approved root and archived as six files. Repository, source SHA and tree SHA were independently compared with the saved manifest.
-- [Safe rerun](https://github.com/Anthrion/anthrion-signal/actions/runs/35237694891): existing private receipt verified and reused; no replacement record or new TSA request.
+- [Signed setup commit](https://github.com/Anthrion/anthrion-signal-archive-2026-11-03/commit/1fa88b41c1c9b3f7a9af2d230710891306b71ffa): GitHub reports Verified; Steven's direct push used only the review/check bypass.
+- [Required tests](https://github.com/Anthrion/anthrion-signal-archive-2026-11-03/actions/runs/35237337536): 659 Python tests and 32 frontend tests passed, plus Ruff and the frontend build.
+- [Production deployment](https://github.com/Anthrion/anthrion-signal-archive-2026-11-03/actions/runs/35237337608): App authentication, data checkpoint, 107 passing browser checks, Pages deployment and publication record succeeded.
+- [Private baseline timestamp](https://github.com/Anthrion/anthrion-signal-archive-2026-11-03/actions/runs/35237388066): verified against the approved root and archived as six files. Repository, source SHA and tree SHA were independently compared with the saved manifest.
+- [Safe rerun](https://github.com/Anthrion/anthrion-signal-archive-2026-11-03/actions/runs/35237694891): existing private receipt verified and reused; no replacement record or new TSA request.
 - [Private evidence folder](https://github.com/Anthrion/Timestamps/tree/main/records/Anthrion_anthrion-signal/1fa88b41c1c9b3f7a9af2d230710891306b71ffa): requires archive access. Data-only App commits did not create automatic timestamp runs.
 
 The verification runs use GitHub's current Ubuntu/OpenSSL. This PC's older bundled
@@ -308,13 +310,13 @@ chosen human workflow uses SSH, but the built-in rule does not enforce SSH exclu
 
 | Setting / file | Link | Change made |
 | --- | --- | --- |
-| Signal review rule | [signal-review](https://github.com/Anthrion/anthrion-signal/rules/23605431) | One approval, CODEOWNER and test; Steven/team and App bypass |
-| Signal signing rule | [signal-signatures](https://github.com/Anthrion/anthrion-signal/rules/23605432) | Human signatures required; App bypass only |
-| Signal history rule | [signal-history](https://github.com/Anthrion/anthrion-signal/rules/23605434) | No force pushes/deletion; no bypass |
+| Signal review rule | [signal-review](https://github.com/Anthrion/anthrion-signal/rules/26492898) | One approval, CODEOWNER and test; Steven/team and App bypass |
+| Signal signing rule | [signal-signatures](https://github.com/Anthrion/anthrion-signal/rules/26492896) | Human signatures required; App bypass only |
+| Signal history rule | [signal-history](https://github.com/Anthrion/anthrion-signal/rules/26492894) | No force pushes/deletion; no bypass |
 | Combined company rule | [default-branch-protection](https://github.com/organizations/Anthrion/settings/rules/22175216) | Only added Signal to exclusions; other projects' approval counts unchanged |
 | Steven's team | [Signal maintainer](https://github.com/orgs/Anthrion/teams/signal-maintainer) | Created with Steven only; Write access to Signal |
 | App registration | [Anthrion Signal automation](https://github.com/organizations/Anthrion/settings/apps/anthrion-signal-automation) | Created company App, Contents write, no webhook |
-| App installation | [Selected repository access](https://github.com/organizations/Anthrion/settings/installations/162505472) | Installed only on Signal |
+| App installation | [Selected repository access](https://github.com/organizations/Anthrion/settings/installations/162505472) | Same permissions on active Signal and its preserved archive |
 | Merge buttons | [Signal General settings](https://github.com/Anthrion/anthrion-signal/settings) | Merge, squash and rebase all enabled |
 | Actions secrets | [Secrets](https://github.com/Anthrion/anthrion-signal/settings/secrets/actions) | Added App private key; existing Gemini/archive credentials retained |
 | Actions variables | [Variables](https://github.com/Anthrion/anthrion-signal/settings/variables/actions) | Added App Client ID, free-tier confirmation and timestamp configuration |

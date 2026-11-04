@@ -3,8 +3,8 @@
 ## Build failures
 
 Of the latest 100 runs inspected (9–18 October), two failed and one was cancelled.
-Runs [39071137300](https://github.com/Anthrion/anthrion-signal/actions/runs/39071137300)
-and [38943313103](https://github.com/Anthrion/anthrion-signal/actions/runs/38943313103)
+Runs [39071137300](https://github.com/Anthrion/anthrion-signal-archive-2026-11-03/actions/runs/39071137300)
+and [38943313103](https://github.com/Anthrion/anthrion-signal-archive-2026-11-03/actions/runs/38943313103)
 both failed the UK awards browser assertion after its 10-second wait. Collection
 had persisted successfully; publication was correctly withheld. The trace and
 screenshot show that the 11,499 UK awards subsequently rendered.

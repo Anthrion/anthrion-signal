@@ -1,7 +1,7 @@
 # North American and European source follow-up — 21 September 2026
 
 This is an implementation backlog, not a coverage or recall claim. It retains the
-useful findings from [PR #18](https://github.com/Anthrion/anthrion-signal/pull/18),
+useful findings from [PR #18](https://github.com/Anthrion/anthrion-signal-archive-2026-11-03/pull/18),
 reviewed against the shipped collectors and official documentation. It adds no
 collector, enables no source, and changes no admission rule.
 

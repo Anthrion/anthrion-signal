@@ -2,7 +2,7 @@
 
 ## Failed build and measured costs
 
-[Run 35445946721](https://github.com/Anthrion/anthrion-signal/actions/runs/35445946721) failed while pushing generated data: `data/signals.jsonl` reached 106.36 MB and GitHub rejected it. Its checks had passed. The subsequent translation-only run deployed successfully from the previous retained data; that did not repair the next collection's file-size problem.
+[Run 35445946721](https://github.com/Anthrion/anthrion-signal-archive-2026-11-03/actions/runs/35445946721) failed while pushing generated data: `data/signals.jsonl` reached 106.36 MB and GitHub rejected it. Its checks had passed. The subsequent translation-only run deployed successfully from the previous retained data; that did not repair the next collection's file-size problem.
 
 | Work in the failed run | Duration |
 | --- | ---: |
@@ -24,7 +24,7 @@ These changes remove redundant work; they are not a guaranteed runtime. Source l
 
 ### Full-regression release timeout
 
-[Run 35459593493](https://github.com/Anthrion/anthrion-signal/actions/runs/35459593493) reached its 45-minute job limit during browser regression. Dataset validation, all 1,563 Python tests, lint, all 99 frontend tests and the dashboard build had passed. Translation preparation and calls used 14m 28s before validation began; GitHub cancelled the job while the full browser suite was still running, so it did not publish.
+[Run 35459593493](https://github.com/Anthrion/anthrion-signal-archive-2026-11-03/actions/runs/35459593493) reached its 45-minute job limit during browser regression. Dataset validation, all 1,563 Python tests, lint, all 99 frontend tests and the dashboard build had passed. Translation preparation and calls used 14m 28s before validation began; GitHub cancelled the job while the full browser suite was still running, so it did not publish.
 
 Full-regression runs now use existing cached translations and leave new translation work for the next regular incremental run after verification succeeds. This removes competing work from the release budget while retaining every check. New notices can remain in their original language until the queue resumes. Translation quotas, the remote pre-call reservation, free-tier confirmation and completed-text checkpoints are unchanged.
 

@@ -1,7 +1,7 @@
 # European national procurement source assessment — 18 September 2026
 
 Reviewed on 19 September 2026 while integrating the research from
-[PR #8](https://github.com/Anthrion/anthrion-signal/pull/8), revision `cb82604`.
+[PR #8](https://github.com/Anthrion/anthrion-signal-archive-2026-11-03/pull/8), revision `cb82604`.
 This document separates primary documentation checked during review from the
 contributor's reported API observations. The review made no national-provider
 collection calls and did not enable a national collector.
