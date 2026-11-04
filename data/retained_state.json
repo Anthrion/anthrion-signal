@@ -3,23 +3,6 @@
     "records": {
       "version": 1,
       "kind": "records",
-      "digest": "3e653cc13c0080792bc51b1fe7d5a6c038731df7bca027425d1a61ab187dfe4f",
-      "tag": "signal-data-v1-records-3e653cc13c0080792bc51b1fe7d5a6c038731df7bca027425d1a61ab187dfe4f",
-      "release_id": 433305541,
-      "assets": [
-        {
-          "name": "records-000.tar",
-          "bytes": 658513920,
-          "sha256": "4b1bae9c10609a13bf267daa7cdc6f52a296429b79f30efe025d9fc8907af056"
-        }
-      ]
-    },
-    "translations": null
-  },
-  "components": {
-    "records": {
-      "version": 1,
-      "kind": "records",
       "digest": "96fa5e7712c2ef3c503529ce98ac7d3b8c4b8cb38b40680dd381355d06ca6eb7",
       "tag": "signal-data-v1-records-96fa5e7712c2ef3c503529ce98ac7d3b8c4b8cb38b40680dd381355d06ca6eb7",
       "release_id": 433349429,
@@ -42,6 +25,36 @@
           "name": "translations-000.tar",
           "bytes": 59760640,
           "sha256": "772f1dcda8d1295daea99e1319398433b2179ef322d99742c753ae2f151a3baa"
+        }
+      ]
+    }
+  },
+  "components": {
+    "records": {
+      "version": 1,
+      "kind": "records",
+      "digest": "147b39f7f24ff48b2ac5176239dc8a569812cd348b4278408a6be52e839ad8a7",
+      "tag": "signal-data-v1-records-147b39f7f24ff48b2ac5176239dc8a569812cd348b4278408a6be52e839ad8a7",
+      "release_id": 433384451,
+      "assets": [
+        {
+          "name": "records-000.tar",
+          "bytes": 666705920,
+          "sha256": "c13069eceaa8ce008a8e5a53f9a8acc18e70185ee8e029f47ac6c70e25600dab"
+        }
+      ]
+    },
+    "translations": {
+      "version": 1,
+      "kind": "translations",
+      "digest": "ba4c0a542877faa097abcb28097420150079bec9471452e74ddd56e87faec6c2",
+      "tag": "signal-data-v1-translations-ba4c0a542877faa097abcb28097420150079bec9471452e74ddd56e87faec6c2",
+      "release_id": 433384752,
+      "assets": [
+        {
+          "name": "translations-000.tar",
+          "bytes": 59770880,
+          "sha256": "01317ca4ac640a1a44eedd4fcd17ccfdda47783e09670de95a0bfad9f50fc34c"
         }
       ]
     }
