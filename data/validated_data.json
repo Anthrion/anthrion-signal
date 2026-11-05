@@ -1,16 +1,16 @@
 {
   "version": 1,
-  "generation": 443,
+  "generation": 444,
   "data_code": "a2b7b3d7e3585515a85a825da927206aa25fe96c2ce0e6d62ff4b93d4ade7349",
-  "sha256": "2ed4b6f19f6c3f48b3daa4b492e65845b9ed55563998716ea878d767d67100dc",
-  "key": "signal-public-v1-2ed4b6f19f6c3f48b3daa4b492e65845b9ed55563998716ea878d767d67100dc-42058981653-1",
-  "public_bytes": 599211453,
-  "public_files": 72096,
-  "inputs": "e2f1351bca2ace3a21852e2fc3ac8f3ca819b096a0c7c7e5030b76b5e56bf560",
-  "validated_at": "2026-11-05T16:32:26.633972+00:00",
+  "sha256": "c01da1143207108cd5fdb41f950cee979e1935887ffffcc49ebc941ab7114c03",
+  "key": "signal-public-v1-c01da1143207108cd5fdb41f950cee979e1935887ffffcc49ebc941ab7114c03-42112611108-1",
+  "public_bytes": 597656361,
+  "public_files": 72069,
+  "inputs": "dd3d69db4829255d8002584a9e568e668733120e7878f2efb1196713676ec4fa",
+  "validated_at": "2026-11-05T22:10:49.651007+00:00",
   "signature": {
     "code": "1c149b77778b30e632c56ec8770f3cf8eeee2234444bc5e63b0f244bea15e472",
-    "content": "387b3ac626a61341ffbbaa083e30f5f509a4decb835faf81e91f98f82b19b4d0",
+    "content": "ba6f9b426587bdd8d547ec9166b4ab7663ea2bc38bd1a3e0eb45cde13d35af28",
     "translations": "e3feb35061a790ec694efce6273c172f3af118bd6e74dd54e112fe67fd1ed6b9",
     "health": [
       [
@@ -323,14 +323,14 @@
   "storage": {
     "version": 1,
     "kind": "public",
-    "digest": "2ed4b6f19f6c3f48b3daa4b492e65845b9ed55563998716ea878d767d67100dc",
-    "tag": "signal-data-v1-public-2ed4b6f19f6c3f48b3daa4b492e65845b9ed55563998716ea878d767d67100dc",
-    "release_id": 435449451,
+    "digest": "c01da1143207108cd5fdb41f950cee979e1935887ffffcc49ebc941ab7114c03",
+    "tag": "signal-data-v1-public-c01da1143207108cd5fdb41f950cee979e1935887ffffcc49ebc941ab7114c03",
+    "release_id": 435802680,
     "assets": [
       {
         "name": "public-data.tar.gz",
-        "bytes": 584811449,
-        "sha256": "2ed4b6f19f6c3f48b3daa4b492e65845b9ed55563998716ea878d767d67100dc"
+        "bytes": 583359360,
+        "sha256": "c01da1143207108cd5fdb41f950cee979e1935887ffffcc49ebc941ab7114c03"
       }
     ]
   }
