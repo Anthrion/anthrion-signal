@@ -64,41 +64,90 @@
       }
     },
     "41937311595-1": {
-      "closed": false,
+      "closed": true,
       "day": "2026-11-04",
       "limits": {
         "gemini-3.1-flash-lite": 75,
         "gemini-3.5-flash-lite": 75
       },
-      "used": {}
+      "started": true,
+      "used": {
+        "gemini-3.1-flash-lite": 19,
+        "gemini-3.5-flash-lite": 74
+      }
     }
   },
   "models": {
     "gemini-3.1-flash-lite": {
       "blocked_reason": "transient",
-      "blocked_until": 1793818435.6971502,
-      "consecutive_errors": 0,
+      "blocked_until": 1793837888.9564223,
+      "consecutive_errors": 1,
       "days": {
-        "2026-11-04": 133
+        "2026-11-04": 77
       },
-      "recent": [],
+      "recent": [
+        {
+          "at": 1793837769.23922,
+          "tokens": 14538
+        },
+        {
+          "at": 1793837769.3411667,
+          "tokens": 3668
+        },
+        {
+          "at": 1793837781.7426329,
+          "tokens": 20715
+        },
+        {
+          "at": 1793837781.861929,
+          "tokens": 18645
+        },
+        {
+          "at": 1793837781.9535205,
+          "tokens": 6392
+        },
+        {
+          "at": 1793837799.5796363,
+          "tokens": 7390
+        },
+        {
+          "at": 1793837799.6539323,
+          "tokens": 2007
+        },
+        {
+          "at": 1793837808.7085044,
+          "tokens": 18346
+        },
+        {
+          "at": 1793837808.7948055,
+          "tokens": 6498
+        },
+        {
+          "at": 1793837825.081282,
+          "tokens": 19380
+        },
+        {
+          "at": 1793837825.2726552,
+          "tokens": 5877
+        }
+      ],
       "usage": {
-        "candidatesTokenCount": 13498457,
-        "promptTokenCount": 17666216,
+        "candidatesTokenCount": 13512801,
+        "promptTokenCount": 17684789,
         "thoughtsTokenCount": 0
       }
     },
     "gemini-3.5-flash-lite": {
       "blocked_reason": "transient",
-      "blocked_until": 1793822253.4679017,
-      "consecutive_errors": 1,
+      "blocked_until": 1793837480.3331578,
+      "consecutive_errors": 0,
       "days": {
-        "2026-11-04": 301
+        "2026-11-04": 300
       },
       "recent": [],
       "usage": {
-        "candidatesTokenCount": 28212709,
-        "promptTokenCount": 36806566,
+        "candidatesTokenCount": 28321571,
+        "promptTokenCount": 36944641,
         "thoughtsTokenCount": 0
       }
     }
