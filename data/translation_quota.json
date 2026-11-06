@@ -207,13 +207,17 @@
       }
     },
     "42271450037-1": {
-      "closed": false,
+      "closed": true,
       "day": "2026-11-06",
       "limits": {
         "gemini-3.1-flash-lite": 75,
         "gemini-3.5-flash-lite": 75
       },
-      "used": {}
+      "started": true,
+      "used": {
+        "gemini-3.1-flash-lite": 11,
+        "gemini-3.5-flash-lite": 42
+      }
     }
   },
   "models": {
@@ -224,28 +228,77 @@
       "days": {
         "2026-11-04": 212,
         "2026-11-05": 198,
-        "2026-11-06": 231
+        "2026-11-06": 167
       },
       "recent": [],
       "usage": {
-        "candidatesTokenCount": 14128463,
-        "promptTokenCount": 18503199,
+        "candidatesTokenCount": 14145540,
+        "promptTokenCount": 18524609,
         "thoughtsTokenCount": 0
       }
     },
     "gemini-3.5-flash-lite": {
       "blocked_reason": "transient",
-      "blocked_until": 1793985175.2904034,
-      "consecutive_errors": 1,
+      "blocked_until": 1793991838.0340924,
+      "consecutive_errors": 0,
       "days": {
         "2026-11-04": 312,
         "2026-11-05": 36,
-        "2026-11-06": 202
+        "2026-11-06": 169
       },
-      "recent": [],
+      "recent": [
+        {
+          "at": 1793991965.514973,
+          "tokens": 20749
+        },
+        {
+          "at": 1793991965.6597414,
+          "tokens": 12735
+        },
+        {
+          "at": 1793991965.7152524,
+          "tokens": 3703
+        },
+        {
+          "at": 1793991976.7940645,
+          "tokens": 13334
+        },
+        {
+          "at": 1793991976.93399,
+          "tokens": 4562
+        },
+        {
+          "at": 1793991988.9256945,
+          "tokens": 20734
+        },
+        {
+          "at": 1793991989.0314095,
+          "tokens": 17510
+        },
+        {
+          "at": 1793991989.093579,
+          "tokens": 6027
+        },
+        {
+          "at": 1793992003.5512679,
+          "tokens": 8544
+        },
+        {
+          "at": 1793992003.6887646,
+          "tokens": 2492
+        },
+        {
+          "at": 1793992012.0000706,
+          "tokens": 17238
+        },
+        {
+          "at": 1793992012.1257582,
+          "tokens": 5173
+        }
+      ],
       "usage": {
-        "candidatesTokenCount": 28498796,
-        "promptTokenCount": 37170648,
+        "candidatesTokenCount": 28551389,
+        "promptTokenCount": 37237969,
         "thoughtsTokenCount": 0
       }
     }
