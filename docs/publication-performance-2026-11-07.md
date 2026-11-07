@@ -61,3 +61,12 @@ the work Signal controls without promising that an external queue cannot stall.
 The two focused checks passed against the complete local build in 15.1 seconds;
 the older six-minute measurement covered the broader ten-case suite on a GitHub
 runner, so it is not a same-workload CPU benchmark.
+
+Python's shared test fixture previously parsed all six repository YAML files
+for each test. It now parses that fixed configuration once per session and
+deep-copies it per test, while rereading the runtime environment values. Tests
+that exercise configuration loading still call the real loader directly.
+The complete local suite passed 2,306 tests with one Windows symlink skip in
+134.60 seconds, versus 506.46 seconds earlier on the same machine. This is a
+73.4% reduction with the full test coverage retained. The new complete-data
+desktop/mobile suite also passed all ten cases locally in 4.4 minutes.
