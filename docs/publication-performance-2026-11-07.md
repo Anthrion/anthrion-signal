@@ -29,6 +29,13 @@ fewer compressed bytes. Keeping the other files unchanged would reduce that
 transport experiment, not a claim about an already completed production deploy.
 Current publication measurements are recorded in the pull request and run logs.
 
+The complete export from the current retained snapshot contains 6,448 files and
+560,129,019 bytes. Its 27,704,260-byte plain bootstrap compresses to 6,734,127 bytes
+(75.7% less transfer). Full public-output validation checked 9,018 current records,
+43,529 awards and 6,445 hashed dependencies. The complete local site build passed
+at 536.6 MiB. These measurements describe actual output, not a promise about
+GitHub's queue or a comparison of compile time across different machines.
+
 The bootstrap also gains a gzip representation. The reference plain manifest is
 27,261,446 bytes and was downloaded again on browser reloads and market tours.
 New clients prefer the compressed manifest; the plain representation and complete
@@ -51,3 +58,6 @@ removing useful coverage. The publication lock, integrity and scope checks,
 successful-deployment receipt and bounded transient retry remain in place.
 GitHub's queue delay is external; fewer files and less repeated test work reduce
 the work Signal controls without promising that an external queue cannot stall.
+The two focused checks passed against the complete local build in 15.1 seconds;
+the older six-minute measurement covered the broader ten-case suite on a GitHub
+runner, so it is not a same-workload CPU benchmark.

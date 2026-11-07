@@ -40,7 +40,7 @@ def ranking_evidence(item):
 def bucket_files(root, kind, entries, target_bytes=512 * 1024):
     """Stream small, immutable detail bundles with bounded memory and downloads."""
     field = "buyers" if kind == "buyers" else "records"
-    buffers, parts, references = {}, defaultdict(int), {}
+    buffers, parts, references, seen = {}, defaultdict(int), {}, set()
 
     def flush(prefix):
         items, _ = buffers.pop(prefix)
@@ -55,16 +55,15 @@ def bucket_files(root, kind, entries, target_bytes=512 * 1024):
         references.update({key: relative for key, _ in items})
 
     for key, payload in entries:
-        if not re.fullmatch(r"[A-Za-z0-9_-]{1,100}", key) or key in references:
+        if not re.fullmatch(r"[A-Za-z0-9_-]{1,100}", key) or key in seen:
             raise ValueError("Invalid or duplicate public detail identity")
+        seen.add(key)
         prefix = digest(key)[:2]
         body = json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False).encode()
         size = len(json.dumps(key).encode()) + len(body) + 2
         if prefix in buffers and buffers[prefix][1] + size + 64 > target_bytes:
             flush(prefix)
         items, total = buffers.setdefault(prefix, ([], 0))
-        if any(ident == key for ident, _ in items):
-            raise ValueError("Duplicate public detail identity")
         items.append((key, body))
         buffers[prefix] = items, total + size
     for prefix in sorted(buffers):

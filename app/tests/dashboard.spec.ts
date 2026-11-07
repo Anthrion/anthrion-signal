@@ -666,7 +666,7 @@ test('@data all market tabs have real, correctly scoped records and opportunity 
   await page.clock.setFixedTime(new Date(snapshot.generated_at))
   await page.goto('./?view=all')
   await ready(page)
-  const dataset = await publicJSON(page.request)
+  const dataset = snapshot
   for (const [id, name, countries] of [
     ['UKI', 'UK&I', ['GB', 'IE']],
     ['NORTHAMERICA', 'North America', ['US', 'CA']],

@@ -47,3 +47,16 @@ def test_small_download_target_splits_records_sharing_a_partition(tmp_path):
 def test_invalid_or_duplicate_identities_cannot_be_published(tmp_path, values):
     with pytest.raises(ValueError, match="identity"):
         bucket_files(tmp_path, "records", values)
+
+
+def test_compressed_bootstrap_uses_the_index_limit_and_details_stay_bounded(tmp_path, monkeypatch):
+    from anthrion_signal import public_compression
+    from anthrion_signal.public_feed import atomic_public_json
+    monkeypatch.setattr(public_compression, "DETAIL_LIMIT", 128)
+    monkeypatch.setattr(public_compression, "INDEX_LIMIT", 1024)
+    payload = {"source": "Original source text " * 20}
+    root = tmp_path / "app/public/data"
+    atomic_public_json(root / "manifest.json.gz", payload)
+    assert json.loads(gzip.decompress((root / "manifest.json.gz").read_bytes())) == payload
+    with pytest.raises(ValueError, match="decoded size"):
+        atomic_public_json(root / "records/notice.json.gz", payload)
