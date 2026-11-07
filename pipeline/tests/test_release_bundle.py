@@ -213,6 +213,10 @@ def test_release_workflows_keep_trusted_data_validation_and_tested_publication_s
     for name in ["Verify and unpack public data", "UI desktop and mobile regression", "Published-data desktop and mobile integration"]:
         assert "continue-on-error" not in by_name[name]
         assert steps.index(by_name[name]) < steps.index(by_name["Upload tested Pages build"])
+    assert by_name["UI desktop and mobile regression"]["env"]["UI_TEST_SUITE"] == (
+        "${{ inputs.full_tests == true && 'test:e2e:ui' || 'test:e2e:pr' }}")
+    assert by_name["Published-data desktop and mobile integration"]["env"]["DATA_TEST_SUITE"] == (
+        "${{ inputs.full_tests == true && 'test:e2e:data' || 'test:e2e:data:smoke' }}")
     assert steps.index(by_name["Upload tested Pages build"]) < steps.index(by_name["Deploy GitHub Pages"])
     deployed = "steps.deployment.outcome == 'success' || steps.deployment-retry.outcome == 'success'"
     assert by_name["Record successful publication"]["if"] == deployed

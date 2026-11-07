@@ -87,13 +87,14 @@ jobs:
         working-directory: app
         env:
           SIGNAL_TEST_PREVIEW: 'true'
-        run: npm run test:e2e:ui
+          UI_TEST_SUITE: ${{ inputs.full_tests == true && 'test:e2e:ui' || 'test:e2e:pr' }}
+        run: npm run "$UI_TEST_SUITE"
       - name: Published-data desktop and mobile integration
         if: steps.plan.outputs.deploy == 'true'
         working-directory: app
         env:
           SIGNAL_TEST_PREVIEW: 'true'
-          DATA_TEST_SUITE: ${{ steps.plan.outputs.full_ui == 'true' && 'test:e2e:data' || 'test:e2e:data:smoke' }}
+          DATA_TEST_SUITE: ${{ inputs.full_tests == true && 'test:e2e:data' || 'test:e2e:data:smoke' }}
         run: npm run "$DATA_TEST_SUITE"
       - name: Upload tested Pages build
         if: steps.plan.outputs.deploy == 'true'

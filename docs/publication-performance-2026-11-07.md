@@ -47,9 +47,14 @@ identities and public evidence remain available.
 
 Regular data-only refreshes use two focused checks, one desktop and one mobile,
 covering actual record loading, source links, search, filters and browser refresh.
-They avoid repeating full market tours for every data refresh. Application changes,
-forced full checks and the existing periodic verification still run all ten data
-browser cases and the broader UI regression suite. Python publication validation
+They avoid repeating full market tours for every data refresh. Application changes
+and periodic UI verification run the 50 critical desktop/mobile journeys. The
+existing `full_tests` option still runs all 189 UI and ten complete-data browser
+cases. The completed pre-performance production run spent 10.8 minutes on the
+189 UI cases and 6.4 minutes on the ten data cases; its Pages synchronization
+succeeded in about 20 seconds. Thus the earlier ten-minute Pages stalls were
+intermittent service delays, not a fixed cost of those tests or file count.
+Python publication validation
 continues to verify every referenced file, record, translation/evidence pair,
 market count and link before release acceptance.
 
