@@ -13,7 +13,7 @@ from .discovery_retention import read_rejected
 from .models import Signal
 from .markets import MARKETS
 from .public_context import attach_history, backfill_retained_facts, enrich_signal, public_signal
-from .public_feed import atomic_public_json, history_files, record_file
+from .public_feed import atomic_public_json, buyer_files, history_files, record_files
 from .record_reviews import apply_reviews, load_reviews
 from .translation import available_translations
 from .utils import atomic_bytes, digest, jsonl_lines, parse_date, read_json
@@ -105,7 +105,8 @@ def prepare_awards(root, canonical, config, now, *, previous_markets=None):
     return awards, history, translations
 
 
-def export_awards(root, canonical, config, now, record_manifest=None, context_signals=None, *, previous_markets=None):
+def export_awards(root, canonical, config, now, record_manifest=None, context_signals=None, *, previous_markets=None,
+                  current_translations=None):
     awards, history, translations = prepare_awards(root, canonical, config, now, previous_markets=previous_markets)
     public_records = awards + (context_signals or [])
     for signal in history + public_records:
@@ -115,15 +116,14 @@ def export_awards(root, canonical, config, now, record_manifest=None, context_si
     context = [s for s in history if s.buyer_id in buyer_ids or s.procedure_id in procedure_ids]
     context_translations = available_translations(root, context)
     context_translations.update(translations)
+    context_translations.update(current_translations or {})
     attach_history(awards, history, context_translations)
     history_ids = {s.id for s in history}
     attach_history([s for s in canonical if s.id in history_ids] + (context_signals or []), history, context_translations)
     if record_manifest is not None:
-        buyer_refs = {}
+        buyer_refs = buyer_files(root, public_records)
         award_ids = {s.id for s in awards}
-        for signal in public_records:
-            _, record_manifest[signal.id] = record_file(root, signal, context_translations.get(signal.id),
-                "awards" if signal.id in award_ids else "opportunities", buyer_refs)
+        record_manifest.update(record_files(root, public_records, context_translations, buyer_refs, award_ids))
         # Linked history retains complete text without thousands of additional
         # uncompressed files or recursively repeated buyer/procedure histories.
         record_manifest.update(history_files(root, [s for s in context if s.id not in record_manifest],

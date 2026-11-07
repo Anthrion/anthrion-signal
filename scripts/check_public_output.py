@@ -14,7 +14,7 @@ from anthrion_signal.public_compression import decode_public_bytes
 from anthrion_signal.record_reviews import GUIDANCE_COUNTRIES, validate_guidance
 from anthrion_signal.utils import clean, digest, retained_path
 
-PATHS = re.compile(r"(?:(?:awards|current)/[A-Z]+-[a-f0-9]{16}|records/[A-Za-z0-9_-]{1,100}-[a-f0-9]{16}|buyers/buyer_[a-f0-9]{20}-[a-f0-9]{16})\.json(?:\.gz)?|history/[a-f0-9]{3,64}-[a-f0-9]{16}\.json\.gz")
+PATHS = re.compile(r"(?:(?:awards|current)/[A-Z]+-[a-f0-9]{16}|records/[A-Za-z0-9_-]{1,100}-[a-f0-9]{16}|buyers/(?:buyer_[a-f0-9]{20}|bucket-[a-f0-9]{2}-[0-9]+)-[a-f0-9]{16})\.json(?:\.gz)?|history/[a-f0-9]{3,64}-[a-f0-9]{16}\.json\.gz")
 SECRETS = re.compile(r"AIza[0-9A-Za-z_-]{30,}|gh[pousr]_[A-Za-z0-9_]{20,}|-----BEGIN .*PRIVATE KEY-----")
 
 
@@ -127,6 +127,7 @@ def check_public_output(path, inventory_path=None):
                 if not pointer or pointer.get("view") != "awards":
                     raise ValueError("Award index has no complete record")
                 detail = load(pointer["url"])
+                detail = detail["records"][item["id"]] if "records" in detail else detail
                 if item != {**detail["signal"], "procedure_history": [], "is_summary": True} or translation != detail.get("translation"):
                     raise ValueError("Award index differs from its full source/translation pair")
                 item = {key: value for key, value in item.items() if key != "is_summary"}
@@ -141,15 +142,21 @@ def check_public_output(path, inventory_path=None):
         if root_manifest.get("signals") or root_manifest.get("current_feed") != data.current_feed:
             raise ValueError("Initial manifest and legacy dataset disagree")
         check_page(root_manifest)
+        compressed_manifest = path.parent / "manifest.json.gz"
+        if compressed_manifest.exists() and json.loads(decode_public_bytes(
+                compressed_manifest.read_bytes(), compressed_manifest.name)) != root_manifest:
+            raise ValueError("Compressed and plain root manifests disagree")
         details = {}
         history_ids = set()
         public_ids = {s.id for s in data.signals}
         anchor_ids = public_ids | award_ids
         bucket_ids = {}
+        buyer_bucket_ids = {}
         for ident, pointer in data.current_feed["records"].items():
             page = load(pointer["url"])
-            if pointer["url"].startswith("history/"):
-                if pointer.get("view") != "history" or not isinstance(page.get("records"), dict) or ident not in page["records"]:
+            if "records" in page:
+                if (pointer["url"].startswith("history/") and pointer.get("view") != "history"
+                        or not isinstance(page["records"], dict) or ident not in page["records"]):
                     raise ValueError("Historical bucket does not match the requested record")
                 bucket_ids.setdefault(pointer["url"], set()).add(ident)
                 page = page["records"][ident]
@@ -166,6 +173,9 @@ def check_public_output(path, inventory_path=None):
             if signal.buyer_history_ref:
                 reference = signal.buyer_history_ref
                 buyer = load(reference["url"])
+                if "buyers" in buyer:
+                    buyer_bucket_ids.setdefault(reference["url"], set()).add(signal.buyer_id)
+                    buyer = buyer["buyers"][signal.buyer_id]
                 if buyer["buyer_id"] != signal.buyer_id or len(buyer["records"]) != reference["count"]:
                     raise ValueError("Buyer history identity/count mismatch")
                 if ident in anchor_ids:
@@ -177,6 +187,9 @@ def check_public_output(path, inventory_path=None):
         for relative, identifiers in bucket_ids.items():
             if set(loaded[relative]["records"]) != identifiers:
                 raise ValueError("Historical bucket includes records outside its manifest")
+        for relative, identifiers in buyer_bucket_ids.items():
+            if set(loaded[relative]["buyers"]) != identifiers:
+                raise ValueError("Buyer bucket includes identities outside its manifest")
         for market, pointer in data.current_feed["markets"].items():
             page = load(pointer["url"])
             if len(page["signals"]) != pointer["count"]:
@@ -200,6 +213,8 @@ def check_public_output(path, inventory_path=None):
         files = [path.name, *loaded]
         if data.current_feed:
             files.append("manifest.json")
+            if (path.parent / "manifest.json.gz").exists():
+                files.append("manifest.json.gz")
         inventory_path.parent.mkdir(parents=True, exist_ok=True)
         inventory_path.write_text(json.dumps(sorted(files)) + "\n", encoding="utf-8")
     return len(data.signals), len(award_ids), len(loaded)

@@ -165,7 +165,7 @@ const openSourceHistory = async (record: Locator) => {
 test.beforeEach(async ({ page }, info) => {
   await page.emulateMedia({ reducedMotion: 'reduce' })
   if (info.title.includes('@data')) return
-  await page.route('**/data/manifest.json', (route) => route.fulfill({ status: 404 }))
+  await page.route('**/data/manifest.json*', (route) => route.fulfill({ status: 404 }))
   // Deterministic source facts exercise every optional category without API calls.
   // These in-memory records never change canonical data or production assets.
   const dataset = sourceFixture(datasetFixture())

@@ -4,7 +4,7 @@ import AxeBuilder from '@axe-core/playwright'
 import type { Dataset } from '../src/types'
 
 async function fixture(page: Page) {
-  await page.route('**/data/manifest.json', (route) => route.fulfill({ status: 404 }))
+  await page.route('**/data/manifest.json*', (route) => route.fulfill({ status: 404 }))
   const data: Dataset = datasetFixture()
   const base = data.signals[0]
   const now = Date.now()

@@ -78,7 +78,7 @@ async function fixture(page: Page, fail: boolean | 'malformed' = false) {
 }
 
 test.beforeEach(async ({ page }) => {
-  await page.route('**/data/manifest.json', (route) => route.fulfill({ status: 404 }))
+  await page.route('**/data/manifest.json*', (route) => route.fulfill({ status: 404 }))
   await page.emulateMedia({ reducedMotion: 'reduce' })
   await page.clock.setFixedTime(new Date('2026-09-18T12:00:00Z'))
 })
@@ -215,7 +215,7 @@ test('@data published historical records match every market manifest and stay ou
   page,
 }) => {
   test.setTimeout(300000)
-  await page.unroute('**/data/manifest.json')
+  await page.unroute('**/data/manifest.json*')
   const data: Dataset = await publicJSON(page.request)
   expect(data.signals.every((s) => !isHistoricalAward(s))).toBe(true)
   // Groups can load the union of country shards, avoiding another copy on disk.

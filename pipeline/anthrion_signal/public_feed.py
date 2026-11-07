@@ -16,7 +16,7 @@ def atomic_public_json(path, payload):
     body = json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False).encode("utf-8")
     if path.suffix == ".gz":
         name = path.relative_to(path.parents[1]).as_posix()
-        if len(body) > decoded_limit(path.name if path.name == "current.json.gz" else name):
+        if len(body) > decoded_limit(path.name if path.name in {"current.json.gz", "manifest.json.gz"} else name):
             raise ValueError("Public JSON exceeds its decoded size limit")
         body = gzip.compress(body, compresslevel=6, mtime=0)
     atomic_bytes(path, body)
@@ -35,6 +35,71 @@ def ranking_evidence(item):
     fields = ("capability", "strength", "field", "context")
     rows = {tuple(e.get(key, "") for key in fields) for e in item.get("capability_evidence", [])}
     return [dict(zip(fields, row)) for row in sorted(rows)]
+
+
+def bucket_files(root, kind, entries, target_bytes=512 * 1024):
+    """Stream small, immutable detail bundles with bounded memory and downloads."""
+    field = "buyers" if kind == "buyers" else "records"
+    buffers, parts, references = {}, defaultdict(int), {}
+
+    def flush(prefix):
+        items, _ = buffers.pop(prefix)
+        body = (b'{"' + field.encode() + b'":{' + b','.join(
+            json.dumps(key).encode() + b':' + value for key, value in sorted(items)) + b'},"schema_version":"1.0"}')
+        if len(body) > decoded_limit(kind + "/bucket.json.gz"):
+            raise ValueError("A public detail exceeds the bounded download size")
+        payload = json.loads(body)
+        relative = f"{kind}/bucket-{prefix}-{parts[prefix]:03d}-{digest(payload)[:16]}.json.gz"
+        parts[prefix] += 1
+        atomic_bytes(root / "app/public/data" / relative, gzip.compress(body, compresslevel=6, mtime=0))
+        references.update({key: relative for key, _ in items})
+
+    for key, payload in entries:
+        if not re.fullmatch(r"[A-Za-z0-9_-]{1,100}", key) or key in references:
+            raise ValueError("Invalid or duplicate public detail identity")
+        prefix = digest(key)[:2]
+        body = json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False).encode()
+        size = len(json.dumps(key).encode()) + len(body) + 2
+        if prefix in buffers and buffers[prefix][1] + size + 64 > target_bytes:
+            flush(prefix)
+        items, total = buffers.setdefault(prefix, ([], 0))
+        if any(ident == key for ident, _ in items):
+            raise ValueError("Duplicate public detail identity")
+        items.append((key, body))
+        buffers[prefix] = items, total + size
+    for prefix in sorted(buffers):
+        flush(prefix)
+    return references
+
+
+def buyer_files(root, signals):
+    representatives = {}
+    for signal in signals:
+        if signal.buyer_id and signal.buyer_history:
+            representatives.setdefault(signal.buyer_id, signal)
+    def entries():
+        for ident, signal in sorted(representatives.items()):
+            yield ident, {"schema_version": "1.0", "buyer_id": ident, "buyer_name": signal.buyer_name,
+                          "identity_basis": signal.buyer_identity_basis, "records": signal.buyer_history}
+    paths = bucket_files(root, "buyers", entries())
+    return {ident: {"url": path, "count": len(representatives[ident].buyer_history),
+                    "identity_basis": representatives[ident].buyer_identity_basis} for ident, path in paths.items()}
+
+
+def record_files(root, signals, translations, buyer_refs, award_ids=()):
+    def entries():
+        for signal in sorted(signals, key=lambda item: item.id):
+            if signal.buyer_id in buyer_refs:
+                signal.buyer_history_ref = buyer_refs[signal.buyer_id]
+            translation = translations.get(signal.id)
+            payload = {"signal": public_signal(signal, translation)}
+            if translation:
+                payload["translation"] = translation.model_dump() if hasattr(translation, "model_dump") else translation
+            yield signal.id, payload
+    paths = bucket_files(root, "records", entries())
+    return {signal.id: {"url": paths[signal.id], "markets": [market for market, countries in MARKETS.items()
+                if set(countries).intersection(signal.countries)],
+                "view": "awards" if signal.id in award_ids else "opportunities"} for signal in signals}
 
 
 def record_file(root, signal, translation=None, view="opportunities", buyer_refs=None):
@@ -114,10 +179,11 @@ def search_text(signal, translation):
 
 def export_current(root, dataset, award_records=None):
     records, summaries, translations = dict(award_records or {}), {}, {}
-    buyer_refs = {}
+    missing = [signal for signal in dataset.signals if signal.id not in records]
+    records.update(record_files(root, missing, dataset.translations, buyer_files(root, missing)))
     for signal in dataset.signals:
         translation = dataset.translations.get(signal.id)
-        item, records[signal.id] = record_file(root, signal, translation, buyer_refs=buyer_refs)
+        item = public_signal(signal, translation)
         summary = {key: value for key, value in item.items() if key not in DETAIL_FIELDS}
         summary["description"] = ""
         summary["documents"] = []

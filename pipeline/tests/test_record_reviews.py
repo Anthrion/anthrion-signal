@@ -288,7 +288,7 @@ def test_guidance_lives_in_details_without_growing_search_indexes(tmp_path, sign
                    evidence_catalog={}, signals=[signal])
     manifest = export_current(tmp_path, data)
     root = tmp_path / "app/public/data"
-    detail = read_json(root / manifest["records"][signal.id]["url"], {})
+    detail = read_json(root / manifest["records"][signal.id]["url"], {})["records"][signal.id]
     index = read_json(root / manifest["markets"]["DE"]["url"], {})
     assert detail["signal"]["reviewed_guidance"]["complexity"] == 5
     assert detail["signal"]["reviewed_guidance"]["original_language"] == "de"

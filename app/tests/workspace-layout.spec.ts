@@ -19,7 +19,7 @@ async function ready(page: Page) {
 }
 
 test.beforeEach(async ({ page }) => {
-  await page.route('**/data/manifest.json', (route) => route.fulfill({ status: 404 }))
+  await page.route('**/data/manifest.json*', (route) => route.fulfill({ status: 404 }))
   await page.emulateMedia({ reducedMotion: 'reduce' })
   await page.clock.setFixedTime(new Date('2026-09-11T12:00:00Z'))
   const dataset = datasetFixture()

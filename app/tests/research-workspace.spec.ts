@@ -318,7 +318,7 @@ async function fixture(page: Page, changeRecord?: (record: Signal) => void) {
     }
   await page.route('**/data/**', (route) => {
     const path = new URL(route.request().url()).pathname
-    if (path.endsWith('/manifest.json')) return route.fulfill({ json: manifest })
+    if ((path.endsWith('/manifest.json') || path.endsWith('/manifest.json.gz'))) return route.fulfill({ json: manifest })
     const compressed = (value: unknown) =>
       route.fulfill({
         contentType: 'application/gzip',
@@ -1278,7 +1278,7 @@ test('an open research page updates source and translation together after a dela
     description: 'Updated English description',
   }
   const nextHash = 'fedcba9876543210'
-  await page.route('**/data/manifest.json', (route) =>
+  await page.route('**/data/manifest.json*', (route) =>
     route.fulfill({
       json: {
         ...manifest,

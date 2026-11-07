@@ -26,8 +26,13 @@ export function validBuyerPage(value: unknown, buyerId: string): value is BuyerP
     )
   )
 }
+export function buyerPage(value: unknown, buyerId: string): BuyerPage | null {
+  const bucket = value as { schema_version?: string; buyers?: Record<string, unknown> } | null
+  const page = bucket?.schema_version === '1.0' && bucket.buyers ? bucket.buyers[buyerId] : value
+  return validBuyerPage(page, buyerId) ? page : null
+}
 export function useBuyerHistory(signal: Signal | null | undefined, active = true) {
-  const cache = useRef(new BoundedCache<BuyerPage>(10, 16 * 1024 * 1024))
+  const cache = useRef(new BoundedCache<unknown>(10, 16 * 1024 * 1024))
   const [attempt, setAttempt] = useState(0)
   const [result, setResult] = useState<{ key: string; records: HistoryRecord[]; error: string }>({
     key: '',
@@ -44,13 +49,11 @@ export function useBuyerHistory(signal: Signal | null | undefined, active = true
     const load = async () => {
       try {
         safeDataPath(path, 'buyers')
-        let page = cache.current.get(path)
-        if (!page) {
-          const value = await fetchJSON(path, controller.signal)
-          if (!validBuyerPage(value, buyerId)) throw new Error('Invalid buyer history')
-          page = value
-          if (!controller.signal.aborted) cache.current.set(path, page)
-        }
+        const cached = cache.current.get(path)
+        const value = cached ?? (await fetchJSON(path, controller.signal))
+        const page = buyerPage(value, buyerId)
+        if (!page) throw new Error('Invalid buyer history')
+        if (!cached && !controller.signal.aborted) cache.current.set(path, value)
         if (expectedCount !== undefined && page.records.length !== expectedCount)
           throw new Error('Incomplete buyer history')
         if (!controller.signal.aborted) setResult({ key, records: page.records, error: '' })

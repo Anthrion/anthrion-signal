@@ -35,14 +35,14 @@ def test_indexes_keep_original_english_search_and_lazy_full_evidence(tmp_path, s
     summary = read_json(root / data.current_feed["markets"]["GB"]["url"], {})["signals"][0]
     assert summary["description"] == "" and summary["is_summary"]
     assert "rare final phrase" in summary["search_text"] and "English rare phrase" in summary["search_text"]
-    detail = read_json(root / data.current_feed["records"][signal.id]["url"], {})
+    detail = read_json(root / data.current_feed["records"][signal.id]["url"], {})["records"][signal.id]
     assert summary["ranking_evidence"] == ranking_evidence(detail["signal"])
     assert summary["ranking_evidence"]
     assert "capability_evidence" not in summary and "lots" not in summary
     assert all(set(item) == {"capability", "strength", "field", "context"} for item in summary["ranking_evidence"])
     assert detail["signal"]["description"] == signal.description
     assert not detail["signal"]["buyer_history"]
-    buyer = read_json(root / detail["signal"]["buyer_history_ref"]["url"], {})
+    buyer = read_json(root / detail["signal"]["buyer_history_ref"]["url"], {})["buyers"][signal.buyer_id]
     assert buyer["records"][0]["signal_id"] == signal.id
     checker = runpy.run_path(str(Path(__file__).resolve().parents[2] / "scripts/check_public_output.py"))["check_public_output"]
     atomic_json(root / "obsolete.json", {"old": "unreferenced export"})
@@ -126,7 +126,8 @@ def test_linked_history_gets_full_details_without_becoming_a_live_lead(tmp_path,
     unrelated = earlier.model_copy(deep=True, update={"id": "unlinked-old", "buyer_name": "Separate authority", "buyer_id": None, "buyer_identifiers": [], "ocid": "separate", "procedure_id": None, "procedure_identifiers": []})
     data = make_feed(tmp_path, signal, config)
     records = {}
-    data.award_history = export_awards(tmp_path, [signal, earlier, unrelated], config, now, records, [signal])
+    data.award_history = export_awards(tmp_path, [signal, earlier, unrelated], config, now, records, [signal],
+                                      current_translations=data.translations)
     assert records[earlier.id]["view"] == "history"
     assert unrelated.id not in records
     data.current_feed = export_current(tmp_path, data, records)
@@ -205,7 +206,7 @@ def test_corrupt_hashed_detail_fails_publication_validation(tmp_path, signal, co
     root = tmp_path / "app/public/data"
     file = root / data.current_feed["records"][signal.id]["url"]
     page = read_json(file, {})
-    page["signal"]["description"] = "Tampered"
+    page["records"][signal.id]["signal"]["description"] = "Tampered"
     atomic_public_json(file, page)
     checker = runpy.run_path(str(Path(__file__).resolve().parents[2] / "scripts/check_public_output.py"))["check_public_output"]
     with pytest.raises(ValueError, match="content hash"):
