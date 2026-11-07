@@ -214,8 +214,19 @@ def test_release_workflows_keep_trusted_data_validation_and_tested_publication_s
         assert "continue-on-error" not in by_name[name]
         assert steps.index(by_name[name]) < steps.index(by_name["Upload tested Pages build"])
     assert steps.index(by_name["Upload tested Pages build"]) < steps.index(by_name["Deploy GitHub Pages"])
-    assert by_name["Record successful publication"]["if"] == "steps.deployment.outcome == 'success'"
-    assert steps.index(by_name["Deploy GitHub Pages"]) < steps.index(by_name["Record successful publication"])
+    deployed = "steps.deployment.outcome == 'success' || steps.deployment-retry.outcome == 'success'"
+    assert by_name["Record successful publication"]["if"] == deployed
+    assert f"({deployed})" in by_name["Create publication receipt token"]["if"]
+    first, retry = by_name["Deploy GitHub Pages"], by_name["Retry GitHub Pages deployment"]
+    assert first["continue-on-error"] == "true"
+    assert "continue-on-error" not in retry  # Exhausted retries must fail the job and prevent a receipt.
+    assert retry["if"] == by_name["Wait before retrying Pages"]["if"] == "steps.deployment.outcome == 'failure'"
+    assert first["uses"] == retry["uses"] == "actions/deploy-pages@v4"
+    assert len([step for step in steps if step.get("uses") == first["uses"]]) == 2
+    assert steps.index(first) < steps.index(by_name["Wait before retrying Pages"]) < steps.index(retry)
+    assert steps.index(retry) < steps.index(by_name["Create publication receipt token"])
+    assert steps.index(retry) < steps.index(by_name["Record successful publication"])
+    assert "steps.deployment-retry.outputs.page_url" in job["environment"]["url"]
     assert set(tests["on"]) == {"pull_request"}  # production gates replace the duplicate push job
     assert set(tests["jobs"]) == {"test"}  # retain the required status check
     assert tests["permissions"] == {"contents": "read"}

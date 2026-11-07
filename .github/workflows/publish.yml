@@ -26,7 +26,7 @@ jobs:
       id-token: write
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url || steps.deployment-retry.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -103,9 +103,21 @@ jobs:
       - name: Deploy GitHub Pages
         if: steps.plan.outputs.deploy == 'true'
         id: deployment
+        # Pages enforces a ten-minute timeout, including its queue and file sync.
+        # Retry the same tested artifact once without repeating collection.
+        continue-on-error: true
+        uses: actions/deploy-pages@v4
+      - name: Wait before retrying Pages
+        if: steps.deployment.outcome == 'failure'
+        run: sleep 60
+      - name: Retry GitHub Pages deployment
+        if: steps.deployment.outcome == 'failure'
+        id: deployment-retry
         uses: actions/deploy-pages@v4
       - name: Create publication receipt token
-        if: steps.deployment.outcome == 'success' && github.repository_owner == 'Anthrion' && vars.ANTHRION_APP_CLIENT_ID != ''
+        if: >-
+          (steps.deployment.outcome == 'success' || steps.deployment-retry.outcome == 'success') &&
+          github.repository_owner == 'Anthrion' && vars.ANTHRION_APP_CLIENT_ID != ''
         id: receipt-token
         uses: actions/create-github-app-token@v3
         with:
@@ -115,7 +127,7 @@ jobs:
           repositories: ${{ github.event.repository.name }}
           permission-contents: write
       - name: Record successful publication
-        if: steps.deployment.outcome == 'success'
+        if: steps.deployment.outcome == 'success' || steps.deployment-retry.outcome == 'success'
         env:
           GH_TOKEN: ${{ steps.receipt-token.outputs.token || github.token }}
           APP_SLUG: ${{ steps.receipt-token.outputs.app-slug }}

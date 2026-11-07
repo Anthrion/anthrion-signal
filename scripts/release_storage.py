@@ -20,6 +20,16 @@ KINDS = {"records", "translations", "public"}
 MARKER = "Anthrion Signal managed data snapshot v1."
 
 
+class SnapshotRequestError(RuntimeError):
+    def __init__(self, detail):
+        super().__init__(f"GitHub snapshot operation failed: {detail.strip()[:1000]}")
+        status = re.search(r"HTTP (\d{3})", detail)
+        self.status = int(status[1]) if status else None
+        self.transient = bool(re.search(
+            r"HTTP (429|500|502|503|504)|connection reset|TLS handshake|timeout|unexpected EOF|"
+            r"unexpected end of JSON input|invalid JSON response", detail, re.IGNORECASE))
+
+
 def sha256(path):
     with path.open("rb") as stream:
         return hashlib.file_digest(stream, "sha256").hexdigest()
@@ -125,18 +135,60 @@ class ReleaseStore:
             else:
                 if result.returncode == 0:
                     return result.stdout
-                transient = re.search(r"HTTP (429|500|502|503|504)|connection reset|TLS handshake|timeout|unexpected EOF",
-                                      result.stderr, re.IGNORECASE)
-                if not retryable or not transient or attempt == 2:
-                    raise RuntimeError(f"GitHub snapshot operation failed: {result.stderr.strip()[:1000]}")
+                error = SnapshotRequestError(result.stderr)
+                if not retryable or not error.transient or attempt == 2:
+                    raise error
             time.sleep(5 * (attempt + 1))
 
     def api(self, path, *, method="GET", body=None):
         args = ["api", "--method", method, f"repos/{self.repo}/{path}"]
         if body is not None:
             args += ["--input", "-"]
-        result = self.command(args, payload=json.dumps(body) if body is not None else None)
-        return json.loads(result) if result.strip() else None
+        for attempt in range(3 if method == "GET" else 1):
+            result = self.command(args, payload=json.dumps(body) if body is not None else None)
+            if method == "DELETE" and not result.strip():
+                return None
+            try:
+                return json.loads(result)
+            except json.JSONDecodeError as error:
+                if method != "GET" or attempt == 2:
+                    raise SnapshotRequestError("Invalid JSON response from GitHub") from error
+            time.sleep(5 * (attempt + 1))
+
+    def release_by_tag(self, tag):
+        try:
+            release = self.api(f"releases/tags/{tag}")
+            if not isinstance(release, dict):
+                raise SnapshotRequestError("Invalid JSON response from GitHub")
+            return release
+        except SnapshotRequestError as error:
+            if error.status == 404:
+                return None
+            raise
+
+    def ensure_release(self, kind, tag, head):
+        for attempt in range(3):
+            release = self.release_by_tag(tag)
+            if release is not None:
+                return release
+            try:
+                return self.api("releases", method="POST", body={
+                    "tag_name": tag, "target_commitish": head, "name": f"Signal {kind} snapshot",
+                    "body": MARKER, "prerelease": True, "make_latest": "false",
+                })
+            except (SnapshotRequestError, subprocess.TimeoutExpired) as error:
+                transient = isinstance(error, subprocess.TimeoutExpired) or error.transient
+                if not transient and error.status != 422:
+                    raise
+                # A lost response may follow a successful POST, including a
+                # concurrent creator's 422. Inspect the content-addressed tag
+                # before any retry; an ambiguous read must stop the mutation.
+                release = self.release_by_tag(tag)
+                if release is not None:
+                    return release
+                if not transient or attempt == 2:
+                    raise
+            time.sleep(5 * (attempt + 1))
 
     def upload(self, kind, digest, paths):
         if kind not in KINDS or not re.fullmatch(r"[a-f0-9]{64}", digest):
@@ -145,17 +197,7 @@ class ReleaseStore:
         tag = f"{PREFIX}{kind}-{digest}"
         # The tag is content-addressed: an interrupted upload can resume without
         # creating another release or overwriting an already accepted attachment.
-        query = subprocess.run(["gh", "api", f"repos/{self.repo}/releases/tags/{tag}"], cwd=self.root,
-                               capture_output=True, text=True, timeout=120)
-        if query.returncode == 0:
-            release = json.loads(query.stdout)
-        elif "HTTP 404" in query.stderr:
-            release = self.api("releases", method="POST", body={
-                "tag_name": tag, "target_commitish": head, "name": f"Signal {kind} snapshot",
-                "body": MARKER, "prerelease": True, "make_latest": "false",
-            })
-        else:
-            raise RuntimeError("Cannot inspect the snapshot release; refusing an ambiguous upload")
+        release = self.ensure_release(kind, tag, head)
         if release.get("body") != MARKER or release.get("draft") or release.get("tag_name") != tag:
             raise ValueError("Snapshot tag is already used by an unmanaged release")
         assets = []
