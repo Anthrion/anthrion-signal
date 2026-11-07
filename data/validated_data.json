@@ -1,17 +1,17 @@
 {
   "version": 1,
-  "generation": 451,
+  "generation": 452,
   "data_code": "a2b7b3d7e3585515a85a825da927206aa25fe96c2ce0e6d62ff4b93d4ade7349",
-  "sha256": "375df4f5ea6ef6a9282db6013bc907715bb90a9943f5aac3a788e52abca15fb1",
-  "key": "signal-public-v1-375df4f5ea6ef6a9282db6013bc907715bb90a9943f5aac3a788e52abca15fb1-42301247108-1",
-  "public_bytes": 607424110,
-  "public_files": 72392,
-  "inputs": "515451082e512edc5251b22e773618a283de0d39b005aef74de8cbc9fd8a83c5",
-  "validated_at": "2026-11-06T22:36:44.525082+00:00",
+  "sha256": "b805c5258da1c8236523810b446d396e035238fe2ef58367d96ffe96ebc6eaf9",
+  "key": "signal-public-v1-b805c5258da1c8236523810b446d396e035238fe2ef58367d96ffe96ebc6eaf9-42312713865-1",
+  "public_bytes": 608320422,
+  "public_files": 72385,
+  "inputs": "9f04b254ad18f01cb00e19143f74817b0fbc66ddb744b03be286c03de1bccd67",
+  "validated_at": "2026-11-07T00:38:08.902172+00:00",
   "signature": {
     "code": "1c149b77778b30e632c56ec8770f3cf8eeee2234444bc5e63b0f244bea15e472",
-    "content": "5384a14525c94a2759c684260a4b3e74274b08f72802ea4a60cbb25e705ca613",
-    "translations": "e5125fda555271fa35067799b12dfaa1fe7c7f8875e7b04376835258ea071960",
+    "content": "6cc15fce9632b15db527a079717a1ffeefd8dc977cbfb82c604c963911b157eb",
+    "translations": "570ff87f32f70fc6aa196224e8b3e0c1df9793de5aba6e26b8899e3ab3363681",
     "health": [
       [
         "find_tender",
@@ -231,7 +231,7 @@
       ],
       [
         "canada_buys",
-        "partial"
+        "healthy"
       ],
       [
         "seao_qc",
@@ -318,19 +318,19 @@
         "failed"
       ]
     ],
-    "day": "2026-11-06"
+    "day": "2026-11-07"
   },
   "storage": {
     "version": 1,
     "kind": "public",
-    "digest": "375df4f5ea6ef6a9282db6013bc907715bb90a9943f5aac3a788e52abca15fb1",
-    "tag": "signal-data-v1-public-375df4f5ea6ef6a9282db6013bc907715bb90a9943f5aac3a788e52abca15fb1",
-    "release_id": 437132077,
+    "digest": "b805c5258da1c8236523810b446d396e035238fe2ef58367d96ffe96ebc6eaf9",
+    "tag": "signal-data-v1-public-b805c5258da1c8236523810b446d396e035238fe2ef58367d96ffe96ebc6eaf9",
+    "release_id": 437214645,
     "assets": [
       {
         "name": "public-data.tar.gz",
-        "bytes": 592731338,
-        "sha256": "375df4f5ea6ef6a9282db6013bc907715bb90a9943f5aac3a788e52abca15fb1"
+        "bytes": 593631533,
+        "sha256": "b805c5258da1c8236523810b446d396e035238fe2ef58367d96ffe96ebc6eaf9"
       }
     ]
   }
