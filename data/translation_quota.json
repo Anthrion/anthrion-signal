@@ -170,24 +170,28 @@
       }
     },
     "42365131214-1": {
-      "closed": false,
+      "closed": true,
       "day": "2026-11-07",
       "limits": {
         "gemini-3.1-flash-lite": 75,
         "gemini-3.5-flash-lite": 75
       },
-      "used": {}
+      "started": true,
+      "used": {
+        "gemini-3.1-flash-lite": 4,
+        "gemini-3.5-flash-lite": 24
+      }
     }
   },
   "models": {
     "gemini-3.1-flash-lite": {
       "blocked_reason": "transient",
-      "blocked_until": 1794022999.2765338,
-      "consecutive_errors": 0,
+      "blocked_until": 1794049979.574006,
+      "consecutive_errors": 2,
       "days": {
         "2026-11-05": 198,
         "2026-11-06": 257,
-        "2026-11-07": 119
+        "2026-11-07": 48
       },
       "recent": [],
       "usage": {
@@ -198,17 +202,50 @@
     },
     "gemini-3.5-flash-lite": {
       "blocked_reason": "transient",
-      "blocked_until": 1794041898.7839935,
+      "blocked_until": 1794049854.323916,
       "consecutive_errors": 0,
       "days": {
         "2026-11-05": 36,
         "2026-11-06": 321,
-        "2026-11-07": 150
+        "2026-11-07": 99
       },
-      "recent": [],
+      "recent": [
+        {
+          "at": 1794049857.590482,
+          "tokens": 13192
+        },
+        {
+          "at": 1794049857.6861548,
+          "tokens": 3866
+        },
+        {
+          "at": 1794049869.8918364,
+          "tokens": 17360
+        },
+        {
+          "at": 1794049869.9691002,
+          "tokens": 6070
+        },
+        {
+          "at": 1794049887.0119522,
+          "tokens": 17360
+        },
+        {
+          "at": 1794049887.0995088,
+          "tokens": 6070
+        },
+        {
+          "at": 1794049904.5943615,
+          "tokens": 15773
+        },
+        {
+          "at": 1794049904.6933467,
+          "tokens": 4511
+        }
+      ],
       "usage": {
-        "candidatesTokenCount": 28871586,
-        "promptTokenCount": 37648255,
+        "candidatesTokenCount": 28905691,
+        "promptTokenCount": 37693376,
         "thoughtsTokenCount": 0
       }
     }
