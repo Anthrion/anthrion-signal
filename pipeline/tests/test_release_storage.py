@@ -163,8 +163,8 @@ def test_upload_reuses_verified_attachment_and_never_overwrites_wrong_bytes(stor
                 "assets": [{"name": path.name, "state": "uploaded", "size": path.stat().st_size,
                             "digest": "sha256:" + storage.sha256(path)}]}
     monkeypatch.setattr(storage.subprocess, "check_output", lambda *a, **k: "source-sha")
-    monkeypatch.setattr(storage.subprocess, "run", lambda *a, **k: SimpleNamespace(returncode=0, stdout=json.dumps(existing)))
     store = storage.ReleaseStore(tmp_path, "Anthrion/test")
+    monkeypatch.setattr(store, "release_by_tag", lambda tag: existing)
     def no_mutation(*args, **kwargs):
         raise AssertionError("Verified immutable attachment must not be overwritten")
     monkeypatch.setattr(store, "command", no_mutation)
@@ -181,8 +181,8 @@ def test_upload_without_server_digest_requires_matching_readback(storage, tmp_pa
     existing = {"id": 10, "body": storage.MARKER, "tag_name": f"{storage.PREFIX}records-{'a' * 64}",
                 "assets": [{"name": path.name, "state": "uploaded", "size": path.stat().st_size}]}
     monkeypatch.setattr(storage.subprocess, "check_output", lambda *a, **k: "source-sha")
-    monkeypatch.setattr(storage.subprocess, "run", lambda *a, **k: SimpleNamespace(returncode=0, stdout=json.dumps(existing)))
     store = storage.ReleaseStore(tmp_path, "Anthrion/test")
+    monkeypatch.setattr(store, "release_by_tag", lambda tag: existing)
     monkeypatch.setattr(store, "command", lambda args: Path(args[args.index("--output") + 1]).write_bytes(b"wrong"))
     with pytest.raises(ValueError, match="read-back"):
         store.upload("records", "a" * 64, [path])
@@ -200,11 +200,12 @@ def test_retention_protects_current_previous_daily_weekly_and_recent_upload_on_o
     assert {item["id"] for item in storage.retention_candidates(items, {1, 2}, now)} == {5, 7, 8}
 
 
-def test_safe_reads_retry_transient_errors_but_mutations_do_not(storage, tmp_path, monkeypatch):
+@pytest.mark.parametrize("message", ["HTTP 503", "unexpected end of JSON input", "unexpected EOF"])
+def test_safe_reads_retry_transient_errors_but_mutations_do_not(storage, tmp_path, monkeypatch, message):
     calls = []
     def request(*args, **kwargs):
         calls.append(args)
-        return SimpleNamespace(returncode=1 if len(calls) == 1 else 0, stderr="HTTP 503", stdout="{}")
+        return SimpleNamespace(returncode=1 if len(calls) == 1 else 0, stderr=message, stdout="{}")
     monkeypatch.setattr(storage.subprocess, "run", request)
     monkeypatch.setattr(storage.time, "sleep", lambda seconds: None)
     store = storage.ReleaseStore(tmp_path, "Anthrion/test")
@@ -214,6 +215,116 @@ def test_safe_reads_retry_transient_errors_but_mutations_do_not(storage, tmp_pat
     with pytest.raises(RuntimeError):
         store.api("releases", method="POST", body={})
     assert len(calls) == 1
+
+
+@pytest.mark.parametrize("response", ["", '{"id":'])
+def test_reads_retry_incomplete_success_responses(storage, tmp_path, monkeypatch, response):
+    replies = iter([response, '{"id":10}'])
+    calls = []
+    def request(*args, **kwargs):
+        calls.append(args)
+        return SimpleNamespace(returncode=0, stdout=next(replies), stderr="")
+    monkeypatch.setattr(storage.subprocess, "run", request)
+    monkeypatch.setattr(storage.time, "sleep", lambda seconds: None)
+    assert storage.ReleaseStore(tmp_path, "Anthrion/test").api("releases/10") == {"id": 10}
+    assert len(calls) == 2
+
+
+@pytest.mark.parametrize("applied", [False, True])
+@pytest.mark.parametrize("failure", ["cli-json", "truncated-json", "empty-json", "timeout", "conflict"])
+def test_uncertain_creation_is_reconciled_before_retry(storage, tmp_path, monkeypatch, applied, failure):
+    path = put(tmp_path, "parts/records-000.tar", b"verified snapshot")
+    digest = "a" * 64
+    release = {"id": 10, "body": storage.MARKER, "tag_name": f"{storage.PREFIX}records-{digest}",
+               "assets": [{"name": path.name, "state": "uploaded", "size": path.stat().st_size,
+                           "digest": "sha256:" + storage.sha256(path)}]}
+    events, created = [], False
+    def request(args, **kwargs):
+        nonlocal created
+        method = args[args.index("--method") + 1]
+        if method == "GET":
+            events.append("inspect")
+            return SimpleNamespace(returncode=0 if created else 1, stdout=json.dumps(release) if created else "",
+                                   stderr="" if created else "HTTP 404")
+        assert method == "POST"
+        events.append("create")
+        assert json.loads(kwargs["input"])["tag_name"] == release["tag_name"]
+        if events.count("create") == 1:
+            created = applied
+            if failure == "timeout":
+                raise subprocess.TimeoutExpired(args, 900)
+            return SimpleNamespace(returncode=1 if failure in {"cli-json", "conflict"} else 0,
+                                   stdout='{"id":' if failure == "truncated-json" else "",
+                                   stderr="HTTP 422" if failure == "conflict" else "unexpected end of JSON input")
+        created = True
+        return SimpleNamespace(returncode=0, stdout=json.dumps(release), stderr="")
+    monkeypatch.setattr(storage.subprocess, "check_output", lambda *a, **k: "source-sha")
+    monkeypatch.setattr(storage.subprocess, "run", request)
+    monkeypatch.setattr(storage.time, "sleep", lambda seconds: None)
+    store = storage.ReleaseStore(tmp_path, "Anthrion/test")
+    if failure == "conflict" and not applied:
+        with pytest.raises(storage.SnapshotRequestError, match="HTTP 422"):
+            store.upload("records", digest, [path])
+        assert events == ["inspect", "create", "inspect"]
+    else:
+        assert store.upload("records", digest, [path])["release_id"] == 10
+        assert events == (["inspect", "create", "inspect"] if applied else
+                          ["inspect", "create", "inspect", "inspect", "create"])
+
+
+@pytest.mark.parametrize("failure", ["HTTP 403", "HTTP 503"])
+def test_creation_never_retries_without_a_verified_absent_tag(storage, tmp_path, monkeypatch, failure):
+    methods = []
+    def request(args, **kwargs):
+        method = args[args.index("--method") + 1]
+        methods.append(method)
+        # Initial 404 permits creation; subsequent failed reads must stop it.
+        message = "HTTP 404" if len(methods) == 1 else (failure if method == "GET" else "HTTP 503")
+        return SimpleNamespace(returncode=1, stdout="", stderr=message)
+    monkeypatch.setattr(storage.subprocess, "run", request)
+    monkeypatch.setattr(storage.time, "sleep", lambda seconds: None)
+    store = storage.ReleaseStore(tmp_path, "Anthrion/test")
+    with pytest.raises(storage.SnapshotRequestError):
+        store.ensure_release("records", "snapshot-tag", "source-sha")
+    assert methods.count("POST") == 1
+
+
+@pytest.mark.parametrize("response", ["null", "[]"])
+@pytest.mark.parametrize("after_creation", [False, True])
+def test_invalid_lookup_shapes_cannot_authorize_creation(storage, tmp_path, monkeypatch, response, after_creation):
+    methods = []
+    def request(args, **kwargs):
+        method = args[args.index("--method") + 1]
+        methods.append(method)
+        if after_creation and len(methods) <= 2:
+            return SimpleNamespace(returncode=1, stdout="", stderr="HTTP 404" if method == "GET" else "HTTP 503")
+        return SimpleNamespace(returncode=0, stdout=response, stderr="")
+    monkeypatch.setattr(storage.subprocess, "run", request)
+    monkeypatch.setattr(storage.time, "sleep", lambda seconds: None)
+    store = storage.ReleaseStore(tmp_path, "Anthrion/test")
+    with pytest.raises(storage.SnapshotRequestError, match="Invalid JSON"):
+        store.ensure_release("records", "snapshot-tag", "source-sha")
+    assert methods == (["GET", "POST", "GET"] if after_creation else ["GET"])
+
+
+def test_creation_retries_are_bounded_and_permission_failures_are_immediate(storage, tmp_path, monkeypatch):
+    methods = []
+    message = "HTTP 503"
+    def request(args, **kwargs):
+        method = args[args.index("--method") + 1]
+        methods.append(method)
+        return SimpleNamespace(returncode=1, stdout="", stderr="HTTP 404" if method == "GET" else message)
+    monkeypatch.setattr(storage.subprocess, "run", request)
+    monkeypatch.setattr(storage.time, "sleep", lambda seconds: None)
+    store = storage.ReleaseStore(tmp_path, "Anthrion/test")
+    with pytest.raises(storage.SnapshotRequestError):
+        store.ensure_release("records", "snapshot-tag", "source-sha")
+    assert methods.count("POST") == 3
+    methods.clear()
+    message = "HTTP 403"
+    with pytest.raises(storage.SnapshotRequestError, match="HTTP 403"):
+        store.ensure_release("records", "snapshot-tag", "source-sha")
+    assert methods == ["GET", "POST"]
 
 
 def test_recent_pointer_history_protects_old_export_used_by_concurrent_publisher(storage, tmp_path, monkeypatch):
