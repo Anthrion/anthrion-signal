@@ -84,9 +84,21 @@ test('@data published data renders real records across every market', async ({ p
   expect(errors).toEqual([])
 })
 
-test('@data published feed supports search, filters and browser refresh', async ({ page }) => {
+test('@data @data-smoke published feed supports records, search, filters and browser refresh', async ({
+  page,
+}) => {
   await page.goto('./?view=all')
   await expect(page.locator('.signal-row').first()).toBeVisible()
+  await page.locator('.signal-row').first().locator('.row-select').click()
+  const panel = page.locator('.console-detail:visible')
+  await expect(page.getByText('Loading full record…', { exact: true })).toHaveCount(0)
+  await expect(panel.locator('.inspector-heading h2')).not.toBeEmpty()
+  await expect(panel.getByRole('link', { name: 'Open source notice' })).toHaveAttribute(
+    'href',
+    /^https?:\/\//,
+  )
+  if (page.viewportSize()!.width <= 900)
+    await page.getByRole('button', { name: 'Close panel' }).click()
   const search = page.getByRole('textbox', { name: 'Search opportunities' })
   await search.fill('no-such-opportunity-refresh-smoke')
   await expect(page.getByText('No matching signals', { exact: true })).toBeVisible()

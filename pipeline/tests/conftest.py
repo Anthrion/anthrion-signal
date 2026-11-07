@@ -1,4 +1,6 @@
+from copy import deepcopy
 from datetime import UTC, datetime
+import os
 from pathlib import Path
 
 import pytest
@@ -24,9 +26,21 @@ def frozen_datetime(now):
     return FrozenDateTime
 
 
-@pytest.fixture
-def config():
+@pytest.fixture(scope="session")
+def _parsed_repository_config():
     return load_config(Path(__file__).resolve().parents[2])
+
+
+@pytest.fixture
+def config(_parsed_repository_config):
+    # Parse the fixed repository YAML once, but never share mutable test state.
+    # Loader tests still call load_config directly against their own fixtures.
+    result = deepcopy(_parsed_repository_config)
+    for key, variable in (("max_pages", "MAX_PAGES_PER_SOURCE"),
+                          ("lookback_days", "INITIAL_LOOKBACK_DAYS"),
+                          ("retention_days", "RETENTION_DAYS")):
+        result["runtime"][key] = int(os.getenv(variable, str(result["runtime"][key])))
+    return result
 
 
 @pytest.fixture

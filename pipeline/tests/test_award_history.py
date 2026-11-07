@@ -101,7 +101,7 @@ def test_award_index_keeps_search_facts_and_loads_unchanged_timeline_from_full_r
     indexes = export_awards(tmp_path, [award], config, now, manifest)
     root = tmp_path / 'app/public/data'
     summary = read_json(root / indexes['GB']['url'], {})['signals'][0]
-    full = read_json(root / manifest[award.id]['url'], {})['signal']
+    full = read_json(root / manifest[award.id]['url'], {})['records'][award.id]['signal']
     assert summary['is_summary'] and summary['procedure_history'] == []
     assert full['procedure_history'] and 'is_summary' not in full
     assert {k: v for k, v in summary.items() if k not in {'procedure_history', 'is_summary'}} == {

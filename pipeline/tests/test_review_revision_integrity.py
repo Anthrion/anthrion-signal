@@ -217,7 +217,7 @@ def test_award_export_does_not_clear_shared_current_guidance(tmp_path, signal, c
     export_awards(tmp_path, [signal], config, now, manifest, [signal])
     assert signal.reviewed_guidance == original_guidance
     assert original_guidance
-    detail = read_json(tmp_path / "app/public/data" / manifest[signal.id]["url"], {})
+    detail = read_json(tmp_path / "app/public/data" / manifest[signal.id]["url"], {})["records"][signal.id]
     assert detail["signal"]["reviewed_guidance"] == original_guidance
 
 

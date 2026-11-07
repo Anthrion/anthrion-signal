@@ -24,6 +24,39 @@ import { recordDataset } from '../tests/fixtures/record'
 import { awardMarketPaths } from './useAwardHistory'
 import { validBuyerPage } from './useBuyerHistory'
 
+test('the compressed bootstrap loads directly and shared record bundles retain exact identities', async () => {
+  const manifest = {
+    ...dataset,
+    signals: [],
+    current_feed: { version: '1.0', markets: {}, records: {} },
+  }
+  const body = await gzip(JSON.stringify(manifest))
+  const fetcher = vi.fn().mockResolvedValue(new Response(body))
+  vi.stubGlobal('fetch', fetcher)
+  expect(await loadManifest(new AbortController().signal, '/signal/')).toEqual(manifest)
+  expect(fetcher).toHaveBeenCalledTimes(1)
+  expect(fetcher.mock.calls[0][0]).toBe('/signal/data/manifest.json.gz')
+  const url = 'records/bucket-ab-000-0123456789abcdef.json.gz'
+  const first = { ...dataset.signals[0], id: 'first' }
+  const second = { ...first, id: 'second', title: 'Original second record' }
+  const bucket = {
+    schema_version: '1.0',
+    records: { first: { signal: first }, second: { signal: second } },
+  }
+  expect(
+    isCurrentFeed({
+      version: '1.0',
+      markets: {},
+      records: {
+        first: { url, markets: ['GB'], view: 'opportunities' },
+        second: { url, markets: ['GB'], view: 'awards' },
+      },
+    }),
+  ).toBe(true)
+  expect(recordDetail(bucket, 'second')?.signal).toEqual(second)
+  expect(recordDetail(bucket, 'missing')).toBeNull()
+})
+
 const record = recordDataset({} as Dataset).signals[0]
 const path = 'current/GB-0123456789abcdef.json'
 const page: SignalPage = {
@@ -141,10 +174,12 @@ describe('versioned static data', () => {
     const fetcher = vi
       .fn()
       .mockResolvedValueOnce({ ok: false, status: 404 })
+      .mockResolvedValueOnce({ ok: false, status: 404 })
       .mockResolvedValueOnce({ ok: true, json: async () => dataset })
     vi.stubGlobal('fetch', fetcher)
     expect(await loadManifest(new AbortController().signal, '/signal/')).toEqual(dataset)
     expect(fetcher.mock.calls.map((call) => call[0])).toEqual([
+      '/signal/data/manifest.json.gz',
       '/signal/data/manifest.json',
       '/signal/data/current.json',
     ])

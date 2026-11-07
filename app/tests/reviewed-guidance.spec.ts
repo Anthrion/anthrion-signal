@@ -112,7 +112,7 @@ for (const example of examples) {
         providerRequests.push(request.url())
     })
     await page.emulateMedia({ reducedMotion: 'reduce' })
-    await page.route('**/data/manifest.json', (route) => route.fulfill({ status: 404 }))
+    await page.route('**/data/manifest.json*', (route) => route.fulfill({ status: 404 }))
     await page.route('**/data/current.json', (route) => route.fulfill({ json: data }))
     await page.goto(`./?market=${example.country}&view=all`)
     let panel = await inspector(page)

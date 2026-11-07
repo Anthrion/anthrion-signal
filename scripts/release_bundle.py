@@ -26,7 +26,7 @@ BOOKKEEPING = CONTROL_FILES
 
 def public_json_path(name):
     return PurePosixPath(name).suffix == ".json" or bool(re.fullmatch(
-        r"(?:current|manifest)\.json\.gz|(?:current|awards)/[A-Z]+-[a-f0-9]{16}\.json\.gz|records/[A-Za-z0-9_-]{1,100}-[a-f0-9]{16}\.json\.gz|buyers/buyer_[a-f0-9]{20}-[a-f0-9]{16}\.json\.gz|history/[a-f0-9]{3,64}-[a-f0-9]{16}\.json\.gz", name))
+        r"(?:current|manifest)\.json\.gz|(?:current|awards)/[A-Z]+-[a-f0-9]{16}\.json\.gz|records/[A-Za-z0-9_-]{1,100}-[a-f0-9]{16}\.json\.gz|buyers/(?:buyer_[a-f0-9]{20}|bucket-[a-f0-9]{2}-[0-9]+)-[a-f0-9]{16}\.json\.gz|history/[a-f0-9]{3,64}-[a-f0-9]{16}\.json\.gz", name))
 
 
 def complete_roots(names):

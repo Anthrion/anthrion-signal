@@ -158,6 +158,69 @@ afterEach(async () => {
   }
 })
 
+test('record and buyer bundles copy once and the compressed bootstrap matches the plain manifest', async () => {
+  const source = await fixture(true)
+  const secondId = `buyer_${'2'.repeat(20)}`
+  const second = { ...source.buyer, buyer_id: secondId, records: [{ signal_id: 'sig_award' }] }
+  const buyerUrl = await page(
+    source.publicDir,
+    'buyers/bucket-ab-000',
+    {
+      schema_version: '1.0',
+      buyers: { [source.buyer.buyer_id]: source.buyer, [secondId]: second },
+    },
+    true,
+  )
+  source.signal.buyer_history_ref.url = buyerUrl
+  const award = {
+    ...source.signal,
+    id: 'sig_award',
+    buyer_id: secondId,
+    buyer_history_ref: { url: buyerUrl, count: 1 },
+  }
+  const recordUrl = await page(
+    source.publicDir,
+    'records/bucket-ab-000',
+    {
+      schema_version: '1.0',
+      records: { sig_current: { signal: source.signal }, sig_award: { signal: award } },
+    },
+    true,
+  )
+  source.current.current_feed.records.sig_current.url = recordUrl
+  source.current.current_feed.records.sig_award.url = recordUrl
+  source.current.current_feed.markets.GB.url = await page(
+    source.publicDir,
+    'current/GB',
+    {
+      schema_version: '1.0',
+      signals: [{ ...source.signal, description: '', search_text: source.signal.description }],
+    },
+    true,
+  )
+  source.current.award_history.GB.url = await page(
+    source.publicDir,
+    'awards/GB',
+    {
+      schema_version: '1.0',
+      signals: [award],
+    },
+    true,
+  )
+  await source.roots()
+  const manifest = await readFile(join(source.publicDir, 'data/manifest.json'))
+  await writeFile(join(source.publicDir, 'data/manifest.json.gz'), gzipSync(manifest))
+  const result = await copyPublicAssets(source)
+  expect(result.dataFiles).toBe(7)
+  expect(gunzipSync(await readFile(join(source.outDir, 'data/manifest.json.gz')))).toEqual(manifest)
+  expect(await readFile(join(source.outDir, 'data', recordUrl))).toEqual(
+    await readFile(join(source.publicDir, 'data', recordUrl)),
+  )
+  expect(await readFile(join(source.outDir, 'data', buyerUrl))).toEqual(
+    await readFile(join(source.publicDir, 'data', buyerUrl)),
+  )
+})
+
 test('compressed publication preserves every referenced family and counts stored bytes', async () => {
   const source = await fixture(true)
   const before = await snapshot(source.publicDir)

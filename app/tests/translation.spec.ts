@@ -4,7 +4,7 @@ import type { Dataset } from '../src/types'
 import type { Page } from '@playwright/test'
 
 test.beforeEach(async ({ page }) => {
-  await page.route('**/data/manifest.json', (route) => route.fulfill({ status: 404 }))
+  await page.route('**/data/manifest.json*', (route) => route.fulfill({ status: 404 }))
   const data = datasetFixture()
   await page.route('**/data/current.json', (route) => route.fulfill({ json: data }))
 })

@@ -47,7 +47,13 @@ const page: SignalPage = {
   schema_version: '1.0',
   signals: [{ ...record, description: '', search_text: record.description, is_summary: true }],
 }
-const response = (value: unknown) => ({ ok: true, json: async () => value })
+const response = (value: unknown) => ({
+  ok: true,
+  get body() {
+    return new Blob([JSON.stringify(value)]).stream()
+  },
+  json: async () => value,
+})
 afterEach(() => vi.unstubAllGlobals())
 
 describe('Benelux as a combined market', () => {
@@ -154,6 +160,7 @@ describe('independent loader regression review', () => {
       'fetch',
       vi
         .fn()
+        .mockResolvedValueOnce({ ok: false, status: 404 })
         .mockResolvedValueOnce({
           ok: true,
           json: async () => {

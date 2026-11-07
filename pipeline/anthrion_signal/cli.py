@@ -244,7 +244,7 @@ def export(root):
     data, canonical_signals, config = prepare_current(root, save_cache=True, dataset=previous)
     award_records = {}
     data.award_history = export_awards(root, canonical_signals, config, datetime.now(UTC), award_records, data.signals,
-                                     previous_markets=previous_markets)
+                                     previous_markets=previous_markets, current_translations=data.translations)
     data.current_feed = export_current(root, data, award_records)
     target = root / "app/public/data"
     target.mkdir(parents=True, exist_ok=True)
@@ -252,7 +252,9 @@ def export(root):
     atomic_public_json(target / "current.json.gz", public)
     # Remove only the obsolete mutable root; immutable dependencies stay available.
     (target / "current.json").unlink(missing_ok=True)
-    atomic_public_json(target / "manifest.json", {**public, "signals": [], "translations": {}})
+    manifest = {**public, "signals": [], "translations": {}}
+    atomic_public_json(target / "manifest.json", manifest)
+    atomic_public_json(target / "manifest.json.gz", manifest)
     return data
 
 

@@ -55,7 +55,7 @@ async function fixture(page: Page) {
   }))
   const awardPath = 'awards/GB-0123456789abcdef.json'
   data.award_history = { GB: { url: awardPath, count: awards.length } }
-  await page.route('**/data/manifest.json', (route) => route.fulfill({ status: 404 }))
+  await page.route('**/data/manifest.json*', (route) => route.fulfill({ status: 404 }))
   await page.route('**/data/current.json', (route) => route.fulfill({ json: data }))
   await page.route(`**/data/${awardPath}`, (route) =>
     route.fulfill({ json: { schema_version: '1.0', signals: awards } }),

@@ -163,7 +163,11 @@ export function isCurrentFeed(value: unknown): value is CurrentFeedManifest {
       try {
         if (entry.view === 'history' && entry.url.startsWith('history/'))
           return !!safeDataPath(entry.url, 'history')
-        return safeDataPath(entry.url, 'records').startsWith(`records/${id}-`)
+        const path = safeDataPath(entry.url, 'records')
+        return (
+          path.startsWith(`records/${id}-`) ||
+          /^records\/bucket-[a-f0-9]{2}-\d+-[a-f0-9]{16}\.json\.gz$/.test(path)
+        )
       } catch {
         return false
       }
@@ -178,7 +182,7 @@ export function safeDataPath(
     current: /^current\/[A-Z]+-[a-f0-9]{16}\.json(?:\.gz)?$/,
     awards: /^awards\/[A-Z]+-[a-f0-9]{16}\.json(?:\.gz)?$/,
     records: /^records\/[A-Za-z0-9_-]+-[a-f0-9]{16}\.json(?:\.gz)?$/,
-    buyers: /^buyers\/buyer_[A-Za-z0-9_-]+-[a-f0-9]{16}\.json(?:\.gz)?$/,
+    buyers: /^buyers\/(?:buyer_[A-Za-z0-9_-]+|bucket-[a-f0-9]{2}-\d+)-[a-f0-9]{16}\.json(?:\.gz)?$/,
     history: /^history\/[a-f0-9]{3,64}-[a-f0-9]{16}\.json\.gz$/,
   }
   if (!patterns[kind]?.test(path)) throw new Error('The data file reference could not be verified.')
@@ -239,7 +243,7 @@ export async function fetchJSON(
 ): Promise<unknown> {
   if (signal.aborted) throw new DOMException('Aborted', 'AbortError')
   const compressed = path.endsWith('.json.gz')
-  if (compressed && path !== 'current.json.gz')
+  if (compressed && !['current.json.gz', 'manifest.json.gz'].includes(path))
     safeDataPath(path, path.split('/')[0] as Parameters<typeof safeDataPath>[1])
   const response = await fetch(`${base}data/${path}`, {
     signal,
@@ -251,7 +255,8 @@ export async function fetchJSON(
   if (!response.ok) throw new Error(`Data request failed (${response.status}).`)
   let value: unknown
   if (compressed) {
-    const index = path === 'current.json.gz' || /^(current|awards)\//.test(path)
+    const index =
+      ['current.json.gz', 'manifest.json.gz'].includes(path) || /^(current|awards)\//.test(path)
     const limit = (index ? 256 : 16) * 1024 * 1024
     if (!response.body) throw new Error('Data response is empty.')
     let bytes = await boundedBytes(response.body, signal, limit)
@@ -277,6 +282,14 @@ export async function fetchJSON(
   return value
 }
 export async function loadManifest(signal: AbortSignal, base?: string): Promise<Dataset> {
+  try {
+    const value = await fetchJSON('manifest.json.gz', signal, base, true)
+    if (!isDataset(value) || !value.current_feed || value.current_feed.version !== '1.0')
+      throw new Error('Invalid manifest')
+    return value
+  } catch {
+    if (signal.aborted) throw new DOMException('Aborted', 'AbortError')
+  }
   try {
     const value = await fetchJSON('manifest.json', signal, base, true)
     if (!isDataset(value) || !value.current_feed || value.current_feed.version !== '1.0')

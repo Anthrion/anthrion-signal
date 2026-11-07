@@ -101,7 +101,7 @@ test('@pr Best match is the default, ranks lazy evidence and preserves explicit 
       ),
     },
   }
-  await page.route('**/data/manifest.json', (route) => route.fulfill({ json: manifest }))
+  await page.route('**/data/manifest.json*', (route) => route.fulfill({ json: manifest }))
   await page.route(`**/data/current/GB-${hash}.json`, (route) =>
     route.fulfill({ json: { schema_version: '1.0', signals: summaries, translations: {} } }),
   )
