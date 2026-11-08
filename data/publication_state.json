@@ -1,7 +1,7 @@
 {
   "code": "c4923e922592be4fc8a1a525d95904c4ddb2de29f32c0bfcf608157569680af4",
-  "content": "46c005cf1cd718c9d68549e05a965eb78e14fcd13e57edd45de1590987f1f5df",
-  "translations": "9c8d1c43e837df80fd9b48ec474e3f7d6ffff87a14385eba28357a92ba87db64",
+  "content": "78dbd0219dc3b568ca1d20d585868c5ec20dac23a4e6675dac33939c63d3fd78",
+  "translations": "1b9f304af21660f23dab258875d7237a165695624837bf4d476b2885e214954b",
   "health": [
     [
       "find_tender",
@@ -53,7 +53,7 @@
     ],
     [
       "la_ramp",
-      "failed"
+      "healthy"
     ],
     [
       "grants",
@@ -305,7 +305,7 @@
     ],
     [
       "lc_finance",
-      "failed"
+      "partial"
     ]
   ],
   "day": "2026-11-08"
