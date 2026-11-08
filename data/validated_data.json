@@ -1,16 +1,16 @@
 {
   "version": 1,
-  "generation": 468,
+  "generation": 469,
   "data_code": "65b8d7a4b76a7d469935ba066381e7d8e0212daad577a51cf220bd30b8d4f9d3",
-  "sha256": "1aba246a3611160d37963326c411e666db42775304df3f0be2cad880d977b49f",
-  "key": "signal-public-v1-1aba246a3611160d37963326c411e666db42775304df3f0be2cad880d977b49f-42487202256-1",
-  "public_bytes": 563271221,
+  "sha256": "cb704df1847ff459bb81ee8449021a53e03f8182d0ca5acc4b70fd5805c0d472",
+  "key": "signal-public-v1-cb704df1847ff459bb81ee8449021a53e03f8182d0ca5acc4b70fd5805c0d472-42509797458-1",
+  "public_bytes": 563270944,
   "public_files": 6458,
-  "inputs": "23fd74791c0ca568e6d4b5bacdbaeb7b307400baef355092b5262b2b1e90dc35",
-  "validated_at": "2026-11-08T14:48:50.283471+00:00",
+  "inputs": "329849392bc8847cb15b377eec995d6c66137771f77160266dc558ccb9e9ac8d",
+  "validated_at": "2026-11-08T19:01:57.749813+00:00",
   "signature": {
     "code": "c4923e922592be4fc8a1a525d95904c4ddb2de29f32c0bfcf608157569680af4",
-    "content": "754c3c3bcb3458fc6545c23717bef76b0b6fe891bb6119939eaceedece05162d",
+    "content": "20f4ef5567fefe76b9c10b3315cc878090f26b4959de419e1d6dd535a488cf48",
     "translations": "b5c590e4ea1f81cdb3862631ac3b74e5586790fd5a5e5a8352d5aa5d8c68dd32",
     "health": [
       [
@@ -323,14 +323,14 @@
   "storage": {
     "version": 1,
     "kind": "public",
-    "digest": "1aba246a3611160d37963326c411e666db42775304df3f0be2cad880d977b49f",
-    "tag": "signal-data-v1-public-1aba246a3611160d37963326c411e666db42775304df3f0be2cad880d977b49f",
-    "release_id": 438311173,
+    "digest": "cb704df1847ff459bb81ee8449021a53e03f8182d0ca5acc4b70fd5805c0d472",
+    "tag": "signal-data-v1-public-cb704df1847ff459bb81ee8449021a53e03f8182d0ca5acc4b70fd5805c0d472",
+    "release_id": 438454666,
     "assets": [
       {
         "name": "public-data.tar.gz",
-        "bytes": 542407447,
-        "sha256": "1aba246a3611160d37963326c411e666db42775304df3f0be2cad880d977b49f"
+        "bytes": 542399284,
+        "sha256": "cb704df1847ff459bb81ee8449021a53e03f8182d0ca5acc4b70fd5805c0d472"
       }
     ]
   }
