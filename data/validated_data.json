@@ -1,16 +1,16 @@
 {
   "version": 1,
-  "generation": 464,
+  "generation": 465,
   "data_code": "65b8d7a4b76a7d469935ba066381e7d8e0212daad577a51cf220bd30b8d4f9d3",
-  "sha256": "e52d7266928414b7d48436ba28fde9cbc668aaa319896b14b8294acfd079b93c",
-  "key": "signal-public-v1-e52d7266928414b7d48436ba28fde9cbc668aaa319896b14b8294acfd079b93c-42427845738-1",
-  "public_bytes": 562398010,
-  "public_files": 6454,
-  "inputs": "714ec36185881a29f64c9de7f15783cad945cb7977ace8e9121f242fab1340e9",
-  "validated_at": "2026-11-08T01:20:22.192000+00:00",
+  "sha256": "bb1356954b313ac3131ba61b64ecba50446076ab959c787fd0d79a04d53bdae8",
+  "key": "signal-public-v1-bb1356954b313ac3131ba61b64ecba50446076ab959c787fd0d79a04d53bdae8-42452248623-1",
+  "public_bytes": 562585062,
+  "public_files": 6455,
+  "inputs": "bff9f88c7ba01df3e4c1469e5b06c30faee254d8a908540046d98e7f84393f66",
+  "validated_at": "2026-11-08T06:37:38.343226+00:00",
   "signature": {
     "code": "c4923e922592be4fc8a1a525d95904c4ddb2de29f32c0bfcf608157569680af4",
-    "content": "2aa81e84084ace54adb620b07cdd7e9bc9a70756ff15bfd774f4157b43a6352c",
+    "content": "46c005cf1cd718c9d68549e05a965eb78e14fcd13e57edd45de1590987f1f5df",
     "translations": "9c8d1c43e837df80fd9b48ec474e3f7d6ffff87a14385eba28357a92ba87db64",
     "health": [
       [
@@ -323,14 +323,14 @@
   "storage": {
     "version": 1,
     "kind": "public",
-    "digest": "e52d7266928414b7d48436ba28fde9cbc668aaa319896b14b8294acfd079b93c",
-    "tag": "signal-data-v1-public-e52d7266928414b7d48436ba28fde9cbc668aaa319896b14b8294acfd079b93c",
-    "release_id": 437959077,
+    "digest": "bb1356954b313ac3131ba61b64ecba50446076ab959c787fd0d79a04d53bdae8",
+    "tag": "signal-data-v1-public-bb1356954b313ac3131ba61b64ecba50446076ab959c787fd0d79a04d53bdae8",
+    "release_id": 438078742,
     "assets": [
       {
         "name": "public-data.tar.gz",
-        "bytes": 541552061,
-        "sha256": "e52d7266928414b7d48436ba28fde9cbc668aaa319896b14b8294acfd079b93c"
+        "bytes": 541723512,
+        "sha256": "bb1356954b313ac3131ba61b64ecba50446076ab959c787fd0d79a04d53bdae8"
       }
     ]
   }
