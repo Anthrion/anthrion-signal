@@ -1,18 +1,18 @@
 {
-  "generation": 474,
-  "key": "signal-public-v1-dca329cfbfad8f85f5ebdb76f361aa225ef170073a853c096a552a9def5f1eb5-42554126428-1",
+  "generation": 475,
+  "key": "signal-public-v1-f80a654c182f89e3944e1f07b935bc597887bb96141a2c9df8f916aaa8a8cd2c-42594828100-1",
   "site_base": "/anthrion-signal/",
   "storage": {
     "version": 1,
     "kind": "public",
-    "digest": "dca329cfbfad8f85f5ebdb76f361aa225ef170073a853c096a552a9def5f1eb5",
-    "tag": "signal-data-v1-public-dca329cfbfad8f85f5ebdb76f361aa225ef170073a853c096a552a9def5f1eb5",
-    "release_id": 438724083,
+    "digest": "f80a654c182f89e3944e1f07b935bc597887bb96141a2c9df8f916aaa8a8cd2c",
+    "tag": "signal-data-v1-public-f80a654c182f89e3944e1f07b935bc597887bb96141a2c9df8f916aaa8a8cd2c",
+    "release_id": 438990113,
     "assets": [
       {
         "name": "public-data.tar.gz",
-        "bytes": 545019647,
-        "sha256": "dca329cfbfad8f85f5ebdb76f361aa225ef170073a853c096a552a9def5f1eb5"
+        "bytes": 544470149,
+        "sha256": "f80a654c182f89e3944e1f07b935bc597887bb96141a2c9df8f916aaa8a8cd2c"
       }
     ]
   }
