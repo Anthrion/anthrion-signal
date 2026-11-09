@@ -1,16 +1,16 @@
 {
   "version": 1,
-  "generation": 476,
+  "generation": 477,
   "data_code": "65b8d7a4b76a7d469935ba066381e7d8e0212daad577a51cf220bd30b8d4f9d3",
-  "sha256": "e525f5345f1a96deeb650d36b5c4606548200267722a94cfaf0f1e7cd19a8b8f",
-  "key": "signal-public-v1-e525f5345f1a96deeb650d36b5c4606548200267722a94cfaf0f1e7cd19a8b8f-42614960538-1",
-  "public_bytes": 565257475,
-  "public_files": 6464,
-  "inputs": "fb0aa5aabd723fa4a153e1b2475a110bf882f7f9b3f11f280fd7250d666195bf",
-  "validated_at": "2026-11-09T12:59:26.998277+00:00",
+  "sha256": "ca02955643ca0f96aca179ea614e96db5ae37d2173e4579af45e6df20ea8839a",
+  "key": "signal-public-v1-ca02955643ca0f96aca179ea614e96db5ae37d2173e4579af45e6df20ea8839a-42694837239-1",
+  "public_bytes": 564858616,
+  "public_files": 6462,
+  "inputs": "a62c5ba194900b5dc571cb1fdaf1f09c6e1db9f00a70741f93ae5a2413f178c9",
+  "validated_at": "2026-11-09T21:27:32.241749+00:00",
   "signature": {
     "code": "c4923e922592be4fc8a1a525d95904c4ddb2de29f32c0bfcf608157569680af4",
-    "content": "416b02ae6dc72033683b9be3dcd9eded9e6db5bbb5b6dcc9a792167f407e8b40",
+    "content": "095f7d4cfbfae8f5b225322b4fef18ecf525b1b73172f0f42ea88c05d729ca95",
     "translations": "8622cdb5d08f0cd84ba6914ee94cb71e3ce7914493a8864963b978111e0ce573",
     "health": [
       [
@@ -323,14 +323,14 @@
   "storage": {
     "version": 1,
     "kind": "public",
-    "digest": "e525f5345f1a96deeb650d36b5c4606548200267722a94cfaf0f1e7cd19a8b8f",
-    "tag": "signal-data-v1-public-e525f5345f1a96deeb650d36b5c4606548200267722a94cfaf0f1e7cd19a8b8f",
-    "release_id": 439138362,
+    "digest": "ca02955643ca0f96aca179ea614e96db5ae37d2173e4579af45e6df20ea8839a",
+    "tag": "signal-data-v1-public-ca02955643ca0f96aca179ea614e96db5ae37d2173e4579af45e6df20ea8839a",
+    "release_id": 439666328,
     "assets": [
       {
         "name": "public-data.tar.gz",
-        "bytes": 544307840,
-        "sha256": "e525f5345f1a96deeb650d36b5c4606548200267722a94cfaf0f1e7cd19a8b8f"
+        "bytes": 543937705,
+        "sha256": "ca02955643ca0f96aca179ea614e96db5ae37d2173e4579af45e6df20ea8839a"
       }
     ]
   }
