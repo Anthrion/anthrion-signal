@@ -1,13 +1,13 @@
 {
   "version": 1,
-  "generation": 478,
+  "generation": 479,
   "data_code": "65b8d7a4b76a7d469935ba066381e7d8e0212daad577a51cf220bd30b8d4f9d3",
-  "sha256": "e1c60103b5ee9a0be7b45a70baa6d4f9254de446f238d6e5e5672a0a2f86bc59",
-  "key": "signal-public-v1-e1c60103b5ee9a0be7b45a70baa6d4f9254de446f238d6e5e5672a0a2f86bc59-42714580274-1",
-  "public_bytes": 566511511,
+  "sha256": "9a8c705702385832a619778f53015ed837537cdebccb1e8bcdddde3b9f162a43",
+  "key": "signal-public-v1-9a8c705702385832a619778f53015ed837537cdebccb1e8bcdddde3b9f162a43-42749215942-1",
+  "public_bytes": 566502460,
   "public_files": 6465,
-  "inputs": "eb5263ae58805f6194128a418391dedbea852440dd7e5972bb871f40d7da488e",
-  "validated_at": "2026-11-09T23:44:34.451722+00:00",
+  "inputs": "5e53b14d0a01f77e6400207e80672060b287deb22ef7528d7358ba07c439054e",
+  "validated_at": "2026-11-10T03:49:33.145519+00:00",
   "signature": {
     "code": "c4923e922592be4fc8a1a525d95904c4ddb2de29f32c0bfcf608157569680af4",
     "content": "bdcc8800e1ce45f4b1bf7e9fa4af58f2c0105fb681f062aaf013921f5622550d",
@@ -318,19 +318,19 @@
         "partial"
       ]
     ],
-    "day": "2026-11-09"
+    "day": "2026-11-10"
   },
   "storage": {
     "version": 1,
     "kind": "public",
-    "digest": "e1c60103b5ee9a0be7b45a70baa6d4f9254de446f238d6e5e5672a0a2f86bc59",
-    "tag": "signal-data-v1-public-e1c60103b5ee9a0be7b45a70baa6d4f9254de446f238d6e5e5672a0a2f86bc59",
-    "release_id": 439776376,
+    "digest": "9a8c705702385832a619778f53015ed837537cdebccb1e8bcdddde3b9f162a43",
+    "tag": "signal-data-v1-public-9a8c705702385832a619778f53015ed837537cdebccb1e8bcdddde3b9f162a43",
+    "release_id": 439924137,
     "assets": [
       {
         "name": "public-data.tar.gz",
-        "bytes": 545486800,
-        "sha256": "e1c60103b5ee9a0be7b45a70baa6d4f9254de446f238d6e5e5672a0a2f86bc59"
+        "bytes": 545464212,
+        "sha256": "9a8c705702385832a619778f53015ed837537cdebccb1e8bcdddde3b9f162a43"
       }
     ]
   }
