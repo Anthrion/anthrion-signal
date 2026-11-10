@@ -1,5 +1,8 @@
 # Publication failure investigation, 7 November 2026
 
+The immediate Pages retry described here was removed after the
+[9–10 November investigation](publication-failures-2026-11-10.md).
+
 The three failed production runs since the repository migration have two causes.
 The retained data and Git repository remain below their storage warning thresholds.
 

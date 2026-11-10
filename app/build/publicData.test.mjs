@@ -158,7 +158,7 @@ afterEach(async () => {
   }
 })
 
-test('record and buyer bundles copy once and the compressed bootstrap matches the plain manifest', async () => {
+test('the sharded feed builds without a legacy dataset and preserves shared record and buyer files', async () => {
   const source = await fixture(true)
   const secondId = `buyer_${'2'.repeat(20)}`
   const second = { ...source.buyer, buyer_id: secondId, records: [{ signal_id: 'sig_award' }] }
@@ -208,10 +208,20 @@ test('record and buyer bundles copy once and the compressed bootstrap matches th
     true,
   )
   await source.roots()
-  const manifest = await readFile(join(source.publicDir, 'data/manifest.json'))
+  const manifest = Buffer.from(
+    JSON.stringify({
+      ...source.current,
+      run: { public_signals: 1 },
+      signals: [],
+      translations: {},
+    }),
+  )
+  await writeFile(join(source.publicDir, 'data/manifest.json'), manifest)
   await writeFile(join(source.publicDir, 'data/manifest.json.gz'), gzipSync(manifest))
+  await rm(join(source.publicDir, 'data/current.json.gz'))
   const result = await copyPublicAssets(source)
-  expect(result.dataFiles).toBe(7)
+  expect(result.dataFiles).toBe(6)
+  await expect(readFile(join(source.outDir, 'data/current.json.gz'))).rejects.toThrow()
   expect(gunzipSync(await readFile(join(source.outDir, 'data/manifest.json.gz')))).toEqual(manifest)
   expect(await readFile(join(source.outDir, 'data', recordUrl))).toEqual(
     await readFile(join(source.publicDir, 'data', recordUrl)),

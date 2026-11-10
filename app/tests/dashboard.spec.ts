@@ -1,4 +1,4 @@
-import { publicJSON } from './fixtures/publicData'
+import { publishedDataset } from './fixtures/publicData'
 import { datasetFixture } from './fixtures/dataset'
 import { test, expect, type Download, type Locator, type Page } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
@@ -662,7 +662,7 @@ test('@data all market tabs have real, correctly scoped records and opportunity 
   test.setTimeout(180000)
   // This assertion compares a published snapshot; real deadlines can expire
   // during a release run. Expiry behaviour is covered separately in lib tests.
-  const snapshot = await publicJSON(page.request)
+  const snapshot = await publishedDataset(page.request)
   await page.clock.setFixedTime(new Date(snapshot.generated_at))
   await page.goto('./?view=all')
   await ready(page)
@@ -1765,7 +1765,7 @@ test('@data unmodified public feed retains real records and exposes source facts
   page,
 }, info) => {
   await page.unroute('**/data/current.json')
-  const dataset = await publicJSON(page.request)
+  const dataset = await publishedDataset(page.request)
   expect(dataset.schema_version).toBe('2.0')
   await page.goto('./?view=live')
   await ready(page)

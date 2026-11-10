@@ -55,11 +55,10 @@ def archive(bundle, root, entries=None):
     return receipt(sha256=sha, key=f"signal-public-v1-{sha}-100-1")
 
 
-@pytest.mark.parametrize("compressed", [False, True])
-def test_validated_archive_restores_exactly_without_stale_output(bundle, tmp_path, compressed):
+@pytest.mark.parametrize("root_name", ["current.json", "current.json.gz", "manifest.json.gz"])
+def test_validated_archive_restores_exactly_without_stale_output(bundle, tmp_path, root_name):
     historical = f"history/abc-{'a' * 16}.json.gz"
-    root_name = "current.json.gz" if compressed else "current.json"
-    record_name = f"records/notice-{'a' * 16}.json.gz" if compressed else "records/notice-1.json"
+    record_name = f"records/notice-{'a' * 16}.json.gz" if root_name.endswith(".gz") else "records/notice-1.json"
     proof = archive(bundle, tmp_path, [(root_name, "file"), ("manifest.json", "file"),
                                       (record_name, "file"), (historical, "file")])
     old = tmp_path / "app/public/data/old.json"
@@ -218,19 +217,15 @@ def test_release_workflows_keep_trusted_data_validation_and_tested_publication_s
     assert by_name["Published-data desktop and mobile integration"]["env"]["DATA_TEST_SUITE"] == (
         "${{ inputs.full_tests == true && 'test:e2e:data' || 'test:e2e:data:smoke' }}")
     assert steps.index(by_name["Upload tested Pages build"]) < steps.index(by_name["Deploy GitHub Pages"])
-    deployed = "steps.deployment.outcome == 'success' || steps.deployment-retry.outcome == 'success'"
+    deployed = "steps.deployment.outcome == 'success'"
     assert by_name["Record successful publication"]["if"] == deployed
-    assert f"({deployed})" in by_name["Create publication receipt token"]["if"]
-    first, retry = by_name["Deploy GitHub Pages"], by_name["Retry GitHub Pages deployment"]
-    assert first["continue-on-error"] == "true"
-    assert "continue-on-error" not in retry  # Exhausted retries must fail the job and prevent a receipt.
-    assert retry["if"] == by_name["Wait before retrying Pages"]["if"] == "steps.deployment.outcome == 'failure'"
-    assert first["uses"] == retry["uses"] == "actions/deploy-pages@v4"
-    assert len([step for step in steps if step.get("uses") == first["uses"]]) == 2
-    assert steps.index(first) < steps.index(by_name["Wait before retrying Pages"]) < steps.index(retry)
-    assert steps.index(retry) < steps.index(by_name["Create publication receipt token"])
-    assert steps.index(retry) < steps.index(by_name["Record successful publication"])
-    assert "steps.deployment-retry.outputs.page_url" in job["environment"]["url"]
+    assert deployed in by_name["Create publication receipt token"]["if"]
+    deploy = by_name["Deploy GitHub Pages"]
+    assert "continue-on-error" not in deploy  # A Pages failure must fail the job and prevent a receipt.
+    assert [step for step in steps if step.get("uses", "").startswith("actions/deploy-pages@")] == [deploy]
+    assert steps.index(deploy) < steps.index(by_name["Create publication receipt token"])
+    assert steps.index(deploy) < steps.index(by_name["Record successful publication"])
+    assert "steps.deployment.outputs.page_url" in job["environment"]["url"]
     assert set(tests["on"]) == {"pull_request"}  # production gates replace the duplicate push job
     assert set(tests["jobs"]) == {"test"}  # retain the required status check
     assert tests["permissions"] == {"contents": "read"}

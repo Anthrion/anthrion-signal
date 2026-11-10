@@ -12,13 +12,18 @@ def decoded_limit(name):
     return INDEX_LIMIT if name in {"current.json", "current.json.gz", "manifest.json", "manifest.json.gz"} or name.startswith(("current/", "awards/")) else DETAIL_LIMIT
 
 
+def check_size(body, name):
+    limit = decoded_limit(name)
+    if len(body) > limit:
+        raise ValueError(f"Public JSON exceeds its decoded size limit: {name} ({len(body):,} > {limit:,} bytes)")
+
+
 def decode_public_bytes(body, name):
     if name.endswith(".gz"):
         limit = decoded_limit(name)
         if len(body) > limit:
-            raise ValueError("Public JSON exceeds its download size limit")
+            raise ValueError(f"Public JSON exceeds its download size limit: {name} ({len(body):,} > {limit:,} bytes)")
         with gzip.GzipFile(fileobj=io.BytesIO(body)) as stream:
             body = stream.read(limit + 1)
-        if len(body) > limit:
-            raise ValueError("Public JSON exceeds its decoded size limit")
+        check_size(body, name)
     return body

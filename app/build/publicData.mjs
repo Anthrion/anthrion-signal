@@ -184,26 +184,26 @@ export async function copyPublicAssets(options) {
     if (name.startsWith(`data${sep}`)) dataFiles += 1
   }
   const parse = (body, context) => object(JSON.parse(body.toString('utf8')), context)
+  const readRoot = async (name) => {
+    const body = await safeRead(join(publicDir, 'data', name)).catch((error) => {
+      if (error.code !== 'ENOENT') throw error
+      return undefined
+    })
+    if (body) reserve(body.length)
+    return body
+  }
   let currentName = 'current.json.gz'
-  let currentBytes
-  try {
-    currentBytes = await safeRead(join(publicDir, 'data', currentName))
-  } catch (error) {
-    if (error.code !== 'ENOENT') throw error
+  let currentBytes = await readRoot(currentName)
+  if (!currentBytes) {
     currentName = 'current.json'
-    currentBytes = await safeRead(join(publicDir, 'data', currentName))
+    currentBytes = await readRoot(currentName)
   }
-  const current = parse(decode(currentBytes, currentName), currentName)
-  reserve(currentBytes.length)
-  let manifestBytes
-  let manifest
-  try {
-    manifestBytes = await safeRead(join(publicDir, 'data', 'manifest.json'))
-    manifest = parse(manifestBytes, 'manifest.json')
-    reserve(manifestBytes.length)
-  } catch (error) {
-    if (error.code !== 'ENOENT') throw error
-  }
+  const manifestBytes = await readRoot('manifest.json')
+  const manifest = manifestBytes && parse(manifestBytes, 'manifest.json')
+  const compressedManifest = await readRoot('manifest.json.gz')
+  const manifestOnly = !currentBytes
+  const current = currentBytes ? parse(decode(currentBytes, currentName), currentName) : manifest
+  if (!current) throw new Error('Public data is missing its root manifest or legacy dataset')
   const hasFeed =
     current.current_feed && Object.keys(object(current.current_feed, 'current feed')).length > 0
   if (hasFeed && !manifest) throw new Error('Current feed is missing its completed root manifest')
@@ -211,18 +211,14 @@ export async function copyPublicAssets(options) {
     throw new Error(
       'Public manifest and current.json are from different publications; finish export before building',
     )
-  let compressedManifest
-  try {
-    compressedManifest = await safeRead(join(publicDir, 'data', 'manifest.json.gz'))
-    if (
-      structure(parse(decode(compressedManifest, 'manifest.json.gz'), 'manifest.json.gz')) !==
+  if (manifestOnly && (!hasFeed || !compressedManifest))
+    throw new Error('Current feed is missing its plain or compressed bootstrap manifest')
+  if (
+    compressedManifest &&
+    structure(parse(decode(compressedManifest, 'manifest.json.gz'), 'manifest.json.gz')) !==
       structure(manifest)
-    )
-      throw new Error('Compressed and plain root manifests disagree')
-    reserve(compressedManifest.length)
-  } catch (error) {
-    if (error.code !== 'ENOENT') throw error
-  }
+  )
+    throw new Error('Compressed and plain root manifests disagree')
   const buyerReferences = new Map()
   const historyIds = new Set()
   const anchoredBuyers = new Set()
@@ -243,8 +239,17 @@ export async function copyPublicAssets(options) {
     if (anchor) anchoredBuyers.add(`${reference.url}|${signal.buyer_id}`)
   }
   const currentRows = rows(current.signals, 'current signals')
-  const currentIds = new Set(currentRows.map((signal) => ident(signal.id)))
-  if (currentIds.size !== currentRows.length) throw new Error('Duplicate current record identity')
+  const currentIds = new Set(
+    manifestOnly
+      ? Object.entries(object(current.current_feed.records, 'record details'))
+          .filter(([, ref]) => object(ref, 'record details').view === 'opportunities')
+          .map(([id]) => ident(id))
+      : currentRows.map((signal) => ident(signal.id)),
+  )
+  if (manifestOnly && currentIds.size !== current.run?.public_signals)
+    throw new Error('Current record count does not match the public manifest')
+  if (!manifestOnly && currentIds.size !== currentRows.length)
+    throw new Error('Duplicate current record identity')
   currentRows.forEach((signal) => buyersOf(signal, true))
   const copiedPages = new Set()
   const loadPage = async (path, kind) => {
@@ -304,7 +309,7 @@ export async function copyPublicAssets(options) {
       const signal = object(page.signal, reference.url)
       if (ident(signal.id) !== id) throw new Error('Record detail identity mismatch')
       if (
-        (reference.view !== undefined &&
+        ((manifestOnly || reference.view !== undefined) &&
           reference.view !==
             (currentIds.has(id) ? 'opportunities' : awardIds.has(id) ? 'awards' : 'history')) ||
         (reference.url.startsWith('history/') && reference.view !== 'history') ||
@@ -373,7 +378,7 @@ export async function copyPublicAssets(options) {
       await write(relative(publicDir, asset.path), await safeRead(asset.path))
     }
   }
-  await write(join('data', currentName), currentBytes, true)
+  if (currentBytes) await write(join('data', currentName), currentBytes, true)
   if (manifestBytes) await write(join('data', 'manifest.json'), manifestBytes, true)
   if (compressedManifest) await write(join('data', 'manifest.json.gz'), compressedManifest, true)
   return { files, dataFiles, bytes }

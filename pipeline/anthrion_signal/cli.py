@@ -248,22 +248,27 @@ def export(root):
     data.current_feed = export_current(root, data, award_records)
     target = root / "app/public/data"
     target.mkdir(parents=True, exist_ok=True)
-    public = public_data(data)
-    atomic_public_json(target / "current.json.gz", public)
-    # Remove only the obsolete mutable root; immutable dependencies stay available.
-    (target / "current.json").unlink(missing_ok=True)
-    manifest = {**public, "signals": [], "translations": {}}
-    atomic_public_json(target / "manifest.json", manifest)
+    # Full notices and translations are already stored once in bounded record
+    # shards. Keep the bootstrap small regardless of their total decoded size.
+    manifest = {**data.model_dump(exclude={"signals", "translations", "run"}),
+                "run": public_run(data), "signals": [], "translations": {}}
     atomic_public_json(target / "manifest.json.gz", manifest)
+    atomic_public_json(target / "manifest.json", manifest)
+    for name in ("current.json", "current.json.gz"):
+        (target / name).unlink(missing_ok=True)
     return data
 
 
 def public_data(dataset):
     result = dataset.model_dump(exclude={"signals", "run"})
     result["signals"] = [public_signal(signal, dataset.translations.get(signal.id)) for signal in dataset.signals]
-    result["run"] = {key: value for key, value in dataset.run.items() if key not in
-        {"gemini_calls", "cache_hits", "ai_failures", "candidates_shortlisted", "high_fit_signals"}}
+    result["run"] = public_run(dataset)
     return result
+
+
+def public_run(dataset):
+    return {key: value for key, value in dataset.run.items() if key not in
+            {"gemini_calls", "cache_hits", "ai_failures", "candidates_shortlisted", "high_fit_signals"}}
 
 
 def run(root, args):

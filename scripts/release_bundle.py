@@ -30,7 +30,8 @@ def public_json_path(name):
 
 
 def complete_roots(names):
-    return "manifest.json" in names and len({"current.json", "current.json.gz"}.intersection(names)) == 1
+    legacy = {"current.json", "current.json.gz"}.intersection(names)
+    return "manifest.json" in names and (len(legacy) == 1 or not legacy and "manifest.json.gz" in names)
 
 
 def digest_file(path):

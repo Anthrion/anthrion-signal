@@ -17,6 +17,7 @@ from anthrion_signal import cli, discovery_cache
 from anthrion_signal.attachments import enrich_documents, extract_pages, hydrate_cached_documents
 from anthrion_signal.collectors import RawRecord
 from anthrion_signal.config import load_config, reviewed_inclusions
+from anthrion_signal.public_snapshot import read_public_snapshot
 from anthrion_signal.discovery import discovery_signature, is_public_opportunity, prefilter
 from anthrion_signal.discovery_retention import read_rejected, retain_rejected
 from anthrion_signal.models import Dataset, Deadline, Document, Signal
@@ -484,11 +485,11 @@ def test_export_recovers_a_restored_notice_once_the_ledger_changes_the_signature
     assert (result.run["reviewed_inclusions"], result.run["reviewed_inclusions_stale"]) == (1, 0)
     assert result.run["reviewed_exclusions"] == 0
     assert result.run["discovery_signature"] != previous.run["discovery_signature"]
-    published = {s["id"]: s for s in read_json(tmp_path / "app/public/data/current.json", {})["signals"]}
+    published = {s["id"]: s for s in read_public_snapshot(tmp_path / "app/public/data/manifest.json")["signals"]}
     assert published[restored.id]["delivery_priority"] == "ai" and published[restored.id]["exclusion_reasons"] == []
     assert published[restored.id]["prefilter_matches"][0] == INCLUSION_MARKER
     check = runpy.run_path(str(ROOT / "scripts/check_public_output.py"))["check_public_output"]
-    assert check(tmp_path / "app/public/data/current.json")[0] == 2
+    assert check(tmp_path / "app/public/data/manifest.json")[0] == 2
     assert {path: path.read_bytes() for path in retained} == retained
     # A stale restoration is reported; removing it restores the rules' decision on export.
     write_ledger(tmp_path, inclusion(restored, hash_value="1" * 64))
@@ -512,7 +513,7 @@ def test_rescore_moves_a_restored_notice_into_canonical_and_reports_it_stale(
     assert {s.id for s in result.signals} == {public.id, restored.id}
     stored = canonical_rows(tmp_path)[restored.id]
     assert stored.description == restored.description and stored.exclusion_reasons == []
-    exported = read_json(tmp_path / "app/public/data/current.json", {})
+    exported = read_public_snapshot(tmp_path / "app/public/data/manifest.json")
     assert restored.id in {s["id"] for s in exported["signals"]} and exported["run"]["reviewed_inclusions"] == 1
     write_ledger(tmp_path, inclusion(restored, hash_value="1" * 64))
     result = cli.run(tmp_path, SimpleNamespace(**vars(args), no_export=True))

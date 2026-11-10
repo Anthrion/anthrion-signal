@@ -7,6 +7,7 @@ import pytest
 from anthrion_signal import cli
 from anthrion_signal.discovery import discovery_text, hard_exclusions, is_award_intelligence, is_public_opportunity, prefilter
 from anthrion_signal.models import SourceHealth
+from anthrion_signal.public_snapshot import read_public_snapshot
 from anthrion_signal.utils import atomic_json, read_json
 
 
@@ -178,7 +179,7 @@ def test_rescore_removes_awards_from_publication_but_preserves_source_history(tm
         assert read_json(data / "source_state.json", {}) == checkpoints
         assert '"id":"awarded"' in (data / "signals.jsonl").read_text(encoding="utf-8")
         assert not any(is_award_intelligence(s) for s in cli.export(tmp_path).signals)
-        published = read_json(tmp_path / "app/public/data/current.json", {})
+        published = read_public_snapshot(tmp_path / "app/public/data/manifest.json")
         assert published["scoring_version"] == "none"
         for item in published["signals"]:
             assert not {"analysis", "fit_score", "confidence_score", "ai_status", "score_components", "recommendation"}.intersection(item)

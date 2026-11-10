@@ -7,13 +7,14 @@ from pathlib import Path
 from anthrion_signal.config import load_config
 from anthrion_signal.discovery import prefilter
 from anthrion_signal.models import Signal
-from anthrion_signal.utils import atomic_json, digest, read_retained_bytes, retained_path
+from anthrion_signal.public_snapshot import read_public_snapshot
+from anthrion_signal.utils import atomic_json, digest, retained_path
 
 
 def compare(path, root):
     path = retained_path(path)
     source = path.read_bytes()
-    data = json.loads(read_retained_bytes(path))
+    data = read_public_snapshot(path)
     old = {s["id"]: s for s in data["signals"]}
     signals = [Signal.model_validate(s) for s in old.values()]
     config = load_config(root)
@@ -47,7 +48,7 @@ def compare(path, root):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", type=Path, default=Path.cwd())
-    parser.add_argument("--snapshot", type=Path, default=Path("app/public/data/current.json"))
+    parser.add_argument("--snapshot", type=Path, default=Path("app/public/data/manifest.json"))
     parser.add_argument("--output", type=Path, default=Path("artifacts/discovery-release-audit.json"))
     args = parser.parse_args()
     report = compare(args.snapshot, args.root)

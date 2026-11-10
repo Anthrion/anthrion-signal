@@ -7,6 +7,7 @@ import pytest
 from anthrion_signal import cli, utils
 from anthrion_signal.models import Signal, SourceHealth
 from anthrion_signal.public_context import public_signal
+from anthrion_signal.public_snapshot import read_public_snapshot
 
 
 def test_lossless_migration_is_deterministic_and_keeps_unicode_lines(tmp_path, signal):
@@ -58,9 +59,11 @@ def test_ingest_rescore_export_and_validation_preserve_compressed_source_facts(t
     repeated = cli.run(tmp_path, args)
     assert [public_signal(s) for s in repeated.signals] == [public_signal(s) for s in initial.signals]
     assert cli.export(tmp_path).signals
-    assert utils.read_json(tmp_path / "app/public/data/current.json", {})["signals"]
-    assert (tmp_path / "app/public/data/current.json.gz").exists()
-    assert not (tmp_path / "app/public/data/current.json").exists()
+    public = tmp_path / "app/public/data"
+    assert read_public_snapshot(public / "manifest.json")["signals"]
+    assert (public / "manifest.json.gz").exists()
+    assert not (public / "current.json").exists()
+    assert not (public / "current.json.gz").exists()
 
 
 def test_deferred_export_and_translation_preparation_do_not_build_assets(tmp_path, signal, source, config, monkeypatch):
