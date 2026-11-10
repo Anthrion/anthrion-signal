@@ -13,7 +13,9 @@ def signature_for(root):
 
     data = read_json(root / "data/current.json", {})
     exported = root / "app/public/data/current.json"
-    public = read_json(exported, data)
+    public = read_json(exported.with_name("manifest.json"), None)
+    if public is None:
+        public = read_json(exported, data)
     return {
         "code": os.getenv("BUILD_CODE_DIGEST") or code_digest(root),
         "content": digest([data["run"]["content_digest"], public.get("award_history", {})]),

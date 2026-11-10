@@ -65,6 +65,29 @@ def test_compact_evidence_deduplicates_translation_without_losing_scope():
     assert {item["context"] for item in compact} == {"uncertain", "delivery"}
 
 
+def test_bootstrap_rejects_a_rehashed_market_that_drops_a_current_record(tmp_path, signal, config):
+    make_feed(tmp_path, signal, config)
+    root = tmp_path / "app/public/data"
+    (root / "current.json").unlink()
+    manifest = read_json(root / "manifest.json", {})
+    manifest["run"]["public_signals"] = 1
+    checker = runpy.run_path(str(Path(__file__).resolve().parents[2] / "scripts/check_public_output.py"))["check_public_output"]
+
+    def write_manifest():
+        atomic_public_json(root / "manifest.json", manifest)
+        atomic_public_json(root / "manifest.json.gz", manifest)
+
+    write_manifest()
+    assert checker(root / "manifest.json")[0] == 1
+    empty = {"schema_version": "1.0", "signals": [], "translations": {}}
+    relative = f"current/GB-{digest(empty)[:16]}.json.gz"
+    atomic_public_json(root / relative, empty)
+    manifest["current_feed"]["markets"]["GB"] = {"url": relative, "count": 0}
+    write_manifest()
+    with pytest.raises(ValueError, match="Current index membership"):
+        checker(root / "manifest.json")
+
+
 def test_rehashed_index_cannot_invent_stronger_ranking_evidence(tmp_path, signal, config):
     data = make_feed(tmp_path, signal, config)
     root = tmp_path / "app/public/data"

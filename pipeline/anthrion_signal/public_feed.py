@@ -6,7 +6,7 @@ from collections import defaultdict
 
 from .markets import MARKETS
 from .public_context import public_signal
-from .public_compression import decoded_limit
+from .public_compression import check_size, decoded_limit
 from .utils import atomic_bytes, digest
 
 
@@ -16,8 +16,7 @@ def atomic_public_json(path, payload):
     body = json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False).encode("utf-8")
     if path.suffix == ".gz":
         name = path.relative_to(path.parents[1]).as_posix()
-        if len(body) > decoded_limit(path.name if path.name in {"current.json.gz", "manifest.json.gz"} else name):
-            raise ValueError("Public JSON exceeds its decoded size limit")
+        check_size(body, path.name if path.name in {"current.json.gz", "manifest.json.gz"} else name)
         body = gzip.compress(body, compresslevel=6, mtime=0)
     atomic_bytes(path, body)
 
@@ -176,21 +175,20 @@ def search_text(signal, translation):
         translated.get("title", ""), translated.get("description", ""), translated.get("buyer_name", "")] if value)
 
 
+def current_summary(item, signal, translation):
+    summary = {key: value for key, value in item.items() if key not in DETAIL_FIELDS}
+    return {**summary, "description": "", "documents": [], "changes": [],
+            "ranking_evidence": ranking_evidence(item), "search_text": search_text(signal, translation),
+            "is_summary": True}
+
+
 def export_current(root, dataset, award_records=None):
     records, summaries, translations = dict(award_records or {}), {}, {}
     missing = [signal for signal in dataset.signals if signal.id not in records]
     records.update(record_files(root, missing, dataset.translations, buyer_files(root, missing)))
     for signal in dataset.signals:
         translation = dataset.translations.get(signal.id)
-        item = public_signal(signal, translation)
-        summary = {key: value for key, value in item.items() if key not in DETAIL_FIELDS}
-        summary["description"] = ""
-        summary["documents"] = []
-        summary["changes"] = []
-        summary["ranking_evidence"] = ranking_evidence(item)
-        summary["search_text"] = search_text(signal, translation)
-        summary["is_summary"] = True
-        summaries[signal.id] = summary
+        summaries[signal.id] = current_summary(public_signal(signal, translation), signal, translation)
         if translation:
             translations[signal.id] = {**translation.model_dump(), "description": ""}
     manifest = {"version": "1.0", "markets": {}, "records": records}

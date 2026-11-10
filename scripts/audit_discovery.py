@@ -8,13 +8,14 @@ from pathlib import Path
 from anthrion_signal.config import load_config
 from anthrion_signal.discovery import discovery_text, prefilter, search_text
 from anthrion_signal.models import Signal
-from anthrion_signal.utils import digest, read_retained_bytes, retained_path
+from anthrion_signal.public_snapshot import read_public_snapshot
+from anthrion_signal.utils import digest, retained_path
 
 
 def inspect_dataset(root, path, record_ids=()):
     path = retained_path(path)
     body = path.read_bytes()
-    data = json.loads(read_retained_bytes(path))
+    data = read_public_snapshot(path)
     config = load_config(root)
     originals = [Signal.model_validate(row) for row in data["signals"]]
     by_id = {row.id: row for row in originals}
@@ -105,7 +106,7 @@ def inspect_dataset(root, path, record_ids=()):
 def main():
     root = Path(__file__).resolve().parents[1]
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--snapshot", type=Path, default=root / "app/public/data/current.json")
+    parser.add_argument("--snapshot", type=Path, default=root / "app/public/data/manifest.json")
     parser.add_argument("--record", action="append", default=[])
     args = parser.parse_args()
     print(json.dumps(inspect_dataset(root, args.snapshot, args.record), ensure_ascii=True, indent=2))

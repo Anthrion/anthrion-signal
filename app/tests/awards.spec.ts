@@ -1,4 +1,4 @@
-import { publicJSON } from './fixtures/publicData'
+import { publicJSON, publishedDataset } from './fixtures/publicData'
 import { datasetFixture } from './fixtures/dataset'
 import { test, expect, type Page } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
@@ -216,7 +216,7 @@ test('@data published historical records match every market manifest and stay ou
 }) => {
   test.setTimeout(300000)
   await page.unroute('**/data/manifest.json*')
-  const data: Dataset = await publicJSON(page.request)
+  const data: Dataset = await publishedDataset(page.request)
   expect(data.signals.every((s) => !isHistoricalAward(s))).toBe(true)
   // Groups can load the union of country shards, avoiding another copy on disk.
   const published = Object.keys(data.award_history || {})

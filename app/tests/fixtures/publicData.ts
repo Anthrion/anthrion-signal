@@ -1,5 +1,16 @@
 import type { APIRequestContext } from '@playwright/test'
 import { gunzipSync } from 'node:zlib'
+import { currentMarketPaths, mergeSignalPages, type SignalPage } from '../../src/dataClient'
+import type { Dataset } from '../../src/types'
+
+export async function publishedDataset(request: APIRequestContext): Promise<Dataset> {
+  const manifest: Dataset = await publicJSON(request, 'manifest.json.gz')
+  const pages: SignalPage[] = []
+  for (const path of currentMarketPaths(manifest, 'ALL')) {
+    pages.push(await publicJSON(request, path))
+  }
+  return { ...manifest, ...mergeSignalPages(pages) }
+}
 
 /** Read actual published bytes independently of the browser's data client. */
 export async function publicJSON(request: APIRequestContext, path = 'current.json') {
