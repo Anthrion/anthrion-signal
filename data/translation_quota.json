@@ -1,121 +1,5 @@
 {
   "allocations": {
-    "42356371444-1": {
-      "closed": true,
-      "day": "2026-11-07",
-      "limits": {
-        "gemini-3.1-flash-lite": 75,
-        "gemini-3.5-flash-lite": 75
-      },
-      "started": true,
-      "used": {
-        "gemini-3.1-flash-lite": 44,
-        "gemini-3.5-flash-lite": 75
-      }
-    },
-    "42365131214-1": {
-      "closed": true,
-      "day": "2026-11-07",
-      "limits": {
-        "gemini-3.1-flash-lite": 75,
-        "gemini-3.5-flash-lite": 75
-      },
-      "started": true,
-      "used": {
-        "gemini-3.1-flash-lite": 4,
-        "gemini-3.5-flash-lite": 24
-      }
-    },
-    "42387190784-1": {
-      "closed": true,
-      "day": "2026-11-07",
-      "limits": {
-        "gemini-3.1-flash-lite": 75,
-        "gemini-3.5-flash-lite": 75
-      },
-      "started": true,
-      "used": {
-        "gemini-3.1-flash-lite": 66,
-        "gemini-3.5-flash-lite": 75
-      }
-    },
-    "42392380880-1": {
-      "closed": true,
-      "day": "2026-11-07",
-      "limits": {
-        "gemini-3.1-flash-lite": 75,
-        "gemini-3.5-flash-lite": 75
-      },
-      "started": true,
-      "used": {
-        "gemini-3.1-flash-lite": 10,
-        "gemini-3.5-flash-lite": 35
-      }
-    },
-    "42409566869-1": {
-      "closed": true,
-      "day": "2026-11-07",
-      "limits": {
-        "gemini-3.1-flash-lite": 75,
-        "gemini-3.5-flash-lite": 75
-      },
-      "started": true,
-      "used": {
-        "gemini-3.1-flash-lite": 63,
-        "gemini-3.5-flash-lite": 74
-      }
-    },
-    "42411654359-1": {
-      "closed": true,
-      "day": "2026-11-07",
-      "limits": {
-        "gemini-3.1-flash-lite": 75,
-        "gemini-3.5-flash-lite": 75
-      },
-      "started": true,
-      "used": {
-        "gemini-3.5-flash-lite": 46
-      }
-    },
-    "42426313804-1": {
-      "closed": true,
-      "day": "2026-11-07",
-      "limits": {
-        "gemini-3.1-flash-lite": 75,
-        "gemini-3.5-flash-lite": 75
-      },
-      "started": true,
-      "used": {
-        "gemini-3.1-flash-lite": 58,
-        "gemini-3.5-flash-lite": 74
-      }
-    },
-    "42452248623-1": {
-      "closed": true,
-      "day": "2026-11-07",
-      "limits": {
-        "gemini-3.1-flash-lite": 75,
-        "gemini-3.5-flash-lite": 75
-      },
-      "started": true,
-      "used": {
-        "gemini-3.1-flash-lite": 70,
-        "gemini-3.5-flash-lite": 74
-      }
-    },
-    "42455979531-1": {
-      "closed": true,
-      "day": "2026-11-07",
-      "limits": {
-        "gemini-3.1-flash-lite": 127,
-        "gemini-3.5-flash-lite": 23
-      },
-      "started": true,
-      "used": {
-        "gemini-3.1-flash-lite": 24,
-        "gemini-3.5-flash-lite": 22
-      }
-    },
     "42483921499-1": {
       "closed": true,
       "day": "2026-11-08",
@@ -270,47 +154,66 @@
       }
     },
     "42809265408-1": {
-      "closed": false,
+      "closed": true,
       "day": "2026-11-10",
       "limits": {
         "gemini-3.1-flash-lite": 75,
         "gemini-3.5-flash-lite": 75
       },
-      "used": {}
+      "started": true,
+      "used": {
+        "gemini-3.1-flash-lite": 36,
+        "gemini-3.5-flash-lite": 66
+      }
     }
   },
   "models": {
     "gemini-3.1-flash-lite": {
       "blocked_reason": "transient",
-      "blocked_until": 1794266519.0390542,
-      "consecutive_errors": 1,
+      "blocked_until": 1794311745.5963538,
+      "consecutive_errors": 0,
       "days": {
-        "2026-11-07": 339,
         "2026-11-08": 189,
         "2026-11-09": 187,
-        "2026-11-10": 75
+        "2026-11-10": 36
       },
-      "recent": [],
+      "recent": [
+        {
+          "at": 1794312116.4777389,
+          "tokens": 17589
+        },
+        {
+          "at": 1794312116.6246269,
+          "tokens": 5966
+        },
+        {
+          "at": 1794312135.230983,
+          "tokens": 18462
+        },
+        {
+          "at": 1794312135.3444014,
+          "tokens": 6459
+        }
+      ],
       "usage": {
-        "candidatesTokenCount": 15234877,
-        "promptTokenCount": 19948752,
+        "candidatesTokenCount": 15288154,
+        "promptTokenCount": 20015932,
         "thoughtsTokenCount": 0
       }
     },
     "gemini-3.5-flash-lite": {
       "blocked_reason": "transient",
-      "blocked_until": 1794266507.2891598,
-      "consecutive_errors": 0,
+      "blocked_until": 1794312146.5534601,
+      "consecutive_errors": 2,
       "days": {
-        "2026-11-07": 499,
         "2026-11-08": 404,
         "2026-11-09": 230,
-        "2026-11-10": 75
+        "2026-11-10": 66
       },
       "recent": [],
       "usage": {
-        "candidatesTokenCount": 30286831,
-        "promptTokenCount": 39466386,
+        "candidatesTokenCount": 30375441,
+        "promptTokenCount": 39579094,
         "thoughtsTokenCount": 0
       }
     }
