@@ -1,16 +1,16 @@
 {
   "version": 1,
-  "generation": 488,
+  "generation": 489,
   "data_code": "c38c90b102b7203f777f8d69d73fb9828a98ff1232bf29d09beea204a48c80a0",
-  "sha256": "f676981c31ea896ddb462a96cbdf10e95adaa260c619a2f7addb45862c51a364",
-  "key": "signal-public-v1-f676981c31ea896ddb462a96cbdf10e95adaa260c619a2f7addb45862c51a364-43060456705-1",
-  "public_bytes": 539686517,
+  "sha256": "13d05f58600fc3cdf76b1db57841d14785dadacd83606951b4524995c8010939",
+  "key": "signal-public-v1-13d05f58600fc3cdf76b1db57841d14785dadacd83606951b4524995c8010939-43106841973-1",
+  "public_bytes": 539647790,
   "public_files": 6478,
-  "inputs": "b743c8b8e551cd4e35c255f7eb4ab33f7cbe3d8b2da55448188f2eabf997aff8",
-  "validated_at": "2026-11-11T17:40:33.442296+00:00",
+  "inputs": "ffbb68bcd4ce6ea37fc0778ee82aadd399dafdb5f90c6c5f4031bc44ebbae2ef",
+  "validated_at": "2026-11-11T22:42:19.256874+00:00",
   "signature": {
     "code": "b521bc26f04fc9e3dade3c2aebec83d08a94d4497bfcfbfa45b9eb179311fcfc",
-    "content": "e00ea70b9ffa7fb77ab915bca7df6f3f0d7b0de7d18c0c281f1c807e6bbdcf0a",
+    "content": "a9e78324f3541bcdfb42d4b1d571d798bf81a0e89876429400c939a1fb9dcf5e",
     "translations": "593ece75f3caa4ad96aef0f16839c8f899c3b6724eeae39d56d2f144b6ffaa47",
     "health": [
       [
@@ -323,14 +323,14 @@
   "storage": {
     "version": 1,
     "kind": "public",
-    "digest": "f676981c31ea896ddb462a96cbdf10e95adaa260c619a2f7addb45862c51a364",
-    "tag": "signal-data-v1-public-f676981c31ea896ddb462a96cbdf10e95adaa260c619a2f7addb45862c51a364",
-    "release_id": 442017636,
+    "digest": "13d05f58600fc3cdf76b1db57841d14785dadacd83606951b4524995c8010939",
+    "tag": "signal-data-v1-public-13d05f58600fc3cdf76b1db57841d14785dadacd83606951b4524995c8010939",
+    "release_id": 442269522,
     "assets": [
       {
         "name": "public-data.tar.gz",
-        "bytes": 518631223,
-        "sha256": "f676981c31ea896ddb462a96cbdf10e95adaa260c619a2f7addb45862c51a364"
+        "bytes": 518591067,
+        "sha256": "13d05f58600fc3cdf76b1db57841d14785dadacd83606951b4524995c8010939"
       }
     ]
   }
