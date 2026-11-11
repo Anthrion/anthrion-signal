@@ -1,11 +1,11 @@
 {
   "code": "b521bc26f04fc9e3dade3c2aebec83d08a94d4497bfcfbfa45b9eb179311fcfc",
-  "content": "c461ab51e1b53cc3958381c5226a2deec65103146a2d99e3e907ac6783fe453d",
-  "translations": "7ad31c037f42f23230ecf7fa9abd2a47178dc0033a6c2a3b91bc5916c56534bd",
+  "content": "0035aca88af3eee9baa642a641bcb7aef5140b4ac6b8ae4e886c4a50853f7893",
+  "translations": "7f03c9ce067c517c0fcd89ed1e06ab7dd2b2a368d03b0c7ddeca1ba6a56247b3",
   "health": [
     [
       "find_tender",
-      "healthy"
+      "partial"
     ],
     [
       "contracts_finder",
@@ -25,7 +25,7 @@
     ],
     [
       "digital_outcomes",
-      "partial"
+      "healthy"
     ],
     [
       "upcoming_agreements",
@@ -53,7 +53,7 @@
     ],
     [
       "la_ramp",
-      "failed"
+      "healthy"
     ],
     [
       "grants",
@@ -221,7 +221,7 @@
     ],
     [
       "canada_buys",
-      "partial"
+      "healthy"
     ],
     [
       "seao_qc",
@@ -305,7 +305,7 @@
     ],
     [
       "lc_finance",
-      "partial"
+      "failed"
     ]
   ],
   "day": "2026-11-11"
