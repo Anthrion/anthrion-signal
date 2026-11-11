@@ -1,94 +1,5 @@
 {
   "allocations": {
-    "42483921499-1": {
-      "closed": true,
-      "day": "2026-11-08",
-      "limits": {
-        "gemini-3.1-flash-lite": 75,
-        "gemini-3.5-flash-lite": 75
-      },
-      "started": true,
-      "used": {
-        "gemini-3.1-flash-lite": 52,
-        "gemini-3.5-flash-lite": 74
-      }
-    },
-    "42487202256-1": {
-      "closed": true,
-      "day": "2026-11-08",
-      "limits": {
-        "gemini-3.1-flash-lite": 75,
-        "gemini-3.5-flash-lite": 75
-      },
-      "started": true,
-      "used": {
-        "gemini-3.1-flash-lite": 5,
-        "gemini-3.5-flash-lite": 40
-      }
-    },
-    "42509797458-1": {
-      "closed": true,
-      "day": "2026-11-08",
-      "limits": {
-        "gemini-3.1-flash-lite": 75,
-        "gemini-3.5-flash-lite": 75
-      },
-      "started": true,
-      "used": {
-        "gemini-3.1-flash-lite": 62,
-        "gemini-3.5-flash-lite": 75
-      }
-    },
-    "42513799321-1": {
-      "closed": true,
-      "day": "2026-11-08",
-      "limits": {
-        "gemini-3.1-flash-lite": 75,
-        "gemini-3.5-flash-lite": 75
-      },
-      "started": true,
-      "used": {
-        "gemini-3.5-flash-lite": 57
-      }
-    },
-    "42530054804-1": {
-      "closed": true,
-      "day": "2026-11-08",
-      "limits": {
-        "gemini-3.1-flash-lite": 75,
-        "gemini-3.5-flash-lite": 75
-      },
-      "started": true,
-      "used": {
-        "gemini-3.1-flash-lite": 56,
-        "gemini-3.5-flash-lite": 74
-      }
-    },
-    "42534018501-1": {
-      "closed": true,
-      "day": "2026-11-08",
-      "limits": {
-        "gemini-3.1-flash-lite": 75,
-        "gemini-3.5-flash-lite": 75
-      },
-      "started": true,
-      "used": {
-        "gemini-3.1-flash-lite": 14,
-        "gemini-3.5-flash-lite": 34
-      }
-    },
-    "42554126428-1": {
-      "closed": true,
-      "day": "2026-11-08",
-      "limits": {
-        "gemini-3.1-flash-lite": 75,
-        "gemini-3.5-flash-lite": 75
-      },
-      "started": true,
-      "used": {
-        "gemini-3.5-flash-lite": 50
-      }
-    },
     "42594828100-1": {
       "closed": true,
       "day": "2026-11-09",
@@ -232,47 +143,87 @@
       }
     },
     "42987140560-1": {
-      "closed": false,
+      "closed": true,
       "day": "2026-11-11",
       "limits": {
         "gemini-3.1-flash-lite": 75,
         "gemini-3.5-flash-lite": 75
       },
-      "used": {}
+      "started": true,
+      "used": {
+        "gemini-3.1-flash-lite": 23,
+        "gemini-3.5-flash-lite": 12
+      }
     }
   },
   "models": {
     "gemini-3.1-flash-lite": {
       "blocked_reason": "transient",
-      "blocked_until": 1794345250.4096777,
+      "blocked_until": 1794387443.897602,
       "consecutive_errors": 0,
       "days": {
-        "2026-11-08": 189,
         "2026-11-09": 187,
         "2026-11-10": 222,
-        "2026-11-11": 75
+        "2026-11-11": 23
       },
-      "recent": [],
+      "recent": [
+        {
+          "at": 1794387561.4048612,
+          "tokens": 18714
+        },
+        {
+          "at": 1794387561.4898913,
+          "tokens": 9433
+        },
+        {
+          "at": 1794387561.5459292,
+          "tokens": 3004
+        },
+        {
+          "at": 1794387572.9372642,
+          "tokens": 14601
+        },
+        {
+          "at": 1794387573.0800307,
+          "tokens": 5723
+        },
+        {
+          "at": 1794387588.9379907,
+          "tokens": 14601
+        },
+        {
+          "at": 1794387589.0655696,
+          "tokens": 5723
+        }
+      ],
       "usage": {
-        "candidatesTokenCount": 15519679,
-        "promptTokenCount": 20320753,
+        "candidatesTokenCount": 15557932,
+        "promptTokenCount": 20368520,
         "thoughtsTokenCount": 0
       }
     },
     "gemini-3.5-flash-lite": {
       "blocked_reason": "transient",
-      "blocked_until": 1794381610.4123065,
-      "consecutive_errors": 0,
+      "blocked_until": 1794387622.3719804,
+      "consecutive_errors": 1,
       "days": {
-        "2026-11-08": 404,
         "2026-11-09": 230,
         "2026-11-10": 212,
-        "2026-11-11": 75
+        "2026-11-11": 12
       },
-      "recent": [],
+      "recent": [
+        {
+          "at": 1794387558.8332434,
+          "tokens": 18899
+        },
+        {
+          "at": 1794387558.965309,
+          "tokens": 6476
+        }
+      ],
       "usage": {
-        "candidatesTokenCount": 30550063,
-        "promptTokenCount": 39806445,
+        "candidatesTokenCount": 30561325,
+        "promptTokenCount": 39820491,
         "thoughtsTokenCount": 0
       }
     }
