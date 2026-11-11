@@ -1,21 +1,21 @@
 {
   "version": 1,
-  "generation": 485,
+  "generation": 486,
   "data_code": "c38c90b102b7203f777f8d69d73fb9828a98ff1232bf29d09beea204a48c80a0",
-  "sha256": "2fcb17f1d55737b51bfe1bfc6b1d4d48b926d281c66687f79737658e6c572bf2",
-  "key": "signal-public-v1-2fcb17f1d55737b51bfe1bfc6b1d4d48b926d281c66687f79737658e6c572bf2-42976567101-1",
-  "public_bytes": 539598036,
-  "public_files": 6480,
-  "inputs": "91c31750a4d6cde2c60fb1ad94eb0a0483c8cd578eaa3b991211d62484ec9ff1",
-  "validated_at": "2026-11-11T07:44:33.470375+00:00",
+  "sha256": "d32fa4ea50cc37f036140e0d6d18c9761298adc002392c0356f45b9577613530",
+  "key": "signal-public-v1-d32fa4ea50cc37f036140e0d6d18c9761298adc002392c0356f45b9577613530-42987140560-1",
+  "public_bytes": 540135676,
+  "public_files": 6481,
+  "inputs": "f289f0e859d3428a5e667018cfda31893ab5641127aad55cf74e2e1cc528c0b5",
+  "validated_at": "2026-11-11T09:18:23.737450+00:00",
   "signature": {
     "code": "b521bc26f04fc9e3dade3c2aebec83d08a94d4497bfcfbfa45b9eb179311fcfc",
-    "content": "c461ab51e1b53cc3958381c5226a2deec65103146a2d99e3e907ac6783fe453d",
-    "translations": "7ad31c037f42f23230ecf7fa9abd2a47178dc0033a6c2a3b91bc5916c56534bd",
+    "content": "0035aca88af3eee9baa642a641bcb7aef5140b4ac6b8ae4e886c4a50853f7893",
+    "translations": "7f03c9ce067c517c0fcd89ed1e06ab7dd2b2a368d03b0c7ddeca1ba6a56247b3",
     "health": [
       [
         "find_tender",
-        "healthy"
+        "partial"
       ],
       [
         "contracts_finder",
@@ -35,7 +35,7 @@
       ],
       [
         "digital_outcomes",
-        "partial"
+        "healthy"
       ],
       [
         "upcoming_agreements",
@@ -63,7 +63,7 @@
       ],
       [
         "la_ramp",
-        "failed"
+        "healthy"
       ],
       [
         "grants",
@@ -231,7 +231,7 @@
       ],
       [
         "canada_buys",
-        "partial"
+        "healthy"
       ],
       [
         "seao_qc",
@@ -315,7 +315,7 @@
       ],
       [
         "lc_finance",
-        "partial"
+        "failed"
       ]
     ],
     "day": "2026-11-11"
@@ -323,14 +323,14 @@
   "storage": {
     "version": 1,
     "kind": "public",
-    "digest": "2fcb17f1d55737b51bfe1bfc6b1d4d48b926d281c66687f79737658e6c572bf2",
-    "tag": "signal-data-v1-public-2fcb17f1d55737b51bfe1bfc6b1d4d48b926d281c66687f79737658e6c572bf2",
-    "release_id": 441370643,
+    "digest": "d32fa4ea50cc37f036140e0d6d18c9761298adc002392c0356f45b9577613530",
+    "tag": "signal-data-v1-public-d32fa4ea50cc37f036140e0d6d18c9761298adc002392c0356f45b9577613530",
+    "release_id": 441455952,
     "assets": [
       {
         "name": "public-data.tar.gz",
-        "bytes": 518577132,
-        "sha256": "2fcb17f1d55737b51bfe1bfc6b1d4d48b926d281c66687f79737658e6c572bf2"
+        "bytes": 519091050,
+        "sha256": "d32fa4ea50cc37f036140e0d6d18c9761298adc002392c0356f45b9577613530"
       }
     ]
   }
