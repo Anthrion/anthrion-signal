@@ -1,17 +1,17 @@
 {
   "version": 1,
-  "generation": 492,
+  "generation": 493,
   "data_code": "c38c90b102b7203f777f8d69d73fb9828a98ff1232bf29d09beea204a48c80a0",
-  "sha256": "73dd138475e6baef15c660ea3e46d48c9c5ff86b9f0ffb3f3f80630fafa6b239",
-  "key": "signal-public-v1-73dd138475e6baef15c660ea3e46d48c9c5ff86b9f0ffb3f3f80630fafa6b239-43154410205-1",
-  "public_bytes": 549408031,
-  "public_files": 6507,
-  "inputs": "3595fdc71a19dcc481e3202a4f74a7e3501038121876489e5173beaecf707cfe",
-  "validated_at": "2026-11-12T05:15:05.708003+00:00",
+  "sha256": "16cfec4fbe391a5d7d81cf8b3cfaca7e63887f4aa3801a93dfe2ece31c197413",
+  "key": "signal-public-v1-16cfec4fbe391a5d7d81cf8b3cfaca7e63887f4aa3801a93dfe2ece31c197413-43204267766-1",
+  "public_bytes": 549123955,
+  "public_files": 6504,
+  "inputs": "a330114f180581e7d3a073df50168912e0f9f98986d6bc4dd70a1fb476b0d3b5",
+  "validated_at": "2026-11-12T11:31:32.788767+00:00",
   "signature": {
     "code": "b521bc26f04fc9e3dade3c2aebec83d08a94d4497bfcfbfa45b9eb179311fcfc",
-    "content": "5ea2540488705fa3c8a48d315445d4ba63caf92614e3c6669f9206e63b874f85",
-    "translations": "106d720fb0cdede76e2e8b6f8c6dc997cc00a2f0c2a4fe1ef10794d754040a84",
+    "content": "7c3db2708d911a61b96b976e111e6dbaab42537ee34d5d070f4f255050e39837",
+    "translations": "ad7181783692d2a77b13a2487e61f09103cee2fa96eac50ffb74ce63c14a5fef",
     "health": [
       [
         "find_tender",
@@ -323,14 +323,14 @@
   "storage": {
     "version": 1,
     "kind": "public",
-    "digest": "73dd138475e6baef15c660ea3e46d48c9c5ff86b9f0ffb3f3f80630fafa6b239",
-    "tag": "signal-data-v1-public-73dd138475e6baef15c660ea3e46d48c9c5ff86b9f0ffb3f3f80630fafa6b239",
-    "release_id": 442524483,
+    "digest": "16cfec4fbe391a5d7d81cf8b3cfaca7e63887f4aa3801a93dfe2ece31c197413",
+    "tag": "signal-data-v1-public-16cfec4fbe391a5d7d81cf8b3cfaca7e63887f4aa3801a93dfe2ece31c197413",
+    "release_id": 442856650,
     "assets": [
       {
         "name": "public-data.tar.gz",
-        "bytes": 528019682,
-        "sha256": "73dd138475e6baef15c660ea3e46d48c9c5ff86b9f0ffb3f3f80630fafa6b239"
+        "bytes": 527744532,
+        "sha256": "16cfec4fbe391a5d7d81cf8b3cfaca7e63887f4aa3801a93dfe2ece31c197413"
       }
     ]
   }
