@@ -1,17 +1,17 @@
 {
   "version": 1,
-  "generation": 501,
+  "generation": 502,
   "data_code": "c38c90b102b7203f777f8d69d73fb9828a98ff1232bf29d09beea204a48c80a0",
-  "sha256": "e07425007e5ddcfa457cb03ee075f8ac2d66da5624da2645190958ad815a1432",
-  "key": "signal-public-v1-e07425007e5ddcfa457cb03ee075f8ac2d66da5624da2645190958ad815a1432-43450994222-1",
-  "public_bytes": 554381784,
-  "public_files": 6513,
-  "inputs": "ca07e3dfc38f5f8852660bcb34a5538f15fe46942ba2d2f1f9228851ccb96ba5",
-  "validated_at": "2026-11-13T16:01:12.207287+00:00",
+  "sha256": "0d7c4a7c9888993998fef49a816c19b01d899828c55b9df14bf5e89590fea741",
+  "key": "signal-public-v1-0d7c4a7c9888993998fef49a816c19b01d899828c55b9df14bf5e89590fea741-43479710159-1",
+  "public_bytes": 554928333,
+  "public_files": 6519,
+  "inputs": "f8ce31b3af4ddd0511dc163887cf295dfaf73c2111d5cf9a88cfb454de80064c",
+  "validated_at": "2026-11-13T18:53:17.511754+00:00",
   "signature": {
     "code": "b521bc26f04fc9e3dade3c2aebec83d08a94d4497bfcfbfa45b9eb179311fcfc",
-    "content": "aa701757180234ea728fd729aea69cd3c8807f07c103cb620e1c92582f5bc298",
-    "translations": "5a631c6311bea9e178a88e48e58755f36aae6dbec3dbcf5a63909f035cf1509c",
+    "content": "9a1ad74343bbcac5f6bfb3cbf7596260f8b5655f07eaaf3aa1f30bd8bf12dd31",
+    "translations": "438aa758484f62e454a847cdf2d15b82423f522bca1ce4a86397a5d58a787be6",
     "health": [
       [
         "find_tender",
@@ -315,7 +315,7 @@
       ],
       [
         "lc_finance",
-        "partial"
+        "failed"
       ]
     ],
     "day": "2026-11-13"
@@ -323,14 +323,14 @@
   "storage": {
     "version": 1,
     "kind": "public",
-    "digest": "e07425007e5ddcfa457cb03ee075f8ac2d66da5624da2645190958ad815a1432",
-    "tag": "signal-data-v1-public-e07425007e5ddcfa457cb03ee075f8ac2d66da5624da2645190958ad815a1432",
-    "release_id": 444431933,
+    "digest": "0d7c4a7c9888993998fef49a816c19b01d899828c55b9df14bf5e89590fea741",
+    "tag": "signal-data-v1-public-0d7c4a7c9888993998fef49a816c19b01d899828c55b9df14bf5e89590fea741",
+    "release_id": 444616423,
     "assets": [
       {
         "name": "public-data.tar.gz",
-        "bytes": 532744177,
-        "sha256": "e07425007e5ddcfa457cb03ee075f8ac2d66da5624da2645190958ad815a1432"
+        "bytes": 533277336,
+        "sha256": "0d7c4a7c9888993998fef49a816c19b01d899828c55b9df14bf5e89590fea741"
       }
     ]
   }
