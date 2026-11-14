@@ -1,17 +1,17 @@
 {
   "version": 1,
-  "generation": 503,
+  "generation": 504,
   "data_code": "c38c90b102b7203f777f8d69d73fb9828a98ff1232bf29d09beea204a48c80a0",
-  "sha256": "7776c938f53da8b8caa1d584be0975d188c22631ad63dd54026ecbef6d26616b",
-  "key": "signal-public-v1-7776c938f53da8b8caa1d584be0975d188c22631ad63dd54026ecbef6d26616b-43510839967-1",
-  "public_bytes": 553100487,
-  "public_files": 6516,
-  "inputs": "64dec059648d423711b49c03206d598b4935044401894718966137029a1d6e6b",
-  "validated_at": "2026-11-13T22:18:09.441175+00:00",
+  "sha256": "d1eee9951bd52a84f75bef5215a40b2fcce15ea398dd9ac115eb0404522f89f4",
+  "key": "signal-public-v1-d1eee9951bd52a84f75bef5215a40b2fcce15ea398dd9ac115eb0404522f89f4-43530741049-1",
+  "public_bytes": 553121595,
+  "public_files": 6514,
+  "inputs": "8799d3df3f3dfe1b914b91bd3213d8245b8479fed012254ad7cdd427397ace50",
+  "validated_at": "2026-11-14T01:01:39.096961+00:00",
   "signature": {
     "code": "b521bc26f04fc9e3dade3c2aebec83d08a94d4497bfcfbfa45b9eb179311fcfc",
-    "content": "fd491c4ec55ab25cff7af3332619e737276b661501cf2eed04da66751a532a62",
-    "translations": "d9a8e1639430d894c16b429b4f30e3df88226a1d598a1ac232d186ef37949ce8",
+    "content": "46fde066b5f3a7f8dbaec1fb654d7e8f573d8d42cfcc2e8aa344e7024f18722b",
+    "translations": "b0130f9801e23608aad203a162809c82ffc5df0586f596996a76c5be986a107c",
     "health": [
       [
         "find_tender",
@@ -231,7 +231,7 @@
       ],
       [
         "canada_buys",
-        "healthy"
+        "partial"
       ],
       [
         "seao_qc",
@@ -318,19 +318,19 @@
         "failed"
       ]
     ],
-    "day": "2026-11-13"
+    "day": "2026-11-14"
   },
   "storage": {
     "version": 1,
     "kind": "public",
-    "digest": "7776c938f53da8b8caa1d584be0975d188c22631ad63dd54026ecbef6d26616b",
-    "tag": "signal-data-v1-public-7776c938f53da8b8caa1d584be0975d188c22631ad63dd54026ecbef6d26616b",
-    "release_id": 444796779,
+    "digest": "d1eee9951bd52a84f75bef5215a40b2fcce15ea398dd9ac115eb0404522f89f4",
+    "tag": "signal-data-v1-public-d1eee9951bd52a84f75bef5215a40b2fcce15ea398dd9ac115eb0404522f89f4",
+    "release_id": 444901214,
     "assets": [
       {
         "name": "public-data.tar.gz",
-        "bytes": 531524107,
-        "sha256": "7776c938f53da8b8caa1d584be0975d188c22631ad63dd54026ecbef6d26616b"
+        "bytes": 531558926,
+        "sha256": "d1eee9951bd52a84f75bef5215a40b2fcce15ea398dd9ac115eb0404522f89f4"
       }
     ]
   }
