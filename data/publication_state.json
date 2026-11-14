@@ -1,7 +1,7 @@
 {
   "code": "b521bc26f04fc9e3dade3c2aebec83d08a94d4497bfcfbfa45b9eb179311fcfc",
-  "content": "c2c62076c363a92274d25fa449a11a0509bd8cc26c6f4023cc2841dcc3b49066",
-  "translations": "45bbc7cfb1af1c98890e719e985fa9ffdb70a3dcb23643dff10649001aca98c7",
+  "content": "1c1a21f274d5b046c385440c28b5bfd043ac63f176932a208edc3c1dfb7b2cd6",
+  "translations": "cba66bff22315a9448f3007f7171a88e9d8dfe828d44ff48d10a4abc0758c782",
   "health": [
     [
       "find_tender",
@@ -21,7 +21,7 @@
     ],
     [
       "govuk",
-      "partial"
+      "healthy"
     ],
     [
       "digital_outcomes",
@@ -45,7 +45,7 @@
     ],
     [
       "spain",
-      "partial"
+      "healthy"
     ],
     [
       "nyc_city_record",
@@ -305,7 +305,7 @@
     ],
     [
       "lc_finance",
-      "partial"
+      "failed"
     ]
   ],
   "day": "2026-11-14"
