@@ -1,16 +1,16 @@
 {
   "version": 1,
-  "generation": 525,
+  "generation": 526,
   "data_code": "5d02d6f9d4f12b8e204d95bb7c0c10a0338ca372044d5c519749a44b3f200832",
-  "sha256": "31cb1d55572e92e648f53ab5de6a5a8e3c89c849fd2468f9a98f095a500bd577",
-  "key": "signal-public-v1-31cb1d55572e92e648f53ab5de6a5a8e3c89c849fd2468f9a98f095a500bd577-43863500442-1",
-  "public_bytes": 560893435,
+  "sha256": "0e72c3beeea11dfc24be0361d84bc202d93ccb81ca48764724491d3cc3939b26",
+  "key": "signal-public-v1-0e72c3beeea11dfc24be0361d84bc202d93ccb81ca48764724491d3cc3939b26-43927814006-1",
+  "public_bytes": 560482412,
   "public_files": 6533,
-  "inputs": "a33c00d8d3733082737fe8d371c257e6b376ab6f9f18d8fa3914e83c7fab0509",
-  "validated_at": "2026-11-16T13:08:47.117092+00:00",
+  "inputs": "7e992236c380f120960242fdbbe2266923286574e97ecbefff12e68ae2b5f735",
+  "validated_at": "2026-11-16T19:10:43.215561+00:00",
   "signature": {
     "code": "4fbe5651cc2320db68d3487a0dd25af50d9df05c35cf8b4db92bf59127768546",
-    "content": "ac899c65cab898ed55247ab0ea240ff95cb2df4f335aa2cf08650a55a4eb57ce",
+    "content": "291123ec946e54f1655406fb7fd375df133003d9bba84937d6ca2ce3271d7c77",
     "translations": "2ffacb9c0f24b0827aeeb4ef2b24442792712191f3aaee9b37d1e0350519f232",
     "health": [
       [
@@ -323,14 +323,14 @@
   "storage": {
     "version": 1,
     "kind": "public",
-    "digest": "31cb1d55572e92e648f53ab5de6a5a8e3c89c849fd2468f9a98f095a500bd577",
-    "tag": "signal-data-v1-public-31cb1d55572e92e648f53ab5de6a5a8e3c89c849fd2468f9a98f095a500bd577",
-    "release_id": 447056966,
+    "digest": "0e72c3beeea11dfc24be0361d84bc202d93ccb81ca48764724491d3cc3939b26",
+    "tag": "signal-data-v1-public-0e72c3beeea11dfc24be0361d84bc202d93ccb81ca48764724491d3cc3939b26",
+    "release_id": 447475901,
     "assets": [
       {
         "name": "public-data.tar.gz",
-        "bytes": 538967351,
-        "sha256": "31cb1d55572e92e648f53ab5de6a5a8e3c89c849fd2468f9a98f095a500bd577"
+        "bytes": 538580352,
+        "sha256": "0e72c3beeea11dfc24be0361d84bc202d93ccb81ca48764724491d3cc3939b26"
       }
     ]
   }
