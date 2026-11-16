@@ -1,0 +1,40 @@
+name: Set up Signal's test browser
+description: Restore Playwright's headless Chromium and check that it launches
+runs:
+  using: composite
+  steps:
+    - uses: actions/cache/restore@v4
+      id: browser
+      continue-on-error: true
+      with:
+        path: ~/.cache/ms-playwright
+        key: signal-chromium-shell-v1-ubuntu-24.04-${{ runner.arch }}-${{ hashFiles('app/package-lock.json') }}
+    - name: Download headless Chromium on a cache miss
+      if: steps.browser.outputs.cache-hit != 'true'
+      working-directory: app
+      shell: bash
+      # GitHub's Ubuntu 24.04 image already includes the Chromium libraries.
+      run: ./node_modules/.bin/playwright install --only-shell chromium
+    - name: Verify headless Chromium can open a page
+      working-directory: app
+      shell: bash
+      run: |
+        node --input-type=module <<'NODE'
+        import { chromium } from '@playwright/test'
+
+        const browser = await chromium.launch({ headless: true })
+        try {
+          const page = await browser.newPage()
+          await page.goto('data:text/html,<title>Signal</title>')
+          console.log(`Headless Chromium ${browser.version()} launched successfully.`)
+        } finally {
+          await browser.close()
+        }
+        NODE
+    - name: Cache the verified browser
+      if: steps.browser.outputs.cache-hit != 'true' && steps.browser.outputs.cache-primary-key != ''
+      continue-on-error: true
+      uses: actions/cache/save@v4
+      with:
+        path: ~/.cache/ms-playwright
+        key: ${{ steps.browser.outputs.cache-primary-key }}

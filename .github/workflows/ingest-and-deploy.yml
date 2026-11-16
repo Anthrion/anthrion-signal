@@ -37,6 +37,8 @@ jobs:
           ref: main
           persist-credentials: false
       - name: Select compatible verified data
+        # These runs already require the data job. Leave export recovery to it.
+        if: github.event_name != 'schedule' && inputs.collect != true && inputs.full_tests != true
         id: data
         run: python scripts/release_bundle.py select
       - uses: actions/cache/restore@v4
