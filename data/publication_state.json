@@ -1,7 +1,7 @@
 {
-  "code": "b521bc26f04fc9e3dade3c2aebec83d08a94d4497bfcfbfa45b9eb179311fcfc",
-  "content": "0e042fd3488ab37740ff2a4c201e9f2c4852e1834e5a40d990c08181382c71ec",
-  "translations": "20ff1d9a08ec4ac96fd2189305522902b6b023b87837c6ea455e22d677cd95cc",
+  "code": "4fbe5651cc2320db68d3487a0dd25af50d9df05c35cf8b4db92bf59127768546",
+  "content": "c1641fe95385ad5f0fd0011ffbdef9627d8ffec065b2239f0f830c444786c71c",
+  "translations": "db2103b9da2b38ef5b4641c2de31b130aa722faea43c499f0b468a6030f8fa52",
   "health": [
     [
       "find_tender",
@@ -221,7 +221,7 @@
     ],
     [
       "canada_buys",
-      "healthy"
+      "partial"
     ],
     [
       "seao_qc",
@@ -289,7 +289,7 @@
     ],
     [
       "caribbean_cdb",
-      "failed"
+      "partial"
     ],
     [
       "caribbean_worldbank",
@@ -305,8 +305,8 @@
     ],
     [
       "lc_finance",
-      "partial"
+      "failed"
     ]
   ],
-  "day": "2026-11-15"
+  "day": "2026-11-16"
 }
