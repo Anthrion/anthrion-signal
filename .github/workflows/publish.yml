@@ -10,7 +10,8 @@ permissions:
 jobs:
   publish:
     if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
+    # Match the PR browser runner and its preinstalled Chromium libraries.
+    runs-on: ubuntu-24.04
     timeout-minutes: 120
     env:
       EXECUTION_WORKFLOW_SHA: ${{ github.workflow_sha }}
@@ -38,22 +39,6 @@ jobs:
       - name: Select latest compatible validated export
         id: data
         run: python scripts/release_bundle.py select
-      - name: Restore validated export
-        id: cache
-        if: steps.data.outputs.eligible == 'true'
-        continue-on-error: true
-        uses: actions/cache/restore@v4
-        with:
-          path: tmp/public-data.tar.gz
-          key: ${{ steps.data.outputs.key }}
-      - name: Verify cache or download durable export
-        if: steps.data.outputs.eligible == 'true'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: python scripts/release_storage.py ensure-public
-      - name: Verify and unpack public data
-        if: steps.data.outputs.eligible == 'true'
-        run: python scripts/release_bundle.py restore
       - name: Plan publication
         if: steps.data.outputs.eligible == 'true'
         id: plan
@@ -66,22 +51,35 @@ jobs:
           node-version: '22'
           cache: npm
           cache-dependency-path: app/package-lock.json
+      - name: Install dashboard dependencies
+        if: steps.plan.outputs.deploy == 'true'
+        working-directory: app
+        run: npm ci
+      - name: Set up and check the test browser
+        if: steps.plan.outputs.deploy == 'true'
+        uses: ./.github/actions/setup-browser
+      - name: Restore validated export
+        id: cache
+        if: steps.plan.outputs.deploy == 'true'
+        continue-on-error: true
+        uses: actions/cache/restore@v4
+        with:
+          path: tmp/public-data.tar.gz
+          key: ${{ steps.data.outputs.key }}
+      - name: Verify cache or download durable export
+        if: steps.plan.outputs.deploy == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/release_storage.py ensure-public
+      - name: Verify and unpack public data
+        if: steps.plan.outputs.deploy == 'true'
+        run: python scripts/release_bundle.py restore
       - name: Test and build dashboard
         if: steps.plan.outputs.deploy == 'true'
         working-directory: app
         run: |
-          npm ci
           npm test
           npm run build
-      - uses: actions/cache@v4
-        if: steps.plan.outputs.deploy == 'true'
-        with:
-          path: ~/.cache/ms-playwright
-          key: playwright-${{ runner.os }}-${{ hashFiles('app/package-lock.json') }}
-      - name: Install browser
-        if: steps.plan.outputs.deploy == 'true'
-        working-directory: app
-        run: npx playwright install --with-deps chromium
       - name: UI desktop and mobile regression
         if: steps.plan.outputs.deploy == 'true' && steps.plan.outputs.full_ui == 'true'
         working-directory: app

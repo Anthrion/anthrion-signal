@@ -209,7 +209,8 @@ def test_release_workflows_keep_trusted_data_validation_and_tested_publication_s
     assert job["concurrency"]["cancel-in-progress"] == "false"
     steps = job["steps"]
     by_name = {s.get("name"): s for s in steps}
-    for name in ["Verify and unpack public data", "UI desktop and mobile regression", "Published-data desktop and mobile integration"]:
+    for name in ["Set up and check the test browser", "Verify and unpack public data",
+                 "UI desktop and mobile regression", "Published-data desktop and mobile integration"]:
         assert "continue-on-error" not in by_name[name]
         assert steps.index(by_name[name]) < steps.index(by_name["Upload tested Pages build"])
     assert by_name["UI desktop and mobile regression"]["env"]["UI_TEST_SUITE"] == (
@@ -226,6 +227,10 @@ def test_release_workflows_keep_trusted_data_validation_and_tested_publication_s
     assert steps.index(deploy) < steps.index(by_name["Create publication receipt token"])
     assert steps.index(deploy) < steps.index(by_name["Record successful publication"])
     assert "steps.deployment.outputs.page_url" in job["environment"]["url"]
+    for name in ("Restore validated export", "Verify cache or download durable export", "Verify and unpack public data"):
+        assert by_name[name]["if"] == "steps.plan.outputs.deploy == 'true'"
+        assert steps.index(by_name["Plan publication"]) < steps.index(by_name[name])
+    assert steps.index(by_name["Set up and check the test browser"]) < steps.index(by_name["Restore validated export"])
     assert set(tests["on"]) == {"pull_request"}  # production gates replace the duplicate push job
     assert set(tests["jobs"]) == {"test"}  # retain the required status check
     assert tests["permissions"] == {"contents": "read"}
@@ -238,6 +243,30 @@ def test_release_workflows_keep_trusted_data_validation_and_tested_publication_s
     assert tests["concurrency"] == {
         "group": "signal-pr-${{ github.event.pull_request.number }}", "cancel-in-progress": "true",
     }
+
+
+def test_pr_and_publish_share_a_supported_browser_setup_without_apt():
+    def load_yaml(path):
+        return yaml.load((ROOT / path).read_text(encoding="utf-8-sig"), Loader=yaml.BaseLoader)
+
+    path = "./.github/actions/setup-browser"
+    for file, job_name in (("test", "test"), ("publish", "publish")):
+        job = load_yaml(f".github/workflows/{file}.yml")["jobs"][job_name]
+        assert job["runs-on"] == "ubuntu-24.04"
+        setup = next(step for step in job["steps"] if step.get("uses") == path)
+        compile_step = next(step for step in job["steps"] if step.get("name") == "Test and build dashboard")
+        assert "continue-on-error" not in setup
+        assert job["steps"].index(setup) < job["steps"].index(compile_step)
+        assert all("--with-deps" not in step.get("run", "") for step in job["steps"])
+
+    action = load_yaml(f"{path}/action.yml")
+    cache, install, probe, save = action["runs"]["steps"]
+    assert cache["uses"].startswith("actions/cache/restore@")
+    assert "ubuntu-24.04" in cache["with"]["key"] and "app/package-lock.json" in cache["with"]["key"]
+    assert install["if"] == "steps.browser.outputs.cache-hit != 'true'"
+    assert "install --only-shell chromium" in install["run"] and "--with-deps" not in install["run"]
+    assert "chromium.launch" in probe["run"] and "continue-on-error" not in probe
+    assert save["uses"].startswith("actions/cache/save@") and save["with"]["path"] == cache["with"]["path"]
 
 
 def test_pr_routing_keeps_contracts_collectors_data_and_unknown_changes_on_pipeline_checks(monkeypatch):

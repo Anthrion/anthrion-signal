@@ -9,7 +9,8 @@ permissions:
 jobs:
   # This name remains the required repository check.
   test:
-    runs-on: ubuntu-latest
+    # Keep the OS supported by the locked Playwright version.
+    runs-on: ubuntu-24.04
     timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
@@ -51,21 +52,18 @@ jobs:
           node-version: '22'
           cache: npm
           cache-dependency-path: app/package-lock.json
+      - name: Install dashboard dependencies
+        working-directory: app
+        run: npm ci
+      - name: Set up and check the test browser
+        uses: ./.github/actions/setup-browser
       - name: Test and build dashboard
         working-directory: app
         # Real source-data export and validation run once, before publication.
         run: |
-          npm ci
           npm test
           node build/preparePrData.mjs
           npm run build
-      - uses: actions/cache@v4
-        with:
-          path: ~/.cache/ms-playwright
-          key: playwright-${{ runner.os }}-${{ hashFiles('app/package-lock.json') }}
-      - name: Install browser
-        working-directory: app
-        run: npx playwright install --with-deps chromium
       - name: Critical desktop and mobile journeys
         working-directory: app
         env:

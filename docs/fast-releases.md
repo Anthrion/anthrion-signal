@@ -20,7 +20,9 @@ A newer commit cancels superseded checks for that PR only. Production collection
 
 Data-code fingerprints include pipeline scripts/tests, validation, dependencies, workflows, data contracts and every unclassified source path. Presentation files are excluded because their frontend checks still run. Source data, retained histories and translation changes invalidate input reuse; quota reservations and publication bookkeeping do not. Raw download/model caches are not public export inputs.
 
-The archive limit is 250 MiB compressed and 900 MiB expanded. Cache cleanup retains at most eight dedicated public-data entries within a 1 GiB budget, while protecting the current validated and published receipts. Other caches are untouched. Existing pip/npm caches remain; Chromium binaries are cached by runner OS and exact dependency lock. No organization setting, App access, paid tier or larger runner changes are required.
+The archive limit is 900 MiB for both stored and extracted bytes. Cache cleanup retains at most eight dedicated public-data entries within a 1 GiB budget, while protecting the current validated and published receipts. Other caches are untouched. The plan job skips the archive download when a data build is required anyway. The publisher checks the receipt and plans the release before restoring the archive, so unchanged releases skip the download and unpacking.
+
+PR and publication browser checks use the same setup on GitHub's Ubuntu 24.04 image. The cache is keyed by Ubuntu version, processor architecture and npm lockfile. On a cache miss, Playwright downloads its locked headless Chromium. The setup opens a page before the site build to verify the browser and the runner's existing libraries, then saves the working browser for later runs. The workflow can run even when the Ubuntu package mirrors are unavailable. The PR checks critical journeys, and the publisher also checks the verified public data in the browser.
 
 ## Publication and concurrency
 

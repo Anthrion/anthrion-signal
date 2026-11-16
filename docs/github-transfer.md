@@ -36,7 +36,7 @@ receipt and real App writes also passed the live checks linked below.
 
 | Item | Cost boundary |
 | --- | --- |
-| Public Signal's standard Ubuntu Actions jobs | Standard GitHub-hosted runner use in public repositories is free. Keep `ubuntu-latest`; do not select larger runners. |
+| Public Signal's standard Ubuntu Actions jobs | Standard GitHub-hosted runner use in public repositories is free. The browser jobs use `ubuntu-24.04` to match Playwright's supported OS. |
 | GitHub Pages | Included for public repositories, subject to usage and acceptable-use limits. Published sites have a 1 GB limit and a soft 100 GB monthly bandwidth limit. There is no unlimited-hosting promise. |
 | Public-only outside collaborators | No extra Team seat for that access. Invite them as outside collaborators, not organization members. Do not give them private Timestamps access merely to contribute. |
 | Organization members and private-repository collaborators | Consume paid Team seats. The existing membership bill is separate from this transfer. |
