@@ -1,81 +1,5 @@
 {
   "allocations": {
-    "43406397820-1": {
-      "closed": true,
-      "day": "2026-11-13",
-      "limits": {
-        "gemini-3.1-flash-lite": 75,
-        "gemini-3.5-flash-lite": 75
-      },
-      "started": true,
-      "used": {
-        "gemini-3.1-flash-lite": 10,
-        "gemini-3.5-flash-lite": 33
-      }
-    },
-    "43450994222-1": {
-      "closed": true,
-      "day": "2026-11-13",
-      "limits": {
-        "gemini-3.1-flash-lite": 75,
-        "gemini-3.5-flash-lite": 75
-      },
-      "started": true,
-      "used": {
-        "gemini-3.1-flash-lite": 62,
-        "gemini-3.5-flash-lite": 20
-      }
-    },
-    "43479710159-1": {
-      "closed": true,
-      "day": "2026-11-13",
-      "limits": {
-        "gemini-3.1-flash-lite": 75,
-        "gemini-3.5-flash-lite": 75
-      },
-      "started": true,
-      "used": {
-        "gemini-3.1-flash-lite": 29,
-        "gemini-3.5-flash-lite": 2
-      }
-    },
-    "43510839967-1": {
-      "closed": true,
-      "day": "2026-11-13",
-      "limits": {
-        "gemini-3.1-flash-lite": 75,
-        "gemini-3.5-flash-lite": 75
-      },
-      "started": true,
-      "used": {
-        "gemini-3.1-flash-lite": 56,
-        "gemini-3.5-flash-lite": 74
-      }
-    },
-    "43530741049-1": {
-      "closed": true,
-      "day": "2026-11-13",
-      "limits": {
-        "gemini-3.1-flash-lite": 75,
-        "gemini-3.5-flash-lite": 75
-      },
-      "started": true,
-      "used": {
-        "gemini-3.5-flash-lite": 42
-      }
-    },
-    "43569448347-1": {
-      "closed": true,
-      "day": "2026-11-13",
-      "limits": {
-        "gemini-3.1-flash-lite": 75,
-        "gemini-3.5-flash-lite": 75
-      },
-      "started": true,
-      "used": {
-        "gemini-3.5-flash-lite": 50
-      }
-    },
     "43577846962-1": {
       "closed": true,
       "day": "2026-11-14",
@@ -256,13 +180,17 @@
       }
     },
     "43826784156-1": {
-      "closed": false,
+      "closed": true,
       "day": "2026-11-16",
       "limits": {
         "gemini-3.1-flash-lite": 75,
         "gemini-3.5-flash-lite": 75
       },
-      "used": {}
+      "started": true,
+      "used": {
+        "gemini-3.1-flash-lite": 64,
+        "gemini-3.5-flash-lite": 63
+      }
     }
   },
   "models": {
@@ -271,32 +199,59 @@
       "blocked_until": 1794800712.046489,
       "consecutive_errors": 0,
       "days": {
-        "2026-11-13": 157,
         "2026-11-14": 211,
         "2026-11-15": 171,
-        "2026-11-16": 75
+        "2026-11-16": 64
       },
       "recent": [],
       "usage": {
-        "candidatesTokenCount": 16858153,
-        "promptTokenCount": 22069093,
+        "candidatesTokenCount": 16943377,
+        "promptTokenCount": 22183437,
         "thoughtsTokenCount": 0
       }
     },
     "gemini-3.5-flash-lite": {
       "blocked_reason": "transient",
-      "blocked_until": 1794800898.6413183,
-      "consecutive_errors": 1,
+      "blocked_until": 1794816985.6118429,
+      "consecutive_errors": 0,
       "days": {
-        "2026-11-13": 221,
         "2026-11-14": 402,
         "2026-11-15": 285,
-        "2026-11-16": 75
+        "2026-11-16": 63
       },
-      "recent": [],
+      "recent": [
+        {
+          "at": 1794816997.9196513,
+          "tokens": 21058
+        },
+        {
+          "at": 1794816998.071098,
+          "tokens": 10555
+        },
+        {
+          "at": 1794816998.1752648,
+          "tokens": 3544
+        },
+        {
+          "at": 1794817012.7281945,
+          "tokens": 15823
+        },
+        {
+          "at": 1794817012.8950832,
+          "tokens": 5137
+        },
+        {
+          "at": 1794817029.1892977,
+          "tokens": 20012
+        },
+        {
+          "at": 1794817029.3319366,
+          "tokens": 6782
+        }
+      ],
       "usage": {
-        "candidatesTokenCount": 32030559,
-        "promptTokenCount": 41726559,
+        "candidatesTokenCount": 32102041,
+        "promptTokenCount": 41821291,
         "thoughtsTokenCount": 0
       }
     }
