@@ -156,45 +156,71 @@
       }
     },
     "44373468059-1": {
-      "closed": false,
+      "closed": true,
       "day": "2026-11-18",
       "limits": {
         "gemini-3.1-flash-lite": 75,
         "gemini-3.5-flash-lite": 75
       },
-      "used": {}
+      "started": true,
+      "used": {
+        "gemini-3.1-flash-lite": 68,
+        "gemini-3.5-flash-lite": 18
+      }
     }
   },
   "models": {
     "gemini-3.1-flash-lite": {
       "blocked_reason": "transient",
-      "blocked_until": 1795011072.086223,
-      "consecutive_errors": 0,
+      "blocked_until": 1795029376.43189,
+      "consecutive_errors": 3,
       "days": {
         "2026-11-16": 189,
         "2026-11-17": 163,
-        "2026-11-18": 178
+        "2026-11-18": 171
       },
-      "recent": [],
+      "recent": [
+        {
+          "at": 1795029131.310644,
+          "tokens": 21046
+        },
+        {
+          "at": 1795029131.4709988,
+          "tokens": 13148
+        },
+        {
+          "at": 1795029131.6106248,
+          "tokens": 6254
+        }
+      ],
       "usage": {
-        "candidatesTokenCount": 17478652,
-        "promptTokenCount": 22886273,
+        "candidatesTokenCount": 17551469,
+        "promptTokenCount": 22981425,
         "thoughtsTokenCount": 0
       }
     },
     "gemini-3.5-flash-lite": {
       "blocked_reason": "transient",
-      "blocked_until": 1795011196.388145,
-      "consecutive_errors": 3,
+      "blocked_until": 1795029232.298031,
+      "consecutive_errors": 2,
       "days": {
         "2026-11-16": 155,
         "2026-11-17": 120,
-        "2026-11-18": 119
+        "2026-11-18": 62
       },
-      "recent": [],
+      "recent": [
+        {
+          "at": 1795029105.2175303,
+          "tokens": 17718
+        },
+        {
+          "at": 1795029105.391601,
+          "tokens": 4537
+        }
+      ],
       "usage": {
-        "candidatesTokenCount": 32343680,
-        "promptTokenCount": 42132189,
+        "candidatesTokenCount": 32349746,
+        "promptTokenCount": 42141347,
         "thoughtsTokenCount": 0
       }
     }
