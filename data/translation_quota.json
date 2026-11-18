@@ -1,82 +1,5 @@
 {
   "allocations": {
-    "43709497015-1": {
-      "closed": true,
-      "day": "2026-11-15",
-      "limits": {
-        "gemini-3.1-flash-lite": 75,
-        "gemini-3.5-flash-lite": 75
-      },
-      "started": true,
-      "used": {
-        "gemini-3.1-flash-lite": 28,
-        "gemini-3.5-flash-lite": 13
-      }
-    },
-    "43730713501-1": {
-      "closed": true,
-      "day": "2026-11-15",
-      "limits": {
-        "gemini-3.1-flash-lite": 75,
-        "gemini-3.5-flash-lite": 75
-      },
-      "started": true,
-      "used": {
-        "gemini-3.1-flash-lite": 43,
-        "gemini-3.5-flash-lite": 74
-      }
-    },
-    "43744236084-1": {
-      "closed": true,
-      "day": "2026-11-15",
-      "limits": {
-        "gemini-3.1-flash-lite": 75,
-        "gemini-3.5-flash-lite": 75
-      },
-      "started": true,
-      "used": {
-        "gemini-3.5-flash-lite": 48
-      }
-    },
-    "43760999504-1": {
-      "closed": true,
-      "day": "2026-11-15",
-      "limits": {
-        "gemini-3.1-flash-lite": 75,
-        "gemini-3.5-flash-lite": 75
-      },
-      "started": true,
-      "used": {
-        "gemini-3.1-flash-lite": 70,
-        "gemini-3.5-flash-lite": 74
-      }
-    },
-    "43773509040-1": {
-      "closed": true,
-      "day": "2026-11-15",
-      "limits": {
-        "gemini-3.1-flash-lite": 75,
-        "gemini-3.5-flash-lite": 75
-      },
-      "started": true,
-      "used": {
-        "gemini-3.1-flash-lite": 16,
-        "gemini-3.5-flash-lite": 49
-      }
-    },
-    "43797036800-1": {
-      "closed": true,
-      "day": "2026-11-15",
-      "limits": {
-        "gemini-3.1-flash-lite": 75,
-        "gemini-3.5-flash-lite": 75
-      },
-      "started": true,
-      "used": {
-        "gemini-3.1-flash-lite": 14,
-        "gemini-3.5-flash-lite": 27
-      }
-    },
     "43826784156-1": {
       "closed": true,
       "day": "2026-11-16",
@@ -207,47 +130,70 @@
       }
     },
     "44281170534-1": {
-      "closed": false,
+      "closed": true,
       "day": "2026-11-18",
       "limits": {
         "gemini-3.1-flash-lite": 75,
         "gemini-3.5-flash-lite": 75
       },
-      "used": {}
+      "started": true,
+      "used": {
+        "gemini-3.1-flash-lite": 74,
+        "gemini-3.5-flash-lite": 39
+      }
     }
   },
   "models": {
     "gemini-3.1-flash-lite": {
       "blocked_reason": "transient",
-      "blocked_until": 1794925565.8310447,
+      "blocked_until": 1794996642.027299,
       "consecutive_errors": 0,
       "days": {
-        "2026-11-15": 171,
         "2026-11-16": 189,
         "2026-11-17": 163,
-        "2026-11-18": 75
+        "2026-11-18": 74
       },
       "recent": [],
       "usage": {
-        "candidatesTokenCount": 17338389,
-        "promptTokenCount": 22701547,
+        "candidatesTokenCount": 17441689,
+        "promptTokenCount": 22837260,
         "thoughtsTokenCount": 0
       }
     },
     "gemini-3.5-flash-lite": {
       "blocked_reason": "transient",
-      "blocked_until": 1794957186.9672172,
-      "consecutive_errors": 0,
+      "blocked_until": 1794997440.8557017,
+      "consecutive_errors": 1,
       "days": {
-        "2026-11-15": 285,
         "2026-11-16": 155,
         "2026-11-17": 120,
-        "2026-11-18": 75
+        "2026-11-18": 39
       },
-      "recent": [],
+      "recent": [
+        {
+          "at": 1794997363.4009073,
+          "tokens": 22234
+        },
+        {
+          "at": 1794997363.606137,
+          "tokens": 13479
+        },
+        {
+          "at": 1794997363.6967154,
+          "tokens": 5183
+        },
+        {
+          "at": 1794997378.4486506,
+          "tokens": 14075
+        },
+        {
+          "at": 1794997378.578096,
+          "tokens": 4765
+        }
+      ],
       "usage": {
-        "candidatesTokenCount": 32326136,
-        "promptTokenCount": 42108726,
+        "candidatesTokenCount": 32343680,
+        "promptTokenCount": 42132189,
         "thoughtsTokenCount": 0
       }
     }
