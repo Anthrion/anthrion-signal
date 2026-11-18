@@ -1,7 +1,7 @@
 {
   "code": "4fbe5651cc2320db68d3487a0dd25af50d9df05c35cf8b4db92bf59127768546",
-  "content": "0fd924a72de9b8447e74f3fedcbbf489d93f7c4a2ba94ed40ff84334b81ee433",
-  "translations": "faac82032de76f1fda452a9ae6114cb519a2645e6889614c59de32cce13d1a81",
+  "content": "6d8ed8373e02e0624381a514743431a042d4d74cde56b98987f6e443f0df6d1f",
+  "translations": "25baa89119e4e34d89cc12251e7ae9a570663100546e9d76272ccd1354bcc7f0",
   "health": [
     [
       "find_tender",
@@ -53,7 +53,7 @@
     ],
     [
       "la_ramp",
-      "healthy"
+      "failed"
     ],
     [
       "grants",
@@ -221,7 +221,7 @@
     ],
     [
       "canada_buys",
-      "healthy"
+      "partial"
     ],
     [
       "seao_qc",
