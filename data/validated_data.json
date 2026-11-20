@@ -1,17 +1,17 @@
 {
   "version": 1,
-  "generation": 546,
+  "generation": 547,
   "data_code": "5d02d6f9d4f12b8e204d95bb7c0c10a0338ca372044d5c519749a44b3f200832",
-  "sha256": "d777d451efd93134adc17ec540de00294afc93025f98d2c3589d6b4e8e58eff1",
-  "key": "signal-public-v1-d777d451efd93134adc17ec540de00294afc93025f98d2c3589d6b4e8e58eff1-44647774952-1",
-  "public_bytes": 576992462,
-  "public_files": 6579,
-  "inputs": "e9f5bacb421b93e1debfd36da55dfe8b25372fc803d3c57015aa5456e1796940",
-  "validated_at": "2026-11-20T01:08:33.294077+00:00",
+  "sha256": "7a64f3ad9c4ca2aa13955c52dab8092f69d5043997086675798000e7fca61e17",
+  "key": "signal-public-v1-7a64f3ad9c4ca2aa13955c52dab8092f69d5043997086675798000e7fca61e17-44662406553-1",
+  "public_bytes": 582034845,
+  "public_files": 6582,
+  "inputs": "d843735095d443dc6e4183e78a007233a91c12ba3543d5086ee4ba9e3b8b78f3",
+  "validated_at": "2026-11-20T03:29:32.756883+00:00",
   "signature": {
     "code": "4fbe5651cc2320db68d3487a0dd25af50d9df05c35cf8b4db92bf59127768546",
-    "content": "fe1458f75961eae8cfa89787e30596d9b4ae7567d36529034036fbd6f514fc63",
-    "translations": "dda94a1b0c6ee2d49a30358e2622bcd199fd3bdecb07c3f2427b6978e88182ab",
+    "content": "25f12455b137adb378b00cf969603488cc0048a0bfca288d01476f6714b5cf85",
+    "translations": "ec1d2aacc9581837a24576cececf96dbb9d4c1621e4e383e446cf38570890f05",
     "health": [
       [
         "find_tender",
@@ -31,7 +31,7 @@
       ],
       [
         "govuk",
-        "healthy"
+        "partial"
       ],
       [
         "digital_outcomes",
@@ -63,11 +63,11 @@
       ],
       [
         "la_ramp",
-        "healthy"
+        "failed"
       ],
       [
         "grants",
-        "failed"
+        "partial"
       ],
       [
         "etenders_ni",
@@ -231,7 +231,7 @@
       ],
       [
         "canada_buys",
-        "healthy"
+        "partial"
       ],
       [
         "seao_qc",
@@ -299,7 +299,7 @@
       ],
       [
         "caribbean_cdb",
-        "partial"
+        "failed"
       ],
       [
         "caribbean_worldbank",
@@ -323,14 +323,14 @@
   "storage": {
     "version": 1,
     "kind": "public",
-    "digest": "d777d451efd93134adc17ec540de00294afc93025f98d2c3589d6b4e8e58eff1",
-    "tag": "signal-data-v1-public-d777d451efd93134adc17ec540de00294afc93025f98d2c3589d6b4e8e58eff1",
-    "release_id": 452144715,
+    "digest": "7a64f3ad9c4ca2aa13955c52dab8092f69d5043997086675798000e7fca61e17",
+    "tag": "signal-data-v1-public-7a64f3ad9c4ca2aa13955c52dab8092f69d5043997086675798000e7fca61e17",
+    "release_id": 452232878,
     "assets": [
       {
         "name": "public-data.tar.gz",
-        "bytes": 554534682,
-        "sha256": "d777d451efd93134adc17ec540de00294afc93025f98d2c3589d6b4e8e58eff1"
+        "bytes": 559478218,
+        "sha256": "7a64f3ad9c4ca2aa13955c52dab8092f69d5043997086675798000e7fca61e17"
       }
     ]
   }
