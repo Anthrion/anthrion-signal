@@ -1,11 +1,11 @@
 {
   "code": "4fbe5651cc2320db68d3487a0dd25af50d9df05c35cf8b4db92bf59127768546",
-  "content": "94c715f1f26b5510d1e30bfb3ee640917f92c80c409324f95c3167cc01f8edac",
-  "translations": "ec1d2aacc9581837a24576cececf96dbb9d4c1621e4e383e446cf38570890f05",
+  "content": "168d769c0f9cba8209d76fb4b7032d6d9072d64e14501d925a2f5fbd67d44297",
+  "translations": "9f78130e467575463e26fca05dc9d0235b9c11f3098159e379032d4918ac4859",
   "health": [
     [
       "find_tender",
-      "healthy"
+      "failed"
     ],
     [
       "contracts_finder",
@@ -53,7 +53,7 @@
     ],
     [
       "la_ramp",
-      "failed"
+      "healthy"
     ],
     [
       "grants",
@@ -133,7 +133,7 @@
     ],
     [
       "sam",
-      "healthy"
+      "partial"
     ],
     [
       "ungm",
@@ -305,7 +305,7 @@
     ],
     [
       "lc_finance",
-      "failed"
+      "partial"
     ]
   ],
   "day": "2026-11-20"
