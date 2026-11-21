@@ -33,7 +33,7 @@ def translation_records(root, now):
         from anthrion_signal.cli import prepare_current
 
         data, canonical, config = prepare_current(root, save_cache=True)
-        awards = prepare_awards(root, canonical, config, now)[0]
+        awards = prepare_awards(root, canonical, config, now, include_context=False)[0]
         candidates = data.signals
     else:
         candidates = Dataset.model_validate(read_json(root / "data/current.json", {})).signals
@@ -73,8 +73,8 @@ def main():
     load_dotenv(root / ".env")
     records, corpus, groups, reviewed = [], [], {}, {}
     with translation_lock(root / "data"):
-        queue = TranslationQueue(output / "cache.json")
         if args.mode == "benchmark":
+            queue = TranslationQueue(output / "cache.json")
             path = root / "artifacts/translation-benchmark/float32/results.jsonl"
             corpus = [json.loads(line) for line in path.read_text(encoding="utf-8").split("\n") if line.strip()]
             ids = {entry["id"] for entry in corpus}
@@ -86,6 +86,9 @@ def main():
         else:
             now = datetime.now(UTC)
             current, awards = translation_records(root, now)
+            # Selection reads the cache for relevance. Open the writable queue
+            # afterwards so two copies of its fields do not coexist.
+            queue = TranslationQueue(output / "cache.json")
             groups = {"current": current, "awards": awards}
             records = current + awards
             queue.prepare(current, awards=awards)

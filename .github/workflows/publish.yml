@@ -16,12 +16,14 @@ jobs:
     env:
       EXECUTION_WORKFLOW_SHA: ${{ github.workflow_sha }}
       VITE_BASE_PATH: /${{ github.event.repository.name }}/
+      PAGES_ARTIFACT_NAME: github-pages-${{ github.run_id }}-${{ github.run_attempt }}
     # Hold one short lock through compilation, checks, deploy and its receipt.
     concurrency:
       group: anthrion-signal-publication
       cancel-in-progress: false
       queue: max
     permissions:
+      actions: read
       contents: write
       pages: write
       id-token: write
@@ -96,10 +98,18 @@ jobs:
         run: npm run "$DATA_TEST_SUITE"
       - name: Upload tested Pages build
         if: steps.plan.outputs.deploy == 'true'
+        id: pages-artifact
         uses: actions/upload-pages-artifact@v3
         with:
+          name: ${{ env.PAGES_ARTIFACT_NAME }}
           path: app/dist
           retention-days: 1
+      - name: Verify Pages artifact is visible
+        if: steps.plan.outputs.deploy == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PAGES_ARTIFACT_ID: ${{ steps.pages-artifact.outputs.artifact_id }}
+        run: python scripts/wait_pages_artifact.py
       - name: Deploy GitHub Pages
         if: steps.plan.outputs.deploy == 'true'
         id: deployment
@@ -107,6 +117,8 @@ jobs:
         # reuses the cancelled deployment ID and can wait another ten minutes.
         # A later publication can reuse the validated export from Release storage.
         uses: actions/deploy-pages@v4
+        with:
+          artifact_name: ${{ env.PAGES_ARTIFACT_NAME }}
       - name: Create publication receipt token
         if: >-
           steps.deployment.outcome == 'success' &&

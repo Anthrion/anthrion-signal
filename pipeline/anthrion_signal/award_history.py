@@ -5,43 +5,52 @@ archive and rejection stores. No translation/model requests are made here.
 """
 import gzip
 import json
+from datetime import UTC, datetime
+from itertools import chain
 
 from .attachments import hydrate_cached_documents
 from .discovery import is_public_award, lifecycle, prefilter, ranking_key
 from .discovery_cache import discovery_cache_signatures
-from .discovery_retention import read_rejected
+from .discovery_retention import iter_rejected
 from .models import Signal
 from .markets import MARKETS
 from .public_context import attach_history, backfill_retained_facts, enrich_signal, public_signal
 from .public_feed import atomic_public_json, buyer_files, history_files, record_files
 from .record_reviews import apply_reviews, load_reviews
 from .translation import available_translations
-from .utils import atomic_bytes, digest, jsonl_lines, parse_date, read_json
+from .utils import atomic_bytes, digest, parse_date, read_json, retained_jsonl_lines
 
 DECISION_FIELDS = ("prefilter_score", "prefilter_matches", "discovery_families", "delivery_priority",
                    "matched_capabilities", "discovery_version", "exclusion_reasons", "capability_evidence", "scope_evidence", "categories")
 
 
-def retained_history(root, canonical):
-    # Canonical records are reconciled versions and override old archived copies,
-    # including cancellations that supersede a former award.
-    latest = {s.id: s for s in read_rejected(root)}
-    for path in sorted((root / "data/archive").glob("*.jsonl.gz")):
-        for line in jsonl_lines(gzip.decompress(path.read_bytes()).decode("utf-8")):
-            if line:
-                signal = Signal.model_validate_json(line)
-                previous = latest.get(signal.id)
-                if previous is None or parse_date(signal.updated_at or signal.last_seen_at) >= parse_date(previous.updated_at or previous.last_seen_at):
-                    latest[signal.id] = signal
-    latest.update({s.id: s for s in canonical})
-    return list(latest.values())
+def retained_history(root, canonical, *, keep=None):
+    # Pick the latest version even when it is outside the requested subset. A
+    # later non-award or cancellation must still suppress an older award.
+    earliest = datetime.min.replace(tzinfo=UTC)
+    latest = {}
+    archives = (Signal.model_validate_json(line)
+                for path in sorted((root / "data/archive").glob("*.jsonl.gz"))
+                for line in retained_jsonl_lines(path))
+    for signal in chain(iter_rejected(root), archives):
+        stamp = parse_date(signal.updated_at or signal.last_seen_at) or earliest
+        if signal.id not in latest or stamp >= latest[signal.id][0]:
+            latest[signal.id] = stamp, signal if keep is None or keep(signal) else None
+    # Canonical records are reconciled and take precedence over archive dates.
+    for signal in canonical:
+        latest[signal.id] = earliest, signal if keep is None or keep(signal) else None
+    return [signal for _, signal in latest.values() if signal is not None]
 
 
-def prepare_awards(root, canonical, config, now, *, previous_markets=None):
+def prepare_awards(root, canonical, config, now, *, previous_markets=None, include_context=True):
     """Select the same relevant, retained awards for publication and translation."""
-    history = retained_history(root, canonical)
-    backfill_retained_facts(history, read_json(root / "data/source_state.json", {}))
     reviews = load_reviews(root)
+
+    def keep(signal):
+        return signal.id in reviews or is_public_award(signal.model_copy(update={"exclusion_reasons": []}), now)
+
+    history = retained_history(root, canonical, keep=None if include_context else keep)
+    backfill_retained_facts(history, read_json(root / "data/source_state.json", {}))
     # Use the same document facts as current-record decisions without hydrating
     # tens of thousands of unrelated history rows or changing canonical objects.
     history = [s.model_copy() if s.id in reviews else s for s in history]
@@ -50,6 +59,8 @@ def prepare_awards(root, canonical, config, now, *, previous_markets=None):
         hydrate_cached_documents(root, reviewed)
     history = apply_reviews(history, reviews, now=now, guidance=False)
     candidates = [s for s in history if is_public_award(s.model_copy(update={"exclusion_reasons": []}), now)]
+    if not include_context:
+        history = []
     translations = available_translations(root, candidates)
     path = root / "data/discovery/award_classification.json.gz"
     try:

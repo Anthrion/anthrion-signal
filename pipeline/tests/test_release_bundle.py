@@ -217,11 +217,17 @@ def test_release_workflows_keep_trusted_data_validation_and_tested_publication_s
         "${{ inputs.full_tests == true && 'test:e2e:ui' || 'test:e2e:pr' }}")
     assert by_name["Published-data desktop and mobile integration"]["env"]["DATA_TEST_SUITE"] == (
         "${{ inputs.full_tests == true && 'test:e2e:data' || 'test:e2e:data:smoke' }}")
-    assert steps.index(by_name["Upload tested Pages build"]) < steps.index(by_name["Deploy GitHub Pages"])
+    upload = by_name["Upload tested Pages build"]
+    visible = by_name["Verify Pages artifact is visible"]
+    assert steps.index(upload) < steps.index(visible) < steps.index(by_name["Deploy GitHub Pages"])
+    assert visible["env"]["PAGES_ARTIFACT_ID"] == "${{ steps.pages-artifact.outputs.artifact_id }}"
+    assert "continue-on-error" not in visible
+    assert job["permissions"]["actions"] == collect["jobs"]["publish"]["permissions"]["actions"] == "read"
     deployed = "steps.deployment.outcome == 'success'"
     assert by_name["Record successful publication"]["if"] == deployed
     assert deployed in by_name["Create publication receipt token"]["if"]
     deploy = by_name["Deploy GitHub Pages"]
+    assert deploy["with"]["artifact_name"] == upload["with"]["name"] == "${{ env.PAGES_ARTIFACT_NAME }}"
     assert "continue-on-error" not in deploy  # A Pages failure must fail the job and prevent a receipt.
     assert [step for step in steps if step.get("uses", "").startswith("actions/deploy-pages@")] == [deploy]
     assert steps.index(deploy) < steps.index(by_name["Create publication receipt token"])
@@ -240,6 +246,7 @@ def test_release_workflows_keep_trusted_data_validation_and_tested_publication_s
     assert "cli export" not in pr_commands and "release_bundle.py pack" not in pr_commands
     validation = next(s for s in collect["jobs"]["build"]["steps"] if s.get("name") == "Validate pipeline and public dataset")
     assert "check_public_output.py" in validation["run"] and "continue-on-error" not in validation
+    assert "needs.build.result == 'failure' && github.event_name == 'schedule'" in collect["jobs"]["publish"]["if"]
     assert tests["concurrency"] == {
         "group": "signal-pr-${{ github.event.pull_request.number }}", "cancel-in-progress": "true",
     }

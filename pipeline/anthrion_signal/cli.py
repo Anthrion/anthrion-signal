@@ -23,7 +23,7 @@ from .retention import archive_expired, restore_matching
 from .record_reviews import INCLUSION_MARKER, apply_reviews, load_reviews
 from .translation import available_translations
 from .utils import (atomic_json, atomic_retained_bytes, atomic_retained_json, digest,
-                    jsonl_lines, parse_date, read_json, read_retained_bytes, retained_path)
+                    jsonl_lines, parse_date, read_json, read_retained_bytes, retained_jsonl_lines, retained_path)
 
 SCHEDULED_TIMES = [f"{hour:02}:50" for hour in range(24)]
 
@@ -167,7 +167,8 @@ def prepare_current(root, *, save_cache=False, dataset=None):
     signatures = discovery_cache_signatures(root, config, data.markets)
     signature = signatures.signature
     canonical = root / "data/signals.jsonl"
-    canonical_signals = [Signal.model_validate_json(line) for line in jsonl_lines(read_retained_bytes(canonical).decode("utf-8"))] if retained_path(canonical).exists() else data.signals
+    canonical_signals = ([Signal.model_validate_json(line) for line in retained_jsonl_lines(canonical)]
+                         if retained_path(canonical).exists() else data.signals)
     state = read_json(root / "data/source_state.json", {})
     observed_at = datetime.now(UTC).isoformat()
     canonical_signals = project_source_removals(canonical_signals, state, observed_at)

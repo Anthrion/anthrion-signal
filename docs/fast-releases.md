@@ -32,6 +32,17 @@ The publisher acquires `anthrion-signal-publication`, checks out latest main, re
 
 Normal guarded rebases preserve independent collection and publication commits. Conflicting edits fail rather than overwrite either side; a pipeline change during validation prevents an old receipt from claiming the new code passed. The successful publication marker is written only after Pages confirms deployment. Failure leaves the last deployed site intact.
 
+Pages upload and deployment use a unique artifact name per workflow attempt.
+The publisher checks that the run's artifact listing contains the exact upload
+ID before it starts the deployment. If a scheduled data build fails, the
+publisher can still publish a pending, compatible verified export from an
+earlier run. The data build failure remains visible in Actions.
+
+Translation scans retained history one notice at a time and keeps the records
+it needs for award selection. It opens the writable translation cache after
+selection. The worker's address-space limit leaves 2 GiB of the hosted
+runner's RAM for the OS and Actions processes.
+
 ## Test audit decisions
 
 Reviewed the Python test inventory, assertion/exception paths, duplicate-body candidates, frontend unit suites and browser scenarios. Repeated classifier test bodies use different inputs: physical services, mixed software lots, source languages, negation, sparse scope and lifecycle revisions. They protect different false-positive and false-negative boundaries and remain.
