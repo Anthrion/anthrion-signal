@@ -1,11 +1,11 @@
 {
-  "code": "4fbe5651cc2320db68d3487a0dd25af50d9df05c35cf8b4db92bf59127768546",
-  "content": "121cc2cb43273fc0ed72cf8424fee22140bcd16ebf27c25834f2e235fd66bbd2",
-  "translations": "c30e0d69bdc1d3a4d2fdac50cf2e3f1483de233d13f8222b2c37370204bbce30",
+  "code": "ed6a2c841a01e61b75990ebdb4fac41b0db17ceffb29f9df2fefde9bc58dc8fc",
+  "content": "7bbecff4fba9321c8e76953b8a3d35e9587d7b74d04e81a06f8bd258f16c13e0",
+  "translations": "133f9da2f3de5b88c0c9c4c74353893e306f9fb4804153ea899ccdb0e12d8ff0",
   "health": [
     [
       "find_tender",
-      "partial"
+      "healthy"
     ],
     [
       "contracts_finder",
@@ -221,7 +221,7 @@
     ],
     [
       "canada_buys",
-      "partial"
+      "healthy"
     ],
     [
       "seao_qc",
@@ -289,7 +289,7 @@
     ],
     [
       "caribbean_cdb",
-      "healthy"
+      "failed"
     ],
     [
       "caribbean_worldbank",
@@ -297,7 +297,7 @@
     ],
     [
       "dominican_dgcp",
-      "failed"
+      "partial"
     ],
     [
       "ms_tenders",
@@ -305,7 +305,7 @@
     ],
     [
       "lc_finance",
-      "partial"
+      "failed"
     ]
   ],
   "day": "2026-11-21"
