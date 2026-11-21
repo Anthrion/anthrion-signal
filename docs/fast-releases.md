@@ -40,8 +40,8 @@ earlier run. The data build failure remains visible in Actions.
 
 Translation scans retained history one notice at a time and keeps the records
 it needs for award selection. It opens the writable translation cache after
-selection, and hosted translation runs have a 12 GiB address-space limit to leave
-memory for the runner.
+selection. The worker's address-space limit leaves 2 GiB of the hosted
+runner's RAM for the OS and Actions processes.
 
 ## Test audit decisions
 

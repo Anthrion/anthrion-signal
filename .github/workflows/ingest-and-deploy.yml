@@ -183,8 +183,9 @@ jobs:
           # hourly collection's translation window short; neither quota changes.
           TRANSLATION_SECONDS: ${{ steps.plan.outputs.collect == 'true' && '300' || '900' }}
         run: |
-          # Leave memory for the runner and the later validation and save steps.
-          ulimit -v $((12 * 1024 * 1024))
+          # Reserve 2 GiB of the runner's RAM for the OS and Actions processes.
+          runner_memory_kib=$(awk '/^MemTotal:/ {print $2}' /proc/meminfo)
+          ulimit -v "$((runner_memory_kib - 2 * 1024 * 1024))"
           python scripts/translate_records.py records --github-checkpoint --max-calls 150 --max-seconds "$TRANSLATION_SECONDS"
       - name: Checkpoint verified translation progress
         if: always() && (steps.translate.outcome == 'success' || steps.translate.outcome == 'failure')
