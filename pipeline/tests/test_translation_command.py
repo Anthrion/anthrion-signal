@@ -98,21 +98,29 @@ def test_translation_selects_exact_published_awards_including_archive(command, t
     (tmp_path / "config/capabilities.yaml").touch()
     award = signal.model_copy(update={"id": "award", "signal_type": "AWARD", "status": "complete"})
     cancelled = award.model_copy(update={"id": "cancelled", "status": "cancelled"})
+    revised = award.model_copy(update={"id": "revised"})
+    revised_as_tender = signal.model_copy(update={"id": "revised", "status": "open",
+                                                  "updated_at": "2026-09-14T10:00:00Z"})
+    german_award = award.model_copy(update={
+        "id": "german-title-award", "signal_type": "LIVE_TENDER",
+        "title": "Bekanntmachung Vergebener Auftrag: CRM implementation",
+    })
     unrelated = award.model_copy(update={"id": "unrelated", "title": "Outdoor sauna operation",
         "description": "Provide a sauna service.", "cpv_codes": ["98330000"]})
     archive = tmp_path / "data/archive/2026-08.jsonl.gz"
     archive.parent.mkdir(parents=True)
     retained = gzip.compress("\n".join(s.model_dump_json() for s in
-        [award, unrelated, cancelled.model_copy(update={"status": "complete"})]).encode())
+        [award, unrelated, german_award, cancelled.model_copy(update={"status": "complete"}),
+         revised.model_copy(update={"updated_at": "2026-09-13T10:00:00Z"}), revised_as_tender]).encode())
     archive.write_bytes(retained)
     monkeypatch.setattr("anthrion_signal.cli.prepare_current",
         lambda *a, **kw: (SimpleNamespace(signals=[signal]), [cancelled], config))
     current, awards = command.translation_records(tmp_path, now)
     assert [s.id for s in current] == [signal.id]
-    assert [s.id for s in awards] == ["award"]
+    assert {s.id for s in awards} == {"award", "german-title-award"}
     manifest = export_awards(tmp_path, [cancelled], config, now)
     published = read_json(tmp_path / "app/public/data" / manifest["GB"]["url"], {})
-    assert [s["id"] for s in published["signals"]] == [s.id for s in awards]
+    assert {s["id"] for s in published["signals"]} == {s.id for s in awards}
     assert archive.read_bytes() == retained
 
 

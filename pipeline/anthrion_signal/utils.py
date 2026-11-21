@@ -150,6 +150,15 @@ def jsonl_lines(body: str):
     return (line for line in body.split("\n") if line.strip())
 
 
+def retained_jsonl_lines(path):
+    path = retained_path(path)
+    open_text = gzip.open if path.suffix == ".gz" else open
+    with open_text(path, "rt", encoding="utf-8", newline="\n") as stream:
+        for line in stream:
+            if line.strip():
+                yield line
+
+
 def atomic_bytes(path: Path, body: bytes) -> bool:
     path.parent.mkdir(parents=True, exist_ok=True)
     if path.exists() and path.read_bytes() == body:

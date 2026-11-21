@@ -182,7 +182,10 @@ jobs:
           # Catch-up passes have time to use their existing call allowance. Keep
           # hourly collection's translation window short; neither quota changes.
           TRANSLATION_SECONDS: ${{ steps.plan.outputs.collect == 'true' && '300' || '900' }}
-        run: python scripts/translate_records.py records --github-checkpoint --max-calls 150 --max-seconds "$TRANSLATION_SECONDS"
+        run: |
+          # Leave memory for the runner and the later validation and save steps.
+          ulimit -v $((12 * 1024 * 1024))
+          python scripts/translate_records.py records --github-checkpoint --max-calls 150 --max-seconds "$TRANSLATION_SECONDS"
       - name: Checkpoint verified translation progress
         if: always() && (steps.translate.outcome == 'success' || steps.translate.outcome == 'failure')
         continue-on-error: true
@@ -288,13 +291,17 @@ jobs:
 
   publish:
     needs: [plan, build]
+    # A scheduled build failure can leave a newer verified export pending from
+    # an earlier run. The publisher selects only a compatible, saved receipt.
     if: >-
       always() && !cancelled() && needs.plan.result == 'success' &&
-      (needs.build.result == 'success' || needs.build.result == 'skipped')
+      (needs.build.result == 'success' || needs.build.result == 'skipped' ||
+       (needs.build.result == 'failure' && github.event_name == 'schedule'))
     uses: ./.github/workflows/publish.yml
     with:
       full_tests: ${{ inputs.full_tests == true }}
     permissions:
+      actions: read
       contents: write
       pages: write
       id-token: write

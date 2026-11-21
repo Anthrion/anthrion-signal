@@ -7,16 +7,20 @@ from .rejected_store import current_paths, current_rows, migrated, upsert
 from .utils import atomic_bytes, jsonl_lines, parse_date
 
 
-def read_rejected(root):
-    latest = {}
+def iter_rejected(root):
     for path in current_paths(root):
         for row in current_rows(path):
-            signal = Signal.model_validate(row)
-            previous = latest.get(signal.id)
-            stamp = parse_date(signal.updated_at or signal.last_seen_at)
-            prior = parse_date(previous.updated_at or previous.last_seen_at) if previous else None
-            if previous is None or stamp >= prior:
-                latest[signal.id] = signal
+            yield Signal.model_validate(row)
+
+
+def read_rejected(root):
+    latest = {}
+    for signal in iter_rejected(root):
+        previous = latest.get(signal.id)
+        stamp = parse_date(signal.updated_at or signal.last_seen_at)
+        prior = parse_date(previous.updated_at or previous.last_seen_at) if previous else None
+        if previous is None or stamp >= prior:
+            latest[signal.id] = signal
     return list(latest.values())
 
 
