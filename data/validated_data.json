@@ -1,21 +1,21 @@
 {
   "version": 1,
-  "generation": 553,
+  "generation": 554,
   "data_code": "5d02d6f9d4f12b8e204d95bb7c0c10a0338ca372044d5c519749a44b3f200832",
-  "sha256": "63476bf611b9b524c8ebdb7742a89f5ce2f8ca78776486d792fd7be5a09bc1e5",
-  "key": "signal-public-v1-63476bf611b9b524c8ebdb7742a89f5ce2f8ca78776486d792fd7be5a09bc1e5-44863902144-1",
-  "public_bytes": 593822270,
-  "public_files": 6607,
-  "inputs": "26cb8baf43b3b6f2705c9ef24b7e315784c2331bc1dc6d2ee6e107c7557f83ce",
-  "validated_at": "2026-11-21T04:40:12.232601+00:00",
+  "sha256": "4144a5da105dbfec6a5102d71ad04bbdf811fe7632a70059eb07f6d08fbbfd3e",
+  "key": "signal-public-v1-4144a5da105dbfec6a5102d71ad04bbdf811fe7632a70059eb07f6d08fbbfd3e-44886811037-1",
+  "public_bytes": 597925674,
+  "public_files": 6610,
+  "inputs": "3ad4c0d59bbbadda42244cc2fb253e01ac83ae934023f852c5782a89b37f1ff3",
+  "validated_at": "2026-11-21T09:41:11.703630+00:00",
   "signature": {
     "code": "4fbe5651cc2320db68d3487a0dd25af50d9df05c35cf8b4db92bf59127768546",
-    "content": "121cc2cb43273fc0ed72cf8424fee22140bcd16ebf27c25834f2e235fd66bbd2",
-    "translations": "c30e0d69bdc1d3a4d2fdac50cf2e3f1483de233d13f8222b2c37370204bbce30",
+    "content": "afcea6b8281a571ad4198abf04e93da132b8ffe9a8761c0255fb1cc7d038cf14",
+    "translations": "133f9da2f3de5b88c0c9c4c74353893e306f9fb4804153ea899ccdb0e12d8ff0",
     "health": [
       [
         "find_tender",
-        "partial"
+        "healthy"
       ],
       [
         "contracts_finder",
@@ -231,7 +231,7 @@
       ],
       [
         "canada_buys",
-        "partial"
+        "healthy"
       ],
       [
         "seao_qc",
@@ -299,7 +299,7 @@
       ],
       [
         "caribbean_cdb",
-        "healthy"
+        "failed"
       ],
       [
         "caribbean_worldbank",
@@ -307,7 +307,7 @@
       ],
       [
         "dominican_dgcp",
-        "failed"
+        "partial"
       ],
       [
         "ms_tenders",
@@ -315,7 +315,7 @@
       ],
       [
         "lc_finance",
-        "partial"
+        "failed"
       ]
     ],
     "day": "2026-11-21"
@@ -323,14 +323,14 @@
   "storage": {
     "version": 1,
     "kind": "public",
-    "digest": "63476bf611b9b524c8ebdb7742a89f5ce2f8ca78776486d792fd7be5a09bc1e5",
-    "tag": "signal-data-v1-public-63476bf611b9b524c8ebdb7742a89f5ce2f8ca78776486d792fd7be5a09bc1e5",
-    "release_id": 453443389,
+    "digest": "4144a5da105dbfec6a5102d71ad04bbdf811fe7632a70059eb07f6d08fbbfd3e",
+    "tag": "signal-data-v1-public-4144a5da105dbfec6a5102d71ad04bbdf811fe7632a70059eb07f6d08fbbfd3e",
+    "release_id": 453585338,
     "assets": [
       {
         "name": "public-data.tar.gz",
-        "bytes": 570590380,
-        "sha256": "63476bf611b9b524c8ebdb7742a89f5ce2f8ca78776486d792fd7be5a09bc1e5"
+        "bytes": 574642405,
+        "sha256": "4144a5da105dbfec6a5102d71ad04bbdf811fe7632a70059eb07f6d08fbbfd3e"
       }
     ]
   }
