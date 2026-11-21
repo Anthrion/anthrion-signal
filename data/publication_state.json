@@ -1,11 +1,11 @@
 {
   "code": "4fbe5651cc2320db68d3487a0dd25af50d9df05c35cf8b4db92bf59127768546",
-  "content": "454f427bbc975c4c9b51c0381e50b464d43c1a9d670bb74209da8eae63a6f2d8",
-  "translations": "138ef5143b3e32bb4c38f18ece8c0f3302637712538872c26c22be6b26326952",
+  "content": "121cc2cb43273fc0ed72cf8424fee22140bcd16ebf27c25834f2e235fd66bbd2",
+  "translations": "c30e0d69bdc1d3a4d2fdac50cf2e3f1483de233d13f8222b2c37370204bbce30",
   "health": [
     [
       "find_tender",
-      "failed"
+      "partial"
     ],
     [
       "contracts_finder",
@@ -133,7 +133,7 @@
     ],
     [
       "sam",
-      "partial"
+      "healthy"
     ],
     [
       "ungm",
@@ -289,7 +289,7 @@
     ],
     [
       "caribbean_cdb",
-      "failed"
+      "healthy"
     ],
     [
       "caribbean_worldbank",
@@ -308,5 +308,5 @@
       "partial"
     ]
   ],
-  "day": "2026-11-20"
+  "day": "2026-11-21"
 }
