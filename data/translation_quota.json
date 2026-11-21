@@ -1,69 +1,5 @@
 {
   "allocations": {
-    "44281170534-1": {
-      "closed": true,
-      "day": "2026-11-18",
-      "limits": {
-        "gemini-3.1-flash-lite": 75,
-        "gemini-3.5-flash-lite": 75
-      },
-      "started": true,
-      "used": {
-        "gemini-3.1-flash-lite": 74,
-        "gemini-3.5-flash-lite": 39
-      }
-    },
-    "44314292063-1": {
-      "closed": true,
-      "day": "2026-11-18",
-      "limits": {
-        "gemini-3.1-flash-lite": 75,
-        "gemini-3.5-flash-lite": 75
-      },
-      "started": true,
-      "used": {
-        "gemini-3.1-flash-lite": 29,
-        "gemini-3.5-flash-lite": 5
-      }
-    },
-    "44373468059-1": {
-      "closed": true,
-      "day": "2026-11-18",
-      "limits": {
-        "gemini-3.1-flash-lite": 75,
-        "gemini-3.5-flash-lite": 75
-      },
-      "started": true,
-      "used": {
-        "gemini-3.1-flash-lite": 68,
-        "gemini-3.5-flash-lite": 18
-      }
-    },
-    "44403592645-1": {
-      "closed": true,
-      "day": "2026-11-18",
-      "limits": {
-        "gemini-3.1-flash-lite": 75,
-        "gemini-3.5-flash-lite": 75
-      },
-      "started": true,
-      "used": {
-        "gemini-3.1-flash-lite": 27,
-        "gemini-3.5-flash-lite": 26
-      }
-    },
-    "44447320908-1": {
-      "closed": true,
-      "day": "2026-11-18",
-      "limits": {
-        "gemini-3.1-flash-lite": 75,
-        "gemini-3.5-flash-lite": 75
-      },
-      "started": true,
-      "used": {
-        "gemini-3.5-flash-lite": 54
-      }
-    },
     "44489759229-1": {
       "closed": true,
       "day": "2026-11-19",
@@ -195,47 +131,75 @@
       }
     },
     "44886811037-1": {
-      "closed": false,
+      "closed": true,
       "day": "2026-11-21",
       "limits": {
         "gemini-3.1-flash-lite": 75,
         "gemini-3.5-flash-lite": 75
       },
-      "used": {}
+      "started": true,
+      "used": {
+        "gemini-3.1-flash-lite": 12,
+        "gemini-3.5-flash-lite": 14
+      }
     }
   },
   "models": {
     "gemini-3.1-flash-lite": {
       "blocked_reason": "transient",
-      "blocked_until": 1795196188.9109285,
-      "consecutive_errors": 0,
+      "blocked_until": 1795252952.7259595,
+      "consecutive_errors": 1,
       "days": {
-        "2026-11-18": 198,
         "2026-11-19": 154,
         "2026-11-20": 275,
-        "2026-11-21": 75
+        "2026-11-21": 12
       },
-      "recent": [],
+      "recent": [
+        {
+          "at": 1795252849.4524179,
+          "tokens": 19713
+        },
+        {
+          "at": 1795252849.5506341,
+          "tokens": 6408
+        },
+        {
+          "at": 1795252889.964067,
+          "tokens": 15179
+        },
+        {
+          "at": 1795252890.0651915,
+          "tokens": 4771
+        }
+      ],
       "usage": {
-        "candidatesTokenCount": 18169866,
-        "promptTokenCount": 23769272,
+        "candidatesTokenCount": 18181259,
+        "promptTokenCount": 23784128,
         "thoughtsTokenCount": 0
       }
     },
     "gemini-3.5-flash-lite": {
       "blocked_reason": "transient",
-      "blocked_until": 1795235021.0179362,
-      "consecutive_errors": 1,
+      "blocked_until": 1795253017.01626,
+      "consecutive_errors": 2,
       "days": {
-        "2026-11-18": 142,
         "2026-11-19": 182,
         "2026-11-20": 229,
-        "2026-11-21": 75
+        "2026-11-21": 14
       },
-      "recent": [],
+      "recent": [
+        {
+          "at": 1795252892.7833729,
+          "tokens": 20058
+        },
+        {
+          "at": 1795252892.875655,
+          "tokens": 6455
+        }
+      ],
       "usage": {
-        "candidatesTokenCount": 32952870,
-        "promptTokenCount": 42890942,
+        "candidatesTokenCount": 32967255,
+        "promptTokenCount": 42909093,
         "thoughtsTokenCount": 0
       }
     }
