@@ -1,7 +1,7 @@
 {
   "code": "ed6a2c841a01e61b75990ebdb4fac41b0db17ceffb29f9df2fefde9bc58dc8fc",
-  "content": "7bbecff4fba9321c8e76953b8a3d35e9587d7b74d04e81a06f8bd258f16c13e0",
-  "translations": "133f9da2f3de5b88c0c9c4c74353893e306f9fb4804153ea899ccdb0e12d8ff0",
+  "content": "b6e3ffb835fc69fefffd3f96acf2f93f1ff0d2fe3b876fdf0ed8b8c3b8caa53f",
+  "translations": "c2d3148f495d169c9aec1a8888b8dcec43d5d73ecf8074e9367af82e002b6833",
   "health": [
     [
       "find_tender",
@@ -53,7 +53,7 @@
     ],
     [
       "la_ramp",
-      "healthy"
+      "failed"
     ],
     [
       "grants",
@@ -221,7 +221,7 @@
     ],
     [
       "canada_buys",
-      "healthy"
+      "partial"
     ],
     [
       "seao_qc",
@@ -305,7 +305,7 @@
     ],
     [
       "lc_finance",
-      "failed"
+      "partial"
     ]
   ],
   "day": "2026-11-21"
