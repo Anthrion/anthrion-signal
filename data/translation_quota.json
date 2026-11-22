@@ -168,40 +168,77 @@
       }
     },
     "45053042944-1": {
-      "closed": false,
+      "closed": true,
       "day": "2026-11-22",
       "limits": {
         "gemini-3.1-flash-lite": 75,
         "gemini-3.5-flash-lite": 75
       },
-      "used": {}
+      "started": true,
+      "used": {
+        "gemini-3.1-flash-lite": 38,
+        "gemini-3.5-flash-lite": 2
+      }
     }
   },
   "models": {
     "gemini-3.1-flash-lite": {
       "blocked_reason": "transient",
-      "blocked_until": 1795361702.2706773,
-      "consecutive_errors": 0,
+      "blocked_until": 1795372773.59703,
+      "consecutive_errors": 1,
       "days": {
         "2026-11-20": 275,
         "2026-11-21": 155,
-        "2026-11-22": 164
+        "2026-11-22": 127
       },
-      "recent": [],
+      "recent": [
+        {
+          "at": 1795372654.355811,
+          "tokens": 13746
+        },
+        {
+          "at": 1795372654.4667728,
+          "tokens": 4471
+        },
+        {
+          "at": 1795372670.2726917,
+          "tokens": 18184
+        },
+        {
+          "at": 1795372670.360696,
+          "tokens": 5106
+        },
+        {
+          "at": 1795372687.0633698,
+          "tokens": 18184
+        },
+        {
+          "at": 1795372687.1650188,
+          "tokens": 5106
+        },
+        {
+          "at": 1795372704.2515,
+          "tokens": 17502
+        },
+        {
+          "at": 1795372704.3495822,
+          "tokens": 6384
+        }
+      ],
       "usage": {
-        "candidatesTokenCount": 18517183,
-        "promptTokenCount": 24210297,
+        "candidatesTokenCount": 18573763,
+        "promptTokenCount": 24282761,
         "thoughtsTokenCount": 0
       }
     },
     "gemini-3.5-flash-lite": {
       "blocked_reason": "transient",
-      "blocked_until": 1795362010.5027525,
-      "consecutive_errors": 3,
+      "blocked_until": 1795372903.4715807,
+      "consecutive_errors": 4,
       "days": {
         "2026-11-20": 229,
         "2026-11-21": 245,
-        "2026-11-22": 119
+        "2026-11-22": 46
       },
       "recent": [],
       "usage": {
