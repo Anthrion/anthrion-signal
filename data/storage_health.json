@@ -1,17 +1,17 @@
 {
-  "measured_at": "2026-11-22T11:29:42.845910+00:00",
+  "measured_at": "2026-11-22T16:04:32.232745+00:00",
   "metrics": {
-    "retained_bytes": 860851999,
+    "retained_bytes": 860854433,
     "retained_files": 302,
     "largest_retained_file": 83276991,
     "largest_snapshot_asset": 793333760,
-    "public_archive_bytes": 581794105,
-    "public_bytes": 605324621,
+    "public_archive_bytes": 581729001,
+    "public_bytes": 605264094,
     "public_files": 6620,
-    "control_bytes": 18113,
-    "runner_free_bytes": 90740453376,
-    "repository_bytes": 5249024,
-    "release_storage_bytes": 15876132802,
+    "control_bytes": 18575,
+    "runner_free_bytes": 90742251520,
+    "repository_bytes": 5257216,
+    "release_storage_bytes": 15884154548,
     "release_count": 34
   },
   "warnings": []
