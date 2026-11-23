@@ -1,7 +1,7 @@
 {
   "code": "ed6a2c841a01e61b75990ebdb4fac41b0db17ceffb29f9df2fefde9bc58dc8fc",
-  "content": "a596b1fc4656eca3346807232976cac6d1b0cdc8b3f5178915f935ff4ad14056",
-  "translations": "e34e8992fff87e4943ec04dc4407070beb8707e27d22ffe6cbd0ba73808e9107",
+  "content": "c46a6f0ebc87e937d1facbc923f5ab53db089118c8bd299432e210d0ae19a5cb",
+  "translations": "01cd12eb9bd7c7c6d2e5b4a82a41f7c32e2ee0ecbfefb3497da28825bdd0081e",
   "health": [
     [
       "find_tender",
@@ -21,7 +21,7 @@
     ],
     [
       "govuk",
-      "partial"
+      "healthy"
     ],
     [
       "digital_outcomes",
@@ -305,8 +305,8 @@
     ],
     [
       "lc_finance",
-      "partial"
+      "failed"
     ]
   ],
-  "day": "2026-11-22"
+  "day": "2026-11-23"
 }
