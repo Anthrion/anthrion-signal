@@ -1,11 +1,11 @@
 {
   "code": "ed6a2c841a01e61b75990ebdb4fac41b0db17ceffb29f9df2fefde9bc58dc8fc",
-  "content": "c798348479978ece840c83c5dbe4aa3cfa55930ba4d8a93248a17453dfd035d7",
-  "translations": "a642b465f2ea176293858a1ced827b46f710b43fe35e3706db7d689f14351c5e",
+  "content": "91124c500f01a33aa701cc9a17dd84225f8b2c851768a25977959436524087d5",
+  "translations": "eaefc39a4ff55dccaf17ca1a481a7e7306817f85dfbcb338868e2a33c4c0388a",
   "health": [
     [
       "find_tender",
-      "failed"
+      "healthy"
     ],
     [
       "contracts_finder",
@@ -45,7 +45,7 @@
     ],
     [
       "spain",
-      "healthy"
+      "partial"
     ],
     [
       "nyc_city_record",
@@ -289,7 +289,7 @@
     ],
     [
       "caribbean_cdb",
-      "failed"
+      "partial"
     ],
     [
       "caribbean_worldbank",
