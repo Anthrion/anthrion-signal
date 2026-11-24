@@ -3,36 +3,6 @@
     "records": {
       "version": 1,
       "kind": "records",
-      "digest": "5c27bfe63d46d64c38f05ae4ac25e18132a31247bfcf20c894b89a2f6110adb8",
-      "tag": "signal-data-v1-records-5c27bfe63d46d64c38f05ae4ac25e18132a31247bfcf20c894b89a2f6110adb8",
-      "release_id": 456027445,
-      "assets": [
-        {
-          "name": "records-000.tar",
-          "bytes": 797265920,
-          "sha256": "9e120f376ebc3df9220c179bfe6402f2b3994e4cd3ae426345eecec588852387"
-        }
-      ]
-    },
-    "translations": {
-      "version": 1,
-      "kind": "translations",
-      "digest": "f09ae26f46ffd518b8657ccb9997f5cafd8221cd2c8f8b97ce0e7a8b44b501df",
-      "tag": "signal-data-v1-translations-f09ae26f46ffd518b8657ccb9997f5cafd8221cd2c8f8b97ce0e7a8b44b501df",
-      "release_id": 456003351,
-      "assets": [
-        {
-          "name": "translations-000.tar",
-          "bytes": 68044800,
-          "sha256": "30611f37377529c3881be6e47c87ccb49f06470d5e2dfac4529d4f780aae33ba"
-        }
-      ]
-    }
-  },
-  "components": {
-    "records": {
-      "version": 1,
-      "kind": "records",
       "digest": "e74e6d5b22fba9e3350c1ba1c1e395f01be06711ec2b87eba953b78d0558abc4",
       "tag": "signal-data-v1-records-e74e6d5b22fba9e3350c1ba1c1e395f01be06711ec2b87eba953b78d0558abc4",
       "release_id": 456107295,
@@ -55,6 +25,36 @@
           "name": "translations-000.tar",
           "bytes": 68044800,
           "sha256": "a73b17b3683a121e78bd4fc51a01470049894281be5e754f1d9f66be832a89b1"
+        }
+      ]
+    }
+  },
+  "components": {
+    "records": {
+      "version": 1,
+      "kind": "records",
+      "digest": "a71ccdb634086e7df5098794832c1e7974bd3e8d91070fb05e72cbd90a9291ff",
+      "tag": "signal-data-v1-records-a71ccdb634086e7df5098794832c1e7974bd3e8d91070fb05e72cbd90a9291ff",
+      "release_id": 457190200,
+      "assets": [
+        {
+          "name": "records-000.tar",
+          "bytes": 797265920,
+          "sha256": "93b3f6419dbf5fd4557aded3568cf650bb99443db9f7ffe8733f2f611bbbb320"
+        }
+      ]
+    },
+    "translations": {
+      "version": 1,
+      "kind": "translations",
+      "digest": "f5e28357c0e44ce448be2596f18a1a4e44101e3de5870738a948d60b187d1d0e",
+      "tag": "signal-data-v1-translations-f5e28357c0e44ce448be2596f18a1a4e44101e3de5870738a948d60b187d1d0e",
+      "release_id": 457190660,
+      "assets": [
+        {
+          "name": "translations-000.tar",
+          "bytes": 68044800,
+          "sha256": "5ce6c93eed5f845936f4b84d5f5acf92a7a7ecf9f8793784093e97543cf69dd7"
         }
       ]
     }

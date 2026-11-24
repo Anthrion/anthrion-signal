@@ -1,81 +1,5 @@
 {
   "allocations": {
-    "44886811037-1": {
-      "closed": true,
-      "day": "2026-11-21",
-      "limits": {
-        "gemini-3.1-flash-lite": 75,
-        "gemini-3.5-flash-lite": 75
-      },
-      "started": true,
-      "used": {
-        "gemini-3.1-flash-lite": 12,
-        "gemini-3.5-flash-lite": 14
-      }
-    },
-    "44927488777-1": {
-      "closed": true,
-      "day": "2026-11-21",
-      "limits": {
-        "gemini-3.1-flash-lite": 75,
-        "gemini-3.5-flash-lite": 75
-      },
-      "started": true,
-      "used": {
-        "gemini-3.1-flash-lite": 16,
-        "gemini-3.5-flash-lite": 22
-      }
-    },
-    "44942365264-1": {
-      "closed": true,
-      "day": "2026-11-21",
-      "limits": {
-        "gemini-3.1-flash-lite": 75,
-        "gemini-3.5-flash-lite": 75
-      },
-      "started": true,
-      "used": {
-        "gemini-3.1-flash-lite": 53,
-        "gemini-3.5-flash-lite": 74
-      }
-    },
-    "44956856994-1": {
-      "closed": true,
-      "day": "2026-11-21",
-      "limits": {
-        "gemini-3.1-flash-lite": 75,
-        "gemini-3.5-flash-lite": 75
-      },
-      "started": true,
-      "used": {
-        "gemini-3.5-flash-lite": 49
-      }
-    },
-    "44977257903-1": {
-      "closed": true,
-      "day": "2026-11-21",
-      "limits": {
-        "gemini-3.1-flash-lite": 75,
-        "gemini-3.5-flash-lite": 75
-      },
-      "started": true,
-      "used": {
-        "gemini-3.5-flash-lite": 42
-      }
-    },
-    "44996201256-1": {
-      "closed": true,
-      "day": "2026-11-21",
-      "limits": {
-        "gemini-3.1-flash-lite": 75,
-        "gemini-3.5-flash-lite": 75
-      },
-      "started": true,
-      "used": {
-        "gemini-3.1-flash-lite": 74,
-        "gemini-3.5-flash-lite": 44
-      }
-    },
     "45012154871-1": {
       "closed": true,
       "day": "2026-11-22",
@@ -194,7 +118,6 @@
       "blocked_until": 1795474451.930634,
       "consecutive_errors": 4,
       "days": {
-        "2026-11-21": 155,
         "2026-11-22": 202,
         "2026-11-23": 67
       },
@@ -210,7 +133,6 @@
       "blocked_until": 1795474649.1104946,
       "consecutive_errors": 4,
       "days": {
-        "2026-11-21": 245,
         "2026-11-22": 164,
         "2026-11-23": 138
       },
