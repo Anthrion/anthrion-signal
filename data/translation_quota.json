@@ -89,6 +89,15 @@
         "gemini-3.1-flash-lite": 25,
         "gemini-3.5-flash-lite": 10
       }
+    },
+    "45705583253-1": {
+      "closed": false,
+      "day": "2026-11-25",
+      "limits": {
+        "gemini-3.1-flash-lite": 75,
+        "gemini-3.5-flash-lite": 75
+      },
+      "used": {}
     }
   },
   "models": {
@@ -98,34 +107,9 @@
       "consecutive_errors": 1,
       "days": {
         "2026-11-23": 67,
-        "2026-11-25": 69
+        "2026-11-25": 144
       },
-      "recent": [
-        {
-          "at": 1795639797.1324058,
-          "tokens": 22250
-        },
-        {
-          "at": 1795639797.1983192,
-          "tokens": 6687
-        },
-        {
-          "at": 1795639817.0336416,
-          "tokens": 22139
-        },
-        {
-          "at": 1795639817.1119618,
-          "tokens": 6797
-        },
-        {
-          "at": 1795639839.2744486,
-          "tokens": 20752
-        },
-        {
-          "at": 1795639839.3397007,
-          "tokens": 6541
-        }
-      ],
+      "recent": [],
       "usage": {
         "candidatesTokenCount": 18734625,
         "promptTokenCount": 24491704,
@@ -138,7 +122,7 @@
       "consecutive_errors": 2,
       "days": {
         "2026-11-23": 138,
-        "2026-11-25": 27
+        "2026-11-25": 102
       },
       "recent": [],
       "usage": {
