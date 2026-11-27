@@ -1,17 +1,17 @@
 {
   "version": 1,
-  "generation": 579,
+  "generation": 580,
   "data_code": "e7a08334b05c78a99ef4fbdef55cd28b72ac49c6c0fc29ebf2a16eee2f98141b",
-  "sha256": "5f013fd643f8e7e4132793da1bba3573ac1bb91ab83eebff4381558a365db16c",
-  "key": "signal-public-v1-5f013fd643f8e7e4132793da1bba3573ac1bb91ab83eebff4381558a365db16c-45906033127-1",
-  "public_bytes": 617284248,
+  "sha256": "1f71e24b0f5c7dfd023441a91e0062d4003b1aa289a14eb73043d1a804c670fd",
+  "key": "signal-public-v1-1f71e24b0f5c7dfd023441a91e0062d4003b1aa289a14eb73043d1a804c670fd-45907736091-1",
+  "public_bytes": 617267868,
   "public_files": 6655,
-  "inputs": "5e187c02c9bc4e927a57484dee0a9e713f74c520fc3db0879bba7650ac16b301",
-  "validated_at": "2026-11-26T23:46:05.135653+00:00",
+  "inputs": "c9b85d3a5d1aa0738e470c0c944549a189c3c1c5663e6044c72a72f0424c4498",
+  "validated_at": "2026-11-27T00:39:50.173563+00:00",
   "signature": {
     "code": "ed6a2c841a01e61b75990ebdb4fac41b0db17ceffb29f9df2fefde9bc58dc8fc",
-    "content": "22de414ea5b9db6d378a991bcc238f67b537490a133f1e792d0825ad67adab72",
-    "translations": "140f33b80e908921b95b9fcd9e604ba6f123ae6b30ef2a0afe9ae632e9c34a1b",
+    "content": "5a4189fbdbf19f75a22e10f3f36b7bef3a576b89e362fd1f72c8dcd88725e0d7",
+    "translations": "b793f0e91e4072c888b34ffb9e90d092d92af93516b4228b944426771a592733",
     "health": [
       [
         "find_tender",
@@ -318,19 +318,19 @@
         "failed"
       ]
     ],
-    "day": "2026-11-26"
+    "day": "2026-11-27"
   },
   "storage": {
     "version": 1,
     "kind": "public",
-    "digest": "5f013fd643f8e7e4132793da1bba3573ac1bb91ab83eebff4381558a365db16c",
-    "tag": "signal-data-v1-public-5f013fd643f8e7e4132793da1bba3573ac1bb91ab83eebff4381558a365db16c",
-    "release_id": 460006686,
+    "digest": "1f71e24b0f5c7dfd023441a91e0062d4003b1aa289a14eb73043d1a804c670fd",
+    "tag": "signal-data-v1-public-1f71e24b0f5c7dfd023441a91e0062d4003b1aa289a14eb73043d1a804c670fd",
+    "release_id": 460035943,
     "assets": [
       {
         "name": "public-data.tar.gz",
-        "bytes": 593290196,
-        "sha256": "5f013fd643f8e7e4132793da1bba3573ac1bb91ab83eebff4381558a365db16c"
+        "bytes": 593280495,
+        "sha256": "1f71e24b0f5c7dfd023441a91e0062d4003b1aa289a14eb73043d1a804c670fd"
       }
     ]
   }
