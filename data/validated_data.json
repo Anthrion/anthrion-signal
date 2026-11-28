@@ -1,13 +1,13 @@
 {
   "version": 1,
-  "generation": 583,
+  "generation": 584,
   "data_code": "e7a08334b05c78a99ef4fbdef55cd28b72ac49c6c0fc29ebf2a16eee2f98141b",
-  "sha256": "b08e8fa96d7ebbebe479d8c277d70a0ecefd2196d3892709f9237e379a46583f",
-  "key": "signal-public-v1-b08e8fa96d7ebbebe479d8c277d70a0ecefd2196d3892709f9237e379a46583f-46082058069-1",
+  "sha256": "0be939d7471c90a3ff9bd5d596c1cc0741d32a84629fc8ccc3f7f155a594fcdc",
+  "key": "signal-public-v1-0be939d7471c90a3ff9bd5d596c1cc0741d32a84629fc8ccc3f7f155a594fcdc-46109686282-1",
   "public_bytes": 614655527,
   "public_files": 6643,
   "inputs": "52beddc3506e9fd0936203d7dec019d96dac4419419cbd421e9e2aa01f671e45",
-  "validated_at": "2026-11-28T00:50:59.692690+00:00",
+  "validated_at": "2026-11-28T05:22:29.968755+00:00",
   "signature": {
     "code": "ed6a2c841a01e61b75990ebdb4fac41b0db17ceffb29f9df2fefde9bc58dc8fc",
     "content": "904527b8d22dea152e483e38f6ff21818bac02413fdec69b54fa57b1fa3b4ec9",
@@ -323,14 +323,14 @@
   "storage": {
     "version": 1,
     "kind": "public",
-    "digest": "b08e8fa96d7ebbebe479d8c277d70a0ecefd2196d3892709f9237e379a46583f",
-    "tag": "signal-data-v1-public-b08e8fa96d7ebbebe479d8c277d70a0ecefd2196d3892709f9237e379a46583f",
-    "release_id": 461196881,
+    "digest": "0be939d7471c90a3ff9bd5d596c1cc0741d32a84629fc8ccc3f7f155a594fcdc",
+    "tag": "signal-data-v1-public-0be939d7471c90a3ff9bd5d596c1cc0741d32a84629fc8ccc3f7f155a594fcdc",
+    "release_id": 461323178,
     "assets": [
       {
         "name": "public-data.tar.gz",
-        "bytes": 590795299,
-        "sha256": "b08e8fa96d7ebbebe479d8c277d70a0ecefd2196d3892709f9237e379a46583f"
+        "bytes": 590795259,
+        "sha256": "0be939d7471c90a3ff9bd5d596c1cc0741d32a84629fc8ccc3f7f155a594fcdc"
       }
     ]
   }
